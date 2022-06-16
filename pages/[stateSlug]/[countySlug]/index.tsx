@@ -22,6 +22,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 	const state = getState(stateSlug);
 	if (!state) return { notFound: true };
 
+	throw new Error("Potatoes");
+
 	const county = getCountyBySlug(state.code, countySlug);
 	if (!county?.name) return { notFound: true };
 	
