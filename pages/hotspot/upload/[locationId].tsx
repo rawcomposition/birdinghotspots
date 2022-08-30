@@ -144,7 +144,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <label className="text-gray-500 font-bold">
-                Name{" "}
+                Your Name{" "}
                 <span className="text-[12px] text-gray-500 font-normal leading-4"> &ndash; Used for attribution</span>
                 <br />
                 <Input type="text" name="name" required />

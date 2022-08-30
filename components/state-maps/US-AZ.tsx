@@ -7,7 +7,6 @@ export default function ArizonaMap() {
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
       viewBox="248 35 464 505"
-      width="100%"
     >
       <g>
         <g>

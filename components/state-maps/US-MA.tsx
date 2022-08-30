@@ -7,7 +7,6 @@ export default function NewMexicoMap() {
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
       viewBox="118 20 800  540"
-      width="100%"
     >
       <g>
         <g id="states">

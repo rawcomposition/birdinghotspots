@@ -273,6 +273,10 @@ img.marker {
 
 /*SVG Maps*/
 
+.state-map {
+	width: 100%;
+}
+
 .state-map path, .state-map a {
 	cursor: pointer;
 }
