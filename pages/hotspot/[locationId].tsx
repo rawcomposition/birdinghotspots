@@ -16,7 +16,13 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { accessibleOptions, restroomOptions, formatMarkerArray, restructureHotspotsByCounty } from "lib/helpers";
+import {
+  accessibleOptions,
+  restroomOptions,
+  formatMarkerArray,
+  restructureHotspotsByCounty,
+  stripHotspotSuffix,
+} from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
@@ -244,7 +250,9 @@ export default function Hotspot({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
-          {parent?.about && parent?.name && <AboutSection heading={`About ${parent.name}`} text={parent.about} />}
+          {parent?.about && parent?.name && (
+            <AboutSection heading={`About ${stripHotspotSuffix(parent.name)}`} text={parent.about} />
+          )}
 
           <div className="space-y-1">
             {restrooms !== null && <p>{restroomOptions.find((it) => it.value === restrooms)?.label}</p>}

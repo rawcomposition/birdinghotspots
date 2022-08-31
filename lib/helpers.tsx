@@ -289,3 +289,11 @@ export const getEbirdColor = (count: number) => {
 export function truncate(string: string, length: number) {
   return string.length > length ? `${string.substring(0, length)}...` : string;
 }
+
+export function stripHotspotSuffix(name: string) {
+  const stripped = name.replace(/\(.*\)/g, "").trim();
+  if (stripped.endsWith(" overall")) {
+    return stripped.replace(" overall", "");
+  }
+  return stripped;
+}
