@@ -15,7 +15,6 @@ export type County = {
   region: string | null;
   ebirdCode: string;
   regionLabel: string | null;
-  active: boolean;
 };
 
 export type Image = {
