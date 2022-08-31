@@ -6,6 +6,7 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import Title from "components/Title";
 import Field from "components/Field";
+import Link from "next/link";
 
 type Inputs = {
   locationId: string;
@@ -14,7 +15,7 @@ type Inputs = {
 export default function Add() {
   const form = useForm<Inputs>();
   const router = useRouter();
-  const { defaultParentId } = router.query;
+  const { defaultParentId, state, country } = router.query;
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit: SubmitHandler<Inputs> = async ({ locationId }) => {
@@ -30,9 +31,17 @@ export default function Add() {
         <div className="max-w-2xl mx-auto">
           <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
             <Field label="eBird Location ID">
-              <Input type="text" name="locationId" />
-              <span className="text-xs text-gray-500 font-normal">Example: L12345678</span>
+              <Input type="text" name="locationId" placeholder="e.g. L12345678" />
             </Field>
+            {state && country && (
+              <p>
+                Or{" "}
+                <Link href={`/edit/group/new?state=${state}&country=${country}`}>
+                  <a className="font-medium">add custom location</a>
+                </Link>{" "}
+                without an associated eBird hotspot.
+              </p>
+            )}
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
             <Submit loading={loading} color="green" className="font-medium">

@@ -66,8 +66,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         )}
       </PageHeading>
       <EditorActions className="-mt-10">
-        <Link href="/add">Add Hotspot</Link>
-        <Link href={`/edit/group/new?state=${code}&country=${countrySlug}`}>Add Group Hotspot</Link>
+        <Link href={`/add?state=${code}&country=${countrySlug}`}>Add Hotspot</Link>
         <Link href={`/${countrySlug}/${slug}/article/edit/new`}>Add Article</Link>
       </EditorActions>
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
