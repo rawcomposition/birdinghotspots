@@ -2,7 +2,9 @@ import * as React from "react";
 import mapboxgl from "mapbox-gl";
 import { Marker } from "lib/types";
 
-mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_KEY || "";
+const keys = process.env.NEXT_PUBLIC_MAPBOX_KEY?.split(",") || [];
+const key = keys[Math.floor(Math.random() * keys.length)];
+mapboxgl.accessToken = key || "";
 
 type Props = {
   markers: Marker[];
