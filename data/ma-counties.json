@@ -1,72 +1,58 @@
 [
   {
     "ebirdCode": "US-MA-001",
-    "slug": "barnstable",
-		"active": true
+    "slug": "barnstable"
   },
   {
     "ebirdCode": "US-MA-003",
-    "slug": "berkshire",
-		"active": true
+    "slug": "berkshire"
   },
   {
     "ebirdCode": "US-MA-005",
-    "slug": "bristol",
-		"active": true
+    "slug": "bristol"
   },
   {
     "ebirdCode": "US-MA-007",
-    "slug": "dukes",
-		"active": true
+    "slug": "dukes"
   },
   {
     "ebirdCode": "US-MA-009",
-    "slug": "essex",
-		"active": true
+    "slug": "essex"
   },
   {
     "ebirdCode": "US-MA-011",
-    "slug": "franklin",
-		"active": true
+    "slug": "franklin"
   },
   {
     "ebirdCode": "US-MA-013",
-    "slug": "hampden",
-		"active": true
+    "slug": "hampden"
   },
   {
     "ebirdCode": "US-MA-015",
-    "slug": "hampshire",
-		"active": true
+    "slug": "hampshire"
   },
   {
     "ebirdCode": "US-MA-017",
-    "slug": "middlesex",
-		"active": true
+    "slug": "middlesex"
   },
   {
     "ebirdCode": "US-MA-019",
-    "slug": "nantucket",
-		"active": true
+    "slug": "nantucket"
   },
   {
     "ebirdCode": "US-MA-021",
-    "slug": "norfolk",
-		"active": true
+    "slug": "norfolk"
   },
   {
     "ebirdCode": "US-MA-023",
-    "slug": "plymouth",
-		"active": true
+    "slug": "plymouth"
   },
   {
     "ebirdCode": "US-MA-025",
-    "slug": "suffolk",
-		"active": true
+    "slug": "suffolk"
   },
   {
     "ebirdCode": "US-MA-027",
-    "slug": "worcester",
-		"active": true
+    "slug": "worcester"
   }
 ]

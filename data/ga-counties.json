@@ -1,103 +1,83 @@
 [
   {
     "ebirdCode": "US-GA-001",
-    "slug": "appling",
-    "active": true
+    "slug": "appling"
   },
   {
     "ebirdCode": "US-GA-003",
-    "slug": "atkinson",
-    "active": true
+    "slug": "atkinson"
   },
   {
     "ebirdCode": "US-GA-005",
-    "slug": "bacon",
-    "active": true
+    "slug": "bacon"
   },
   {
     "ebirdCode": "US-GA-007",
-    "slug": "baker",
-    "active": true
+    "slug": "baker"
   },
   {
     "ebirdCode": "US-GA-009",
-    "slug": "baldwin",
-    "active": true
+    "slug": "baldwin"
   },
   {
     "ebirdCode": "US-GA-011",
-    "slug": "banks",
-    "active": true
+    "slug": "banks"
   },
   {
     "ebirdCode": "US-GA-013",
-    "slug": "barrow",
-    "active": true
+    "slug": "barrow"
   },
   {
     "ebirdCode": "US-GA-015",
-    "slug": "bartow",
-    "active": true
+    "slug": "bartow"
   },
   {
     "ebirdCode": "US-GA-017",
-    "slug": "ben-hill",
-    "active": true
+    "slug": "ben-hill"
   },
   {
     "ebirdCode": "US-GA-019",
-    "slug": "berrien",
-    "active": true
+    "slug": "berrien"
   },
   {
     "ebirdCode": "US-GA-021",
-    "slug": "bibb",
-    "active": true
+    "slug": "bibb"
   },
   {
     "ebirdCode": "US-GA-023",
-    "slug": "bleckley",
-    "active": true
+    "slug": "bleckley"
   },
   {
     "ebirdCode": "US-GA-025",
-    "slug": "brantley",
-    "active": true
+    "slug": "brantley"
   },
   {
     "ebirdCode": "US-GA-027",
-    "slug": "brooks",
-    "active": true
+    "slug": "brooks"
   },
   {
     "ebirdCode": "US-GA-029",
-    "slug": "bryan",
-    "active": true
+    "slug": "bryan"
   },
   {
     "ebirdCode": "US-GA-031",
-    "slug": "bulloch",
-    "active": true
+    "slug": "bulloch"
   },
   {
     "ebirdCode": "US-GA-033",
-    "slug": "burke",
-    "active": true
+    "slug": "burke"
   },
   {
     "ebirdCode": "US-GA-035",
-    "slug": "butts",
-    "active": true
+    "slug": "butts"
   },
   {
     "ebirdCode": "US-GA-037",
-    "slug": "calhoun",
-    "active": true
+    "slug": "calhoun"
   },
   {
     "ebirdCode": "US-GA-039",
-    "slug": "camden",
-    "active": true
+    "slug": "camden"
   },
   {
     "ebirdCode": "US-GA-043",
@@ -121,8 +101,7 @@
   },
   {
     "ebirdCode": "US-GA-051",
-    "slug": "chatham",
-    "active": true
+    "slug": "chatham"
   },
   {
     "ebirdCode": "US-GA-053",
@@ -151,8 +130,7 @@
   },
   {
     "ebirdCode": "US-GA-063",
-    "slug": "clayton",
-    "active": true
+    "slug": "clayton"
   },
   {
     "ebirdCode": "US-GA-065",
@@ -311,8 +289,7 @@
   },
   {
     "ebirdCode": "US-GA-127",
-    "slug": "glynn",
-    "active": true
+    "slug": "glynn"
   },
   {
     "ebirdCode": "US-GA-129",
@@ -371,8 +348,7 @@
   },
   {
     "ebirdCode": "US-GA-151",
-    "slug": "henry",
-    "active": true
+    "slug": "henry"
   },
   {
     "ebirdCode": "US-GA-153",
@@ -441,8 +417,7 @@
   },
   {
     "ebirdCode": "US-GA-179",
-    "slug": "liberty",
-    "active": true
+    "slug": "liberty"
   },
   {
     "ebirdCode": "US-GA-181",
@@ -486,8 +461,7 @@
   },
   {
     "ebirdCode": "US-GA-191",
-    "slug": "mcintosh",
-    "active": true
+    "slug": "mcintosh"
   },
   {
     "ebirdCode": "US-GA-199",
@@ -526,8 +500,7 @@
   },
   {
     "ebirdCode": "US-GA-215",
-    "slug": "muscogee",
-    "active": true
+    "slug": "muscogee"
   },
   {
     "ebirdCode": "US-GA-217",
@@ -601,8 +574,7 @@
   },
   {
     "ebirdCode": "US-GA-245",
-    "slug": "richmond",
-    "active": true
+    "slug": "richmond"
   },
   {
     "ebirdCode": "US-GA-247",
@@ -636,8 +608,7 @@
   },
   {
     "ebirdCode": "US-GA-259",
-    "slug": "stewart",
-    "active": true
+    "slug": "stewart"
   },
   {
     "ebirdCode": "US-GA-261",

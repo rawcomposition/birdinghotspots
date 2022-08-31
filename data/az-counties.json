@@ -1,92 +1,62 @@
 [
 	{
 		"slug": "apache",
-		"region": null,
-		"ebirdCode": "US-AZ-001",
-		"active": true
+		"ebirdCode": "US-AZ-001"
 	},
 	{
 		"slug": "cochise",
-		"region": null,
-		"ebirdCode": "US-AZ-003",
-		"active": true
+		"ebirdCode": "US-AZ-003"
 	},
 	{
 		"slug": "coconino",
-		"region": null,
-		"ebirdCode": "US-AZ-005",
-		"active": true
+		"ebirdCode": "US-AZ-005"
 	},
 	{
 		"slug": "gila",
-		"region": null,
-		"ebirdCode": "US-AZ-007",
-		"active": true
+		"ebirdCode": "US-AZ-007"
 	},
 	{
 		"slug": "graham",
-		"region": null,
-		"ebirdCode": "US-AZ-009",
-		"active": true
+		"ebirdCode": "US-AZ-009"
 	},
 	{
 		"slug": "greenlee",
-		"region": null,
-		"ebirdCode": "US-AZ-011",
-		"active": true
+		"ebirdCode": "US-AZ-011"
 	},
 	{
 		"slug": "la-paz",
-		"region": null,
-		"ebirdCode": "US-AZ-012",
-		"active": true
+		"ebirdCode": "US-AZ-012"
 	},
 	{
 		"slug": "maricopa",
-		"region": null,
-		"ebirdCode": "US-AZ-013",
-		"active": true
+		"ebirdCode": "US-AZ-013"
 	},
 	{
 		"slug": "mohave",
-		"region": null,
-		"ebirdCode": "US-AZ-015",
-		"active": true
+		"ebirdCode": "US-AZ-015"
 	},
 	{
 		"slug": "navajo",
-		"region": null,
-		"ebirdCode": "US-AZ-017",
-		"active": true
+		"ebirdCode": "US-AZ-017"
 	},
 	{
 		"slug": "pima",
-		"region": null,
-		"ebirdCode": "US-AZ-019",
-		"active": true
+		"ebirdCode": "US-AZ-019"
 	},
 	{
 		"slug": "pinal",
-		"region": null,
-		"ebirdCode": "US-AZ-021",
-		"active": true
+		"ebirdCode": "US-AZ-021"
 	},
 	{
 		"slug": "santa-cruz",
-		"region": null,
-		"ebirdCode": "US-AZ-023",
-		"active": true
+		"ebirdCode": "US-AZ-023"
 	},
 	{
 		"slug": "yavapai",
-		"region": null,
-		"ebirdCode": "US-AZ-025",
-		"active": true
+		"ebirdCode": "US-AZ-025"
 	},
 	{
 		"slug": "yuma",
-		"region": null,
-		"ebirdCode": "US-AZ-027",
-		"active": true
+		"ebirdCode": "US-AZ-027"
 	}
 ]

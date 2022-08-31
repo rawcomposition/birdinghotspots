@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const results = (await Hotspot.find(query, ["name", "url", "countryCode", "stateCode"])
-      .limit(20)
+      .limit(25)
       .lean()
       .exec()) as HotspotType[];
     const formatted = results?.map((result: HotspotType) => {

@@ -231,7 +231,9 @@
 	{
 		"label": "Texas",
 		"slug": "texas",
-		"code": "TX"
+		"code": "TX",
+		"features": [ "roadside", "accessible" ],
+		"active": true
 	},
 	{
 		"label": "Utah",

@@ -26,6 +26,10 @@ export default function TopHotspots({ region, label, className }: Props) {
     fetchData();
   }, []);
 
+  if (!loading && results.length === 0) {
+    return <p className="text-base text-gray-500">None</p>;
+  }
+
   return (
     <>
       <div className={`grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 ${className || ""}`}>

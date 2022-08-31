@@ -128,6 +128,9 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
           All Hotspots in {name} County
         </h3>
         <HotspotList hotspots={hotspots} className="md:columns-3" />
+        {hotspots.length === 0 && (
+          <p className="text-base text-gray-500">No data has been entered for {name} County yet</p>
+        )}
       </section>
       <div className="md:columns-3">
         {sortedIba.length > 0 && (

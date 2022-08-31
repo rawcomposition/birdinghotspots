@@ -1,413 +1,331 @@
 [
   {
     "ebirdCode": "US-MI-001",
-    "slug": "alcona",
-		"active": true
+    "slug": "alcona"
   },
   {
     "ebirdCode": "US-MI-003",
-    "slug": "alger",
-		"active": true
+    "slug": "alger"
   },
   {
     "ebirdCode": "US-MI-005",
-    "slug": "allegan",
-		"active": true
+    "slug": "allegan"
   },
   {
     "ebirdCode": "US-MI-007",
-    "slug": "alpena",
-		"active": true
+    "slug": "alpena"
   },
   {
     "ebirdCode": "US-MI-009",
-    "slug": "antrim",
-		"active": true
+    "slug": "antrim"
   },
   {
     "ebirdCode": "US-MI-011",
-    "slug": "arenac",
-		"active": true
+    "slug": "arenac"
   },
   {
     "ebirdCode": "US-MI-013",
-    "slug": "baraga",
-		"active": true
+    "slug": "baraga"
   },
   {
     "ebirdCode": "US-MI-015",
-    "slug": "barry",
-		"active": true
+    "slug": "barry"
   },
   {
     "ebirdCode": "US-MI-017",
-    "slug": "bay",
-		"active": true
+    "slug": "bay"
   },
   {
     "ebirdCode": "US-MI-019",
-    "slug": "benzie",
-		"active": true
+    "slug": "benzie"
   },
   {
     "ebirdCode": "US-MI-021",
-    "slug": "berrien",
-		"active": true
+    "slug": "berrien"
   },
   {
     "ebirdCode": "US-MI-023",
-    "slug": "branch",
-		"active": true
+    "slug": "branch"
   },
   {
     "ebirdCode": "US-MI-025",
-    "slug": "calhoun",
-		"active": true
+    "slug": "calhoun"
   },
   {
     "ebirdCode": "US-MI-027",
-    "slug": "cass",
-		"active": true
+    "slug": "cass"
   },
   {
     "ebirdCode": "US-MI-029",
-    "slug": "charlevoix",
-		"active": true
+    "slug": "charlevoix"
   },
   {
     "ebirdCode": "US-MI-031",
-    "slug": "cheboygan",
-		"active": true
+    "slug": "cheboygan"
   },
   {
     "ebirdCode": "US-MI-033",
-    "slug": "chippewa",
-		"active": true
+    "slug": "chippewa"
   },
   {
     "ebirdCode": "US-MI-035",
-    "slug": "clare",
-		"active": true
+    "slug": "clare"
   },
   {
     "ebirdCode": "US-MI-037",
-    "slug": "clinton",
-		"active": true
+    "slug": "clinton"
   },
   {
     "ebirdCode": "US-MI-039",
-    "slug": "crawford",
-		"active": true
+    "slug": "crawford"
   },
   {
     "ebirdCode": "US-MI-041",
-    "slug": "delta",
-		"active": true
+    "slug": "delta"
   },
   {
     "ebirdCode": "US-MI-043",
-    "slug": "dickinson",
-		"active": true
+    "slug": "dickinson"
   },
   {
     "ebirdCode": "US-MI-045",
-    "slug": "eaton",
-		"active": true
+    "slug": "eaton"
   },
   {
     "ebirdCode": "US-MI-047",
-    "slug": "emmet",
-		"active": true
+    "slug": "emmet"
   },
   {
     "ebirdCode": "US-MI-049",
-    "slug": "genesee",
-		"active": true
+    "slug": "genesee"
   },
   {
     "ebirdCode": "US-MI-051",
-    "slug": "gladwin",
-		"active": true
+    "slug": "gladwin"
   },
   {
     "ebirdCode": "US-MI-053",
-    "slug": "gogebic",
-		"active": true
+    "slug": "gogebic"
   },
   {
     "ebirdCode": "US-MI-055",
-    "slug": "grand-traverse",
-		"active": true
+    "slug": "grand-traverse"
   },
   {
     "ebirdCode": "US-MI-057",
-    "slug": "gratiot",
-		"active": true
+    "slug": "gratiot"
   },
   {
     "ebirdCode": "US-MI-059",
-    "slug": "hillsdale",
-		"active": true
+    "slug": "hillsdale"
   },
   {
     "ebirdCode": "US-MI-061",
-    "slug": "houghton",
-		"active": true
+    "slug": "houghton"
   },
   {
     "ebirdCode": "US-MI-063",
-    "slug": "huron",
-		"active": true
+    "slug": "huron"
   },
   {
     "ebirdCode": "US-MI-065",
-    "slug": "ingham",
-		"active": true
+    "slug": "ingham"
   },
   {
     "ebirdCode": "US-MI-067",
-    "slug": "ionia",
-		"active": true
+    "slug": "ionia"
   },
   {
     "ebirdCode": "US-MI-069",
-    "slug": "iosco",
-		"active": true
+    "slug": "iosco"
   },
   {
     "ebirdCode": "US-MI-071",
-    "slug": "iron",
-		"active": true
+    "slug": "iron"
   },
   {
     "ebirdCode": "US-MI-073",
-    "slug": "isabella",
-		"active": true
+    "slug": "isabella"
   },
   {
     "ebirdCode": "US-MI-075",
-    "slug": "jackson",
-		"active": true
+    "slug": "jackson"
   },
   {
     "ebirdCode": "US-MI-077",
-    "slug": "kalamazoo",
-		"active": true
+    "slug": "kalamazoo"
   },
   {
     "ebirdCode": "US-MI-079",
-    "slug": "kalkaska",
-		"active": true
+    "slug": "kalkaska"
   },
   {
     "ebirdCode": "US-MI-081",
-    "slug": "kent",
-		"active": true
+    "slug": "kent"
   },
   {
     "ebirdCode": "US-MI-083",
-    "slug": "keweenaw",
-		"active": true
+    "slug": "keweenaw"
   },
   {
     "ebirdCode": "US-MI-085",
-    "slug": "lake",
-		"active": true
+    "slug": "lake"
   },
   {
     "ebirdCode": "US-MI-087",
-    "slug": "lapeer",
-		"active": true
+    "slug": "lapeer"
   },
   {
     "ebirdCode": "US-MI-089",
-    "slug": "leelanau",
-		"active": true
+    "slug": "leelanau"
   },
   {
     "ebirdCode": "US-MI-091",
-    "slug": "lenawee",
-		"active": true
+    "slug": "lenawee"
   },
   {
     "ebirdCode": "US-MI-093",
-    "slug": "livingston",
-		"active": true
+    "slug": "livingston"
   },
   {
     "ebirdCode": "US-MI-095",
-    "slug": "luce",
-		"active": true
+    "slug": "luce"
   },
   {
     "ebirdCode": "US-MI-097",
-    "slug": "mackinac",
-		"active": true
+    "slug": "mackinac"
   },
   {
     "ebirdCode": "US-MI-099",
-    "slug": "macomb",
-		"active": true
+    "slug": "macomb"
   },
   {
     "ebirdCode": "US-MI-101",
-    "slug": "manistee",
-		"active": true
+    "slug": "manistee"
   },
   {
     "ebirdCode": "US-MI-103",
-    "slug": "marquette",
-		"active": true
+    "slug": "marquette"
   },
   {
     "ebirdCode": "US-MI-105",
-    "slug": "mason",
-		"active": true
+    "slug": "mason"
   },
   {
     "ebirdCode": "US-MI-107",
-    "slug": "mecosta",
-		"active": true
+    "slug": "mecosta"
   },
   {
     "ebirdCode": "US-MI-109",
-    "slug": "menominee",
-		"active": true
+    "slug": "menominee"
   },
   {
     "ebirdCode": "US-MI-111",
-    "slug": "midland",
-		"active": true
+    "slug": "midland"
   },
   {
     "ebirdCode": "US-MI-113",
-    "slug": "missaukee",
-		"active": true
+    "slug": "missaukee"
   },
   {
     "ebirdCode": "US-MI-115",
-    "slug": "monroe",
-		"active": true
+    "slug": "monroe"
   },
   {
     "ebirdCode": "US-MI-117",
-    "slug": "montcalm",
-		"active": true
+    "slug": "montcalm"
   },
   {
     "ebirdCode": "US-MI-119",
-    "slug": "montmorency",
-		"active": true
+    "slug": "montmorency"
   },
   {
     "ebirdCode": "US-MI-121",
-    "slug": "muskegon",
-		"active": true
+    "slug": "muskegon"
   },
   {
     "ebirdCode": "US-MI-123",
-    "slug": "newaygo",
-		"active": true
+    "slug": "newaygo"
   },
   {
     "ebirdCode": "US-MI-125",
-    "slug": "oakland",
-		"active": true
+    "slug": "oakland"
   },
   {
     "ebirdCode": "US-MI-127",
-    "slug": "oceana",
-		"active": true
+    "slug": "oceana"
   },
   {
     "ebirdCode": "US-MI-129",
-    "slug": "ogemaw",
-		"active": true
+    "slug": "ogemaw"
   },
   {
     "ebirdCode": "US-MI-131",
-    "slug": "ontonagon",
-		"active": true
+    "slug": "ontonagon"
   },
   {
     "ebirdCode": "US-MI-133",
-    "slug": "osceola",
-		"active": true
+    "slug": "osceola"
   },
   {
     "ebirdCode": "US-MI-135",
-    "slug": "oscoda",
-		"active": true
+    "slug": "oscoda"
   },
   {
     "ebirdCode": "US-MI-137",
-    "slug": "otsego",
-		"active": true
+    "slug": "otsego"
   },
   {
     "ebirdCode": "US-MI-139",
-    "slug": "ottawa",
-		"active": true
+    "slug": "ottawa"
   },
   {
     "ebirdCode": "US-MI-141",
-    "slug": "presque-isle",
-		"active": true
+    "slug": "presque-isle"
   },
   {
     "ebirdCode": "US-MI-143",
-    "slug": "roscommon",
-		"active": true
+    "slug": "roscommon"
   },
   {
     "ebirdCode": "US-MI-145",
-    "slug": "saginaw",
-		"active": true
+    "slug": "saginaw"
   },
   {
     "ebirdCode": "US-MI-151",
-    "slug": "sanilac",
-		"active": true
+    "slug": "sanilac"
   },
   {
     "ebirdCode": "US-MI-153",
-    "slug": "schoolcraft",
-		"active": true
+    "slug": "schoolcraft"
   },
   {
     "ebirdCode": "US-MI-155",
-    "slug": "shiawassee",
-		"active": true
+    "slug": "shiawassee"
   },
   {
     "ebirdCode": "US-MI-147",
-    "slug": "st-clair",
-		"active": true
+    "slug": "st-clair"
   },
   {
     "ebirdCode": "US-MI-149",
-    "slug": "st-joseph",
-		"active": true
+    "slug": "st-joseph"
   },
   {
     "ebirdCode": "US-MI-157",
-    "slug": "tuscola",
-		"active": true
+    "slug": "tuscola"
   },
   {
     "ebirdCode": "US-MI-159",
-    "slug": "van-buren",
-		"active": true
+    "slug": "van-buren"
   },
   {
     "ebirdCode": "US-MI-161",
-    "slug": "washtenaw",
-		"active": true
+    "slug": "washtenaw"
   },
   {
     "ebirdCode": "US-MI-163",
-    "slug": "wayne",
-		"active": true
+    "slug": "wayne"
   },
   {
     "ebirdCode": "US-MI-165",
