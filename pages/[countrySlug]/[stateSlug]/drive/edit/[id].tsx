@@ -1,4 +1,3 @@
-import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
@@ -12,7 +11,7 @@ import { getDriveById } from "lib/mongo";
 import AdminPage from "components/AdminPage";
 import { Drive, DriveInputs, State } from "lib/types";
 import Field from "components/Field";
-import useSecureFetch from "hooks/useSecureFetch";
+import useToast from "hooks/useToast";
 import FormError from "components/FormError";
 import { getState } from "lib/localData";
 import { slugify } from "lib/helpers";
@@ -54,31 +53,30 @@ type Props = {
 };
 
 export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
-  const [saving, setSaving] = React.useState<boolean>(false);
-  const secureFetch = useSecureFetch();
+  const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<DriveInputs>({ defaultValues: data });
 
   const handleSubmit: SubmitHandler<DriveInputs> = async (data) => {
-    setSaving(true);
     const newSlug = slugify(data.name);
-    const json = await secureFetch(`/api/drive/set?isNew=${isNew}`, "POST", {
-      id,
+
+    const response = await send({
+      url: `/api/drive/set?isNew=${isNew}`,
+      method: "POST",
       data: {
-        ...data,
-        stateCode: state.code,
-        countryCode: countrySlug.toUpperCase(),
-        slug: newSlug,
-        entries: data.entries.map((it) => ({ ...it, hotspot: it.hotspotSelect.value })),
+        id,
+        data: {
+          ...data,
+          stateCode: state.code,
+          countryCode: countrySlug.toUpperCase(),
+          slug: newSlug,
+          entries: data.entries.map((it) => ({ ...it, hotspot: it.hotspotSelect.value })),
+        },
       },
     });
-    setSaving(false);
-    if (json.success) {
+    if (response.success) {
       router.push(`/${countrySlug}/${state.slug}/drive/${newSlug}`);
-    } else {
-      console.error(json.error);
-      alert("Error saving drive");
     }
   };
 
@@ -112,7 +110,7 @@ export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
               <InputDrives stateCode={state.code} />
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit loading={saving} color="green" className="font-medium">
+              <Submit disabled={loading} color="green" className="font-medium">
                 Save Drive
               </Submit>
             </div>

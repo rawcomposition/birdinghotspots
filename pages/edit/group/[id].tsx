@@ -12,7 +12,7 @@ import { slugify, geocode, accessibleOptions, restroomOptions, formatMarkerArray
 import { getStateByCode } from "lib/localData";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
-import IBAs from "data/oh-iba.json";
+import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
 import { Hotspot, State } from "lib/types";
 import RadioGroup from "components/RadioGroup";
@@ -20,12 +20,10 @@ import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
 import CountySelect from "components/CountySelect";
 import FormError from "components/FormError";
-import useSecureFetch from "hooks/useSecureFetch";
+import useToast from "hooks/useToast";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
-
-const ibaOptions = IBAs.map(({ slug, name }) => ({ value: slug, label: name }));
 
 interface Params extends ParsedUrlQuery {
   id: string;
@@ -63,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         slug: data?.slug || "",
         multiCounties: data?.multiCounties || [],
         roadside: data?.roadside || "Unknown",
-        restrooms: restroomOptions.find((it) => it.value === data?.restrooms) || null,
+        restrooms: data?.restrooms || null,
         accessible: data?.accessible || null,
         zoom: data?.zoom || 14,
       },
@@ -80,9 +78,8 @@ type Props = {
 };
 
 export default function Edit({ id, isNew, data, state, childLocations }: Props) {
-  const [saving, setSaving] = React.useState<boolean>(false);
   const [isGeocoded, setIsGeocoded] = React.useState(false);
-  const secureFetch = useSecureFetch();
+  const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
@@ -92,42 +89,39 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
   const lngValue = form.watch("lng");
   const markers = formatMarkerArray({ ...data, lat: latValue, lng: lngValue }, childLocations);
 
-  const features = state.features || [];
-
   const handleSubmit: SubmitHandler<Hotspot> = async (formData) => {
     if (!state || !formData?.multiCounties?.length) {
       alert("Missing state and/or counties");
       return;
     }
 
-    setSaving(true);
     const nameChanged = formData?.name && formData?.name !== data.name;
     let slug = formData?.slug || null;
     if (!slug || nameChanged) {
       slug = slugify(formData.name);
     }
 
-    const json = await secureFetch(`/api/hotspot/${isNew ? "add" : "update"}`, "POST", {
-      id,
+    const response = await send({
+      url: `/api/hotspot/${isNew ? "add" : "update"}`,
+      method: "POST",
       data: {
-        ...formData,
-        stateCode: state.code,
-        parent: null,
-        countyCode: null,
-        iba: formData.iba || null,
-        slug,
-        restrooms: (formData.restrooms as any)?.value || null,
-        accessible: formData.accessible && formData.accessible?.length > 0 ? formData.accessible : null,
-        isGroup: true,
-        reviewed: true, //TODO: Remove after migration
+        id,
+        data: {
+          ...formData,
+          stateCode: state.code,
+          parent: null,
+          countyCode: null,
+          iba: formData.iba || null,
+          slug,
+          restrooms: formData.restrooms || null,
+          accessible: formData.accessible && formData.accessible?.length > 0 ? formData.accessible : null,
+          isGroup: true,
+          reviewed: true, //TODO: Remove after migration
+        },
       },
     });
-    if (json.success) {
-      router.push(json.url);
-    } else {
-      setSaving(false);
-      console.error(json.error);
-      alert("Error saving hotspot");
+    if (response.success) {
+      router.push(response.url);
     }
   };
 
@@ -220,7 +214,7 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
 
               {isOH && (
                 <Field label="Important Bird Area">
-                  <Select name="iba" options={ibaOptions} isClearable />
+                  <IbaSelect name="iba" isClearable />
                 </Field>
               )}
 
@@ -230,7 +224,7 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
               </div>
 
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
-                <Submit loading={saving} color="green" className="font-medium">
+                <Submit disabled={loading} color="green" className="font-medium">
                   Save Hotspot
                 </Submit>
               </div>
@@ -251,7 +245,7 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
             </aside>
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
-            <Submit loading={saving} color="green" className="font-medium">
+            <Submit disabled={loading} color="green" className="font-medium">
               Save Hotspot
             </Submit>
           </div>

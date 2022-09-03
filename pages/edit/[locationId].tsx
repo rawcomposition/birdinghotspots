@@ -12,20 +12,18 @@ import { slugify, geocode, getEbirdHotspot, accessibleOptions, restroomOptions, 
 import { getStateByCode, getCountyByCode } from "lib/localData";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
-import IBAs from "data/oh-iba.json";
+import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
 import { Hotspot, HotspotInputs, EbirdHotspot, State } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
-import useSecureFetch from "hooks/useSecureFetch";
+import useToast from "hooks/useToast";
 import ParentHotspotSelect from "components/ParentHotspotSelect";
 import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
-
-const ibaOptions = IBAs.map(({ slug, name }) => ({ value: slug, label: name }));
 
 interface Params extends ParsedUrlQuery {
   locationId: string;
@@ -87,7 +85,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         countyCode,
         locationId: locationId,
         roadside: data?.roadside || "Unknown",
-        restrooms: restroomOptions.find((it) => it.value === data?.restrooms) || null,
+        restrooms: data?.restrooms || null,
         accessible: data?.accessible || null,
       },
     },
@@ -104,9 +102,8 @@ type Props = {
 };
 
 export default function Edit({ id, isNew, data, error, childLocations, state }: Props) {
-  const [saving, setSaving] = React.useState<boolean>(false);
   const [isGeocoded, setIsGeocoded] = React.useState(false);
-  const secureFetch = useSecureFetch();
+  const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<HotspotInputs>({ defaultValues: data });
@@ -119,25 +116,24 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
   const features = state.features || [];
 
   const handleSubmit: SubmitHandler<HotspotInputs> = async (data) => {
-    setSaving(true);
-    const json = await secureFetch(`/api/hotspot/${isNew ? "add" : "update"}`, "POST", {
-      id,
+    const response = await send({
+      url: `/api/hotspot/${isNew ? "add" : "update"}`,
+      method: "POST",
       data: {
-        ...data,
-        parent: data.parentSelect?.value || null,
-        multiCounties: null,
-        iba: data.iba || null,
-        restrooms: (data.restrooms as any)?.value || null,
-        accessible: data.accessible && data.accessible?.length > 0 ? data.accessible : null,
-        reviewed: true, //TODO: Remove after migration
+        id,
+        data: {
+          ...data,
+          parent: data.parentSelect?.value || null,
+          multiCounties: null,
+          iba: data.iba || null,
+          restrooms: data.restrooms || null,
+          accessible: data.accessible && data.accessible?.length > 0 ? data.accessible : null,
+          reviewed: true, //TODO: Remove after migration
+        },
       },
     });
-    if (json.success) {
-      router.push(json.url);
-    } else {
-      setSaving(false);
-      console.error(json.error);
-      alert("Error saving hotspot");
+    if (response.success) {
+      router.push(response.url);
     }
   };
 
@@ -205,7 +201,7 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
 
                 {isOH && (
                   <Field label="Important Bird Area">
-                    <Select name="iba" options={ibaOptions} isClearable />
+                    <IbaSelect name="iba" isClearable />
                   </Field>
                 )}
               </div>
@@ -215,7 +211,7 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
                 <ImagesInput enableStreetview />
               </div>
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
-                <Submit loading={saving} color="green" className="font-medium">
+                <Submit disabled={loading} color="green" className="font-medium">
                   Save Hotspot
                 </Submit>
               </div>
@@ -235,7 +231,7 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
             </aside>
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
-            <Submit loading={saving} color="green" className="font-medium">
+            <Submit disabled={loading} color="green" className="font-medium">
               Save Hotspot
             </Submit>
           </div>

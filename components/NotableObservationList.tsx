@@ -1,5 +1,5 @@
 import { truncate } from "lib/helpers";
-import { CameraIcon, CheckCircleIcon } from "@heroicons/react/solid";
+import { CameraIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import { NotableReport } from "lib/types";
 import dayjs from "dayjs";
 

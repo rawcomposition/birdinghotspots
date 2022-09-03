@@ -1,21 +1,23 @@
 import * as React from "react";
 import { auth } from "lib/firebaseAuth";
 import { signOut } from "firebase/auth";
-	
-export default function useFirebaseLogout()  {
-	const [loading, setLoading] = React.useState(false);
-	
-	const logout = async () => {
-		setLoading(true);
-		try {
-			await signOut(auth);
-		} catch (error) {
-			alert("Error logging out");
-			console.error(error);
-		} finally {
-			setLoading(false);
-		}
-	};
+import useSecureFetch from "hooks/useSecureFetch";
 
-	return { logout, loading };
+export default function useFirebaseLogout() {
+  const [loading, setLoading] = React.useState(false);
+  const secureFetch = useSecureFetch();
+
+  const logout = async () => {
+    setLoading(true);
+    try {
+      await secureFetch("/api/auth/logout", "post");
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { logout, loading };
 }

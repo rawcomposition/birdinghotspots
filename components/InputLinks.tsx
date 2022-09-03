@@ -1,5 +1,5 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
-import { TrashIcon } from "@heroicons/react/outline";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 const Input = () => {
   const {

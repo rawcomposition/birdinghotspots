@@ -2,17 +2,16 @@ import * as React from "react";
 import BtnSmall from "./BtnSmall";
 import { useFormContext } from "react-hook-form";
 import StreetView from "components/StreetView";
-import { RefreshIcon } from "@heroicons/react/outline";
-import useSecureFetch from "hooks/useSecureFetch";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import useToast from "hooks/useToast";
 
 export default function AddStreetView() {
-  const [loading, setLoading] = React.useState(false);
   const [url, setUrl] = React.useState("");
   const [fov, setFov] = React.useState(80);
   const [open, setOpen] = React.useState(false);
   const [rendered, setRendered] = React.useState(false);
   const { setValue, getValues } = useFormContext();
-  const secureFetch = useSecureFetch();
+  const { send, loading } = useToast();
   React.useEffect(() => setRendered(true), []);
 
   const pieces = url.split(",");
@@ -27,16 +26,19 @@ export default function AddStreetView() {
   const isValid = !!lat && !!lng && !!fov && !!heading && !!tilt;
 
   const handleAdd = async () => {
-    setLoading(true);
-    const json = await secureFetch(`/api/file/add-streetview`, "POST", {
-      lat,
-      lng,
-      fov,
-      heading,
-      pitch,
+    const response = await send({
+      url: `/api/file/add-streetview`,
+      method: "POST",
+      data: {
+        lat,
+        lng,
+        fov,
+        heading,
+        pitch,
+      },
     });
-    setLoading(false);
-    const { small, large, success } = json;
+    const { small, large, success } = response;
+
     if (success) {
       const image = {
         smUrl: small,
@@ -55,7 +57,6 @@ export default function AddStreetView() {
       setUrl("");
       setFov(90);
     } else {
-      console.error(json.error);
       alert("Error adding street view");
     }
   };
@@ -133,7 +134,7 @@ export default function AddStreetView() {
                   disabled={!url || invalid || loading}
                   className="pl-4 pr-4"
                 >
-                  {loading ? <RefreshIcon className="h-5 w-5 animate-spin" /> : "Add"}
+                  {loading ? <ArrowPathIcon className="h-5 w-5 animate-spin" /> : "Add"}
                 </BtnSmall>
                 <BtnSmall type="button" color="gray" onClick={() => setOpen(false)} className="pl-4 pr-4 ml-2">
                   Cancel

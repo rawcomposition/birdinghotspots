@@ -1,4 +1,3 @@
-import * as React from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -7,8 +6,8 @@ import Submit from "components/Submit";
 import { getSettings, getHotspotById } from "lib/mongo";
 import AdminPage from "components/AdminPage";
 import Field from "components/Field";
-import useSecureFetch from "hooks/useSecureFetch";
 import HotspotSelect from "components/HotspotSelect";
+import useToast from "hooks/useToast";
 
 type Inputs = {
   selectedHotspots: {
@@ -46,8 +45,7 @@ type Props = {
 };
 
 export default function Featured({ selectedHotspots }: Props) {
-  const [saving, setSaving] = React.useState<boolean>(false);
-  const secureFetch = useSecureFetch();
+  const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<Inputs>({ defaultValues: { selectedHotspots } });
@@ -57,16 +55,16 @@ export default function Featured({ selectedHotspots }: Props) {
       alert("You must select 8 hotspots");
       return;
     }
-    setSaving(true);
-    const json = await secureFetch("/api/settings/set", "POST", {
-      featuredIds: selectedHotspots?.map((it) => it.value) || [],
+
+    const response = await send({
+      url: "/api/settings/set",
+      method: "POST",
+      data: {
+        featuredIds: selectedHotspots?.map((it) => it.value) || [],
+      },
     });
-    setSaving(false);
-    if (json.success) {
+    if (response.success) {
       router.push("/");
-    } else {
-      console.error(json.error);
-      alert("Error saving drive");
     }
   };
 
@@ -84,7 +82,7 @@ export default function Featured({ selectedHotspots }: Props) {
               </Field>
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit loading={saving} color="green" className="font-medium">
+              <Submit disabled={loading} color="green" className="font-medium">
                 Save
               </Submit>
             </div>

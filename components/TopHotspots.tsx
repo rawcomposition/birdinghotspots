@@ -2,7 +2,7 @@ import * as React from "react";
 import { Hotspot } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 import Link from "next/link";
-import { ArrowNarrowRightIcon } from "@heroicons/react/solid";
+import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   region: string;
@@ -38,7 +38,7 @@ export default function TopHotspots({ region, label, className }: Props) {
       {results.length > 0 && (
         <Link href={`/explore?mode=region&region=${region}&label=${label || region}`}>
           <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center">
-            View More <ArrowNarrowRightIcon className="inline-block w-4 h-4 ml-2" />
+            View More <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
           </a>
         </Link>
       )}

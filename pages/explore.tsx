@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import HotspotGrid from "components/HotspotGrid";
 import RegionSearch from "components/RegionSearch";
 import ExploreToggle from "components/ExploreToggle";
-import { MapIcon, ViewGridIcon } from "@heroicons/react/outline";
+import { MapIcon, ViewGridIcon } from "@heroicons/react/24/outline";
 
 type Option = {
   value: string;

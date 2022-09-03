@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { TrashIcon } from "@heroicons/react/outline";
+import { TrashIcon } from "@heroicons/react/24/outline";
 import { Image } from "lib/types";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";

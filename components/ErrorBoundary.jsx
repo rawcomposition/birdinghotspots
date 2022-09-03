@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefreshIcon } from "@heroicons/react/outline";
+import { RefreshIcon } from "@heroicons/react/24/outline";
 
 export default class ErrorBoundary extends React.Component {
 	constructor(props) {

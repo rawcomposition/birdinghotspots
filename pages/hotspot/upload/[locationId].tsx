@@ -7,7 +7,7 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
 import { Image } from "lib/types";
-import useSecureFetch from "hooks/useSecureFetch";
+import useToast from "hooks/useToast";
 import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import FormError from "components/FormError";
@@ -45,9 +45,8 @@ type Props = {
 };
 
 export default function Upload({ locationId, hotspotName, error }: Props) {
-  const [saving, setSaving] = React.useState<boolean>(false);
   const [success, setSuccess] = React.useState<boolean>(false);
-  const secureFetch = useSecureFetch(true);
+  const { send, loading } = useToast();
   const { user } = useUser();
   const userEmail = user?.email;
   useRecaptcha();
@@ -76,20 +75,19 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
   }, [name, email]);
 
   const submit = async ({ name, email, images }: Inputs, token: string) => {
-    setSaving(true);
-    const json = await secureFetch("/api/hotspot/upload", "POST", {
-      token,
-      locationId,
-      images,
-      name,
-      email,
+    const response = await send({
+      url: "/api/hotspot/upload",
+      method: "POST",
+      data: {
+        token,
+        locationId,
+        images,
+        name,
+        email,
+      },
     });
-    if (json.success) {
+    if (response.success) {
       setSuccess(true);
-    } else {
-      setSaving(false);
-      console.error(json.error);
-      alert("Error upload photos");
     }
   };
 
@@ -168,7 +166,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
             <p className="text-xs leading-5 text-gray-500 md:max-w-[250px]">
               By uploading you agree to release the photos into the public domain (CC0 license).
             </p>
-            <Submit loading={saving} disabled={value?.length < 1} color="green" className="font-medium">
+            <Submit disabled={loading || value?.length < 1} color="green" className="font-medium">
               Save Photos
             </Submit>
           </div>

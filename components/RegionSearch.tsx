@@ -1,6 +1,6 @@
 import AsyncSelect from "react-select/async";
 import { components, DropdownIndicatorProps } from "react-select";
-import { SearchIcon } from "@heroicons/react/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Highlighter from "react-highlight-words";
 
 type Option = {
@@ -19,7 +19,7 @@ const DropdownIndicator = ({ children, ...props }: DropdownIndicatorProps) => {
   if (props.hasValue) return null;
   return (
     <components.DropdownIndicator {...props}>
-      <SearchIcon className="h-5 w-5 opacity-80" />
+      <MagnifyingGlassIcon className="h-5 w-5 opacity-80" />
     </components.DropdownIndicator>
   );
 };

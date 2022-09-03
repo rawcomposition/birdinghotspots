@@ -27,7 +27,7 @@ import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
-import { CameraIcon } from "@heroicons/react/outline";
+import { CameraIcon } from "@heroicons/react/24/outline";
 
 const getChildren = async (id: string) => {
   if (!id) return null;

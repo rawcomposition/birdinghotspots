@@ -19,7 +19,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 import { getArticlesByState } from "lib/mongo";
 import StateMap from "components/StateMap";
-import { MapIcon, ViewListIcon } from "@heroicons/react/outline";
+import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import TopHotspots from "components/TopHotspots";
 
 interface Params extends ParsedUrlQuery {
@@ -99,7 +99,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
                 </>
               ) : (
                 <>
-                  <ViewListIcon className="w-4 h-4" /> View County List
+                  <Bars3Icon className="w-4 h-4" /> View County List
                 </>
               )}
             </button>

@@ -10,7 +10,7 @@ import { getArticleById } from "lib/mongo";
 import AdminPage from "components/AdminPage";
 import { Article, ArticleInputs, State } from "lib/types";
 import Field from "components/Field";
-import useSecureFetch from "hooks/useSecureFetch";
+import useToast from "hooks/useToast";
 import FormError from "components/FormError";
 import { getState } from "lib/localData";
 import { slugify } from "lib/helpers";
@@ -64,31 +64,30 @@ type Props = {
 };
 
 export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
-  const [saving, setSaving] = React.useState<boolean>(false);
-  const secureFetch = useSecureFetch();
+  const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<ArticleInputs>({ defaultValues: data });
 
   const handleSubmit: SubmitHandler<ArticleInputs> = async (data) => {
-    setSaving(true);
     const newSlug = slugify(data.name);
-    const json = await secureFetch(`/api/article/set?isNew=${isNew}`, "POST", {
-      id,
+
+    const response = await send({
+      url: `/api/article/set?isNew=${isNew}`,
+      method: "POST",
       data: {
-        ...data,
-        stateCode: state.code,
-        countryCode: countrySlug.toUpperCase(),
-        slug: newSlug,
-        hotspots: data.hotspotSelect.map(({ value }) => value),
+        id,
+        data: {
+          ...data,
+          stateCode: state.code,
+          countryCode: countrySlug.toUpperCase(),
+          slug: newSlug,
+          hotspots: data.hotspotSelect.map(({ value }) => value),
+        },
       },
     });
-    setSaving(false);
-    if (json.success) {
+    if (response.success) {
       router.push(`/${countrySlug}/${state.slug}/article/${newSlug}`);
-    } else {
-      console.error(json.error);
-      alert("Error saving article");
     }
   };
 
@@ -116,7 +115,7 @@ export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
               </Field>
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit loading={saving} color="green" className="font-medium">
+              <Submit disabled={loading} color="green" className="font-medium">
                 Save Article
               </Submit>
             </div>

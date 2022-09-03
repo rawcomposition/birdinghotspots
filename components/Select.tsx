@@ -1,28 +1,53 @@
 import { useFormContext, Controller } from "react-hook-form";
 import ReactSelectStyled from "components/ReactSelectStyled";
 
-type InputProps = {
-	name: string,
-	required?: boolean,
-	options: {
-		value: string,
-		label: string,
-	}[],
-	[x:string]: any;
-}
+type Props = {
+  name: string;
+  required?: boolean;
+  isMulti?: boolean;
+  options: {
+    value: string;
+    label: string;
+  }[];
+  [x: string]: any;
+};
 
-const Select = ({ name, options, required, ...props}: InputProps) => {
-	const { control } = useFormContext();
-	return (
-		<Controller
-        name={name}
-        control={control}
-				rules={{ required: required ? "This field is required" : false }}
-        render={({ field: { ref, ...field } }) => (
-					<ReactSelectStyled options={options} {...field} {...props} />
-				)}
-      />
-	);
-}
+export default function Select({ name, required, isMulti, options, ...props }: Props) {
+  const { control } = useFormContext();
 
-export default Select
+  return (
+    <Controller
+      control={control}
+      name={name}
+      rules={{ required: required ? "This field is required" : false }}
+      render={({ field: { onChange, value, ref, ...field } }) => {
+        let selected = null;
+        if (isMulti) {
+          selected = value?.length ? value.map((value: string) => options?.find((it) => it.value === value)) : [];
+        } else {
+          selected = options?.find((it) => it.value === value);
+        }
+        const onSelect = (value: any) => {
+          if (isMulti) {
+            onChange(value?.map((option: any) => option.value));
+          } else {
+            onChange(value?.value);
+          }
+        };
+        return (
+          <ReactSelectStyled
+            options={options}
+            onChange={onSelect}
+            value={selected}
+            cacheOptions
+            defaultOptions
+            isMulti={isMulti}
+            noOptionsMessage={({ inputValue }: any) => (inputValue.length ? "No Results" : "Select...")}
+            {...field}
+            {...props}
+          />
+        );
+      }}
+    />
+  );
+}

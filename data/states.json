@@ -1,15 +1,18 @@
 [
 	{
+		"country": "US",
 		"label": "Alabama",
 		"slug": "alabama",
 		"code": "AL"
 	},
 	{
+		"country": "US",
 		"label": "Alaska",
 		"slug": "alaska",
 		"code": "AK"
 	},
 	{
+		"country": "US",
 		"label": "Arizona",
 		"slug": "arizona",
 		"code": "AZ",
@@ -17,36 +20,43 @@
 		"color": "#e57700"
 	},
 	{
+		"country": "US",
 		"label": "Arkansas",
 		"slug": "arkansas",
 		"code": "AR"
 	},
 	{
+		"country": "US",
 		"label": "California",
 		"slug": "california",
 		"code": "CA"
 	},
 	{
+		"country": "US",
 		"label": "Colorado",
 		"slug": "colorado",
 		"code": "CO"
 	},
 	{
+		"country": "US",
 		"label": "Connecticut",
 		"slug": "connecticut",
 		"code": "CT"
 	},
 	{
+		"country": "US",
 		"label": "Delaware",
 		"slug": "delaware",
 		"code": "DE"
 	},
 	{
+		"country": "US",
 		"label": "Florida",
 		"slug": "florida",
 		"code": "FL"
 	},
 	{
+		"country": "US",
 		"label": "Georgia",
 		"slug": "georgia",
 		"code": "GA",
@@ -54,36 +64,43 @@
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "Hawaii",
 		"slug": "hawaii",
 		"code": "HI"
 	},
 	{
+		"country": "US",
 		"label": "Idaho",
 		"slug": "idaho",
 		"code": "ID"
 	},
 	{
+		"country": "US",
 		"label": "Illinois",
 		"slug": "illinois",
 		"code": "IL"
 	},
 	{
+		"country": "US",
 		"label": "Indiana",
 		"slug": "indiana",
 		"code": "IN"
 	},
 	{
+		"country": "US",
 		"label": "Iowa",
 		"slug": "iowa",
 		"code": "IA"
 	},
 	{
+		"country": "US",
 		"label": "Kansas",
 		"slug": "kansas",
 		"code": "KS"
 	},
 	{
+		"country": "US",
 		"label": "Kentucky",
 		"slug": "kentucky",
 		"code": "KY",
@@ -91,21 +108,25 @@
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "Louisiana",
 		"slug": "louisiana",
 		"code": "LA"
 	},
 	{
+		"country": "US",
 		"label": "Maine",
 		"slug": "maine",
 		"code": "ME"
 	},
 	{
+		"country": "US",
 		"label": "Maryland",
 		"slug": "maryland",
 		"code": "MD"
 	},
 	{
+		"country": "US",
 		"label": "Massachusetts",
 		"slug": "massachusetts",
 		"code": "MA",
@@ -113,6 +134,7 @@
 		"portal": "massaudubon"
 	},
 	{
+		"country": "US",
 		"label": "Michigan",
 		"slug": "michigan",
 		"code": "MI",
@@ -120,36 +142,43 @@
 		"features": []
 	},
 	{
+		"country": "US",
 		"label": "Minnesota",
 		"slug": "minnesota",
 		"code": "MN"
 	},
 	{
+		"country": "US",
 		"label": "Mississippi",
 		"slug": "mississippi",
 		"code": "MS"
 	},
 	{
+		"country": "US",
 		"label": "Missouri",
 		"slug": "missouri",
 		"code": "MO"
 	},
 	{
+		"country": "US",
 		"label": "Montana",
 		"slug": "montana",
 		"code": "MT"
 	},
 	{
+		"country": "US",
 		"label": "Nebraska",
 		"slug": "nebraska",
 		"code": "NE"
 	},
 	{
+		"country": "US",
 		"label": "Nevada",
 		"slug": "nevada",
 		"code": "NV"
 	},
 	{
+		"country": "US",
 		"label": "New Hampshire",
 		"slug": "new-hampshire",
 		"code": "NH",
@@ -157,32 +186,38 @@
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "New Jersey",
 		"slug": "new-jersey",
 		"code": "NJ"
 	},
 	{
+		"country": "US",
 		"label": "New Mexico",
 		"slug": "new-mexico",
 		"code": "NM",
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "New York",
 		"slug": "new-york",
 		"code": "NY"
 	},
 	{
+		"country": "US",
 		"label": "North Carolina",
 		"slug": "north-carolina",
 		"code": "NC"
 	},
 	{
+		"country": "US",
 		"label": "North Dakota",
 		"slug": "north-dakota",
 		"code": "ND"
 	},
 	{
+		"country": "US",
 		"label": "Ohio",
 		"slug": "ohio",
 		"code": "OH",
@@ -192,21 +227,25 @@
 		"color": "#4a84b2"
 	},
 	{
+		"country": "US",
 		"label": "Oklahoma",
 		"slug": "oklahoma",
 		"code": "OK"
 	},
 	{
+		"country": "US",
 		"label": "Oregon",
 		"slug": "oregon",
 		"code": "OR"
 	},
 	{
+		"country": "US",
 		"label": "Pennsylvania",
 		"slug": "pennsylvania",
 		"code": "PA"
 	},
 	{
+		"country": "US",
 		"label": "Rhode Island",
 		"slug": "rhode-island",
 		"code": "RI",
@@ -214,21 +253,25 @@
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "South Carolina",
 		"slug": "south-carolina",
 		"code": "SC"
 	},
 	{
+		"country": "US",
 		"label": "South Dakota",
 		"slug": "south-dakota",
 		"code": "SD"
 	},
 	{
+		"country": "US",
 		"label": "Tennessee",
 		"slug": "tennessee",
 		"code": "TN"
 	},
 	{
+		"country": "US",
 		"label": "Texas",
 		"slug": "texas",
 		"code": "TX",
@@ -236,11 +279,13 @@
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "Utah",
 		"slug": "utah",
 		"code": "UT"
 	},
 	{
+		"country": "US",
 		"label": "Vermont",
 		"slug": "vermont",
 		"code": "VT",
@@ -248,26 +293,31 @@
 		"active": true
 	},
 	{
+		"country": "US",
 		"label": "Virginia",
 		"slug": "virginia",
 		"code": "VA"
 	},
 	{
+		"country": "US",
 		"label": "Washington",
 		"slug": "washington",
 		"code": "WA"
 	},
 	{
+		"country": "US",
 		"label": "West Virginia",
 		"slug": "west-virginia",
 		"code": "WV"
 	},
 	{
+		"country": "US",
 		"label": "Wisconsin",
 		"slug": "wisconsin",
 		"code": "WI"
 	},
 	{
+		"country": "US",
 		"label": "Wyoming",
 		"slug": "wyoming",
 		"code": "WY"

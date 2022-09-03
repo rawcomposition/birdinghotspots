@@ -211,3 +211,16 @@ export async function getUploads() {
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
+
+export async function getStats() {
+  await connect();
+  const result = await Hotspot.aggregate([
+    {
+      $group: {
+        _id: { featuredImg: { $gt: ["$featuredImg", null] }, stateCode: "$stateCode" },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+  return result;
+}

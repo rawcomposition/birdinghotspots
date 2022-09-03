@@ -3,7 +3,7 @@ import Nav from "data/nav.json";
 import NavItem from "components/NavItem";
 import Link from "next/link";
 import SearchModal from "components/SearchModal";
-import { SearchIcon } from "@heroicons/react/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Logo from "components/Logo";
 
 export default function Header() {
@@ -38,14 +38,14 @@ export default function Header() {
                 </a>
               </Link>
               <button type="button" onClick={() => setShowSearch(true)} className="sm:hidden">
-                <SearchIcon className="h-5 w-5" />
+                <MagnifyingGlassIcon className="h-5 w-5" />
               </button>
             </div>
             <nav className="mt-2 md:mt-0">
               <ul className="flex gap-7">
                 <li className="items-center justify-center hidden sm:flex">
                   <button type="button" onClick={() => setShowSearch(true)}>
-                    <SearchIcon className="h-5 w-5" />
+                    <MagnifyingGlassIcon className="h-5 w-5" />
                   </button>
                 </li>
                 {Nav.map((item) => (

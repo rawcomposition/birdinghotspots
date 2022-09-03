@@ -297,3 +297,8 @@ export function stripHotspotSuffix(name: string) {
   }
   return stripped;
 }
+
+export const roles = [
+  { name: "Admin", id: "admin" },
+  { name: "Editor", id: "editor" },
+];

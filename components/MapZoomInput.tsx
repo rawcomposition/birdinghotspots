@@ -3,7 +3,7 @@ import { Marker } from "lib/types";
 import MapBox from "components/MapBox";
 import BtnSmall from "./BtnSmall";
 import { useFormContext } from "react-hook-form";
-import { ZoomInIcon } from "@heroicons/react/outline";
+import { MagnifyingGlassPlusIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   markers: Marker[];
@@ -33,7 +33,7 @@ export default function MapZoomInput({ markers }: Props) {
         onClick={() => setOpen(!open)}
         disabled={markers.length >= 5}
       >
-        <ZoomInIcon className="h-5 w-5" /> Edit Map Zoom
+        <MagnifyingGlassPlusIcon className="h-5 w-5" /> Edit Map Zoom
       </button>
       <p className="text-xs text-gray-600 mt-2">
         If there are 5 or more markers on the map, the zoom will be adjusted to fit the markers.

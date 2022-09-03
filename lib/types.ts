@@ -240,3 +240,12 @@ export type HotspotDrive = {
   slug: string;
   driveId: string;
 };
+
+export type User = {
+  uid?: string;
+  email?: string;
+  displayName?: string;
+  role?: string;
+  regions?: string[];
+  status?: string;
+};

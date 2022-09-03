@@ -1,6 +1,6 @@
 import * as React from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   value: string;

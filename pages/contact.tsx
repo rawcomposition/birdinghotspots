@@ -7,7 +7,7 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import Title from "components/Title";
 import Field from "components/Field";
-import { CheckCircleIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import useRecaptcha from "hooks/useRecaptcha";
 
 type Inputs = {
