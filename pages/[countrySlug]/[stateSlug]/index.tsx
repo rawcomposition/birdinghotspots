@@ -44,7 +44,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
       <Title>{slug === "ohio" ? "" : `Birding in ${label}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state} hideState>
         Welcome to Birding in {label}
-        {code === "OH" && (
+        {code === "US-OH" && (
           <>
             <br />
             <span className="text-sm">From the Ohio Ornithological Society</span>

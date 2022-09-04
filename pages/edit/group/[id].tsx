@@ -83,7 +83,7 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
 
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
-  const isOH = data.stateCode === "OH";
+  const isOH = data.stateCode === "US-OH";
 
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");

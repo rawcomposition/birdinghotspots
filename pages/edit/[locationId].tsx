@@ -107,7 +107,7 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
 
   const router = useRouter();
   const form = useForm<HotspotInputs>({ defaultValues: data });
-  const isOH = data?.stateCode === "OH";
+  const isOH = data?.stateCode === "US-OH";
 
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");

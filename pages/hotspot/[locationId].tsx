@@ -112,7 +112,7 @@ export default function Hotspot({
         {user && (isGroup || !parent) && <Link href={`/add?defaultParentId=${_id}`}>Add Child Hotspot</Link>}
         {user && !isGroup && (
           <>
-            {state.code === "OH" ? (
+            {state.code === "US-OH" ? (
               <a href={`https://birding-in-ohio.com/${county.slug}-county/${slug}`} target="_blank" rel="noreferrer">
                 Old Website
               </a>
