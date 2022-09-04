@@ -40,7 +40,8 @@ export function getStateByCode(code: string) {
 
 export function getCountyByCode(code: string) {
   if (!code) return null;
-  const stateCode = code.split("-")[1];
+  const pieces = code.split("-");
+  const stateCode = `${pieces[0]}-${pieces[1]}`;
   const array = countyArrays[stateCode];
   if (!array) return null;
   const county = array.find((county: County) => county.ebirdCode === code);
@@ -51,7 +52,8 @@ export function getCountyByCode(code: string) {
 
 export function getLocationText(countyCode: string) {
   if (!countyCode) return null;
-  const stateCode = countyCode.split("-")[1];
+  const pieces = countyCode.split("-");
+  const stateCode = `${pieces[0]}-${pieces[1]}`;
   const array = countyArrays[stateCode];
   if (!array) return null;
   const county = array.find((county: County) => county.ebirdCode === countyCode);
@@ -72,7 +74,7 @@ export function getCountyBySlug(stateCode: string, countySlug: string) {
 
 function formatCounty(stateCode: string, county: County) {
   const { region: regionCode, ebirdCode, slug } = county;
-  const region = regionCode && stateCode === "OH" ? (OhioRegions as any)[regionCode] : {};
+  const region = regionCode && stateCode === "US-OH" ? (OhioRegions as any)[regionCode] : {};
   return {
     slug,
     name: capitalize(slug.replaceAll("-", " ")),
