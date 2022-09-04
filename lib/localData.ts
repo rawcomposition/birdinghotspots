@@ -15,17 +15,17 @@ import { capitalize } from "./helpers";
 import { County } from "lib/types";
 
 const countyArrays: any = {
-  OH: OhioCounties,
-  AZ: ArizonaCounties,
-  VT: VermontCounties,
-  RI: RhodeIslandCounties,
-  NM: NewMexicoCounties,
-  MI: MichiganCounties,
-  MA: MassachusettsCounties,
-  KY: KentuckyCounties,
-  GA: GeorgiaCounties,
-  NH: NewHampshireCounties,
-  TX: TexasCounties,
+  "US-OH": OhioCounties,
+  "US-AZ": ArizonaCounties,
+  "US-VT": VermontCounties,
+  "US-RI": RhodeIslandCounties,
+  "US-NM": NewMexicoCounties,
+  "US-MI": MichiganCounties,
+  "US-MA": MassachusettsCounties,
+  "US-KY": KentuckyCounties,
+  "US-GA": GeorgiaCounties,
+  "US-NH": NewHampshireCounties,
+  "US-TX": TexasCounties,
 };
 
 export function getState(param: string) {

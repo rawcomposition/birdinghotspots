@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const filteredStates = States.filter(
     (state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase())
-  ).map((state) => ({ label: `${state.label}, US`, value: `US-${state.code}` }));
+  ).map((state) => ({ label: `${state.label}, US`, value: state.code }));
 
   res.status(200).json({
     success: true,

@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }));
 
     const filteredStates = States.filter(({ active, code, country }) => {
-      return active && (role === "admin" || regions.includes(`${country}-${code}`));
+      return active && (role === "admin" || regions.includes(code));
     });
 
     const data = filteredStates.map(({ code, label, country, slug }) => {

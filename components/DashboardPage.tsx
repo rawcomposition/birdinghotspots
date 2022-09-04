@@ -1,7 +1,7 @@
 import * as React from "react";
 import Title from "components/Title";
 import ErrorBoundary from "components/ErrorBoundary";
-import { UserIcon, ChartBarIcon } from "@heroicons/react/24/outline";
+import { UserIcon, ChartBarIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import DashboardNavItem from "components/DashboardNavItem";
 import { useUser } from "providers/user";
 
@@ -13,7 +13,10 @@ type PropTypes = {
 export default function DashboardPage({ title, children }: PropTypes) {
   const { user } = useUser();
 
-  const nav = [{ name: "Dashboard", href: "/admin", icon: ChartBarIcon }];
+  const nav = [
+    { name: "Dashboard", href: "/admin", icon: ChartBarIcon },
+    { name: "Image Review", href: "/admin/image-review", icon: PhotoIcon },
+  ];
 
   if (user?.role === "admin") {
     nav.push({ name: "Users", href: "/admin/user/list", icon: UserIcon });
@@ -27,8 +30,8 @@ export default function DashboardPage({ title, children }: PropTypes) {
   }, []);
 
   return (
-    <div className="container flex mt-12 gap-8">
-      <aside className="hidden lg:col-span-3 lg:block xl:col-span-2 min-w-[190px]">
+    <div className="container flex flex-col md:flex-row mt-12 gap-8">
+      <aside className="lg:col-span-3 xl:col-span-2 min-w-[190px]">
         <nav aria-label="Sidebar" className="sticky top-4 divide-y divide-gray-300">
           <div className="space-y-1 pb-8">
             {nav.map(({ name, href, icon }) => (

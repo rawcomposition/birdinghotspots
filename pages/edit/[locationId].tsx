@@ -60,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     slug = slugify(ebirdData.name);
   }
 
-  const stateCode = data?.stateCode || ebirdData?.subnational1Code?.replace("US-", "");
+  const stateCode = data?.stateCode || ebirdData?.subnational1Code;
   const countyCode = data?.countyCode || ebirdData?.subnational2Code;
   const state = getStateByCode(stateCode);
 

@@ -29,58 +29,6 @@ import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
 import { CameraIcon } from "@heroicons/react/24/outline";
 
-const getChildren = async (id: string) => {
-  if (!id) return null;
-  const data = await getChildHotspots(id);
-  return data || [];
-};
-
-interface Params extends ParsedUrlQuery {
-  locationId: string;
-  slug: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { locationId } = query as Params;
-
-  const data = await getHotspotByLocationId(locationId, true);
-  if (!data) return { notFound: true };
-
-  const state = getStateByCode(data.stateCode);
-  if (!state) return { notFound: true };
-
-  const county = getCountyByCode(data.countyCode);
-
-  const childLocations = await getChildren(data._id);
-  const childLocationsByCounty = data?.isGroup ? restructureHotspotsByCounty(childLocations as any) : [];
-  const childIds = childLocations?.map((item: HotspotType) => item.locationId) || [];
-  let locationIds = childIds?.length > 0 ? childIds : [];
-  if (!data?.isGroup) {
-    locationIds = [data?.locationId, ...locationIds];
-  }
-
-  const markers = formatMarkerArray(data, childLocations);
-
-  const countySlugs =
-    data.multiCounties?.map((item: string) => {
-      const county = getCountyByCode(item);
-      return county?.slug;
-    }) || [];
-
-  return {
-    props: {
-      state,
-      county,
-      childLocations: data?.isGroup ? [] : childLocations,
-      childLocationsByCounty,
-      locationIds,
-      markers,
-      countySlugs,
-      ...data,
-    },
-  };
-};
-
 interface Props extends HotspotType {
   county: County;
   state: State;
@@ -273,3 +221,55 @@ export default function Hotspot({
     </div>
   );
 }
+
+const getChildren = async (id: string) => {
+  if (!id) return null;
+  const data = await getChildHotspots(id);
+  return data || [];
+};
+
+interface Params extends ParsedUrlQuery {
+  locationId: string;
+  slug: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { locationId } = query as Params;
+
+  const data = await getHotspotByLocationId(locationId, true);
+  if (!data) return { notFound: true };
+
+  const state = getStateByCode(data.stateCode);
+  if (!state) return { notFound: true };
+
+  const county = getCountyByCode(data.countyCode);
+
+  const childLocations = await getChildren(data._id);
+  const childLocationsByCounty = data?.isGroup ? restructureHotspotsByCounty(childLocations as any) : [];
+  const childIds = childLocations?.map((item: HotspotType) => item.locationId) || [];
+  let locationIds = childIds?.length > 0 ? childIds : [];
+  if (!data?.isGroup) {
+    locationIds = [data?.locationId, ...locationIds];
+  }
+
+  const markers = formatMarkerArray(data, childLocations);
+
+  const countySlugs =
+    data.multiCounties?.map((item: string) => {
+      const county = getCountyByCode(item);
+      return county?.slug;
+    }) || [];
+
+  return {
+    props: {
+      state,
+      county,
+      childLocations: data?.isGroup ? [] : childLocations,
+      childLocationsByCounty,
+      locationIds,
+      markers,
+      countySlugs,
+      ...data,
+    },
+  };
+};

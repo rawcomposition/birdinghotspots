@@ -5,7 +5,6 @@ import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { getStats } from "lib/mongo";
 import States from "data/states.json";
 import Stat from "components/Stats";
-import BtnSmall from "components/BtnSmall";
 
 type Props = {
   data: {
@@ -61,7 +60,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   }));
 
   const filteredStates = States.filter(({ active, code, country }) => {
-    return active && (role === "admin" || regions.includes(`${country}-${code}`));
+    return active && (role === "admin" || regions.includes(code));
   });
 
   const data = filteredStates.map(({ code, label, country, slug }) => {

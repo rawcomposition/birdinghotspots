@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Promise.all(
       activeStates.map(async (state) => {
         console.log(`Syncing ${state.code}`);
-        const hotspots = await getHotspotsForRegion(`US-${state.code}`);
+        const hotspots = await getHotspotsForRegion(state.code);
         const dbHotspots = await Hotspot.find({ isGroup: { $ne: true }, stateCode: state.code }, [
           "locationId",
           "name",

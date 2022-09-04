@@ -27,20 +27,6 @@ interface Params extends ParsedUrlQuery {
   stateSlug: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { countrySlug, stateSlug } = params as Params;
-  const state = getState(stateSlug);
-  if (!countrySlug || !state) return { notFound: true };
-  const counties = getCounties(state.code);
-
-  const infoFile = path.join(process.cwd(), "data", "state-info", `${state.code.toLowerCase()}.md`);
-  const info = fs.readFileSync(infoFile.toString(), "utf8");
-
-  const articles = (await getArticlesByState(state.code)) || [];
-
-  return { props: { countrySlug, counties, state, info, articles } };
-};
-
 type Props = {
   countrySlug: string;
   state: StateType;
@@ -106,7 +92,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           </div>
           {view === "map" ? (
             <div className="flex justify-center items-start">
-              <StateMap regionCode={`${countrySlug.toUpperCase()}-${code}`} />
+              <StateMap regionCode={code} />
             </div>
           ) : (
             <div className="columns-3 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded">
@@ -131,11 +117,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         <Heading id="hotspots" color="green" className="mt-12 mb-8">
           Top eBird Hotspots
         </Heading>
-        <TopHotspots
-          region={`${countrySlug.toUpperCase()}-${code}`}
-          label={`${label}, ${countrySlug.toUpperCase()}`}
-          className="mt-12"
-        />
+        <TopHotspots region={code} label={`${label}, ${countrySlug.toUpperCase()}`} className="mt-12" />
       </section>
 
       <Heading id="hotspots" color="yellow" className="mt-12 mb-8">
@@ -204,7 +186,21 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           <EbirdHelpLinks />
         </div>
       </div>
-      <RareBirds region={`US-${code}`} label={label} className="mt-12" />
+      <RareBirds region={code} label={label} className="mt-12" />
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { countrySlug, stateSlug } = params as Params;
+  const state = getState(stateSlug);
+  if (!countrySlug || !state) return { notFound: true };
+  const counties = getCounties(state.code);
+
+  const infoFile = path.join(process.cwd(), "data", "state-info", `${state.code}.md`);
+  const info = fs.readFileSync(infoFile.toString(), "utf8");
+
+  const articles = (await getArticlesByState(state.code)) || [];
+
+  return { props: { countrySlug, counties, state, info, articles } };
+};

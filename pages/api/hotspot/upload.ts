@@ -66,7 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             images.length === 1 ? "photo" : "photos"
           } to <a href="https://birdinghotspots.org${hotspot.url}" target="_blank">${
             hotspot.name
-          }</a><br /><br /><a href="https://birdinghotspots.org/image-review">Review Images</a><br /><br />Reply to this email to contact ${name} directly.<br />Email: ${email}`,
+          }</a><br /><br /><a href="https://birdinghotspots.org/admin/image-review">Review Images</a><br /><br />Reply to this email to contact ${name} directly.<br />Email: ${email}`,
           replyTo: email,
         });
       } catch (error) {}

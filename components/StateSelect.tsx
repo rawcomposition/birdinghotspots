@@ -2,7 +2,7 @@ import Select from "components/Select";
 import States from "data/states.json";
 
 const options = States.filter((state) => state.active).map(({ label, code, country }) => ({
-  value: `${country}-${code}`,
+  value: code,
   label,
 }));
 
