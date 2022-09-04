@@ -4,7 +4,7 @@ import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { getStats } from "lib/mongo";
 import States from "data/states.json";
-import Stat from "components/Stats";
+import Stats from "components/Stats";
 
 type Props = {
   data: {
@@ -36,7 +36,7 @@ export default function Dashboard({ data }: Props) {
                 <a className="text-sm ml-4 font-medium">Add Hotspot</a>
               </Link>
             </h3>
-            <Stat
+            <Stats
               items={[
                 { label: "Hotspots", value: total.toLocaleString(), url: url1 },
                 { label: "With photos", value: withImg.toLocaleString(), percent, url: url2 },

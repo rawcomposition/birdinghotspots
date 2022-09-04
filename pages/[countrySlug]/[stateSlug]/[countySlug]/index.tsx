@@ -14,26 +14,6 @@ import Title from "components/Title";
 import { scrollToAnchor } from "lib/helpers";
 import TopHotspots from "components/TopHotspots";
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-  countySlug: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug, countySlug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const county = getCountyBySlug(state.code, countySlug);
-  if (!county?.name) return { notFound: true };
-
-  const hotspots = (await getHotspotsByCounty(county.ebirdCode)) || [];
-  return {
-    props: { countrySlug, state, county, hotspots },
-  };
-};
-
 type Props = {
   countrySlug: string;
   county: CountyType;
@@ -42,7 +22,7 @@ type Props = {
 };
 
 export default function County({ countrySlug, state, county, hotspots }: Props) {
-  const { slug, name, ebirdCode } = county;
+  const { name, ebirdCode } = county;
   const hotspotIBA = hotspots.filter(({ iba }) => iba?.value).map(({ iba }) => iba);
   const drives: HotspotDrive[] = [];
   hotspots.forEach((hotspot) => {
@@ -166,3 +146,23 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
     </div>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  countrySlug: string;
+  stateSlug: string;
+  countySlug: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { countrySlug, stateSlug, countySlug } = query as Params;
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const county = getCountyBySlug(state.code, countySlug);
+  if (!county?.name) return { notFound: true };
+
+  const hotspots = (await getHotspotsByCounty(county.ebirdCode)) || [];
+  return {
+    props: { countrySlug, state, county, hotspots },
+  };
+};

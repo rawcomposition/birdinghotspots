@@ -29,8 +29,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
+    const noContent = data?.about || data?.tips || data?.birds || data?.hikes;
 
-    await Hotspot.create({ ...data, locationId, url, location, featuredImg });
+    await Hotspot.create({ ...data, locationId, url, location, featuredImg, noContent });
     res.status(200).json({ success: true, url });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
