@@ -25,50 +25,6 @@ import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
 
-interface Params extends ParsedUrlQuery {
-  id: string;
-  state?: string;
-}
-
-const getChildren = async (id: string) => {
-  if (!id) return null;
-  const data = await getChildHotspots(id);
-  return data || [];
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { id, state: stateParam, country: countryParam } = query as Params;
-  const isNew = id === "new";
-
-  const data = isNew ? null : await getHotspotById(id);
-
-  const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
-  const stateCode = data?.stateCode || stateParam;
-  const state = getStateByCode(stateCode);
-
-  const childLocations = data?._id ? await getChildren(data._id) : [];
-
-  return {
-    props: {
-      id: data?._id || null,
-      isNew: !data,
-      state,
-      childLocations,
-      data: {
-        ...data,
-        countryCode,
-        name: data?.name || "",
-        slug: data?.slug || "",
-        multiCounties: data?.multiCounties || [],
-        roadside: data?.roadside || "Unknown",
-        restrooms: data?.restrooms || null,
-        accessible: data?.accessible || null,
-        zoom: data?.zoom || 14,
-      },
-    },
-  };
-};
-
 type Props = {
   id?: string;
   isNew: boolean;
@@ -254,3 +210,47 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
     </AdminPage>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  id: string;
+  state?: string;
+}
+
+const getChildren = async (id: string) => {
+  if (!id) return null;
+  const data = await getChildHotspots(id);
+  return data || [];
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { id, state: stateParam, country: countryParam } = query as Params;
+  const isNew = id === "new";
+
+  const data = isNew ? null : await getHotspotById(id);
+
+  const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
+  const stateCode = data?.stateCode || stateParam;
+  const state = getStateByCode(stateCode);
+
+  const childLocations = data?._id ? await getChildren(data._id) : [];
+
+  return {
+    props: {
+      id: data?._id || null,
+      isNew: !data,
+      state,
+      childLocations,
+      data: {
+        ...data,
+        countryCode,
+        name: data?.name || "",
+        slug: data?.slug || "",
+        multiCounties: data?.multiCounties || [],
+        roadside: data?.roadside || "Unknown",
+        restrooms: data?.restrooms || null,
+        accessible: data?.accessible || null,
+        zoom: data?.zoom || 14,
+      },
+    },
+  };
+};

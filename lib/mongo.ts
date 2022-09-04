@@ -205,9 +205,13 @@ export async function getSettings() {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getUploads() {
+export async function getUploads(regions: string[]) {
   await connect();
-  const result = await Upload.find({ status: "pending" }).sort({ name: 1 }).lean().exec();
+  let query: any = { status: "pending" };
+  if (regions !== null) {
+    query = { ...query, stateCode: { $in: regions || [] } };
+  }
+  const result = await Upload.find(query).sort({ name: 1 }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

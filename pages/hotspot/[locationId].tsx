@@ -118,9 +118,9 @@ export default function Hotspot({
               </a>
             ) : (
               <a
-                href={`https://ebirdhotspots.com/birding-in-${state.slug}/us${state.code.toLowerCase()}-${
-                  county.slug
-                }-county/us${state.code.toLowerCase()}-${slug}`}
+                href={`https://ebirdhotspots.com/birding-in-${state.slug}/${state.code
+                  .replace("-", "")
+                  .toLowerCase()}-${county.slug}-county/${state.code.replace("-", "").toLowerCase()}-${slug}`}
                 target="_blank"
                 rel="noreferrer"
               >

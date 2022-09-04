@@ -119,8 +119,9 @@ export default function County({ items: allItems }: Props) {
     </DashboardPage>
   );
 }
-export const getServerSideProps = getSecureServerSideProps(async () => {
-  const uploads = await getUploads();
+export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
+  const filter = token.role === "admin" ? null : token.regions;
+  const uploads = await getUploads(filter);
   const items: Item[] = [];
 
   uploads.forEach(async (upload: Upload) => {
