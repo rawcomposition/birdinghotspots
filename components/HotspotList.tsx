@@ -19,7 +19,7 @@ export default function HotspotList({ hotspots, className }: Props) {
       {hotspots?.map(({ name, url, noContent }) => (
         <li key={url}>
           <Link href={url}>{name}</Link>
-          {noContent && user && <NoticeIcon color="green" title="New Hotspot - needs content" />}
+          {noContent && user && <NoticeIcon color="yellow" title="Needs content" />}
         </li>
       ))}
     </ul>

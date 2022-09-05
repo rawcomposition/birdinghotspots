@@ -1,11 +1,12 @@
 type Props = {
   title: string;
-  color: "green" | "yellow";
+  color: "green" | "yellow" | "blue";
 };
 
 export default function Icon({ color, title }: Props) {
   const colors = {
     green: "bg-lime-600",
+    blue: "bg-sky-600",
     yellow: "bg-yellow-500",
   };
 

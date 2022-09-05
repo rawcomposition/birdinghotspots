@@ -74,9 +74,9 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots, active
             <Link href={url}>{name}</Link>
             {reviewed === false &&
               user && ( //TODO: Remove after migration
-                <NoticeIcon color="yellow" title="Not Reviewed" />
+                <NoticeIcon color="blue" title="Not Reviewed" />
               )}
-            {noContent && user && <NoticeIcon color="green" title="New Hotspot - needs content" />}
+            {noContent && user && <NoticeIcon color="yellow" title="Needs content" />}
             <br />
           </React.Fragment>
         );

@@ -7,7 +7,7 @@ type TitleProps = {
 export default function Title({ children }: TitleProps) {
   return (
     <Head>
-      <title>{children ? `${children} - "Birding Hotspots"` : "Birding Hotspots"}</title>
+      <title>{children ? `${children} - Birding Hotspots` : "Birding Hotspots"}</title>
     </Head>
   );
 }
