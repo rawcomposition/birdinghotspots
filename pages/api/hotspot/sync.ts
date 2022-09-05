@@ -76,23 +76,27 @@ const insertHotspot = async ({ lat, lng, locationId, name, total, ...data }: any
       coordinates: [lng, lat],
     };
   }
-  await Hotspot.create(
-    {
-      name,
-      zoom: 14,
-      lat,
-      lng,
-      countryCode: data.subnational1Code?.split("-")?.[0],
-      stateCode,
-      countyCode,
-      locationId,
-      url: `/hotspot/${locationId}`,
-      location,
-      noContent: true,
-      species: total,
-    },
-    { writeConcern: { w: 0 } }
-  );
+  try {
+    await Hotspot.create(
+      {
+        name,
+        zoom: 14,
+        lat,
+        lng,
+        countryCode: data.subnational1Code?.split("-")?.[0],
+        stateCode,
+        countyCode,
+        locationId,
+        url: `/hotspot/${locationId}`,
+        location,
+        noContent: true,
+        species: total,
+      },
+      { writeConcern: { w: 0 } }
+    );
+  } catch (e: any) {
+    console.log(e.message);
+  }
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -103,8 +107,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
   await connect();
   try {
-    //const activeStates = States.filter((state) => state.active);
-    const activeStates = States.filter((state) => state.code === "US-NM");
+    const activeStates = States.filter((state) => state.active);
     await Promise.all(
       activeStates.map(async (state) => {
         console.log(`Syncing ${state.code}`);

@@ -145,6 +145,11 @@ export default function Hotspot({
           </DeleteBtn>
         )}
       </EditorActions>
+      {user && needsDeleting && (
+        <div className="border border-red-700 text-red-700 px-4 py-2 rounded relative mb-6">
+          This hotspot has been removed from eBird and should be deleted.
+        </div>
+      )}
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">
