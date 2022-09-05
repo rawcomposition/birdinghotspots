@@ -224,12 +224,25 @@ export async function getUploads(regions: string[]) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getStats() {
+export async function getImgStats() {
   await connect();
   const result = await Hotspot.aggregate([
     {
       $group: {
         _id: { featuredImg: { $gt: ["$featuredImg", null] }, stateCode: "$stateCode" },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+  return result;
+}
+
+export async function getContentStats() {
+  await connect();
+  const result = await Hotspot.aggregate([
+    {
+      $group: {
+        _id: { noContent: "$noContent", stateCode: "$stateCode" },
         count: { $sum: 1 },
       },
     },
