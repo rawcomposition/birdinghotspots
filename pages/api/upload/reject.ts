@@ -5,15 +5,16 @@ import admin from "lib/firebaseAdmin";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
+  const { id }: any = req.query;
 
-  try {
-    await admin.verifyIdToken(token || "");
-  } catch (error) {
+  await connect();
+  const upload = await Upload.findById(id);
+
+  const result = await admin.verifyIdToken(token || "");
+  if (result.role !== "admin" && !result.regions?.includes(upload?.stateCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
-
-  const { id }: any = req.query;
 
   try {
     await connect();

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GetServerSideProps } from "next";
+import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -9,7 +9,6 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId, getHotspotById, getChildHotspots } from "lib/mongo";
 import { slugify, geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
-import { getStateByCode, getCountyByCode } from "lib/localData";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
@@ -29,12 +28,12 @@ type Props = {
   id?: string;
   isNew: boolean;
   data: Hotspot;
-  state: State;
   error?: string;
+  errorCode?: number;
   childLocations: Hotspot[];
 };
 
-export default function Edit({ id, isNew, data, error, childLocations, state }: Props) {
+export default function Edit({ id, isNew, data, error, errorCode, childLocations }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
@@ -88,7 +87,7 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, lat, lng]);
 
-  if (error) return <Error statusCode={404} title={error} />;
+  if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title="Edit Hotspot">
@@ -188,15 +187,26 @@ const getChildren = async (id: string) => {
   return data || [];
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { locationId } = query as Params;
   const data = await getHotspotByLocationId(locationId);
   const ebirdData: EbirdHotspot = await getEbirdHotspot(locationId);
   if (!ebirdData?.name) {
+    res.statusCode = 404;
     return {
-      props: { error: `Hotspot "${locationId}" not found in eBird` },
+      props: { error: `Hotspot "${locationId}" not found in eBird`, errorCode: 404 },
     };
   }
+
+  const stateCode = data?.stateCode || ebirdData?.subnational1Code;
+  const countyCode = data?.countyCode || ebirdData?.subnational2Code;
+
+  const { role, regions } = token;
+  if (role !== "admin" && !regions.includes(stateCode)) {
+    res.statusCode = 403;
+    return { props: { error: "Access Deneid", errorCode: 403 } };
+  }
+
   const childLocations = data?._id ? await getChildren(data._id) : [];
   const parentId = data?.parent;
   const parent = parentId ? await getParent(parentId) : null;
@@ -207,16 +217,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     slug = slugify(ebirdData.name);
   }
 
-  const stateCode = data?.stateCode || ebirdData?.subnational1Code;
-  const countyCode = data?.countyCode || ebirdData?.subnational2Code;
-  const state = getStateByCode(stateCode);
-
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
       childLocations,
-      state,
       data: {
         ...data,
         slug,
@@ -237,4 +242,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       },
     },
   };
-};
+});

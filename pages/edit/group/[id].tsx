@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GetServerSideProps } from "next";
+import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -24,16 +24,19 @@ import useToast from "hooks/useToast";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
+import Error from "next/error";
 
 type Props = {
   id?: string;
   isNew: boolean;
   data: Hotspot;
   state: State;
+  error?: string;
+  errorCode?: number;
   childLocations: Hotspot[];
 };
 
-export default function Edit({ id, isNew, data, state, childLocations }: Props) {
+export default function Edit({ id, isNew, data, state, childLocations, error, errorCode }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
@@ -112,6 +115,8 @@ export default function Edit({ id, isNew, data, state, childLocations }: Props) 
       geocodeCoorinates(lat, lng);
     }
   };
+
+  if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title="Edit Hotspot">
@@ -222,7 +227,7 @@ const getChildren = async (id: string) => {
   return data || [];
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { id, state: stateParam, country: countryParam } = query as Params;
   const isNew = id === "new";
 
@@ -231,6 +236,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
   const stateCode = data?.stateCode || stateParam;
   const state = getStateByCode(stateCode);
+
+  const { role, regions } = token;
+  if (role !== "admin" && !regions.includes(stateCode)) {
+    res.statusCode = 403;
+    return { props: { error: "Access Deneid", errorCode: 403 } };
+  }
 
   const childLocations = data?._id ? await getChildren(data._id) : [];
 
@@ -253,4 +264,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       },
     },
   };
-};
+});

@@ -35,7 +35,7 @@ export default function Home2() {
         </div>
 
         <Heading className="mb-16 mt-24">Featured Hotspots</Heading>
-        <EditorActions className="-mt-10">
+        <EditorActions className="-mt-10" requireAdmin>
           <Link href="/featured">Edit Featured Hotspots</Link>
         </EditorActions>
         <FeaturedHotspots />

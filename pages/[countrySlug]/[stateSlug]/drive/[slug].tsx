@@ -56,7 +56,7 @@ export default function Drive({ countrySlug, name, description, state, mapId, en
       >
         {name}
       </PageHeading>
-      <EditorActions className="-mt-12">
+      <EditorActions className="-mt-12" requireRegion={state.code}>
         <Link href={`/${countrySlug}/${state.slug}/drive/edit/${_id}`}>Edit Drive</Link>
         <DeleteBtn url={`/api/drive/delete?id=${_id}`} entity="drive" className="ml-auto">
           Delete Drive

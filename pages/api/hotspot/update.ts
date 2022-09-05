@@ -6,6 +6,7 @@ import aws from "aws-sdk";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
+  const { id, data } = req.body;
   aws.config.update({
     accessKeyId: process.env.WASABI_KEY,
     secretAccessKey: process.env.WASABI_SECRET,
@@ -15,16 +16,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const endpoint = new aws.Endpoint("s3.wasabisys.com");
   const s3 = new aws.S3({ endpoint });
 
-  try {
-    await admin.verifyIdToken(token || "");
-  } catch (error) {
+  const result = await admin.verifyIdToken(token || "");
+  if (result.role !== "admin" && !result.regions?.includes(data?.stateCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
   try {
     await connect();
-    const { id, data } = req.body;
     const url = `/hotspot/${data.locationId}`;
 
     let location = null;

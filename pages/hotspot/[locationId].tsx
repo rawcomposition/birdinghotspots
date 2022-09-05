@@ -101,6 +101,8 @@ export default function Hotspot({
   const photos = images?.filter((it) => !it.isMap) || [];
   const mapImages = images?.filter((item) => item.smUrl && item.isMap) || [];
 
+  const canEdit = user?.role === "admin" || user?.regions?.includes(state.code);
+
   return (
     <div className="container pb-16">
       <Title>{name}</Title>
@@ -109,8 +111,8 @@ export default function Hotspot({
       </PageHeading>
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
-        {user && <Link href={isGroup ? `/edit/group/${_id}` : `/edit/${locationId}`}>Edit Hotspot</Link>}
-        {user && !isGroup && (
+        {canEdit && <Link href={isGroup ? `/edit/group/${_id}` : `/edit/${locationId}`}>Edit Hotspot</Link>}
+        {canEdit && !isGroup && (
           <>
             {state.code === "US-OH" ? (
               <a
@@ -139,7 +141,7 @@ export default function Hotspot({
             Upload Photos
           </a>
         </Link>
-        {user && (needsDeleting || isGroup) && (
+        {canEdit && (needsDeleting || isGroup) && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
           </DeleteBtn>

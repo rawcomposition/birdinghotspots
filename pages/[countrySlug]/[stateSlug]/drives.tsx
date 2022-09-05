@@ -36,7 +36,7 @@ export default function Drives({ countrySlug, state, drives }: Props) {
       <PageHeading countrySlug={countrySlug} state={state}>
         Birding Drives
       </PageHeading>
-      <EditorActions className="-mt-12">
+      <EditorActions className="-mt-12" requireRegion={state.code}>
         <Link href={`/${countrySlug}/${state.slug}/drive/edit/new`}>Add Drive</Link>
       </EditorActions>
       <div className="md:flex gap-8 items-start mb-8">

@@ -54,7 +54,7 @@ export default function Article({ countrySlug, name, content, hotspotsByCounty, 
       <PageHeading countrySlug={countrySlug} state={state}>
         {name}
       </PageHeading>
-      <EditorActions className="-mt-12">
+      <EditorActions className="-mt-12" requireRegion={state.code}>
         <Link href={`/${countrySlug}/${state.slug}/article/edit/${_id}`}>Edit Article</Link>
         <DeleteBtn url={`/api/article/delete?id=${_id}`} entity="article" className="ml-auto">
           Delete Article

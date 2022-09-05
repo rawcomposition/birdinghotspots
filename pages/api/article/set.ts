@@ -6,17 +6,16 @@ import Article from "models/Article";
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
   const { isNew }: any = req.query;
+  const { data, id } = req.body;
 
-  try {
-    await admin.verifyIdToken(token || "");
-  } catch (error) {
+  const result = await admin.verifyIdToken(token || "");
+  if (result.role !== "admin" && !result.regions?.includes(data?.stateCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
   try {
     await connect();
-    const { data, id } = req.body;
     if (isNew === "true") {
       await Article.create({ ...data, _id: id });
     } else {

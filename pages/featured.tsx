@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "components/Form";
@@ -8,33 +7,13 @@ import AdminPage from "components/AdminPage";
 import Field from "components/Field";
 import HotspotSelect from "components/HotspotSelect";
 import useToast from "hooks/useToast";
+import getSecureServerSideProps from "lib/getSecureServerSideProps";
 
 type Inputs = {
   selectedHotspots: {
     value: string;
     label: string;
   }[];
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const settings = await getSettings();
-  const featuredIds = settings?.featuredIds || [];
-
-  const selectedHotspots = await Promise.all(
-    featuredIds.map(async (id: string) => {
-      const hotspot = await getHotspotById(id);
-      return {
-        label: hotspot?.name || "",
-        value: id,
-      };
-    })
-  );
-
-  return {
-    props: {
-      selectedHotspots,
-    },
-  };
 };
 
 type Props = {
@@ -92,3 +71,24 @@ export default function Featured({ selectedHotspots }: Props) {
     </AdminPage>
   );
 }
+
+export const getServerSideProps = getSecureServerSideProps(async () => {
+  const settings = await getSettings();
+  const featuredIds = settings?.featuredIds || [];
+
+  const selectedHotspots = await Promise.all(
+    featuredIds.map(async (id: string) => {
+      const hotspot = await getHotspotById(id);
+      return {
+        label: hotspot?.name || "",
+        value: id,
+      };
+    })
+  );
+
+  return {
+    props: {
+      selectedHotspots,
+    },
+  };
+}, true);

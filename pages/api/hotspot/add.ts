@@ -6,17 +6,16 @@ import { generateRandomId } from "lib/helpers";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
+  const { data } = req.body;
 
-  try {
-    await admin.verifyIdToken(token || "");
-  } catch (error) {
+  const result = await admin.verifyIdToken(token || "");
+  if (result.role !== "admin" && !result.regions?.includes(data?.stateCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
   try {
     await connect();
-    const { data } = req.body;
     const locationId = data.locationId || `G${generateRandomId()}`;
     const url = `/hotspot/${locationId}`;
 

@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -17,32 +17,7 @@ import { getState } from "lib/localData";
 import { slugify } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
-
-interface Params extends ParsedUrlQuery {
-  id: string;
-  countrySlug: string;
-  stateSlug: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { id, countrySlug, stateSlug } = query as Params;
-  const data: Drive = id !== "new" ? await getDriveById(id) : null;
-
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-  const entries =
-    data?.entries?.map((entry) => ({ ...entry, hotspotSelect: { label: entry.hotspot.name, value: entry.hotspot } })) ??
-    [];
-  return {
-    props: {
-      id: data?._id || null,
-      countrySlug,
-      state,
-      isNew: !data,
-      data: { ...data, entries, counties: data?.counties || [] },
-    },
-  };
-};
+import Error from "next/error";
 
 type Props = {
   id?: string;
@@ -50,9 +25,11 @@ type Props = {
   state: State;
   isNew: boolean;
   data: Drive;
+  error?: string;
+  errorCode?: number;
 };
 
-export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
+export default function Edit({ isNew, data, id, state, countrySlug, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -79,6 +56,8 @@ export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
       router.push(`/${countrySlug}/${state.slug}/drive/${newSlug}`);
     }
   };
+
+  if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title={`${isNew ? "Add" : "Edit"} Drive`}>
@@ -120,3 +99,36 @@ export default function Edit({ isNew, data, id, state, countrySlug }: Props) {
     </AdminPage>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  id: string;
+  countrySlug: string;
+  stateSlug: string;
+}
+
+export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
+  const { id, countrySlug, stateSlug } = query as Params;
+  const data: Drive = id !== "new" ? await getDriveById(id) : null;
+
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const { role, regions } = token;
+  if (role !== "admin" && !regions.includes(state.code)) {
+    res.statusCode = 403;
+    return { props: { error: "Access Deneid", errorCode: 403 } };
+  }
+
+  const entries =
+    data?.entries?.map((entry) => ({ ...entry, hotspotSelect: { label: entry.hotspot.name, value: entry.hotspot } })) ??
+    [];
+  return {
+    props: {
+      id: data?._id || null,
+      countrySlug,
+      state,
+      isNew: !data,
+      data: { ...data, entries, counties: data?.counties || [] },
+    },
+  };
+});
