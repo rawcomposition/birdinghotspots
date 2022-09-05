@@ -59,9 +59,6 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       <PageHeading countrySlug={countrySlug} state={state}>
         {name} County
       </PageHeading>
-      <EditorActions className="-mt-10">
-        <Link href="/add">Add Hotspot</Link>
-      </EditorActions>
       <div className="grid md:grid-cols-2 gap-8 mb-16">
         <div className="flex flex-col gap-8">
           <section>

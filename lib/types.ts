@@ -86,7 +86,8 @@ export type Hotspot = {
   isGroup?: boolean;
   species?: number;
   noContent?: boolean;
-  reviewed: boolean; //TODO: remove after migration
+  needsDeleting?: boolean;
+  reviewed?: boolean; //TODO: remove after migration
 };
 
 export interface HotspotInputs extends Hotspot {

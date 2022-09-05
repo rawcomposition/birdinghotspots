@@ -25,73 +25,6 @@ import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
 
-interface Params extends ParsedUrlQuery {
-  locationId: string;
-}
-
-const getParent = async (id: string) => {
-  if (!id) return null;
-  const data = await getHotspotById(id);
-  return data || null;
-};
-
-const getChildren = async (id: string) => {
-  if (!id) return null;
-  const data = await getChildHotspots(id);
-  return data || [];
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { locationId, defaultParentId } = query as Params;
-  const data = await getHotspotByLocationId(locationId);
-  const ebirdData: EbirdHotspot = await getEbirdHotspot(locationId);
-  if (!ebirdData?.name) {
-    return {
-      props: { error: `Hotspot "${locationId}" not found in eBird` },
-    };
-  }
-  const childLocations = data?._id ? await getChildren(data._id) : [];
-  const parentId = data?.parent || defaultParentId;
-  const parent = parentId ? await getParent(parentId) : null;
-  const nameChanged = data?.name && data?.name !== ebirdData.name;
-
-  let slug = data?.slug;
-  if (!slug || nameChanged) {
-    slug = slugify(ebirdData.name);
-  }
-
-  const stateCode = data?.stateCode || ebirdData?.subnational1Code;
-  const countyCode = data?.countyCode || ebirdData?.subnational2Code;
-  const state = getStateByCode(stateCode);
-
-  return {
-    props: {
-      id: data?._id || null,
-      isNew: !data,
-      childLocations,
-      state,
-      data: {
-        ...data,
-        slug,
-        iba: data?.iba || parent?.iba || null,
-        links: data?.links || parent?.links || null,
-        parentSelect: parent ? { label: parent.name, value: parent._id } : null,
-        name: ebirdData?.name || data?.name,
-        lat: ebirdData?.latitude || data?.lat,
-        lng: ebirdData?.longitude || data?.lng,
-        zoom: data?.zoom || 14,
-        countryCode: ebirdData?.subnational1Code?.split("-")?.[0] || data?.countryCode,
-        stateCode,
-        countyCode,
-        locationId: locationId,
-        roadside: data?.roadside || "Unknown",
-        restrooms: data?.restrooms || null,
-        accessible: data?.accessible || null,
-      },
-    },
-  };
-};
-
 type Props = {
   id?: string;
   isNew: boolean;
@@ -112,8 +45,6 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");
   const markers = formatMarkerArray({ ...data, lat: latValue, lng: lngValue }, childLocations);
-
-  const features = state.features || [];
 
   const handleSubmit: SubmitHandler<HotspotInputs> = async (data) => {
     const response = await send({
@@ -240,3 +171,70 @@ export default function Edit({ id, isNew, data, error, childLocations, state }: 
     </AdminPage>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  locationId: string;
+}
+
+const getParent = async (id: string) => {
+  if (!id) return null;
+  const data = await getHotspotById(id);
+  return data || null;
+};
+
+const getChildren = async (id: string) => {
+  if (!id) return null;
+  const data = await getChildHotspots(id);
+  return data || [];
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { locationId } = query as Params;
+  const data = await getHotspotByLocationId(locationId);
+  const ebirdData: EbirdHotspot = await getEbirdHotspot(locationId);
+  if (!ebirdData?.name) {
+    return {
+      props: { error: `Hotspot "${locationId}" not found in eBird` },
+    };
+  }
+  const childLocations = data?._id ? await getChildren(data._id) : [];
+  const parentId = data?.parent;
+  const parent = parentId ? await getParent(parentId) : null;
+  const nameChanged = data?.name && data?.name !== ebirdData.name;
+
+  let slug = data?.slug;
+  if (!slug || nameChanged) {
+    slug = slugify(ebirdData.name);
+  }
+
+  const stateCode = data?.stateCode || ebirdData?.subnational1Code;
+  const countyCode = data?.countyCode || ebirdData?.subnational2Code;
+  const state = getStateByCode(stateCode);
+
+  return {
+    props: {
+      id: data?._id || null,
+      isNew: !data,
+      childLocations,
+      state,
+      data: {
+        ...data,
+        slug,
+        iba: data?.iba || parent?.iba || null,
+        links: data?.links || parent?.links || null,
+        parentSelect: parent ? { label: parent.name, value: parent._id } : null,
+        name: ebirdData?.name || data?.name,
+        lat: ebirdData?.latitude || data?.lat,
+        lng: ebirdData?.longitude || data?.lng,
+        zoom: data?.zoom || 14,
+        countryCode: ebirdData?.subnational1Code?.split("-")?.[0] || data?.countryCode,
+        stateCode,
+        countyCode,
+        locationId: locationId,
+        roadside: data?.roadside || "Unknown",
+        restrooms: data?.restrooms || null,
+        accessible: data?.accessible || null,
+      },
+    },
+  };
+};

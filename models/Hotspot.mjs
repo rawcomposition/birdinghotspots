@@ -51,10 +51,7 @@ const HotspotSchema = new Schema({
 		required: true,
 		unique: true
 	},
-	slug: {
-		type: String,
-		required: true
-	},
+	slug: String,
 	oldSlug: String,
 	about: String,
 	tips: String,
@@ -125,10 +122,8 @@ const HotspotSchema = new Schema({
 	isGroup: Boolean,
 	species: Number,
 	noContent: Boolean,
-	migrateParentSlug: String, //TODO remove
-	migrateParentGroupSlug: String, //TODO remove
+	needsDeleting: Boolean,
 	reviewed: Boolean, //TODO remove
-	nameMismatch: Boolean, //TODO remove
 });
 
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);

@@ -32,9 +32,6 @@ export default function Dashboard({ data }: Props) {
                   {label}, {country}
                 </a>
               </Link>
-              <Link href={`/add?state=${code}&country=${country}`}>
-                <a className="text-sm ml-4 font-medium">Add Hotspot</a>
-              </Link>
             </h3>
             <Stats
               items={[

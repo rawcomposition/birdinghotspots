@@ -68,6 +68,7 @@ export default function Hotspot({
   isGroup,
   markers,
   countryCode,
+  needsDeleting,
 }: Props) {
   const { user } = useUser();
   const countrySlug = countryCode?.toLowerCase();
@@ -109,7 +110,6 @@ export default function Hotspot({
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {user && <Link href={isGroup ? `/edit/group/${_id}` : `/edit/${locationId}`}>Edit Hotspot</Link>}
-        {user && (isGroup || !parent) && <Link href={`/add?defaultParentId=${_id}`}>Add Child Hotspot</Link>}
         {user && !isGroup && (
           <>
             {state.code === "US-OH" ? (
@@ -139,7 +139,7 @@ export default function Hotspot({
             Upload Photos
           </a>
         </Link>
-        {user && (
+        {user && (needsDeleting || isGroup) && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
           </DeleteBtn>

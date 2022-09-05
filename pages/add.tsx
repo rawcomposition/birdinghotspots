@@ -1,55 +1,28 @@
-import * as React from "react";
 import { useRouter } from "next/router";
-import { useForm, SubmitHandler } from "react-hook-form";
-import Input from "components/Input";
-import Form from "components/Form";
-import Submit from "components/Submit";
 import Title from "components/Title";
-import Field from "components/Field";
 import Link from "next/link";
 
-type Inputs = {
-  locationId: string;
-};
-
 export default function Add() {
-  const form = useForm<Inputs>();
   const router = useRouter();
-  const { defaultParentId, state, country } = router.query;
-  const [loading, setLoading] = React.useState(false);
-
-  const handleSubmit: SubmitHandler<Inputs> = async ({ locationId }) => {
-    setLoading(true);
-    const url = defaultParentId ? `/edit/${locationId}?defaultParentId=${defaultParentId}` : `/edit/${locationId}`;
-    router.push(url);
-  };
+  const { state, country } = router.query;
 
   return (
     <div className="container pb-16 my-12">
       <Title>Add Hotspot</Title>
-      <Form form={form} onSubmit={handleSubmit}>
-        <div className="max-w-2xl mx-auto">
-          <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <Field label="eBird Location ID">
-              <Input type="text" name="locationId" placeholder="e.g. L12345678" />
-            </Field>
-            {state && country && (
-              <p>
-                Or{" "}
-                <Link href={`/edit/group/new?state=${state}&country=${country}`}>
-                  <a className="font-medium">add custom location</a>
-                </Link>{" "}
-                without an associated eBird hotspot.
-              </p>
-            )}
-          </div>
-          <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-            <Submit loading={loading} color="green" className="font-medium">
-              Continue
-            </Submit>
-          </div>
+      <div className="max-w-xl mx-auto">
+        <div className="bg-gray-100 rounded-md p-6">
+          <p className="font-bold mb-1">Hotspots are automatically imported from eBird about once a day.</p>
+          {state && country && (
+            <p>
+              If you need to add a location that is not in eBid, you can{" "}
+              <Link href={`/edit/group/new?state=${state}&country=${country}`}>
+                <a className="font-medium">add custom location</a>
+              </Link>
+              .
+            </p>
+          )}
         </div>
-      </Form>
+      </div>
     </div>
   );
 }
