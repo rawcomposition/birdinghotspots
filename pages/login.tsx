@@ -8,6 +8,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "components/Form";
 import FormError from "components/FormError";
 import UtilityPage from "components/UtilityPage";
+import Link from "next/link";
 
 type Inputs = {
   email: string;
@@ -45,6 +46,7 @@ const Login: NextPage = () => {
           <FormError name="password" />
         </div>
         {error && <AuthError>Error logging in</AuthError>}
+        <Link href="/forgot">Forgot Password</Link>
         <p className="text-center mt-8">
           <Submit loading={loading} color="green">
             Login

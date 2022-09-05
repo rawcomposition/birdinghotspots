@@ -1,7 +1,7 @@
 import * as React from "react";
 import Title from "components/Title";
 import ErrorBoundary from "components/ErrorBoundary";
-import { UserIcon, ChartBarIcon, PhotoIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon, UsersIcon, ChartBarIcon, PhotoIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import DashboardNavItem from "components/DashboardNavItem";
 import { useUser } from "providers/user";
 
@@ -19,8 +19,10 @@ export default function DashboardPage({ title, children }: PropTypes) {
   ];
 
   if (user?.role === "admin") {
-    nav.push({ name: "Users", href: "/admin/user/list", icon: UserIcon });
+    nav.push({ name: "Users", href: "/admin/user/list", icon: UsersIcon });
   }
+
+  nav.push({ name: "My Account", href: "/admin/account", icon: UserCircleIcon });
 
   React.useEffect(() => {
     document.body.classList.add("bg-gray-100");
@@ -37,6 +39,12 @@ export default function DashboardPage({ title, children }: PropTypes) {
             {nav.map(({ name, href, icon }) => (
               <DashboardNavItem key={name} label={name} href={href} Icon={icon} />
             ))}
+            <DashboardNavItem
+              label="Tips for Editors"
+              href="https://docs.google.com/document/d/16_uDmcHD6U3TXKydu41zMzoHwNrwsvZJ/edit?usp=sharing&ouid=112975085636010215798&rtpof=true&sd=true"
+              Icon={InformationCircleIcon}
+              target="blank"
+            />
           </div>
         </nav>
       </aside>

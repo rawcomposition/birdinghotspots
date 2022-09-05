@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getUploads, getHotspotByLocationId } from "lib/mongo";
 import { getStateByCode, getCountyByCode } from "lib/localData";
 import Title from "components/Title";
-import Heading from "components/Heading";
 import DashboardPage from "components/DashboardPage";
 import { Upload } from "lib/types";
 import { Gallery, Item } from "react-photoswipe-gallery";
