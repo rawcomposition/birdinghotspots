@@ -113,7 +113,11 @@ export default function Hotspot({
         {user && !isGroup && (
           <>
             {state.code === "US-OH" ? (
-              <a href={`https://birding-in-ohio.com/${county.slug}-county/${slug}`} target="_blank" rel="noreferrer">
+              <a
+                href={`https://old.birding-in-ohio.com/${county.slug}-county/${slug}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Old Website
               </a>
             ) : (

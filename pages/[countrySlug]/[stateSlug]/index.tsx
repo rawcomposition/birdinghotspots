@@ -142,7 +142,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         )}
         <ReactMarkdown linkTarget="_blank">{info}</ReactMarkdown>
       </div>
-      {info && articles.length > 0 && <hr className="my-8 opacity-70" />}
+      {(info || articles.length > 0) && <hr className="my-8 opacity-70" />}
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <h3 className="text-lg mb-1.5 font-bold">Finding Birding Locations in {label}</h3>
