@@ -1,7 +1,7 @@
 name: Sync Hotspots
 on:
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "0 0 * * *"
 jobs:
   cron:
     runs-on: ubuntu-latest
