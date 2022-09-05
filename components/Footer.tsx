@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PencilSquareIcon, UserIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import useFirebaseLogout from "hooks/useFirebaseLogout";
 import { useUser } from "providers/user";
 import OhioFooter from "./OhioFooter";
@@ -31,17 +31,13 @@ export default function Footer() {
         <p className="mt-2">
           {user ? (
             <>
-              <UserIcon className="h-3 w-3 inline" />
-              &nbsp;
-              {user?.email}
+              <Link href="/admin">
+                <a className="text-[#81b5e0]">Editor Dashboard</a>
+              </Link>
               &nbsp;-&nbsp;
               <button type="button" onClick={logout} className="text-[#81b5e0]">
                 Logout
               </button>
-              &nbsp;-&nbsp;
-              <Link href="/admin">
-                <a className="text-[#81b5e0]">Editor Dashboard</a>
-              </Link>
             </>
           ) : (
             <Link href="/login">
