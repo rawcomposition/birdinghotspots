@@ -96,7 +96,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
         return (
-          <React.Fragment key={name}>
+          <React.Fragment key={url}>
             {showLetter && (
               <h2 id={name[0]} className="font-bold mt-4 mb-2">
                 {isNumber ? "" : name[0].toUpperCase()}
