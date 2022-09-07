@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         from: '"BirdingHotspots.org" <noreply.birdinghotspots@gmail.com>',
         to: process.env.ADMIN_EMAILS,
         subject: `New Message from ${name}`,
-        text: message,
+        html: `${message} <br /><br /> Email: ${email}`,
         replyTo: email,
       });
       res.status(200).json({ success: true });
