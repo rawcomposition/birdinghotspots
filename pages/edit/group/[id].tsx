@@ -8,7 +8,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotById, getChildHotspots } from "lib/mongo";
-import { slugify, geocode, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
+import { geocode, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
 import { getStateByCode } from "lib/localData";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
@@ -54,12 +54,6 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
       return;
     }
 
-    const nameChanged = formData?.name && formData?.name !== data.name;
-    let slug = formData?.slug || null;
-    if (!slug || nameChanged) {
-      slug = slugify(formData.name);
-    }
-
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",
@@ -71,7 +65,6 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
           parent: null,
           countyCode: null,
           iba: formData.iba || null,
-          slug,
           restrooms: formData.restrooms || null,
           accessible: formData.accessible && formData.accessible?.length > 0 ? formData.accessible : null,
           isGroup: true,
@@ -129,8 +122,6 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
                 <Input type="text" name="name" required />
                 <FormError name="name" />
               </Field>
-
-              <Input type="hidden" name="slug" />
 
               <div className="grid grid-cols-2 gap-4">
                 <Field label="Latitude">
@@ -255,7 +246,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         ...data,
         countryCode,
         name: data?.name || "",
-        slug: data?.slug || "",
         multiCounties: data?.multiCounties || [],
         roadside: data?.roadside || "Unknown",
         restrooms: data?.restrooms || null,

@@ -8,7 +8,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId, getHotspotById, getChildHotspots } from "lib/mongo";
-import { slugify, geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
+import { geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
@@ -96,7 +96,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
         <Form form={form} onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="pt-5 bg-white space-y-6 flex-1">
-              <Input type="hidden" name="slug" />
               <Field label="Address">
                 <Textarea name="address" rows={2} />
                 {isGeocoded && (
@@ -210,12 +209,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const childLocations = data?._id ? await getChildren(data._id) : [];
   const parentId = data?.parent;
   const parent = parentId ? await getParent(parentId) : null;
-  const nameChanged = data?.name && data?.name !== ebirdData.name;
-
-  let slug = data?.slug;
-  if (!slug || nameChanged) {
-    slug = slugify(ebirdData.name);
-  }
 
   return {
     props: {
@@ -224,7 +217,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       childLocations,
       data: {
         ...data,
-        slug,
         iba: data?.iba || parent?.iba || null,
         links: data?.links || parent?.links || null,
         parentSelect: parent ? { label: parent.name, value: parent._id } : null,

@@ -241,7 +241,6 @@ const getChildren = async (id: string) => {
 
 interface Params extends ParsedUrlQuery {
   locationId: string;
-  slug: string;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
