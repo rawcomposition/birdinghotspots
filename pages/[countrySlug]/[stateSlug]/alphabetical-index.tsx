@@ -9,11 +9,11 @@ import Title from "components/Title";
 import { State } from "lib/types";
 import { useUser } from "providers/user";
 import NoticeIcon from "components/NoticeIcon";
+import { useDebounce } from "hooks/useDebounce";
 
 type Props = {
   countrySlug: string;
   state: State;
-  activeLetters: string[];
   hotspots: {
     name: string;
     url: string;
@@ -23,7 +23,26 @@ type Props = {
   }[];
 };
 
-export default function AlphabeticalIndex({ countrySlug, state, hotspots, activeLetters }: Props) {
+const filters = ["All", "Needs Content", "Needs Deleting"];
+
+export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Props) {
+  const [query, setQuery] = React.useState("");
+  const [filter, setFilter] = React.useState<number>(0);
+  const debouncedQuery = useDebounce(query, 250);
+  const debouncedFilter = useDebounce(filter, 10);
+
+  let filtered = debouncedQuery
+    ? hotspots.filter((it) => it.name.toLowerCase().includes(debouncedQuery.toLowerCase()))
+    : hotspots;
+
+  if (debouncedFilter === 1) {
+    filtered = filtered.filter((it) => it.noContent);
+  } else if (debouncedFilter === 2) {
+    filtered = filtered.filter((it) => it.needsDeleting);
+  }
+
+  let activeLetters = filtered.map((hotspot) => hotspot.name.charAt(0).toUpperCase());
+  activeLetters = [...new Set(activeLetters)];
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const { user } = useUser();
   return (
@@ -32,19 +51,30 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots, active
       <PageHeading countrySlug={countrySlug} state={state}>
         Alphabetical Index
       </PageHeading>
-      <p className="mb-4">
-        <i>
-          Tip: Use your browser’s search function to search this page for all or part of the name of a hotspot. Or click
-          on a letter below to move to that portion of the alphabetical index.
-        </i>
-      </p>
-      <p className="my-4">
-        Also, see <Link href={`/${countrySlug}/${state.slug}/roadside-birding`}>Roadside Birding</Link> for hotspots
-        where you may view birds from your vehicle.
-      </p>
-      <p className="mb-8">
-        Total hotspots: <strong>{hotspots?.length?.toLocaleString()}</strong>
-      </p>
+
+      <div className="mb-6 space-y-3">
+        <input
+          type="text"
+          className="form-input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search..."
+        />
+        {user &&
+          filters.map((it, i) => (
+            <button
+              key={it}
+              type="button"
+              className={`border rounded-full px-3 font-medium leading-5 text-[12px] mr-2 ${
+                filter === i ? "bg-gray-500 border-gray-500 text-white" : ""
+              }`}
+              onClick={() => setFilter(i)}
+            >
+              {it}
+            </button>
+          ))}
+      </div>
+
       <p>
         {alphabet.map((letter) => {
           if (activeLetters.includes(letter)) {
@@ -61,7 +91,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots, active
           );
         })}
       </p>
-      {hotspots.map(({ name, url, reviewed, noContent, needsDeleting }, i, array) => {
+      {filtered.map(({ name, url, reviewed, noContent, needsDeleting }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -87,6 +117,18 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots, active
           </React.Fragment>
         );
       })}
+      <p className="mt-4">
+        {filtered.length !== hotspots.length ? (
+          <span>
+            Showing <strong>{filtered?.length?.toLocaleString()}</strong> of{" "}
+            <strong>{hotspots?.length?.toLocaleString()}</strong>
+          </span>
+        ) : (
+          <span>
+            Total: <strong>{filtered?.length?.toLocaleString()}</strong>
+          </span>
+        )}
+      </p>
     </div>
   );
 }
@@ -102,10 +144,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!state) return { notFound: true };
 
   const hotspots = (await getHotspotsByState(state.code)) || [];
-  let activeLetters = hotspots.map((hotspot) => hotspot.name.charAt(0).toUpperCase());
-  activeLetters = [...new Set(activeLetters)];
 
   return {
-    props: { countrySlug, state, hotspots, activeLetters },
+    props: { countrySlug, state, hotspots },
   };
 };
