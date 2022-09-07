@@ -40,6 +40,7 @@ export type Marker = {
   lat: number;
   lng: number;
   type: string;
+  url?: string;
 };
 
 export type Hotspot = {

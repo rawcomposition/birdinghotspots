@@ -47,8 +47,10 @@ export default function MapBox({ markers, lat, lng, zoom, disabled }: Props) {
 
       const id = new Date().getTime();
       const marker = new mapboxgl.Marker(img);
+
+      const viewLink = data.url ? `<a href="${data.url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;` : "";
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-        `${data.name}<br><a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
+        `${data.name}<br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
       );
       marker.setLngLat([data.lng, data.lat]).setPopup(popup).addTo(map.current);
       bounds.extend(marker.getLngLat());

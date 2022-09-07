@@ -240,6 +240,7 @@ export function formatMarkerArray(hotspot: Hotspot, childHotspots: Hotspot[]) {
       lat: it.lat,
       lng: it.lng,
       type: "child",
+      url: it.url,
       name,
     });
   });
