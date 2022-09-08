@@ -55,7 +55,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
 
   return (
     <div className="container pb-16">
-      <Title>{`${name} County, ${state.label}`}</Title>
+      <Title>{`${name} County, ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         {name} County
       </PageHeading>

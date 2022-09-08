@@ -64,7 +64,7 @@ export default function Edit() {
   }, [email, displayName]);
 
   return (
-    <DashboardPage title="Edit User">
+    <DashboardPage title="My Account">
       <Form form={form} onSubmit={handleSubmit}>
         <div className="shadow sm:rounded-lg bg-white">
           <div className="px-4 py-5 space-y-6 sm:p-6">

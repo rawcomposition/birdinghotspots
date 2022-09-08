@@ -47,7 +47,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
   const { user } = useUser();
   return (
     <div className="container pb-16 mt-12">
-      <Title>Alphabetical Index</Title>
+      <Title>{`Alphabetical Index - ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         Alphabetical Index
       </PageHeading>

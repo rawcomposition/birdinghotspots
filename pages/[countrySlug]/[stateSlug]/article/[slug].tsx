@@ -50,7 +50,7 @@ interface Props extends ArticleType {
 export default function Article({ countrySlug, name, content, hotspotsByCounty, state, images, _id }: Props) {
   return (
     <div className="container pb-16">
-      <Title>{name}</Title>
+      <Title>{`{name} - ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         {name}
       </PageHeading>

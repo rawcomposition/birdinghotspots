@@ -39,7 +39,7 @@ export default function County({ items: allItems }: Props) {
   };
 
   return (
-    <DashboardPage title="Dashboard">
+    <DashboardPage title="Image Review">
       <div className="container pb-16">
         <Title>Image Review</Title>
         {items.map((item) => (

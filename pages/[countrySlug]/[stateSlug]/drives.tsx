@@ -32,7 +32,7 @@ type Props = {
 export default function Drives({ countrySlug, state, drives }: Props) {
   return (
     <div className="container pb-16 mt-12">
-      <Title>Birding Drives</Title>
+      <Title>{`Birding Drives - ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         Birding Drives
       </PageHeading>

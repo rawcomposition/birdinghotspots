@@ -9,6 +9,7 @@ import { getIBAHotspots } from "lib/mongo";
 import { restructureHotspotsByCounty } from "lib/helpers";
 import ListHotspotsByCounty from "components/ListHotspotsByCounty";
 import EbirdBarcharts from "components/EbirdBarcharts";
+import Title from "components/Title";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -54,6 +55,7 @@ export default function ImportantBirdAreas({
   const region = ebirdCode || locationIds.join(",");
   return (
     <div className="container pb-16 mt-12">
+      <Title>{`${name} Important Bird Area`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         {name} Important Bird Area
       </PageHeading>

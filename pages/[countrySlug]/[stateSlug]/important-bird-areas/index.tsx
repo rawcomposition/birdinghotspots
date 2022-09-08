@@ -6,6 +6,7 @@ import { ParsedUrlQuery } from "querystring";
 import OhioIBA from "data/oh-iba.json";
 import PageHeading from "components/PageHeading";
 import { State } from "lib/types";
+import Title from "components/Title";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -33,6 +34,7 @@ type Props = {
 export default function ImportantBirdAreas({ countrySlug, areas, state }: Props) {
   return (
     <div className="container pb-16 mt-12">
+      <Title>{`Important Bird Areas - ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         Important Bird Areas
       </PageHeading>

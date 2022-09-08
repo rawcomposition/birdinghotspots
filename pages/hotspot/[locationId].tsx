@@ -107,7 +107,7 @@ export default function Hotspot({
 
   return (
     <div className="container pb-16">
-      <Title>{name}</Title>
+      <Title>{`${name} - ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
         {name}
       </PageHeading>

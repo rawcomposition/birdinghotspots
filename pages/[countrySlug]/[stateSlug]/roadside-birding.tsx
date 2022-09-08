@@ -32,7 +32,7 @@ type Props = {
 export default function RoadsideBirding({ countrySlug, state, hotspots }: Props) {
   return (
     <div className="container pb-16 mt-12">
-      <Title>Roadside Birding</Title>
+      <Title>{`Roadside Birding - ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         Roadside Birding
       </PageHeading>

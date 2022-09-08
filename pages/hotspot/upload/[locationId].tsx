@@ -120,7 +120,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
 
   return (
     <div className="container pb-16 my-12 max-w-xl mx-auto">
-      <Title>Upload Photos</Title>
+      <Title>{`Upload Photos to ${hotspotName}`}</Title>
       <h2 className="text-xl font-bold text-gray-600 border-b pb-4 leading-6">
         Upload Photos
         <br />

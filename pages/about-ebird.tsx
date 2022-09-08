@@ -7,7 +7,7 @@ import EbirdDescription from "components/EbirdDescription";
 export default function AboutEbird() {
   return (
     <div className="container pb-16 mt-12">
-      <Title>About</Title>
+      <Title>About eBird</Title>
       <PageHeading breadcrumbs={false}>About eBird</PageHeading>
       <div className="md:grid grid-cols-2 gap-8">
         <div>

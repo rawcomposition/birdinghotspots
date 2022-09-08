@@ -116,7 +116,7 @@ export default function Explore({ params }: Props) {
 
   return (
     <div className="container pb-16 mt-12 max-w-[975px]">
-      <Title />
+      <Title>Explore</Title>
       <div className="flex justify-center items-center mb-12">
         <div className="relative w-full sm:w-[500px] flex">
           <ExploreToggle value={mode} onChange={setMode} />

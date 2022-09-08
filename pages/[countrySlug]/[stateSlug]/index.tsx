@@ -41,7 +41,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{slug === "ohio" ? "" : `Birding in ${label}`}</Title>
+      <Title>{`Birding in ${label}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state} hideState>
         Welcome to Birding in {label}
         {code === "US-OH" && (
