@@ -47,6 +47,14 @@
 		box-shadow: none !important;
 	}
 
+	[type="checkbox"]:focus:not(:focus-visible), [type="radio"]:focus:not(:focus-visible) {
+    @apply focus:ring-0 focus:ring-offset-0;
+  }
+
+  [type="checkbox"]:focus-visible, [type="radio"]:focus-visible {
+    @apply ring-2 ring-offset-2;
+  }
+
 	.utility-page .form-input {
 		@apply text-lg;
 	}

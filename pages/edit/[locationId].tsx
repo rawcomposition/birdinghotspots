@@ -3,7 +3,6 @@ import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Input from "components/Input";
 import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
@@ -23,6 +22,7 @@ import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
+import LicenseNotice from "components/LicenseNotice";
 
 type Props = {
   id?: string;
@@ -138,6 +138,7 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
               <div>
                 <label className="text-gray-500 font-bold">Images</label>
                 <ImagesInput enableStreetview />
+                <LicenseNotice />
               </div>
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
                 <Submit disabled={loading} color="green" className="font-medium">
