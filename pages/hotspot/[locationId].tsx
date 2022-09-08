@@ -1,7 +1,6 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Address from "components/Address";
 import EbirdHotspotSummary from "components/EbirdHotspotSummary";
 import EbirdBarcharts from "components/EbirdBarcharts";
 import Link from "next/link";
@@ -16,6 +15,8 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
+import Feather from "icons/Feather";
+import Directions from "icons/Directions";
 import {
   accessibleOptions,
   restroomOptions,
@@ -69,6 +70,7 @@ export default function Hotspot({
   markers,
   countryCode,
   needsDeleting,
+  species,
 }: Props) {
   const { user } = useUser();
   const countrySlug = countryCode?.toLowerCase();
@@ -155,7 +157,28 @@ export default function Hotspot({
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">
-            {name && <Address name={name} address={address} />}
+            <h3 className="font-bold text-lg">{name}</h3>
+            {species && (
+              <a
+                href={`https://ebird.org/hotspot/${locationId}`}
+                className="text-[12px] rounded text-gray-500 bg-gray-100 px-2 mr-2 inline-block my-2 font-medium"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
+              </a>
+            )}
+            {lat && lng && (
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
+                className="text-[12px] rounded text-gray-500 bg-gray-100 px-2 inline-block my-2 font-medium"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
+              </a>
+            )}
+            {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
               <React.Fragment key={label}>
                 <a key={index} href={url} target="_blank" rel="noreferrer">
