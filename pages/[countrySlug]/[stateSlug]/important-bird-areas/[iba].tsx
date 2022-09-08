@@ -11,29 +11,6 @@ import ListHotspotsByCounty from "components/ListHotspotsByCounty";
 import EbirdBarcharts from "components/EbirdBarcharts";
 import Title from "components/Title";
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-  iba: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug, iba } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const hotspots = (await getIBAHotspots(iba)) || [];
-  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
-
-  const data = OhioIBA.find((item) => item.slug === iba);
-
-  const locationIds = data?.ebirdCode ? [] : hotspots.map((item) => item.locationId);
-
-  return {
-    props: { countrySlug, state, hotspots: hotspotsByCounty, locationIds, ...data },
-  };
-};
-
 interface Props extends IBA {
   countrySlug: string;
   state: State;
@@ -56,16 +33,15 @@ export default function ImportantBirdAreas({
   return (
     <div className="container pb-16 mt-12">
       <Title>{`${name} Important Bird Area`}</Title>
-      <PageHeading countrySlug={countrySlug} state={state}>
+      <PageHeading
+        countrySlug={countrySlug}
+        state={state}
+        extraCrumb={{ href: `/${countrySlug}/${state?.slug}/important-bird-areas`, label: "Important Bird Areas" }}
+      >
         {name} Important Bird Area
       </PageHeading>
       <div className="md:grid grid-cols-2 gap-12">
         <div>
-          <p className="font-bold mb-6">
-            <Link href={`/${countrySlug}/${state?.slug}/important-bird-areas`}>
-              <a>{state?.label} Important Bird Areas</a>
-            </Link>
-          </p>
           <h3 className="font-bold text-lg">
             {name}
             <br />
@@ -73,7 +49,7 @@ export default function ImportantBirdAreas({
           </h3>
           <p className="mb-6">
             <a href={webpage} target="_blank" rel="noreferrer">
-              {name} Important Bird Area webpage
+              View webpage
             </a>
           </p>
           <EbirdBarcharts portal={state.portal} region={region} />
@@ -95,3 +71,27 @@ export default function ImportantBirdAreas({
     </div>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  countrySlug: string;
+  stateSlug: string;
+  iba: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { countrySlug, stateSlug, iba } = query as Params;
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const hotspots = (await getIBAHotspots(iba)) || [];
+  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
+
+  const data = OhioIBA.find((item) => item.slug === iba);
+  if (!data) return { notFound: true };
+
+  const locationIds = data?.ebirdCode ? [] : hotspots.map((item) => item.locationId);
+
+  return {
+    props: { countrySlug, state, hotspots: hotspotsByCounty, locationIds, ...data },
+  };
+};
