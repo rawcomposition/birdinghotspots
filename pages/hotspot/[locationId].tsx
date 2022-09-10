@@ -241,6 +241,10 @@ export default function Hotspot({
             <AboutSection heading={`About ${stripHotspotSuffix(parent.name)}`} text={parent.about} />
           )}
 
+          {!hikes && !tips && !birds && !about && !parent?.about && (
+            <AboutSection heading="About this Location" text="We don't currently have any content for this location." />
+          )}
+
           <div className="space-y-1">
             {restrooms !== null && <p>{restroomOptions.find((it) => it.value === restrooms)?.label}</p>}
             {accessible?.map((option) => (
