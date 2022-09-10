@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@dnd-kit/sortable": "^7.0.1",
+    "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
     "@hookform/error-message": "^2.0.0",
     "@tinymce/tinymce-react": "^4.1.0",
@@ -30,6 +31,7 @@
     "mapbox-gl": "^2.9.1",
     "mongoose": "^6.3.5",
     "next": "^12.1.6",
+    "node-htmldiff": "^0.9.4",
     "nodemailer": "^6.7.5",
     "nookies": "^2.5.2",
     "react": "18.1.0",

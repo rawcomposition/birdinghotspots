@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import EbirdHotspotSummary from "components/EbirdHotspotSummary";
+import EbirdHotspotSummary from "components/EbirdHotspotBtn";
 import EbirdBarcharts from "components/EbirdBarcharts";
 import Link from "next/link";
 import { getHotspotByLocationId, getChildHotspots } from "lib/mongo";
@@ -28,7 +28,8 @@ import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
-import { CameraIcon } from "@heroicons/react/24/outline";
+import { CameraIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 
 interface Props extends HotspotType {
   county: County;
@@ -143,6 +144,12 @@ export default function Hotspot({
             Upload Photos
           </a>
         </Link>
+        {/*<Link href={`/hotspot/suggest/${locationId}`}>
+          <a className="flex gap-1">
+            <PencilSquareIcon className="h-4 w-4" />
+            Suggest Edit
+          </a>
+            </Link>*/}
         {canEdit && (needsDeleting || isGroup) && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
@@ -158,26 +165,29 @@ export default function Hotspot({
         <div>
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
-            {species && (
-              <a
-                href={`https://ebird.org/hotspot/${locationId}`}
-                className="text-[12px] rounded text-gray-500 bg-gray-100 px-2 mr-2 inline-block my-2 font-medium"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
-              </a>
-            )}
-            {lat && lng && (
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
-                className="text-[12px] rounded text-gray-500 bg-gray-100 px-2 inline-block my-2 font-medium"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
-              </a>
-            )}
+            <div className="flex gap-2 mt-2 mb-4">
+              {species && (
+                <a
+                  href={`https://ebird.org/hotspot/${locationId}`}
+                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
+                </a>
+              )}
+              <EbirdHotspotBtn {...{ state, locationId, locationIds, isGroup }} />
+              {lat && lng && (
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
+                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
+                </a>
+              )}
+            </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
               <React.Fragment key={label}>
@@ -200,11 +210,6 @@ export default function Hotspot({
               </p>
             )}
           </div>
-          {isGroup ? (
-            <EbirdBarcharts portal={state.portal} region={locationIds.join(",")} />
-          ) : (
-            <EbirdHotspotSummary {...{ state, county, name, locationId, locationIds, lat, lng }} />
-          )}
 
           {childLocations.length > 0 && (
             <div className="mb-6">
