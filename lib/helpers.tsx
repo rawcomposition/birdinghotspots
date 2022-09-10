@@ -146,10 +146,10 @@ export async function geocode(lat: number, lng: number) {
         }
       }
     }
-    return { road, city, state, zip };
+    return { city, state, zip };
   } catch (error) {
     console.error(error);
-    return { road: "", city: "", state: "", zip: "" };
+    return { city: "", state: "", zip: "" };
   }
 }
 

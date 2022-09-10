@@ -84,12 +84,7 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
 
   const geocodeCoorinates = async (lat: number, lng: number) => {
     if (address) return;
-    const { road, city, state, zip } = await geocode(lat, lng);
-    if (road) {
-      form.setValue("address", `${road}\r\n${city}, ${state} ${zip}`);
-      setIsGeocoded(true);
-      return;
-    }
+    const { city, state, zip } = await geocode(lat, lng);
     if (city && state && zip) {
       form.setValue("address", `${city}, ${state} ${zip}`);
       setIsGeocoded(true);

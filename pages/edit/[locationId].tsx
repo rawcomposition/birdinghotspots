@@ -71,12 +71,7 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
 
   React.useEffect(() => {
     const geocodeAddress = async () => {
-      const { road, city, state, zip } = await geocode(lat, lng);
-      if (road) {
-        setIsGeocoded(true);
-        form.setValue("address", `${road}\r\n${city}, ${state} ${zip}`);
-        return;
-      }
+      const { city, state, zip } = await geocode(lat, lng);
       if (city && state && zip) {
         form.setValue("address", `${city}, ${state} ${zip}`);
         setIsGeocoded(true);
