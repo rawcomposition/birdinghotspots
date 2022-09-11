@@ -55,7 +55,7 @@ const GroupSchema = new Schema({
       ref: "Hotspot",
     },
   ],
-  maps: [
+  images: [
     {
       smUrl: String,
       lgUrl: String,

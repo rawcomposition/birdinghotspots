@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
+import Group from "models/Group";
 import admin from "lib/firebaseAdmin";
 import aws from "aws-sdk";
 
@@ -44,9 +45,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       (url: string) => !newImageUrls.includes(url) && !legacyUrls.includes(url)
     );
 
-    const parent = data?.parent ? await Hotspot.findById({ _id: data?.parent }) : null;
-    const parentAbout = parent ? parent.about : null;
-    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes && !parentAbout;
+    const groups = data?.groups ? await Group.find({ _id: { $in: data.groups } }) : null;
+    const hasGroupAbout = groups?.some((group) => group?.about);
+    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes && !hasGroupAbout;
 
     await Hotspot.replaceOne({ _id: id }, { ...data, url, location, featuredImg, noContent });
 

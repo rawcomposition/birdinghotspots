@@ -9,9 +9,10 @@ import AddStreetview from "components/AddStreetview";
 type Props = {
   hideExtraFields?: boolean;
   enableStreetview?: boolean;
+  hideMapCheckbox?: boolean;
 };
 
-export default function ImagesInput({ hideExtraFields, enableStreetview }: Props) {
+export default function ImagesInput({ hideExtraFields, enableStreetview, hideMapCheckbox }: Props) {
   const secureFetch = useSecureFetch();
   const { control } = useFormContext();
   const { fields, append, remove, move } = useFieldArray({ name: "images", control });
@@ -53,6 +54,7 @@ export default function ImagesInput({ hideExtraFields, enableStreetview }: Props
                   i={i}
                   handleDelete={handleDelete}
                   hideExtraFields={hideExtraFields}
+                  hideMapCheckbox={hideMapCheckbox}
                   {...field}
                 />
               ))}

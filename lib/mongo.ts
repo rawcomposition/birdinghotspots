@@ -123,7 +123,7 @@ export async function getChildHotspots(id: string) {
 export async function getHotspotByLocationId(locationId: string, populate?: boolean) {
   await connect();
   const result = populate
-    ? await Hotspot.findOne({ locationId }).populate("parent").lean().exec()
+    ? await Hotspot.findOne({ locationId }).populate("groups").lean().exec()
     : await Hotspot.findOne({ locationId }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;

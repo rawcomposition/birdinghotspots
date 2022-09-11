@@ -276,9 +276,7 @@ export type Group = {
     url: string;
   }[];
   restrooms?: string;
-  roadside?: string;
-  accessible?: string[];
-  maps?: Image[];
+  images?: Image[];
   hotspots: [Hotspot];
 };
 

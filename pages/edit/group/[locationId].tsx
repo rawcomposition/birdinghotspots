@@ -59,7 +59,9 @@ export default function Edit({ id, isNew, data, childLocations, error, errorCode
 
   //@ts-ignore
   const address = form.watch("address");
+  //@ts-ignore
   const lat = form.watch("lat");
+  //@ts-ignore
   const lng = form.watch("lng");
 
   const geocodeCoorinates = async (lat: number, lng: number) => {
@@ -141,7 +143,7 @@ export default function Edit({ id, isNew, data, childLocations, error, errorCode
 
               <div>
                 <label className="text-gray-500 font-bold">Maps</label>
-                <ImagesInput />
+                <ImagesInput hideMapCheckbox />
               </div>
 
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">

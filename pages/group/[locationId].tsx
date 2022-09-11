@@ -16,6 +16,7 @@ import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import HotspotGrid from "components/HotspotGrid";
+import FeaturedCollage from "components/FeaturedCollage";
 
 interface Props extends GroupType {
   county?: County;
@@ -42,7 +43,7 @@ export default function Group({
   hikes,
   restrooms,
   locationId,
-  maps,
+  images,
   markers,
   hotspots,
 }: Props) {
@@ -55,6 +56,7 @@ export default function Group({
     title = `${name} - ${state.label}`;
   }
   const locationIds = hotspots.map((it) => it.locationId);
+  const featuredImages = hotspots?.filter((it) => it.featuredImg).map((it) => it.featuredImg);
 
   return (
     <div className="container pb-16">
@@ -62,6 +64,7 @@ export default function Group({
       <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
         {name}
       </PageHeading>
+      {featuredImages.length > 0 && <FeaturedCollage photos={featuredImages as any} />}
       <EditorActions className="font-medium">
         {canEdit && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
         {canEdit && (
@@ -102,7 +105,7 @@ export default function Group({
         </div>
         <div>
           {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
-          {!!maps?.length && <MapList images={maps} />}
+          {!!images?.length && <MapList images={images} />}
         </div>
       </div>
       <h3 className="text-lg mb-2 mt-8 font-bold">Hotspots</h3>
@@ -127,7 +130,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const county = data.countyCodes.length === 1 ? getCountyByCode(data.countyCodes[0]) : null;
 
   const markers = formatMarkerArray(data?.hotspots);
-  console.log(data.stateCodes);
 
   return {
     props: {

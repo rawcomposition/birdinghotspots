@@ -15,16 +15,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     "countyCode",
     "multiCounties",
   ]);
-  const stateCodes: string[] = hotspots.map((hotspot: any) => hotspot.stateCode);
+  const allStateCodes: string[] = hotspots.map((hotspot: any) => hotspot.stateCode);
+  const stateCodes = [...new Set(allStateCodes)];
   const countyCodes: string[] = [];
 
   hotspots.forEach((hotspot: any) => {
-    if (hotspot.countyCode) {
+    if (hotspot.countyCode && !countyCodes.includes(hotspot.countyCode)) {
       countyCodes.push(hotspot.countyCode);
     }
     if (hotspot.multiCounties) {
       hotspot.multiCounties.forEach((countyCode: string) => {
-        countyCodes.push(countyCode);
+        if (!countyCodes.includes(countyCode)) {
+          countyCodes.push(countyCode);
+        }
       });
     }
   });

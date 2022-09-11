@@ -8,6 +8,7 @@ interface Props extends Image {
   handleDelete: (i: number, url: string, isNew: boolean) => void;
   i: number;
   hideExtraFields?: boolean;
+  hideMapCheckbox?: boolean;
 }
 
 export default function SortableImage({
@@ -21,6 +22,7 @@ export default function SortableImage({
   isNew,
   isStreetview,
   hideExtraFields,
+  hideMapCheckbox,
 }: Props) {
   const { register } = useFormContext();
   const isVertical = width && height && height > width;
@@ -75,7 +77,7 @@ export default function SortableImage({
             />
           </label>
         )}
-        {!hideExtraFields && (
+        {!hideMapCheckbox && !hideExtraFields && (
           <label className={`text-gray-500 font-bold block mt-2 ${isStreetview ? "opacity-50" : ""}`}>
             <input
               type="checkbox"

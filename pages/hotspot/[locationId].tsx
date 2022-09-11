@@ -15,13 +15,7 @@ import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
-import {
-  accessibleOptions,
-  restroomOptions,
-  formatMarkerArray,
-  restructureHotspotsByCounty,
-  stripHotspotSuffix,
-} from "lib/helpers";
+import { accessibleOptions, restroomOptions, formatMarkerArray, restructureHotspotsByCounty } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
@@ -56,11 +50,9 @@ export default function Hotspot({
   roadside,
   accessible,
   locationId,
-  parent,
   childLocations,
   childLocationsByCounty,
   locationIds,
-  slug,
   iba,
   drives,
   images,
@@ -69,6 +61,8 @@ export default function Hotspot({
   countryCode,
   needsDeleting,
   species,
+  groups,
+  noContent,
 }: Props) {
   const { user } = useUser();
   const countrySlug = countryCode?.toLowerCase();
@@ -79,12 +73,14 @@ export default function Hotspot({
       url: `/${countrySlug}/${state.slug}/roadside-birding`,
     });
   }
-  if (parent) {
+
+  groups?.forEach((it) => {
     extraLinks.push({
-      label: parent.name,
-      url: parent.url,
+      label: it.name,
+      url: it.url,
     });
-  }
+  });
+
   if (iba) {
     extraLinks.push({
       label: `${iba.label} Important Bird Area`,
@@ -112,29 +108,6 @@ export default function Hotspot({
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && <Link href={isGroup ? `/edit/group/${_id}` : `/edit/${locationId}`}>Edit Hotspot</Link>}
-        {canEdit && !isGroup && (
-          <>
-            {state.code === "US-OH" ? (
-              <a
-                href={`https://old.birding-in-ohio.com/${county.slug}-county/${slug}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Old Website
-              </a>
-            ) : (
-              <a
-                href={`https://ebirdhotspots.com/birding-in-${state.slug}/${state.code
-                  .replace("-", "")
-                  .toLowerCase()}-${county.slug}-county/${state.code.replace("-", "").toLowerCase()}-${slug}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Old Website
-              </a>
-            )}
-          </>
-        )}
         <Link href={`/hotspot/upload/${locationId}`}>
           <a className="flex gap-1">
             <CameraIcon className="h-4 w-4" />
@@ -234,12 +207,17 @@ export default function Hotspot({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
-          {parent?.about && parent?.name && (
-            <AboutSection heading={`About ${stripHotspotSuffix(parent.name)}`} text={parent.about} />
-          )}
+          {groups
+            ?.filter((it) => it.about)
+            .map(({ _id, name, about }) => (
+              <AboutSection key={_id} heading={`About ${name}`} text={about || ""} />
+            ))}
 
-          {!hikes && !tips && !birds && !about && !parent?.about && (
-            <AboutSection heading="About this Location" text="We don't currently have any content for this location." />
+          {noContent && (
+            <AboutSection
+              heading="About this Location"
+              text='A description and tips for birding this location are welcome from the birding community. You may use the "Contact" link to provide information you would like to share share.'
+            />
           )}
 
           <div className="space-y-1">
