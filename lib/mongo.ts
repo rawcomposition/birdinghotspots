@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
-import Hotspot from "models/Hotspot.mjs";
+import Hotspot from "models/Hotspot";
 import Drive from "models/Drive";
 import Article from "models/Article";
-import Settings from "models/Settings.mjs";
+import Settings from "models/Settings";
 import Upload from "models/Upload";
+import Group from "models/Group";
 
 const URI = process.env.MONGO_URI;
 const connect = async () => (URI ? mongoose.connect(URI) : null);
@@ -248,4 +249,14 @@ export async function getContentStats() {
     },
   ]);
   return result;
+}
+
+export async function getGroupByLocationId(locationId: string) {
+  await connect();
+  const result = await Group.findOne({ locationId })
+    .populate("hotspots", ["url", "name", "featuredImg", "lat", "lng", "species"])
+    .lean()
+    .exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
 }

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import Hotspot from "models/Hotspot.mjs";
+import Hotspot from "models/Hotspot";
 import States from "data/states.json";
 import { getAllCounties, getStateByCode } from "lib/localData";
 import { Hotspot as HotspotType } from "lib/types";

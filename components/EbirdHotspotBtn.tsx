@@ -2,7 +2,7 @@ import { State } from "lib/types";
 import { Menu } from "@headlessui/react";
 
 type Props = {
-  state: State;
+  state?: State;
   isGroup?: boolean;
   locationId: string;
   locationIds: string[];
@@ -10,7 +10,7 @@ type Props = {
 
 export default function EbirdHotspotBtn({ state, locationId, locationIds, isGroup }: Props) {
   const region = locationIds.length > 1 ? locationIds.join(",") : locationId;
-  const base = state.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
   return (
     <div className="relative inline-block">
       <Menu>

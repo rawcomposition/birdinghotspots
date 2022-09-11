@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import Hotspot from "models/Hotspot.mjs";
+import Hotspot from "models/Hotspot";
 import admin from "lib/firebaseAdmin";
 import aws from "aws-sdk";
 
@@ -47,8 +47,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const parent = data?.parent ? await Hotspot.findById({ _id: data?.parent }) : null;
     const parentAbout = parent ? parent.about : null;
     const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes && !parentAbout;
-
-    console.log(data?.about, data?.tips, data?.birds, data?.hikes, oldHotspot.parent?.about, noContent);
 
     await Hotspot.replaceOne({ _id: id }, { ...data, url, location, featuredImg, noContent });
 

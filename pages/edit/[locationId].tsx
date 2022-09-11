@@ -41,9 +41,10 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
   const form = useForm<HotspotInputs>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
 
+  //@ts-ignore
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");
-  const markers = formatMarkerArray({ ...data, lat: latValue, lng: lngValue }, childLocations);
+  const markers = formatMarkerArray(childLocations, { ...data, lat: latValue, lng: lngValue });
 
   const handleSubmit: SubmitHandler<HotspotInputs> = async (data) => {
     const response = await send({

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import Hotspot from "models/Hotspot.mjs";
-import Settings from "models/Settings.mjs";
+import Hotspot from "models/Hotspot";
+import Settings from "models/Settings";
 import { getLocationText, getStateByCode } from "lib/localData";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {

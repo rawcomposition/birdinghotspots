@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import Drive from "models/Drive";
 import Group from "models/Group";
 import admin from "lib/firebaseAdmin";
 
@@ -10,19 +9,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { id }: any = req.query;
 
   await connect();
-  const hotspot = await Hotspot.findById(id);
+  const group = await Group.findById(id);
 
   const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(hotspot?.stateCode)) {
+  const canEdit =
+    result.role === "admin" || group?.stateCodes?.filter((it: string) => result.regions?.includes(it)).length > 0;
+  if (!canEdit) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
   try {
-    await Hotspot.deleteOne({ _id: id });
-    // @ts-ignore
-    await Drive.updateMany({ entries: { $elemMatch: { hotspot: id } } }, { $pull: { entries: { hotspot: id } } });
-    await Group.updateMany({ hotspots: id }, { $pull: { hotspots: id } });
+    await Group.deleteOne({ _id: id });
+    await Hotspot.updateMany({ groups: id }, { $pull: { groups: id } });
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

@@ -83,6 +83,7 @@ export type Hotspot = {
       driveId: string;
     }
   ];
+  groups?: [Group];
   images?: Image[];
   featuredImg?: Image;
   isGroup?: boolean;
@@ -253,3 +254,37 @@ export type User = {
   regions?: string[];
   status?: string;
 };
+
+export type Group = {
+  name: string;
+  _id?: string;
+  url: string;
+  lat: number;
+  lng: number;
+  zoom: number;
+  locationId: string;
+  countryCode: string;
+  stateCodes: string[];
+  countyCodes: string[];
+  about?: string;
+  tips?: string;
+  birds?: string;
+  hikes?: string;
+  address?: string;
+  links?: {
+    label: string;
+    url: string;
+  }[];
+  restrooms?: string;
+  roadside?: string;
+  accessible?: string[];
+  maps?: Image[];
+  hotspots: [Hotspot];
+};
+
+export interface GroupInputs extends Group {
+  hotspotSelect: {
+    label: string;
+    value: string;
+  }[];
+}

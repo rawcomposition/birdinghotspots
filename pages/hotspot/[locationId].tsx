@@ -1,8 +1,6 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import EbirdHotspotSummary from "components/EbirdHotspotBtn";
-import EbirdBarcharts from "components/EbirdBarcharts";
 import Link from "next/link";
 import { getHotspotByLocationId, getChildHotspots } from "lib/mongo";
 import AboutSection from "components/AboutSection";
@@ -37,7 +35,6 @@ interface Props extends HotspotType {
   childLocations: HotspotType[];
   childLocationsByCounty: HotspotsByCounty;
   locationIds: string[];
-  countySlugs: string[];
   markers: Marker[];
 }
 
@@ -294,13 +291,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     locationIds = [data?.locationId, ...locationIds];
   }
 
-  const markers = formatMarkerArray(data, childLocations);
-
-  const countySlugs =
-    data.multiCounties?.map((item: string) => {
-      const county = getCountyByCode(item);
-      return county?.slug;
-    }) || [];
+  const markers = formatMarkerArray(childLocations, data);
 
   return {
     props: {
@@ -310,7 +301,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       childLocationsByCounty,
       locationIds,
       markers,
-      countySlugs,
       ...data,
     },
   };

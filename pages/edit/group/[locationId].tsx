@@ -7,69 +7,48 @@ import Input from "components/Input";
 import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
-import { getHotspotById, getChildHotspots } from "lib/mongo";
-import { geocode, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
-import { getStateByCode } from "lib/localData";
+import { getGroupByLocationId, getChildHotspots } from "lib/mongo";
+import { geocode, restroomOptions, formatMarkerArray } from "lib/helpers";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
-import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, State } from "lib/types";
-import RadioGroup from "components/RadioGroup";
-import CheckboxGroup from "components/CheckboxGroup";
+import { Group, Hotspot, GroupInputs } from "lib/types";
 import Field from "components/Field";
-import CountySelect from "components/CountySelect";
 import FormError from "components/FormError";
 import useToast from "hooks/useToast";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
 import Error from "next/error";
-import LicenseNotice from "components/LicenseNotice";
+import HotspotSelect from "components/HotspotSelect";
 
 type Props = {
   id?: string;
   isNew: boolean;
-  data: Hotspot;
-  state: State;
+  data: Group;
   error?: string;
   errorCode?: number;
   childLocations: Hotspot[];
 };
 
-export default function Edit({ id, isNew, data, state, childLocations, error, errorCode }: Props) {
+export default function Edit({ id, isNew, data, childLocations, error, errorCode }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
   const router = useRouter();
-  const form = useForm<Hotspot>({ defaultValues: data });
-  const isOH = data.stateCode === "US-OH";
+  const form = useForm<GroupInputs>({ defaultValues: data });
 
-  const latValue = form.watch("lat");
-  const lngValue = form.watch("lng");
-  const markers = formatMarkerArray({ ...data, lat: latValue, lng: lngValue }, childLocations);
+  const markers = formatMarkerArray(childLocations);
 
-  const handleSubmit: SubmitHandler<Hotspot> = async (formData) => {
-    if (!state || !formData?.multiCounties?.length) {
-      alert("Missing state and/or counties");
-      return;
-    }
-
+  const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
     const response = await send({
-      url: `/api/hotspot/${isNew ? "add" : "update"}`,
+      url: `/api/group/${isNew ? "add" : "update"}`,
       method: "POST",
       data: {
         id,
         data: {
-          ...formData,
-          stateCode: state.code,
-          parent: null,
-          countyCode: null,
-          iba: formData.iba || null,
-          restrooms: formData.restrooms || null,
-          accessible: formData.accessible && formData.accessible?.length > 0 ? formData.accessible : null,
-          isGroup: true,
-          reviewed: true, //TODO: Remove after migration
+          ...data,
+          hotspots: data.hotspotSelect.map(({ value }) => value),
         },
       },
     });
@@ -78,6 +57,7 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
     }
   };
 
+  //@ts-ignore
   const address = form.watch("address");
   const lat = form.watch("lat");
   const lng = form.watch("lng");
@@ -108,9 +88,9 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
-    <AdminPage title="Edit Hotspot">
+    <AdminPage title="Edit Group">
       <div className="container pb-16 my-12">
-        <h2 className="text-xl font-bold text-gray-600 border-b pb-4">Add Group Hotspot</h2>
+        <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Group</h2>
         <Form form={form} onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="pt-5 bg-white space-y-6 flex-1">
@@ -155,26 +135,18 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
-              <Field label="Counties">
-                <CountySelect name="multiCounties" stateCode={state.code} isMulti required />
-                <FormError name="multiCounties" />
+              <Field label="Hotspots">
+                <HotspotSelect name="hotspotSelect" className="mt-1 w-full" isMulti />
               </Field>
 
-              {isOH && (
-                <Field label="Important Bird Area">
-                  <IbaSelect name="iba" isClearable />
-                </Field>
-              )}
-
               <div>
-                <label className="text-gray-500 font-bold">Images</label>
-                <ImagesInput enableStreetview />
-                <LicenseNotice />
+                <label className="text-gray-500 font-bold">Maps</label>
+                <ImagesInput />
               </div>
 
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
                 <Submit disabled={loading} color="green" className="font-medium">
-                  Save Hotspot
+                  Save Group
                 </Submit>
               </div>
             </div>
@@ -183,11 +155,9 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
               <Field label="Restrooms">
                 <Select name="restrooms" options={restroomOptions} isClearable />
               </Field>
-              <CheckboxGroup name="accessible" label="Accessible Facilities" options={accessibleOptions} />
-              <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} />
               {markers.length > 0 && (
                 <div className="flex-1">
-                  <label className="text-gray-500 font-bold mb-1 block">Hotspot Map</label>
+                  <label className="text-gray-500 font-bold mb-1 block">Group Map</label>
                   <MapZoomInput markers={markers} />
                 </div>
               )}
@@ -195,7 +165,7 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
             <Submit disabled={loading} color="green" className="font-medium">
-              Save Hotspot
+              Save Group
             </Submit>
           </div>
         </Form>
@@ -205,8 +175,8 @@ export default function Edit({ id, isNew, data, state, childLocations, error, er
 }
 
 interface Params extends ParsedUrlQuery {
-  id: string;
-  state?: string;
+  locationId: string;
+  country: string;
 }
 
 const getChildren = async (id: string) => {
@@ -216,38 +186,39 @@ const getChildren = async (id: string) => {
 };
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
-  const { id, state: stateParam, country: countryParam } = query as Params;
-  const isNew = id === "new";
+  const { locationId, country: countryParam } = query as Params;
+  const isNew = locationId === "new";
 
-  const data = isNew ? null : await getHotspotById(id);
+  const data = isNew ? null : await getGroupByLocationId(locationId);
+  if (!isNew && !data) return { notFound: true };
 
   const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
-  const stateCode = data?.stateCode || stateParam;
-  const state = getStateByCode(stateCode);
 
   const { role, regions } = token;
-  if (role !== "admin" && !regions.includes(stateCode)) {
+  const canEdit =
+    isNew || role === "admin" || data?.stateCodes?.filter((it: string) => regions?.includes(it)).length > 0;
+
+  if (!canEdit) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
 
   const childLocations = data?._id ? await getChildren(data._id) : [];
+  const hotspotSelect = data?.hotspots?.map((hotspot: Hotspot) => ({ label: hotspot.name, value: hotspot._id })) || [];
 
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
-      state,
       childLocations,
       data: {
         ...data,
         countryCode,
         name: data?.name || "",
-        multiCounties: data?.multiCounties || [],
-        roadside: data?.roadside || "Unknown",
-        restrooms: data?.restrooms || null,
-        accessible: data?.accessible || null,
-        zoom: data?.zoom || 14,
+        stateCodes: data?.stateCodes || [],
+        countyCodes: data?.countyCodes || [],
+        zoom: data?.zoom || 12,
+        hotspotSelect,
       },
     },
   };
