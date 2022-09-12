@@ -12,12 +12,11 @@ import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, HotspotInputs, EbirdHotspot, State } from "lib/types";
+import { Hotspot, HotspotInputs, EbirdHotspot } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
-import ParentHotspotSelect from "components/ParentHotspotSelect";
 import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
@@ -120,10 +119,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
               </Field>
 
               <div className="grid md:grid-cols-2 gap-4">
-                <Field label="Parent Hotspot">
-                  <ParentHotspotSelect self={id} countyCode={data.countyCode || ""} name="parentSelect" isClearable />
-                </Field>
-
                 {isOH && (
                   <Field label="Important Bird Area">
                     <IbaSelect name="iba" isClearable />

@@ -253,6 +253,15 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { locationId } = query as Params;
 
+  if (locationId.startsWith("G")) {
+    return {
+      redirect: {
+        destination: `/group/${locationId}`,
+        permanent: false, //TODO: Make permanent after migration
+      },
+    };
+  }
+
   const data = await getHotspotByLocationId(locationId, true);
   if (!data) return { notFound: true };
 

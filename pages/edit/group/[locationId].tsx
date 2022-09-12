@@ -7,8 +7,8 @@ import Input from "components/Input";
 import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
-import { getGroupByLocationId, getChildHotspots } from "lib/mongo";
-import { geocode, restroomOptions, formatMarkerArray } from "lib/helpers";
+import { getGroupByLocationId } from "lib/mongo";
+import { geocode, restroomOptions } from "lib/helpers";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import AdminPage from "components/AdminPage";
@@ -28,17 +28,14 @@ type Props = {
   data: Group;
   error?: string;
   errorCode?: number;
-  childLocations: Hotspot[];
 };
 
-export default function Edit({ id, isNew, data, childLocations, error, errorCode }: Props) {
+export default function Edit({ id, isNew, data, error, errorCode }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<GroupInputs>({ defaultValues: data });
-
-  const markers = formatMarkerArray(childLocations);
 
   const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
     const response = await send({
@@ -157,10 +154,10 @@ export default function Edit({ id, isNew, data, childLocations, error, errorCode
               <Field label="Restrooms">
                 <Select name="restrooms" options={restroomOptions} isClearable />
               </Field>
-              {markers.length > 0 && (
+              {lat && lng && (
                 <div className="flex-1">
                   <label className="text-gray-500 font-bold mb-1 block">Group Map</label>
-                  <MapZoomInput markers={markers} />
+                  <MapZoomInput markers={[]} />
                 </div>
               )}
             </aside>
@@ -181,12 +178,6 @@ interface Params extends ParsedUrlQuery {
   country: string;
 }
 
-const getChildren = async (id: string) => {
-  if (!id) return null;
-  const data = await getChildHotspots(id);
-  return data || [];
-};
-
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { locationId, country: countryParam } = query as Params;
   const isNew = locationId === "new";
@@ -205,14 +196,12 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
 
-  const childLocations = data?._id ? await getChildren(data._id) : [];
   const hotspotSelect = data?.hotspots?.map((hotspot: Hotspot) => ({ label: hotspot.name, value: hotspot._id })) || [];
 
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
-      childLocations,
       data: {
         ...data,
         countryCode,

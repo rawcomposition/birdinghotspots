@@ -10,7 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const settings = await Settings.findOne({ key: "global" }).exec();
     const featuredIds = settings.featuredIds;
     const results = await Hotspot.find({ _id: { $in: featuredIds } }, [
-      "parent",
       "stateCode",
       "countyCode",
       "name",
@@ -18,7 +17,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       "featuredImg",
       "species",
     ])
-      .populate("parent", ["name"])
       .sort({ name: 1 })
       .lean()
       .exec();
@@ -28,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         : `${getStateByCode(hotspot.stateCode)?.label}, US`;
       return {
         ...hotspot,
-        parent: { name: locationLine },
+        groups: [{ name: locationLine }],
       };
     });
     res.status(200).json({
