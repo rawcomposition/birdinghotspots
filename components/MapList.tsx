@@ -41,6 +41,7 @@ export default function MapList({ images }: Props) {
               }}
             </Item>
             {item.caption && <span className="text-xs" dangerouslySetInnerHTML={{ __html: item.caption }} />}
+            {item.caption && item.by && <br />}
             {item.by && <span className="text-xs" dangerouslySetInnerHTML={{ __html: item.by }} />}
           </div>
         ))}

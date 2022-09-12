@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import Hotspot from "models/Hotspot.mjs";
+import Hotspot from "models/Hotspot";
 import States from "data/states.json";
 
 const getHotspotsForRegion = async (region: string) => {

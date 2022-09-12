@@ -193,7 +193,7 @@ export const accessibleOptions = [
 ];
 
 export const generateRandomId = () => {
-  return Math.random().toString().slice(2, 11);
+  return Math.random().toString().slice(2, 8);
 };
 
 //Adapted from https://www.geodatasource.com/developers/javascript
@@ -219,10 +219,10 @@ export function distanceBetween(lat1: number, lon1: number, lat2: number, lon2: 
   }
 }
 
-export function formatMarkerArray(hotspot: Hotspot, childHotspots: Hotspot[]) {
+export function formatMarkerArray(childHotspots: Hotspot[], hotspot?: Hotspot) {
   const markers: Marker[] = [];
 
-  if (!hotspot?.isGroup && hotspot?.lat && hotspot?.lng) {
+  if (hotspot?.lat && hotspot?.lng) {
     markers.push({
       lat: hotspot.lat,
       lng: hotspot.lng,

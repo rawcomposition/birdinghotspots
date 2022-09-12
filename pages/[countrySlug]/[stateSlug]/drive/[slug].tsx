@@ -11,30 +11,6 @@ import EditorActions from "components/EditorActions";
 import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-  slug: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug, slug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const data = await getDriveBySlug(state.code, slug);
-  if (!data) return { notFound: true };
-
-  return {
-    props: {
-      countrySlug,
-      state,
-      portal: state.portal || null,
-      ...data,
-    },
-  };
-};
-
 interface Props extends DriveType {
   countrySlug: string;
   state: State;
@@ -105,3 +81,31 @@ export default function Drive({ countrySlug, name, description, state, mapId, en
     </div>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  countrySlug: string;
+  stateSlug: string;
+  slug: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { countrySlug, stateSlug, slug } = query as Params;
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const data = await getDriveBySlug(state.code, slug);
+  if (!data) return { notFound: true };
+
+  const filteredEntries = data.entries.filter((entry: any) => entry.hotspot);
+  console.log(data.entries);
+
+  return {
+    props: {
+      countrySlug,
+      state,
+      portal: state.portal || null,
+      ...data,
+      entries: filteredEntries,
+    },
+  };
+};

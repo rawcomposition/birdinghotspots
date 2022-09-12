@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import Hotspot from "models/Hotspot.mjs";
+import Hotspot from "models/Hotspot";
 import Upload from "models/Upload";
 import { Image } from "lib/types";
 import admin from "lib/firebaseAdmin";

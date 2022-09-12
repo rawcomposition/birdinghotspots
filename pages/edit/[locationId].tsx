@@ -12,12 +12,11 @@ import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, HotspotInputs, EbirdHotspot, State } from "lib/types";
+import { Hotspot, HotspotInputs, EbirdHotspot } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
-import ParentHotspotSelect from "components/ParentHotspotSelect";
 import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
@@ -41,9 +40,10 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
   const form = useForm<HotspotInputs>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
 
+  //@ts-ignore
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");
-  const markers = formatMarkerArray({ ...data, lat: latValue, lng: lngValue }, childLocations);
+  const markers = formatMarkerArray(childLocations, { ...data, lat: latValue, lng: lngValue });
 
   const handleSubmit: SubmitHandler<HotspotInputs> = async (data) => {
     const response = await send({
@@ -118,18 +118,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <Field label="Parent Hotspot">
-                  <ParentHotspotSelect self={id} countyCode={data.countyCode || ""} name="parentSelect" isClearable />
-                </Field>
-
-                {isOH && (
-                  <Field label="Important Bird Area">
-                    <IbaSelect name="iba" isClearable />
-                  </Field>
-                )}
-              </div>
-
               <div>
                 <label className="text-gray-500 font-bold">Images</label>
                 <ImagesInput enableStreetview />
@@ -145,6 +133,11 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
               <Field label="Restrooms">
                 <Select name="restrooms" options={restroomOptions} isClearable />
               </Field>
+              {isOH && (
+                <Field label="Important Bird Area">
+                  <IbaSelect name="iba" isClearable />
+                </Field>
+              )}
               <CheckboxGroup name="accessible" label="Accessible Facilities" options={accessibleOptions} />
               <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} />
               {markers.length > 0 && (
