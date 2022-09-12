@@ -24,13 +24,15 @@ export default function FeaturedCollage({ photos }: Props) {
           <Item {...processImg(photo)} key={photo.smUrl}>
             {({ ref, open }) => {
               const imgRef = ref as any;
+              let url = photo.smUrl;
+              if (index === 0 || featured.length === 2) {
+                url = photo.lgUrl || photo.smUrl;
+              }
               return (
-                <img
+                <div
+                  style={{ backgroundImage: `url(${url})` }}
                   ref={imgRef}
-                  src={photo.lgUrl || photo.smUrl}
-                  width={photo.width}
-                  height={photo.height}
-                  className="w-full h-full object-cover object-center cursor-pointer"
+                  className="w-full h-full cursor-pointer bg-cover bg-center"
                   onClick={open}
                 />
               );
