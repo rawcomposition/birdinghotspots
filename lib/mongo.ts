@@ -260,3 +260,10 @@ export async function getGroupByLocationId(locationId: string) {
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
+
+export async function getGroupsByState(stateCode: string) {
+  await connect();
+  const result = await Group.find({ stateCodes: stateCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
+
+  return result;
+}
