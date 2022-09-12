@@ -12,15 +12,7 @@ export default connect;
 
 export async function getHotspotsByState(stateCode: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode }, [
-    "-_id",
-    "name",
-    "url",
-    "iba",
-    "reviewed",
-    "noContent",
-    "needsDeleting",
-  ])
+  const result = await Hotspot.find({ stateCode }, ["-_id", "name", "url", "iba", "noContent", "needsDeleting"])
     .sort({ name: 1 })
     .lean()
     .exec();

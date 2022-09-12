@@ -133,7 +133,6 @@ const HotspotSchema = new Schema({
   species: Number,
   noContent: Boolean,
   needsDeleting: Boolean,
-  reviewed: Boolean, //TODO remove
 });
 
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);

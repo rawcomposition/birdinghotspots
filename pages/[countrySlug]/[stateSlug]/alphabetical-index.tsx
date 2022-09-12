@@ -17,7 +17,6 @@ type Props = {
   hotspots: {
     name: string;
     url: string;
-    reviewed?: boolean;
     noContent?: boolean;
     needsDeleting?: boolean;
   }[];
@@ -91,7 +90,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
           );
         })}
       </p>
-      {filtered.map(({ name, url, reviewed, noContent, needsDeleting }, i, array) => {
+      {filtered.map(({ name, url, noContent, needsDeleting }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -103,10 +102,6 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
               </h2>
             )}
             <Link href={url}>{name}</Link>
-            {reviewed === false &&
-              user && ( //TODO: Remove after migration
-                <NoticeIcon color="blue" title="Not Reviewed" />
-              )}
             {noContent && user && <NoticeIcon color="yellow" title="Needs content" />}
             {needsDeleting && user && (
               <span className={`bg-red-600 rounded-full text-xs px-2 text-white font-bold ml-2`}>

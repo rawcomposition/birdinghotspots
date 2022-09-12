@@ -58,7 +58,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
           iba: data.iba || null,
           restrooms: data.restrooms || null,
           accessible: data.accessible && data.accessible?.length > 0 ? data.accessible : null,
-          reviewed: true, //TODO: Remove after migration
         },
       },
     });

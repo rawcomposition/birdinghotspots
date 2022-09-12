@@ -90,7 +90,6 @@ export type Hotspot = {
   species?: number;
   noContent?: boolean;
   needsDeleting?: boolean;
-  reviewed?: boolean; //TODO: remove after migration
 };
 
 export interface HotspotInputs extends Hotspot {
