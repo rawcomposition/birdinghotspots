@@ -118,14 +118,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                {isOH && (
-                  <Field label="Important Bird Area">
-                    <IbaSelect name="iba" isClearable />
-                  </Field>
-                )}
-              </div>
-
               <div>
                 <label className="text-gray-500 font-bold">Images</label>
                 <ImagesInput enableStreetview />
@@ -141,6 +133,11 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
               <Field label="Restrooms">
                 <Select name="restrooms" options={restroomOptions} isClearable />
               </Field>
+              {isOH && (
+                <Field label="Important Bird Area">
+                  <IbaSelect name="iba" isClearable />
+                </Field>
+              )}
               <CheckboxGroup name="accessible" label="Accessible Facilities" options={accessibleOptions} />
               <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} />
               {markers.length > 0 && (
