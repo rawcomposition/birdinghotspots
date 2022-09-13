@@ -40,6 +40,13 @@ export default function EbirdHotspotBtn({ state, locationId, locationIds, isGrou
               </a>
             </Menu.Item>
           )}
+          {!isGroup && (
+            <Menu.Item>
+              <a href={`${base}/hotspots?hs=${locationId}&yr=all&m=`} target="_blank" rel="noreferrer">
+                Hotspot Map
+              </a>
+            </Menu.Item>
+          )}
           <Menu.Item>
             <h4 className="font-bold">Bar Charts</h4>
           </Menu.Item>
