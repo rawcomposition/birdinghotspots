@@ -6,6 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { lat, lng, offset, limit, exclude }: any = req.query;
 
   const query = {
+    isGroup: { $ne: true },
     location: { $near: { $geometry: { type: "Point", coordinates: [lng, lat] } } },
     locationId: { $nin: exclude?.split(",") || [] },
   };

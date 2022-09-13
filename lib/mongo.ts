@@ -12,7 +12,7 @@ export default connect;
 
 export async function getHotspotsByState(stateCode: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode }, [
+  const result = await Hotspot.find({ stateCode, isGroup: { $ne: true } }, [
     "-_id",
     "name",
     "url",

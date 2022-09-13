@@ -277,3 +277,8 @@ export interface GroupInputs extends Group {
     value: string;
   }[];
 }
+
+export type Link = {
+  label: string;
+  url: string;
+};

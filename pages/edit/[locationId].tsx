@@ -12,7 +12,7 @@ import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, EbirdHotspot } from "lib/types";
+import { Hotspot, EbirdHotspot, Link, Group } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
@@ -26,12 +26,13 @@ import LicenseNotice from "components/LicenseNotice";
 type Props = {
   id?: string;
   isNew: boolean;
+  groupLinks: Link[];
   data: Hotspot;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ id, isNew, data, error, errorCode }: Props) {
+export default function Edit({ id, isNew, groupLinks, data, error, errorCode }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
@@ -102,6 +103,20 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 )}
               </Field>
 
+              {groupLinks.length > 0 && (
+                <div className="bg-gray-100 px-3 py-2 rounded-md">
+                  <h4 className="text-gray-500 font-bold">Group Links</h4>
+                  {groupLinks.map(({ label, url }) => (
+                    <>
+                      <a href={url} key={url} target="_blank" rel="noopener noreferrer">
+                        {label}
+                      </a>
+                      <br />
+                    </>
+                  ))}
+                </div>
+              )}
+
               <InputLinks />
 
               <Field label="Tips for Birding">
@@ -168,7 +183,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { locationId } = query as Params;
-  const data = await getHotspotByLocationId(locationId);
+  const data = await getHotspotByLocationId(locationId, true);
   const ebirdData: EbirdHotspot = await getEbirdHotspot(locationId);
   if (!ebirdData?.name) {
     res.statusCode = 404;
@@ -186,10 +201,16 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
 
+  const groupLinks: Link[] = [];
+  data?.groups?.forEach(({ links }: Group) => {
+    if (links) groupLinks.push(...links);
+  });
+
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
+      groupLinks,
       data: {
         ...data,
         iba: data?.iba || null,

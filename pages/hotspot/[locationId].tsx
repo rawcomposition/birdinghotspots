@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getHotspotByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getCountyByCode, getStateByCode } from "lib/localData";
-import { County, State, Marker, Hotspot as HotspotType, Image } from "lib/types";
+import { County, State, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
@@ -242,12 +242,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const county = getCountyByCode(data.countyCode);
   const marker = formatMarker(data);
 
+  const groupLinks: LinkType[] = [];
+  data?.groups?.forEach(({ links }: Group) => {
+    if (links) groupLinks.push(...links);
+  });
+
   return {
     props: {
       state,
       county,
       marker,
       ...data,
+      links: [...(data.links || []), ...groupLinks],
     },
   };
 };
