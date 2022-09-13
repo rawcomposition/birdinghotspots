@@ -228,7 +228,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     return {
       redirect: {
         destination: `/group/${locationId}`,
-        permanent: false, //TODO: Make permanent after migration
+        permanent: true,
       },
     };
   }
