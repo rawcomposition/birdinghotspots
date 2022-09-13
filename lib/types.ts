@@ -71,7 +71,6 @@ export type Hotspot = {
   restrooms?: string;
   roadside?: string;
   accessible?: string[];
-  parent?: any;
   iba?: {
     value: string;
     label: string;
@@ -91,13 +90,6 @@ export type Hotspot = {
   noContent?: boolean;
   needsDeleting?: boolean;
 };
-
-export interface HotspotInputs extends Hotspot {
-  parentSelect: {
-    label: string;
-    value: string;
-  };
-}
 
 export type HotspotsByCounty = [
   {

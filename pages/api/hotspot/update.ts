@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
 
-    const oldHotspot = await Hotspot.findById(id).populate("parent");
+    const oldHotspot = await Hotspot.findById(id);
     const legacyUrls = oldHotspot.images?.filter((image: any) => !!image.legacy).map((image: any) => image.smUrl);
     const oldImageUrls = oldHotspot.images?.map((image: any) => image.smUrl);
     const newImageUrls = data.images?.map((image: any) => image.smUrl);
@@ -47,17 +47,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes;
 
     await Hotspot.replaceOne({ _id: id }, { ...data, url, location, featuredImg, noContent });
-
-    const children = await Hotspot.find({ parent: id });
-    await Promise.all(
-      children?.map(async (child) => {
-        const flagNoContent = !data?.about;
-        if (flagNoContent !== child.noContent) {
-          child.noContent = flagNoContent;
-          await child.save();
-        }
-      })
-    );
 
     if (deletedImageUrls) {
       await Promise.all(

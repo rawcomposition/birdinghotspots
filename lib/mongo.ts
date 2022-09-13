@@ -110,16 +110,6 @@ export async function getIBAHotspots(ibaSlug: string) {
   return result;
 }
 
-export async function getChildHotspots(id: string) {
-  await connect();
-  const result = await Hotspot.find({ parent: id }, ["-_id", "name", "url", "locationId", "lat", "lng", "countyCode"])
-    .sort({ name: 1 })
-    .lean()
-    .exec();
-
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
-
 export async function getHotspotByLocationId(locationId: string, populate?: boolean) {
   await connect();
   const result = populate
