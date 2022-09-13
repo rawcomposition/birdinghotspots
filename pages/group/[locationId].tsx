@@ -11,7 +11,7 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { restroomOptions, formatMarkerArray } from "lib/helpers";
+import { restroomOptions, formatMarker } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
@@ -129,7 +129,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const state = data.stateCodes.length === 1 ? getStateByCode(data.stateCodes[0]) : null;
   const county = data.countyCodes.length === 1 ? getCountyByCode(data.countyCodes[0]) : null;
 
-  const markers = formatMarkerArray(data?.hotspots);
+  const markers = data?.hotspots?.map((it) => formatMarker(it, true)) || [];
 
   return {
     props: {

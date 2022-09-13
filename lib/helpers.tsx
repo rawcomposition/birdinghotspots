@@ -219,33 +219,18 @@ export function distanceBetween(lat1: number, lon1: number, lat2: number, lon2: 
   }
 }
 
-export function formatMarkerArray(childHotspots: Hotspot[], hotspot?: Hotspot) {
-  const markers: Marker[] = [];
-
-  if (hotspot?.lat && hotspot?.lng) {
-    markers.push({
-      lat: hotspot.lat,
-      lng: hotspot.lng,
-      type: "primary",
-      name: "General Location",
-    });
+export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
+  let name = hotspot.name;
+  if (name.includes("--")) {
+    name = name.split("--")[1];
   }
-
-  childHotspots?.forEach((it: any) => {
-    let name = it.name;
-    if (name.includes("--")) {
-      name = name.split("--")[1];
-    }
-    markers.push({
-      lat: it.lat,
-      lng: it.lng,
-      type: "child",
-      url: it.url,
-      name,
-    });
-  });
-
-  return markers;
+  return {
+    lat: hotspot.lat,
+    lng: hotspot.lng,
+    type: "child",
+    url: showLink ? hotspot.url : null,
+    name,
+  };
 }
 
 export async function verifyRecaptcha(token: string) {

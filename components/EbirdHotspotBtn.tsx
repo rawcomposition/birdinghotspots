@@ -5,11 +5,11 @@ type Props = {
   state?: State;
   isGroup?: boolean;
   locationId: string;
-  locationIds: string[];
+  locationIds?: string[];
 };
 
 export default function EbirdHotspotBtn({ state, locationId, locationIds, isGroup }: Props) {
-  const region = locationIds.length > 1 ? locationIds.join(",") : locationId;
+  const region = locationIds?.length ? locationIds.join(",") : locationId;
   const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
   return (
     <div className="relative inline-block">

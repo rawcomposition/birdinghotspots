@@ -7,8 +7,6 @@ import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { State } from "lib/types";
-import { useUser } from "providers/user";
-import { useDebounce } from "hooks/useDebounce";
 
 type Props = {
   countrySlug: string;
@@ -16,7 +14,6 @@ type Props = {
   groups: {
     name: string;
     url: string;
-    reviewed?: boolean;
     noContent?: boolean;
     needsDeleting?: boolean;
   }[];

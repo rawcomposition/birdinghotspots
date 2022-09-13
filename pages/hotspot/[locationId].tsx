@@ -2,20 +2,18 @@ import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
-import { getHotspotByLocationId, getChildHotspots } from "lib/mongo";
+import { getHotspotByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getCountyByCode, getStateByCode } from "lib/localData";
-import { County, State, HotspotsByCounty, Marker, Hotspot as HotspotType, Image } from "lib/types";
+import { County, State, Marker, Hotspot as HotspotType, Image } from "lib/types";
 import EditorActions from "components/EditorActions";
-import HotspotList from "components/HotspotList";
-import ListHotspotsByCounty from "components/ListHotspotsByCounty";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
-import { accessibleOptions, restroomOptions, formatMarkerArray, restructureHotspotsByCounty } from "lib/helpers";
+import { accessibleOptions, restroomOptions, formatMarker } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
@@ -26,10 +24,7 @@ import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 interface Props extends HotspotType {
   county: County;
   state: State;
-  childLocations: HotspotType[];
-  childLocationsByCounty: HotspotsByCounty;
-  locationIds: string[];
-  markers: Marker[];
+  marker: Marker;
 }
 
 export default function Hotspot({
@@ -50,14 +45,11 @@ export default function Hotspot({
   roadside,
   accessible,
   locationId,
-  childLocations,
-  childLocationsByCounty,
-  locationIds,
   iba,
   drives,
   images,
   isGroup,
-  markers,
+  marker,
   countryCode,
   needsDeleting,
   species,
@@ -153,7 +145,7 @@ export default function Hotspot({
                   <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
                 </a>
               )}
-              <EbirdHotspotBtn {...{ state, locationId, locationIds, isGroup }} />
+              <EbirdHotspotBtn {...{ state, locationId, isGroup }} />
               {lat && lng && (
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
@@ -188,24 +180,6 @@ export default function Hotspot({
             )}
           </div>
 
-          {childLocations.length > 0 && (
-            <div className="mb-6">
-              <h3 className="mb-1.5 font-bold text-lg">Locations</h3>
-              <HotspotList hotspots={childLocations} />
-            </div>
-          )}
-
-          {childLocationsByCounty.length > 0 && (
-            <div className="mb-6">
-              <h3 className="mb-1.5 font-bold text-lg">Locations</h3>
-              <ListHotspotsByCounty
-                countrySlug={countryCode.toLowerCase()}
-                stateSlug={state.slug}
-                hotspots={childLocationsByCounty}
-              />
-            </div>
-          )}
-
           {tips && <AboutSection heading="Tips for Birding" text={tips} />}
 
           {birds && <AboutSection heading="Birds of Interest" text={birds} />}
@@ -234,22 +208,14 @@ export default function Hotspot({
           </div>
         </div>
         <div>
-          {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
+          {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} />}
           {!!mapImages?.length && <MapList images={mapImages} />}
-          {lat && lng && !isGroup && (
-            <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId, ...locationIds]} />
-          )}
+          {lat && lng && !isGroup && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
         </div>
       </div>
     </div>
   );
 }
-
-const getChildren = async (id: string) => {
-  if (!id) return null;
-  const data = await getChildHotspots(id);
-  return data || [];
-};
 
 interface Params extends ParsedUrlQuery {
   locationId: string;
@@ -274,25 +240,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!state) return { notFound: true };
 
   const county = getCountyByCode(data.countyCode);
-
-  const childLocations = await getChildren(data._id);
-  const childLocationsByCounty = data?.isGroup ? restructureHotspotsByCounty(childLocations as any) : [];
-  const childIds = childLocations?.map((item: HotspotType) => item.locationId) || [];
-  let locationIds = childIds?.length > 0 ? childIds : [];
-  if (!data?.isGroup) {
-    locationIds = [data?.locationId, ...locationIds];
-  }
-
-  const markers = formatMarkerArray(childLocations, data);
+  const marker = formatMarker(data);
 
   return {
     props: {
       state,
       county,
-      childLocations: data?.isGroup ? [] : childLocations,
-      childLocationsByCounty,
-      locationIds,
-      markers,
+      marker,
       ...data,
     },
   };

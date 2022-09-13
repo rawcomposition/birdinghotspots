@@ -6,13 +6,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
-import { getHotspotByLocationId, getHotspotById, getChildHotspots } from "lib/mongo";
-import { geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarkerArray } from "lib/helpers";
+import { getHotspotByLocationId } from "lib/mongo";
+import { geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarker } from "lib/helpers";
 import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, HotspotInputs, EbirdHotspot } from "lib/types";
+import { Hotspot, EbirdHotspot } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
@@ -29,23 +29,22 @@ type Props = {
   data: Hotspot;
   error?: string;
   errorCode?: number;
-  childLocations: Hotspot[];
 };
 
-export default function Edit({ id, isNew, data, error, errorCode, childLocations }: Props) {
+export default function Edit({ id, isNew, data, error, errorCode }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
   const router = useRouter();
-  const form = useForm<HotspotInputs>({ defaultValues: data });
+  const form = useForm<Hotspot>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
 
   //@ts-ignore
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");
-  const markers = formatMarkerArray(childLocations, { ...data, lat: latValue, lng: lngValue });
+  const markers = [formatMarker({ ...data, lat: latValue, lng: lngValue })];
 
-  const handleSubmit: SubmitHandler<HotspotInputs> = async (data) => {
+  const handleSubmit: SubmitHandler<Hotspot> = async (data) => {
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",
@@ -57,7 +56,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
           tips: data.tips || "",
           birds: data.birds || "",
           hikes: data.hikes || "",
-          parent: data.parentSelect?.value || null,
           multiCounties: null,
           iba: data.iba || null,
           restrooms: data.restrooms || null,
@@ -76,6 +74,7 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
     const geocodeAddress = async () => {
       const { city, state, zip } = await geocode(lat, lng);
       if (city && state && zip) {
+        //@ts-ignore
         form.setValue("address", `${city}, ${state} ${zip}`);
         setIsGeocoded(true);
       }
@@ -146,6 +145,7 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
               {markers.length > 0 && (
                 <div className="flex-1">
                   <label className="text-gray-500 font-bold mb-1 block">Hotspot Map</label>
+                  {/*@ts-ignore*/}
                   <MapZoomInput markers={markers} />
                 </div>
               )}
@@ -165,18 +165,6 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
 interface Params extends ParsedUrlQuery {
   locationId: string;
 }
-
-const getParent = async (id: string) => {
-  if (!id) return null;
-  const data = await getHotspotById(id);
-  return data || null;
-};
-
-const getChildren = async (id: string) => {
-  if (!id) return null;
-  const data = await getChildHotspots(id);
-  return data || [];
-};
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { locationId } = query as Params;
@@ -198,20 +186,14 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
 
-  const childLocations = data?._id ? await getChildren(data._id) : [];
-  const parentId = data?.parent;
-  const parent = parentId ? await getParent(parentId) : null;
-
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
-      childLocations,
       data: {
         ...data,
-        iba: data?.iba || parent?.iba || null,
-        links: data?.links || parent?.links || null,
-        parentSelect: parent ? { label: parent.name, value: parent._id } : null,
+        iba: data?.iba || null,
+        links: data?.links || null,
         name: ebirdData?.name || data?.name,
         lat: ebirdData?.latitude || data?.lat,
         lng: ebirdData?.longitude || data?.lng,
