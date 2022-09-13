@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getHotspotByLocationId, getChildHotspots } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getCountyByCode, getStateByCode } from "lib/localData";
-import { County, State, HotspotsByCounty, Marker, Hotspot as HotspotType } from "lib/types";
+import { County, State, HotspotsByCounty, Marker, Hotspot as HotspotType, Image } from "lib/types";
 import EditorActions from "components/EditorActions";
 import HotspotList from "components/HotspotList";
 import ListHotspotsByCounty from "components/ListHotspotsByCounty";
@@ -95,7 +95,14 @@ export default function Hotspot({
   });
 
   const photos = images?.filter((it) => !it.isMap) || [];
-  const mapImages = images?.filter((item) => item.smUrl && item.isMap) || [];
+  const groupMaps: Image[] = [];
+  groups?.forEach((group) => {
+    group.images?.forEach((image) => {
+      groupMaps.push(image);
+    });
+  });
+
+  const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];
 
   const canEdit = user?.role === "admin" || user?.regions?.includes(state.code);
 
@@ -228,7 +235,7 @@ export default function Hotspot({
         </div>
         <div>
           {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
-          {!!images?.length && <MapList images={mapImages} />}
+          {!!mapImages?.length && <MapList images={mapImages} />}
           {lat && lng && !isGroup && (
             <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId, ...locationIds]} />
           )}
