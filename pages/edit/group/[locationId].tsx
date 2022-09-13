@@ -21,6 +21,7 @@ import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
 import Error from "next/error";
 import HotspotSelect from "components/HotspotSelect";
+import toast from "react-hot-toast";
 
 type Props = {
   id?: string;
@@ -38,6 +39,9 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
   const form = useForm<GroupInputs>({ defaultValues: data });
 
   const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
+    if (!data.about) {
+      return toast.error('"About this location" is required');
+    }
     const response = await send({
       url: `/api/group/${isNew ? "add" : "update"}`,
       method: "POST",
@@ -126,7 +130,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 <TinyMCE name="birds" defaultValue={data?.birds} />
               </Field>
 
-              <Field label="About this location">
+              <Field label="About this location (required)">
                 <TinyMCE name="about" defaultValue={data?.about} />
               </Field>
 

@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import admin from "lib/firebaseAdmin";
 import Hotspot from "models/Hotspot";
-import Group from "models/Group";
 import { generateRandomId } from "lib/helpers";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -28,9 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       };
     }
 
-    const groups = data?.groups ? await Group.find({ _id: { $in: data.groups } }) : null;
-    const hasGroupAbout = groups?.some((group) => group?.about);
-    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes && !hasGroupAbout;
+    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes;
 
     const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
 

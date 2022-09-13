@@ -207,13 +207,11 @@ export default function Hotspot({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
-          {groups
-            ?.filter((it) => it.about)
-            .map(({ _id, name, about }) => (
-              <AboutSection key={_id} heading={`About ${name}`} text={about || ""} />
-            ))}
+          {groups?.map(({ _id, name, about }) => (
+            <AboutSection key={_id} heading={`About ${name}`} text={about || ""} />
+          ))}
 
-          {noContent && (
+          {noContent && !groups?.length && (
             <AboutSection
               heading="About this Location"
               text='A description and tips for birding this location are welcome from the birding community. You may use the "Contact" link to provide information you would like to share share.'

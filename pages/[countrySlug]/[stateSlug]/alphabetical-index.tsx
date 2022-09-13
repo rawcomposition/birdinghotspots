@@ -139,8 +139,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!state) return { notFound: true };
 
   const hotspots = (await getHotspotsByState(state.code)) || [];
+  const formatted = hotspots.map((it: any) => ({ ...it, noContent: !!(it.noContent && !it.groups?.length) }));
 
   return {
-    props: { countrySlug, state, hotspots },
+    props: { countrySlug, state, hotspots: formatted },
   };
 };

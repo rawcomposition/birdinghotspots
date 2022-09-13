@@ -53,6 +53,10 @@ export default function Edit({ id, isNew, data, error, errorCode, childLocations
         id,
         data: {
           ...data,
+          about: data.about || "",
+          tips: data.tips || "",
+          birds: data.birds || "",
+          hikes: data.hikes || "",
           parent: data.parentSelect?.value || null,
           multiCounties: null,
           iba: data.iba || null,

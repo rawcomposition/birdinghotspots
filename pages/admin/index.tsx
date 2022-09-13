@@ -75,19 +75,14 @@ export default function Dashboard({ data }: Props) {
 }
 
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
-  const imgResult = await getImgStats();
-  const contentResult = await getContentStats();
   const { role, regions } = token;
+  const imgResult = await getImgStats();
+  const allStateCodes = States.filter(({ active }) => active).map((it) => it.code);
+  const contentCount = await getContentStats(role === "admin" ? allStateCodes : regions);
 
   const imgCount = imgResult.map(({ _id, count }) => ({
     stateCode: _id.stateCode,
     featuredImg: _id.featuredImg,
-    count,
-  }));
-
-  const contentCount = contentResult.map(({ _id, count }) => ({
-    stateCode: _id.stateCode,
-    noContent: _id.noContent,
     count,
   }));
 
@@ -99,9 +94,8 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     const url = `/${country.toLowerCase()}/${slug}`;
     const withImg = imgCount.find((it) => it.stateCode === code && it.featuredImg)?.count || 0;
     const withoutImg = imgCount.find((it) => it.stateCode === code && !it.featuredImg)?.count || 0;
-    const withoutContent = contentCount.find((it) => it.stateCode === code && it.noContent)?.count || 0;
+    const withContent = contentCount.find((it) => it.region === code)?.count || 0;
     const total = withImg + withoutImg;
-    const withContent = total - withoutContent;
     return { code, label, country, url, withImg, withContent, total };
   });
 
