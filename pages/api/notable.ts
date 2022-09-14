@@ -41,6 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (!reports?.length) {
       res.status(200).json([]);
+      return;
     }
 
     reports = reports
