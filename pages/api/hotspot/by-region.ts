@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const results = await Hotspot.find(query, ["groups", "name", "url", "featuredImg", "lat", "lng", "species"])
+    const results = await Hotspot.find(query, ["name", "url", "featuredImg", "lat", "lng", "species"])
       .sort({ species: -1 })
       .limit(limit || 15)
       .skip(offset || 0)

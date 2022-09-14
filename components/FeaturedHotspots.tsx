@@ -22,7 +22,7 @@ export default function FeaturedHotspots() {
 
   return (
     <div className="mt-12 grid xs:grid-cols-2 md:grid-cols-4 gap-6">
-      <HotspotGrid hotspots={results} loading={false} showFullName />
+      <HotspotGrid hotspots={results} loading={false} />
     </div>
   );
 }

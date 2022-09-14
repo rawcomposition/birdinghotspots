@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         : `${getStateByCode(hotspot.stateCode)?.label}, US`;
       return {
         ...hotspot,
-        groups: [{ name: locationLine }],
+        locationLine,
       };
     });
     res.status(200).json({

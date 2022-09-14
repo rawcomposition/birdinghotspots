@@ -2,17 +2,20 @@ import { Hotspot } from "lib/types";
 import { distanceBetween } from "lib/helpers";
 import Link from "next/link";
 
+interface GridItem extends Hotspot {
+  locationLine?: string;
+}
+
 type Props = {
   lat?: number;
   lng?: number;
-  hotspots: Hotspot[];
+  hotspots: GridItem[];
   loading: boolean;
-  showFullName?: boolean;
   smallTitle?: boolean;
   skeletonCount?: number;
 };
 
-export default function HotspotGrid({ lat, lng, hotspots, loading, showFullName, smallTitle, skeletonCount }: Props) {
+export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, skeletonCount }: Props) {
   if (loading) {
     return (
       <>
@@ -25,12 +28,14 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, showFullName,
 
   return (
     <>
-      {hotspots.map(({ name, _id, featuredImg, url, groups, lat: hsLat, lng: hsLng, species }) => {
-        const parentName = groups?.length === 1 ? groups[0].name : null;
+      {hotspots.map(({ name, _id, featuredImg, url, groups, lat: hsLat, lng: hsLng, species, locationLine }) => {
         let distance = distanceBetween(lat || 0, lng || 0, hsLat, hsLng);
         distance = distance < 10 ? parseFloat(distance.toFixed(1)) : parseFloat(distance.toFixed(0));
-        const shouldSplitName = showFullName || !parentName;
-        const shortName = shouldSplitName ? name : name.split("--")?.[1] || name;
+        const namePieces = name.split("--");
+        if (!locationLine && namePieces.length === 2) {
+          locationLine = namePieces[0];
+          name = namePieces[1];
+        }
         const showMeta = (lat && lng) || Number.isInteger(species);
         return (
           <article key={_id} className="flex flex-col gap-3">
@@ -46,10 +51,10 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, showFullName,
             <div className="flex-1">
               <div className="mb-4 leading-5 flex items-start">
                 <div>
-                  {parentName && <p className="text-gray-600 text-[11px]">{parentName}</p>}
+                  {locationLine && <p className="text-gray-600 text-[11px]">{locationLine}</p>}
                   <h2 className="font-bold">
                     <Link href={url}>
-                      <a className={`text-gray-700 ${smallTitle ? "text-[13px] leading-3" : ""}`}>{shortName}</a>
+                      <a className={`text-gray-700 ${smallTitle ? "text-[13px] leading-3" : ""}`}>{name}</a>
                     </Link>
                   </h2>
                   {showMeta && (
