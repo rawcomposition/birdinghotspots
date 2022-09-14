@@ -9,12 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const token = req.headers.authorization;
   const { id, data } = req.body;
 
-  const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, [
-    "-_id",
-    "stateCode",
-    "countyCode",
-    "multiCounties",
-  ]);
+  const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, ["-_id", "stateCode", "countyCode"]);
   const allStateCodes: string[] = hotspots.map((hotspot: any) => hotspot.stateCode);
   const stateCodes = [...new Set(allStateCodes)];
   const countyCodes: string[] = [];
@@ -22,13 +17,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   hotspots.forEach((hotspot: any) => {
     if (hotspot.countyCode && !countyCodes.includes(hotspot.countyCode)) {
       countyCodes.push(hotspot.countyCode);
-    }
-    if (hotspot.multiCounties) {
-      hotspot.multiCounties.forEach((countyCode: string) => {
-        if (!countyCodes.includes(countyCode)) {
-          countyCodes.push(countyCode);
-        }
-      });
     }
   });
 

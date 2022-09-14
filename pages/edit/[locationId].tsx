@@ -57,7 +57,6 @@ export default function Edit({ id, isNew, groupLinks, data, error, errorCode }: 
           tips: data.tips || "",
           birds: data.birds || "",
           hikes: data.hikes || "",
-          multiCounties: null,
           iba: data.iba || null,
           restrooms: data.restrooms || null,
           accessible: data.accessible && data.accessible?.length > 0 ? data.accessible : null,

@@ -11,11 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const regionPieces = region.split("-");
   const stateCode = `${regionPieces[0]}-${regionPieces[1]}`;
 
-  const query = isCounty
-    ? {
-        $or: [{ countyCode: region }, { multiCounties: region }],
-      }
-    : { stateCode };
+  const query = isCounty ? { countyCode: region } : { stateCode };
 
   try {
     await connect();

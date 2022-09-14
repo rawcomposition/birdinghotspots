@@ -57,7 +57,6 @@ export type Hotspot = {
   countryCode: string;
   stateCode: string;
   countyCode?: string;
-  multiCounties?: string[];
   countySlug: string;
   about?: string;
   tips?: string;
@@ -85,7 +84,6 @@ export type Hotspot = {
   groups?: [Group];
   images?: Image[];
   featuredImg?: Image;
-  isGroup?: boolean;
   species?: number;
   noContent?: boolean;
   needsDeleting?: boolean;

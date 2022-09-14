@@ -55,22 +55,12 @@ type HotspotMap = {
 
 export function restructureHotspotsByCounty(hotspots: Hotspot[]) {
   let counties: HotspotMap = {};
-  hotspots.forEach(({ countyCode, multiCounties, url, name }) => {
-    if (countyCode) {
-      if (!countyCode) return;
-      if (!counties[countyCode]) {
-        counties[countyCode] = [];
-      }
-      counties[countyCode].push({ name, url });
-    } else if (multiCounties?.length) {
-      multiCounties.forEach((countyCode) => {
-        if (!countyCode) return;
-        if (!counties[countyCode]) {
-          counties[countyCode] = [];
-        }
-        counties[countyCode].push({ name, url });
-      });
+  hotspots.forEach(({ countyCode, url, name }) => {
+    if (!countyCode) return;
+    if (!counties[countyCode]) {
+      counties[countyCode] = [];
     }
+    counties[countyCode].push({ name, url });
   });
 
   const unsorted =

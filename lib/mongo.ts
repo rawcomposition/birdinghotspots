@@ -12,7 +12,7 @@ export default connect;
 
 export async function getHotspotsByState(stateCode: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode, isGroup: { $ne: true } }, [
+  const result = await Hotspot.find({ stateCode }, [
     "-_id",
     "name",
     "url",
@@ -30,12 +30,7 @@ export async function getHotspotsByState(stateCode: string) {
 
 export async function getHotspotsByCounty(countyCode: string) {
   await connect();
-  const result = await Hotspot.find(
-    {
-      $or: [{ countyCode }, { multiCounties: countyCode }],
-    },
-    ["-_id", "name", "url", "iba", "drives", "noContent"]
-  )
+  const result = await Hotspot.find({ countyCode }, ["-_id", "name", "url", "iba", "drives", "noContent"])
     .sort({ name: 1 })
     .lean()
     .exec();
@@ -50,7 +45,7 @@ export async function getAccessibleHotspotsByState(stateCode: string) {
       stateCode,
       accessible: { $ne: null },
     },
-    ["-_id", "name", "url", "countyCode", "multiCounties"]
+    ["-_id", "name", "url", "countyCode"]
   )
     .sort({ name: 1 })
     .lean()
@@ -66,7 +61,7 @@ export async function getRoadsideHotspotsByState(stateCode: string) {
       stateCode,
       roadside: "Yes",
     },
-    ["-_id", "name", "url", "countyCode", "multiCounties"]
+    ["-_id", "name", "url", "countyCode"]
   )
     .sort({ name: 1 })
     .lean()
@@ -77,15 +72,7 @@ export async function getRoadsideHotspotsByState(stateCode: string) {
 
 export async function getLatestHotspots() {
   await connect();
-  const result = await Hotspot.find({}, [
-    "-_id",
-    "name",
-    "url",
-    "countyCode",
-    "multiCounties",
-    "stateCode",
-    "createdAt",
-  ])
+  const result = await Hotspot.find({}, ["-_id", "name", "url", "countyCode", "stateCode", "createdAt"])
     .sort({ createdAt: -1 })
     .limit(200)
     .lean()
@@ -101,7 +88,7 @@ export async function getIBAHotspots(ibaSlug: string) {
     {
       "iba.value": ibaSlug,
     },
-    ["-_id", "name", "url", "countyCode", "multiCounties", "locationId"]
+    ["-_id", "name", "url", "countyCode", "locationId"]
   )
     .sort({ name: 1 })
     .lean()
@@ -180,7 +167,7 @@ export async function getArticlesByState(stateCode: string) {
 export async function getArticleBySlug(stateCode: string, slug: string) {
   await connect();
   const result = await Article.findOne({ stateCode, slug })
-    .populate("hotspots", ["url", "name", "countyCode", "multiCounties"])
+    .populate("hotspots", ["url", "name", "countyCode"])
     .lean()
     .exec();
 
@@ -189,10 +176,7 @@ export async function getArticleBySlug(stateCode: string, slug: string) {
 
 export async function getArticleById(_id: string) {
   await connect();
-  const result = await Article.findOne({ _id })
-    .populate("hotspots", ["url", "name", "countyCode", "multiCounties"])
-    .lean()
-    .exec();
+  const result = await Article.findOne({ _id }).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

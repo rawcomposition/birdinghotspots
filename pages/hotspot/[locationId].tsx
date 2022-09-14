@@ -48,7 +48,6 @@ export default function Hotspot({
   iba,
   drives,
   images,
-  isGroup,
   marker,
   countryCode,
   needsDeleting,
@@ -106,7 +105,7 @@ export default function Hotspot({
       </PageHeading>
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
-        {canEdit && <Link href={isGroup ? `/edit/group/${_id}` : `/edit/${locationId}`}>Edit Hotspot</Link>}
+        {canEdit && <Link href={`/edit/${locationId}`}>Edit Hotspot</Link>}
         <Link href={`/hotspot/upload/${locationId}`}>
           <a className="flex gap-1">
             <CameraIcon className="h-4 w-4" />
@@ -119,7 +118,7 @@ export default function Hotspot({
             Suggest Edit
           </a>
             </Link>*/}
-        {canEdit && (needsDeleting || isGroup) && (
+        {canEdit && needsDeleting && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
           </DeleteBtn>
@@ -145,7 +144,7 @@ export default function Hotspot({
                   <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
                 </a>
               )}
-              <EbirdHotspotBtn {...{ state, locationId, isGroup }} />
+              <EbirdHotspotBtn {...{ state, locationId }} />
               {lat && lng && (
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
@@ -210,7 +209,7 @@ export default function Hotspot({
         <div>
           {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} />}
           {!!mapImages?.length && <MapList images={mapImages} />}
-          {lat && lng && !isGroup && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
+          {lat && lng && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
         </div>
       </div>
     </div>

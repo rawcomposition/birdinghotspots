@@ -17,15 +17,14 @@ type HotspotMap = {
 export const getServerSideProps: GetServerSideProps = async () => {
   const hotspots = (await getLatestHotspots()) || [];
   let dates: HotspotMap = {};
-  hotspots.forEach(({ createdAt, countyCode, multiCounties, stateCode, url, name }) => {
+  hotspots.forEach(({ createdAt, countyCode, stateCode, url, name }) => {
     if (!createdAt) return;
     if (!dates[createdAt]) {
       dates[createdAt] = [];
     }
     const state = getStateByCode(stateCode);
     const county = getCountyByCode(countyCode);
-    const isGroup = multiCounties?.length;
-    const location = isGroup ? state?.label || "" : `${county?.name} County, ${state?.label}`;
+    const location = `${county?.name} County, ${state?.label}`;
     dates[createdAt].push({ name, url, location });
   });
 
