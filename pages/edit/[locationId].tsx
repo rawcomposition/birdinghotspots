@@ -12,7 +12,7 @@ import InputLinks from "components/InputLinks";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, EbirdHotspot, Link, Group } from "lib/types";
+import { Hotspot, EbirdHotspot, Link, Group, Image } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
@@ -22,17 +22,26 @@ import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
 import LicenseNotice from "components/LicenseNotice";
+import MapGrid from "components/MapGrid";
+import ExpandableHtml from "components/ExpandableHtml";
+
+type GroupAbout = {
+  title: string;
+  text: string;
+};
 
 type Props = {
   id?: string;
   isNew: boolean;
   groupLinks: Link[];
+  groupImages: Image[];
+  groupAbout: GroupAbout[];
   data: Hotspot;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ id, isNew, groupLinks, data, error, errorCode }: Props) {
+export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, data, error, errorCode }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
@@ -134,11 +143,23 @@ export default function Edit({ id, isNew, groupLinks, data, error, errorCode }: 
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
+              {groupAbout?.map(({ title, text }, i) => (
+                <div key={i} className="bg-gray-100 px-3 py-2 rounded-md">
+                  <h4 className="text-gray-500 font-bold">
+                    {title} <span className="text-xs text-gray-400">(from group page)</span>
+                  </h4>
+                  <ExpandableHtml html={text} className="formatted" isGray />
+                </div>
+              ))}
+
+              {groupImages.length > 0 && <MapGrid images={groupImages} />}
+
               <div>
                 <label className="text-gray-500 font-bold">Images</label>
                 <ImagesInput enableStreetview />
                 <LicenseNotice />
               </div>
+
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
                 <Submit disabled={loading} color="green" className="font-medium">
                   Save Hotspot
@@ -205,11 +226,27 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     if (links) groupLinks.push(...links);
   });
 
+  const groupImages: Image[] = [];
+  data?.groups?.forEach(({ images }: Group) => {
+    if (images) groupImages.push(...images);
+  });
+
+  const groupAbout: GroupAbout[] = [];
+  data?.groups?.forEach(({ name, about }: Group) => {
+    if (about)
+      groupAbout.push({
+        title: `About ${name}`,
+        text: about,
+      });
+  });
+
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
       groupLinks,
+      groupImages,
+      groupAbout,
       data: {
         ...data,
         iba: data?.iba || null,

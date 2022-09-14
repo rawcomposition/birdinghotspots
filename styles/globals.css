@@ -68,7 +68,7 @@
 	}
 }
 
-.formatted p {
+.formatted p:not(:last-of-type) {
 	@apply mb-4;
 }
 
