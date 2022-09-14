@@ -97,7 +97,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!data) return { notFound: true };
 
   const filteredEntries = data.entries.filter((entry: any) => entry.hotspot);
-  console.log(data.entries);
 
   return {
     props: {
