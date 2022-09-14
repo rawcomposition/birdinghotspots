@@ -75,12 +75,6 @@ const HotspotSchema = new Schema({
     ref: "Hotspot",
     default: null,
   },
-  groups: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Group",
-    },
-  ],
   iba: {
     value: String,
     label: String,
