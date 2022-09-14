@@ -19,7 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       .sort({ species: -1 })
       .limit(limit || 15)
       .skip(offset || 0)
-      .populate("groups", ["name"])
       .lean()
       .exec();
 
