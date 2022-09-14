@@ -18,7 +18,12 @@ export default function HotspotSelect({ name, stateCode, required, ...props }: P
   const value = watch(name);
 
   const loadOptions = async (inputValue: string, callback: (options: Option[]) => void) => {
-    const ids = Array.isArray(value) ? value.map(({ value }) => value).join(",") : value?.value || "";
+    let ids: any = [];
+    if (Array.isArray(value)) {
+      ids = value.map(({ value }) => value).join(",");
+    } else if (typeof value === "string") {
+      ids = value;
+    }
     const response = await fetch(`/api/hotspot/search?stateCode=${stateCode || ""}&q=${inputValue}&ids=${ids}`);
     const json = await response.json();
     const options = json.results;

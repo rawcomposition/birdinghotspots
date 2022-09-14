@@ -48,7 +48,7 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
           stateCode: state.code,
           countryCode: countrySlug.toUpperCase(),
           slug: newSlug,
-          entries: data.entries.map((it) => ({ ...it, hotspot: it.hotspotSelect.value })),
+          entries: data.entries.map(({ hotspotSelect, ...it }) => ({ ...it, hotspot: hotspotSelect.value })),
         },
       },
     });
@@ -120,8 +120,10 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   }
 
   const entries =
-    data?.entries?.map((entry) => ({ ...entry, hotspotSelect: { label: entry.hotspot.name, value: entry.hotspot } })) ??
-    [];
+    data?.entries?.map((entry) => ({
+      ...entry,
+      hotspotSelect: { label: entry.hotspot.name, value: entry.hotspot._id },
+    })) ?? [];
   return {
     props: {
       id: data?._id || null,

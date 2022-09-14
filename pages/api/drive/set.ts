@@ -31,29 +31,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await Drive.replaceOne({ _id: id }, data);
     }
 
-    const hotspotIds = data.entries.map((entry: any) => entry.hotspot._id);
+    const hotspotIds = data.entries.map((entry: any) => entry.hotspot);
 
-    data?.entries?.forEach(async ({ hotspot: hotspotEntry }: Entry) => {
-      const hotspot = await Hotspot.findOne({ _id: hotspotEntry });
-      let exists = false;
-      await Promise.all(
-        hotspot.drives?.map(async (drive: HotspotDrive) => {
-          if (drive.driveId.toString() === driveId) {
-            exists = true;
-            drive.name = data.name;
-            drive.slug = data.slug;
-          }
-        })
-      );
-      if (!exists) {
-        await hotspot.drives.push({
-          name: data.name,
-          slug: data.slug,
-          driveId,
-        });
-      }
-      await hotspot.save();
-    });
+    await Hotspot.updateMany(
+      { "drives.driveId": { $ne: driveId }, _id: { $in: hotspotIds } },
+      // @ts-ignore
+      { $push: { drives: { slug: data.slug, name: data.name, driveId } } }
+    );
 
     await Hotspot.updateMany(
       { drives: { $elemMatch: { driveId } }, _id: { $nin: hotspotIds } },
