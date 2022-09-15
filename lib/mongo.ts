@@ -213,14 +213,15 @@ export async function getImgStats() {
   return result;
 }
 
-export async function getContentStats(regions: string[]) {
+export async function getNoContentStats(regions: string[]) {
   await connect();
 
   return await Promise.all(
     regions.map(async (region) => {
       const count = await Hotspot.countDocuments({
         stateCode: region,
-        $or: [{ noContent: { $ne: true } }, { "groups.0": { $exists: true } }],
+        noContent: true,
+        "groups.0": { $exists: false },
       });
       return { region, count };
     })

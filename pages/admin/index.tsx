@@ -1,7 +1,7 @@
 import DashboardPage from "components/DashboardPage";
 import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import { getImgStats, getContentStats } from "lib/mongo";
+import { getImgStats, getNoContentStats } from "lib/mongo";
 import States from "data/states.json";
 
 type Props = {
@@ -78,7 +78,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   const { role, regions } = token;
   const imgResult = await getImgStats();
   const allStateCodes = States.filter(({ active }) => active).map((it) => it.code);
-  const contentCount = await getContentStats(role === "admin" ? allStateCodes : regions);
+  const contentCount = await getNoContentStats(role === "admin" ? allStateCodes : regions);
 
   const imgCount = imgResult.map(({ _id, count }) => ({
     stateCode: _id.stateCode,
@@ -94,8 +94,9 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     const url = `/${country.toLowerCase()}/${slug}`;
     const withImg = imgCount.find((it) => it.stateCode === code && it.featuredImg)?.count || 0;
     const withoutImg = imgCount.find((it) => it.stateCode === code && !it.featuredImg)?.count || 0;
-    const withContent = contentCount.find((it) => it.region === code)?.count || 0;
     const total = withImg + withoutImg;
+    const withoutContent = contentCount.find((it) => it.region === code)?.count || 0;
+    const withContent = total - withoutContent;
     return { code, label, country, url, withImg, withContent, total };
   });
 
