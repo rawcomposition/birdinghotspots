@@ -372,3 +372,9 @@ img.marker {
 	grid-template-rows: 1;
 	gap: 8px;
 }
+
+/*NProgress bar*/
+#nprogress {
+	z-index: 100000;
+	position: absolute;
+}

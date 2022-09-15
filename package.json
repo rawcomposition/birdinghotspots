@@ -31,6 +31,7 @@
     "mapbox-gl": "^2.9.1",
     "mongoose": "^6.3.5",
     "next": "^12.1.6",
+    "nextjs-progressbar": "^0.0.14",
     "node-htmldiff": "^0.9.4",
     "nodemailer": "^6.7.5",
     "nookies": "^2.5.2",
