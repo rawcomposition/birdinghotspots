@@ -49,6 +49,7 @@ export default function AddStreetView() {
         height: 413,
         isStreetview: true,
         isNew: true,
+        isMap: false,
         streetviewData: { lat, lng, fov, heading, pitch },
       };
       const images = getValues().images || [];
