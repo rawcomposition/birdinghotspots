@@ -46,8 +46,7 @@ const updateHotspot = async (dbHotspot: any, ebird: any) => {
         species: total,
         location,
       },
-    },
-    { writeConcern: { w: 0 } }
+    }
   );
 };
 
@@ -59,8 +58,7 @@ const deleteHotspot = async (id: any) => {
       $set: {
         needsDeleting: true,
       },
-    },
-    { writeConcern: { w: 0 } }
+    }
   );
 };
 
@@ -77,23 +75,20 @@ const insertHotspot = async ({ lat, lng, locationId, name, total, ...data }: any
     };
   }
   try {
-    await Hotspot.create(
-      {
-        name,
-        zoom: 14,
-        lat,
-        lng,
-        countryCode: data.subnational1Code?.split("-")?.[0],
-        stateCode,
-        countyCode,
-        locationId,
-        url: `/hotspot/${locationId}`,
-        location,
-        noContent: true,
-        species: total,
-      },
-      { writeConcern: { w: 0 } }
-    );
+    await Hotspot.create({
+      name,
+      zoom: 14,
+      lat,
+      lng,
+      countryCode: data.subnational1Code?.split("-")?.[0],
+      stateCode,
+      countyCode,
+      locationId,
+      url: `/hotspot/${locationId}`,
+      location,
+      noContent: true,
+      species: total,
+    });
   } catch (e: any) {
     console.log(e.message);
   }
