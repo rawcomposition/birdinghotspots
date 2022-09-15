@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import States from "data/states.json";
+import Logs from "models/Log";
+import dayjs from "dayjs";
 
 const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
@@ -94,6 +96,11 @@ const insertHotspot = async ({ lat, lng, locationId, name, total, ...data }: any
   }
 };
 
+type DateType = {
+  date: string;
+  region: string;
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { key }: any = req.query;
   if (process.env.CRON_KEY && key !== process.env.CRON_KEY) {
@@ -103,32 +110,49 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   await connect();
   try {
     const activeStates = States.filter((state) => state.active);
-    await Promise.all(
-      activeStates.map(async (state) => {
-        console.log(`Syncing ${state.code}`);
-        const hotspots = await getHotspotsForRegion(state.code);
-        const fields = ["locationId", "name", "lat", "lng", "species"];
-        const dbHotspots = await Hotspot.find({ stateCode: state.code }, fields);
-        const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
 
-        await Promise.all(
-          hotspots.map(async (ebird: any) => {
-            const dbHotspot = dbHotspots.find((it) => it.locationId === ebird.locationId);
-            if (dbHotspot) {
-              await updateHotspot(dbHotspot, ebird);
-              return;
-            }
-            await insertHotspot(ebird);
-          })
-        );
-        await Promise.all(
-          dbHotspots.map(async (dbHotspot: any) => {
-            if (dbHotspot.isGroup || ebirdIds.includes(dbHotspot.locationId)) return;
-            await deleteHotspot(dbHotspot._id);
-          })
-        );
+    const dates: DateType[] = [];
+    await Promise.all(
+      activeStates.map(async (state: any) => {
+        const result = await Logs.findOne({ message: `Synced ${state.code}` }).sort({ createdAt: -1 });
+        dates.push({
+          date: result?.createdAt,
+          region: state.code,
+        });
       })
     );
+
+    const sortedDates = dates.sort((a, b) => a.date.localeCompare(b.date));
+    const nextState = sortedDates[0]?.region;
+
+    console.log(`Syncing ${nextState}`);
+    const hotspots = await getHotspotsForRegion(nextState);
+    const fields = ["locationId", "name", "lat", "lng", "species"];
+    const dbHotspots = await Hotspot.find({ stateCode: nextState }, fields);
+    const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
+
+    await Promise.all(
+      hotspots.map(async (ebird: any) => {
+        const dbHotspot = dbHotspots.find((it) => it.locationId === ebird.locationId);
+        if (dbHotspot) {
+          await updateHotspot(dbHotspot, ebird);
+          return;
+        }
+        await insertHotspot(ebird);
+      })
+    );
+    await Promise.all(
+      dbHotspots.map(async (dbHotspot: any) => {
+        if (dbHotspot.isGroup || ebirdIds.includes(dbHotspot.locationId)) return;
+        await deleteHotspot(dbHotspot._id);
+      })
+    );
+    await Logs.create({
+      user: "BirdBot",
+      type: "sync",
+      message: `Synced ${nextState}`,
+      createdAt: dayjs().format(),
+    });
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
