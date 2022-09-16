@@ -148,7 +148,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       bulkWrites.push(deleteHotspot(dbHotspot._id));
     });
 
-    console.log(bulkWrites);
     await Hotspot.bulkWrite(bulkWrites);
 
     await Logs.create({
