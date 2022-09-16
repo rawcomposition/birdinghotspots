@@ -3,12 +3,6 @@ import connect from "lib/mongo";
 import admin from "lib/firebaseAdmin";
 import Drive from "models/Drive";
 import Hotspot from "models/Hotspot";
-import { HotspotDrive } from "lib/types";
-
-type Entry = {
-  hotspot: string;
-  description: string;
-};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
