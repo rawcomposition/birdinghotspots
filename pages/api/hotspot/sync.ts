@@ -25,7 +25,7 @@ const getHotspotsForRegion = async (region: string) => {
   }));
 };
 
-const updateHotspot = async (dbHotspot: any, ebird: any) => {
+const updateHotspot = (dbHotspot: any, ebird: any) => {
   const { name, lat, lng, total } = ebird;
   const hasChanged =
     name !== dbHotspot.name || lat !== dbHotspot.lat || lng !== dbHotspot.lng || total !== dbHotspot.species;
@@ -38,33 +38,31 @@ const updateHotspot = async (dbHotspot: any, ebird: any) => {
     };
   }
   console.log(`Updating hotspot ${dbHotspot.locationId}`);
-  await Hotspot.updateOne(
-    { _id: dbHotspot._id },
-    {
-      $set: {
+  return {
+    updateOne: {
+      filter: { _id: dbHotspot._id },
+      update: {
         name,
         lat,
         lng,
         species: total,
         location,
       },
-    }
-  );
+    },
+  };
 };
 
-const deleteHotspot = async (id: any) => {
+const deleteHotspot = (id: any) => {
   console.log(`Deleting hotspot ${id}`);
-  await Hotspot.updateOne(
-    { _id: id },
-    {
-      $set: {
-        needsDeleting: true,
-      },
-    }
-  );
+  return {
+    updateOne: {
+      filter: { _id: id },
+      update: { needsDeleting: true },
+    },
+  };
 };
 
-const insertHotspot = async ({ lat, lng, locationId, name, total, ...data }: any) => {
+const insertHotspot = ({ lat, lng, locationId, name, total, ...data }: any) => {
   if (!lat || !lng || !locationId || !name) return;
   console.log(`Inserting hotspot ${locationId}`);
   const stateCode = data?.subnational1Code;
@@ -76,24 +74,24 @@ const insertHotspot = async ({ lat, lng, locationId, name, total, ...data }: any
       coordinates: [lng, lat],
     };
   }
-  try {
-    await Hotspot.create({
-      name,
-      zoom: 14,
-      lat,
-      lng,
-      countryCode: data.subnational1Code?.split("-")?.[0],
-      stateCode,
-      countyCode,
-      locationId,
-      url: `/hotspot/${locationId}`,
-      location,
-      noContent: true,
-      species: total,
-    });
-  } catch (e: any) {
-    console.log(e.message);
-  }
+  return {
+    insertOne: {
+      document: {
+        name,
+        zoom: 14,
+        lat,
+        lng,
+        countryCode: data.subnational1Code?.split("-")?.[0],
+        stateCode,
+        countyCode,
+        locationId,
+        url: `/hotspot/${locationId}`,
+        location,
+        noContent: true,
+        species: total,
+      },
+    },
+  };
 };
 
 type DateType = {
@@ -121,7 +119,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         });
       })
     );
-
     const sortedDates = dates.sort((a, b) => a.date.localeCompare(b.date));
     const nextState = sortedDates[0]?.region;
 
@@ -129,24 +126,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const hotspots = await getHotspotsForRegion(nextState);
     const fields = ["locationId", "name", "lat", "lng", "species"];
     const dbHotspots = await Hotspot.find({ stateCode: nextState }, fields);
+    const dbHotspotIds: string[] = dbHotspots.map((hotspot) => hotspot.locationId);
     const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
 
-    await Promise.all(
-      hotspots.map(async (ebird: any) => {
-        const dbHotspot = dbHotspots.find((it) => it.locationId === ebird.locationId);
-        if (dbHotspot) {
-          await updateHotspot(dbHotspot, ebird);
-          return;
-        }
-        await insertHotspot(ebird);
-      })
-    );
-    await Promise.all(
-      dbHotspots.map(async (dbHotspot: any) => {
-        if (dbHotspot.isGroup || ebirdIds.includes(dbHotspot.locationId)) return;
-        await deleteHotspot(dbHotspot._id);
-      })
-    );
+    const bulkWrites: any = [];
+
+    hotspots.forEach((ebird: any) => {
+      const index = dbHotspotIds.indexOf(ebird.locationId);
+      if (index > -1) {
+        const dbHotspot = dbHotspots[index];
+        const updateOp = updateHotspot(dbHotspot, ebird);
+        if (updateOp) bulkWrites.push(updateOp);
+        return;
+      }
+      const insertOp = insertHotspot(ebird);
+      if (insertOp) bulkWrites.push(insertOp);
+    });
+
+    dbHotspots.forEach(async (dbHotspot: any) => {
+      if (dbHotspot.isGroup || ebirdIds.includes(dbHotspot.locationId)) return;
+      bulkWrites.push(deleteHotspot(dbHotspot._id));
+    });
+
+    console.log(bulkWrites);
+    await Hotspot.bulkWrite(bulkWrites);
+
     await Logs.create({
       user: "BirdBot",
       type: "sync",
