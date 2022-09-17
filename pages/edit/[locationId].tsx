@@ -228,7 +228,9 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
 
   const groupImages: Image[] = [];
   data?.groups?.forEach(({ images }: Group) => {
-    if (images) groupImages.push(...images);
+    if (!images) return;
+    const filtered = images.filter((it) => !it.hideFromChildren);
+    groupImages.push(...filtered);
   });
 
   const groupAbout: GroupAbout[] = [];

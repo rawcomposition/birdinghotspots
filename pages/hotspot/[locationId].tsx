@@ -85,12 +85,12 @@ export default function Hotspot({
     });
   });
 
-  const photos = images?.filter((it) => !it.isMap) || [];
+  const photos = images?.filter((it) => !it.isMap && !it.hideFromChildren) || [];
   const groupMaps: Image[] = [];
-  groups?.forEach((group) => {
-    group.images?.forEach((image) => {
-      groupMaps.push(image);
-    });
+  groups?.forEach(({ images }) => {
+    if (!images) return;
+    const filtered = images.filter((it) => !it.hideFromChildren);
+    groupMaps.push(...filtered);
   });
 
   const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];

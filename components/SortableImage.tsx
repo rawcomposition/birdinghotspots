@@ -9,6 +9,7 @@ interface Props extends Image {
   i: number;
   hideExtraFields?: boolean;
   hideMapCheckbox?: boolean;
+  showHideFromChildrenCheckbox?: boolean;
 }
 
 export default function SortableImage({
@@ -23,6 +24,7 @@ export default function SortableImage({
   isStreetview,
   hideExtraFields,
   hideMapCheckbox,
+  showHideFromChildrenCheckbox,
 }: Props) {
   const { register } = useFormContext();
   const isVertical = width && height && height > width;
@@ -86,6 +88,16 @@ export default function SortableImage({
               className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
             />
             &nbsp;&nbsp;Map image
+          </label>
+        )}
+        {showHideFromChildrenCheckbox && !hideExtraFields && (
+          <label className={`text-gray-500 font-bold block mt-2 ${isStreetview ? "opacity-50" : ""}`}>
+            <input
+              type="checkbox"
+              {...register(`images.${i}.hideFromChildren` as const)}
+              className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+            />
+            &nbsp;&nbsp;Hide from child hotspots
           </label>
         )}
       </div>

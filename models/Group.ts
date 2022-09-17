@@ -64,6 +64,7 @@ const GroupSchema = new Schema({
       width: Number,
       height: Number,
       caption: String,
+      hideFromChildren: Boolean,
     },
   ],
   createdAt: {

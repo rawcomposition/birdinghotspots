@@ -10,9 +10,15 @@ type Props = {
   hideExtraFields?: boolean;
   enableStreetview?: boolean;
   hideMapCheckbox?: boolean;
+  showHideFromChildrenCheckbox?: boolean;
 };
 
-export default function ImagesInput({ hideExtraFields, enableStreetview, hideMapCheckbox }: Props) {
+export default function ImagesInput({
+  hideExtraFields,
+  enableStreetview,
+  hideMapCheckbox,
+  showHideFromChildrenCheckbox,
+}: Props) {
   const secureFetch = useSecureFetch();
   const { control } = useFormContext();
   const { fields, append, remove, move } = useFieldArray({ name: "images", control });
@@ -55,6 +61,7 @@ export default function ImagesInput({ hideExtraFields, enableStreetview, hideMap
                   handleDelete={handleDelete}
                   hideExtraFields={hideExtraFields}
                   hideMapCheckbox={hideMapCheckbox}
+                  showHideFromChildrenCheckbox={showHideFromChildrenCheckbox}
                   {...field}
                 />
               ))}

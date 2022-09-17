@@ -34,6 +34,7 @@ export type Image = {
   isNew?: boolean; //temporarily added after uploaded
   id?: string; //temporarily added after uploaded
   streetviewData?: any;
+  hideFromChildren?: boolean;
 };
 
 export type Marker = {

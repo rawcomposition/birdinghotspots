@@ -144,7 +144,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
               <div>
                 <label className="text-gray-500 font-bold">Maps</label>
-                <ImagesInput hideMapCheckbox />
+                <ImagesInput hideMapCheckbox showHideFromChildrenCheckbox />
               </div>
 
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
