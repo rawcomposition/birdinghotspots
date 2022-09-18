@@ -19,6 +19,14 @@
 		color: #4a84b2;
 	}
 
+	ins {
+		background-color: #e6ffec;
+	}
+
+	del {
+		background-color: #ffebe9;
+	}
+
 	input.form-input, textarea.form-input {
 		@apply w-full;
 		@apply mt-1;

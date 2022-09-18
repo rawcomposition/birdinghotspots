@@ -281,3 +281,19 @@ export type Link = {
   label: string;
   url: string;
 };
+
+export type Revision = {
+  _id?: string;
+  locationId: string;
+  countryCode: string;
+  stateCode: string;
+  about?: string;
+  tips?: string;
+  birds?: string;
+  hikes?: string;
+  notes?: string;
+  by: string;
+  email: string;
+  status: string;
+  createdAt: string;
+};

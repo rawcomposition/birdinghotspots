@@ -23,7 +23,7 @@ type Props = {
   items: Item[];
 };
 
-export default function County({ items: allItems }: Props) {
+export default function ImageReview({ items: allItems }: Props) {
   const [items, setItems] = React.useState(allItems);
   const secureFetch = useSecureFetch();
 
@@ -47,7 +47,7 @@ export default function County({ items: allItems }: Props) {
             <h3 className="text-lg font-bold">{item.name}</h3>
             {item.countyLabel ? (
               <p>
-                {item.countyLabel}, {item.stateLabel}, {item.countryCode}
+                {item.countyLabel} County, {item.stateLabel}, {item.countryCode}
               </p>
             ) : (
               <p>

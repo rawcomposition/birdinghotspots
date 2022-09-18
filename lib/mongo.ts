@@ -4,6 +4,7 @@ import Drive from "models/Drive";
 import Article from "models/Article";
 import Settings from "models/Settings";
 import Upload from "models/Upload";
+import Revision from "models/Revision";
 import Group from "models/Group";
 
 const URI = process.env.MONGO_URI;
@@ -196,6 +197,17 @@ export async function getUploads(regions: string[]) {
     query = { ...query, stateCode: { $in: regions || [] } };
   }
   const result = await Upload.find(query).sort({ name: 1 }).lean().exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getRevisions(regions: string[]) {
+  await connect();
+  let query: any = { status: "pending" };
+  if (regions !== null) {
+    query = { ...query, stateCode: { $in: regions || [] } };
+  }
+  const result = await Revision.find(query).sort({ createdAt: -1 }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

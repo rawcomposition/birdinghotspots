@@ -19,7 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    const upload = await Upload.findOne({ _id: id });
     const hotspot = await Hotspot.findOne({ locationId: upload.locationId });
     if (!hotspot) {
       res.status(500).json({ error: "Hotspot not found" });

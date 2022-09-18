@@ -112,12 +112,12 @@ export default function Hotspot({
             Upload Photos
           </a>
         </Link>
-        {/*<Link href={`/hotspot/suggest/${locationId}`}>
+        <Link href={`/hotspot/suggest/${locationId}`}>
           <a className="flex gap-1">
             <PencilSquareIcon className="h-4 w-4" />
             Suggest Edit
           </a>
-            </Link>*/}
+        </Link>
         {canEdit && needsDeleting && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot

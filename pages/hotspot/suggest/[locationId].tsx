@@ -3,10 +3,10 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "components/Input";
+import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { Image } from "lib/types";
 import useToast from "hooks/useToast";
 import Error from "next/error";
 import TinyMCE from "components/TinyMCE";
@@ -52,6 +52,7 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
     defaultValues: {
       name: defaultName,
       email: defaultEmail,
+      ...data,
     },
   });
 
@@ -70,7 +71,7 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
 
   const submit = async ({ name, email, ...data }: Inputs, token: string) => {
     const response = await send({
-      url: "/api/hotspot/upload",
+      url: "/api/hotspot/suggest",
       method: "POST",
       data: {
         token,
@@ -99,10 +100,9 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
   if (success)
     return (
       <div className="container pb-16 my-12 max-w-2	xl mx-auto text-center">
-        <h1 className="text-lime-600 text-xl font-bold mb-4">Upload Complete</h1>
+        <h1 className="text-lime-600 text-xl font-bold mb-4">Suggestion Received!</h1>
         <p className="text-lg text-gray-500 mb-4">
-          Thanks for contributing!{" "}
-          {user?.uid ? "Your photos have been added to the hotspot." : "An editor will review your photos shortly."}
+          Thanks for contributing! An editor will review your suggestion shortly.
         </p>
         <Link href="/hotspot/[locationId]" as={`/hotspot/${locationId}`}>
           <a className="text-sky-700 font-bold">Back to Hotspot</a>
@@ -156,6 +156,10 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
 
           <Field label="Notable Trails">
             <TinyMCE name="hikes" defaultValue={data.hikes} />
+          </Field>
+
+          <Field label="Notes to the editor">
+            <Textarea name="notes" />
           </Field>
           <div className="px-4 py-3 bg-gray-100 flex flex-col gap-3 md:flex-row justify-end sm:px-6 rounded">
             <Submit disabled={loading} color="green" className="font-medium">

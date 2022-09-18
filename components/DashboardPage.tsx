@@ -1,7 +1,14 @@
 import * as React from "react";
 import Title from "components/Title";
 import ErrorBoundary from "components/ErrorBoundary";
-import { UserCircleIcon, UsersIcon, ChartBarIcon, PhotoIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
+import {
+  UserCircleIcon,
+  UsersIcon,
+  ChartBarIcon,
+  PhotoIcon,
+  InformationCircleIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/outline";
 import DashboardNavItem from "components/DashboardNavItem";
 import { useUser } from "providers/user";
 
@@ -16,6 +23,7 @@ export default function DashboardPage({ title, children }: PropTypes) {
   const nav = [
     { name: "Dashboard", href: "/admin", icon: ChartBarIcon },
     { name: "Image Review", href: "/admin/image-review", icon: PhotoIcon },
+    { name: "Suggestion Review", href: "/admin/revision-review", icon: PencilSquareIcon },
   ];
 
   if (user?.role === "admin") {

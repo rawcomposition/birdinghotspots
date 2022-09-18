@@ -13,19 +13,21 @@ const Input = () => {
       <label className="text-gray-500 font-bold">Links</label>
       <div>
         {fields.map((field, index) => {
+          //@ts-ignore
+          const error = errors?.links?.[index] as any;
           return (
             <div className="flex gap-4" key={field.id}>
               <input
                 type="text"
                 placeholder="Label"
                 {...register(`links.${index}.label` as const, { required: true })}
-                className={`form-input ${errors?.links?.[index]?.label ? "input-error" : ""}`}
+                className={`form-input ${error?.label ? "input-error" : ""}`}
               />
               <input
                 type="text"
                 placeholder="URL"
                 {...register(`links.${index}.url` as const, { required: true })}
-                className={`form-input ${errors?.links?.[index]?.url ? "input-error" : ""}`}
+                className={`form-input ${error?.url ? "input-error" : ""}`}
               />
               <button type="button" onClick={() => remove(index)}>
                 <TrashIcon className="h-6 w-6 text-red-700 opacity-80" />
