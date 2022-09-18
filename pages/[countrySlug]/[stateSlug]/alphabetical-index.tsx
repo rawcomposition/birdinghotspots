@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { getHotspotsByState } from "lib/mongo";
+import { getHotspotsByState, getGroupHotspotIds } from "lib/mongo";
 import { getState } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
@@ -10,6 +10,7 @@ import { State } from "lib/types";
 import { useUser } from "providers/user";
 import NoticeIcon from "components/NoticeIcon";
 import { useDebounce } from "hooks/useDebounce";
+import nookies from "nookies";
 
 type Props = {
   countrySlug: string;
@@ -36,7 +37,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
     : hotspots;
 
   if (debouncedFilter === 1) {
-    filtered = filtered.filter((it) => it.noContent && it.groups?.length === 0);
+    filtered = filtered.filter((it) => it.noContent);
   } else if (debouncedFilter === 2) {
     filtered = filtered.filter((it) => it.needsDeleting);
   }
@@ -91,7 +92,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
           );
         })}
       </p>
-      {filtered.map(({ name, url, noContent, needsDeleting, groups }, i, array) => {
+      {filtered.map(({ name, url, noContent, needsDeleting }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -103,7 +104,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
               </h2>
             )}
             <Link href={url}>{name}</Link>
-            {user && noContent && groups?.length === 0 && <NoticeIcon color="yellow" title="Needs content" />}
+            {user && noContent && <NoticeIcon color="yellow" title="Needs content" />}
             {needsDeleting && user && (
               <span className={`bg-red-600 rounded-full text-xs px-2 text-white font-bold ml-2`}>
                 removed from eBird
@@ -134,13 +135,23 @@ interface Params extends ParsedUrlQuery {
   countrySlug: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug } = query as Params;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = nookies.get(context);
+  const { countrySlug, stateSlug } = context.query as Params;
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
   const hotspots = (await getHotspotsByState(state.code)) || [];
-  const formatted = hotspots.map((it: any) => ({ ...it, noContent: !!(it.noContent && !it.groups?.length) }));
+
+  let groupHotspotIds: string[] = [];
+  if (cookies.session) {
+    groupHotspotIds = (await getGroupHotspotIds(state.code)) || [];
+  }
+
+  const formatted = hotspots.map((it: any) => ({
+    ...it,
+    noContent: !!(it.noContent && !groupHotspotIds.includes(it._id.toString())),
+  }));
 
   return {
     props: { countrySlug, state, hotspots: formatted },

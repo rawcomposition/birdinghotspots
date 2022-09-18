@@ -118,6 +118,14 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
         <br />
         <span className="text-sm text-gray-500 font-normal">{hotspotName}</span>
       </h2>
+      <div className="bg-gray-100 p-4 mt-8">
+        <ul className="space-y-1 list-disc ml-5">
+          <li>We welcome additions or changes in any of the content areas below.</li>
+          <li>
+            General comments can go in the <strong>Notes to the editor</strong> section.
+          </li>
+        </ul>
+      </div>
       <Form form={form} onSubmit={handleSubmit} className="form-text-lg">
         <div className="pt-5 bg-white space-y-6 flex-1">
           <div className="flex flex-col sm:flex-row gap-4">
@@ -142,6 +150,7 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
               </label>
             </div>
           </div>
+
           <Field label="Tips for Birding">
             <TinyMCE name="tips" defaultValue={data.tips} />
           </Field>
@@ -158,9 +167,12 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
             <TinyMCE name="hikes" defaultValue={data.hikes} />
           </Field>
 
-          <Field label="Notes to the editor">
-            <Textarea name="notes" />
-          </Field>
+          <div className="bg-gray-100 px-4 pb-4 pt-3 rounded-lg">
+            <Field label="Notes to the editor">
+              <Textarea name="notes" />
+            </Field>
+          </div>
+
           <div className="px-4 py-3 bg-gray-100 flex flex-col gap-3 md:flex-row justify-end sm:px-6 rounded">
             <Submit disabled={loading} color="green" className="font-medium">
               Submit Suggestion
@@ -179,16 +191,17 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { locationId } = query as Params;
   const hotspot = await getHotspotByLocationId(locationId);
+  if (!hotspot) return { notFound: true };
 
   return {
     props: {
       locationId,
       hotspotName: hotspot?.name,
       data: {
-        about: hotspot?.about,
-        birds: hotspot?.birds,
-        hikes: hotspot?.hikes,
-        tips: hotspot?.tips,
+        about: hotspot?.about || "",
+        birds: hotspot?.birds || "",
+        hikes: hotspot?.hikes || "",
+        tips: hotspot?.tips || "",
       },
     },
   };

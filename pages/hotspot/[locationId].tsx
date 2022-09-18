@@ -192,10 +192,11 @@ export default function Hotspot({
           ))}
 
           {noContent && !groups?.length && (
-            <AboutSection
-              heading="About this Location"
-              text='A description and tips for birding this location are welcome from the birding community. You may use the "Contact" link to provide information you would like to share share.'
-            />
+            <div className="mb-6 formatted">
+              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
+              We don&apos;t have any information about this location -{" "}
+              <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link>
+            </div>
           )}
 
           <div className="space-y-1">

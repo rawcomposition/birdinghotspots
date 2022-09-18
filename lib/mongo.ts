@@ -13,15 +13,7 @@ export default connect;
 
 export async function getHotspotsByState(stateCode: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode }, [
-    "-_id",
-    "name",
-    "url",
-    "iba",
-    "noContent",
-    "needsDeleting",
-    "groups",
-  ])
+  const result = await Hotspot.find({ stateCode }, ["name", "url", "iba", "noContent", "needsDeleting", "groups"])
     .sort({ name: 1 })
     .lean()
     .exec();
@@ -255,4 +247,14 @@ export async function getGroupsByState(stateCode: string) {
   const result = await Group.find({ stateCodes: stateCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
 
   return result;
+}
+
+export async function getGroupHotspotIds(stateCode: string) {
+  await connect();
+  const result = await Group.find({ stateCodes: stateCode }, ["-_id", "hotspots"]).lean().exec();
+  const ids = result.reduce((acc: string[], group) => {
+    return [...acc, ...group.hotspots.map((id: any) => id.toString())];
+  }, []);
+
+  return [...new Set(ids as string[])];
 }
