@@ -19,7 +19,6 @@ type Props = {
     name: string;
     url: string;
     noContent?: boolean;
-    groups: string[];
     needsDeleting?: boolean;
   }[];
 };

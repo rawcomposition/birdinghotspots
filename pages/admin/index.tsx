@@ -1,7 +1,7 @@
 import DashboardPage from "components/DashboardPage";
 import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import { getImgStats, getNoContentStats } from "lib/mongo";
+import { getImgStats } from "lib/mongo";
 import States from "data/states.json";
 
 type Props = {
@@ -12,7 +12,6 @@ type Props = {
     url: string;
     total: number;
     withImg: number;
-    withContent: number;
   }[];
 };
 
@@ -30,27 +29,18 @@ export default function Dashboard({ data }: Props) {
                 Hotspots
               </th>
               <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem]">
-                With Content
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem]">
                 With Photos
               </th>
               <th />
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {data.map(({ code, label, url, total, withImg, withContent }) => (
+            {data.map(({ code, label, url, total, withImg }) => (
               <tr key={code}>
                 <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                   <Link href={url}>{label}</Link>
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{total.toLocaleString()}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-2">
-                    {withContent.toLocaleString()}
-                    <span className="text-xs">({total > 0 ? Math.round((withContent / total) * 100) : 0}%)</span>
-                  </div>
-                </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
                     {withImg.toLocaleString()}
@@ -77,8 +67,6 @@ export default function Dashboard({ data }: Props) {
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
   const { role, regions } = token;
   const imgResult = await getImgStats();
-  const allStateCodes = States.filter(({ active }) => active).map((it) => it.code);
-  const contentCount = await getNoContentStats(role === "admin" ? allStateCodes : regions);
 
   const imgCount = imgResult.map(({ _id, count }) => ({
     stateCode: _id.stateCode,
@@ -95,9 +83,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     const withImg = imgCount.find((it) => it.stateCode === code && it.featuredImg)?.count || 0;
     const withoutImg = imgCount.find((it) => it.stateCode === code && !it.featuredImg)?.count || 0;
     const total = withImg + withoutImg;
-    const withoutContent = contentCount.find((it) => it.region === code)?.count || 0;
-    const withContent = total - withoutContent;
-    return { code, label, country, url, withImg, withContent, total };
+    return { code, label, country, url, withImg, total };
   });
 
   const sorted = data.sort((a, b) => b.total - a.total);

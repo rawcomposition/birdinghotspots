@@ -13,7 +13,7 @@ export default connect;
 
 export async function getHotspotsByState(stateCode: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode }, ["name", "url", "iba", "noContent", "needsDeleting", "groups"])
+  const result = await Hotspot.find({ stateCode }, ["name", "url", "iba", "noContent", "needsDeleting"])
     .sort({ name: 1 })
     .lean()
     .exec();
@@ -215,21 +215,6 @@ export async function getImgStats() {
     },
   ]);
   return result;
-}
-
-export async function getNoContentStats(regions: string[]) {
-  await connect();
-
-  return await Promise.all(
-    regions.map(async (region) => {
-      const count = await Hotspot.countDocuments({
-        stateCode: region,
-        noContent: true,
-        "groups.0": { $exists: false },
-      });
-      return { region, count };
-    })
-  );
 }
 
 export async function getGroupByLocationId(locationId: string) {
