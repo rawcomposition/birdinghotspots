@@ -18,6 +18,7 @@ type Props = {
     name: string;
     url: string;
     noContent?: boolean;
+    groups: string[];
     needsDeleting?: boolean;
   }[];
 };
@@ -35,7 +36,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
     : hotspots;
 
   if (debouncedFilter === 1) {
-    filtered = filtered.filter((it) => it.noContent);
+    filtered = filtered.filter((it) => it.noContent && it.groups?.length === 0);
   } else if (debouncedFilter === 2) {
     filtered = filtered.filter((it) => it.needsDeleting);
   }
@@ -90,7 +91,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
           );
         })}
       </p>
-      {filtered.map(({ name, url, noContent, needsDeleting }, i, array) => {
+      {filtered.map(({ name, url, noContent, needsDeleting, groups }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -102,7 +103,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
               </h2>
             )}
             <Link href={url}>{name}</Link>
-            {noContent && user && <NoticeIcon color="yellow" title="Needs content" />}
+            {user && noContent && groups?.length === 0 && <NoticeIcon color="yellow" title="Needs content" />}
             {needsDeleting && user && (
               <span className={`bg-red-600 rounded-full text-xs px-2 text-white font-bold ml-2`}>
                 removed from eBird
