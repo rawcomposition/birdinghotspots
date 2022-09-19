@@ -64,7 +64,8 @@ export default function Group({
       <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
         {name}
       </PageHeading>
-      <EditorActions className="font-medium -mt-10">
+      {featuredImages.length > 0 && <FeaturedCollage photos={featuredImages as any} />}
+      <EditorActions className="font-medium">
         {canEdit && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
         {canEdit && (
           <DeleteBtn url={`/api/group/delete?id=${_id}`} entity="group" className="ml-auto">
@@ -72,7 +73,6 @@ export default function Group({
           </DeleteBtn>
         )}
       </EditorActions>
-      {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">
@@ -103,7 +103,10 @@ export default function Group({
             {restrooms !== null && <p>{restroomOptions.find((it) => it.value === restrooms)?.label}</p>}
           </div>
         </div>
-        <div>{!!images?.length && <MapList images={images} />}</div>
+        <div>
+          {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
+          {!!images?.length && <MapList images={images} />}
+        </div>
       </div>
       <h3 className="text-lg mb-2 mt-8 font-bold">Hotspots</h3>
       <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

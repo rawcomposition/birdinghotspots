@@ -34,6 +34,7 @@ export default function RevisionReview({ items: allItems }: Props) {
   };
 
   const handleApprove = async (id: string) => {
+    if (!confirm("Are you sure? Existing text will be replaced with the suggested text.")) return;
     setItems((prev) => prev.map((item) => (item._id === id ? { ...item, approved: true } : item)));
     toast.success("Suggestion approved");
     await secureFetch(`/api/revision/approve?id=${id}`, "GET");
