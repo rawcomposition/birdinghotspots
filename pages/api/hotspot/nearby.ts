@@ -8,6 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const query = {
     location: { $near: { $geometry: { type: "Point", coordinates: [lng, lat] } } },
     locationId: { $nin: exclude?.split(",") || [] },
+    name: { $not: /^stakeout/i },
   };
 
   try {
