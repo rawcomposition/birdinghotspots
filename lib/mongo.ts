@@ -216,7 +216,17 @@ export async function getImgStats() {
 export async function getGroupByLocationId(locationId: string) {
   await connect();
   const result = await Group.findOne({ locationId })
-    .populate("hotspots", ["url", "name", "featuredImg", "lat", "lng", "species", "locationId"])
+    .populate("hotspots", [
+      "url",
+      "name",
+      "featuredImg",
+      "lat",
+      "lng",
+      "species",
+      "locationId",
+      "countyCode",
+      "stateCode",
+    ])
     .lean()
     .exec();
 

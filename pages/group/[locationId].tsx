@@ -4,19 +4,18 @@ import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import { getGroupByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
-import { getCountyByCode, getStateByCode } from "lib/localData";
+import { getCountyByCode, getStateByCode, getLocationText } from "lib/localData";
 import { County, State, Marker, Group as GroupType } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { restroomOptions, formatMarker } from "lib/helpers";
+import { restroomOptions, formatMarker, getShortName } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import HotspotGrid from "components/HotspotGrid";
-import FeaturedCollage from "components/FeaturedCollage";
 
 interface Props extends GroupType {
   county?: County;
@@ -47,6 +46,7 @@ export default function Group({
   markers,
   hotspots,
 }: Props) {
+  const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
   const canEdit = user?.role === "admin" || stateCodes.filter((it) => user?.regions?.includes(it)).length > 0;
   let title = name;
@@ -56,7 +56,10 @@ export default function Group({
     title = `${name} - ${state.label}`;
   }
   const locationIds = hotspots.map((it) => it.locationId);
-  const featuredImages = hotspots?.filter((it) => it.featuredImg).map((it) => it.featuredImg);
+  hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
+
+  const filteredHotspots = showMore ? hotspots : hotspots.slice(0, 12);
+  const moreCount = hotspots.length - 12;
 
   return (
     <div className="container pb-16">
@@ -64,8 +67,7 @@ export default function Group({
       <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
         {name}
       </PageHeading>
-      {featuredImages.length > 0 && <FeaturedCollage photos={featuredImages as any} />}
-      <EditorActions className="font-medium">
+      <EditorActions className="font-medium -mt-10">
         {canEdit && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
         {canEdit && (
           <DeleteBtn url={`/api/group/delete?id=${_id}`} entity="group" className="ml-auto">
@@ -73,6 +75,20 @@ export default function Group({
           </DeleteBtn>
         )}
       </EditorActions>
+      <div className="mb-12">
+        <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <HotspotGrid hotspots={filteredHotspots} loading={false} />
+        </div>
+        {hotspots.length > 12 && (
+          <button
+            type="button"
+            onClick={() => setShowMore(true)}
+            className="text-[#4a84b2] font-bold block mx-auto mt-2"
+          >
+            View {moreCount} more {moreCount === 1 ? "hotspot" : "hotspots"}
+          </button>
+        )}
+      </div>
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">
@@ -108,10 +124,6 @@ export default function Group({
           {!!images?.length && <MapList images={images} />}
         </div>
       </div>
-      <h3 className="text-lg mb-2 mt-8 font-bold">Hotspots</h3>
-      <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        <HotspotGrid hotspots={hotspots} loading={false} smallTitle />
-      </div>
     </div>
   );
 }
@@ -131,12 +143,21 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const markers = data?.hotspots?.map((it) => formatMarker(it, true)) || [];
 
+  const hotspots = data?.hotspots?.map((it) => ({
+    ...it,
+    locationLine: it.countyCode
+      ? getLocationText(it.countyCode, !!state, true)
+      : `${getStateByCode(it.stateCode)?.label}`,
+    name: getShortName(it.name),
+  }));
+
   return {
     props: {
       state,
       county,
       markers,
       ...data,
+      hotspots,
     },
   };
 };

@@ -28,7 +28,7 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, s
 
   return (
     <>
-      {hotspots.map(({ name, _id, featuredImg, url, groups, lat: hsLat, lng: hsLng, species, locationLine }) => {
+      {hotspots.map(({ name, _id, featuredImg, url, lat: hsLat, lng: hsLng, species, locationLine }) => {
         let distance = distanceBetween(lat || 0, lng || 0, hsLat, hsLng);
         distance = distance < 10 ? parseFloat(distance.toFixed(1)) : parseFloat(distance.toFixed(0));
         const namePieces = name.split("--");

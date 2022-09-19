@@ -278,3 +278,10 @@ export const roles = [
   { name: "Admin", id: "admin" },
   { name: "Editor", id: "editor" },
 ];
+
+export const getShortName = (name: string) => {
+  if (name.includes("--")) {
+    return name.split("--").pop();
+  }
+  return name;
+};

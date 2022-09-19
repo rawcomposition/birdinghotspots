@@ -50,7 +50,7 @@ export function getCountyByCode(code: string) {
   return formatCounty(stateCode, county);
 }
 
-export function getLocationText(countyCode: string) {
+export function getLocationText(countyCode: string, hideState?: boolean, hideCountry?: boolean) {
   if (!countyCode) return null;
   const pieces = countyCode.split("-");
   const stateCode = `${pieces[0]}-${pieces[1]}`;
@@ -59,7 +59,14 @@ export function getLocationText(countyCode: string) {
   const county = array.find((county: County) => county.ebirdCode === countyCode);
   const state = getStateByCode(stateCode);
   if (!county || !state) return null;
-  return `${capitalize(county.slug.replaceAll("-", " "))} County, ${state?.label}, US`;
+  let result = `${capitalize(county.slug.replaceAll("-", " "))} County`;
+  if (!hideState) {
+    result = `${result}, ${state?.label}`;
+  }
+  if (!hideCountry) {
+    result = `${result}, ${state?.country}`;
+  }
+  return result;
 }
 
 export function getCountyBySlug(stateCode: string, countySlug: string) {
