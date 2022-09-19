@@ -1,10 +1,20 @@
 import * as React from "react";
-import Nav from "data/nav.json";
 import NavItem from "components/NavItem";
 import Link from "next/link";
 import SearchModal from "components/SearchModal";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Logo from "components/Logo";
+
+const links = [
+  {
+    label: "Explore",
+    href: "/explore",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+];
 
 export default function Header() {
   const [collapsed, setCollapsed] = React.useState<boolean>(false);
@@ -48,7 +58,7 @@ export default function Header() {
                     <MagnifyingGlassIcon className="h-5 w-5" />
                   </button>
                 </li>
-                {Nav.map((item) => (
+                {links.map((item) => (
                   <NavItem key={item.label} {...item} />
                 ))}
               </ul>
