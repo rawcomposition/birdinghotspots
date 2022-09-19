@@ -5,6 +5,7 @@ import Header from "components/Header";
 import { UserProvider } from "providers/user";
 import { Toaster } from "react-hot-toast";
 import NextNProgress from "nextjs-progressbar";
+import { ScrollTop } from "components/ScrollTop";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <NextNProgress height={1} />
       <Component {...pageProps} />
       <Footer />
+      <ScrollTop />
     </UserProvider>
   );
 }
