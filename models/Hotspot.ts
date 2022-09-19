@@ -118,7 +118,7 @@ const HotspotSchema = new Schema({
   },
   createdAt: {
     type: "string",
-    default: dayjs().format("YYYY-MM-DD"),
+    default: () => dayjs().format("YYYY-MM-DD"),
     required: true,
   },
   species: Number,

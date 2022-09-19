@@ -4,7 +4,6 @@ import Hotspot from "models/Hotspot";
 import Revision from "models/Revision";
 import { verifyRecaptcha } from "lib/helpers";
 import nodemailer from "nodemailer";
-import dayjs from "dayjs";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   await connect();
@@ -17,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (score > 0.5) {
       await Revision.create({
         locationId,
-        createdAt: dayjs().format(),
         by: name,
         email,
         countryCode: hotspot.countryCode,

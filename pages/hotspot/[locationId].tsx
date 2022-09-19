@@ -167,7 +167,7 @@ export default function Hotspot({
             ))}
             {extraLinks.length > 0 && (
               <p className="mt-4">
-                Also, see:
+                Also, see all the hotspots at:
                 <br />
                 {extraLinks?.map(({ url, label }) => (
                   <React.Fragment key={label}>

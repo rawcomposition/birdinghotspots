@@ -9,7 +9,6 @@ import { State, HotspotDrive, Hotspot, County as CountyType } from "lib/types";
 import EbirdCountySummary from "components/EbirdCountySummary";
 import HotspotList from "components/HotspotList";
 import RareBirds from "components/RareBirds";
-import EditorActions from "components/EditorActions";
 import Title from "components/Title";
 import { scrollToAnchor } from "lib/helpers";
 import TopHotspots from "components/TopHotspots";

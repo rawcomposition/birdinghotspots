@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
+import dayjs from "dayjs";
 
 const UploadSchema = new Schema({
   locationId: {
@@ -23,7 +24,7 @@ const UploadSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: () => dayjs().format(),
   },
 });
 

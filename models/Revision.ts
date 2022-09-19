@@ -29,7 +29,7 @@ const RevisionSchema = new Schema({
   },
   createdAt: {
     type: "string",
-    default: dayjs().format(),
+    default: () => dayjs().format(),
     required: true,
   },
 });

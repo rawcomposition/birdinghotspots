@@ -8,7 +8,7 @@ const LogsSchema = new Schema({
   type: String,
   createdAt: {
     type: "string",
-    default: dayjs().format(),
+    default: () => dayjs().format(),
   },
 });
 

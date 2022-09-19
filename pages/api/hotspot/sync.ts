@@ -154,7 +154,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       user: "BirdBot",
       type: "sync",
       message: `Synced ${nextState}`,
-      createdAt: dayjs().format(),
     });
     res.status(200).json({ success: true });
   } catch (error: any) {
