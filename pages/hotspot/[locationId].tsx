@@ -185,17 +185,25 @@ export default function Hotspot({
 
           {about && <AboutSection heading="About this Location" text={about} />}
 
-          {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
-
           {groups?.map(({ _id, name, about }) => (
             <AboutSection key={_id} heading={`About ${name}`} text={about || ""} />
           ))}
 
-          {noContent && !groups?.length && (
+          {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
+
+          {noContent && !groups?.length && !name.startsWith("stakeout ") && (
             <div className="mb-6 formatted">
               <h3 className="font-bold text-lg mb-1.5">About this location</h3>
               We don&apos;t have any information about this location -{" "}
               <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link>
+            </div>
+          )}
+
+          {name.startsWith("stakeout ") && (
+            <div className="p-4 bg-gray-100 rounded-lg mb-6">
+              Stakeouts are a special kind of hotspot used for rare birds in certain situations. They are often created
+              if a bird is consistently observed in a particular area that is not covered by an existing hotspot, and
+              it&apos;s rare enough that many birders come to see it.
             </div>
           )}
 
