@@ -79,7 +79,7 @@ export default function Group({
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <HotspotGrid hotspots={filteredHotspots} loading={false} />
         </div>
-        {hotspots.length > 12 && (
+        {!showMore && hotspots.length > 12 && (
           <button
             type="button"
             onClick={() => setShowMore(true)}
