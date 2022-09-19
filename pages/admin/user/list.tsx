@@ -109,7 +109,7 @@ export default function Users() {
           <tbody className="divide-y divide-gray-200 bg-white">
             {users.length === 0 && (
               <tr>
-                <td colSpan={4} className="text-gray-700 p-4 text-center">
+                <td colSpan={5} className="text-gray-700 p-4 text-center">
                   Loading...
                 </td>
               </tr>

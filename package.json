@@ -6,11 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "top10": "node --experimental-json-modules ./fetchTop10.mjs",
-    "migrate-images": "node --experimental-json-modules ./migrateImages.mjs",
-    "migrate": "node --experimental-json-modules ./migrate.mjs",
-    "migrate-clean": "node --experimental-json-modules ./migrateClean.mjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "@dnd-kit/sortable": "^7.0.1",
