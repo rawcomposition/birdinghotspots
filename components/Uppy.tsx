@@ -32,6 +32,7 @@ export default function ImageInput({ onSuccess }: Props) {
     });
 
     instance.use(Transloadit, {
+      waitForEncoding: true,
       params: {
         auth: { key: process.env.NEXT_PUBLIC_TRANSLOADIT_KEY || "" },
         template_id: process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID || "",
