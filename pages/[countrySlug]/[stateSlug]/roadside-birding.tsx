@@ -39,11 +39,6 @@ export default function RoadsideBirding({ countrySlug, state, hotspots }: Props)
       <div className="md:flex gap-8 items-start mb-8">
         <figure className="border p-2 bg-gray-200 text-center text-xs mb-4">
           <img src="/riddle-rd.jpg" className="md:min-w-[400px] mx-auto" />
-          <figcaption className="my-3">
-            Riddle Road, Sandusky County, Ohio
-            <br />
-            Photo by Ken Ostermiller
-          </figcaption>
         </figure>
         <div>
           <p className="mb-4">
