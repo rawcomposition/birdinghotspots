@@ -10,24 +10,6 @@ import PageHeading from "components/PageHeading";
 import ListHotspotsByCounty from "components/ListHotspotsByCounty";
 import Title from "components/Title";
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const hotspots = (await getAccessibleHotspotsByState(state.code)) || [];
-  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
-
-  return {
-    props: { countrySlug, state, hotspots: hotspotsByCounty },
-  };
-};
-
 type Props = {
   countrySlug: string;
   state: State;
@@ -66,3 +48,21 @@ export default function AccessibleFacilities({ state, countrySlug, hotspots }: P
     </div>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  countrySlug: string;
+  stateSlug: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { countrySlug, stateSlug } = query as Params;
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const hotspots = (await getAccessibleHotspotsByState(state.code)) || [];
+  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
+
+  return {
+    props: { countrySlug, state, hotspots: hotspotsByCounty },
+  };
+};

@@ -59,7 +59,7 @@ export async function getRoadsideHotspotsByState(stateCode: string) {
   const result = await Hotspot.find(
     {
       stateCode,
-      roadside: "Yes",
+      "accessible.0": { $exists: true },
     },
     ["-_id", "name", "url", "countyCode"]
   )
