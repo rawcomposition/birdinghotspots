@@ -75,6 +75,8 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
   }, [name, email]);
 
   const submit = async ({ name, email, images }: Inputs, token: string) => {
+    // @ts-ignore
+    if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const response = await send({
       url: "/api/hotspot/upload",
       method: "POST",

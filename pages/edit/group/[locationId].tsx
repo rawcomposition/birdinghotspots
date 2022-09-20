@@ -42,6 +42,8 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
     if (!data.about) {
       return toast.error('"About this location" is required');
     }
+    // @ts-ignore
+    if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const response = await send({
       url: `/api/group/${isNew ? "add" : "update"}`,
       method: "POST",

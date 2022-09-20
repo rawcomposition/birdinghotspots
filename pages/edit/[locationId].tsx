@@ -55,6 +55,8 @@ export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, d
   const markers = [formatMarker({ ...data, lat: latValue, lng: lngValue })];
 
   const handleSubmit: SubmitHandler<Hotspot> = async (data) => {
+    // @ts-ignore
+    if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",

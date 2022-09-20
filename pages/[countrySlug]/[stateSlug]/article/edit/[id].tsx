@@ -48,6 +48,8 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
   const form = useForm<ArticleInputs>({ defaultValues: data });
 
   const handleSubmit: SubmitHandler<ArticleInputs> = async (data) => {
+    // @ts-ignore
+    if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const newSlug = slugify(data.name);
 
     const response = await send({

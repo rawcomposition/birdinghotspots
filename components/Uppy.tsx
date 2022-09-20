@@ -48,6 +48,8 @@ export default function ImageInput({ onSuccess }: Props) {
     });
 
     instance.on("complete", (result) => {
+      //@ts-ignore
+      window.isUploading = false;
       const images = result.successful.map((file: any) => {
         const preview = previewsRef.current ? previewsRef.current[file.id] : null;
         const baseName = file.name.split(".")[0];
@@ -64,6 +66,15 @@ export default function ImageInput({ onSuccess }: Props) {
         };
       });
       onSuccess(images || []);
+    });
+
+    instance.on("upload", () => {
+      //@ts-ignore
+      window.isUploading = true;
+    });
+    instance.on("file-removed", () => {
+      //@ts-ignore
+      window.isUploading = false;
     });
 
     instance.on("thumbnail:generated", (file, preview) => {
