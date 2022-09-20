@@ -226,6 +226,11 @@ svg.icon {
 	display: none;
 }
 
+.mapboxgl-ctrl-fullscreen .mapboxgl-ctrl-icon, .mapboxgl-ctrl-shrink .mapboxgl-ctrl-icon {
+	background-size: 80%;
+	opacity: 0.8;
+}
+
 .marker-link:focus-visible {
 	@apply outline-none;
 }
