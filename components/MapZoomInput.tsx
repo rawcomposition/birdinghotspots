@@ -55,7 +55,7 @@ export default function MapZoomInput({ markers }: Props) {
                   Done
                 </BtnSmall>
                 <div className="flex gap-2 mx-4 w-full">
-                  <input type="range" min={7} max={17} step={1} className="w-full" {...register("zoom")} />
+                  <input type="range" min={5} max={17} step={1} className="w-full" {...register("zoom")} />
                   {value}
                 </div>
               </footer>
