@@ -3,15 +3,16 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { getHotspotsByCounty } from "lib/mongo";
 import { getState, getCountyBySlug } from "lib/localData";
-import RegionMap from "components/RegionMap";
 import PageHeading from "components/PageHeading";
-import { State, HotspotDrive, Hotspot, County as CountyType } from "lib/types";
-import EbirdCountySummary from "components/EbirdCountySummary";
+import { State, HotspotDrive, Hotspot, County as CountyType, Marker } from "lib/types";
 import HotspotList from "components/HotspotList";
 import RareBirds from "components/RareBirds";
 import Title from "components/Title";
-import { scrollToAnchor } from "lib/helpers";
 import TopHotspots from "components/TopHotspots";
+import EbirdCountyBtn from "components/EbirdCountyBtn";
+import CountyLinksBtn from "components/CountyLinksBtn";
+import MapBox from "components/MapBox";
+import { formatMarker } from "lib/helpers";
 
 type Props = {
   countrySlug: string;
@@ -52,43 +53,34 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
   //@ts-ignore
   const sortedDrives = uniqueDrives.sort((a, b) => a.name.localeCompare(b.name));
 
+  const markers = hotspots?.map(({ lat, lng, name, url }) => ({ lat, lng, url, name, type: "child" })) || [];
+
   return (
     <div className="container pb-16">
       <Title>{`${name} County, ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
         {name} County
       </PageHeading>
-      <div className="grid md:grid-cols-2 gap-8 mb-16">
-        <div className="flex flex-col gap-8">
-          <section>
-            <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {name} County</h3>
-            <p>
-              <a href="#hotspots" onClick={scrollToAnchor}>
-                Alphabetical List of eBird Hotspots
-              </a>
-            </p>
-            <p>
-              <a href="#tophotspots" onClick={scrollToAnchor}>
-                Top eBird Hotspots
-              </a>
-            </p>
-            {iba.length > 0 && (
-              <p>
-                <a href="#iba" onClick={scrollToAnchor}>
-                  Audubon Important Bird Areas
-                </a>
-              </p>
-            )}
-            <p>
-              <a href="#notable" onClick={scrollToAnchor}>
-                Notable Sightings
-              </a>
-            </p>
-          </section>
-          <EbirdCountySummary {...{ state, county }} />
+      <section>
+        <h3 className="text-lg mb-2 font-bold -mt-8">Where to Go Birding in {name} County</h3>
+        <div className="flex gap-2 mt-2 mb-4">
+          <EbirdCountyBtn state={state} county={county} />
+          <CountyLinksBtn showIba={iba.length > 0} />
         </div>
-        {name && <RegionMap location={`${name} County, ${state.label}`} />}
-      </div>
+      </section>
+      <section className="mb-16">
+        {markers.length > 0 && (
+          <MapBox
+            key={county.ebirdCode}
+            markers={markers as Marker[]}
+            lat={markers[0].lat}
+            lng={markers[0].lng}
+            zoom={8}
+            landscape
+            disableScroll
+          />
+        )}
+      </section>
       <section className="mb-16">
         <h3 className="text-lg mb-2 font-bold" id="tophotspots">
           Top eBird Hotspots

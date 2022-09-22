@@ -30,6 +30,8 @@ export async function getHotspotsByCounty(countyCode: string) {
     "iba",
     "drives",
     "noContent",
+    "lat",
+    "lng",
   ])
     .sort({ name: 1 })
     .lean()

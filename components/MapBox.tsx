@@ -13,9 +13,11 @@ type Props = {
   lng: number;
   zoom: number;
   disabled?: boolean;
+  landscape?: boolean;
+  disableScroll?: boolean;
 };
 
-export default function MapBox({ markers, lat, lng, zoom, disabled }: Props) {
+export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, disableScroll }: Props) {
   const [satellite, setSatellite] = React.useState<boolean>(false);
   const mapContainer = React.useRef(null);
   const map = React.useRef<any>(null);
@@ -36,6 +38,7 @@ export default function MapBox({ markers, lat, lng, zoom, disabled }: Props) {
       center: [lng, lat],
       zoom: zoom || 15,
       interactive: !disabled,
+      cooperativeGestures: disableScroll,
     });
     map.current.addControl(new mapboxgl.NavigationControl());
 
@@ -72,7 +75,7 @@ export default function MapBox({ markers, lat, lng, zoom, disabled }: Props) {
   }, [zoom, markerCount]);
 
   return (
-    <div className="relative w-full aspect-[4/3.5] rounded-md overflow-hidden">
+    <div className={`relative w-full ${landscape ? "h-[500px]" : "aspect-[4/3.5]"} rounded-md overflow-hidden`}>
       <div ref={mapContainer} className="w-full h-full" />
       <div className="flex gap-2 absolute top-2 left-2">
         <button type="button" className="bg-white shadow text-black rounded-sm px-4" onClick={handleToggle}>
