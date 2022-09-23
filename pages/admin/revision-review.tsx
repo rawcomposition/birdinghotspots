@@ -9,6 +9,7 @@ import useSecureFetch from "hooks/useSecureFetch";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import diff from "node-htmldiff";
 import toast from "react-hot-toast";
+import dayjs from "dayjs";
 
 interface Item extends Revision {
   aboutDiff: string;
@@ -91,6 +92,9 @@ export default function RevisionReview({ items: allItems }: Props) {
                   {item.notes}
                 </div>
               )}
+              <p className="text-xs font-medium">
+                By <strong>{item.by}</strong> on {dayjs(item.createdAt).format("MMM D, YYYY")}
+              </p>
             </div>
             {!item.approved && (
               <div className="flex gap-4 mt-4 max-w-xs">
