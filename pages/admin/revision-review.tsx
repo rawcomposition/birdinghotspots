@@ -93,7 +93,7 @@ export default function RevisionReview({ items: allItems }: Props) {
                 </div>
               )}
               <p className="text-xs font-medium">
-                By <strong>{item.by}</strong> on {dayjs(item.createdAt).format("MMM D, YYYY")}
+                By <strong>{item.by}</strong> ({item.email}) on {dayjs(item.createdAt).format("MMM D, YYYY")}
               </p>
             </div>
             {!item.approved && (
