@@ -6,6 +6,7 @@ import Settings from "models/Settings";
 import Upload from "models/Upload";
 import Revision from "models/Revision";
 import Group from "models/Group";
+import Profile from "models/Profile";
 
 const URI = process.env.MONGO_URI;
 const connect = async () => (URI ? mongoose.connect(URI) : null);
@@ -250,4 +251,11 @@ export async function getGroupHotspotIds(stateCode: string) {
   }, []);
 
   return [...new Set(ids as string[])];
+}
+
+export async function getProfile(uid: string) {
+  await connect();
+  const result = await Profile.findOne({ uid }).lean().exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
 }

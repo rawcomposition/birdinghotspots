@@ -16,21 +16,32 @@ import { useRouter } from "next/router";
 import useToast from "hooks/useToast";
 import { roles } from "lib/helpers";
 import DeleteBtn from "components/DeleteBtn";
+import RegionSelect from "components/RegionSelect";
+import { getProfile } from "lib/mongo";
+import { getRegionLabel } from "lib/localData";
 
 type UserInput = {
   role: string;
   name: string;
   email: string;
   regions: string[];
+  subscriptions?: {
+    label: string;
+    value: string;
+  }[];
 };
 
 type Props = {
   user: User;
+  subscriptions: {
+    label: string;
+    value: string;
+  }[];
 };
 
 const roleOptions = roles.map(({ id, name }) => ({ value: id, label: name }));
 
-export default function Edit({ user }: Props) {
+export default function Edit({ user, subscriptions }: Props) {
   const router = useRouter();
   const form = useForm<UserInput>({
     defaultValues: {
@@ -38,6 +49,7 @@ export default function Edit({ user }: Props) {
       email: user.email,
       role: user.role,
       regions: user.regions || [],
+      subscriptions: subscriptions,
     },
   });
 
@@ -47,7 +59,12 @@ export default function Edit({ user }: Props) {
     const response = await send({
       url: `/api/admin/user/set/${user.uid}`,
       method: "POST",
-      data: { data },
+      data: {
+        data: {
+          ...data,
+          subscriptions: data?.subscriptions?.map((it) => it.value) || [],
+        },
+      },
     });
     if (response.success) {
       router.push("/admin/user/list");
@@ -78,7 +95,13 @@ export default function Edit({ user }: Props) {
                 <FormError name="marketIds" />
               </Field>
             )}
-            <p className="text-medium">The user must logout and log back in for their permissions to take effect.</p>
+            <Field label="Region Subscription">
+              <RegionSelect name="subscriptions" isMulti />
+              <p className="text-xs text-gray-600 mt-2 font-normal">
+                The editor will recieve email notifications when users submit content for hotspots in the selected
+                regions.
+              </p>
+            </Field>
           </div>
           <div className="px-4 py-3 bg-gray-50 flex justify-between sm:px-6 rounded-b-lg">
             <DeleteBtn url={`/api/admin/user/delete/${user.uid}`} entity="user" redirect="/admin/user/list">
@@ -102,6 +125,14 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   const { uid } = context.query as Params;
   try {
     const { email, displayName, customClaims } = await admin.getUser(uid);
+    const profile = await getProfile(uid);
+
+    const subscriptions =
+      profile?.subscriptions?.map((it: string) => ({
+        label: getRegionLabel(it),
+        value: it,
+      })) || [];
+
     return {
       props: {
         user: {
@@ -111,6 +142,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
           role: customClaims?.role || null,
           regions: customClaims?.regions || [],
         },
+        subscriptions,
       },
     };
   } catch (error) {

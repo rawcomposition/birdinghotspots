@@ -102,7 +102,7 @@ export function getAllCounties() {
     const stateSlug = getStateByCode(stateCode)?.slug;
     array.forEach(({ slug, ebirdCode }: County) => {
       const name = capitalize(slug.replaceAll("-", " "));
-      counties.push({ slug, code: ebirdCode, name: `${name} County, ${stateCode}, US`, stateSlug });
+      counties.push({ slug, code: ebirdCode, name: `${name} County, ${stateCode.split("-").pop()}, US`, stateSlug });
     });
   });
   return counties;
@@ -114,4 +114,17 @@ export function formatCountyArray(counties: County[]) {
     ...county,
     name: capitalize(county.slug.replaceAll("-", " ")),
   }));
+}
+
+export function getRegionLabel(region: string) {
+  if (!region) return null;
+  if (!region.includes("-")) return region;
+  const pieces = region.split("-");
+  const isCounty = pieces.length === 3;
+  if (isCounty) {
+    const county = getCountyByCode(region);
+    return `${county?.name} County, ${pieces[1]}, ${pieces[0]}`;
+  }
+  const state = getStateByCode(region);
+  return `${state?.label}, ${state?.country}`;
 }
