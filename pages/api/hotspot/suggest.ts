@@ -29,9 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       try {
         const transporter = nodemailer.createTransport({
-          host: "smtp.gmail.com",
-          port: 465,
-          secure: true,
+          host: "smtp-relay.sendinblue.com",
+          port: 587,
           auth: {
             user: "noreply.birdinghotspots@gmail.com",
             pass: process.env.EMAIL_PASS,
