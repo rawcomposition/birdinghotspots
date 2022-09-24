@@ -47,7 +47,7 @@ export default function SortableImage({
         src={preview || smUrl}
         className={`w-full aspect-[1.55] bg-zinc-700 ${
           isVertical ? "object-contain" : "object-cover"
-        } rounded cursor-move`}
+        } rounded cursor-move touch-none`}
         {...attributes}
         {...listeners}
         tabIndex={-1}
