@@ -12,10 +12,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const hotspot = await Hotspot.findOne({ locationId });
 
   const profiles = await Profile.find({
-    subscriptions: { $or: [{ $in: [hotspot.stateCode] }, { $in: [hotspot.countyCode] }] },
+    $or: [{ subscriptions: hotspot.stateCode }, { subscriptions: hotspot.countyCode }],
   });
 
   const emails = profiles.map((profile) => profile.email);
+  console.log(emails);
+  return;
 
   try {
     const score = await verifyRecaptcha(recaptchaToken);
