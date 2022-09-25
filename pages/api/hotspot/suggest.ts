@@ -16,8 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   });
 
   const emails = profiles.map((profile) => profile.email);
-  console.log(emails);
-  return;
 
   try {
     const score = await verifyRecaptcha(recaptchaToken);
