@@ -68,6 +68,7 @@ export default function Edit({ subscriptions }: Props) {
       if (new_password) await updatePassword(auth.currentUser, new_password);
       const res = await secureFetch("/api/account/set", "post", {
         subscriptions: subscriptions?.map((it) => it.value) || [],
+        email,
       });
       if (!res.success) throw new Error("Error updating account");
       toast.success("Account updated successfully");

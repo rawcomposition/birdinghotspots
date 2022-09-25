@@ -7,6 +7,10 @@ const ProfileSchema = new Schema({
     required: true,
     unique: true,
   },
+  email: {
+    type: "string",
+    required: true,
+  },
   subscriptions: [
     {
       type: String,

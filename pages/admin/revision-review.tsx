@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { getRevisions, getHotspotByLocationId } from "lib/mongo";
+import { getRevisions, getAllRevisions, getHotspotByLocationId, getSubscriptions } from "lib/mongo";
 import { getStateByCode, getCountyByCode } from "lib/localData";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
@@ -122,8 +122,19 @@ export default function RevisionReview({ items: allItems }: Props) {
   );
 }
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
-  const filter = token.role === "admin" ? null : token.regions;
-  const revisions = await getRevisions(filter);
+  const subscriptions = await getSubscriptions(token.uid);
+  let revisions: Revision[] = [];
+
+  if (token.role === "admin" && subscriptions.length === 0) {
+    revisions = await getAllRevisions();
+  } else {
+    let states = subscriptions.filter((it) => it.split("-").length === 2);
+    const counties = subscriptions.filter((it) => it.split("-").length === 3);
+    if (states?.length === 0) {
+      states = token.regions;
+    }
+    revisions = await getRevisions(states, counties);
+  }
 
   const formattedRevisions = await Promise.all(
     revisions.map(async (revision: Revision) => {

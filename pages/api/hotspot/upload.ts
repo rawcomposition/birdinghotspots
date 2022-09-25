@@ -5,7 +5,8 @@ import Upload from "models/Upload";
 import { Image } from "lib/types";
 import admin from "lib/firebaseAdmin";
 import { verifyRecaptcha } from "lib/helpers";
-import nodemailer from "nodemailer";
+import { sendEmail } from "lib/email";
+import Profile from "models/Profile";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const authToken = req.headers.authorization;
@@ -43,32 +44,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             email,
             countryCode: hotspot.countryCode,
             stateCode: hotspot.stateCode,
+            countyCode: hotspot.countyCode,
           });
         })
       );
 
-      try {
-        const transporter = nodemailer.createTransport({
-          host: "smtp-relay.sendinblue.com",
-          port: 587,
-          auth: {
-            user: "noreply.birdinghotspots@gmail.com",
-            pass: process.env.EMAIL_PASS,
-          },
-        });
+      const profiles = await Profile.find({
+        subscriptions: { $or: [{ $in: [hotspot.stateCode] }, { $in: [hotspot.countyCode] }] },
+      });
 
-        await transporter.sendMail({
-          from: '"BirdingHotspots.org" <noreply.birdinghotspots@gmail.com>',
-          to: process.env.ADMIN_EMAILS,
-          subject: `${images.length} ${images.length === 1 ? "photo" : "photos"} uploaded by ${name} (Review required)`,
-          html: `${name} uploaded ${images.length} ${
-            images.length === 1 ? "photo" : "photos"
-          } to <a href="https://birdinghotspots.org${hotspot.url}" target="_blank">${
-            hotspot.name
-          }</a><br /><br /><a href="https://birdinghotspots.org/admin/image-review">Review Images</a><br /><br />Reply to this email to contact ${name} directly.<br />Email: ${email}`,
-          replyTo: email,
-        });
-      } catch (error) {}
+      const emails = profiles.map((profile) => profile.email);
+
+      if (process.env.NODE_ENV === "production" && emails.length > 0) {
+        try {
+          await sendEmail({
+            to: emails.join(", "),
+            subject: `${images.length} ${
+              images.length === 1 ? "photo" : "photos"
+            } uploaded by ${name} (Review required)`,
+            html: `${name} uploaded ${images.length} ${
+              images.length === 1 ? "photo" : "photos"
+            } to <a href="https://birdinghotspots.org${hotspot.url}" target="_blank">${
+              hotspot.name
+            }</a><br /><br /><a href="https://birdinghotspots.org/admin/image-review">Review Images</a><br /><br />Reply to this email to contact ${name} directly.<br />Email: ${email}`,
+            replyTo: email,
+          });
+        } catch (error) {}
+      }
 
       res.status(200).json({ success: true });
     } else {
