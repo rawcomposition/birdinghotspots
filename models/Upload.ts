@@ -17,6 +17,7 @@ const UploadSchema = new Schema({
   caption: String,
   countryCode: String,
   stateCode: String,
+  countyCode: String,
   status: {
     type: String,
     enum: ["pending", "approved", "rejected"],

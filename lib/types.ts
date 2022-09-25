@@ -204,6 +204,7 @@ export type Upload = {
   locationId: string;
   countryCode: string;
   stateCode: string;
+  countyCode: string;
   smUrl: string;
   lgUrl: string;
   originalUrl: string;
@@ -287,6 +288,7 @@ export type Revision = {
   locationId: string;
   countryCode: string;
   stateCode: string;
+  countyCode: string;
   about?: string;
   tips?: string;
   birds?: string;
@@ -296,4 +298,10 @@ export type Revision = {
   email: string;
   status: string;
   createdAt: string;
+};
+
+export type Profile = {
+  uid: string;
+  email: string;
+  subscriptions: string[];
 };

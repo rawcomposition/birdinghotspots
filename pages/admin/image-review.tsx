@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { getUploads, getHotspotByLocationId } from "lib/mongo";
+import { getUploads, getAllUploads, getHotspotByLocationId, getSubscriptions } from "lib/mongo";
 import { getStateByCode, getCountyByCode } from "lib/localData";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
@@ -119,8 +119,20 @@ export default function ImageReview({ items: allItems }: Props) {
   );
 }
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
-  const filter = token.role === "admin" ? null : token.regions;
-  const uploads = await getUploads(filter);
+  const subscriptions = await getSubscriptions(token.uid);
+  let uploads: Upload[] = [];
+
+  if (token.role === "admin" && subscriptions.length === 0) {
+    uploads = await getAllUploads();
+  } else {
+    let states = subscriptions.filter((it) => it.split("-").length === 2);
+    const counties = subscriptions.filter((it) => it.split("-").length === 3);
+    if (states?.length === 0) {
+      states = token.regions;
+    }
+    uploads = await getUploads(states, counties);
+  }
+
   const items: Item[] = [];
 
   uploads.forEach(async (upload: Upload) => {

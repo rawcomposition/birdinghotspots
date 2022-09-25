@@ -6,6 +6,7 @@ import Settings from "models/Settings";
 import Upload from "models/Upload";
 import Revision from "models/Revision";
 import Group from "models/Group";
+import Profile from "models/Profile";
 
 const URI = process.env.MONGO_URI;
 const connect = async () => (URI ? mongoose.connect(URI) : null);
@@ -180,24 +181,42 @@ export async function getSettings() {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getUploads(regions: string[]) {
+export async function getUploads(states: string[], counties: string[]) {
   await connect();
-  let query: any = { status: "pending" };
-  if (regions !== null) {
-    query = { ...query, stateCode: { $in: regions || [] } };
-  }
-  const result = await Upload.find(query).sort({ name: 1 }).lean().exec();
+  const result = await Upload.find({
+    status: "pending",
+    $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
+  })
+    .sort({ name: 1 })
+    .lean()
+    .exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getRevisions(regions: string[]) {
+export async function getAllUploads() {
   await connect();
-  let query: any = { status: "pending" };
-  if (regions !== null) {
-    query = { ...query, stateCode: { $in: regions || [] } };
-  }
-  const result = await Revision.find(query).sort({ createdAt: -1 }).lean().exec();
+  const result = await Upload.find({ status: "pending" }).sort({ name: 1 }).lean().exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getRevisions(states: string[], counties: string[]) {
+  await connect();
+  const result = await Revision.find({
+    status: "pending",
+    $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
+  })
+    .sort({ name: 1 })
+    .lean()
+    .exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getAllRevisions() {
+  await connect();
+  const result = await Revision.find({ status: "pending" }).sort({ name: 1 }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
@@ -250,4 +269,17 @@ export async function getGroupHotspotIds(stateCode: string) {
   }, []);
 
   return [...new Set(ids as string[])];
+}
+
+export async function getProfile(uid: string) {
+  await connect();
+  const result = await Profile.findOne({ uid }).lean().exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getSubscriptions(uid: string): Promise<string[]> {
+  await connect();
+  const result = await Profile.findOne({ uid }).lean().exec();
+  return result ? result.subscriptions || [] : [];
 }

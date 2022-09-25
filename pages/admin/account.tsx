@@ -17,20 +17,40 @@ import {
   EmailAuthProvider,
 } from "firebase/auth";
 import toast from "react-hot-toast";
+import RegionSelect from "components/RegionSelect";
+import useSecureFetch from "hooks/useSecureFetch";
+import { getProfile } from "lib/mongo";
+import { getRegionLabel } from "lib/localData";
 
 type AccountInput = {
   name: string;
   email: string;
   new_password?: string;
   password?: string;
+  subscriptions?: {
+    label: string;
+    value: string;
+  }[];
 };
 
-export default function Edit() {
-  const form = useForm<AccountInput>();
+type Props = {
+  subscriptions: {
+    label: string;
+    value: string;
+  }[];
+};
+
+export default function Edit({ subscriptions }: Props) {
+  const form = useForm<AccountInput>({
+    defaultValues: {
+      subscriptions,
+    },
+  });
   const { user, loading } = useUser();
   const { email, displayName } = user || {};
+  const secureFetch = useSecureFetch();
 
-  const handleSubmit: SubmitHandler<AccountInput> = async ({ email, name, new_password, password }) => {
+  const handleSubmit: SubmitHandler<AccountInput> = async ({ email, name, new_password, password, subscriptions }) => {
     if (!auth.currentUser) {
       toast.error("You must be logged in to update your account");
       return;
@@ -46,6 +66,11 @@ export default function Edit() {
       await updateEmail(auth.currentUser, email);
       await updateProfile(auth.currentUser, { displayName: name });
       if (new_password) await updatePassword(auth.currentUser, new_password);
+      const res = await secureFetch("/api/account/set", "post", {
+        subscriptions: subscriptions?.map((it) => it.value) || [],
+        email,
+      });
+      if (!res.success) throw new Error("Error updating account");
       toast.success("Account updated successfully");
     } catch (error: any) {
       const message = error.message.includes("auth/wrong-password")
@@ -85,6 +110,15 @@ export default function Edit() {
                 <Input type="password" name="new_password" />
                 <FormError name="new_password" />
               </Field>
+              <Field label="Region Subscription">
+                <RegionSelect name="subscriptions" isMulti restrict />
+                <p className="text-xs text-gray-600 mt-2 font-normal">
+                  Recieve email notifications when users submit content for hotspots in the selected regions. Your
+                  selection will also affect what is visible on the Image/Suggestion review tabs. If you do not choose
+                  any regions you will see submissions for states you have editor access to, but you will not recieve
+                  any email notifications. States take precedence over counties.
+                </p>
+              </Field>
             </div>
           </div>
           <div className="px-4 py-3 bg-gray-50 flex justify-end sm:px-6 rounded-b-lg">
@@ -98,4 +132,19 @@ export default function Edit() {
   );
 }
 
-export const getServerSideProps = getSecureServerSideProps(async () => ({ props: {} }));
+export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
+  const uid: string = token.uid;
+  const profile = await getProfile(uid);
+
+  const subscriptions =
+    profile?.subscriptions?.map((it: string) => ({
+      label: getRegionLabel(it),
+      value: it,
+    })) || [];
+
+  return {
+    props: {
+      subscriptions,
+    },
+  };
+});
