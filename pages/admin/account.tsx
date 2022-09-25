@@ -111,7 +111,7 @@ export default function Edit({ subscriptions }: Props) {
                 <FormError name="new_password" />
               </Field>
               <Field label="Region Subscription">
-                <RegionSelect name="subscriptions" isMulti />
+                <RegionSelect name="subscriptions" isMulti restrict />
                 <p className="text-xs text-gray-600 mt-2 font-normal">
                   Recieve email notifications when users submit content for hotspots in the selected regions. Your
                   selection will also affect what is visible on the Image/Suggestion review tabs. If you do not choose

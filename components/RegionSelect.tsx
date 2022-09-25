@@ -10,15 +10,16 @@ type Props = {
   name: string;
   required?: boolean;
   isMulti?: boolean;
+  restrict?: boolean;
   [x: string]: any;
 };
 
-export default function Select({ name, required, isMulti, options, ...props }: Props) {
+export default function Select({ name, required, isMulti, options, restrict, ...props }: Props) {
   const { control } = useFormContext();
 
   const loadOptions = (inputValue: string, callback: (options: Option[]) => void) => {
     (async () => {
-      const response = await fetch(`/api/region-search?q=${inputValue}`);
+      const response = await fetch(`/api/region-search?q=${inputValue}&restrict=${restrict ? "true" : "false"}`);
       const json = await response.json();
       callback(json.results || []);
     })();

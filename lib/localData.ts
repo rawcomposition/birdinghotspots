@@ -96,9 +96,10 @@ export function getCounties(stateCode: string) {
   return formatCountyArray(countyArrays[stateCode]);
 }
 
-export function getAllCounties() {
+export function getAllCounties(limitStates?: string[] | null) {
   const counties: any = [];
   Object.entries(countyArrays).forEach(([stateCode, array]: any) => {
+    if (limitStates && !limitStates.includes(stateCode)) return;
     const stateSlug = getStateByCode(stateCode)?.slug;
     array.forEach(({ slug, ebirdCode }: County) => {
       const name = capitalize(slug.replaceAll("-", " "));

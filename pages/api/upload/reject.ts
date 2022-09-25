@@ -8,10 +8,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { id }: any = req.query;
 
   await connect();
-  const upload = await Upload.findById(id);
 
   const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(upload?.stateCode)) {
+  if (["admin", "editor"].includes(result.role)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
