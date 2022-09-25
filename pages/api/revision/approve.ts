@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
   const result = await admin.verifyIdToken(token || "");
-  if (["admin", "editor"].includes(result.role)) {
+  if (!["admin", "editor"].includes(result.role)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
