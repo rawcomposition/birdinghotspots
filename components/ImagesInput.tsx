@@ -1,6 +1,5 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
 import Uppy from "components/Uppy";
-import useSecureFetch from "hooks/useSecureFetch";
 import SortableImage from "./SortableImage";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from "@dnd-kit/sortable";
@@ -19,18 +18,12 @@ export default function ImagesInput({
   hideMapCheckbox,
   showHideFromChildrenCheckbox,
 }: Props) {
-  const secureFetch = useSecureFetch();
   const { control } = useFormContext();
   const { fields, append, remove, move } = useFieldArray({ name: "images", control });
 
-  const handleDelete = async (i: number, url: string, isNew: boolean) => {
+  const handleDelete = async (i: number) => {
     if (!confirm("Are you sure you want to delete this image?")) return;
     remove(i);
-    if (isNew) {
-      const filename = url.split("/").pop();
-      const fileId = filename?.split("_")[0];
-      secureFetch(`/api/file/delete?fileId=${fileId}`, "GET");
-    }
   };
 
   const sensors = useSensors(

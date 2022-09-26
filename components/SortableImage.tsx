@@ -5,7 +5,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 interface Props extends Image {
-  handleDelete: (i: number, url: string, isNew: boolean) => void;
+  handleDelete: (i: number) => void;
   i: number;
   hideExtraFields?: boolean;
   hideMapCheckbox?: boolean;
@@ -105,7 +105,7 @@ export default function SortableImage({
         type="button"
         tabIndex={-1}
         className="opacity-0 group-hover:opacity-100 transition-opacity bg-red-700/90 p-1.5 rounded-full flex items-center justify-center absolute -left-2 -top-2 shadow"
-        onClick={() => handleDelete(i, smUrl, !!isNew)}
+        onClick={() => handleDelete(i)}
       >
         <TrashIcon className="h-4 w-4 text-white opacity-80" />
       </button>
