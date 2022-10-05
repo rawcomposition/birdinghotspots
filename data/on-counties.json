@@ -1,0 +1,202 @@
+[
+  {
+    "ebirdCode": "CA-ON-AL",
+    "slug": "algoma"
+  },
+  {
+    "ebirdCode": "CA-ON-BN",
+    "slug": "brant"
+  },
+  {
+    "ebirdCode": "CA-ON-BC",
+    "slug": "bruce"
+  },
+  {
+    "ebirdCode": "CA-ON-KT",
+    "slug": "chatham-kent"
+  },
+  {
+    "ebirdCode": "CA-ON-CO",
+    "slug": "cochrane"
+  },
+  {
+    "ebirdCode": "CA-ON-DF",
+    "slug": "dufferin"
+  },
+  {
+    "ebirdCode": "CA-ON-DR",
+    "slug": "durham"
+  },
+  {
+    "ebirdCode": "CA-ON-EL",
+    "slug": "elgin"
+  },
+  {
+    "ebirdCode": "CA-ON-ES",
+    "slug": "essex"
+  },
+  {
+    "ebirdCode": "CA-ON-FR",
+    "slug": "frontenac"
+  },
+  {
+    "ebirdCode": "CA-ON-SU",
+    "slug": "greater-sudbury"
+  },
+  {
+    "ebirdCode": "CA-ON-GR",
+    "slug": "grey"
+  },
+  {
+    "ebirdCode": "CA-ON-HD",
+    "slug": "haldimand"
+  },
+  {
+    "ebirdCode": "CA-ON-HB",
+    "slug": "haliburton"
+  },
+  {
+    "ebirdCode": "CA-ON-HT",
+    "slug": "halton"
+  },
+  {
+    "ebirdCode": "CA-ON-HA",
+    "slug": "hamilton"
+  },
+  {
+    "ebirdCode": "CA-ON-HS",
+    "slug": "hastings"
+  },
+  {
+    "ebirdCode": "CA-ON-HU",
+    "slug": "huron"
+  },
+  {
+    "ebirdCode": "CA-ON-VI",
+    "slug": "kawartha-lakes"
+  },
+  {
+    "ebirdCode": "CA-ON-KR",
+    "slug": "kenora"
+  },
+  {
+    "ebirdCode": "CA-ON-LM",
+    "slug": "lambton"
+  },
+  {
+    "ebirdCode": "CA-ON-LN",
+    "slug": "lanark"
+  },
+  {
+    "ebirdCode": "CA-ON-LG",
+    "slug": "leeds-and grenville"
+  },
+  {
+    "ebirdCode": "CA-ON-LA",
+    "slug": "lennox-and addington"
+  },
+  {
+    "ebirdCode": "CA-ON-MA",
+    "slug": "manitoulin"
+  },
+  {
+    "ebirdCode": "CA-ON-MI",
+    "slug": "middlesex"
+  },
+  {
+    "ebirdCode": "CA-ON-MU",
+    "slug": "muskoka"
+  },
+  {
+    "ebirdCode": "CA-ON-NG",
+    "slug": "niagara"
+  },
+  {
+    "ebirdCode": "CA-ON-NP",
+    "slug": "nipissing"
+  },
+  {
+    "ebirdCode": "CA-ON-NF",
+    "slug": "norfolk"
+  },
+  {
+    "ebirdCode": "CA-ON-NU",
+    "slug": "northumberland"
+  },
+  {
+    "ebirdCode": "CA-ON-OT",
+    "slug": "ottawa"
+  },
+  {
+    "ebirdCode": "CA-ON-OX",
+    "slug": "oxford"
+  },
+  {
+    "ebirdCode": "CA-ON-PS",
+    "slug": "parry-sound"
+  },
+  {
+    "ebirdCode": "CA-ON-PL",
+    "slug": "peel"
+  },
+  {
+    "ebirdCode": "CA-ON-PT",
+    "slug": "perth"
+  },
+  {
+    "ebirdCode": "CA-ON-PB",
+    "slug": "peterborough"
+  },
+  {
+    "ebirdCode": "CA-ON-PR",
+    "slug": "prescott-and russell"
+  },
+  {
+    "ebirdCode": "CA-ON-PE",
+    "slug": "prince-edward"
+  },
+  {
+    "ebirdCode": "CA-ON-RR",
+    "slug": "rainy-river"
+  },
+  {
+    "ebirdCode": "CA-ON-RE",
+    "slug": "renfrew"
+  },
+  {
+    "ebirdCode": "CA-ON-SC",
+    "slug": "simcoe"
+  },
+  {
+    "ebirdCode": "CA-ON-SD",
+    "slug": "stormont,-dundas and glengarry"
+  },
+  {
+    "ebirdCode": "CA-ON-SB",
+    "slug": "sudbury"
+  },
+  {
+    "ebirdCode": "CA-ON-TB",
+    "slug": "thunder-bay"
+  },
+  {
+    "ebirdCode": "CA-ON-TI",
+    "slug": "timiskaming"
+  },
+  {
+    "ebirdCode": "CA-ON-TO",
+    "slug": "toronto"
+  },
+  {
+    "ebirdCode": "CA-ON-WT",
+    "slug": "waterloo"
+  },
+  {
+    "ebirdCode": "CA-ON-WL",
+    "slug": "wellington"
+  },
+  {
+    "ebirdCode": "CA-ON-YO",
+    "slug": "york"
+  }
+]

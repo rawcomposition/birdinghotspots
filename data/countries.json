@@ -2,5 +2,9 @@
 	{
 		"code": "US",
 		"label": "United States"
+	},
+	{
+		"code": "CA",
+		"label": "Canada"
 	}
 ]

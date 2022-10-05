@@ -321,5 +321,12 @@
 		"label": "Wyoming",
 		"slug": "wyoming",
 		"code": "US-WY"
+	},
+	{
+		"country": "CA",
+		"label": "Ontario",
+		"slug": "ontario",
+		"code": "CA-ON",
+		"active": true
 	}
 ]

@@ -100,7 +100,7 @@ type DateType = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { key }: any = req.query;
+  const { key, state }: any = req.query;
   if (process.env.CRON_KEY && key !== process.env.CRON_KEY) {
     res.status(401).json({ error: "Unauthorized" });
     return;
@@ -119,8 +119,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         });
       })
     );
-    const sortedDates = dates.sort((a, b) => a.date.localeCompare(b.date));
-    const nextState = sortedDates[0]?.region;
+
+    let nextState = state;
+
+    if (!state) {
+      const sortedDates = dates.sort((a, b) => a.date.localeCompare(b.date));
+      nextState = sortedDates[0]?.region;
+    }
 
     console.log(`Syncing ${nextState}`);
     const hotspots = await getHotspotsForRegion(nextState);

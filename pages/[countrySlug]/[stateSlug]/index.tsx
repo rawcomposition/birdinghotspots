@@ -198,7 +198,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const counties = getCounties(state.code);
 
   const infoFile = path.join(process.cwd(), "data", "state-info", `${state.code}.md`);
-  const info = fs.readFileSync(infoFile.toString(), "utf8");
+  let info = "";
+  if (fs.existsSync(infoFile)) {
+    info = fs.readFileSync(infoFile.toString(), "utf8");
+  }
 
   const articles = (await getArticlesByState(state.code)) || [];
 
