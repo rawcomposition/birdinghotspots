@@ -21,9 +21,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       .lean()
       .exec();
     const formatted = results.map((hotspot) => {
+      const state = getStateByCode(hotspot.stateCode);
       const locationLine = hotspot.countyCode
         ? getLocationText(hotspot.countyCode)
-        : `${getStateByCode(hotspot.stateCode)?.label}, US`;
+        : `${state?.label}, ${state?.country}`;
       return {
         ...hotspot,
         locationLine,

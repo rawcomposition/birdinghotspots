@@ -18,14 +18,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     .filter((county: any) => {
       return county.name.toLowerCase().startsWith(q.toLowerCase());
     })
-    .map(({ name, slug, stateSlug }: any) => ({
+    .map(({ name, slug, stateSlug, country }: any) => ({
       label: name,
-      value: `/us/${stateSlug}/${slug}`,
+      value: `/${country.toLowerCase()}/${stateSlug}/${slug}`,
     }));
 
   const filteredStates = States.filter(
     (state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase())
-  ).map((state) => ({ label: `${state.label}, US`, value: `/us/${state.slug}` }));
+  ).map((state) => ({
+    label: `${state.label}, ${state.country}`,
+    value: `/${state.country.toLowerCase()}/${state.slug}`,
+  }));
 
   try {
     await connect();

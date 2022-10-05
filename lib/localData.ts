@@ -100,10 +100,16 @@ export function getAllCounties(limitStates?: string[] | null) {
   const counties: any = [];
   Object.entries(countyArrays).forEach(([stateCode, array]: any) => {
     if (limitStates && !limitStates.includes(stateCode)) return;
-    const stateSlug = getStateByCode(stateCode)?.slug;
+    const state = getStateByCode(stateCode);
     array.forEach(({ slug, ebirdCode }: County) => {
       const name = capitalize(slug.replaceAll("-", " "));
-      counties.push({ slug, code: ebirdCode, name: `${name} County, ${stateCode.split("-").pop()}, US`, stateSlug });
+      counties.push({
+        slug,
+        code: ebirdCode,
+        name: `${name} County, ${stateCode.split("-").pop()}, ${state?.country}`,
+        stateSlug: state?.slug,
+        country: state?.country,
+      });
     });
   });
   return counties;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import States from "data/states.json";
+import Countries from "data/countries.json";
 import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
@@ -7,7 +8,7 @@ import FeaturedHotspots from "components/FeaturedHotspots";
 import Heading from "components/Heading";
 import EditorActions from "components/EditorActions";
 
-export default function Home2() {
+export default function Home() {
   return (
     <>
       <Title />
@@ -15,14 +16,20 @@ export default function Home2() {
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
-            <h3 className="text-lg mb-4 font-bold">United States</h3>
-            <div className="columns-2 lg:columns-3 mb-12">
-              {States.filter((state) => state.active).map(({ label, slug, code }) => (
-                <Link key={code} href={`/us/${slug}`}>
-                  <a className="font-bold px-2 py-1 text-base mb-1 block">{label}</a>
-                </Link>
-              ))}
-            </div>
+            {Countries.map((country) => (
+              <>
+                <h3 className="text-lg mb-4 font-bold">{country.label}</h3>
+                <div className="columns-2 lg:columns-3 mb-12">
+                  {States.filter((state) => state.active && state.country === country.code).map(
+                    ({ label, slug, code }) => (
+                      <Link key={code} href={`/${country.label.toLowerCase()}/${slug}`}>
+                        <a className="font-bold px-2 py-1 text-base mb-1 block">{label}</a>
+                      </Link>
+                    )
+                  )}
+                </div>
+              </>
+            ))}
           </section>
           <section>
             <div className="bg-gray-100 p-4 mt-10">

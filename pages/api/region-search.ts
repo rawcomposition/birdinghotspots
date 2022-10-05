@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const filteredStates = allowedStates
     .filter((state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase()))
-    .map((state) => ({ label: `${state.label.split("-").pop()}, US`, value: state.code }));
+    .map((state) => ({ label: `${state.label.split("-").pop()}, ${state.country}`, value: state.code }));
 
   res.status(200).json({
     success: true,
