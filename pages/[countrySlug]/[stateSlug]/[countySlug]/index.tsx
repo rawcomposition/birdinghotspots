@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { getHotspotsByCounty } from "lib/mongo";
+import { getHotspotsByCounty, getGroupHotspotIdsByCounty } from "lib/mongo";
 import { getState, getCountyBySlug } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { State, HotspotDrive, Hotspot, County as CountyType, Marker } from "lib/types";
@@ -12,7 +12,7 @@ import TopHotspots from "components/TopHotspots";
 import EbirdCountyBtn from "components/EbirdCountyBtn";
 import CountyLinksBtn from "components/CountyLinksBtn";
 import MapBox from "components/MapBox";
-import { formatMarker } from "lib/helpers";
+import nookies from "nookies";
 
 type Props = {
   countrySlug: string;
@@ -141,8 +141,9 @@ interface Params extends ParsedUrlQuery {
   countySlug: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug, countySlug } = query as Params;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = nookies.get(context);
+  const { countrySlug, stateSlug, countySlug } = context.query as Params;
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
@@ -150,7 +151,19 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!county?.name) return { notFound: true };
 
   const hotspots = (await getHotspotsByCounty(county.ebirdCode)) || [];
+
+  let groupHotspotIds: string[] = [];
+  if (cookies.session) {
+    groupHotspotIds = (await getGroupHotspotIdsByCounty(state.code)) || [];
+  }
+
+  const formatted = hotspots.map((it: any) => ({
+    ...it,
+    noContent:
+      (it.noContent && !groupHotspotIds.includes(it._id.toString()) && !it.name.startsWith("stakeout ")) || false,
+  }));
+
   return {
-    props: { countrySlug, state, county, hotspots },
+    props: { countrySlug, state, county, hotspots: formatted },
   };
 };
