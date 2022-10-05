@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import nodemailer from "nodemailer";
 import { verifyRecaptcha } from "lib/helpers";
+import { sendEmail } from "lib/email";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
@@ -9,19 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const score = await verifyRecaptcha(token);
 
     if (score > 0.5) {
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: "noreply.birdinghotspots@gmail.com",
-          pass: process.env.EMAIL_PASS,
-        },
-      });
-
-      await transporter.sendMail({
-        from: '"BirdingHotspots.org" <noreply.birdinghotspots@gmail.com>',
-        to: process.env.ADMIN_EMAILS,
+      await sendEmail({
+        to: process.env.ADMIN_EMAILS || "",
         subject: `New Message from ${name}`,
         html: `${message} <br /><br /> Email: ${email}`,
         replyTo: email,
