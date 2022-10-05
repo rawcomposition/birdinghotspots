@@ -194,8 +194,11 @@ export default function Hotspot({
           {noContent && !groups?.length && !name.startsWith("stakeout ") && (
             <div className="mb-6 formatted">
               <h3 className="font-bold text-lg mb-1.5">About this location</h3>
-              We don&apos;t have any information about this location -{" "}
-              <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link>
+              <div className="p-4 bg-gray-100 rounded-lg mb-6">
+                If you are familiar with birding this location, please help other birders with a description, tips for
+                birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
+                <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
+              </div>
             </div>
           )}
 
