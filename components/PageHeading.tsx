@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { State, County } from "lib/types";
+import Countries from "data/countries.json";
 
 type Props = {
   countrySlug?: string;
@@ -29,6 +30,7 @@ export default function PageHeading({
   ...props
 }: Props) {
   const bgColor = state?.color || "#4a84b2";
+  const countryLabel = Countries.find((it) => it.code === countrySlug?.toUpperCase())?.label;
   return (
     <header
       className={`font-bold text-white text-2xl header-gradient my-16 rounded-md ${className || ""}`}
@@ -64,7 +66,7 @@ export default function PageHeading({
           )}
           <Link href="/">
             <a className="text-white/90 pl-5 pr-8 py-1.5 rounded-r-lg breadcrumb-gradient flex items-center">
-              United States
+              {countryLabel || "United States"}
             </a>
           </Link>
         </nav>
