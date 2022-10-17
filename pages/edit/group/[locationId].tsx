@@ -42,6 +42,9 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
     if (!data.about) {
       return toast.error('"About this location" is required');
     }
+    if (data.hotspotSelect.length === 0) {
+      return toast.error("Please select at least one hotspot");
+    }
     // @ts-ignore
     if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const response = await send({
