@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const result = await admin.verifyIdToken(token || "");
   const canEdit =
-    result.role === "admin" || data?.stateCodes?.filter((it: string) => result.regions?.includes(it)).length > 0;
+    result.role === "admin" || stateCodes?.filter((it: string) => result.regions?.includes(it)).length > 0;
   if (!canEdit) {
     res.status(401).json({ error: "Unauthorized" });
     return;
