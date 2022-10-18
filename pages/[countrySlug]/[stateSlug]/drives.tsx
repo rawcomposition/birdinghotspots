@@ -60,7 +60,7 @@ export default function Drives({ countrySlug, state, drives }: Props) {
           <figcaption className="my-3">Funk Bottoms Wildlife Area, Ohio</figcaption>
         </figure>
       </div>
-      <h3 className="text-lg mb-8 font-bold">Birding Dirves Listed by County</h3>
+      <h3 className="text-lg mb-8 font-bold">Birding Drives Listed by County</h3>
       <div className="columns-1 sm:columns-3 mb-12">
         {drives.map(({ countySlug, countyName, drives }) => (
           <p key={countySlug} className="mb-4 break-inside-avoid">
