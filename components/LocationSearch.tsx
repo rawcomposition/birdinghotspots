@@ -1,6 +1,6 @@
 import * as React from "react";
-import Head from "next/head";
 import { LocationSearchValue } from "lib/types";
+import Countries from "data/countries.json";
 
 type Props = {
   className?: string;
@@ -27,14 +27,14 @@ export default function LocationSearch({ className, value, onChange, ...props }:
     const handlePlaceSelect = (googlePlaces: any) => {
       const place = googlePlaces.getPlace();
       onChange({
-        label: place.formatted_address?.replace(", USA", ""),
+        label: place.formatted_address,
         lat: parseFloat(place.geometry.location.lat().toFixed(7)),
         lng: parseFloat(place.geometry.location.lng().toFixed(7)),
       });
     };
 
     const options = {
-      componentRestrictions: { country: "us" },
+      componentRestrictions: { country: Countries.map((it) => it.code.toLowerCase()) },
       fields: ["formatted_address", "geometry"],
     };
 

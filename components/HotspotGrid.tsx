@@ -28,8 +28,9 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, s
 
   return (
     <>
-      {hotspots.map(({ name, _id, featuredImg, url, lat: hsLat, lng: hsLng, species, locationLine }) => {
-        let distance = distanceBetween(lat || 0, lng || 0, hsLat, hsLng);
+      {hotspots.map(({ name, _id, featuredImg, url, lat: hsLat, lng: hsLng, species, locationLine, countryCode }) => {
+        const isMetric = !countryCode || !["US", "UK", "LR", "MM"].includes(countryCode);
+        let distance = distanceBetween(lat || 0, lng || 0, hsLat, hsLng, isMetric);
         distance = distance < 10 ? parseFloat(distance.toFixed(1)) : parseFloat(distance.toFixed(0));
         const namePieces = name.split("--");
         if (!locationLine && namePieces.length === 2) {
@@ -59,7 +60,11 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, s
                   </h2>
                   {showMeta && (
                     <p className="flex items-center gap-1.5 text-gray-500 text-[11px]">
-                      {lat && lng && <span>{distance} miles away</span>}
+                      {lat && lng && (
+                        <span>
+                          {distance} {isMetric ? "km" : "miles"} away
+                        </span>
+                      )}
                       {lat && lng && Number.isInteger(species) && <span>•</span>}
                       {Number.isInteger(species) && <span>{species} species</span>}
                     </p>

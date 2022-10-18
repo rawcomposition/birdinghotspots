@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const results = await Hotspot.find(query, ["name", "url", "featuredImg", "lat", "lng", "species"])
+    const results = await Hotspot.find(query, ["name", "url", "featuredImg", "lat", "lng", "species", "countryCode"])
       .limit(limit || 15)
       .skip(offset || 0)
       .lean()
