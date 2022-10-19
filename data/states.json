@@ -29,7 +29,8 @@
 		"country": "US",
 		"label": "California",
 		"slug": "california",
-		"code": "US-CA"
+		"code": "US-CA",
+		"active": true
 	},
 	{
 		"country": "US",

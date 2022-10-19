@@ -1,0 +1,234 @@
+[
+  {
+    "ebirdCode": "US-CA-001",
+    "slug": "alameda"
+  },
+  {
+    "ebirdCode": "US-CA-003",
+    "slug": "alpine"
+  },
+  {
+    "ebirdCode": "US-CA-005",
+    "slug": "amador"
+  },
+  {
+    "ebirdCode": "US-CA-007",
+    "slug": "butte"
+  },
+  {
+    "ebirdCode": "US-CA-009",
+    "slug": "calaveras"
+  },
+  {
+    "ebirdCode": "US-CA-011",
+    "slug": "colusa"
+  },
+  {
+    "ebirdCode": "US-CA-013",
+    "slug": "contra-costa"
+  },
+  {
+    "ebirdCode": "US-CA-015",
+    "slug": "del-norte"
+  },
+  {
+    "ebirdCode": "US-CA-017",
+    "slug": "el-dorado"
+  },
+  {
+    "ebirdCode": "US-CA-019",
+    "slug": "fresno"
+  },
+  {
+    "ebirdCode": "US-CA-021",
+    "slug": "glenn"
+  },
+  {
+    "ebirdCode": "US-CA-023",
+    "slug": "humboldt"
+  },
+  {
+    "ebirdCode": "US-CA-025",
+    "slug": "imperial"
+  },
+  {
+    "ebirdCode": "US-CA-027",
+    "slug": "inyo"
+  },
+  {
+    "ebirdCode": "US-CA-029",
+    "slug": "kern"
+  },
+  {
+    "ebirdCode": "US-CA-031",
+    "slug": "kings"
+  },
+  {
+    "ebirdCode": "US-CA-033",
+    "slug": "lake"
+  },
+  {
+    "ebirdCode": "US-CA-035",
+    "slug": "lassen"
+  },
+  {
+    "ebirdCode": "US-CA-037",
+    "slug": "los-angeles"
+  },
+  {
+    "ebirdCode": "US-CA-039",
+    "slug": "madera"
+  },
+  {
+    "ebirdCode": "US-CA-041",
+    "slug": "marin"
+  },
+  {
+    "ebirdCode": "US-CA-043",
+    "slug": "mariposa"
+  },
+  {
+    "ebirdCode": "US-CA-045",
+    "slug": "mendocino"
+  },
+  {
+    "ebirdCode": "US-CA-047",
+    "slug": "merced"
+  },
+  {
+    "ebirdCode": "US-CA-049",
+    "slug": "modoc"
+  },
+  {
+    "ebirdCode": "US-CA-051",
+    "slug": "mono"
+  },
+  {
+    "ebirdCode": "US-CA-053",
+    "slug": "monterey"
+  },
+  {
+    "ebirdCode": "US-CA-055",
+    "slug": "napa"
+  },
+  {
+    "ebirdCode": "US-CA-057",
+    "slug": "nevada"
+  },
+  {
+    "ebirdCode": "US-CA-059",
+    "slug": "orange"
+  },
+  {
+    "ebirdCode": "US-CA-061",
+    "slug": "placer"
+  },
+  {
+    "ebirdCode": "US-CA-063",
+    "slug": "plumas"
+  },
+  {
+    "ebirdCode": "US-CA-065",
+    "slug": "riverside"
+  },
+  {
+    "ebirdCode": "US-CA-067",
+    "slug": "sacramento"
+  },
+  {
+    "ebirdCode": "US-CA-069",
+    "slug": "san-benito"
+  },
+  {
+    "ebirdCode": "US-CA-071",
+    "slug": "san-bernardino"
+  },
+  {
+    "ebirdCode": "US-CA-073",
+    "slug": "san-diego"
+  },
+  {
+    "ebirdCode": "US-CA-075",
+    "slug": "san-francisco"
+  },
+  {
+    "ebirdCode": "US-CA-077",
+    "slug": "san-joaquin"
+  },
+  {
+    "ebirdCode": "US-CA-079",
+    "slug": "san-luis obispo"
+  },
+  {
+    "ebirdCode": "US-CA-081",
+    "slug": "san-mateo"
+  },
+  {
+    "ebirdCode": "US-CA-083",
+    "slug": "santa-barbara"
+  },
+  {
+    "ebirdCode": "US-CA-085",
+    "slug": "santa-clara"
+  },
+  {
+    "ebirdCode": "US-CA-087",
+    "slug": "santa-cruz"
+  },
+  {
+    "ebirdCode": "US-CA-089",
+    "slug": "shasta"
+  },
+  {
+    "ebirdCode": "US-CA-091",
+    "slug": "sierra"
+  },
+  {
+    "ebirdCode": "US-CA-093",
+    "slug": "siskiyou"
+  },
+  {
+    "ebirdCode": "US-CA-095",
+    "slug": "solano"
+  },
+  {
+    "ebirdCode": "US-CA-097",
+    "slug": "sonoma"
+  },
+  {
+    "ebirdCode": "US-CA-099",
+    "slug": "stanislaus"
+  },
+  {
+    "ebirdCode": "US-CA-101",
+    "slug": "sutter"
+  },
+  {
+    "ebirdCode": "US-CA-103",
+    "slug": "tehama"
+  },
+  {
+    "ebirdCode": "US-CA-105",
+    "slug": "trinity"
+  },
+  {
+    "ebirdCode": "US-CA-107",
+    "slug": "tulare"
+  },
+  {
+    "ebirdCode": "US-CA-109",
+    "slug": "tuolumne"
+  },
+  {
+    "ebirdCode": "US-CA-111",
+    "slug": "ventura"
+  },
+  {
+    "ebirdCode": "US-CA-113",
+    "slug": "yolo"
+  },
+  {
+    "ebirdCode": "US-CA-115",
+    "slug": "yuba"
+  }
+]
