@@ -51,27 +51,27 @@ export default function EbirdHotspotBtn({ state, locationId, locationIds, isGrou
             <h4 className="font-bold">Bar Charts</h4>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?byr=1900&eyr=2060&bmo=1&emo=12&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`${base}/barchart?yr=all&bmo=1&emo=12&r=${region}`} target="_blank" rel="noreferrer">
               Entire Year
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?byr=1900&eyr=2060&bmo=3&emo=5&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`${base}/barchart?yr=all&bmo=3&emo=5&r=${region}`} target="_blank" rel="noreferrer">
               Spring
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?byr=1900&eyr=2060&bmo=6&emo=7&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`${base}/barchart?yr=all&bmo=6&emo=7&r=${region}`} target="_blank" rel="noreferrer">
               Summer
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?byr=1900&eyr=2060&bmo=8&emo=11&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`${base}/barchart?yr=all&bmo=8&emo=11&r=${region}`} target="_blank" rel="noreferrer">
               Fall
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?byr=1900&eyr=2060&bmo=12&emo=2&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`${base}/barchart?yr=all&bmo=12&emo=2&r=${region}`} target="_blank" rel="noreferrer">
               Winter
             </a>
           </Menu.Item>

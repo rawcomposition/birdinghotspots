@@ -8,7 +8,7 @@ export default function Barcharts({ locationId }: Props) {
       <h3 className="mb-1.5 font-bold">eBird Bar Charts by Season</h3>
       <div className="flex flex-col text-white">
         <a
-          href={`https://ebird.org/barchart?byr=1900&eyr=2060&bmo=1&emo=12&r=${locationId}`}
+          href={`https://ebird.org/barchart?yr=all&bmo=1&emo=12&r=${locationId}`}
           target="_blank"
           rel="noreferrer"
           className="bg-[#efefef] text-[#2ea3f2] py-2.5"
@@ -16,7 +16,7 @@ export default function Barcharts({ locationId }: Props) {
           Entire Year
         </a>
         <a
-          href={`https://ebird.org/barchart?byr=1900&eyr=2060&bmo=3&emo=5&r=${locationId}`}
+          href={`https://ebird.org/barchart?yr=all&bmo=3&emo=5&r=${locationId}`}
           target="_blank"
           rel="noreferrer"
           className="bg-[#92ad39] text-white py-2.5"
@@ -24,7 +24,7 @@ export default function Barcharts({ locationId }: Props) {
           Spring Migration (Mar-May)
         </a>
         <a
-          href={`https://ebird.org/barchart?byr=1900&eyr=2060&bmo=6&emo=7&r=${locationId}`}
+          href={`https://ebird.org/barchart?yr=all&bmo=6&emo=7&r=${locationId}`}
           target="_blank"
           rel="noreferrer"
           className="bg-[#ce0d02] text-white py-2.5"
@@ -32,7 +32,7 @@ export default function Barcharts({ locationId }: Props) {
           Breeding Season (Jun-Jul)
         </a>
         <a
-          href={`https://ebird.org/barchart?byr=1900&eyr=2060&bmo=8&emo=11&r=${locationId}`}
+          href={`https://ebird.org/barchart?yr=all&bmo=8&emo=11&r=${locationId}`}
           target="_blank"
           rel="noreferrer"
           className="bg-[#e57701] text-white py-2.5"
@@ -40,7 +40,7 @@ export default function Barcharts({ locationId }: Props) {
           Fall Migration (Aug-Nov)
         </a>
         <a
-          href={`https://ebird.org/barchart?byr=1900&eyr=2060&bmo=12&emo=2&r=${locationId}`}
+          href={`https://ebird.org/barchart?yr=all&bmo=12&emo=2&r=${locationId}`}
           target="_blank"
           rel="noreferrer"
           className="bg-[#4a84b2] text-white py-2.5"

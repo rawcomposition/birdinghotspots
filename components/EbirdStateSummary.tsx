@@ -2,7 +2,7 @@ import { State } from "lib/types";
 
 export default function EbirdStateSummary({ code, color, label, portal }: State) {
   const getUrl = (bMonth: number, eMonth: number) => {
-    return `${base}/barchart?byr=1900&eyr=2060&bmo=${bMonth}&emo=${eMonth}&r=${code}`;
+    return `${base}/barchart?yr=all&bmo=${bMonth}&emo=${eMonth}&r=${code}`;
   };
 
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";

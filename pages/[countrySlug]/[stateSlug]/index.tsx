@@ -188,7 +188,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           <EbirdHelpLinks />
         </div>
       </div>
-      <RareBirds region={code} label={label} className="mt-12" />
+      <RareBirds region={code} className="mt-12" />
     </div>
   );
 }
