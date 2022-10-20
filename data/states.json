@@ -328,6 +328,7 @@
 		"label": "Ontario",
 		"slug": "ontario",
 		"code": "CA-ON",
-		"active": true
+		"active": true,
+		"noMap": true
 	}
 ]

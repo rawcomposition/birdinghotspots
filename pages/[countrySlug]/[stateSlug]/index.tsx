@@ -36,7 +36,7 @@ type Props = {
 };
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
-  const [view, setView] = React.useState<string>("map");
+  const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
   const { label, code, slug, features } = state || ({} as StateType);
 
   return (
@@ -73,23 +73,25 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           <EbirdStateSummary {...state} code={state?.code} />
         </div>
         <div className="mb-8">
-          <div className="flex">
-            <button
-              type="button"
-              className="border py-1 px-2.5 text-xs rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all ml-auto mb-2"
-              onClick={() => setView((prev) => (prev === "map" ? "list" : "map"))}
-            >
-              {view === "list" ? (
-                <>
-                  <MapIcon className="w-4 h-4" /> View Map
-                </>
-              ) : (
-                <>
-                  <Bars3Icon className="w-4 h-4" /> View County List
-                </>
-              )}
-            </button>
-          </div>
+          {!state.noMap && (
+            <div className="flex">
+              <button
+                type="button"
+                className="border py-1 px-2.5 text-xs rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all ml-auto mb-2"
+                onClick={() => setView((prev) => (prev === "map" ? "list" : "map"))}
+              >
+                {view === "list" ? (
+                  <>
+                    <MapIcon className="w-4 h-4" /> View Map
+                  </>
+                ) : (
+                  <>
+                    <Bars3Icon className="w-4 h-4" /> View County List
+                  </>
+                )}
+              </button>
+            </div>
+          )}
           {view === "map" ? (
             <div className="flex justify-center items-start">
               <StateMap regionCode={code} />

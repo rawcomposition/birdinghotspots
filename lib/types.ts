@@ -8,6 +8,7 @@ export type State = {
   mapZoom: number;
   color: string;
   country: string;
+  noMap?: boolean;
 };
 
 export type County = {
