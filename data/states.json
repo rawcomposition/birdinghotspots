@@ -225,7 +225,8 @@
 		"email": "hotspots@ohiobirds.org",
 		"features": [ "roadside", "accessible", "iba", "drives" ],
 		"active": true,
-		"color": "#4a84b2"
+		"color": "#4a84b2",
+		"subheading": "From the Ohio Ornithological Society"
 	},
 	{
 		"country": "US",
@@ -329,6 +330,7 @@
 		"slug": "ontario",
 		"code": "CA-ON",
 		"active": true,
-		"noMap": true
+		"noMap": true,
+		"subheading": "From the Ontario Field Ornithologists"
 	}
 ]

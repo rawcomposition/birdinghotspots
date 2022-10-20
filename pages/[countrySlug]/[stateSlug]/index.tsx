@@ -44,10 +44,10 @@ export default function State({ countrySlug, state, counties, info, articles }: 
       <Title>{`Birding in ${label}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state} hideState>
         Welcome to Birding in {label}
-        {code === "US-OH" && (
+        {state.subheading && (
           <>
             <br />
-            <span className="text-sm">From the Ohio Ornithological Society</span>
+            <span className="text-sm">{state.subheading}</span>
           </>
         )}
       </PageHeading>

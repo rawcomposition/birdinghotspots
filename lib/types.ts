@@ -9,6 +9,7 @@ export type State = {
   color: string;
   country: string;
   noMap?: boolean;
+  subheading?: string;
 };
 
 export type County = {
