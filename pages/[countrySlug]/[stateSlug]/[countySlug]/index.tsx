@@ -93,11 +93,11 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       </section>
       <section className="mb-12">
         <h3 className="text-lg mb-2 font-bold" id="hotspots">
-          All Hotspots in {name} County
+          All Hotspots
         </h3>
         <HotspotList hotspots={hotspots} className="md:columns-3" />
         {hotspots.length === 0 && (
-          <p className="text-base text-gray-500">No data has been entered for {name} County yet</p>
+          <p className="text-base text-gray-500">No data has been entered for this region yet</p>
         )}
       </section>
       <div className="md:columns-3">
@@ -130,7 +130,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
           </section>
         )}
       </div>
-      <RareBirds region={ebirdCode} label={`${name} County`} className="mt-16" />
+      <RareBirds region={ebirdCode} className="mt-16" />
     </div>
   );
 }

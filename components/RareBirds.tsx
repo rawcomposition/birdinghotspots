@@ -14,11 +14,10 @@ type Report = {
 
 type Props = {
   region: string;
-  label: string;
   className?: string;
 };
 
-export default function RareBirds({ region, label, className }: Props) {
+export default function RareBirds({ region, className }: Props) {
   const [viewAll, setViewAll] = React.useState(false);
   const [notable, setNotable] = React.useState<Report[]>([]);
   const [loading, setLoading] = React.useState(true);
@@ -62,7 +61,7 @@ export default function RareBirds({ region, label, className }: Props) {
   return (
     <div className={`${className || ""}`}>
       <Heading className="text-lg font-bold mb-6" color="turquoise" id="notable">
-        {label} Notable Sightings <br />
+        Notable Sightings <br />
         <span className="text-sm text-gray-100 mb-3">Birds reported to eBird in the last 7 days</span>
       </Heading>
       <div>
