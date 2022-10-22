@@ -330,7 +330,6 @@
 		"slug": "ontario",
 		"code": "CA-ON",
 		"active": true,
-		"noMap": true,
 		"subheading": "From the Ontario Field Ornithologists"
 	}
 ]
