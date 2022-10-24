@@ -7,6 +7,11 @@ const LinkSchema = new Schema({
   url: String,
 });
 
+const CitationSchema = new Schema({
+  label: String,
+  url: String,
+});
+
 const PointSchema = new Schema({
   type: {
     type: String,
@@ -57,6 +62,7 @@ const HotspotSchema = new Schema({
   hikes: String,
   address: String,
   links: [LinkSchema],
+  citations: [CitationSchema],
   restrooms: {
     type: String,
     default: null,

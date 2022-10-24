@@ -70,6 +70,10 @@ export type Hotspot = {
     label: string;
     url: string;
   }[];
+  citations?: {
+    label: string;
+    url: string;
+  }[];
   restrooms?: string;
   roadside?: string;
   accessible?: string[];

@@ -20,6 +20,7 @@ import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
 import { CameraIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
+import Citations from "components/Citations";
 
 interface Props extends HotspotType {
   county: County;
@@ -37,6 +38,7 @@ export default function Hotspot({
   zoom,
   address,
   links,
+  citations,
   about,
   tips,
   birds,
@@ -217,6 +219,8 @@ export default function Hotspot({
             ))}
             {roadside === "Yes" && <p>Roadside accessible.</p>}
           </div>
+
+          {!!citations && citations.length > 0 && <Citations citations={citations} />}
         </div>
         <div>
           {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} />}

@@ -1,7 +1,7 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
-const Input = () => {
+const InputLinks = () => {
   const {
     register,
     control,
@@ -47,4 +47,4 @@ const Input = () => {
   );
 };
 
-export default Input;
+export default InputLinks;

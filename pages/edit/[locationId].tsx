@@ -9,6 +9,7 @@ import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
 import { geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarker } from "lib/helpers";
 import InputLinks from "components/InputLinks";
+import InputCitations from "components/InputCitations";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
@@ -144,6 +145,8 @@ export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, d
               <Field label="Notable Trails">
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
+
+              {isOH && <InputCitations />}
 
               {groupAbout?.map(({ title, text }, i) => (
                 <div key={i} className="bg-gray-100 px-3 py-2 rounded-md">
