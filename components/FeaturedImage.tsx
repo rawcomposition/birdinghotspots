@@ -65,14 +65,23 @@ export default function FeaturedImage({ photos }: Props) {
                 <>
                   <button
                     type="button"
-                    className="absolute bg-white w-8 h-8 rounded-full pl-0.5 cursor-pointer top-1/2 right-[0.85rem] -translate-y-1/2 flex items-center justify-center opacity-20 group-hover:opacity-40 group-hover:right-4 transition-all hover:!opacity-80"
+                    className={`absolute top-4 ${
+                      isStreetview ? "right-[60px]" : "right-4"
+                    } flex items-center gap-2 px-3 py-0.5 text-sm font-medium bg-white  hover:opacity-100 opacity-80 rounded-sm transition-opacity`}
+                    onClick={open}
+                  >
+                    {items.length} photos
+                  </button>
+                  <button
+                    type="button"
+                    className="absolute bg-white w-8 h-8 rounded-full pl-0.5 cursor-pointer top-1/2 right-[0.85rem] -translate-y-1/2 flex items-center justify-center opacity-50 group-hover:opacity-60 group-hover:right-4 transition-all hover:!opacity-80"
                     onClick={handleNext}
                   >
                     <ChevronRightIcon className="w-6 h-6" />
                   </button>
                   <button
                     type="button"
-                    className="absolute bg-white w-8 h-8 rounded-full pr-0.5 cursor-pointer top-1/2 left-[0.85rem] -translate-y-1/2 flex items-center justify-center opacity-20 group-hover:opacity-40 group-hover:left-4 transition-all hover:!opacity-80"
+                    className="absolute bg-white w-8 h-8 rounded-full pr-0.5 cursor-pointer top-1/2 left-[0.85rem] -translate-y-1/2 flex items-center justify-center opacity-50 group-hover:opacity-60 group-hover:left-4 transition-all hover:!opacity-80"
                     onClick={handlePrev}
                   >
                     <ChevronLeftIcon className="w-6 h-6" />
