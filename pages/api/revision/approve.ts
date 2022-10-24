@@ -23,10 +23,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return;
     }
 
+    const noContent = !revision?.about && !revision?.tips && !revision?.birds && !revision?.hikes;
+
     await Hotspot.updateOne(
       { locationId: revision.locationId },
       {
         $set: {
+          noContent,
           about: revision.about,
           tips: revision.tips,
           birds: revision.birds,
