@@ -12,6 +12,7 @@ import GeorgiaCounties from "data/ga-counties.json";
 import NewHampshireCounties from "data/nh-counties.json";
 import TexasCounties from "data/tx-counties.json";
 import CaliforniaCounties from "data/ca-counties.json";
+import ArkansasCounties from "data/ar-counties.json";
 import OntarioCounties from "data/on-counties.json";
 import { capitalize } from "./helpers";
 import { County } from "lib/types";
@@ -29,6 +30,7 @@ const countyArrays: any = {
   "US-NH": NewHampshireCounties,
   "US-TX": TexasCounties,
   "US-CA": CaliforniaCounties,
+  "US-AR": ArkansasCounties,
   "CA-ON": OntarioCounties,
 };
 

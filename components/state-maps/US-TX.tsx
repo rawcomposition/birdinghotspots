@@ -26,9 +26,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="470.577746240851" y="379.4017147021449">
-                  Uvalde
-                </text>
+                <text>Uvalde</text>
               </a>
             </Link>
             <Link href="/us/texas/lavaca-county">
@@ -40,9 +38,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="584.2796154714283" y="378.15777378805814">
-                  Lavaca
-                </text>
+                <text>Lavaca</text>
               </a>
             </Link>
             <Link href="/us/texas/brazoria-county">
@@ -54,9 +50,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="644.2622402607931" y="387.1603921322252">
-                  Brazoria
-                </text>
+                <text>Brazoria</text>
               </a>
             </Link>
             <Link href="/us/texas/wharton-county">
@@ -68,9 +62,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="612.8961698027094" y="383.05925009144306">
-                  Wharton
-                </text>
+                <text>Wharton</text>
               </a>
             </Link>
             <Link href="/us/texas/medina-county">
@@ -82,9 +74,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="496.75748626246036" y="379.4759471106185">
-                  Medina
-                </text>
+                <text>Medina</text>
               </a>
             </Link>
             <Link href="/us/texas/galveston-county">
@@ -96,9 +86,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="666.0998930337885" y="377.2536970582238">
-                  Galveston
-                </text>
+                <text>Galveston</text>
               </a>
             </Link>
             <Link href="/us/texas/bexar-county">
@@ -110,9 +98,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="520.5869437657423" y="375.1042707154121">
-                  Bexar
-                </text>
+                <text>Bexar</text>
               </a>
             </Link>
             <Link href="/us/texas/gonzales-county">
@@ -124,9 +110,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="561.6644723141164" y="374.8778346389967">
-                  Gonzales
-                </text>
+                <text>Gonzales</text>
               </a>
             </Link>
             <Link href="/us/texas/fort-bend-county">
@@ -138,9 +122,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="631.1322304238677" y="371.31335000084596">
-                  Fort Bend
-                </text>
+                <text>Fort Bend</text>
               </a>
             </Link>
             <Link href="/us/texas/guadalupe-county">
@@ -152,9 +134,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="543.5133274900918" y="369.0475616329895">
-                  Guadalupe
-                </text>
+                <text>Guadalupe</text>
               </a>
             </Link>
             <Link href="/us/texas/bandera-county">
@@ -166,9 +146,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="491.2877613311191" y="361.39765014209496">
-                  Bandera
-                </text>
+                <text>Bandera</text>
               </a>
             </Link>
             <Link href="/us/texas/colorado-county">
@@ -180,9 +158,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="600.5082765306125" y="367.1741201642755">
-                  Colorado
-                </text>
+                <text>Colorado</text>
               </a>
             </Link>
             <Link href="/us/texas/chambers-county">
@@ -194,9 +170,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="675.3017704122668" y="363.0890184231015">
-                  Chambers
-                </text>
+                <text>Chambers</text>
               </a>
             </Link>
             <Link href="/us/texas/comal-county">
@@ -208,9 +182,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="530.2019484364296" y="358.4810913614671">
-                  Comal
-                </text>
+                <text>Comal</text>
               </a>
             </Link>
             <Link href="/us/texas/real-county">
@@ -222,9 +194,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="468.07408495947874" y="357.38697088570206">
-                  Real
-                </text>
+                <text>Real</text>
               </a>
             </Link>
             <Link href="/us/texas/caldwell-county">
@@ -236,9 +206,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="556.7341110106307" y="357.2747085806911">
-                  Caldwell
-                </text>
+                <text>Caldwell</text>
               </a>
             </Link>
             <Link href="/us/texas/kendall-county">
@@ -250,9 +218,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="512.8437920816049" y="352.16032942364143">
-                  Kendall
-                </text>
+                <text>Kendall</text>
               </a>
             </Link>
             <Link href="/us/texas/austin-county">
@@ -264,9 +230,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="610.6313492412711" y="354.5663003230416">
-                  Austin
-                </text>
+                <text>Austin</text>
               </a>
             </Link>
             <Link href="/us/texas/fayette-county">
@@ -278,9 +242,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="584.8042158012909" y="355.1558337988522">
-                  Fayette
-                </text>
+                <text>Fayette</text>
               </a>
             </Link>
             <Link href="/us/texas/harris-county">
@@ -292,9 +254,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="646.3820605695264" y="356.1629777204033">
-                  Harris
-                </text>
+                <text>Harris</text>
               </a>
             </Link>
             <Link href="/us/texas/edwards-county">
@@ -306,9 +266,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="448.6717674940485" y="350.427789932341">
-                  Edwards
-                </text>
+                <text>Edwards</text>
               </a>
             </Link>
             <Link href="/us/texas/kerr-county">
@@ -320,9 +278,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="487.22437261887245" y="346.85927901047876">
-                  Kerr
-                </text>
+                <text>Kerr</text>
               </a>
             </Link>
             <Link href="/us/texas/val-verde-county">
@@ -334,9 +290,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="414.615530209444" y="354.5433530920078">
-                  Val Verde
-                </text>
+                <text>Val Verde</text>
               </a>
             </Link>
             <Link href="/us/texas/waller-county">
@@ -348,9 +302,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="622.3019752887893" y="349.0022428093051">
-                  Waller
-                </text>
+                <text>Waller</text>
               </a>
             </Link>
             <Link href="/us/texas/jefferson-county">
@@ -362,9 +314,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="695.6148377459257" y="355.0817328799663">
-                  Jefferson
-                </text>
+                <text>Jefferson</text>
               </a>
             </Link>
             <Link href="/us/texas/hays-county">
@@ -376,9 +326,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="540.1453213192435" y="346.95539155060527">
-                  Hays
-                </text>
+                <text>Hays</text>
               </a>
             </Link>
             <Link href="/us/texas/orange-county">
@@ -390,9 +338,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="706.7224242935811" y="344.03746652201477">
-                  Orange
-                </text>
+                <text>Orange</text>
               </a>
             </Link>
             <Link href="/us/texas/bastrop-county">
@@ -404,9 +350,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="569.070387044617" y="344.8600960174153">
-                  Bastrop
-                </text>
+                <text>Bastrop</text>
               </a>
             </Link>
             <Link href="/us/texas/washington-county">
@@ -418,9 +362,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="605.7933427586536" y="339.55837888301704">
-                  Washington
-                </text>
+                <text>Washington</text>
               </a>
             </Link>
             <Link href="/us/texas/gillespie-county">
@@ -432,9 +374,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="503.3578689849696" y="334.84305711979385">
-                  Gillespie
-                </text>
+                <text>Gillespie</text>
               </a>
             </Link>
             <Link href="/us/texas/blanco-county">
@@ -446,9 +386,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="525.4906948486146" y="337.23479437847146">
-                  Blanco
-                </text>
+                <text>Blanco</text>
               </a>
             </Link>
             <Link href="/us/texas/lee-county">
@@ -460,9 +398,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="582.7235822872715" y="335.0871097093619">
-                  Lee
-                </text>
+                <text>Lee</text>
               </a>
             </Link>
             <Link href="/us/texas/liberty-county">
@@ -474,9 +410,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="669.605080296943" y="342.5344168780326">
-                  Liberty
-                </text>
+                <text>Liberty</text>
               </a>
             </Link>
             <Link href="/us/texas/travis-county">
@@ -488,9 +422,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="550.1192620678688" y="334.12159594435633">
-                  Travis
-                </text>
+                <text>Travis</text>
               </a>
             </Link>
             <Link href="/us/texas/hardin-county">
@@ -502,9 +434,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="686.6008488816972" y="334.1904381638525">
-                  Hardin
-                </text>
+                <text>Hardin</text>
               </a>
             </Link>
             <Link href="/us/texas/terrell-county">
@@ -516,9 +446,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="377.4570165139505" y="339.17474004295156">
-                  Terrell
-                </text>
+                <text>Terrell</text>
               </a>
             </Link>
             <Link href="/us/texas/montgomery-county">
@@ -530,9 +458,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="641.6309471424336" y="335.5926222464172">
-                  Montgomery
-                </text>
+                <text>Montgomery</text>
               </a>
             </Link>
             <Link href="/us/texas/sutton-county">
@@ -544,9 +470,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="439.35744965564635" y="326.4112679109186">
-                  Sutton
-                </text>
+                <text>Sutton</text>
               </a>
             </Link>
             <Link href="/us/texas/kimble-county">
@@ -558,9 +482,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="471.0946787950587" y="326.98546869258297">
-                  Kimble
-                </text>
+                <text>Kimble</text>
               </a>
             </Link>
             <Link href="/us/texas/brewster-county">
@@ -572,9 +494,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="330.15958831667024" y="358.2900761965773">
-                  Brewster
-                </text>
+                <text>Brewster</text>
               </a>
             </Link>
             <Link href="/us/texas/presidio-county">
@@ -586,9 +506,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="290.38320545696024" y="349.2977180611276">
-                  Presidio
-                </text>
+                <text>Presidio</text>
               </a>
             </Link>
             <Link href="/us/texas/burleson-county">
@@ -600,9 +518,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="596.8631681611905" y="326.66340876702634">
-                  Burleson
-                </text>
+                <text>Burleson</text>
               </a>
             </Link>
             <Link href="/us/texas/williamson-county">
@@ -614,9 +530,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="557.4297962882504" y="319.60908575609716">
-                  Williamson
-                </text>
+                <text>Williamson</text>
               </a>
             </Link>
             <Link href="/us/texas/grimes-county">
@@ -628,9 +542,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="622.214498673263" y="324.24167982832097">
-                  Grimes
-                </text>
+                <text>Grimes</text>
               </a>
             </Link>
             <Link href="/us/texas/llano-county">
@@ -642,9 +554,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="513.8980881087094" y="316.9146976450995">
-                  Llano
-                </text>
+                <text>Llano</text>
               </a>
             </Link>
             <Link href="/us/texas/mason-county">
@@ -656,9 +566,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="492.1340173004485" y="316.14302026303767">
-                  Mason
-                </text>
+                <text>Mason</text>
               </a>
             </Link>
             <Link href="/us/texas/san-jacinto-county">
@@ -670,9 +578,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="655.3197583517901" y="322.62410634168185">
-                  San Jacinto
-                </text>
+                <text>San Jacinto</text>
               </a>
             </Link>
             <Link href="/us/texas/brazos-county">
@@ -684,9 +590,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="609.586628691779" y="318.78188896552143">
-                  Brazos
-                </text>
+                <text>Brazos</text>
               </a>
             </Link>
             <Link href="/us/texas/burnet-county">
@@ -698,9 +602,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="534.0590326830564" y="313.07251868958747">
-                  Burnet
-                </text>
+                <text>Burnet</text>
               </a>
             </Link>
             <Link href="/us/texas/menard-county">
@@ -712,9 +614,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="468.214504682434" y="308.1148713844969">
-                  Menard
-                </text>
+                <text>Menard</text>
               </a>
             </Link>
             <Link href="/us/texas/schleicher-county">
@@ -726,9 +626,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="439.3489429597761" y="307.79162921318664">
-                  Schleicher
-                </text>
+                <text>Schleicher</text>
               </a>
             </Link>
             <Link href="/us/texas/crockett-county">
@@ -740,9 +638,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="404.0848470067419" y="315.7799709923511">
-                  Crockett
-                </text>
+                <text>Crockett</text>
               </a>
             </Link>
             <Link href="/us/texas/walker-county">
@@ -754,9 +650,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="639.0117516415417" y="315.2710746881942">
-                  Walker
-                </text>
+                <text>Walker</text>
               </a>
             </Link>
             <Link href="/us/texas/milam-county">
@@ -768,9 +662,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="582.5813221920153" y="313.03750515710186">
-                  Milam
-                </text>
+                <text>Milam</text>
               </a>
             </Link>
             <Link href="/us/texas/madison-county">
@@ -782,9 +674,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="624.8626439327296" y="304.61011402146295">
-                  Madison
-                </text>
+                <text>Madison</text>
               </a>
             </Link>
             <Link href="/us/texas/jeff-davis-county">
@@ -796,9 +686,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="294.5637844906479" y="316.088436663328">
-                  Jeff Davis
-                </text>
+                <text>Jeff Davis</text>
               </a>
             </Link>
             <Link href="/us/texas/tyler-county">
@@ -810,9 +698,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="687.0803815254928" y="313.637894182317">
-                  Tyler
-                </text>
+                <text>Tyler</text>
               </a>
             </Link>
             <Link href="/us/texas/polk-county">
@@ -824,9 +710,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="668.8305242795617" y="312.46647264883677">
-                  Polk
-                </text>
+                <text>Polk</text>
               </a>
             </Link>
             <Link href="/us/texas/jasper-county">
@@ -838,9 +722,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="701.1301787026931" y="314.66667058239693">
-                  Jasper
-                </text>
+                <text>Jasper</text>
               </a>
             </Link>
             <Link href="/us/texas/bell-county">
@@ -852,9 +734,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="562.4106010795215" y="301.18630298501097">
-                  Bell
-                </text>
+                <text>Bell</text>
               </a>
             </Link>
             <Link href="/us/texas/newton-county">
@@ -866,9 +746,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="712.4680697583767" y="312.88090120187866">
-                  Newton
-                </text>
+                <text>Newton</text>
               </a>
             </Link>
             <Link href="/us/texas/pecos-county">
@@ -880,9 +758,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="351.47240409376684" y="313.1901316635297">
-                  Pecos
-                </text>
+                <text>Pecos</text>
               </a>
             </Link>
             <Link href="/us/texas/robertson-county">
@@ -894,9 +770,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="601.3538184249581" y="301.7343907688442">
-                  Robertson
-                </text>
+                <text>Robertson</text>
               </a>
             </Link>
             <Link href="/us/texas/lampasas-county">
@@ -908,9 +782,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="531.6813498990988" y="293.77730260681267">
-                  Lampasas
-                </text>
+                <text>Lampasas</text>
               </a>
             </Link>
             <Link href="/us/texas/trinity-county">
@@ -922,9 +794,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="656.5998585498942" y="298.6089422517648">
-                  Trinity
-                </text>
+                <text>Trinity</text>
               </a>
             </Link>
             <Link href="/us/texas/san-saba-county">
@@ -936,9 +806,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="508.45679819622774" y="295.5552365802222">
-                  San Saba
-                </text>
+                <text>San Saba</text>
               </a>
             </Link>
             <Link href="/us/texas/mcculloch-county">
@@ -950,9 +818,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="487.34468530785216" y="293.7249299941696">
-                  McCulloch
-                </text>
+                <text>McCulloch</text>
               </a>
             </Link>
             <Link href="/us/texas/irion-county">
@@ -964,9 +830,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="421.4937793968219" y="288.65980308758236">
-                  Irion
-                </text>
+                <text>Irion</text>
               </a>
             </Link>
             <Link href="/us/texas/cameron-county">
@@ -978,9 +842,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="562.1364862355435" y="525.1848000059765">
-                  Cameron
-                </text>
+                <text>Cameron</text>
               </a>
             </Link>
             <Link href="/us/texas/willacy-county">
@@ -992,9 +854,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="556.7955562150016" y="510.44012545731294">
-                  Willacy
-                </text>
+                <text>Willacy</text>
               </a>
             </Link>
             <Link href="/us/texas/starr-county">
@@ -1006,9 +866,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="511.655985413832" y="506.66881355912034">
-                  Starr
-                </text>
+                <text>Starr</text>
               </a>
             </Link>
             <Link href="/us/texas/hidalgo-county">
@@ -1020,9 +878,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="534.2580109981689" y="514.0152723587113">
-                  Hidalgo
-                </text>
+                <text>Hidalgo</text>
               </a>
             </Link>
             <Link href="/us/texas/brooks-county">
@@ -1034,9 +890,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="532.5964592805581" y="485.7479118004335">
-                  Brooks
-                </text>
+                <text>Brooks</text>
               </a>
             </Link>
             <Link href="/us/texas/kenedy-county">
@@ -1048,9 +902,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="555.0866352335073" y="489.87987664660847">
-                  Kenedy
-                </text>
+                <text>Kenedy</text>
               </a>
             </Link>
             <Link href="/us/texas/zapata-county">
@@ -1062,9 +914,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="494.4543883009752" y="486.9538587713037">
-                  Zapata
-                </text>
+                <text>Zapata</text>
               </a>
             </Link>
             <Link href="/us/texas/jim-hogg-county">
@@ -1076,9 +926,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="513.367873512997" y="485.03255858204636">
-                  Jim Hogg
-                </text>
+                <text>Jim Hogg</text>
               </a>
             </Link>
             <Link href="/us/texas/kleberg-county">
@@ -1090,9 +938,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="553.8238229555079" y="467.50650011065875">
-                  Kleberg
-                </text>
+                <text>Kleberg</text>
               </a>
             </Link>
             <Link href="/us/texas/nueces-county">
@@ -1104,9 +950,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="559.7771679609294" y="453.463042911511">
-                  Nueces
-                </text>
+                <text>Nueces</text>
               </a>
             </Link>
             <Link href="/us/texas/duval-county">
@@ -1118,9 +962,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="520.9381458131418" y="456.11348574995407">
-                  Duval
-                </text>
+                <text>Duval</text>
               </a>
             </Link>
             <Link href="/us/texas/jim-wells-county">
@@ -1132,9 +974,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="537.7304342152106" y="453.8994589318927">
-                  Jim Wells
-                </text>
+                <text>Jim Wells</text>
               </a>
             </Link>
             <Link href="/us/texas/san-patricio-county">
@@ -1146,9 +986,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="561.0220421383985" y="441.26390248845684">
-                  San Patricio
-                </text>
+                <text>San Patricio</text>
               </a>
             </Link>
             <Link href="/us/texas/webb-county">
@@ -1160,9 +998,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="487.8571030688835" y="452.39353669885276">
-                  Webb
-                </text>
+                <text>Webb</text>
               </a>
             </Link>
             <Link href="/us/texas/aransas-county">
@@ -1174,9 +1010,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="581.5692760219092" y="436.79607563523183">
-                  Aransas
-                </text>
+                <text>Aransas</text>
               </a>
             </Link>
             <Link href="/us/texas/refugio-county">
@@ -1188,9 +1022,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="575.1145406303941" y="426.7831371693085">
-                  Refugio
-                </text>
+                <text>Refugio</text>
               </a>
             </Link>
             <Link href="/us/texas/la-salle-county">
@@ -1202,9 +1034,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="497.09687180918957" y="425.80305157603283">
-                  La Salle
-                </text>
+                <text>La Salle</text>
               </a>
             </Link>
             <Link href="/us/texas/mcmullen-county">
@@ -1216,9 +1046,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="518.577257709615" y="425.45739143117004">
-                  McMullen
-                </text>
+                <text>McMullen</text>
               </a>
             </Link>
             <Link href="/us/texas/bee-county">
@@ -1230,9 +1058,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="551.6982838132423" y="422.55112355210105">
-                  Bee
-                </text>
+                <text>Bee</text>
               </a>
             </Link>
             <Link href="/us/texas/calhoun-county">
@@ -1244,9 +1070,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="597.010460635804" y="420.34441297894585">
-                  Calhoun
-                </text>
+                <text>Calhoun</text>
               </a>
             </Link>
             <Link href="/us/texas/live-oak-county">
@@ -1258,9 +1082,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="536.4101378472683" y="425.5677704214103">
-                  Live Oak
-                </text>
+                <text>Live Oak</text>
               </a>
             </Link>
             <Link href="/us/texas/goliad-county">
@@ -1272,9 +1094,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="564.4411751214957" y="411.6077287248106">
-                  Goliad
-                </text>
+                <text>Goliad</text>
               </a>
             </Link>
             <Link href="/us/texas/maverick-county">
@@ -1286,9 +1106,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="448.34825869409127" y="407.71418499469803">
-                  Maverick
-                </text>
+                <text>Maverick</text>
               </a>
             </Link>
             <Link href="/us/texas/zavala-county">
@@ -1300,9 +1118,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="470.6228808328245" y="402.02119935787664">
-                  Zavala
-                </text>
+                <text>Zavala</text>
               </a>
             </Link>
             <Link href="/us/texas/frio-county">
@@ -1314,9 +1130,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="496.8904540562604" y="401.95510496608057">
-                  Frio
-                </text>
+                <text>Frio</text>
               </a>
             </Link>
             <Link href="/us/texas/victoria-county">
@@ -1328,9 +1142,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="582.8323809710217" y="405.1164791249594">
-                  Victoria
-                </text>
+                <text>Victoria</text>
               </a>
             </Link>
             <Link href="/us/texas/karnes-county">
@@ -1342,9 +1154,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="547.0626357178104" y="400.13054883050603">
-                  Karnes
-                </text>
+                <text>Karnes</text>
               </a>
             </Link>
             <Link href="/us/texas/atascosa-county">
@@ -1356,9 +1166,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="520.2432645606959" y="400.69533891645955">
-                  Atascosa
-                </text>
+                <text>Atascosa</text>
               </a>
             </Link>
             <Link href="/us/texas/matagorda-county">
@@ -1370,9 +1178,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="621.2394694208293" y="403.98245714271303">
-                  Matagorda
-                </text>
+                <text>Matagorda</text>
               </a>
             </Link>
             <Link href="/us/texas/jackson-county">
@@ -1384,9 +1190,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="598.5733020694446" y="397.9074816315363">
-                  Jackson
-                </text>
+                <text>Jackson</text>
               </a>
             </Link>
             <Link href="/us/texas/de-witt-county">
@@ -1398,9 +1202,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="567.2940062474811" y="392.1080028494007">
-                  De Witt
-                </text>
+                <text>De Witt</text>
               </a>
             </Link>
             <Link href="/us/texas/wilson-county">
@@ -1412,9 +1214,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="537.9244255186557" y="387.9290311258535">
-                  Wilson
-                </text>
+                <text>Wilson</text>
               </a>
             </Link>
             <Link href="/us/texas/kinney-county">
@@ -1426,9 +1226,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="444.12861294452813" y="379.7316490581492">
-                  Kinney
-                </text>
+                <text>Kinney</text>
               </a>
             </Link>
             <Link href="/us/texas/andrews-county">
@@ -1440,9 +1238,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="354.92276346014063" y="241.2978581442889">
-                  Andrews
-                </text>
+                <text>Andrews</text>
               </a>
             </Link>
             <Link href="/us/texas/hood-county">
@@ -1454,9 +1250,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="548.3878330838702" y="235.31130096912142">
-                  Hood
-                </text>
+                <text>Hood</text>
               </a>
             </Link>
             <Link href="/us/texas/johnson-county">
@@ -1468,9 +1262,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="566.8513097470402" y="237.83471153829066">
-                  Johnson
-                </text>
+                <text>Johnson</text>
               </a>
             </Link>
             <Link href="/us/texas/ellis-county">
@@ -1482,9 +1274,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="589.8413633325189" y="239.28004981799825">
-                  Ellis
-                </text>
+                <text>Ellis</text>
               </a>
             </Link>
             <Link href="/us/texas/smith-county">
@@ -1496,9 +1286,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="651.2863768474894" y="237.75213550098488">
-                  Smith
-                </text>
+                <text>Smith</text>
               </a>
             </Link>
             <Link href="/us/texas/gregg-county">
@@ -1510,9 +1298,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="669.4381559015651" y="233.03373619864118">
-                  Gregg
-                </text>
+                <text>Gregg</text>
               </a>
             </Link>
             <Link href="/us/texas/kaufman-county">
@@ -1524,9 +1310,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="610.1554888873225" y="227.30328628053945">
-                  Kaufman
-                </text>
+                <text>Kaufman</text>
               </a>
             </Link>
             <Link href="/us/texas/harrison-county">
@@ -1538,9 +1322,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="687.341015223288" y="229.69202938949363">
-                  Harrison
-                </text>
+                <text>Harrison</text>
               </a>
             </Link>
             <Link href="/us/texas/van-zandt-county">
@@ -1552,9 +1334,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="628.427993417126" y="228.9612355761361">
-                  Van Zandt
-                </text>
+                <text>Van Zandt</text>
               </a>
             </Link>
             <Link href="/us/texas/shackelford-county">
@@ -1566,9 +1346,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="486.9384016158538" y="220.74436473344795">
-                  Shackelford
-                </text>
+                <text>Shackelford</text>
               </a>
             </Link>
             <Link href="/us/texas/jones-county">
@@ -1580,9 +1358,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="465.94227927556295" y="220.62603266373586">
-                  Jones
-                </text>
+                <text>Jones</text>
               </a>
             </Link>
             <Link href="/us/texas/stephens-county">
@@ -1594,9 +1370,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="507.8007233940958" y="220.755788519119">
-                  Stephens
-                </text>
+                <text>Stephens</text>
               </a>
             </Link>
             <Link href="/us/texas/fisher-county">
@@ -1608,9 +1382,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="444.8702531693869" y="220.41550228464706">
-                  Fisher
-                </text>
+                <text>Fisher</text>
               </a>
             </Link>
             <Link href="/us/texas/borden-county">
@@ -1622,9 +1394,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="403.500893288884" y="220.38964985388455">
-                  Borden
-                </text>
+                <text>Borden</text>
               </a>
             </Link>
             <Link href="/us/texas/scurry-county">
@@ -1636,9 +1406,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="424.1671346719824" y="220.2301410641375">
-                  Scurry
-                </text>
+                <text>Scurry</text>
               </a>
             </Link>
             <Link href="/us/texas/dawson-county">
@@ -1650,9 +1418,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="382.8155774852527" y="220.47670179931913">
-                  Dawson
-                </text>
+                <text>Dawson</text>
               </a>
             </Link>
             <Link href="/us/texas/gaines-county">
@@ -1664,9 +1430,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="355.0297316104809" y="220.51711288988523">
-                  Gaines
-                </text>
+                <text>Gaines</text>
               </a>
             </Link>
             <Link href="/us/texas/upshur-county">
@@ -1678,9 +1442,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="664.5724109025864" y="220.7160784440156">
-                  Upshur
-                </text>
+                <text>Upshur</text>
               </a>
             </Link>
             <Link href="/us/texas/marion-county">
@@ -1692,9 +1454,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="688.1482441048878" y="217.92505831634858">
-                  Marion
-                </text>
+                <text>Marion</text>
               </a>
             </Link>
             <Link href="/us/texas/palo-pinto-county">
@@ -1706,9 +1466,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="528.8338300327682" y="219.9027487715741">
-                  Palo Pinto
-                </text>
+                <text>Palo Pinto</text>
               </a>
             </Link>
             <Link href="/us/texas/parker-county">
@@ -1720,9 +1478,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="549.2819031209448" y="218.71324870208886">
-                  Parker
-                </text>
+                <text>Parker</text>
               </a>
             </Link>
             <Link href="/us/texas/falls-county">
@@ -1734,9 +1490,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="584.2132883087853" y="291.07732450314217">
-                  Falls
-                </text>
+                <text>Falls</text>
               </a>
             </Link>
             <Link href="/us/texas/concho-county">
@@ -1748,9 +1502,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="466.42199343592785" y="287.5965317286848">
-                  Concho
-                </text>
+                <text>Concho</text>
               </a>
             </Link>
             <Link href="/us/texas/angelina-county">
@@ -1762,9 +1514,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="677.6035677595821" y="291.10293553061484">
-                  Angelina
-                </text>
+                <text>Angelina</text>
               </a>
             </Link>
             <Link href="/us/texas/reagan-county">
@@ -1776,9 +1526,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="399.74124208966623" y="285.73587427439077">
-                  Reagan
-                </text>
+                <text>Reagan</text>
               </a>
             </Link>
             <Link href="/us/texas/upton-county">
@@ -1790,9 +1538,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="378.8764983560753" y="285.6113867771157">
-                  Upton
-                </text>
+                <text>Upton</text>
               </a>
             </Link>
             <Link href="/us/texas/houston-county">
@@ -1804,9 +1550,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="645.0808309242631" y="288.069688097104">
-                  Houston
-                </text>
+                <text>Houston</text>
               </a>
             </Link>
             <Link href="/us/texas/crane-county">
@@ -1818,9 +1562,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="359.94531505747256" y="282.782758865556">
-                  Crane
-                </text>
+                <text>Crane</text>
               </a>
             </Link>
             <Link href="/us/texas/ward-county">
@@ -1832,9 +1574,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="336.3327128021704" y="278.9150935916294">
-                  Ward
-                </text>
+                <text>Ward</text>
               </a>
             </Link>
             <Link href="/us/texas/tom-green-county">
@@ -1846,9 +1586,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="442.3980073718623" y="283.9151031284994">
-                  Tom Green
-                </text>
+                <text>Tom Green</text>
               </a>
             </Link>
             <Link href="/us/texas/leon-county">
@@ -1860,9 +1598,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="622.1162356516572" y="288.89344736264576">
-                  Leon
-                </text>
+                <text>Leon</text>
               </a>
             </Link>
             <Link href="/us/texas/coryell-county">
@@ -1874,9 +1610,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="549.5084836816951" y="284.58968017081355">
-                  Coryell
-                </text>
+                <text>Coryell</text>
               </a>
             </Link>
             <Link href="/us/texas/mills-county">
@@ -1888,9 +1622,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="517.5774519623787" y="279.7174701486556">
-                  Mills
-                </text>
+                <text>Mills</text>
               </a>
             </Link>
             <Link href="/us/texas/sabine-county">
@@ -1902,9 +1634,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="708.334637460124" y="286.971105746279">
-                  Sabine
-                </text>
+                <text>Sabine</text>
               </a>
             </Link>
             <Link href="/us/texas/san-augustine-county">
@@ -1916,9 +1646,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="695.4777146451914" y="284.440753750411">
-                  San Augustine
-                </text>
+                <text>San Augustine</text>
               </a>
             </Link>
             <Link href="/us/texas/limestone-county">
@@ -1930,9 +1658,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="598.4328316196938" y="277.22589552748406">
-                  Limestone
-                </text>
+                <text>Limestone</text>
               </a>
             </Link>
             <Link href="/us/texas/mclennan-county">
@@ -1944,9 +1670,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="573.5214756949521" y="276.9444643182542">
-                  McLennan
-                </text>
+                <text>McLennan</text>
               </a>
             </Link>
             <Link href="/us/texas/nacogdoches-county">
@@ -1958,9 +1682,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="677.392082593083" y="274.02150225341353">
-                  Nacogdoches
-                </text>
+                <text>Nacogdoches</text>
               </a>
             </Link>
             <Link href="/us/texas/hamilton-county">
@@ -1972,9 +1694,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="536.9733462986578" y="269.83656243957097">
-                  Hamilton
-                </text>
+                <text>Hamilton</text>
               </a>
             </Link>
             <Link href="/us/texas/loving-county">
@@ -1986,9 +1706,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="317.1404398975505" y="262.9765839602218">
-                  Loving
-                </text>
+                <text>Loving</text>
               </a>
             </Link>
             <Link href="/us/texas/reeves-county">
@@ -2000,9 +1718,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="312.47373258336535" y="287.6612495981826">
-                  Reeves
-                </text>
+                <text>Reeves</text>
               </a>
             </Link>
             <Link href="/us/texas/freestone-county">
@@ -2014,9 +1730,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="615.8483302066393" y="269.77892442621345">
-                  Freestone
-                </text>
+                <text>Freestone</text>
               </a>
             </Link>
             <Link href="/us/texas/coleman-county">
@@ -2028,9 +1742,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="483.0046052973211" y="266.5166468988072">
-                  Coleman
-                </text>
+                <text>Coleman</text>
               </a>
             </Link>
             <Link href="/us/texas/runnels-county">
@@ -2042,9 +1754,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="461.9569530196251" y="263.78057030991664">
-                  Runnels
-                </text>
+                <text>Runnels</text>
               </a>
             </Link>
             <Link href="/us/texas/brown-county">
@@ -2056,9 +1766,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="501.21351559413824" y="266.39892766829274">
-                  Brown
-                </text>
+                <text>Brown</text>
               </a>
             </Link>
             <Link href="/us/texas/coke-county">
@@ -2070,9 +1778,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="439.70112471244397" y="261.04349307899724">
-                  Coke
-                </text>
+                <text>Coke</text>
               </a>
             </Link>
             <Link href="/us/texas/culberson-county">
@@ -2084,9 +1790,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="279.2392398977761" y="281.9542735513664">
-                  Culberson
-                </text>
+                <text>Culberson</text>
               </a>
             </Link>
             <Link href="/us/texas/sterling-county">
@@ -2098,9 +1802,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="418.8780250251196" y="263.98706556747874">
-                  Sterling
-                </text>
+                <text>Sterling</text>
               </a>
             </Link>
             <Link href="/us/texas/glasscock-county">
@@ -2112,9 +1814,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="399.84795384195655" y="261.97897185614244">
-                  Glasscock
-                </text>
+                <text>Glasscock</text>
               </a>
             </Link>
             <Link href="/us/texas/midland-county">
@@ -2126,9 +1826,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="379.30873045908885" y="261.9875793192595">
-                  Midland
-                </text>
+                <text>Midland</text>
               </a>
             </Link>
             <Link href="/us/texas/ector-county">
@@ -2140,9 +1838,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="358.7308624292434" y="261.9547045186469">
-                  Ector
-                </text>
+                <text>Ector</text>
               </a>
             </Link>
             <Link href="/us/texas/shelby-county">
@@ -2154,9 +1850,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="696.4586212202813" y="265.66917803252824">
-                  Shelby
-                </text>
+                <text>Shelby</text>
               </a>
             </Link>
             <Link href="/us/texas/winkler-county">
@@ -2168,9 +1862,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="338.41739834012856" y="262.88990055440473">
-                  Winkler
-                </text>
+                <text>Winkler</text>
               </a>
             </Link>
             <Link href="/us/texas/hudspeth-county">
@@ -2182,9 +1874,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="244.32394887384385" y="281.51166635381617">
-                  Hudspeth
-                </text>
+                <text>Hudspeth</text>
               </a>
             </Link>
             <Link href="/us/texas/anderson-county">
@@ -2196,9 +1886,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="635.8211688990374" y="264.69860792498395">
-                  Anderson
-                </text>
+                <text>Anderson</text>
               </a>
             </Link>
             <Link href="/us/texas/el-paso-county">
@@ -2210,9 +1898,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="210.16213830402722" y="266.6306855814567">
-                  El Paso
-                </text>
+                <text>El Paso</text>
               </a>
             </Link>
             <Link href="/us/texas/bosque-county">
@@ -2224,9 +1910,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="556.1609288493132" y="260.5178758404708">
-                  Bosque
-                </text>
+                <text>Bosque</text>
               </a>
             </Link>
             <Link href="/us/texas/cherokee-county">
@@ -2238,9 +1922,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="655.4060381389653" y="263.76673485721517">
-                  Cherokee
-                </text>
+                <text>Cherokee</text>
               </a>
             </Link>
             <Link href="/us/texas/comanche-county">
@@ -2252,9 +1934,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="518.9671561748925" y="258.1972858235297">
-                  Comanche
-                </text>
+                <text>Comanche</text>
               </a>
             </Link>
             <Link href="/us/texas/hill-county">
@@ -2266,9 +1946,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="576.3983805706126" y="256.2294540280732">
-                  Hill
-                </text>
+                <text>Hill</text>
               </a>
             </Link>
             <Link href="/us/texas/somervell-county">
@@ -2280,9 +1958,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="550.5796094303255" y="245.31386708331226">
-                  Somervell
-                </text>
+                <text>Somervell</text>
               </a>
             </Link>
             <Link href="/us/texas/navarro-county">
@@ -2294,9 +1970,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="602.9642981617052" y="253.72730577520062">
-                  Navarro
-                </text>
+                <text>Navarro</text>
               </a>
             </Link>
             <Link href="/us/texas/henderson-county">
@@ -2308,9 +1982,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="627.7588407084763" y="245.716724282397">
-                  Henderson
-                </text>
+                <text>Henderson</text>
               </a>
             </Link>
             <Link href="/us/texas/callahan-county">
@@ -2322,9 +1994,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="486.1956331890818" y="241.64103480472613">
-                  Callahan
-                </text>
+                <text>Callahan</text>
               </a>
             </Link>
             <Link href="/us/texas/rusk-county">
@@ -2336,9 +2006,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="671.6336231130725" y="250.7316019168172">
-                  Rusk
-                </text>
+                <text>Rusk</text>
               </a>
             </Link>
             <Link href="/us/texas/eastland-county">
@@ -2350,9 +2018,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="507.9461849958367" y="240.23440397538386">
-                  Eastland
-                </text>
+                <text>Eastland</text>
               </a>
             </Link>
             <Link href="/us/texas/taylor-county">
@@ -2364,9 +2030,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="465.4232216244912" y="241.46396001892168">
-                  Taylor
-                </text>
+                <text>Taylor</text>
               </a>
             </Link>
             <Link href="/us/texas/erath-county">
@@ -2378,9 +2042,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="532.777484488724" y="244.55022240893956">
-                  Erath
-                </text>
+                <text>Erath</text>
               </a>
             </Link>
             <Link href="/us/texas/nolan-county">
@@ -2392,9 +2054,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="444.6773837536823" y="241.34051291488427">
-                  Nolan
-                </text>
+                <text>Nolan</text>
               </a>
             </Link>
             <Link href="/us/texas/panola-county">
@@ -2406,9 +2066,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="689.9186597991984" y="247.95840235194905">
-                  Panola
-                </text>
+                <text>Panola</text>
               </a>
             </Link>
             <Link href="/us/texas/mitchell-county">
@@ -2420,9 +2078,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="423.96564910631963" y="241.24392746617428">
-                  Mitchell
-                </text>
+                <text>Mitchell</text>
               </a>
             </Link>
             <Link href="/us/texas/howard-county">
@@ -2434,9 +2090,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="403.27261168777" y="241.24706932605912">
-                  Howard
-                </text>
+                <text>Howard</text>
               </a>
             </Link>
             <Link href="/us/texas/martin-county">
@@ -2448,9 +2102,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="382.5299805517474" y="241.24500301513729">
-                  Martin
-                </text>
+                <text>Martin</text>
               </a>
             </Link>
             <Link href="/us/texas/rockwall-county">
@@ -2462,9 +2114,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="605.4167541569743" y="213.09457107573874">
-                  Rockwall
-                </text>
+                <text>Rockwall</text>
               </a>
             </Link>
             <Link href="/us/texas/rains-county">
@@ -2476,9 +2126,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="630.121993134922" y="214.43373746059473">
-                  Rains
-                </text>
+                <text>Rains</text>
               </a>
             </Link>
             <Link href="/us/texas/wood-county">
@@ -2490,9 +2138,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="646.525632943733" y="218.25551104173513">
-                  Wood
-                </text>
+                <text>Wood</text>
               </a>
             </Link>
             <Link href="/us/texas/camp-county">
@@ -2504,9 +2150,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="663.1685269920639" y="209.41737780487227">
-                  Camp
-                </text>
+                <text>Camp</text>
               </a>
             </Link>
             <Link href="/us/texas/stonewall-county">
@@ -2518,9 +2162,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="450.71219882405126" y="199.5172155849557">
-                  Stonewall
-                </text>
+                <text>Stonewall</text>
               </a>
             </Link>
             <Link href="/us/texas/haskell-county">
@@ -2532,9 +2174,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="471.84075163203477" y="199.53822556062272">
-                  Haskell
-                </text>
+                <text>Haskell</text>
               </a>
             </Link>
             <Link href="/us/texas/kent-county">
@@ -2546,9 +2186,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="429.8009728271021" y="199.38460463684186">
-                  Kent
-                </text>
+                <text>Kent</text>
               </a>
             </Link>
             <Link href="/us/texas/throckmorton-county">
@@ -2560,9 +2198,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="492.67625878342307" y="199.58506696543176">
-                  Throckmorton
-                </text>
+                <text>Throckmorton</text>
               </a>
             </Link>
             <Link href="/us/texas/garza-county">
@@ -2574,9 +2210,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="408.88476952547154" y="199.46139682066877">
-                  Garza
-                </text>
+                <text>Garza</text>
               </a>
             </Link>
             <Link href="/us/texas/lynn-county">
@@ -2588,9 +2222,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="387.9790412620909" y="199.6346050704282">
-                  Lynn
-                </text>
+                <text>Lynn</text>
               </a>
             </Link>
             <Link href="/us/texas/young-county">
@@ -2602,9 +2234,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="513.7616265246631" y="199.63787429232775">
-                  Young
-                </text>
+                <text>Young</text>
               </a>
             </Link>
             <Link href="/us/texas/hockley-county">
@@ -2616,9 +2246,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="366.77846907559876" y="178.8749643165686">
-                  Hockley
-                </text>
+                <text>Hockley</text>
               </a>
             </Link>
             <Link href="/us/texas/cochran-county">
@@ -2630,9 +2258,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="347.08843266639366" y="179.10437097453524">
-                  Cochran
-                </text>
+                <text>Cochran</text>
               </a>
             </Link>
             <Link href="/us/texas/fannin-county">
@@ -2644,9 +2270,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="617.6308613364068" y="179.42081569699747">
-                  Fannin
-                </text>
+                <text>Fannin</text>
               </a>
             </Link>
             <Link href="/us/texas/cooke-county">
@@ -2658,9 +2282,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="573.0695874143397" y="177.37713617539342">
-                  Cooke
-                </text>
+                <text>Cooke</text>
               </a>
             </Link>
             <Link href="/us/texas/grayson-county">
@@ -2672,9 +2294,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="594.6101746335792" y="177.81755758411703">
-                  Grayson
-                </text>
+                <text>Grayson</text>
               </a>
             </Link>
             <Link href="/us/texas/montague-county">
@@ -2686,9 +2306,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="552.4694142651824" y="175.5797904250594">
-                  Montague
-                </text>
+                <text>Montague</text>
               </a>
             </Link>
             <Link href="/us/texas/lamar-county">
@@ -2700,9 +2318,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="639.161792311701" y="175.84367535922337">
-                  Lamar
-                </text>
+                <text>Lamar</text>
               </a>
             </Link>
             <Link href="/us/texas/red-river-county">
@@ -2714,9 +2330,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="659.9215472859953" y="178.04180705783563">
-                  Red River
-                </text>
+                <text>Red River</text>
               </a>
             </Link>
             <Link href="/us/texas/clay-county">
@@ -2728,9 +2342,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="532.9610768486433" y="170.34584813903135">
-                  Clay
-                </text>
+                <text>Clay</text>
               </a>
             </Link>
             <Link href="/us/texas/wichita-county">
@@ -2742,9 +2354,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="513.2929203478352" y="160.80633747142096">
-                  Wichita
-                </text>
+                <text>Wichita</text>
               </a>
             </Link>
             <Link href="/us/texas/foard-county">
@@ -2756,9 +2366,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="469.86950806777526" y="161.02052754666244">
-                  Foard
-                </text>
+                <text>Foard</text>
               </a>
             </Link>
             <Link href="/us/texas/cottle-county">
@@ -2770,9 +2378,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="449.8355200917397" y="156.10234573463475">
-                  Cottle
-                </text>
+                <text>Cottle</text>
               </a>
             </Link>
             <Link href="/us/texas/motley-county">
@@ -2784,9 +2390,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="429.64537712061536" y="156.28423020715888">
-                  Motley
-                </text>
+                <text>Motley</text>
               </a>
             </Link>
             <Link href="/us/texas/floyd-county">
@@ -2798,9 +2402,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="408.59773303504875" y="156.36836991766538">
-                  Floyd
-                </text>
+                <text>Floyd</text>
               </a>
             </Link>
             <Link href="/us/texas/hale-county">
@@ -2812,9 +2414,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="387.54138512039236" y="156.45704181763702">
-                  Hale
-                </text>
+                <text>Hale</text>
               </a>
             </Link>
             <Link href="/us/texas/lamb-county">
@@ -2826,9 +2426,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="366.4334757389868" y="156.5493471100005">
-                  Lamb
-                </text>
+                <text>Lamb</text>
               </a>
             </Link>
             <Link href="/us/texas/bailey-county">
@@ -2840,9 +2438,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="347.1566644398855" y="156.4677030946191">
-                  Bailey
-                </text>
+                <text>Bailey</text>
               </a>
             </Link>
             <Link href="/us/texas/wilbarger-county">
@@ -2854,9 +2450,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="491.5124627118054" y="155.91036041934603">
-                  Wilbarger
-                </text>
+                <text>Wilbarger</text>
               </a>
             </Link>
             <Link href="/us/texas/hardeman-county">
@@ -2868,9 +2462,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="471.1094302061389" y="145.76474314173527">
-                  Hardeman
-                </text>
+                <text>Hardeman</text>
               </a>
             </Link>
             <Link href="/us/texas/terry-county">
@@ -2882,9 +2474,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="367.0973936904454" y="199.75834363417792">
-                  Terry
-                </text>
+                <text>Terry</text>
               </a>
             </Link>
             <Link href="/us/texas/yoakum-county">
@@ -2896,9 +2486,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="347.3493809437512" y="199.82317109520946">
-                  Yoakum
-                </text>
+                <text>Yoakum</text>
               </a>
             </Link>
             <Link href="/us/texas/collin-county">
@@ -2910,9 +2498,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="598.8227735120421" y="199.05689587051066">
-                  Collin
-                </text>
+                <text>Collin</text>
               </a>
             </Link>
             <Link href="/us/texas/denton-county">
@@ -2924,9 +2510,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="576.942119125042" y="198.2670108924931">
-                  Denton
-                </text>
+                <text>Denton</text>
               </a>
             </Link>
             <Link href="/us/texas/wise-county">
@@ -2938,9 +2522,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="555.3211858532306" y="197.74919271644694">
-                  Wise
-                </text>
+                <text>Wise</text>
               </a>
             </Link>
             <Link href="/us/texas/hopkins-county">
@@ -2952,9 +2534,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="639.3521796327436" y="200.7373727687212">
-                  Hopkins
-                </text>
+                <text>Hopkins</text>
               </a>
             </Link>
             <Link href="/us/texas/morris-county">
@@ -2966,9 +2546,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="672.853983409121" y="202.78383832256318">
-                  Morris
-                </text>
+                <text>Morris</text>
               </a>
             </Link>
             <Link href="/us/texas/hunt-county">
@@ -2980,9 +2558,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="618.4177508778309" y="202.16442160211994">
-                  Hunt
-                </text>
+                <text>Hunt</text>
               </a>
             </Link>
             <Link href="/us/texas/franklin-county">
@@ -2994,9 +2570,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="653.2766981251787" y="199.61271279449988">
-                  Franklin
-                </text>
+                <text>Franklin</text>
               </a>
             </Link>
             <Link href="/us/texas/titus-county">
@@ -3008,9 +2582,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="663.3934677488897" y="197.69232362717722">
-                  Titus
-                </text>
+                <text>Titus</text>
               </a>
             </Link>
             <Link href="/us/texas/delta-county">
@@ -3022,9 +2594,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="634.978524058465" y="189.31492163979456">
-                  Delta
-                </text>
+                <text>Delta</text>
               </a>
             </Link>
             <Link href="/us/texas/bowie-county">
@@ -3036,9 +2606,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="685.1030658150315" y="186.6519728379773">
-                  Bowie
-                </text>
+                <text>Bowie</text>
               </a>
             </Link>
             <Link href="/us/texas/knox-county">
@@ -3050,9 +2618,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="471.3908502685562" y="178.96422944074183">
-                  Knox
-                </text>
+                <text>Knox</text>
               </a>
             </Link>
             <Link href="/us/texas/king-county">
@@ -3064,9 +2630,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="450.7118459029565" y="178.44689167939657">
-                  King
-                </text>
+                <text>King</text>
               </a>
             </Link>
             <Link href="/us/texas/dickens-county">
@@ -3078,9 +2642,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="429.6780855654273" y="178.45690880593997">
-                  Dickens
-                </text>
+                <text>Dickens</text>
               </a>
             </Link>
             <Link href="/us/texas/baylor-county">
@@ -3092,9 +2654,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="492.6206227402465" y="178.44311486071157">
-                  Baylor
-                </text>
+                <text>Baylor</text>
               </a>
             </Link>
             <Link href="/us/texas/crosby-county">
@@ -3106,9 +2666,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="408.7228549603863" y="178.54110565305828">
-                  Crosby
-                </text>
+                <text>Crosby</text>
               </a>
             </Link>
             <Link href="/us/texas/lubbock-county">
@@ -3120,9 +2678,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="387.79025221452645" y="178.75595459187673">
-                  Lubbock
-                </text>
+                <text>Lubbock</text>
               </a>
             </Link>
             <Link href="/us/texas/archer-county">
@@ -3134,9 +2690,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="513.7649296764304" y="178.47942283775527">
-                  Archer
-                </text>
+                <text>Archer</text>
               </a>
             </Link>
             <Link href="/us/texas/tarrant-county">
@@ -3148,9 +2702,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="569.9209246471936" y="219.08864107552856">
-                  Tarrant
-                </text>
+                <text>Tarrant</text>
               </a>
             </Link>
             <Link href="/us/texas/dallas-county">
@@ -3162,9 +2714,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="590.5718118688296" y="219.28936283248674">
-                  Dallas
-                </text>
+                <text>Dallas</text>
               </a>
             </Link>
             <Link href="/us/texas/carson-county">
@@ -3176,9 +2726,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="406.5405023655622" y="91.21560901503452">
-                  Carson
-                </text>
+                <text>Carson</text>
               </a>
             </Link>
             <Link href="/us/texas/potter-county">
@@ -3190,9 +2738,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="384.8353348544657" y="91.33070628214328">
-                  Potter
-                </text>
+                <text>Potter</text>
               </a>
             </Link>
             <Link href="/us/texas/oldham-county">
@@ -3204,9 +2750,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="356.2866367981573" y="91.28041039261757">
-                  Oldham
-                </text>
+                <text>Oldham</text>
               </a>
             </Link>
             <Link href="/us/texas/hemphill-county">
@@ -3218,9 +2762,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="450.13336078755583" y="69.75188762906663">
-                  Hemphill
-                </text>
+                <text>Hemphill</text>
               </a>
             </Link>
             <Link href="/us/texas/roberts-county">
@@ -3232,9 +2774,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="428.30876300728505" y="69.74358457239535">
-                  Roberts
-                </text>
+                <text>Roberts</text>
               </a>
             </Link>
             <Link href="/us/texas/hutchinson-county">
@@ -3246,9 +2786,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="406.5255341633183" y="69.62935204393987">
-                  Hutchinson
-                </text>
+                <text>Hutchinson</text>
               </a>
             </Link>
             <Link href="/us/texas/moore-county">
@@ -3260,9 +2798,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="384.87877415714655" y="69.74800728975696">
-                  Moore
-                </text>
+                <text>Moore</text>
               </a>
             </Link>
             <Link href="/us/texas/hartley-county">
@@ -3274,9 +2810,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="356.48152293923135" y="69.66604783230774">
-                  Hartley
-                </text>
+                <text>Hartley</text>
               </a>
             </Link>
             <Link href="/us/texas/childress-county">
@@ -3288,9 +2822,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="452.7582511420347" y="134.16747833470794">
-                  Childress
-                </text>
+                <text>Childress</text>
               </a>
             </Link>
             <Link href="/us/texas/hall-county">
@@ -3302,9 +2834,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="433.6041771940908" y="134.06888604901843">
-                  Hall
-                </text>
+                <text>Hall</text>
               </a>
             </Link>
             <Link href="/us/texas/briscoe-county">
@@ -3316,9 +2846,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="412.39842053627837" y="134.0645753499972">
-                  Briscoe
-                </text>
+                <text>Briscoe</text>
               </a>
             </Link>
             <Link href="/us/texas/swisher-county">
@@ -3330,9 +2858,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="391.23487015166023" y="134.0642319088891">
-                  Swisher
-                </text>
+                <text>Swisher</text>
               </a>
             </Link>
             <Link href="/us/texas/castro-county">
@@ -3344,9 +2870,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="370.04531340895534" y="134.07638051088585">
-                  Castro
-                </text>
+                <text>Castro</text>
               </a>
             </Link>
             <Link href="/us/texas/parmer-county">
@@ -3358,9 +2882,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="349.0226859170726" y="134.09825197921018">
-                  Parmer
-                </text>
+                <text>Parmer</text>
               </a>
             </Link>
             <Link href="/us/texas/collingsworth-county">
@@ -3372,9 +2894,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="450.13830108874936" y="112.79859293393137">
-                  Collingsworth
-                </text>
+                <text>Collingsworth</text>
               </a>
             </Link>
             <Link href="/us/texas/donley-county">
@@ -3386,9 +2906,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="428.26294506572185" y="112.78514256001736">
-                  Donley
-                </text>
+                <text>Donley</text>
               </a>
             </Link>
             <Link href="/us/texas/armstrong-county">
@@ -3400,9 +2918,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="406.41497840734394" y="112.78028462874815">
-                  Armstrong
-                </text>
+                <text>Armstrong</text>
               </a>
             </Link>
             <Link href="/us/texas/randall-county">
@@ -3414,9 +2930,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="384.70752123329265" y="112.75827479888454">
-                  Randall
-                </text>
+                <text>Randall</text>
               </a>
             </Link>
             <Link href="/us/texas/deaf-smith-county">
@@ -3428,9 +2942,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="356.22878391954055" y="112.78554827521614">
-                  Deaf Smith
-                </text>
+                <text>Deaf Smith</text>
               </a>
             </Link>
             <Link href="/us/texas/wheeler-county">
@@ -3442,9 +2954,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="450.14302260327247" y="91.33776853265155">
-                  Wheeler
-                </text>
+                <text>Wheeler</text>
               </a>
             </Link>
             <Link href="/us/texas/gray-county">
@@ -3456,9 +2966,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="428.31362891920924" y="91.35531258130624">
-                  Gray
-                </text>
+                <text>Gray</text>
               </a>
             </Link>
             <Link href="/us/texas/sherman-county">
@@ -3470,9 +2978,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="384.81282090945535" y="47.72083668041287">
-                  Sherman
-                </text>
+                <text>Sherman</text>
               </a>
             </Link>
             <Link href="/us/texas/dallam-county">
@@ -3484,9 +2990,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="356.263020547761" y="47.67482633879745">
-                  Dallam
-                </text>
+                <text>Dallam</text>
               </a>
             </Link>
             <Link href="/us/texas/cass-county">
@@ -3498,9 +3002,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="688.4595542794344" y="204.36075007423364">
-                  Cass
-                </text>
+                <text>Cass</text>
               </a>
             </Link>
             <Link href="/us/texas/lipscomb-county">
@@ -3512,9 +3014,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="450.01130116075785" y="47.851535817615336">
-                  Lipscomb
-                </text>
+                <text>Lipscomb</text>
               </a>
             </Link>
             <Link href="/us/texas/ochiltree-county">
@@ -3526,9 +3026,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="428.1896453596995" y="47.85766802627177">
-                  Ochiltree
-                </text>
+                <text>Ochiltree</text>
               </a>
             </Link>
             <Link href="/us/texas/hansford-county">
@@ -3540,9 +3038,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="406.5300251848044" y="47.86412135480856">
-                  Hansford
-                </text>
+                <text>Hansford</text>
               </a>
             </Link>
             <Link href="/us/texas/jack-county">
@@ -3554,9 +3050,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="534.4548392104219" y="196.88310104168406">
-                  Jack
-                </text>
+                <text>Jack</text>
               </a>
             </Link>
             <Link href="/us/texas/dimmit-county">
@@ -3568,9 +3062,7 @@ export default function TexasMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="470.6777851701347" y="422.34203644556345">
-                  Dimmit
-                </text>
+                <text>Dimmit</text>
               </a>
             </Link>
           </g>

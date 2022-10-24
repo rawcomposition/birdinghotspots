@@ -26,9 +26,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="480.5964463497832" y="342.2172165495729">
-                  Tulare
-                </text>
+                <text>Tulare</text>
               </a>
             </Link>
             <Link href="/us/california/merced-county">
@@ -40,9 +38,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="393.17162744020027" y="285.6580294947641">
-                  Merced
-                </text>
+                <text>Merced</text>
               </a>
             </Link>
             <Link href="/us/california/san-luis-obispo-county">
@@ -54,9 +50,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="381.08119312641054" y="398.50179682604625">
-                  San Luis Obispo
-                </text>
+                <text>San Luis Obispo</text>
               </a>
             </Link>
             <Link href="/us/california/sonoma-county">
@@ -68,9 +62,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="281.7535202184978" y="203.37965105474117">
-                  Sonoma
-                </text>
+                <text>Sonoma</text>
               </a>
             </Link>
             <Link href="/us/california/marin-county">
@@ -82,9 +74,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="301.49323851837784" y="238.1976251096385">
-                  Marin
-                </text>
+                <text>Marin</text>
               </a>
             </Link>
             <Link href="/us/california/humboldt-county">
@@ -96,9 +86,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="235.1333964448482" y="97.83933599728833">
-                  Humboldt
-                </text>
+                <text>Humboldt</text>
               </a>
             </Link>
             <Link href="/us/california/mono-county">
@@ -110,9 +98,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="478.39781232301704" y="246.93276926409783">
-                  Mono
-                </text>
+                <text>Mono</text>
               </a>
             </Link>
             <Link href="/us/california/del-norte-county">
@@ -124,9 +110,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="175.30782258136884" y="21.578797505295345">
-                  Del Norte
-                </text>
+                <text>Del Norte</text>
                 <line
                   x1="259.30782258136884"
                   y1="18.578797505295345"
@@ -144,9 +128,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="319.7597218749085" y="167.60167352577238">
-                  Colusa
-                </text>
+                <text>Colusa</text>
               </a>
             </Link>
             <Link href="/us/california/el-dorado-county">
@@ -158,9 +140,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="391.85506979438946" y="195.7560682987076">
-                  El Dorado
-                </text>
+                <text>El Dorado</text>
               </a>
             </Link>
             <Link href="/us/california/kings-county">
@@ -172,9 +152,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="431.79747207279087" y="357.30212249181994">
-                  Kings
-                </text>
+                <text>Kings</text>
               </a>
             </Link>
             <Link href="/us/california/sierra-county">
@@ -186,9 +164,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="402.15776271567097" y="149.3586513860587">
-                  Sierra
-                </text>
+                <text>Sierra</text>
               </a>
             </Link>
             <Link href="/us/california/lassen-county">
@@ -200,9 +176,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="389.2978851260683" y="82.35553183317043">
-                  Lassen
-                </text>
+                <text>Lassen</text>
               </a>
             </Link>
             <Link href="/us/california/tehama-county">
@@ -214,9 +188,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="320.7122900010508" y="115.16342809108123">
-                  Tehama
-                </text>
+                <text>Tehama</text>
               </a>
             </Link>
             <Link href="/us/california/san-francisco-county">
@@ -228,9 +200,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="222.1691357644059" y="271.0317140112048">
-                  San Francisco
-                </text>
+                <text>San Francisco</text>
                 <line
                   x1="318.1691357644059"
                   y1="252.0317140112048"
@@ -248,9 +218,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="435.54189296088" y="210.48640837564827">
-                  Alpine
-                </text>
+                <text>Alpine</text>
               </a>
             </Link>
             <Link href="/us/california/santa-barbara-county">
@@ -262,9 +230,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="403.02068285257513" y="431.6577153980279">
-                  Santa Barbara
-                </text>
+                <text>Santa Barbara</text>
               </a>
             </Link>
             <Link href="/us/california/plumas-county">
@@ -276,9 +242,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="385.6230969070157" y="127.33634256263535">
-                  Plumas
-                </text>
+                <text>Plumas</text>
               </a>
             </Link>
             <Link href="/us/california/modoc-county">
@@ -290,9 +254,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="388.88666788078984" y="27.944963058845605">
-                  Modoc
-                </text>
+                <text>Modoc</text>
               </a>
             </Link>
             <Link href="/us/california/ventura-county">
@@ -304,9 +266,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="464.080801480286" y="446.6171937992146">
-                  Ventura
-                </text>
+                <text>Ventura</text>
               </a>
             </Link>
             <Link href="/us/california/santa-cruz-county">
@@ -318,9 +278,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="266.8125596672845" y="337.1950190722495">
-                  Santa Cruz
-                </text>
+                <text>Santa Cruz</text>
                 <line
                   x1="346.8125596672845"
                   y1="294.1950190722495"
@@ -338,9 +296,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="421.78578437861387" y="241.1738262883702">
-                  Tuolumne
-                </text>
+                <text>Tuolumne</text>
               </a>
             </Link>
             <Link href="/us/california/siskiyou-county">
@@ -352,9 +308,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="311.01211286839015" y="27.827507597347342">
-                  Siskiyou
-                </text>
+                <text>Siskiyou</text>
               </a>
             </Link>
             <Link href="/us/california/placer-county">
@@ -366,9 +320,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="405.9118053582516" y="174.4916754510735">
-                  Placer
-                </text>
+                <text>Placer</text>
               </a>
             </Link>
             <Link href="/us/california/glenn-county">
@@ -380,9 +332,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="315.7331769714846" y="146.20719790934723">
-                  Glenn
-                </text>
+                <text>Glenn</text>
               </a>
             </Link>
             <Link href="/us/california/trinity-county">
@@ -394,9 +344,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="283.2445248083662" y="81.0792315908462">
-                  Trinity
-                </text>
+                <text>Trinity</text>
               </a>
             </Link>
             <Link href="/us/california/inyo-county">
@@ -408,9 +356,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="544.6739435176152" y="319.5947140334791">
-                  Inyo
-                </text>
+                <text>Inyo</text>
               </a>
             </Link>
             <Link href="/us/california/monterey-county">
@@ -422,9 +368,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="369.52505736839163" y="354.0029121814132">
-                  Monterey
-                </text>
+                <text>Monterey</text>
                 <line
                   x1="378.52505736839163"
                   y1="338.0029121814132"
@@ -442,9 +386,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="563.0115387339591" y="509.9886021506726">
-                  San Diego
-                </text>
+                <text>San Diego</text>
               </a>
             </Link>
             <Link href="/us/california/nevada-county">
@@ -456,9 +398,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="401.0424172677298" y="161.4775336375399">
-                  Nevada
-                </text>
+                <text>Nevada</text>
               </a>
             </Link>
             <Link href="/us/california/mendocino-county">
@@ -470,9 +410,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="261.9113547680197" y="146.52015952471757">
-                  Mendocino
-                </text>
+                <text>Mendocino</text>
               </a>
             </Link>
             <Link href="/us/california/yolo-county">
@@ -484,9 +422,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="339.7857109630596" y="201.3402877935905">
-                  Yolo
-                </text>
+                <text>Yolo</text>
               </a>
             </Link>
             <Link href="/us/california/imperial-county">
@@ -498,9 +434,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="624.2926378598327" y="510.43900590633666">
-                  Imperial
-                </text>
+                <text>Imperial</text>
               </a>
             </Link>
             <Link href="/us/california/kern-county">
@@ -512,9 +446,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="488.7036057844659" y="387.858894471745">
-                  Kern
-                </text>
+                <text>Kern</text>
               </a>
             </Link>
             <Link href="/us/california/fresno-county">
@@ -526,9 +458,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="427.48931181061266" y="318.88876489788277">
-                  Fresno
-                </text>
+                <text>Fresno</text>
               </a>
             </Link>
             <Link href="/us/california/san-mateo-county">
@@ -540,9 +470,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="250.46616241332185" y="304.65635277348366">
-                  San Mateo
-                </text>
+                <text>San Mateo</text>
                 <line
                   x1="331.46616241332185"
                   y1="270.65635277348366"
@@ -560,9 +488,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="355.28555952352747" y="145.19288383517332">
-                  Butte
-                </text>
+                <text>Butte</text>
               </a>
             </Link>
             <Link href="/us/california/shasta-county">
@@ -574,9 +500,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="329.4545793028888" y="77.4000637838279">
-                  Shasta
-                </text>
+                <text>Shasta</text>
               </a>
             </Link>
             <Link href="/us/california/riverside-county">
@@ -588,9 +512,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="607.1097725657457" y="478.3454738348489">
-                  Riverside
-                </text>
+                <text>Riverside</text>
               </a>
             </Link>
             <Link href="/us/california/los-angeles-county">
@@ -602,9 +524,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="488.8246239728994" y="460.242106517842">
-                  Los Angeles
-                </text>
+                <text>Los Angeles</text>
               </a>
             </Link>
             <Link href="/us/california/orange-county">
@@ -616,9 +536,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="491.66692886454916" y="487.1431852053839">
-                  Orange
-                </text>
+                <text>Orange</text>
                 <line
                   x1="537.6669288645492"
                   y1="479.1431852053839"
@@ -636,9 +554,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="365.48485456680123" y="169.36715334271594">
-                  Yuba
-                </text>
+                <text>Yuba</text>
               </a>
             </Link>
             <Link href="/us/california/lake-county">
@@ -650,9 +566,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="301.40043752080885" y="177.25918318233508">
-                  Lake
-                </text>
+                <text>Lake</text>
               </a>
             </Link>
             <Link href="/us/california/madera-county">
@@ -664,9 +578,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="417.20150133377155" y="298.14933344396337">
-                  Madera
-                </text>
+                <text>Madera</text>
               </a>
             </Link>
             <Link href="/us/california/mariposa-county">
@@ -678,9 +590,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="423.73718913296204" y="260.6045619696715">
-                  Mariposa
-                </text>
+                <text>Mariposa</text>
               </a>
             </Link>
             <Link href="/us/california/calaveras-county">
@@ -692,9 +602,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="396.6892969939234" y="231.86106892181556">
-                  Calaveras
-                </text>
+                <text>Calaveras</text>
               </a>
             </Link>
             <Link href="/us/california/san-joaquin-county">
@@ -706,9 +614,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="556.2025444243216" y="262.38651000583343">
-                  San Joaquin
-                </text>
+                <text>San Joaquin</text>
                 <line
                   x1="380.2025444243215"
                   y1="242.38651000583346"
@@ -726,9 +632,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="353.061456897041" y="178.8587297509203">
-                  Sutter
-                </text>
+                <text>Sutter</text>
               </a>
             </Link>
             <Link href="/us/california/amador-county">
@@ -740,9 +644,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="510.31079469888783" y="217.99077267279714">
-                  Amador
-                </text>
+                <text>Amador</text>
                 <line
                   x1="408.31079469888783"
                   y1="212.99077267279714"
@@ -760,9 +662,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="283.23156070936733" y="377.61483467598794">
-                  San Benito
-                </text>
+                <text>San Benito</text>
                 <line
                   x1="389.23156070936733"
                   y1="317.61483467598794"
@@ -780,9 +680,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="485.99466443396744" y="186.65929921224205">
-                  Sacramento
-                </text>
+                <text>Sacramento</text>
                 <line
                   x1="376.99466443396744"
                   y1="212.65929921224205"
@@ -800,9 +698,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="254.87976533499148" y="320.16083384816307">
-                  Santa Clara
-                </text>
+                <text>Santa Clara</text>
                 <line
                   x1="360.8797653349915"
                   y1="282.16083384816307"
@@ -820,9 +716,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="250.52946067095485" y="287.6784970318354">
-                  Alameda
-                </text>
+                <text>Alameda</text>
                 <line
                   x1="351.52946067095485"
                   y1="258.6784970318354"
@@ -840,9 +734,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="377.77096327707125" y="264.57818519323826">
-                  Stanislaus
-                </text>
+                <text>Stanislaus</text>
               </a>
             </Link>
             <Link href="/us/california/napa-county">
@@ -854,9 +746,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="321.40000328945644" y="209.61607432685489">
-                  Napa
-                </text>
+                <text>Napa</text>
               </a>
             </Link>
             <Link href="/us/california/contra-costa-county">
@@ -868,9 +758,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="220.6965036972761" y="253.92566167569606">
-                  Contra Costa
-                </text>
+                <text>Contra Costa</text>
                 <line
                   x1="349.6965036972761"
                   y1="242.92566167569606"
@@ -888,9 +776,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="336.9622244251435" y="227.52210588607375">
-                  Solano
-                </text>
+                <text>Solano</text>
               </a>
             </Link>
             <Link href="/us/california/san-bernardino-county">
@@ -902,9 +788,7 @@ export default function CaliforniaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="578.5856407296395" y="415.1505985672928">
-                  San Bernardino
-                </text>
+                <text>San Bernardino</text>
               </a>
             </Link>
           </g>

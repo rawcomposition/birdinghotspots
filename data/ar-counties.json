@@ -1,0 +1,302 @@
+[
+  {
+    "ebirdCode": "US-AR-001",
+    "slug": "arkansas"
+  },
+  {
+    "ebirdCode": "US-AR-003",
+    "slug": "ashley"
+  },
+  {
+    "ebirdCode": "US-AR-005",
+    "slug": "baxter"
+  },
+  {
+    "ebirdCode": "US-AR-007",
+    "slug": "benton"
+  },
+  {
+    "ebirdCode": "US-AR-009",
+    "slug": "boone"
+  },
+  {
+    "ebirdCode": "US-AR-011",
+    "slug": "bradley"
+  },
+  {
+    "ebirdCode": "US-AR-013",
+    "slug": "calhoun"
+  },
+  {
+    "ebirdCode": "US-AR-015",
+    "slug": "carroll"
+  },
+  {
+    "ebirdCode": "US-AR-017",
+    "slug": "chicot"
+  },
+  {
+    "ebirdCode": "US-AR-019",
+    "slug": "clark"
+  },
+  {
+    "ebirdCode": "US-AR-021",
+    "slug": "clay"
+  },
+  {
+    "ebirdCode": "US-AR-023",
+    "slug": "cleburne"
+  },
+  {
+    "ebirdCode": "US-AR-025",
+    "slug": "cleveland"
+  },
+  {
+    "ebirdCode": "US-AR-027",
+    "slug": "columbia"
+  },
+  {
+    "ebirdCode": "US-AR-029",
+    "slug": "conway"
+  },
+  {
+    "ebirdCode": "US-AR-031",
+    "slug": "craighead"
+  },
+  {
+    "ebirdCode": "US-AR-033",
+    "slug": "crawford"
+  },
+  {
+    "ebirdCode": "US-AR-035",
+    "slug": "crittenden"
+  },
+  {
+    "ebirdCode": "US-AR-037",
+    "slug": "cross"
+  },
+  {
+    "ebirdCode": "US-AR-039",
+    "slug": "dallas"
+  },
+  {
+    "ebirdCode": "US-AR-041",
+    "slug": "desha"
+  },
+  {
+    "ebirdCode": "US-AR-043",
+    "slug": "drew"
+  },
+  {
+    "ebirdCode": "US-AR-045",
+    "slug": "faulkner"
+  },
+  {
+    "ebirdCode": "US-AR-047",
+    "slug": "franklin"
+  },
+  {
+    "ebirdCode": "US-AR-049",
+    "slug": "fulton"
+  },
+  {
+    "ebirdCode": "US-AR-051",
+    "slug": "garland"
+  },
+  {
+    "ebirdCode": "US-AR-053",
+    "slug": "grant"
+  },
+  {
+    "ebirdCode": "US-AR-055",
+    "slug": "greene"
+  },
+  {
+    "ebirdCode": "US-AR-057",
+    "slug": "hempstead"
+  },
+  {
+    "ebirdCode": "US-AR-059",
+    "slug": "hot-spring"
+  },
+  {
+    "ebirdCode": "US-AR-061",
+    "slug": "howard"
+  },
+  {
+    "ebirdCode": "US-AR-063",
+    "slug": "independence"
+  },
+  {
+    "ebirdCode": "US-AR-065",
+    "slug": "izard"
+  },
+  {
+    "ebirdCode": "US-AR-067",
+    "slug": "jackson"
+  },
+  {
+    "ebirdCode": "US-AR-069",
+    "slug": "jefferson"
+  },
+  {
+    "ebirdCode": "US-AR-071",
+    "slug": "johnson"
+  },
+  {
+    "ebirdCode": "US-AR-073",
+    "slug": "lafayette"
+  },
+  {
+    "ebirdCode": "US-AR-075",
+    "slug": "lawrence"
+  },
+  {
+    "ebirdCode": "US-AR-077",
+    "slug": "lee"
+  },
+  {
+    "ebirdCode": "US-AR-079",
+    "slug": "lincoln"
+  },
+  {
+    "ebirdCode": "US-AR-081",
+    "slug": "little-river"
+  },
+  {
+    "ebirdCode": "US-AR-083",
+    "slug": "logan"
+  },
+  {
+    "ebirdCode": "US-AR-085",
+    "slug": "lonoke"
+  },
+  {
+    "ebirdCode": "US-AR-087",
+    "slug": "madison"
+  },
+  {
+    "ebirdCode": "US-AR-089",
+    "slug": "marion"
+  },
+  {
+    "ebirdCode": "US-AR-091",
+    "slug": "miller"
+  },
+  {
+    "ebirdCode": "US-AR-093",
+    "slug": "mississippi"
+  },
+  {
+    "ebirdCode": "US-AR-095",
+    "slug": "monroe"
+  },
+  {
+    "ebirdCode": "US-AR-097",
+    "slug": "montgomery"
+  },
+  {
+    "ebirdCode": "US-AR-099",
+    "slug": "nevada"
+  },
+  {
+    "ebirdCode": "US-AR-101",
+    "slug": "newton"
+  },
+  {
+    "ebirdCode": "US-AR-103",
+    "slug": "ouachita"
+  },
+  {
+    "ebirdCode": "US-AR-105",
+    "slug": "perry"
+  },
+  {
+    "ebirdCode": "US-AR-107",
+    "slug": "phillips"
+  },
+  {
+    "ebirdCode": "US-AR-109",
+    "slug": "pike"
+  },
+  {
+    "ebirdCode": "US-AR-111",
+    "slug": "poinsett"
+  },
+  {
+    "ebirdCode": "US-AR-113",
+    "slug": "polk"
+  },
+  {
+    "ebirdCode": "US-AR-115",
+    "slug": "pope"
+  },
+  {
+    "ebirdCode": "US-AR-117",
+    "slug": "prairie"
+  },
+  {
+    "ebirdCode": "US-AR-119",
+    "slug": "pulaski"
+  },
+  {
+    "ebirdCode": "US-AR-121",
+    "slug": "randolph"
+  },
+  {
+    "ebirdCode": "US-AR-125",
+    "slug": "saline"
+  },
+  {
+    "ebirdCode": "US-AR-127",
+    "slug": "scott"
+  },
+  {
+    "ebirdCode": "US-AR-129",
+    "slug": "searcy"
+  },
+  {
+    "ebirdCode": "US-AR-131",
+    "slug": "sebastian"
+  },
+  {
+    "ebirdCode": "US-AR-133",
+    "slug": "sevier"
+  },
+  {
+    "ebirdCode": "US-AR-135",
+    "slug": "sharp"
+  },
+  {
+    "ebirdCode": "US-AR-123",
+    "slug": "st-francis"
+  },
+  {
+    "ebirdCode": "US-AR-137",
+    "slug": "stone"
+  },
+  {
+    "ebirdCode": "US-AR-139",
+    "slug": "union"
+  },
+  {
+    "ebirdCode": "US-AR-141",
+    "slug": "van-buren"
+  },
+  {
+    "ebirdCode": "US-AR-143",
+    "slug": "washington"
+  },
+  {
+    "ebirdCode": "US-AR-145",
+    "slug": "white"
+  },
+  {
+    "ebirdCode": "US-AR-147",
+    "slug": "woodruff"
+  },
+  {
+    "ebirdCode": "US-AR-149",
+    "slug": "yell"
+  }
+]

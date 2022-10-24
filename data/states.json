@@ -23,7 +23,8 @@
 		"country": "US",
 		"label": "Arkansas",
 		"slug": "arkansas",
-		"code": "US-AR"
+		"code": "US-AR",
+		"active": true
 	},
 	{
 		"country": "US",

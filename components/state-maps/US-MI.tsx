@@ -25,9 +25,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="530.9035635923991" y="456.73134033267723">
-                  Allegan
-                </text>
+                <text>Allegan</text>
               </a>
             </Link>
             <Link href="/us/michigan/alpena-county">
@@ -39,9 +37,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="671.174674689484" y="247.0716787821836">
-                  Alpena
-                </text>
+                <text>Alpena</text>
               </a>
             </Link>
             <Link href="/us/michigan/antrim-county">
@@ -53,9 +49,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="577.4757760629325" y="250.11840652935615">
-                  Antrim
-                </text>
+                <text>Antrim</text>
               </a>
             </Link>
             <Link href="/us/michigan/arenac-county">
@@ -67,9 +61,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="654.7055195362026" y="331.2032390132368">
-                  Arenac
-                </text>
+                <text>Arenac</text>
               </a>
             </Link>
             <Link href="/us/michigan/baraga-county">
@@ -81,9 +73,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="377.436426721984" y="102.05847091128928">
-                  Baraga
-                </text>
+                <text>Baraga</text>
               </a>
             </Link>
             <Link href="/us/michigan/barry-county">
@@ -95,9 +85,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="567.0191335035739" y="456.5483615747392">
-                  Barry
-                </text>
+                <text>Barry</text>
               </a>
             </Link>
             <Link href="/us/michigan/bay-county">
@@ -109,9 +97,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="648.5919037252612" y="361.97687953959337">
-                  Bay
-                </text>
+                <text>Bay</text>
               </a>
             </Link>
             <Link href="/us/michigan/benzie-county">
@@ -123,9 +109,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="523.131210240007" y="281.53808442625615">
-                  Benzie
-                </text>
+                <text>Benzie</text>
               </a>
             </Link>
             <Link href="/us/michigan/clare-county">
@@ -137,9 +121,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="595.5360983371871" y="337.9158307814208">
-                  Clare
-                </text>
+                <text>Clare</text>
               </a>
             </Link>
             <Link href="/us/michigan/clinton-county">
@@ -151,9 +133,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="610.8332224331663" y="427.1092751786048">
-                  Clinton
-                </text>
+                <text>Clinton</text>
               </a>
             </Link>
             <Link href="/us/michigan/crawford-county">
@@ -165,9 +145,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="610.2979913046188" y="277.7324376113492">
-                  Crawford
-                </text>
+                <text>Crawford</text>
               </a>
             </Link>
             <Link href="/us/michigan/delta-county">
@@ -179,9 +157,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="466.8283764392868" y="168.7470275311141">
-                  Delta
-                </text>
+                <text>Delta</text>
               </a>
             </Link>
             <Link href="/us/michigan/dickinson-county">
@@ -193,9 +169,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="408.10283400999555" y="160.65950172357734">
-                  Dickinson
-                </text>
+                <text>Dickinson</text>
               </a>
             </Link>
             <Link href="/us/michigan/eaton-county">
@@ -207,9 +181,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="596.1815112827309" y="456.5031950167354">
-                  Eaton
-                </text>
+                <text>Eaton</text>
               </a>
             </Link>
             <Link href="/us/michigan/emmet-county">
@@ -221,9 +193,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="592.8552383426569" y="204.12765743131686">
-                  Emmet
-                </text>
+                <text>Emmet</text>
               </a>
             </Link>
             <Link href="/us/michigan/gogebic-county">
@@ -235,9 +205,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="295.1173558533679" y="124.88555397042903">
-                  Gogebic
-                </text>
+                <text>Gogebic</text>
               </a>
             </Link>
             <Link href="/us/michigan/grand-traverse-county">
@@ -249,9 +217,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="551.4153490117743" y="278.9761596973295">
-                  Grand Traverse
-                </text>
+                <text>Grand Traverse</text>
               </a>
             </Link>
             <Link href="/us/michigan/hillsdale-county">
@@ -263,9 +229,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="611.3381056544092" y="515.782259676081">
-                  Hillsdale
-                </text>
+                <text>Hillsdale</text>
               </a>
             </Link>
             <Link href="/us/michigan/houghton-county">
@@ -277,9 +241,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="357.5778196736298" y="80.64076126227305">
-                  Houghton
-                </text>
+                <text>Houghton</text>
               </a>
             </Link>
             <Link href="/us/michigan/huron-county">
@@ -291,9 +253,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="708.8333754178572" y="351.1536812068724">
-                  Huron
-                </text>
+                <text>Huron</text>
               </a>
             </Link>
             <Link href="/us/michigan/ingham-county">
@@ -305,9 +265,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="624.8588981466291" y="456.39208672561585">
-                  Ingham
-                </text>
+                <text>Ingham</text>
               </a>
             </Link>
             <Link href="/us/michigan/iron-county">
@@ -319,9 +277,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="367.22690738050073" y="142.88020333712902">
-                  Iron
-                </text>
+                <text>Iron</text>
               </a>
             </Link>
             <Link href="/us/michigan/jackson-county">
@@ -333,9 +289,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="621.8991286646485" y="485.71563371089644">
-                  Jackson
-                </text>
+                <text>Jackson</text>
               </a>
             </Link>
             <Link href="/us/michigan/kalamazoo-county">
@@ -347,9 +301,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="553.2368934119617" y="485.9665411136164">
-                  Kalamazoo
-                </text>
+                <text>Kalamazoo</text>
               </a>
             </Link>
             <Link href="/us/michigan/livingston-county">
@@ -361,9 +313,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="653.5375099711337" y="455.8558301372957">
-                  Livingston
-                </text>
+                <text>Livingston</text>
               </a>
             </Link>
             <Link href="/us/michigan/missaukee-county">
@@ -375,9 +325,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="580.3805657908159" y="307.73851941991205">
-                  Missaukee
-                </text>
+                <text>Missaukee</text>
               </a>
             </Link>
             <Link href="/us/michigan/monroe-county">
@@ -389,9 +337,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="676.7203289415561" y="512.297873092216">
-                  Monroe
-                </text>
+                <text>Monroe</text>
               </a>
             </Link>
             <Link href="/us/michigan/berrien-county">
@@ -403,9 +349,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="498.3666034180227" y="510.1913642906054">
-                  Berrien
-                </text>
+                <text>Berrien</text>
               </a>
             </Link>
             <Link href="/us/michigan/genesee-county">
@@ -417,9 +361,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="666.3160948968011" y="420.4978429215468">
-                  Genesee
-                </text>
+                <text>Genesee</text>
               </a>
             </Link>
             <Link href="/us/michigan/montcalm-county">
@@ -431,9 +373,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="576.7246647238327" y="395.9617180500624">
-                  Montcalm
-                </text>
+                <text>Montcalm</text>
               </a>
             </Link>
             <Link href="/us/michigan/luce-county">
@@ -445,9 +385,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="552.362631137529" y="119.24644529560229">
-                  Luce
-                </text>
+                <text>Luce</text>
               </a>
             </Link>
             <Link href="/us/michigan/mackinac-county">
@@ -459,9 +397,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="580.038089503284" y="154.2584693144564">
-                  Mackinac
-                </text>
+                <text>Mackinac</text>
               </a>
             </Link>
             <Link href="/us/michigan/macomb-county">
@@ -473,9 +409,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="714.3600776849876" y="448.2178180690057">
-                  Macomb
-                </text>
+                <text>Macomb</text>
               </a>
             </Link>
             <Link href="/us/michigan/manistee-county">
@@ -487,9 +421,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="520.6451939961621" y="308.03753800271136">
-                  Manistee
-                </text>
+                <text>Manistee</text>
               </a>
             </Link>
             <Link href="/us/michigan/marquette-county">
@@ -501,9 +433,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="422.36423530455625" y="122.72151814353856">
-                  Marquette
-                </text>
+                <text>Marquette</text>
               </a>
             </Link>
             <Link href="/us/michigan/mason-county">
@@ -515,9 +445,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="508.62611885495085" y="337.3482039619484">
-                  Mason
-                </text>
+                <text>Mason</text>
               </a>
             </Link>
             <Link href="/us/michigan/oceana-county">
@@ -529,9 +457,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="507.56306506956093" y="367.7608658466356">
-                  Oceana
-                </text>
+                <text>Oceana</text>
               </a>
             </Link>
             <Link href="/us/michigan/ogemaw-county">
@@ -543,9 +469,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="640.1649915768988" y="307.95770023489916">
-                  Ogemaw
-                </text>
+                <text>Ogemaw</text>
               </a>
             </Link>
             <Link href="/us/michigan/ontonagon-county">
@@ -557,9 +481,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="318.66815189410596" y="101.790138650214">
-                  Ontonagon
-                </text>
+                <text>Ontonagon</text>
               </a>
             </Link>
             <Link href="/us/michigan/osceola-county">
@@ -571,9 +493,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="565.9421173383412" y="337.77456972519656">
-                  Osceola
-                </text>
+                <text>Osceola</text>
               </a>
             </Link>
             <Link href="/us/michigan/oscoda-county">
@@ -585,9 +505,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="640.0950980918683" y="277.7874051027831">
-                  Oscoda
-                </text>
+                <text>Oscoda</text>
               </a>
             </Link>
             <Link href="/us/michigan/otsego-county">
@@ -599,9 +517,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="611.0003330333747" y="248.14486720149452">
-                  Otsego
-                </text>
+                <text>Otsego</text>
               </a>
             </Link>
             <Link href="/us/michigan/ottawa-county">
@@ -613,9 +529,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="524.2453370937912" y="425.7169545298923">
-                  Ottawa
-                </text>
+                <text>Ottawa</text>
               </a>
             </Link>
             <Link href="/us/michigan/presque-isle-county">
@@ -627,9 +541,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="653.3395138113996" y="220.0419136055047">
-                  Presque Isle
-                </text>
+                <text>Presque Isle</text>
               </a>
             </Link>
             <Link href="/us/michigan/roscommon-county">
@@ -641,9 +553,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="610.2326952988046" y="307.96291454021144">
-                  Roscommon
-                </text>
+                <text>Roscommon</text>
               </a>
             </Link>
             <Link href="/us/michigan/st-clair-county">
@@ -655,9 +565,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="729.9086538323014" y="427.5243207974912">
-                  St. Clair
-                </text>
+                <text>St. Clair</text>
               </a>
             </Link>
             <Link href="/us/michigan/newaygo-county">
@@ -669,9 +577,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="536.487002421612" y="375.1116941291837">
-                  Newaygo
-                </text>
+                <text>Newaygo</text>
               </a>
             </Link>
             <Link href="/us/michigan/saginaw-county">
@@ -683,9 +589,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="644.8481303601562" y="393.86102362258754">
-                  Saginaw
-                </text>
+                <text>Saginaw</text>
               </a>
             </Link>
             <Link href="/us/michigan/oakland-county">
@@ -697,9 +601,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="686.2376904237432" y="451.08708072597">
-                  Oakland
-                </text>
+                <text>Oakland</text>
               </a>
             </Link>
             <Link href="/us/michigan/sanilac-county">
@@ -711,9 +613,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="721.3004692830201" y="386.28175191065844">
-                  Sanilac
-                </text>
+                <text>Sanilac</text>
               </a>
             </Link>
             <Link href="/us/michigan/schoolcraft-county">
@@ -725,9 +625,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="511.778992856541" y="143.9752490147772">
-                  Schoolcraft
-                </text>
+                <text>Schoolcraft</text>
               </a>
             </Link>
             <Link href="/us/michigan/tuscola-county">
@@ -739,9 +637,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="684.296888709414" y="382.76153957016703">
-                  Tuscola
-                </text>
+                <text>Tuscola</text>
               </a>
             </Link>
             <Link href="/us/michigan/van-buren-county">
@@ -753,9 +649,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="522.8913026335953" y="485.3908767079406">
-                  Van Buren
-                </text>
+                <text>Van Buren</text>
               </a>
             </Link>
             <Link href="/us/michigan/wexford-county">
@@ -767,9 +661,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="550.3308920844863" y="307.64562348626885">
-                  Wexford
-                </text>
+                <text>Wexford</text>
               </a>
             </Link>
             <Link href="/us/michigan/chippewa-county">
@@ -781,9 +673,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="615.9998195990316" y="135.64256414752066">
-                  Chippewa
-                </text>
+                <text>Chippewa</text>
               </a>
             </Link>
             <Link href="/us/michigan/kalkaska-county">
@@ -795,9 +685,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="580.5731270254619" y="277.70822483303647">
-                  Kalkaska
-                </text>
+                <text>Kalkaska</text>
               </a>
             </Link>
             <Link href="/us/michigan/keweenaw-county">
@@ -809,9 +697,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="373.34392874826176" y="15.833111709114151">
-                  Keweenaw
-                </text>
+                <text>Keweenaw</text>
               </a>
             </Link>
             <Link href="/us/michigan/menominee-county">
@@ -823,9 +709,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="427.5877412991447" y="198.7713758403594">
-                  Menominee
-                </text>
+                <text>Menominee</text>
               </a>
             </Link>
             <Link href="/us/michigan/alcona-county">
@@ -837,9 +721,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="673.3075833328256" y="277.54284211374477">
-                  Alcona
-                </text>
+                <text>Alcona</text>
               </a>
             </Link>
             <Link href="/us/michigan/alger-county">
@@ -851,9 +733,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="486.7540426141539" y="124.91181273075831">
-                  Alger
-                </text>
+                <text>Alger</text>
               </a>
             </Link>
             <Link href="/us/michigan/shiawassee-county">
@@ -865,9 +745,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="639.0398404670275" y="426.2323240938483">
-                  Shiawassee
-                </text>
+                <text>Shiawassee</text>
               </a>
             </Link>
             <Link href="/us/michigan/washtenaw-county">
@@ -879,9 +757,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="658.0733764825918" y="485.26769157920495">
-                  Washtenaw
-                </text>
+                <text>Washtenaw</text>
               </a>
             </Link>
             <Link href="/us/michigan/kent-county">
@@ -893,9 +769,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="552.1339928584139" y="419.6362247156543">
-                  Kent
-                </text>
+                <text>Kent</text>
               </a>
             </Link>
             <Link href="/us/michigan/wayne-county">
@@ -907,9 +781,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="692.7665170308336" y="483.200890048939">
-                  Wayne
-                </text>
+                <text>Wayne</text>
               </a>
             </Link>
             <Link href="/us/michigan/cass-county">
@@ -921,9 +793,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="524.496971934554" y="513.5008099414441">
-                  Cass
-                </text>
+                <text>Cass</text>
               </a>
             </Link>
             <Link href="/us/michigan/charlevoix-county">
@@ -935,9 +805,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="578.4574019981671" y="223.6408938164362">
-                  Charlevoix
-                </text>
+                <text>Charlevoix</text>
               </a>
             </Link>
             <Link href="/us/michigan/lapeer-county">
@@ -949,9 +817,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="696.3716898884412" y="414.64919645254287">
-                  Lapeer
-                </text>
+                <text>Lapeer</text>
               </a>
             </Link>
             <Link href="/us/michigan/gladwin-county">
@@ -963,9 +829,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="624.056135754004" y="337.6126891359848">
-                  Gladwin
-                </text>
+                <text>Gladwin</text>
               </a>
             </Link>
             <Link href="/us/michigan/calhoun-county">
@@ -977,9 +841,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="585.8262567609313" y="485.929549948187">
-                  Calhoun
-                </text>
+                <text>Calhoun</text>
               </a>
             </Link>
             <Link href="/us/michigan/branch-county">
@@ -991,9 +853,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="582.4487253599867" y="513.4651430807531">
-                  Branch
-                </text>
+                <text>Branch</text>
               </a>
             </Link>
             <Link href="/us/michigan/cheboygan-county">
@@ -1005,9 +865,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="617.0424521509323" y="210.58148818260293">
-                  Cheboygan
-                </text>
+                <text>Cheboygan</text>
               </a>
             </Link>
             <Link href="/us/michigan/muskegon-county">
@@ -1019,9 +877,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="514.7293057954174" y="397.6565014726026">
-                  Muskegon
-                </text>
+                <text>Muskegon</text>
               </a>
             </Link>
             <Link href="/us/michigan/iosco-county">
@@ -1033,9 +889,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="670.68527248824" y="306.208787252852">
-                  Iosco
-                </text>
+                <text>Iosco</text>
               </a>
             </Link>
             <Link href="/us/michigan/ionia-county">
@@ -1047,9 +901,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="581.5146731230141" y="427.05725578585873">
-                  Ionia
-                </text>
+                <text>Ionia</text>
               </a>
             </Link>
             <Link href="/us/michigan/lenawee-county">
@@ -1061,9 +913,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="644.0079115419476" y="515.118534982547">
-                  Lenawee
-                </text>
+                <text>Lenawee</text>
               </a>
             </Link>
             <Link href="/us/michigan/isabella-county">
@@ -1075,9 +925,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="595.6336004460705" y="367.77964814104143">
-                  Isabella
-                </text>
+                <text>Isabella</text>
               </a>
             </Link>
             <Link href="/us/michigan/lake-county">
@@ -1089,9 +937,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="536.3890238579222" y="337.6721537422985">
-                  Lake
-                </text>
+                <text>Lake</text>
               </a>
             </Link>
             <Link href="/us/michigan/leelanau-county">
@@ -1103,9 +949,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="535.9125429540676" y="255.53644909439691">
-                  Leelanau
-                </text>
+                <text>Leelanau</text>
               </a>
             </Link>
             <Link href="/us/michigan/mecosta-county">
@@ -1117,9 +961,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="565.9941138757341" y="367.77131302937204">
-                  Mecosta
-                </text>
+                <text>Mecosta</text>
               </a>
             </Link>
             <Link href="/us/michigan/midland-county">
@@ -1131,9 +973,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="624.0563663596954" y="367.2029604130428">
-                  Midland
-                </text>
+                <text>Midland</text>
               </a>
             </Link>
             <Link href="/us/michigan/montmorency-county">
@@ -1145,9 +985,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="640.2496668016247" y="247.50277063396973">
-                  Montmorency
-                </text>
+                <text>Montmorency</text>
               </a>
             </Link>
             <Link href="/us/michigan/st-joseph-county">
@@ -1159,9 +997,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="553.3652963947561" y="513.6111212283347">
-                  St. Joseph
-                </text>
+                <text>St. Joseph</text>
               </a>
             </Link>
             <Link href="/us/michigan/gratiot-county">
@@ -1173,9 +1009,7 @@ export default function MichiganMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="610.6049055846233" y="397.49865218335674">
-                  Gratiot
-                </text>
+                <text>Gratiot</text>
               </a>
             </Link>
           </g>

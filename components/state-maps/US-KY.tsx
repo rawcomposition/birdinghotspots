@@ -26,9 +26,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="823.6797132314878" y="129.37600177129605">
-                  Greenup
-                </text>
+                <text>Greenup</text>
               </a>
             </Link>
             <Link href="/us/kentucky/mason-county">
@@ -40,9 +38,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="714.5470116527882" y="119.33837606449941">
-                  Mason
-                </text>
+                <text>Mason</text>
               </a>
             </Link>
             <Link href="/us/kentucky/carroll-county">
@@ -54,9 +50,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="554.1796812916176" y="115.04005090215298">
-                  Carroll
-                </text>
+                <text>Carroll</text>
               </a>
             </Link>
             <Link href="/us/kentucky/lewis-county">
@@ -68,9 +62,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="770.3580602462523" y="128.0214315193675">
-                  Lewis
-                </text>
+                <text>Lewis</text>
               </a>
             </Link>
             <Link href="/us/kentucky/trimble-county">
@@ -82,9 +74,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="496.6021970284454" y="118.69826229026022">
-                  Trimble
-                </text>
+                <text>Trimble</text>
               </a>
             </Link>
             <Link href="/us/kentucky/owen-county">
@@ -96,9 +86,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="589.6125247537798" y="133.0249974577337">
-                  Owen
-                </text>
+                <text>Owen</text>
               </a>
             </Link>
             <Link href="/us/kentucky/lawrence-county">
@@ -110,9 +98,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="849.579501136577" y="203.97523683064674">
-                  Lawrence
-                </text>
+                <text>Lawrence</text>
               </a>
             </Link>
             <Link href="/us/kentucky/elliott-county">
@@ -124,9 +110,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="810.0293659418832" y="197.43840488441305">
-                  Elliott
-                </text>
+                <text>Elliott</text>
               </a>
             </Link>
             <Link href="/us/kentucky/SOME-county">
@@ -138,9 +122,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="636.7754388866049" y="208.20634139968925">
-                  Fayette
-                </text>
+                <text>Fayette</text>
               </a>
             </Link>
             <Link href="/us/kentucky/montgomery-county">
@@ -152,9 +134,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="705.0786071392272" y="208.34994146098512">
-                  Montgomery
-                </text>
+                <text>Montgomery</text>
               </a>
             </Link>
             <Link href="/us/kentucky/meade-county">
@@ -166,9 +146,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="418.6926037196391" y="223.6291397672552">
-                  Meade
-                </text>
+                <text>Meade</text>
               </a>
             </Link>
             <Link href="/us/kentucky/spencer-county">
@@ -180,9 +158,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="523.7196146387932" y="214.77081562392485">
-                  Spencer
-                </text>
+                <text>Spencer</text>
               </a>
             </Link>
             <Link href="/us/kentucky/powell-county">
@@ -194,9 +170,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="717.141630378337" y="240.18847304221902">
-                  Powell
-                </text>
+                <text>Powell</text>
               </a>
             </Link>
             <Link href="/us/kentucky/daviess-county">
@@ -208,9 +182,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="299.00100857196543" y="262.0789047860926">
-                  Daviess
-                </text>
+                <text>Daviess</text>
               </a>
             </Link>
             <Link href="/us/kentucky/madison-county">
@@ -222,9 +194,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="656.3377969831355" y="259.06745242839014">
-                  Madison
-                </text>
+                <text>Madison</text>
               </a>
             </Link>
             <Link href="/us/kentucky/magoff-county">
@@ -236,9 +206,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="809.9266541888555" y="257.49901109690376">
-                  Magoff
-                </text>
+                <text>Magoff</text>
               </a>
             </Link>
             <Link href="/us/kentucky/union-county">
@@ -250,9 +218,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="198.6140577127087" y="266.82062787073">
-                  Union
-                </text>
+                <text>Union</text>
               </a>
             </Link>
             <Link href="/us/kentucky/wolfe-county">
@@ -264,9 +230,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="758.8905995166298" y="253.79219572088024">
-                  Wolfe
-                </text>
+                <text>Wolfe</text>
               </a>
             </Link>
             <Link href="/us/kentucky/jackson-county">
@@ -278,9 +242,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="692.5238039134084" y="305.8500880821278">
-                  Jackson
-                </text>
+                <text>Jackson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/hopkins-county">
@@ -292,9 +254,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="243.46057575110643" y="325.28822811510827">
-                  Hopkins
-                </text>
+                <text>Hopkins</text>
               </a>
             </Link>
             <Link href="/us/kentucky/crittenden-county">
@@ -306,9 +266,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="170.62664457802813" y="314.9583176168482">
-                  Crittenden
-                </text>
+                <text>Crittenden</text>
               </a>
             </Link>
             <Link href="/us/kentucky/owsley-county">
@@ -320,9 +278,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="733.2659887485745" y="304.97231368612285">
-                  Owsley
-                </text>
+                <text>Owsley</text>
               </a>
             </Link>
             <Link href="/us/kentucky/knott-county">
@@ -334,9 +290,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="828.4310404528578" y="313.0323732936539">
-                  Knott
-                </text>
+                <text>Knott</text>
               </a>
             </Link>
             <Link href="/us/kentucky/casey-county">
@@ -348,9 +302,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="578.8767555906288" y="322.4000006574054">
-                  Casey
-                </text>
+                <text>Casey</text>
               </a>
             </Link>
             <Link href="/us/kentucky/rock-county">
@@ -362,9 +314,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="657.317434319275" y="321.18236297509674">
-                  Rock
-                </text>
+                <text>Rock</text>
               </a>
             </Link>
             <Link href="/us/kentucky/letcher-county">
@@ -376,9 +326,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="841.9613875942802" y="349.4429923455708">
-                  Letcher
-                </text>
+                <text>Letcher</text>
               </a>
             </Link>
             <Link href="/us/kentucky/ballard-county">
@@ -390,9 +338,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="62.92563088650516" y="357.8274895080419">
-                  Ballard
-                </text>
+                <text>Ballard</text>
               </a>
             </Link>
             <Link href="/us/kentucky/mccracken-county">
@@ -404,9 +350,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="73.84438824549865" y="324.6236011954088">
-                  McCracken
-                </text>
+                <text>McCracken</text>
               </a>
             </Link>
             <Link href="/us/kentucky/lyon-county">
@@ -418,9 +362,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="183.89037221487922" y="369.2297819275432">
-                  Lyon
-                </text>
+                <text>Lyon</text>
               </a>
             </Link>
             <Link href="/us/kentucky/warren-county">
@@ -432,9 +374,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="389.53057269147973" y="374.99717757518584">
-                  Warren
-                </text>
+                <text>Warren</text>
               </a>
             </Link>
             <Link href="/us/kentucky/russell-county">
@@ -446,9 +386,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="565.9136812963884" y="376.2167553482868">
-                  Russell
-                </text>
+                <text>Russell</text>
               </a>
             </Link>
             <Link href="/us/kentucky/metcalfe-county">
@@ -460,9 +398,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="491.60100837456037" y="385.67569996108995">
-                  Metcalfe
-                </text>
+                <text>Metcalfe</text>
               </a>
             </Link>
             <Link href="/us/kentucky/trigg-county">
@@ -474,9 +410,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="204.66240447204717" y="400.8196900837128">
-                  Trigg
-                </text>
+                <text>Trigg</text>
               </a>
             </Link>
             <Link href="/us/kentucky/wayne-county">
@@ -488,9 +422,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="592.6369501690943" y="404.97617156460564">
-                  Wayne
-                </text>
+                <text>Wayne</text>
               </a>
             </Link>
             <Link href="/us/kentucky/carlisle-county">
@@ -502,9 +434,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="67.17139418906744" y="392.40545932841343">
-                  Carlisle
-                </text>
+                <text>Carlisle</text>
               </a>
             </Link>
             <Link href="/us/kentucky/graves-county">
@@ -516,9 +446,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="105.32610021477127" y="412.3462875224254">
-                  Graves
-                </text>
+                <text>Graves</text>
               </a>
             </Link>
             <Link href="/us/kentucky/whitley-county">
@@ -530,9 +458,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="679.5579343115528" y="410.89211268141804">
-                  Whitley
-                </text>
+                <text>Whitley</text>
               </a>
             </Link>
             <Link href="/us/kentucky/bell-county">
@@ -544,9 +470,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="742.7698920318046" y="416.86074978177265">
-                  Bell
-                </text>
+                <text>Bell</text>
               </a>
             </Link>
             <Link href="/us/kentucky/mccreary-county">
@@ -558,9 +482,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="628.486915222628" y="422.68074169969265">
-                  McCreary
-                </text>
+                <text>McCreary</text>
               </a>
             </Link>
             <Link href="/us/kentucky/boone-county">
@@ -572,9 +494,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="601.4614295934372" y="53.48969264983504">
-                  Boone
-                </text>
+                <text>Boone</text>
               </a>
             </Link>
             <Link href="/us/kentucky/campbell-county">
@@ -586,9 +506,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="674.5357666904971" y="64.76682877410065">
-                  Campbell
-                </text>
+                <text>Campbell</text>
               </a>
             </Link>
             <Link href="/us/kentucky/gallatin-county">
@@ -600,9 +518,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="571.1911891394894" y="83.21175391150331">
-                  Gallatin
-                </text>
+                <text>Gallatin</text>
               </a>
             </Link>
             <Link href="/us/kentucky/bracken-county">
@@ -614,9 +530,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="681.4070237670634" y="101.05939075151117">
-                  Bracken
-                </text>
+                <text>Bracken</text>
               </a>
             </Link>
             <Link href="/us/kentucky/henry-county">
@@ -628,9 +542,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="553.5619204681389" y="144.66846343141293">
-                  Henry
-                </text>
+                <text>Henry</text>
               </a>
             </Link>
             <Link href="/us/kentucky/harrison-county">
@@ -642,9 +554,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="651.7309671581488" y="144.48383687066308">
-                  Harrison
-                </text>
+                <text>Harrison</text>
               </a>
             </Link>
             <Link href="/us/kentucky/boyd-county">
@@ -656,9 +566,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="861.9388644456603" y="163.6869506679514">
-                  Boyd
-                </text>
+                <text>Boyd</text>
               </a>
             </Link>
             <Link href="/us/kentucky/fleming-county">
@@ -670,9 +578,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="731.2075298070233" y="154.58045443737956">
-                  Fleming
-                </text>
+                <text>Fleming</text>
               </a>
             </Link>
             <Link href="/us/kentucky/carter-county">
@@ -684,9 +590,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="812.0732806994615" y="160.55487228706778">
-                  Carter
-                </text>
+                <text>Carter</text>
               </a>
             </Link>
             <Link href="/us/kentucky/oldham-county">
@@ -698,9 +602,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="508.520114640428" y="156.73510286136684">
-                  Oldham
-                </text>
+                <text>Oldham</text>
               </a>
             </Link>
             <Link href="/us/kentucky/scott-county">
@@ -712,9 +614,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="622.5758722020444" y="168.8432055169512">
-                  Scott
-                </text>
+                <text>Scott</text>
               </a>
             </Link>
             <Link href="/us/kentucky/nich-county">
@@ -726,9 +626,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="693.3566916602589" y="165.8573738332686">
-                  Nich
-                </text>
+                <text>Nich</text>
               </a>
             </Link>
             <Link href="/us/kentucky/rowan-county">
@@ -740,9 +638,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="766.0935269984467" y="186.12155117539805">
-                  Rowan
-                </text>
+                <text>Rowan</text>
               </a>
             </Link>
             <Link href="/us/kentucky/bourbon-county">
@@ -754,9 +650,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="662.6147539525601" y="181.651586222539">
-                  Bourbon
-                </text>
+                <text>Bourbon</text>
               </a>
             </Link>
             <Link href="/us/kentucky/jefferson-county">
@@ -768,9 +662,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="482.6038879891691" y="188.21732955691158">
-                  Jefferson
-                </text>
+                <text>Jefferson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/franklin-county">
@@ -782,9 +674,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="584.1960580675035" y="182.63815943383787">
-                  Franklin
-                </text>
+                <text>Franklin</text>
               </a>
             </Link>
             <Link href="/us/kentucky/shelby-county">
@@ -796,9 +686,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="544.400198621444" y="181.8074791527702">
-                  Shelby
-                </text>
+                <text>Shelby</text>
               </a>
             </Link>
             <Link href="/us/kentucky/bath-county">
@@ -810,9 +698,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="726.1132282177065" y="190.4141422728101">
-                  Bath
-                </text>
+                <text>Bath</text>
               </a>
             </Link>
             <Link href="/us/kentucky/morgan-county">
@@ -824,9 +710,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="787.5823485013628" y="224.00438581422736">
-                  Morgan
-                </text>
+                <text>Morgan</text>
               </a>
             </Link>
             <Link href="/us/kentucky/ander-county">
@@ -838,9 +722,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="570.4555116627097" y="220.74965810111183">
-                  Ander
-                </text>
+                <text>Ander</text>
               </a>
             </Link>
             <Link href="/us/kentucky/clark-county">
@@ -852,9 +734,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="680.9017471073682" y="218.78068772224555">
-                  Clark
-                </text>
+                <text>Clark</text>
               </a>
             </Link>
             <Link href="/us/kentucky/bullitt-county">
@@ -866,9 +746,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="481.86077212406553" y="220.65332415048513">
-                  Bullitt
-                </text>
+                <text>Bullitt</text>
               </a>
             </Link>
             <Link href="/us/kentucky/menifee-county">
@@ -880,9 +758,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="741.9092488350352" y="222.97128121821635">
-                  Menifee
-                </text>
+                <text>Menifee</text>
               </a>
             </Link>
             <Link href="/us/kentucky/breckinridge-county">
@@ -894,9 +770,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="379.82065148592386" y="256.51296756978843">
-                  Breckinridge
-                </text>
+                <text>Breckinridge</text>
               </a>
             </Link>
             <Link href="/us/kentucky/johnson-county">
@@ -908,9 +782,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="838.5963042946183" y="237.35499621288307">
-                  Johnson
-                </text>
+                <text>Johnson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/jess-county">
@@ -922,9 +794,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="624.7264701254976" y="235.29594755107243">
-                  Jess
-                </text>
+                <text>Jess</text>
               </a>
             </Link>
             <Link href="/us/kentucky/martin-county">
@@ -936,9 +806,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="881.8628456940311" y="240.36514184122163">
-                  Martin
-                </text>
+                <text>Martin</text>
               </a>
             </Link>
             <Link href="/us/kentucky/hardin-county">
@@ -950,9 +818,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="448.28266666789483" y="263.73675985315595">
-                  Hardin
-                </text>
+                <text>Hardin</text>
               </a>
             </Link>
             <Link href="/us/kentucky/hancock-county">
@@ -964,9 +830,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="334.0477661560295" y="210.17062588602704">
-                  Hancock
-                </text>
+                <text>Hancock</text>
               </a>
             </Link>
             <Link href="/us/kentucky/nelson-county">
@@ -978,9 +842,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="510.6508496384554" y="246.7437830967531">
-                  Nelson
-                </text>
+                <text>Nelson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/henderson-county">
@@ -992,9 +854,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="240.96060346242723" y="250.96517870750202">
-                  Henderson
-                </text>
+                <text>Henderson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/mercer-county">
@@ -1006,9 +866,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="587.1463598924666" y="249.04407221318937">
-                  Mercer
-                </text>
+                <text>Mercer</text>
               </a>
             </Link>
             <Link href="/us/kentucky/estill-county">
@@ -1020,9 +878,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="704.7651785295255" y="267.22784276272296">
-                  Estill
-                </text>
+                <text>Estill</text>
               </a>
             </Link>
             <Link href="/us/kentucky/garr-county">
@@ -1034,9 +890,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="630.8009867848333" y="271.84912999173787">
-                  Garr
-                </text>
+                <text>Garr</text>
               </a>
             </Link>
             <Link href="/us/kentucky/floyd-county">
@@ -1048,9 +902,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="853.8888358351521" y="280.1479291210063">
-                  Floyd
-                </text>
+                <text>Floyd</text>
               </a>
             </Link>
             <Link href="/us/kentucky/pike-county">
@@ -1062,9 +914,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="900.3121872613766" y="295.5142293891382">
-                  Pike
-                </text>
+                <text>Pike</text>
               </a>
             </Link>
             <Link href="/us/kentucky/ohio-county">
@@ -1076,9 +926,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="336.43543551489864" y="297.6705844679949">
-                  Ohio
-                </text>
+                <text>Ohio</text>
               </a>
             </Link>
             <Link href="/us/kentucky/lee-county">
@@ -1090,9 +938,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="736.3992778483408" y="282.3202937696875">
-                  Lee
-                </text>
+                <text>Lee</text>
               </a>
             </Link>
             <Link href="/us/kentucky/larue-county">
@@ -1104,9 +950,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="478.7502814962042" y="295.95239597075687">
-                  Larue
-                </text>
+                <text>Larue</text>
               </a>
             </Link>
             <Link href="/us/kentucky/marion-county">
@@ -1118,9 +962,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="535.8355326794336" y="286.69068336481917">
-                  Marion
-                </text>
+                <text>Marion</text>
               </a>
             </Link>
             <Link href="/us/kentucky/breathitt-county">
@@ -1132,9 +974,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="781.082451024224" y="287.5015244538751">
-                  Breathitt
-                </text>
+                <text>Breathitt</text>
               </a>
             </Link>
             <Link href="/us/kentucky/boyle-county">
@@ -1146,9 +986,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="589.0473000299379" y="277.71663569338205">
-                  Boyle
-                </text>
+                <text>Boyle</text>
               </a>
             </Link>
             <Link href="/us/kentucky/mclean-county">
@@ -1160,9 +998,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="289.1843804600491" y="290.94833722172626">
-                  McLean
-                </text>
+                <text>McLean</text>
               </a>
             </Link>
             <Link href="/us/kentucky/webster-county">
@@ -1174,9 +1010,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="231.30578875799185" y="289.5097195613287">
-                  Webster
-                </text>
+                <text>Webster</text>
               </a>
             </Link>
             <Link href="/us/kentucky/lincoln-county">
@@ -1188,9 +1022,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="612.8369915734864" y="301.1988660160206">
-                  Lincoln
-                </text>
+                <text>Lincoln</text>
               </a>
             </Link>
             <Link href="/us/kentucky/grayson-county">
@@ -1202,9 +1034,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="400.11908355434366" y="301.10039711888527">
-                  Grayson
-                </text>
+                <text>Grayson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/taylor-county">
@@ -1216,9 +1046,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="531.3742991568345" y="319.0964339330922">
-                  Taylor
-                </text>
+                <text>Taylor</text>
               </a>
             </Link>
             <Link href="/us/kentucky/green-county">
@@ -1230,9 +1058,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="503.07027353827493" y="332.37443842769613">
-                  Green
-                </text>
+                <text>Green</text>
               </a>
             </Link>
             <Link href="/us/kentucky/perry-county">
@@ -1244,9 +1070,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="796.936830647765" y="321.18185411860435">
-                  Perry
-                </text>
+                <text>Perry</text>
               </a>
             </Link>
             <Link href="/us/kentucky/livingston-county">
@@ -1258,9 +1082,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="115.3240503738443" y="301.56380405043103">
-                  Livingston
-                </text>
+                <text>Livingston</text>
               </a>
             </Link>
             <Link href="/us/kentucky/hart-county">
@@ -1272,9 +1094,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="463.3853395067834" y="328.6910777595629">
-                  Hart
-                </text>
+                <text>Hart</text>
               </a>
             </Link>
             <Link href="/us/kentucky/muhlenberg-county">
@@ -1286,9 +1106,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="290.84236929637177" y="340.69121462050424">
-                  Muhlenberg
-                </text>
+                <text>Muhlenberg</text>
               </a>
             </Link>
             <Link href="/us/kentucky/butler-county">
@@ -1300,9 +1118,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="357.27141118745544" y="340.88662442342104">
-                  Butler
-                </text>
+                <text>Butler</text>
               </a>
             </Link>
             <Link href="/us/kentucky/caldwell-county">
@@ -1314,9 +1130,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="205.82166654257978" y="352.36588797458023">
-                  Caldwell
-                </text>
+                <text>Caldwell</text>
               </a>
             </Link>
             <Link href="/us/kentucky/clay-county">
@@ -1328,9 +1142,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="732.9855127588783" y="346.1919772424507">
-                  Clay
-                </text>
+                <text>Clay</text>
               </a>
             </Link>
             <Link href="/us/kentucky/pulaski-county">
@@ -1342,9 +1154,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="623.7240953757037" y="356.66124840970235">
-                  Pulaski
-                </text>
+                <text>Pulaski</text>
               </a>
             </Link>
             <Link href="/us/kentucky/laurel-county">
@@ -1356,9 +1166,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="682.0247534004228" y="354.85877778459223">
-                  Laurel
-                </text>
+                <text>Laurel</text>
               </a>
             </Link>
             <Link href="/us/kentucky/leslie-county">
@@ -1370,9 +1178,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="775.5575934443507" y="355.53706484914244">
-                  Leslie
-                </text>
+                <text>Leslie</text>
               </a>
             </Link>
             <Link href="/us/kentucky/edmonson-county">
@@ -1384,9 +1190,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="406.223983610874" y="342.957589803613">
-                  Edmonson
-                </text>
+                <text>Edmonson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/adair-county">
@@ -1398,9 +1202,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="536.6013963729786" y="359.54008427490544">
-                  Adair
-                </text>
+                <text>Adair</text>
               </a>
             </Link>
             <Link href="/us/kentucky/christian-county">
@@ -1412,9 +1214,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="250.68992657562353" y="401.18859140746105">
-                  Christian
-                </text>
+                <text>Christian</text>
               </a>
             </Link>
             <Link href="/us/kentucky/barren-county">
@@ -1426,9 +1226,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="451.9235945716515" y="379.68329122593826">
-                  Barren
-                </text>
+                <text>Barren</text>
               </a>
             </Link>
             <Link href="/us/kentucky/marshall-county">
@@ -1440,9 +1238,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="143.9679656171526" y="390.26201486136296">
-                  Marshall
-                </text>
+                <text>Marshall</text>
               </a>
             </Link>
             <Link href="/us/kentucky/todd-county">
@@ -1454,9 +1250,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="298.13490883062076" y="400.8673855370671">
-                  Todd
-                </text>
+                <text>Todd</text>
               </a>
             </Link>
             <Link href="/us/kentucky/logan-county">
@@ -1468,9 +1262,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="331.4427628614068" y="399.7370651627949">
-                  Logan
-                </text>
+                <text>Logan</text>
               </a>
             </Link>
             <Link href="/us/kentucky/knox-county">
@@ -1482,9 +1274,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="716.202319100251" y="389.1667724098763">
-                  Knox
-                </text>
+                <text>Knox</text>
               </a>
             </Link>
             <Link href="/us/kentucky/harlan-county">
@@ -1496,9 +1286,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="800.2408304475548" y="395.4829432304154">
-                  Harlan
-                </text>
+                <text>Harlan</text>
               </a>
             </Link>
             <Link href="/us/kentucky/cumberland-county">
@@ -1510,9 +1298,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="515.9738480973609" y="447.9550546202591">
-                  Cumberland
-                </text>
+                <text>Cumberland</text>
               </a>
             </Link>
             <Link href="/us/kentucky/allen-county">
@@ -1524,9 +1310,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="419.0184735827121" y="413.5816599907447">
-                  Allen
-                </text>
+                <text>Allen</text>
               </a>
             </Link>
             <Link href="/us/kentucky/clinton-county">
@@ -1538,9 +1322,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="553.2250383617543" y="427.56784313684807">
-                  Clinton
-                </text>
+                <text>Clinton</text>
               </a>
             </Link>
             <Link href="/us/kentucky/simpson-county">
@@ -1552,9 +1334,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="366.1723438035079" y="418.6653365546451">
-                  Simpson
-                </text>
+                <text>Simpson</text>
               </a>
             </Link>
             <Link href="/us/kentucky/hickman-county">
@@ -1566,9 +1346,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="58.84285691487584" y="420.04193110630746">
-                  Hickman
-                </text>
+                <text>Hickman</text>
               </a>
             </Link>
             <Link href="/us/kentucky/monroe-county">
@@ -1580,9 +1358,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="479.20671847675226" y="419.5120869682994">
-                  Monroe
-                </text>
+                <text>Monroe</text>
               </a>
             </Link>
             <Link href="/us/kentucky/calloway-county">
@@ -1594,9 +1370,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="148.1355365715515" y="431.99453893944735">
-                  Calloway
-                </text>
+                <text>Calloway</text>
               </a>
             </Link>
             <Link href="/us/kentucky/fulton-county">
@@ -1608,9 +1382,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="51.480453260326634" y="438.7512712624809">
-                  Fulton
-                </text>
+                <text>Fulton</text>
               </a>
             </Link>
             <Link href="/us/kentucky/grant-county">
@@ -1622,9 +1394,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="614.9817123456997" y="112.39327136127514">
-                  Grant
-                </text>
+                <text>Grant</text>
               </a>
             </Link>
             <Link href="/us/kentucky/kenton-county">
@@ -1636,9 +1406,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="622.4911605463844" y="31.655746962074602">
-                  Kenton
-                </text>
+                <text>Kenton</text>
               </a>
             </Link>
             <Link href="/us/kentucky/wash-county">
@@ -1650,9 +1418,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="547.3921365009378" y="261.7042255555176">
-                  Wash
-                </text>
+                <text>Wash</text>
               </a>
             </Link>
             <Link href="/us/kentucky/wood-county">
@@ -1664,9 +1430,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="601.255308994011" y="200.59743852504596">
-                  Wood
-                </text>
+                <text>Wood</text>
               </a>
             </Link>
             <Link href="/us/kentucky/rob-county">
@@ -1678,9 +1442,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="688.4724761089342" y="129.81449401388613">
-                  Rob
-                </text>
+                <text>Rob</text>
               </a>
             </Link>
             <Link href="/us/kentucky/pendle-county">
@@ -1692,9 +1454,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text x="647.7872771550302" y="104.19560857011578">
-                  Pendle
-                </text>
+                <text>Pendle</text>
               </a>
             </Link>
           </g>

@@ -26,9 +26,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="522.4069657841608" y="485.48250761260977">
-                  Lanier
-                </text>
+                <text>Lanier</text>
               </a>
             </Link>
             <Link href="/us/georgia/bryan-county">
@@ -40,9 +38,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="664.8185031535105" y="378.56363893028214">
-                  Bryan
-                </text>
+                <text>Bryan</text>
               </a>
             </Link>
             <Link href="/us/georgia/appling-county">
@@ -54,9 +50,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="592.1620767570456" y="407.8503922430279">
-                  Appling
-                </text>
+                <text>Appling</text>
               </a>
             </Link>
             <Link href="/us/georgia/rabun-county">
@@ -68,9 +62,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="481.29704192769685" y="58.686482877915054">
-                  Rabun
-                </text>
+                <text>Rabun</text>
               </a>
             </Link>
             <Link href="/us/georgia/bleckley-county">
@@ -82,9 +74,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="494.9418577780867" y="334.90272716150935">
-                  Bleckley
-                </text>
+                <text>Bleckley</text>
               </a>
             </Link>
             <Link href="/us/georgia/fayette-county">
@@ -96,9 +86,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="383.1283686214617" y="229.27152379773713">
-                  Fayette
-                </text>
+                <text>Fayette</text>
               </a>
             </Link>
             <Link href="/us/georgia/jefferson-county">
@@ -110,9 +98,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="578.4822138139989" y="264.48209460655465">
-                  Jefferson
-                </text>
+                <text>Jefferson</text>
               </a>
             </Link>
             <Link href="/us/georgia/seminole-county">
@@ -124,9 +110,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="357.98220313617225" y="500.67581553401493">
-                  Seminole
-                </text>
+                <text>Seminole</text>
               </a>
             </Link>
             <Link href="/us/georgia/camden-county">
@@ -138,9 +122,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="652.6407351154537" y="496.1412299606748">
-                  Camden
-                </text>
+                <text>Camden</text>
               </a>
             </Link>
             <Link href="/us/georgia/glynn-county">
@@ -152,9 +134,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="665.3681642058579" y="464.9419617896196">
-                  Glynn
-                </text>
+                <text>Glynn</text>
               </a>
             </Link>
             <Link href="/us/georgia/polk-county">
@@ -166,9 +146,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="315.4688551580453" y="165.26073522257687">
-                  Polk
-                </text>
+                <text>Polk</text>
               </a>
             </Link>
             <Link href="/us/georgia/morgan-county">
@@ -180,9 +158,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="476.54957069791203" y="206.60711502224976">
-                  Morgan
-                </text>
+                <text>Morgan</text>
               </a>
             </Link>
             <Link href="/us/georgia/talbot-county">
@@ -194,9 +170,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="382.1411447565071" y="308.88089909666496">
-                  Talbot
-                </text>
+                <text>Talbot</text>
               </a>
             </Link>
             <Link href="/us/georgia/schley-county">
@@ -208,9 +182,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="404.0973070688093" y="356.5690753668395">
-                  Schley
-                </text>
+                <text>Schley</text>
               </a>
             </Link>
             <Link href="/us/georgia/union-county">
@@ -222,9 +194,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="425.4659036632237" y="65.37279647038493">
-                  Union
-                </text>
+                <text>Union</text>
               </a>
             </Link>
             <Link href="/us/georgia/wilcox-county">
@@ -236,9 +206,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="486.35169073554135" y="385.31699237571974">
-                  Wilcox
-                </text>
+                <text>Wilcox</text>
               </a>
             </Link>
             <Link href="/us/georgia/ware-county">
@@ -250,9 +218,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="580.5014758671858" y="482.302638430804">
-                  Ware
-                </text>
+                <text>Ware</text>
               </a>
             </Link>
             <Link href="/us/georgia/clarke-county">
@@ -264,9 +230,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="487.4205807558365" y="165.44839008883275">
-                  Clarke
-                </text>
+                <text>Clarke</text>
               </a>
             </Link>
             <Link href="/us/georgia/jones-county">
@@ -278,9 +242,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="471.90899095658835" y="270.12089072602106">
-                  Jones
-                </text>
+                <text>Jones</text>
               </a>
             </Link>
             <Link href="/us/georgia/rockdale-county">
@@ -292,9 +254,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="426.1341898305716" y="200.76014010836352">
-                  Rockdale
-                </text>
+                <text>Rockdale</text>
               </a>
             </Link>
             <Link href="/us/georgia/dade-county">
@@ -306,9 +266,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="281.1413328934287" y="68.49101965115247">
-                  Dade
-                </text>
+                <text>Dade</text>
               </a>
             </Link>
             <Link href="/us/georgia/murray-county">
@@ -320,9 +278,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="353.3115240152131" y="73.21397443727">
-                  Murray
-                </text>
+                <text>Murray</text>
               </a>
             </Link>
             <Link href="/us/georgia/cobb-county">
@@ -334,9 +290,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="373.257089016207" y="170.0105262848885">
-                  Cobb
-                </text>
+                <text>Cobb</text>
               </a>
             </Link>
             <Link href="/us/georgia/columbia-county">
@@ -348,9 +302,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="592.1724416728538" y="209.55393590873754">
-                  Columbia
-                </text>
+                <text>Columbia</text>
               </a>
             </Link>
             <Link href="/us/georgia/forsyth-county">
@@ -362,9 +314,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="414.93402313323907" y="136.17888812953555">
-                  Forsyth
-                </text>
+                <text>Forsyth</text>
               </a>
             </Link>
             <Link href="/us/georgia/baldwin-county">
@@ -376,9 +326,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="500.7222448920993" y="264.56156818860484">
-                  Baldwin
-                </text>
+                <text>Baldwin</text>
               </a>
             </Link>
             <Link href="/us/georgia/walker-county">
@@ -390,9 +338,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="300.999457712078" y="81.43170494785306">
-                  Walker
-                </text>
+                <text>Walker</text>
               </a>
             </Link>
             <Link href="/us/georgia/emanuel-county">
@@ -404,9 +350,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="590.0533911580739" y="316.0987873598698">
-                  Emanuel
-                </text>
+                <text>Emanuel</text>
               </a>
             </Link>
             <Link href="/us/georgia/gilmer-county">
@@ -418,9 +362,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="381.60439903054476" y="83.29371836803499">
-                  Gilmer
-                </text>
+                <text>Gilmer</text>
               </a>
             </Link>
             <Link href="/us/georgia/warren-county">
@@ -432,9 +374,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="547.6812036615463" y="225.4155371208373">
-                  Warren
-                </text>
+                <text>Warren</text>
               </a>
             </Link>
             <Link href="/us/georgia/elbert-county">
@@ -446,9 +386,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="536.9533909133771" y="145.43555904728606">
-                  Elbert
-                </text>
+                <text>Elbert</text>
               </a>
             </Link>
             <Link href="/us/georgia/clayton-county">
@@ -460,9 +398,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="395.31927514284627" y="214.19534044153062">
-                  Clayton
-                </text>
+                <text>Clayton</text>
               </a>
             </Link>
             <Link href="/us/georgia/brantley-county">
@@ -474,9 +410,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="621.0823300088902" y="467.0294400407074">
-                  Brantley
-                </text>
+                <text>Brantley</text>
               </a>
             </Link>
             <Link href="/us/georgia/chatham-county">
@@ -488,9 +422,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="702.1992444958815" y="382.714565676988">
-                  Chatham
-                </text>
+                <text>Chatham</text>
               </a>
             </Link>
             <Link href="/us/georgia/peach-county">
@@ -502,9 +434,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="448.46507316036065" y="321.15930399588143">
-                  Peach
-                </text>
+                <text>Peach</text>
               </a>
             </Link>
             <Link href="/us/georgia/echols-county">
@@ -516,9 +446,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="538.5361052592432" y="520.0807145225655">
-                  Echols
-                </text>
+                <text>Echols</text>
               </a>
             </Link>
             <Link href="/us/georgia/evans-county">
@@ -530,9 +458,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="628.8093075991741" y="363.02688500820835">
-                  Evans
-                </text>
+                <text>Evans</text>
               </a>
             </Link>
             <Link href="/us/georgia/quitman-county">
@@ -544,9 +470,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="340.67879130851304" y="401.5108236957225">
-                  Quitman
-                </text>
+                <text>Quitman</text>
               </a>
             </Link>
             <Link href="/us/georgia/irwin-county">
@@ -558,9 +482,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="501.53347485708" y="425.1954769913676">
-                  Irwin
-                </text>
+                <text>Irwin</text>
               </a>
             </Link>
             <Link href="/us/georgia/burke-county">
@@ -572,9 +494,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="617.4857899638332" y="263.6900870176758">
-                  Burke
-                </text>
+                <text>Burke</text>
               </a>
             </Link>
             <Link href="/us/georgia/henry-county">
@@ -586,9 +506,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="414.68844541439387" y="223.67985546115838">
-                  Henry
-                </text>
+                <text>Henry</text>
               </a>
             </Link>
             <Link href="/us/georgia/liberty-county">
@@ -600,9 +518,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="668.6192804926227" y="400.85302770431855">
-                  Liberty
-                </text>
+                <text>Liberty</text>
               </a>
             </Link>
             <Link href="/us/georgia/madison-county">
@@ -614,9 +530,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="501.8900323386095" y="144.91423764750087">
-                  Madison
-                </text>
+                <text>Madison</text>
               </a>
             </Link>
             <Link href="/us/georgia/toombs-county">
@@ -628,9 +542,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="587.8096764193398" y="367.5757864584445">
-                  Toombs
-                </text>
+                <text>Toombs</text>
               </a>
             </Link>
             <Link href="/us/georgia/monroe-county">
@@ -642,9 +554,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="438.2169745724316" y="272.2220532709583">
-                  Monroe
-                </text>
+                <text>Monroe</text>
               </a>
             </Link>
             <Link href="/us/georgia/clinch-county">
@@ -656,9 +566,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="555.1827169400431" y="498.0061285067981">
-                  Clinch
-                </text>
+                <text>Clinch</text>
               </a>
             </Link>
             <Link href="/us/georgia/oconee-county">
@@ -670,9 +578,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="480.9718339427869" y="178.73854102941314">
-                  Oconee
-                </text>
+                <text>Oconee</text>
               </a>
             </Link>
             <Link href="/us/georgia/berrien-county">
@@ -684,9 +590,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="506.70584648589943" y="460.53105909960584">
-                  Berrien
-                </text>
+                <text>Berrien</text>
               </a>
             </Link>
             <Link href="/us/georgia/charlton-county">
@@ -698,9 +602,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="607.1054210451761" y="511.31965530520546">
-                  Charlton
-                </text>
+                <text>Charlton</text>
               </a>
             </Link>
             <Link href="/us/georgia/cook-county">
@@ -712,9 +614,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="488.5762159289401" y="473.7563474929022">
-                  Cook
-                </text>
+                <text>Cook</text>
               </a>
             </Link>
             <Link href="/us/georgia/pierce-county">
@@ -726,9 +626,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="599.6601629711554" y="450.0228715665029">
-                  Pierce
-                </text>
+                <text>Pierce</text>
               </a>
             </Link>
             <Link href="/us/georgia/early-county">
@@ -740,9 +638,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="353.4173806796415" y="459.7699648523104">
-                  Early
-                </text>
+                <text>Early</text>
               </a>
             </Link>
             <Link href="/us/georgia/johnson-county">
@@ -754,9 +650,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="556.5913100038694" y="304.281107671213">
-                  Johnson
-                </text>
+                <text>Johnson</text>
               </a>
             </Link>
             <Link href="/us/georgia/taylor-county">
@@ -768,9 +662,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="408.96685328305824" y="323.88097414762984">
-                  Taylor
-                </text>
+                <text>Taylor</text>
               </a>
             </Link>
             <Link href="/us/georgia/dooly-county">
@@ -782,9 +674,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="452.06949641203727" y="366.2585479579596">
-                  Dooly
-                </text>
+                <text>Dooly</text>
               </a>
             </Link>
             <Link href="/us/georgia/lee-county">
@@ -796,9 +686,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="421.6244174886431" y="408.37366790842293">
-                  Lee
-                </text>
+                <text>Lee</text>
               </a>
             </Link>
             <Link href="/us/georgia/wilkes-county">
@@ -810,9 +698,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="546.7221994412797" y="183.53325199281855">
-                  Wilkes
-                </text>
+                <text>Wilkes</text>
               </a>
             </Link>
             <Link href="/us/georgia/lamar-county">
@@ -824,9 +710,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="417.2510917926934" y="265.6401545748627">
-                  Lamar
-                </text>
+                <text>Lamar</text>
               </a>
             </Link>
             <Link href="/us/georgia/haralson-county">
@@ -838,9 +722,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="314.1931307441853" y="189.13071564909225">
-                  Haralson
-                </text>
+                <text>Haralson</text>
               </a>
             </Link>
             <Link href="/us/georgia/coffee-county">
@@ -852,9 +734,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="540.8872831303931" y="430.35648869892486">
-                  Coffee
-                </text>
+                <text>Coffee</text>
               </a>
             </Link>
             <Link href="/us/georgia/glascock-county">
@@ -866,9 +746,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="560.0717208289426" y="245.56415017793398">
-                  Glascock
-                </text>
+                <text>Glascock</text>
               </a>
             </Link>
             <Link href="/us/georgia/richmond-county">
@@ -880,9 +758,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="610.0052705367182" y="230.33170096053524">
-                  Richmond
-                </text>
+                <text>Richmond</text>
               </a>
             </Link>
             <Link href="/us/georgia/twiggs-county">
@@ -894,9 +770,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="485.22476559871905" y="309.46135434593685">
-                  Twiggs
-                </text>
+                <text>Twiggs</text>
               </a>
             </Link>
             <Link href="/us/georgia/white-county">
@@ -908,9 +782,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="449.36222934310734" y="86.58133796199485">
-                  White
-                </text>
+                <text>White</text>
               </a>
             </Link>
             <Link href="/us/georgia/miller-county">
@@ -922,9 +794,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="369.78642657977565" y="475.99410719798203">
-                  Miller
-                </text>
+                <text>Miller</text>
               </a>
             </Link>
             <Link href="/us/georgia/meriwether-county">
@@ -936,9 +806,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="366.53958242477535" y="271.5416680024454">
-                  Meriwether
-                </text>
+                <text>Meriwether</text>
               </a>
             </Link>
             <Link href="/us/georgia/newton-county">
@@ -950,9 +818,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="443.014954334343" y="211.4910836635644">
-                  Newton
-                </text>
+                <text>Newton</text>
               </a>
             </Link>
             <Link href="/us/georgia/mitchell-county">
@@ -964,9 +830,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="418.58711587799746" y="468.0480238817533">
-                  Mitchell
-                </text>
+                <text>Mitchell</text>
               </a>
             </Link>
             <Link href="/us/georgia/gwinnett-county">
@@ -978,9 +842,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="425.24140613290626" y="165.91567989230168">
-                  Gwinnett
-                </text>
+                <text>Gwinnett</text>
               </a>
             </Link>
             <Link href="/us/georgia/greene-county">
@@ -992,9 +854,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="502.1326660788976" y="207.18034200824053">
-                  Greene
-                </text>
+                <text>Greene</text>
               </a>
             </Link>
             <Link href="/us/georgia/sumter-county">
@@ -1006,9 +866,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="415.68543212139434" y="380.2680927286115">
-                  Sumter
-                </text>
+                <text>Sumter</text>
               </a>
             </Link>
             <Link href="/us/georgia/randolph-county">
@@ -1020,9 +878,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="365.3940536020816" y="411.9317833987667">
-                  Randolph
-                </text>
+                <text>Randolph</text>
               </a>
             </Link>
             <Link href="/us/georgia/franklin-county">
@@ -1034,9 +890,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="499.27811939952585" y="116.74167357933422">
-                  Franklin
-                </text>
+                <text>Franklin</text>
               </a>
             </Link>
             <Link href="/us/georgia/pulaski-county">
@@ -1048,9 +902,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="481.5617246858403" y="357.3503258016061">
-                  Pulaski
-                </text>
+                <text>Pulaski</text>
               </a>
             </Link>
             <Link href="/us/georgia/brooks-county">
@@ -1062,9 +914,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="475.7973801055975" y="507.22201820821033">
-                  Brooks
-                </text>
+                <text>Brooks</text>
               </a>
             </Link>
             <Link href="/us/georgia/chattooga-county">
@@ -1076,9 +926,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="298.26236664383043" y="111.88545629536785">
-                  Chattooga
-                </text>
+                <text>Chattooga</text>
               </a>
             </Link>
             <Link href="/us/georgia/bacon-county">
@@ -1090,9 +938,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="577.5224754662603" y="429.2668305881833">
-                  Bacon
-                </text>
+                <text>Bacon</text>
               </a>
             </Link>
             <Link href="/us/georgia/turner-county">
@@ -1104,9 +950,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="469.3857878781726" y="413.6987919103704">
-                  Turner
-                </text>
+                <text>Turner</text>
               </a>
             </Link>
             <Link href="/us/georgia/lowndes-county">
@@ -1118,9 +962,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="504.29634986280837" y="507.53400119169186">
-                  Lowndes
-                </text>
+                <text>Lowndes</text>
               </a>
             </Link>
             <Link href="/us/georgia/atkinson-county">
@@ -1132,9 +974,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="538.6482457913717" y="457.5062415517476">
-                  Atkinson
-                </text>
+                <text>Atkinson</text>
               </a>
             </Link>
             <Link href="/us/georgia/towns-county">
@@ -1146,9 +986,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="449.20754279151276" y="55.328765295557716">
-                  Towns
-                </text>
+                <text>Towns</text>
               </a>
             </Link>
             <Link href="/us/georgia/screven-county">
@@ -1160,9 +998,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="653.8818046789763" y="297.79187486486325">
-                  Screven
-                </text>
+                <text>Screven</text>
               </a>
             </Link>
             <Link href="/us/georgia/troup-county">
@@ -1174,9 +1010,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="334.859190883799" y="273.5270670662452">
-                  Troup
-                </text>
+                <text>Troup</text>
               </a>
             </Link>
             <Link href="/us/georgia/laurens-county">
@@ -1188,9 +1022,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="532.5617440740274" y="331.024394359631">
-                  Laurens
-                </text>
+                <text>Laurens</text>
               </a>
             </Link>
             <Link href="/us/georgia/fannin-county">
@@ -1202,9 +1034,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="394.17152080658417" y="63.14766687964112">
-                  Fannin
-                </text>
+                <text>Fannin</text>
               </a>
             </Link>
             <Link href="/us/georgia/thomas-county">
@@ -1216,9 +1046,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="444.77830709714345" y="505.72428317710404">
-                  Thomas
-                </text>
+                <text>Thomas</text>
               </a>
             </Link>
             <Link href="/us/georgia/fulton-county">
@@ -1230,9 +1058,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="384.2157556343372" y="186.8306625985313">
-                  Fulton
-                </text>
+                <text>Fulton</text>
               </a>
             </Link>
             <Link href="/us/georgia/candler-county">
@@ -1244,9 +1070,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="611.3318169587653" y="336.21313612576694">
-                  Candler
-                </text>
+                <text>Candler</text>
               </a>
             </Link>
             <Link href="/us/georgia/calhoun-county">
@@ -1258,9 +1082,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="378.0055200863548" y="436.6238117436974">
-                  Calhoun
-                </text>
+                <text>Calhoun</text>
               </a>
             </Link>
             <Link href="/us/georgia/baker-county">
@@ -1272,9 +1094,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="395.418075871356" y="457.8770468574439">
-                  Baker
-                </text>
+                <text>Baker</text>
               </a>
             </Link>
             <Link href="/us/georgia/lincoln-county">
@@ -1286,9 +1106,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="574.17196191286" y="181.81299885762988">
-                  Lincoln
-                </text>
+                <text>Lincoln</text>
               </a>
             </Link>
             <Link href="/us/georgia/crisp-county">
@@ -1300,9 +1118,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="455.6299477656318" y="391.7341023825173">
-                  Crisp
-                </text>
+                <text>Crisp</text>
               </a>
             </Link>
             <Link href="/us/georgia/houston-county">
@@ -1314,9 +1130,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="463.47820721396687" y="333.0064138223105">
-                  Houston
-                </text>
+                <text>Houston</text>
               </a>
             </Link>
             <Link href="/us/georgia/pickens-county">
@@ -1328,9 +1142,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="381.71567442385594" y="109.71322007358137">
-                  Pickens
-                </text>
+                <text>Pickens</text>
               </a>
             </Link>
             <Link href="/us/georgia/webster-county">
@@ -1342,9 +1154,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="382.9719694535373" y="380.3547091513753">
-                  Webster
-                </text>
+                <text>Webster</text>
               </a>
             </Link>
             <Link href="/us/georgia/wayne-county">
@@ -1356,9 +1166,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="626.4758624293975" y="428.9043434837377">
-                  Wayne
-                </text>
+                <text>Wayne</text>
               </a>
             </Link>
             <Link href="/us/georgia/effingham-county">
@@ -1370,9 +1178,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="679.1305992929889" y="339.9340193009127">
-                  Effingham
-                </text>
+                <text>Effingham</text>
               </a>
             </Link>
             <Link href="/us/georgia/telfair-county">
@@ -1384,9 +1190,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="532.1348542699293" y="389.17612913946755">
-                  Telfair
-                </text>
+                <text>Telfair</text>
               </a>
             </Link>
             <Link href="/us/georgia/oglethorpe-county">
@@ -1398,9 +1202,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="514.5456983634464" y="172.78737261660163">
-                  Oglethorpe
-                </text>
+                <text>Oglethorpe</text>
               </a>
             </Link>
             <Link href="/us/georgia/washington-county">
@@ -1412,9 +1214,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="543.1678796980897" y="274.6907813904499">
-                  Washington
-                </text>
+                <text>Washington</text>
               </a>
             </Link>
             <Link href="/us/georgia/bibb-county">
@@ -1426,9 +1226,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="459.55196825361946" y="294.75940548588864">
-                  Bibb
-                </text>
+                <text>Bibb</text>
               </a>
             </Link>
             <Link href="/us/georgia/dodge-county">
@@ -1440,9 +1238,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="510.3088125686364" y="363.2347501469847">
-                  Dodge
-                </text>
+                <text>Dodge</text>
               </a>
             </Link>
             <Link href="/us/georgia/taliaferro-county">
@@ -1454,9 +1250,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="534.1170710541925" y="207.98751454463823">
-                  Taliaferro
-                </text>
+                <text>Taliaferro</text>
               </a>
             </Link>
             <Link href="/us/georgia/decatur-county">
@@ -1468,9 +1262,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="384.62671898748795" y="505.94207825694366">
-                  Decatur
-                </text>
+                <text>Decatur</text>
               </a>
             </Link>
             <Link href="/us/georgia/lumpkin-county">
@@ -1482,9 +1274,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="425.31657423215324" y="95.99362706992545">
-                  Lumpkin
-                </text>
+                <text>Lumpkin</text>
               </a>
             </Link>
             <Link href="/us/georgia/catoosa-county">
@@ -1496,9 +1286,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="315.6706685398102" y="61.41396915908828">
-                  Catoosa
-                </text>
+                <text>Catoosa</text>
               </a>
             </Link>
             <Link href="/us/georgia/bulloch-county">
@@ -1510,9 +1298,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="641.7387485281323" y="336.71749009845985">
-                  Bulloch
-                </text>
+                <text>Bulloch</text>
               </a>
             </Link>
             <Link href="/us/georgia/jenkins-county">
@@ -1524,9 +1310,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="621.0790995897728" y="293.4834557254459">
-                  Jenkins
-                </text>
+                <text>Jenkins</text>
               </a>
             </Link>
             <Link href="/us/georgia/hancock-county">
@@ -1538,9 +1322,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="523.2486042362478" y="241.49378999460603">
-                  Hancock
-                </text>
+                <text>Hancock</text>
               </a>
             </Link>
             <Link href="/us/georgia/upson-county">
@@ -1552,9 +1334,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="403.3125576092949" y="287.92600969864844">
-                  Upson
-                </text>
+                <text>Upson</text>
               </a>
             </Link>
             <Link href="/us/georgia/dougherty-county">
@@ -1566,9 +1346,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="415.5414927418569" y="434.97888334403586">
-                  Dougherty
-                </text>
+                <text>Dougherty</text>
               </a>
             </Link>
             <Link href="/us/georgia/muscogee-county">
@@ -1580,9 +1358,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="351.19129522601" y="330.867340178651">
-                  Muscogee
-                </text>
+                <text>Muscogee</text>
               </a>
             </Link>
             <Link href="/us/georgia/clay-county">
@@ -1594,9 +1370,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="345.10777046999027" y="427.15623712103167">
-                  Clay
-                </text>
+                <text>Clay</text>
               </a>
             </Link>
             <Link href="/us/georgia/marion-county">
@@ -1608,9 +1382,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="384.3371657590473" y="346.99878400451814">
-                  Marion
-                </text>
+                <text>Marion</text>
               </a>
             </Link>
             <Link href="/us/georgia/douglas-county">
@@ -1622,9 +1394,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="356.15756118778984" y="197.707861333108">
-                  Douglas
-                </text>
+                <text>Douglas</text>
               </a>
             </Link>
             <Link href="/us/georgia/coweta-county">
@@ -1636,9 +1406,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="358.22891466045" y="236.83453555579766">
-                  Coweta
-                </text>
+                <text>Coweta</text>
               </a>
             </Link>
             <Link href="/us/georgia/stewart-county">
@@ -1650,9 +1418,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="356.61143513363913" y="378.06886152224195">
-                  Stewart
-                </text>
+                <text>Stewart</text>
               </a>
             </Link>
             <Link href="/us/georgia/heard-county">
@@ -1664,9 +1430,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="324.31783439667055" y="244.56010895538208">
-                  Heard
-                </text>
+                <text>Heard</text>
               </a>
             </Link>
             <Link href="/us/georgia/wilkinson-county">
@@ -1678,9 +1442,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="508.7316126529803" y="294.1069047948436">
-                  Wilkinson
-                </text>
+                <text>Wilkinson</text>
               </a>
             </Link>
             <Link href="/us/georgia/wheeler-county">
@@ -1692,9 +1454,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="551.4007455723695" y="368.4477799103895">
-                  Wheeler
-                </text>
+                <text>Wheeler</text>
               </a>
             </Link>
             <Link href="/us/georgia/mcintosh-county">
@@ -1706,9 +1466,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="676.4071868861619" y="436.0005512042491">
-                  McIntosh
-                </text>
+                <text>McIntosh</text>
               </a>
             </Link>
             <Link href="/us/georgia/worth-county">
@@ -1720,9 +1478,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="448.98737234345595" y="431.94500833602535">
-                  Worth
-                </text>
+                <text>Worth</text>
               </a>
             </Link>
             <Link href="/us/georgia/butts-county">
@@ -1734,9 +1490,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="433.8029911635146" y="241.8012657289745">
-                  Butts
-                </text>
+                <text>Butts</text>
               </a>
             </Link>
             <Link href="/us/georgia/jasper-county">
@@ -1748,9 +1502,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="459.00472026542593" y="237.82669010488652">
-                  Jasper
-                </text>
+                <text>Jasper</text>
               </a>
             </Link>
             <Link href="/us/georgia/macon-county">
@@ -1762,9 +1514,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="428.8972342497954" y="344.9564239181133">
-                  Macon
-                </text>
+                <text>Macon</text>
               </a>
             </Link>
             <Link href="/us/georgia/harris-county">
@@ -1776,9 +1526,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="347.26397878196065" y="306.0112101038438">
-                  Harris
-                </text>
+                <text>Harris</text>
               </a>
             </Link>
             <Link href="/us/georgia/tift-county">
@@ -1790,9 +1538,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="479.0182241885403" y="441.59438000576694">
-                  Tift
-                </text>
+                <text>Tift</text>
               </a>
             </Link>
             <Link href="/us/georgia/jeff-davis-county">
@@ -1804,9 +1550,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="559.983950581059" y="402.33480861552897">
-                  Jeff Davis
-                </text>
+                <text>Jeff Davis</text>
               </a>
             </Link>
             <Link href="/us/georgia/stephens-county">
@@ -1818,9 +1562,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="492.61948039096814" y="96.41179723734834">
-                  Stephens
-                </text>
+                <text>Stephens</text>
               </a>
             </Link>
             <Link href="/us/georgia/colquitt-county">
@@ -1832,9 +1574,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="457.50966352604473" y="470.84061136161444">
-                  Colquitt
-                </text>
+                <text>Colquitt</text>
               </a>
             </Link>
             <Link href="/us/georgia/treutlen-county">
@@ -1846,9 +1586,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="565.5713844801758" y="336.8906184939192">
-                  Treutlen
-                </text>
+                <text>Treutlen</text>
               </a>
             </Link>
             <Link href="/us/georgia/mcduffie-county">
@@ -1860,9 +1598,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="571.8187804272853" y="216.90603213840873">
-                  McDuffie
-                </text>
+                <text>McDuffie</text>
               </a>
             </Link>
             <Link href="/us/georgia/dekalb-county">
@@ -1874,9 +1610,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="407.05537243130766" y="188.0772100866205">
-                  DeKalb
-                </text>
+                <text>DeKalb</text>
               </a>
             </Link>
             <Link href="/us/georgia/floyd-county">
@@ -1888,9 +1622,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="311.70952951546394" y="135.56091960791053">
-                  Floyd
-                </text>
+                <text>Floyd</text>
               </a>
             </Link>
             <Link href="/us/georgia/putnam-county">
@@ -1902,9 +1634,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="488.54777694025717" y="236.49543688302495">
-                  Putnam
-                </text>
+                <text>Putnam</text>
               </a>
             </Link>
             <Link href="/us/georgia/terrell-county">
@@ -1916,9 +1646,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="394.4532986318659" y="409.29591438033003">
-                  Terrell
-                </text>
+                <text>Terrell</text>
               </a>
             </Link>
             <Link href="/us/georgia/tattnall-county">
@@ -1930,9 +1658,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="613.252321555876" y="375.5250202048871">
-                  Tattnall
-                </text>
+                <text>Tattnall</text>
               </a>
             </Link>
             <Link href="/us/georgia/crawford-county">
@@ -1944,9 +1670,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="432.83780019218045" y="305.60804455087975">
-                  Crawford
-                </text>
+                <text>Crawford</text>
               </a>
             </Link>
             <Link href="/us/georgia/long-county">
@@ -1958,9 +1682,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="642.2020566359367" y="407.23216405490547">
-                  Long
-                </text>
+                <text>Long</text>
               </a>
             </Link>
             <Link href="/us/georgia/hart-county">
@@ -1972,9 +1694,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="524.4692298162793" y="118.96660812133736">
-                  Hart
-                </text>
+                <text>Hart</text>
               </a>
             </Link>
             <Link href="/us/georgia/cherokee-county">
@@ -1986,9 +1706,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="381.59419549627376" y="135.04783449915425">
-                  Cherokee
-                </text>
+                <text>Cherokee</text>
               </a>
             </Link>
             <Link href="/us/georgia/chattahoochee-county">
@@ -2000,9 +1718,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="360.10171716226347" y="348.70429076827">
-                  Chattahoochee
-                </text>
+                <text>Chattahoochee</text>
               </a>
             </Link>
             <Link href="/us/georgia/montgomery-county">
@@ -2014,9 +1730,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="568.952766223979" y="358.30432265995455">
-                  Montgomery
-                </text>
+                <text>Montgomery</text>
               </a>
             </Link>
             <Link href="/us/georgia/ben-hill-county">
@@ -2028,9 +1742,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="506.46088580637627" y="408.11134723695125">
-                  Ben Hill
-                </text>
+                <text>Ben Hill</text>
               </a>
             </Link>
             <Link href="/us/georgia/banks-county">
@@ -2042,9 +1754,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="473.8562471830717" y="119.73725199490238">
-                  Banks
-                </text>
+                <text>Banks</text>
               </a>
             </Link>
             <Link href="/us/georgia/paulding-county">
@@ -2056,9 +1766,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="345.9009443042752" y="180">
-                  Paulding
-                </text>
+                <text>Paulding</text>
               </a>
             </Link>
             <Link href="/us/georgia/grady-county">
@@ -2070,9 +1778,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="416.0638315865827" y="505.3996606664058">
-                  Grady
-                </text>
+                <text>Grady</text>
               </a>
             </Link>
             <Link href="/us/georgia/gordon-county">
@@ -2084,9 +1790,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="342.53168221089766" y="106.72231799973822">
-                  Gordon
-                </text>
+                <text>Gordon</text>
               </a>
             </Link>
             <Link href="/us/georgia/jackson-county">
@@ -2098,9 +1802,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="468.1398205992822" y="145.03686913311068">
-                  Jackson
-                </text>
+                <text>Jackson</text>
               </a>
             </Link>
             <Link href="/us/georgia/whitfield-county">
@@ -2112,9 +1814,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="332.3549886666938" y="72.00772232601324">
-                  Whitfield
-                </text>
+                <text>Whitfield</text>
               </a>
             </Link>
             <Link href="/us/georgia/habersham-county">
@@ -2126,9 +1826,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="470.0325425478102" y="87.861410922549">
-                  Habersham
-                </text>
+                <text>Habersham</text>
               </a>
             </Link>
             <Link href="/us/georgia/carroll-county">
@@ -2140,9 +1838,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="327.54716272617515" y="212.29686942737638">
-                  Carroll
-                </text>
+                <text>Carroll</text>
               </a>
             </Link>
             <Link href="/us/georgia/dawson-county">
@@ -2154,9 +1850,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="409.74427865400656" y="111.19320702415344">
-                  Dawson
-                </text>
+                <text>Dawson</text>
               </a>
             </Link>
             <Link href="/us/georgia/bartow-county">
@@ -2168,9 +1862,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="347.0936887932725" y="137.14407893653538">
-                  Bartow
-                </text>
+                <text>Bartow</text>
               </a>
             </Link>
             <Link href="/us/georgia/hall-county">
@@ -2182,9 +1874,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="443.56981462169983" y="124.70149398764318">
-                  Hall
-                </text>
+                <text>Hall</text>
               </a>
             </Link>
             <Link href="/us/georgia/spalding-county">
@@ -2196,9 +1886,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="403.1708471108839" y="245.67271839491255">
-                  Spalding
-                </text>
+                <text>Spalding</text>
               </a>
             </Link>
             <Link href="/us/georgia/walton-county">
@@ -2210,9 +1898,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="453.33723882452654" y="185.55970405860177">
-                  Walton
-                </text>
+                <text>Walton</text>
               </a>
             </Link>
             <Link href="/us/georgia/pike-county">
@@ -2224,9 +1910,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="394.104922568433" y="264.6386300356146">
-                  Pike
-                </text>
+                <text>Pike</text>
               </a>
             </Link>
             <Link href="/us/georgia/barrow-county">
@@ -2238,9 +1922,7 @@ export default function GeorgiaMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text style={{ fontSize: 7 }} x="454.55294236886857" y="161.34051415397926">
-                  Barrow
-                </text>
+                <text>Barrow</text>
               </a>
             </Link>
           </g>
