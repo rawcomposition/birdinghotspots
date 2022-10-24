@@ -33,7 +33,7 @@ export default function Home() {
           </section>
           <section>
             <div className="bg-gray-100 p-4 mt-10">
-              <h3 className="text-lg mb-4 font-bold">Want to see your state or country on this site?</h3>
+              <h3 className="text-lg mb-4 font-bold">Want to see your state, province, or country on this site?</h3>
               <p className="mb-4">
                 Get in touch using our <Link href="/contact">contact form</Link>.
               </p>

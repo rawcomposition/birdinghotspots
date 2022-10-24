@@ -36,7 +36,7 @@ export default function EbirdStateSummary({ code, color, label, portal }: State)
           Recent Visits
         </a>
       </p>
-      <strong>Statewide Bar Charts</strong>
+      <strong>Bar Charts</strong>
       <br />
       <a href={getUrl(1, 12)} target="_blank" rel="noreferrer">
         Entire Year
