@@ -47,6 +47,17 @@ export type Marker = {
   url?: string;
 };
 
+export type Link = {
+  label: string;
+  url: string;
+  cite?: boolean;
+};
+
+export type Citation = {
+  label: string;
+  url: string;
+};
+
 export type Hotspot = {
   name: string;
   _id?: string;
@@ -66,14 +77,8 @@ export type Hotspot = {
   birds?: string;
   hikes?: string;
   address?: string;
-  links?: {
-    label: string;
-    url: string;
-  }[];
-  citations?: {
-    label: string;
-    url: string;
-  }[];
+  links?: Link[];
+  citations?: Citation[];
   restrooms?: string;
   roadside?: string;
   accessible?: string[];
@@ -268,10 +273,8 @@ export type Group = {
   birds?: string;
   hikes?: string;
   address?: string;
-  links?: {
-    label: string;
-    url: string;
-  }[];
+  links?: Link[];
+  citations?: Citation[];
   restrooms?: string;
   images?: Image[];
   hotspots: [Hotspot];
@@ -283,11 +286,6 @@ export interface GroupInputs extends Group {
     value: string;
   }[];
 }
-
-export type Link = {
-  label: string;
-  url: string;
-};
 
 export type Revision = {
   _id?: string;

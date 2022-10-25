@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getHotspotByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getCountyByCode, getStateByCode } from "lib/localData";
-import { County, State, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group } from "lib/types";
+import { County, State, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group, Citation } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
@@ -220,7 +220,7 @@ export default function Hotspot({
             {roadside === "Yes" && <p>Roadside accessible.</p>}
           </div>
 
-          {!!citations && citations.length > 0 && <Citations citations={citations} />}
+          <Citations citations={citations} links={links} />
         </div>
         <div>
           {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} />}
@@ -262,12 +262,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     if (links) groupLinks.push(...links);
   });
 
+  const groupCitations: Citation[] = [];
+  data?.groups?.forEach(({ citations }: Group) => {
+    if (citations) groupCitations.push(...citations);
+  });
+
   return {
     props: {
       state,
       county,
       marker,
       ...data,
+      citations: [...(data.citations || []), ...groupCitations],
       links: [...(data.links || []), ...groupLinks],
     },
   };

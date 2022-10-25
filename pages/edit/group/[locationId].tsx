@@ -22,6 +22,7 @@ import MapZoomInput from "components/MapZoomInput";
 import Error from "next/error";
 import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
+import InputCitations from "components/InputCitations";
 
 type Props = {
   id?: string;
@@ -142,6 +143,8 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
               <Field label="Notable Trails">
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
+
+              <InputCitations />
 
               <Field label="Hotspots">
                 <HotspotSelect name="hotspotSelect" className="mt-1 w-full" isMulti />

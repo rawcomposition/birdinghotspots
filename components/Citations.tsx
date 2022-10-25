@@ -1,33 +1,36 @@
 import * as React from "react";
+import { Link, Citation } from "lib/types";
 
 type Props = {
-  citations: {
-    label: string;
-    url: string;
-  }[];
+  citations?: Citation[];
+  links?: Link[];
 };
 
-export default function Citations({ citations }: Props) {
+export default function Citations({ citations, links }: Props) {
+  const filteredLinks = links?.filter((it) => it.cite);
+  const allCitations = [...(filteredLinks || []), ...(citations || [])];
+  if (!allCitations.length) {
+    return null;
+  }
+
   return (
     <>
-      {!!citations && citations.length > 0 && (
-        <p className="text-xs mt-8 border-t pt-4 border-gray-100">
-          Content from{" "}
-          {citations.map(({ label, url }, index) => (
-            <React.Fragment key={label}>
-              {url ? (
-                <a href={url} target="_blank" rel="noreferrer">
-                  {label}
-                </a>
-              ) : (
-                <span>{label}</span>
-              )}
-              {index < citations.length - 2 && ", "}
-              {index === citations.length - 2 && ", and "}
-            </React.Fragment>
-          ))}
-        </p>
-      )}
+      <p className="text-xs mt-8 border-t pt-4 border-gray-100">
+        Content from{" "}
+        {allCitations.map(({ label, url }, index) => (
+          <React.Fragment key={label}>
+            {url ? (
+              <a href={url} target="_blank" rel="noreferrer">
+                {label}
+              </a>
+            ) : (
+              <span>{label}</span>
+            )}
+            {index < allCitations.length - 2 && ", "}
+            {index === allCitations.length - 2 && ", and "}
+          </React.Fragment>
+        ))}
+      </p>
     </>
   );
 }

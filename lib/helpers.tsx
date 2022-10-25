@@ -14,26 +14,14 @@ export function slugify(title?: string) {
 export const tinyConfig = {
   menubar: false,
   plugins: "link autoresize lists",
-  toolbar: "bold italic underline bullist | link | cite",
+  toolbar: "bold italic underline bullist link",
   content_style:
-    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } cite { font-size: 0.75em; font-style: normal; color: #666; }",
+    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } cite { font-size: 0.75em; font-style: normal; color: #666; }", //TODO: Remove cite styles a later point
   branding: false,
   elementpath: false,
-  valid_elements: "p,a[href|rel|target],strong/b,em/i,u,strike,br,ul,ol,li,cite",
+  valid_elements: "p,a[href|rel|target],strong/b,em/i,u,strike,br,ul,ol,li,cite", //TODO: Remove cite at a later point
   autoresize_bottom_margin: 0,
-  formats: {
-    citation: { inline: "cite" },
-  },
   convert_urls: false,
-  setup: (editor: any) => {
-    editor.ui.registry.addToggleButton("cite", {
-      text: "Cite",
-      onAction: (api: any) => {
-        editor.formatter.toggle("citation");
-        api.setActive(!api.isActive());
-      },
-    });
-  },
 };
 
 export function capitalize(str: string) {

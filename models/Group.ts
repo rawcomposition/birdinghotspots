@@ -5,6 +5,12 @@ const { Schema, model, models } = mongoose;
 const LinkSchema = new Schema({
   label: String,
   url: String,
+  cite: Boolean,
+});
+
+const CitationSchema = new Schema({
+  label: String,
+  url: String,
 });
 
 const GroupSchema = new Schema({
@@ -45,6 +51,7 @@ const GroupSchema = new Schema({
   hikes: String,
   address: String,
   links: [LinkSchema],
+  citations: [CitationSchema],
   restrooms: {
     type: String,
     default: null,

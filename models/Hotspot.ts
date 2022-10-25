@@ -5,6 +5,7 @@ const { Schema, model, models } = mongoose;
 const LinkSchema = new Schema({
   label: String,
   url: String,
+  cite: Boolean,
 });
 
 const CitationSchema = new Schema({

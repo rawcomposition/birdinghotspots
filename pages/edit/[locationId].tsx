@@ -13,7 +13,7 @@ import InputCitations from "components/InputCitations";
 import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, EbirdHotspot, Link, Group, Image } from "lib/types";
+import { Hotspot, EbirdHotspot, Link, Citation, Group, Image } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
@@ -35,6 +35,7 @@ type Props = {
   id?: string;
   isNew: boolean;
   groupLinks: Link[];
+  groupCitations: Citation[];
   groupImages: Image[];
   groupAbout: GroupAbout[];
   data: Hotspot;
@@ -42,7 +43,17 @@ type Props = {
   errorCode?: number;
 };
 
-export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, data, error, errorCode }: Props) {
+export default function Edit({
+  id,
+  isNew,
+  groupLinks,
+  groupCitations,
+  groupImages,
+  groupAbout,
+  data,
+  error,
+  errorCode,
+}: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
 
@@ -114,21 +125,7 @@ export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, d
                 )}
               </Field>
 
-              {groupLinks.length > 0 && (
-                <div className="bg-gray-100 px-3 py-2 rounded-md">
-                  <h4 className="text-gray-500 font-bold">Group Links</h4>
-                  {groupLinks.map(({ label, url }) => (
-                    <>
-                      <a href={url} key={url} target="_blank" rel="noopener noreferrer">
-                        {label}
-                      </a>
-                      <br />
-                    </>
-                  ))}
-                </div>
-              )}
-
-              <InputLinks />
+              <InputLinks groupLinks={groupLinks} />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />
@@ -145,6 +142,8 @@ export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, d
               <Field label="Notable Trails">
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
+
+              <InputCitations groupLinks={groupLinks} groupCitations={groupCitations} />
 
               {groupAbout?.map(({ title, text }, i) => (
                 <div key={i} className="bg-gray-100 px-3 py-2 rounded-md">
@@ -229,6 +228,11 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     if (links) groupLinks.push(...links);
   });
 
+  const groupCitations: Citation[] = [];
+  data?.groups?.forEach(({ citations }: Group) => {
+    if (citations) groupCitations.push(...citations);
+  });
+
   const groupImages: Image[] = [];
   data?.groups?.forEach(({ images }: Group) => {
     if (!images) return;
@@ -250,6 +254,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       id: data?._id || null,
       isNew: !data,
       groupLinks,
+      groupCitations,
       groupImages,
       groupAbout,
       data: {

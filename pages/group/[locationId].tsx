@@ -16,6 +16,7 @@ import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import HotspotGrid from "components/HotspotGrid";
+import Citations from "components/Citations";
 
 interface Props extends GroupType {
   county?: County;
@@ -36,6 +37,7 @@ export default function Group({
   zoom,
   address,
   links,
+  citations,
   about,
   tips,
   birds,
@@ -118,6 +120,8 @@ export default function Group({
           <div className="space-y-1">
             {restrooms !== null && <p>{restroomOptions.find((it) => it.value === restrooms)?.label}</p>}
           </div>
+
+          <Citations citations={citations} links={links} />
         </div>
         <div>
           {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
