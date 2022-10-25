@@ -146,8 +146,6 @@ export default function Edit({ id, isNew, groupLinks, groupImages, groupAbout, d
                 <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
-              {isOH && <InputCitations />}
-
               {groupAbout?.map(({ title, text }, i) => (
                 <div key={i} className="bg-gray-100 px-3 py-2 rounded-md">
                   <h4 className="text-gray-500 font-bold">
