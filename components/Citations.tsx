@@ -27,7 +27,8 @@ export default function Citations({ citations, links }: Props) {
               <span>{label}</span>
             )}
             {index < allCitations.length - 2 && ", "}
-            {index === allCitations.length - 2 && ", and "}
+            {index === allCitations.length - 2 && allCitations.length === 2 && " and "}
+            {index === allCitations.length - 2 && allCitations.length !== 2 && ", and "}
           </React.Fragment>
         ))}
       </p>

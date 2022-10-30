@@ -77,11 +77,6 @@ const HotspotSchema = new Schema({
     type: Array,
     default: null,
   },
-  parent: {
-    type: Schema.Types.ObjectId,
-    ref: "Hotspot",
-    default: null,
-  },
   iba: {
     value: String,
     label: String,
