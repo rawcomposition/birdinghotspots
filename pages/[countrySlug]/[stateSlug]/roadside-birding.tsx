@@ -9,20 +9,6 @@ import { HotspotsByCounty, State } from "lib/types";
 import ListHotspotsByCounty from "components/ListHotspotsByCounty";
 import Title from "components/Title";
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const countrySlug = query.countrySlug as string;
-  const stateSlug = query.stateSlug as string;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const hotspots = (await getRoadsideHotspotsByState(state.code)) || [];
-  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
-
-  return {
-    props: { countrySlug, state, hotspots: hotspotsByCounty },
-  };
-};
-
 type Props = {
   countrySlug: string;
   state: State;
@@ -70,3 +56,17 @@ export default function RoadsideBirding({ countrySlug, state, hotspots }: Props)
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const countrySlug = query.countrySlug as string;
+  const stateSlug = query.stateSlug as string;
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const hotspots = (await getRoadsideHotspotsByState(state.code)) || [];
+  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
+
+  return {
+    props: { countrySlug, state, hotspots: hotspotsByCounty },
+  };
+};

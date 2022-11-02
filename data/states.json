@@ -224,7 +224,7 @@
 		"slug": "ohio",
 		"code": "US-OH",
 		"email": "hotspots@ohiobirds.org",
-		"features": [ "roadside", "iba", "drives" ],
+		"features": [ "iba", "drives" ],
 		"active": true,
 		"color": "#4a84b2",
 		"subheading": "From the Ohio Ornithological Society"
@@ -278,7 +278,6 @@
 		"label": "Texas",
 		"slug": "texas",
 		"code": "US-TX",
-		"features": [ "roadside" ],
 		"active": true
 	},
 	{
