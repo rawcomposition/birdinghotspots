@@ -1,13 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
+import { getStateByCode } from "lib/localData";
+import { Hotspot as HotspotType } from "lib/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { q, stateCode, ids }: any = req.query;
   const selectedIds = ids?.split(",")?.filter((it: string) => it) || [];
 
   let query: any = {
-    name: { $regex: new RegExp(q), $options: "i" },
+    $or: [{ name: { $regex: new RegExp(q), $options: "i" } }, { locationId: q }],
   };
 
   if (Array.isArray(selectedIds) && selectedIds.length > 0) {
@@ -18,10 +20,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     query = { ...query, stateCode };
   }
 
+  let select = ["name", "countryCode", "stateCode"];
+
   try {
     await connect();
-    const results = await Hotspot.find(query, ["name"]).limit(50).sort({ name: 1 }).lean().exec();
-    const formatted = results?.map((result: any) => ({ label: result.name, value: result._id }));
+    const results = (await Hotspot.find(query, select).limit(50).sort({ name: 1 }).lean().exec()) as HotspotType[];
+
+    const formatted = results?.map((result) => {
+      const country = result.countryCode.toUpperCase();
+      const state = getStateByCode(result.stateCode);
+      let label = `${result.name}, ${state?.label}, ${country}`;
+      return { label, value: result._id };
+    });
+
     res.status(200).json({
       success: true,
       results: formatted,

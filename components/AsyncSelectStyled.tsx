@@ -13,6 +13,11 @@ const AsyncSelectStyled = (props: any) => {
           color: "#555",
           fontWeight: "normal",
         }),
+        menuList: (base) => ({
+          ...base,
+          color: "#555",
+          fontWeight: "normal",
+        }),
         control: (base, state) => ({
           ...base,
           borderColor: state.isFocused ? "rgb(165, 180, 252)" : base.borderColor,

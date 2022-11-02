@@ -33,10 +33,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const results = (await Hotspot.find(query, ["name", "url", "countryCode", "stateCode"])
-      .limit(25)
+      .limit(50)
       .lean()
       .exec()) as HotspotType[];
-    const formatted = results?.map((result: HotspotType) => {
+    const formatted = results?.map((result) => {
       const country = result.countryCode.toUpperCase();
       const state = getStateByCode(result.stateCode);
       const label = `${result.name}, ${state?.label}, ${country}`;

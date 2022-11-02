@@ -1,5 +1,6 @@
 import { useFormContext, Controller } from "react-hook-form";
 import AsyncSelectStyled from "components/AsyncSelectStyled";
+import Highlighter from "react-highlight-words";
 
 type Option = {
   value: string;
@@ -12,6 +13,10 @@ type Props = {
   required?: boolean;
   [x: string]: any;
 };
+
+function formatOptionLabel({ label }: any, { inputValue }: any) {
+  return <Highlighter searchWords={[inputValue]} textToHighlight={label} highlightTag="b" />;
+}
 
 export default function HotspotSelect({ name, stateCode, required, ...props }: Props) {
   const { control, watch } = useFormContext();
@@ -39,6 +44,7 @@ export default function HotspotSelect({ name, stateCode, required, ...props }: P
         return (
           <AsyncSelectStyled
             loadOptions={loadOptions}
+            formatOptionLabel={formatOptionLabel}
             defaultOptions
             noOptionsMessage={({ inputValue }: any) => (inputValue.length ? "No Results" : "Search for a hotspot...")}
             {...field}
