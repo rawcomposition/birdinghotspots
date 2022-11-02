@@ -21,12 +21,8 @@ export default function StateFeatureLinks({ countrySlug, features, slug }: Props
           <br />
         </>
       )}
-      {features.includes("accessible") && (
-        <>
-          <Link href={`/${countrySlug}/${slug}/accessible-facilities`}>Accessible Facilities</Link>
-          <br />
-        </>
-      )}
+      <Link href={`/${countrySlug}/${slug}/accessible-facilities`}>Accessible Facilities</Link>
+      <br />
       {features.includes("iba") && (
         <>
           <Link href={`/${countrySlug}/${slug}/important-bird-areas`}>Audubon Important Bird Areas</Link>

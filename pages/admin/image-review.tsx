@@ -47,7 +47,7 @@ export default function ImageReview({ items: allItems }: Props) {
             <h3 className="text-lg font-bold">{item.name}</h3>
             {item.countyLabel ? (
               <p>
-                {item.countyLabel} County, {item.stateLabel}, {item.countryCode}
+                {item.countyLabel}, {item.stateLabel}, {item.countryCode}
               </p>
             ) : (
               <p>

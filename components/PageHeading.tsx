@@ -51,7 +51,7 @@ export default function PageHeading({
           {county && state && (
             <>
               <Link href={`/${countrySlug}/${state.slug}/${county.slug}-county`}>
-                <a className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">{county.name} County</a>
+                <a className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">{county.name}</a>
               </Link>
               <Icon />
             </>

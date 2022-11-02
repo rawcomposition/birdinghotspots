@@ -15,7 +15,7 @@ export default function NotableObservationList({ items }: Props) {
           <li key={id + userDisplayName} className="rounded-sm bg-white">
             <div className="flex items-start">
               <h4 className="text-slate-900 text-[0.92em] font-medium mr-auto">
-                {truncate(location, 64)}, {countyName} County
+                {truncate(location, 64)}, {countyName}
               </h4>
             </div>
 

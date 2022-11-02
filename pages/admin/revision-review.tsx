@@ -53,7 +53,7 @@ export default function RevisionReview({ items: allItems }: Props) {
             key={item.locationId}
           >
             <p className="text-sm text-gray-500">
-              {item.countyLabel} County, {item.stateLabel}, {item.countryCode}
+              {item.countyLabel}, {item.stateLabel}, {item.countryCode}
             </p>
             <h3 className="text-lg font-bold">
               {item.name}{" "}

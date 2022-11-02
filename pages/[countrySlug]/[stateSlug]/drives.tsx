@@ -9,20 +9,6 @@ import { DrivesByCounty, State } from "lib/types";
 import Title from "components/Title";
 import EditorActions from "components/EditorActions";
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const countrySlug = query.countrySlug as string;
-  const stateSlug = query.stateSlug as string;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const drives = (await getDrivesByState(state.code)) || [];
-  const drivesByCounty = restructureDrivesByCounty(drives as any, countrySlug, stateSlug);
-
-  return {
-    props: { countrySlug, state, drives: drivesByCounty },
-  };
-};
-
 type Props = {
   countrySlug: string;
   state: State;
@@ -65,7 +51,7 @@ export default function Drives({ countrySlug, state, drives }: Props) {
         {drives.map(({ countySlug, countyName, drives }) => (
           <p key={countySlug} className="mb-4 break-inside-avoid">
             <Link href={`/${countrySlug}/${state.slug}/${countySlug}-county`}>
-              <a className="font-bold">{countyName} County</a>
+              <a className="font-bold">{countyName}</a>
             </Link>
             <br />
             {drives.map(({ name, url }) => (
@@ -80,3 +66,18 @@ export default function Drives({ countrySlug, state, drives }: Props) {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const countrySlug = query.countrySlug as string;
+  const stateSlug = query.stateSlug as string;
+  const state = getState(stateSlug);
+  if (!state) return { notFound: true };
+
+  const drives = (await getDrivesByState(state.code)) || [];
+  const drivesByCounty = restructureDrivesByCounty(drives as any, countrySlug, stateSlug);
+  console.log("drivesByCounty", drivesByCounty);
+
+  return {
+    props: { countrySlug, state, drives: drivesByCounty },
+  };
+};

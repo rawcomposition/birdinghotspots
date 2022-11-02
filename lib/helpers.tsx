@@ -56,7 +56,7 @@ export function restructureHotspotsByCounty(hotspots: Hotspot[]) {
       const county = getCountyByCode(key);
       return {
         countySlug: county?.slug || "",
-        countyName: county?.name || "",
+        countyName: county?.longName || "",
         hotspots,
       };
     }) || [];
@@ -87,7 +87,7 @@ export function restructureDrivesByCounty(drives: Drive[], countrySlug: string, 
       const county = getCountyByCode(key);
       return {
         countySlug: county?.slug || "",
-        countyName: county?.name || "",
+        countyName: county?.longName || "",
         drives,
       };
     }) || [];

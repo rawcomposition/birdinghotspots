@@ -69,7 +69,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
               {label} Notable Bird Sightings
             </a>
           </p>
-          {features?.length > 0 && <StateFeatureLinks countrySlug={countrySlug} slug={slug} features={features} />}
+          <StateFeatureLinks countrySlug={countrySlug} slug={slug} features={features || []} />
           <EbirdStateSummary {...state} code={state?.code} />
         </div>
         <div className="mb-8">

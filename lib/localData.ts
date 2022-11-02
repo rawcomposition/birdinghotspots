@@ -104,7 +104,6 @@ function formatCounty(stateCode: string, county: County) {
 export function getCounties(stateCode: string) {
   const counties: County[] = countyArrays[stateCode];
   if (!counties) return null;
-  console.log(counties.map((county: County) => formatCounty(stateCode, county)));
   return counties.map((county: County) => formatCounty(stateCode, county));
 }
 
@@ -131,7 +130,7 @@ export function getRegionLabel(region: string) {
   const isCounty = pieces.length === 3;
   if (isCounty) {
     const county = getCountyByCode(region);
-    return `${county?.name} County, ${pieces[1]}, ${pieces[0]}`;
+    return `${county?.name}, ${pieces[1]}, ${pieces[0]}`;
   }
   const state = getStateByCode(region);
   return `${state?.label}, ${state?.country}`;
