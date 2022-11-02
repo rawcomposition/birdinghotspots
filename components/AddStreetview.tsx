@@ -77,7 +77,7 @@ export default function AddStreetView() {
           <div className="fixed left-0 right-0 top-0 bottom-0 overflow-auto z-[10001] px-2">
             <div className={`mt-[5%] mb-12 sm:max-w-[700px]  mx-auto bg-white shadow-md rounded-lg overflow-hidden`}>
               <header className="p-4 border-b flex bg-gray-50">
-                <span className="text-lg font-medium mr-auto">Add Google Street View</span>
+                <span className="text-lg font-medium mr-auto">Add Google Street View or Photosphere</span>
               </header>
               <div className="p-4">
                 <div className="flex-1">
