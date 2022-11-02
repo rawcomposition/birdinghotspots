@@ -26,10 +26,10 @@ export default function ImportantBirdAreas({
   about,
   webpage,
   hotspots,
-  ebirdCode,
+  code,
   locationIds,
 }: Props) {
-  const region = ebirdCode || locationIds.join(",");
+  const region = code || locationIds.join(",");
   return (
     <div className="container pb-16 mt-12">
       <Title>{`${name} Important Bird Area`}</Title>
@@ -89,7 +89,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = OhioIBA.find((item) => item.slug === iba);
   if (!data) return { notFound: true };
 
-  const locationIds = data?.ebirdCode ? [] : hotspots.map((item) => item.locationId);
+  const locationIds = data?.code ? [] : hotspots.map((item) => item.locationId);
 
   return {
     props: { countrySlug, state, hotspots: hotspotsByCounty, locationIds, ...data },

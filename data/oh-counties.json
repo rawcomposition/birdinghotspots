@@ -2,441 +2,441 @@
 	{
 		"slug": "adams",
 		"region": "sw",
-		"ebirdCode": "US-OH-001"
+		"code": "US-OH-001"
 	},
 	{
 		"slug": "allen",
 		"region": "nw",
-		"ebirdCode": "US-OH-003"
+		"code": "US-OH-003"
 	},
 	{
 		"slug": "ashland",
 		"region": "ec",
-		"ebirdCode": "US-OH-005"
+		"code": "US-OH-005"
 	},
 	{
 		"slug": "ashtabula",
 		"region": "ne",
-		"ebirdCode": "US-OH-007"
+		"code": "US-OH-007"
 	},
 	{
 		"slug": "athens",
 		"region": "se",
-		"ebirdCode": "US-OH-009"
+		"code": "US-OH-009"
 	},
 	{
 		"slug": "auglaize",
 		"region": "sw",
-		"ebirdCode": "US-OH-011"
+		"code": "US-OH-011"
 	},
 	{
 		"slug": "belmont",
 		"region": "se",
-		"ebirdCode": "US-OH-013"
+		"code": "US-OH-013"
 	},
 	{
 		"slug": "brown",
 		"region": "sw",
-		"ebirdCode": "US-OH-015"
+		"code": "US-OH-015"
 	},
 	{
 		"slug": "butler",
 		"region": "sw",
-		"ebirdCode": "US-OH-017"
+		"code": "US-OH-017"
 	},
 	{
 		"slug": "carroll",
 		"region": "ec",
-		"ebirdCode": "US-OH-019"
+		"code": "US-OH-019"
 	},
 	{
 		"slug": "champaign",
 		"region": "sw",
-		"ebirdCode": "US-OH-021"
+		"code": "US-OH-021"
 	},
 	{
 		"slug": "clark",
 		"region": "sw",
-		"ebirdCode": "US-OH-023"
+		"code": "US-OH-023"
 	},
 	{
 		"slug": "clermont",
 		"region": "sw",
-		"ebirdCode": "US-OH-025"
+		"code": "US-OH-025"
 	},
 	{
 		"slug": "clinton",
 		"region": "sw",
-		"ebirdCode": "US-OH-027"
+		"code": "US-OH-027"
 	},
 	{
 		"slug": "columbiana",
 		"region": "ne",
-		"ebirdCode": "US-OH-029"
+		"code": "US-OH-029"
 	},
 	{
 		"slug": "coshocton",
 		"region": "ec",
-		"ebirdCode": "US-OH-031"
+		"code": "US-OH-031"
 	},
 	{
 		"slug": "crawford",
 		"region": "nw",
-		"ebirdCode": "US-OH-033"
+		"code": "US-OH-033"
 	},
 	{
 		"slug": "cuyahoga",
 		"region": "ne",
-		"ebirdCode": "US-OH-035"
+		"code": "US-OH-035"
 	},
 	{
 		"slug": "darke",
 		"region": "sw",
-		"ebirdCode": "US-OH-037"
+		"code": "US-OH-037"
 	},
 	{
 		"slug": "defiance",
 		"region": "nw",
-		"ebirdCode": "US-OH-039"
+		"code": "US-OH-039"
 	},
 	{
 		"slug": "delaware",
 		"region": "ce",
-		"ebirdCode": "US-OH-041"
+		"code": "US-OH-041"
 	},
 	{
 		"slug": "erie",
 		"region": "nw",
-		"ebirdCode": "US-OH-043"
+		"code": "US-OH-043"
 	},
 	{
 		"slug": "fairfield",
 		"region": "ce",
-		"ebirdCode": "US-OH-045"
+		"code": "US-OH-045"
 	},
 	{
 		"slug": "fayette",
 		"region": "ce",
-		"ebirdCode": "US-OH-047"
+		"code": "US-OH-047"
 	},
 	{
 		"slug": "franklin",
 		"region": "ce",
-		"ebirdCode": "US-OH-049"
+		"code": "US-OH-049"
 	},
 	{
 		"slug": "fulton",
 		"region": "nw",
-		"ebirdCode": "US-OH-051"
+		"code": "US-OH-051"
 	},
 	{
 		"slug": "gallia",
 		"region": "se",
-		"ebirdCode": "US-OH-053"
+		"code": "US-OH-053"
 	},
 	{
 		"slug": "geauga",
 		"region": "ne",
-		"ebirdCode": "US-OH-055"
+		"code": "US-OH-055"
 	},
 	{
 		"slug": "greene",
 		"region": "sw",
-		"ebirdCode": "US-OH-057"
+		"code": "US-OH-057"
 	},
 	{
 		"slug": "guernsey",
 		"region": "ec",
-		"ebirdCode": "US-OH-059"
+		"code": "US-OH-059"
 	},
 	{
 		"slug": "hamilton",
 		"region": "sw",
-		"ebirdCode": "US-OH-061"
+		"code": "US-OH-061"
 	},
 	{
 		"slug": "hancock",
 		"region": "nw",
-		"ebirdCode": "US-OH-063"
+		"code": "US-OH-063"
 	},
 	{
 		"slug": "hardin",
 		"region": "nw",
-		"ebirdCode": "US-OH-065"
+		"code": "US-OH-065"
 	},
 	{
 		"slug": "harrison",
 		"region": "ec",
-		"ebirdCode": "US-OH-067"
+		"code": "US-OH-067"
 	},
 	{
 		"slug": "henry",
 		"region": "nw",
-		"ebirdCode": "US-OH-069"
+		"code": "US-OH-069"
 	},
 	{
 		"slug": "highland",
 		"region": "sw",
-		"ebirdCode": "US-OH-071"
+		"code": "US-OH-071"
 	},
 	{
 		"slug": "hocking",
 		"region": "ce",
-		"ebirdCode": "US-OH-073"
+		"code": "US-OH-073"
 	},
 	{
 		"slug": "holmes",
 		"region": "ec",
-		"ebirdCode": "US-OH-075"
+		"code": "US-OH-075"
 	},
 	{
 		"slug": "huron",
 		"region": "nw",
-		"ebirdCode": "US-OH-077"
+		"code": "US-OH-077"
 	},
 	{
 		"slug": "jackson",
 		"region": "se",
-		"ebirdCode": "US-OH-079"
+		"code": "US-OH-079"
 	},
 	{
 		"slug": "jefferson",
 		"region": "ec",
-		"ebirdCode": "US-OH-081"
+		"code": "US-OH-081"
 	},
 	{
 		"slug": "knox",
 		"region": "ec",
-		"ebirdCode": "US-OH-083"
+		"code": "US-OH-083"
 	},
 	{
 		"slug": "lake",
 		"region": "ne",
-		"ebirdCode": "US-OH-085"
+		"code": "US-OH-085"
 	},
 	{
 		"slug": "lawrence",
 		"region": "se",
-		"ebirdCode": "US-OH-087"
+		"code": "US-OH-087"
 	},
 	{
 		"slug": "licking",
 		"region": "ce",
-		"ebirdCode": "US-OH-089"
+		"code": "US-OH-089"
 	},
 	{
 		"slug": "logan",
 		"region": "sw",
-		"ebirdCode": "US-OH-091"
+		"code": "US-OH-091"
 	},
 	{
 		"slug": "lorain",
 		"region": "ne",
-		"ebirdCode": "US-OH-093"
+		"code": "US-OH-093"
 	},
 	{
 		"slug": "lucas",
 		"region": "nw",
-		"ebirdCode": "US-OH-095"
+		"code": "US-OH-095"
 	},
 	{
 		"slug": "madison",
 		"region": "ce",
-		"ebirdCode": "US-OH-097"
+		"code": "US-OH-097"
 	},
 	{
 		"slug": "mahoning",
 		"region": "ne",
-		"ebirdCode": "US-OH-099"
+		"code": "US-OH-099"
 	},
 	{
 		"slug": "marion",
 		"region": "ce",
-		"ebirdCode": "US-OH-101"
+		"code": "US-OH-101"
 	},
 	{
 		"slug": "medina",
 		"region": "ne",
-		"ebirdCode": "US-OH-103"
+		"code": "US-OH-103"
 	},
 	{
 		"slug": "meigs",
 		"region": "se",
-		"ebirdCode": "US-OH-105"
+		"code": "US-OH-105"
 	},
 	{
 		"slug": "mercer",
 		"region": "sw",
-		"ebirdCode": "US-OH-107"
+		"code": "US-OH-107"
 	},
 	{
 		"slug": "miami",
 		"region": "sw",
-		"ebirdCode": "US-OH-109"
+		"code": "US-OH-109"
 	},
 	{
 		"slug": "monroe",
 		"region": "se",
-		"ebirdCode": "US-OH-111"
+		"code": "US-OH-111"
 	},
 	{
 		"slug": "montgomery",
 		"region": "sw",
-		"ebirdCode": "US-OH-113"
+		"code": "US-OH-113"
 	},
 	{
 		"slug": "morgan",
 		"region": "se",
-		"ebirdCode": "US-OH-115"
+		"code": "US-OH-115"
 	},
 	{
 		"slug": "morrow",
 		"region": "ce",
-		"ebirdCode": "US-OH-117"
+		"code": "US-OH-117"
 	},
 	{
 		"slug": "muskingum",
 		"region": "ec",
-		"ebirdCode": "US-OH-119"
+		"code": "US-OH-119"
 	},
 	{
 		"slug": "noble",
 		"region": "se",
-		"ebirdCode": "US-OH-121"
+		"code": "US-OH-121"
 	},
 	{
 		"slug": "ottawa",
 		"region": "nw",
-		"ebirdCode": "US-OH-123"
+		"code": "US-OH-123"
 	},
 	{
 		"slug": "paulding",
 		"region": "nw",
-		"ebirdCode": "US-OH-125"
+		"code": "US-OH-125"
 	},
 	{
 		"slug": "perry",
 		"region": "ce",
-		"ebirdCode": "US-OH-127"
+		"code": "US-OH-127"
 	},
 	{
 		"slug": "pickaway",
 		"region": "ce",
-		"ebirdCode": "US-OH-129"
+		"code": "US-OH-129"
 	},
 	{
 		"slug": "pike",
 		"region": "se",
-		"ebirdCode": "US-OH-131"
+		"code": "US-OH-131"
 	},
 	{
 		"slug": "portage",
 		"region": "ne",
-		"ebirdCode": "US-OH-133"
+		"code": "US-OH-133"
 	},
 	{
 		"slug": "preble",
 		"region": "sw",
-		"ebirdCode": "US-OH-135"
+		"code": "US-OH-135"
 	},
 	{
 		"slug": "putnam",
 		"region": "nw",
-		"ebirdCode": "US-OH-137"
+		"code": "US-OH-137"
 	},
 	{
 		"slug": "richland",
 		"region": "ec",
-		"ebirdCode": "US-OH-139"
+		"code": "US-OH-139"
 	},
 	{
 		"slug": "ross",
 		"region": "se",
-		"ebirdCode": "US-OH-141"
+		"code": "US-OH-141"
 	},
 	{
 		"slug": "sandusky",
 		"region": "nw",
-		"ebirdCode": "US-OH-143"
+		"code": "US-OH-143"
 	},
 	{
 		"slug": "scioto",
 		"region": "se",
-		"ebirdCode": "US-OH-145"
+		"code": "US-OH-145"
 	},
 	{
 		"slug": "seneca",
 		"region": "nw",
-		"ebirdCode": "US-OH-147"
+		"code": "US-OH-147"
 	},
 	{
 		"slug": "shelby",
 		"region": "sw",
-		"ebirdCode": "US-OH-149"
+		"code": "US-OH-149"
 	},
 	{
 		"slug": "stark",
 		"region": "ec",
-		"ebirdCode": "US-OH-151"
+		"code": "US-OH-151"
 	},
 	{
 		"slug": "summit",
 		"region": "ne",
-		"ebirdCode": "US-OH-153"
+		"code": "US-OH-153"
 	},
 	{
 		"slug": "trumbull",
 		"region": "ne",
-		"ebirdCode": "US-OH-155"
+		"code": "US-OH-155"
 	},
 	{
 		"slug": "tuscarawas",
 		"region": "ce",
-		"ebirdCode": "US-OH-157"
+		"code": "US-OH-157"
 	},
 	{
 		"slug": "union",
 		"region": "ce",
-		"ebirdCode": "US-OH-159"
+		"code": "US-OH-159"
 	},
 	{
 		"slug": "van-wert",
 		"region": "nw",
-		"ebirdCode": "US-OH-161"
+		"code": "US-OH-161"
 	},
 	{
 		"slug": "vinton",
 		"region": "se",
-		"ebirdCode": "US-OH-163"
+		"code": "US-OH-163"
 	},
 	{
 		"slug": "warren",
 		"region": "sw",
-		"ebirdCode": "US-OH-165"
+		"code": "US-OH-165"
 	},
 	{
 		"slug": "washington",
 		"region": "se",
-		"ebirdCode": "US-OH-167"
+		"code": "US-OH-167"
 	},
 	{
 		"slug": "wayne",
 		"region": "ec",
-		"ebirdCode": "US-OH-169"
+		"code": "US-OH-169"
 	},
 	{
 		"slug": "williams",
 		"region": "nw",
-		"ebirdCode": "US-OH-171"
+		"code": "US-OH-171"
 	},
 	{
 		"slug": "wood",
 		"region": "nw",
-		"ebirdCode": "US-OH-173"
+		"code": "US-OH-173"
 	},
 	{
 		"slug": "wyandot",
 		"region": "ne",
-		"ebirdCode": "US-OH-175"
+		"code": "US-OH-175"
 	}
 ]

@@ -1,482 +1,482 @@
 [
   {
-    "ebirdCode": "US-KY-001",
+    "code": "US-KY-001",
     "slug": "adair"
   },
   {
-    "ebirdCode": "US-KY-003",
+    "code": "US-KY-003",
     "slug": "allen"
   },
   {
-    "ebirdCode": "US-KY-005",
+    "code": "US-KY-005",
     "slug": "anderson"
   },
   {
-    "ebirdCode": "US-KY-007",
+    "code": "US-KY-007",
     "slug": "ballard"
   },
   {
-    "ebirdCode": "US-KY-009",
+    "code": "US-KY-009",
     "slug": "barren"
   },
   {
-    "ebirdCode": "US-KY-011",
+    "code": "US-KY-011",
     "slug": "bath"
   },
   {
-    "ebirdCode": "US-KY-013",
+    "code": "US-KY-013",
     "slug": "bell"
   },
   {
-    "ebirdCode": "US-KY-015",
+    "code": "US-KY-015",
     "slug": "boone"
   },
   {
-    "ebirdCode": "US-KY-017",
+    "code": "US-KY-017",
     "slug": "bourbon"
   },
   {
-    "ebirdCode": "US-KY-019",
+    "code": "US-KY-019",
     "slug": "boyd"
   },
   {
-    "ebirdCode": "US-KY-021",
+    "code": "US-KY-021",
     "slug": "boyle"
   },
   {
-    "ebirdCode": "US-KY-023",
+    "code": "US-KY-023",
     "slug": "bracken"
   },
   {
-    "ebirdCode": "US-KY-025",
+    "code": "US-KY-025",
     "slug": "breathitt"
   },
   {
-    "ebirdCode": "US-KY-027",
+    "code": "US-KY-027",
     "slug": "breckinridge"
   },
   {
-    "ebirdCode": "US-KY-029",
+    "code": "US-KY-029",
     "slug": "bullitt"
   },
   {
-    "ebirdCode": "US-KY-031",
+    "code": "US-KY-031",
     "slug": "butler"
   },
   {
-    "ebirdCode": "US-KY-033",
+    "code": "US-KY-033",
     "slug": "caldwell"
   },
   {
-    "ebirdCode": "US-KY-035",
+    "code": "US-KY-035",
     "slug": "calloway"
   },
   {
-    "ebirdCode": "US-KY-037",
+    "code": "US-KY-037",
     "slug": "campbell"
   },
   {
-    "ebirdCode": "US-KY-039",
+    "code": "US-KY-039",
     "slug": "carlisle"
   },
   {
-    "ebirdCode": "US-KY-041",
+    "code": "US-KY-041",
     "slug": "carroll"
   },
   {
-    "ebirdCode": "US-KY-043",
+    "code": "US-KY-043",
     "slug": "carter"
   },
   {
-    "ebirdCode": "US-KY-045",
+    "code": "US-KY-045",
     "slug": "casey"
   },
   {
-    "ebirdCode": "US-KY-047",
+    "code": "US-KY-047",
     "slug": "christian"
   },
   {
-    "ebirdCode": "US-KY-049",
+    "code": "US-KY-049",
     "slug": "clark"
   },
   {
-    "ebirdCode": "US-KY-051",
+    "code": "US-KY-051",
     "slug": "clay"
   },
   {
-    "ebirdCode": "US-KY-053",
+    "code": "US-KY-053",
     "slug": "clinton"
   },
   {
-    "ebirdCode": "US-KY-055",
+    "code": "US-KY-055",
     "slug": "crittenden"
   },
   {
-    "ebirdCode": "US-KY-057",
+    "code": "US-KY-057",
     "slug": "cumberland"
   },
   {
-    "ebirdCode": "US-KY-059",
+    "code": "US-KY-059",
     "slug": "daviess"
   },
   {
-    "ebirdCode": "US-KY-061",
+    "code": "US-KY-061",
     "slug": "edmonson"
   },
   {
-    "ebirdCode": "US-KY-063",
+    "code": "US-KY-063",
     "slug": "elliott"
   },
   {
-    "ebirdCode": "US-KY-065",
+    "code": "US-KY-065",
     "slug": "estill"
   },
   {
-    "ebirdCode": "US-KY-067",
+    "code": "US-KY-067",
     "slug": "fayette"
   },
   {
-    "ebirdCode": "US-KY-069",
+    "code": "US-KY-069",
     "slug": "fleming"
   },
   {
-    "ebirdCode": "US-KY-071",
+    "code": "US-KY-071",
     "slug": "floyd"
   },
   {
-    "ebirdCode": "US-KY-073",
+    "code": "US-KY-073",
     "slug": "franklin"
   },
   {
-    "ebirdCode": "US-KY-075",
+    "code": "US-KY-075",
     "slug": "fulton"
   },
   {
-    "ebirdCode": "US-KY-077",
+    "code": "US-KY-077",
     "slug": "gallatin"
   },
   {
-    "ebirdCode": "US-KY-079",
+    "code": "US-KY-079",
     "slug": "garrard"
   },
   {
-    "ebirdCode": "US-KY-081",
+    "code": "US-KY-081",
     "slug": "grant"
   },
   {
-    "ebirdCode": "US-KY-083",
+    "code": "US-KY-083",
     "slug": "graves"
   },
   {
-    "ebirdCode": "US-KY-085",
+    "code": "US-KY-085",
     "slug": "grayson"
   },
   {
-    "ebirdCode": "US-KY-087",
+    "code": "US-KY-087",
     "slug": "green"
   },
   {
-    "ebirdCode": "US-KY-089",
+    "code": "US-KY-089",
     "slug": "greenup"
   },
   {
-    "ebirdCode": "US-KY-091",
+    "code": "US-KY-091",
     "slug": "hancock"
   },
   {
-    "ebirdCode": "US-KY-093",
+    "code": "US-KY-093",
     "slug": "hardin"
   },
   {
-    "ebirdCode": "US-KY-095",
+    "code": "US-KY-095",
     "slug": "harlan"
   },
   {
-    "ebirdCode": "US-KY-097",
+    "code": "US-KY-097",
     "slug": "harrison"
   },
   {
-    "ebirdCode": "US-KY-099",
+    "code": "US-KY-099",
     "slug": "hart"
   },
   {
-    "ebirdCode": "US-KY-101",
+    "code": "US-KY-101",
     "slug": "henderson"
   },
   {
-    "ebirdCode": "US-KY-103",
+    "code": "US-KY-103",
     "slug": "henry"
   },
   {
-    "ebirdCode": "US-KY-105",
+    "code": "US-KY-105",
     "slug": "hickman"
   },
   {
-    "ebirdCode": "US-KY-107",
+    "code": "US-KY-107",
     "slug": "hopkins"
   },
   {
-    "ebirdCode": "US-KY-109",
+    "code": "US-KY-109",
     "slug": "jackson"
   },
   {
-    "ebirdCode": "US-KY-111",
+    "code": "US-KY-111",
     "slug": "jefferson"
   },
   {
-    "ebirdCode": "US-KY-113",
+    "code": "US-KY-113",
     "slug": "jessamine"
   },
   {
-    "ebirdCode": "US-KY-115",
+    "code": "US-KY-115",
     "slug": "johnson"
   },
   {
-    "ebirdCode": "US-KY-117",
+    "code": "US-KY-117",
     "slug": "kenton"
   },
   {
-    "ebirdCode": "US-KY-119",
+    "code": "US-KY-119",
     "slug": "knott"
   },
   {
-    "ebirdCode": "US-KY-121",
+    "code": "US-KY-121",
     "slug": "knox"
   },
   {
-    "ebirdCode": "US-KY-123",
+    "code": "US-KY-123",
     "slug": "larue"
   },
   {
-    "ebirdCode": "US-KY-125",
+    "code": "US-KY-125",
     "slug": "laurel"
   },
   {
-    "ebirdCode": "US-KY-127",
+    "code": "US-KY-127",
     "slug": "lawrence"
   },
   {
-    "ebirdCode": "US-KY-129",
+    "code": "US-KY-129",
     "slug": "lee"
   },
   {
-    "ebirdCode": "US-KY-131",
+    "code": "US-KY-131",
     "slug": "leslie"
   },
   {
-    "ebirdCode": "US-KY-133",
+    "code": "US-KY-133",
     "slug": "letcher"
   },
   {
-    "ebirdCode": "US-KY-135",
+    "code": "US-KY-135",
     "slug": "lewis"
   },
   {
-    "ebirdCode": "US-KY-137",
+    "code": "US-KY-137",
     "slug": "lincoln"
   },
   {
-    "ebirdCode": "US-KY-139",
+    "code": "US-KY-139",
     "slug": "livingston"
   },
   {
-    "ebirdCode": "US-KY-141",
+    "code": "US-KY-141",
     "slug": "logan"
   },
   {
-    "ebirdCode": "US-KY-143",
+    "code": "US-KY-143",
     "slug": "lyon"
   },
   {
-    "ebirdCode": "US-KY-151",
+    "code": "US-KY-151",
     "slug": "madison"
   },
   {
-    "ebirdCode": "US-KY-153",
+    "code": "US-KY-153",
     "slug": "magoffin"
   },
   {
-    "ebirdCode": "US-KY-155",
+    "code": "US-KY-155",
     "slug": "marion"
   },
   {
-    "ebirdCode": "US-KY-157",
+    "code": "US-KY-157",
     "slug": "marshall"
   },
   {
-    "ebirdCode": "US-KY-159",
+    "code": "US-KY-159",
     "slug": "martin"
   },
   {
-    "ebirdCode": "US-KY-161",
+    "code": "US-KY-161",
     "slug": "mason"
   },
   {
-    "ebirdCode": "US-KY-145",
+    "code": "US-KY-145",
     "slug": "mccracken"
   },
   {
-    "ebirdCode": "US-KY-147",
+    "code": "US-KY-147",
     "slug": "mccreary"
   },
   {
-    "ebirdCode": "US-KY-149",
+    "code": "US-KY-149",
     "slug": "mclean"
   },
   {
-    "ebirdCode": "US-KY-163",
+    "code": "US-KY-163",
     "slug": "meade"
   },
   {
-    "ebirdCode": "US-KY-165",
+    "code": "US-KY-165",
     "slug": "menifee"
   },
   {
-    "ebirdCode": "US-KY-167",
+    "code": "US-KY-167",
     "slug": "mercer"
   },
   {
-    "ebirdCode": "US-KY-169",
+    "code": "US-KY-169",
     "slug": "metcalfe"
   },
   {
-    "ebirdCode": "US-KY-171",
+    "code": "US-KY-171",
     "slug": "monroe"
   },
   {
-    "ebirdCode": "US-KY-173",
+    "code": "US-KY-173",
     "slug": "montgomery"
   },
   {
-    "ebirdCode": "US-KY-175",
+    "code": "US-KY-175",
     "slug": "morgan"
   },
   {
-    "ebirdCode": "US-KY-177",
+    "code": "US-KY-177",
     "slug": "muhlenberg"
   },
   {
-    "ebirdCode": "US-KY-179",
+    "code": "US-KY-179",
     "slug": "nelson"
   },
   {
-    "ebirdCode": "US-KY-181",
+    "code": "US-KY-181",
     "slug": "nicholas"
   },
   {
-    "ebirdCode": "US-KY-183",
+    "code": "US-KY-183",
     "slug": "ohio"
   },
   {
-    "ebirdCode": "US-KY-185",
+    "code": "US-KY-185",
     "slug": "oldham"
   },
   {
-    "ebirdCode": "US-KY-187",
+    "code": "US-KY-187",
     "slug": "owen"
   },
   {
-    "ebirdCode": "US-KY-189",
+    "code": "US-KY-189",
     "slug": "owsley"
   },
   {
-    "ebirdCode": "US-KY-191",
+    "code": "US-KY-191",
     "slug": "pendleton"
   },
   {
-    "ebirdCode": "US-KY-193",
+    "code": "US-KY-193",
     "slug": "perry"
   },
   {
-    "ebirdCode": "US-KY-195",
+    "code": "US-KY-195",
     "slug": "pike"
   },
   {
-    "ebirdCode": "US-KY-197",
+    "code": "US-KY-197",
     "slug": "powell"
   },
   {
-    "ebirdCode": "US-KY-199",
+    "code": "US-KY-199",
     "slug": "pulaski"
   },
   {
-    "ebirdCode": "US-KY-201",
+    "code": "US-KY-201",
     "slug": "robertson"
   },
   {
-    "ebirdCode": "US-KY-203",
+    "code": "US-KY-203",
     "slug": "rockcastle"
   },
   {
-    "ebirdCode": "US-KY-205",
+    "code": "US-KY-205",
     "slug": "rowan"
   },
   {
-    "ebirdCode": "US-KY-207",
+    "code": "US-KY-207",
     "slug": "russell"
   },
   {
-    "ebirdCode": "US-KY-209",
+    "code": "US-KY-209",
     "slug": "scott"
   },
   {
-    "ebirdCode": "US-KY-211",
+    "code": "US-KY-211",
     "slug": "shelby"
   },
   {
-    "ebirdCode": "US-KY-213",
+    "code": "US-KY-213",
     "slug": "simpson"
   },
   {
-    "ebirdCode": "US-KY-215",
+    "code": "US-KY-215",
     "slug": "spencer"
   },
   {
-    "ebirdCode": "US-KY-217",
+    "code": "US-KY-217",
     "slug": "taylor"
   },
   {
-    "ebirdCode": "US-KY-219",
+    "code": "US-KY-219",
     "slug": "todd"
   },
   {
-    "ebirdCode": "US-KY-221",
+    "code": "US-KY-221",
     "slug": "trigg"
   },
   {
-    "ebirdCode": "US-KY-223",
+    "code": "US-KY-223",
     "slug": "trimble"
   },
   {
-    "ebirdCode": "US-KY-225",
+    "code": "US-KY-225",
     "slug": "union"
   },
   {
-    "ebirdCode": "US-KY-227",
+    "code": "US-KY-227",
     "slug": "warren"
   },
   {
-    "ebirdCode": "US-KY-229",
+    "code": "US-KY-229",
     "slug": "washington"
   },
   {
-    "ebirdCode": "US-KY-231",
+    "code": "US-KY-231",
     "slug": "wayne"
   },
   {
-    "ebirdCode": "US-KY-233",
+    "code": "US-KY-233",
     "slug": "webster"
   },
   {
-    "ebirdCode": "US-KY-235",
+    "code": "US-KY-235",
     "slug": "whitley"
   },
   {
-    "ebirdCode": "US-KY-237",
+    "code": "US-KY-237",
     "slug": "wolfe"
   },
   {
-    "ebirdCode": "US-KY-239",
+    "code": "US-KY-239",
     "slug": "woodford"
   }
 ]

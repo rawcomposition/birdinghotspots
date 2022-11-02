@@ -1,234 +1,234 @@
 [
   {
-    "ebirdCode": "US-CA-001",
+    "code": "US-CA-001",
     "slug": "alameda"
   },
   {
-    "ebirdCode": "US-CA-003",
+    "code": "US-CA-003",
     "slug": "alpine"
   },
   {
-    "ebirdCode": "US-CA-005",
+    "code": "US-CA-005",
     "slug": "amador"
   },
   {
-    "ebirdCode": "US-CA-007",
+    "code": "US-CA-007",
     "slug": "butte"
   },
   {
-    "ebirdCode": "US-CA-009",
+    "code": "US-CA-009",
     "slug": "calaveras"
   },
   {
-    "ebirdCode": "US-CA-011",
+    "code": "US-CA-011",
     "slug": "colusa"
   },
   {
-    "ebirdCode": "US-CA-013",
+    "code": "US-CA-013",
     "slug": "contra-costa"
   },
   {
-    "ebirdCode": "US-CA-015",
+    "code": "US-CA-015",
     "slug": "del-norte"
   },
   {
-    "ebirdCode": "US-CA-017",
+    "code": "US-CA-017",
     "slug": "el-dorado"
   },
   {
-    "ebirdCode": "US-CA-019",
+    "code": "US-CA-019",
     "slug": "fresno"
   },
   {
-    "ebirdCode": "US-CA-021",
+    "code": "US-CA-021",
     "slug": "glenn"
   },
   {
-    "ebirdCode": "US-CA-023",
+    "code": "US-CA-023",
     "slug": "humboldt"
   },
   {
-    "ebirdCode": "US-CA-025",
+    "code": "US-CA-025",
     "slug": "imperial"
   },
   {
-    "ebirdCode": "US-CA-027",
+    "code": "US-CA-027",
     "slug": "inyo"
   },
   {
-    "ebirdCode": "US-CA-029",
+    "code": "US-CA-029",
     "slug": "kern"
   },
   {
-    "ebirdCode": "US-CA-031",
+    "code": "US-CA-031",
     "slug": "kings"
   },
   {
-    "ebirdCode": "US-CA-033",
+    "code": "US-CA-033",
     "slug": "lake"
   },
   {
-    "ebirdCode": "US-CA-035",
+    "code": "US-CA-035",
     "slug": "lassen"
   },
   {
-    "ebirdCode": "US-CA-037",
+    "code": "US-CA-037",
     "slug": "los-angeles"
   },
   {
-    "ebirdCode": "US-CA-039",
+    "code": "US-CA-039",
     "slug": "madera"
   },
   {
-    "ebirdCode": "US-CA-041",
+    "code": "US-CA-041",
     "slug": "marin"
   },
   {
-    "ebirdCode": "US-CA-043",
+    "code": "US-CA-043",
     "slug": "mariposa"
   },
   {
-    "ebirdCode": "US-CA-045",
+    "code": "US-CA-045",
     "slug": "mendocino"
   },
   {
-    "ebirdCode": "US-CA-047",
+    "code": "US-CA-047",
     "slug": "merced"
   },
   {
-    "ebirdCode": "US-CA-049",
+    "code": "US-CA-049",
     "slug": "modoc"
   },
   {
-    "ebirdCode": "US-CA-051",
+    "code": "US-CA-051",
     "slug": "mono"
   },
   {
-    "ebirdCode": "US-CA-053",
+    "code": "US-CA-053",
     "slug": "monterey"
   },
   {
-    "ebirdCode": "US-CA-055",
+    "code": "US-CA-055",
     "slug": "napa"
   },
   {
-    "ebirdCode": "US-CA-057",
+    "code": "US-CA-057",
     "slug": "nevada"
   },
   {
-    "ebirdCode": "US-CA-059",
+    "code": "US-CA-059",
     "slug": "orange"
   },
   {
-    "ebirdCode": "US-CA-061",
+    "code": "US-CA-061",
     "slug": "placer"
   },
   {
-    "ebirdCode": "US-CA-063",
+    "code": "US-CA-063",
     "slug": "plumas"
   },
   {
-    "ebirdCode": "US-CA-065",
+    "code": "US-CA-065",
     "slug": "riverside"
   },
   {
-    "ebirdCode": "US-CA-067",
+    "code": "US-CA-067",
     "slug": "sacramento"
   },
   {
-    "ebirdCode": "US-CA-069",
+    "code": "US-CA-069",
     "slug": "san-benito"
   },
   {
-    "ebirdCode": "US-CA-071",
+    "code": "US-CA-071",
     "slug": "san-bernardino"
   },
   {
-    "ebirdCode": "US-CA-073",
+    "code": "US-CA-073",
     "slug": "san-diego"
   },
   {
-    "ebirdCode": "US-CA-075",
+    "code": "US-CA-075",
     "slug": "san-francisco"
   },
   {
-    "ebirdCode": "US-CA-077",
+    "code": "US-CA-077",
     "slug": "san-joaquin"
   },
   {
-    "ebirdCode": "US-CA-079",
+    "code": "US-CA-079",
     "slug": "san-luis obispo"
   },
   {
-    "ebirdCode": "US-CA-081",
+    "code": "US-CA-081",
     "slug": "san-mateo"
   },
   {
-    "ebirdCode": "US-CA-083",
+    "code": "US-CA-083",
     "slug": "santa-barbara"
   },
   {
-    "ebirdCode": "US-CA-085",
+    "code": "US-CA-085",
     "slug": "santa-clara"
   },
   {
-    "ebirdCode": "US-CA-087",
+    "code": "US-CA-087",
     "slug": "santa-cruz"
   },
   {
-    "ebirdCode": "US-CA-089",
+    "code": "US-CA-089",
     "slug": "shasta"
   },
   {
-    "ebirdCode": "US-CA-091",
+    "code": "US-CA-091",
     "slug": "sierra"
   },
   {
-    "ebirdCode": "US-CA-093",
+    "code": "US-CA-093",
     "slug": "siskiyou"
   },
   {
-    "ebirdCode": "US-CA-095",
+    "code": "US-CA-095",
     "slug": "solano"
   },
   {
-    "ebirdCode": "US-CA-097",
+    "code": "US-CA-097",
     "slug": "sonoma"
   },
   {
-    "ebirdCode": "US-CA-099",
+    "code": "US-CA-099",
     "slug": "stanislaus"
   },
   {
-    "ebirdCode": "US-CA-101",
+    "code": "US-CA-101",
     "slug": "sutter"
   },
   {
-    "ebirdCode": "US-CA-103",
+    "code": "US-CA-103",
     "slug": "tehama"
   },
   {
-    "ebirdCode": "US-CA-105",
+    "code": "US-CA-105",
     "slug": "trinity"
   },
   {
-    "ebirdCode": "US-CA-107",
+    "code": "US-CA-107",
     "slug": "tulare"
   },
   {
-    "ebirdCode": "US-CA-109",
+    "code": "US-CA-109",
     "slug": "tuolumne"
   },
   {
-    "ebirdCode": "US-CA-111",
+    "code": "US-CA-111",
     "slug": "ventura"
   },
   {
-    "ebirdCode": "US-CA-113",
+    "code": "US-CA-113",
     "slug": "yolo"
   },
   {
-    "ebirdCode": "US-CA-115",
+    "code": "US-CA-115",
     "slug": "yuba"
   }
 ]

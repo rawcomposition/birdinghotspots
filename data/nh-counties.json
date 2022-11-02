@@ -1,42 +1,42 @@
 [
   {
-    "ebirdCode": "US-NH-001",
+    "code": "US-NH-001",
     "slug": "belknap"
   },
   {
-    "ebirdCode": "US-NH-003",
+    "code": "US-NH-003",
     "slug": "carroll"
   },
   {
-    "ebirdCode": "US-NH-005",
+    "code": "US-NH-005",
     "slug": "cheshire"
   },
   {
-    "ebirdCode": "US-NH-007",
+    "code": "US-NH-007",
     "slug": "coos"
   },
   {
-    "ebirdCode": "US-NH-009",
+    "code": "US-NH-009",
     "slug": "grafton"
   },
   {
-    "ebirdCode": "US-NH-011",
+    "code": "US-NH-011",
     "slug": "hillsborough"
   },
   {
-    "ebirdCode": "US-NH-013",
+    "code": "US-NH-013",
     "slug": "merrimack"
   },
   {
-    "ebirdCode": "US-NH-015",
+    "code": "US-NH-015",
     "slug": "rockingham"
   },
   {
-    "ebirdCode": "US-NH-017",
+    "code": "US-NH-017",
     "slug": "strafford"
   },
   {
-    "ebirdCode": "US-NH-019",
+    "code": "US-NH-019",
     "slug": "sullivan"
   }
 ]

@@ -15,8 +15,9 @@ export type State = {
 export type County = {
   slug: string;
   name: string;
+  longName?: string;
   region: string | null;
-  ebirdCode: string;
+  code: string;
   regionLabel: string | null;
 };
 
@@ -126,7 +127,7 @@ export type DrivesByCounty = [
 export type IBA = {
   name: string;
   slug: string;
-  ebirdCode: string;
+  code: string;
   ebirdLocations?: string;
   webpage: string;
   about: string;

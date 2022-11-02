@@ -22,7 +22,7 @@ type Props = {
 };
 
 export default function County({ countrySlug, state, county, hotspots }: Props) {
-  const { name, ebirdCode } = county;
+  const { name, longName, code } = county;
   const hotspotIBA = hotspots.filter(({ iba }) => iba?.value).map(({ iba }) => iba);
   const drives: HotspotDrive[] = [];
   hotspots.forEach((hotspot) => {
@@ -57,12 +57,12 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
 
   return (
     <div className="container pb-16">
-      <Title>{`${name} County, ${state.label}, ${state.country}`}</Title>
+      <Title>{`${longName}, ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state}>
-        {name} County
+        {longName}
       </PageHeading>
       <section>
-        <h3 className="text-lg mb-2 font-bold -mt-8">Where to Go Birding in {name} County</h3>
+        <h3 className="text-lg mb-2 font-bold -mt-8">Where to Go Birding in {longName}</h3>
         <div className="flex gap-2 mt-2 mb-4">
           <EbirdCountyBtn state={state} county={county} />
           <CountyLinksBtn showIba={iba.length > 0} />
@@ -71,7 +71,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       <section className="mb-16">
         {markers.length > 0 && (
           <MapBox
-            key={county.ebirdCode}
+            key={county.code}
             markers={markers as Marker[]}
             lat={markers[0].lat}
             lng={markers[0].lng}
@@ -85,11 +85,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
         <h3 className="text-lg mb-2 font-bold" id="tophotspots">
           Top eBird Hotspots
         </h3>
-        <TopHotspots
-          region={ebirdCode}
-          label={`${name}, ${state.label}, ${countrySlug.toUpperCase()}`}
-          className="mt-4"
-        />
+        <TopHotspots region={code} label={`${name}, ${state.label}, ${countrySlug.toUpperCase()}`} className="mt-4" />
       </section>
       <section className="mb-12">
         <h3 className="text-lg mb-2 font-bold" id="hotspots">
@@ -130,7 +126,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
           </section>
         )}
       </div>
-      <RareBirds region={ebirdCode} className="mt-16" />
+      <RareBirds region={code} className="mt-16" />
     </div>
   );
 }
@@ -150,7 +146,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const county = getCountyBySlug(state.code, countySlug);
   if (!county?.name) return { notFound: true };
 
-  const hotspots = (await getHotspotsByCounty(county.ebirdCode)) || [];
+  const hotspots = (await getHotspotsByCounty(county.code)) || [];
 
   let groupHotspotIds: string[] = [];
   if (cookies.session) {

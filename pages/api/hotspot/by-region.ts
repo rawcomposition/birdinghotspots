@@ -6,7 +6,7 @@ import { getCountyByCode, getStateByCode } from "lib/localData";
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { region, limit, offset }: any = req.query;
   const isCounty = region.split("-").length === 3;
-  const regionName = isCounty ? `${getCountyByCode(region)?.name} County` : getStateByCode(region.split("-")[1])?.label;
+  const regionName = isCounty ? getCountyByCode(region)?.longName : getStateByCode(region.split("-")[1])?.label;
 
   const regionPieces = region.split("-");
   const stateCode = `${regionPieces[0]}-${regionPieces[1]}`;

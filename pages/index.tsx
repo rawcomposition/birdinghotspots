@@ -1,3 +1,4 @@
+import * as React from "react";
 import Link from "next/link";
 import States from "data/states.json";
 import Countries from "data/countries.json";
@@ -17,7 +18,7 @@ export default function Home() {
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
             {Countries.map((country) => (
-              <>
+              <React.Fragment key={country.code}>
                 <h3 className="text-lg mb-4 font-bold">{country.label}</h3>
                 <div className="columns-2 lg:columns-3 mb-12">
                   {States.filter((state) => state.active && state.country === country.code).map(
@@ -28,7 +29,7 @@ export default function Home() {
                     )
                   )}
                 </div>
-              </>
+              </React.Fragment>
             ))}
           </section>
           <section>

@@ -72,6 +72,7 @@ export default function Search({ onChange, pill, ...props }: Props) {
           display: "none",
         }),
       }}
+      instanceId="main-search"
       value={value}
       loadOptions={loadOptions}
       cacheOptions

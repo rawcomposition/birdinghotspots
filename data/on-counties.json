@@ -1,202 +1,233 @@
 [
   {
-    "ebirdCode": "CA-ON-AL",
-    "slug": "algoma"
+    "code": "CA-ON-AL",
+    "slug": "algoma",
+    "longName": "Algoma District"
   },
   {
-    "ebirdCode": "CA-ON-BN",
+    "code": "CA-ON-BN",
     "slug": "brant"
   },
   {
-    "ebirdCode": "CA-ON-BC",
+    "code": "CA-ON-BC",
     "slug": "bruce"
   },
   {
-    "ebirdCode": "CA-ON-KT",
-    "slug": "chatham-kent"
+    "code": "CA-ON-KT",
+    "slug": "chatham-kent",
+    "name": "Chatham-Kent",
+    "longName": "Municipality of Chatham-Kent"
   },
   {
-    "ebirdCode": "CA-ON-CO",
-    "slug": "cochrane"
+    "code": "CA-ON-CO",
+    "slug": "cochrane",
+    "longName": "Cochrane District"
   },
   {
-    "ebirdCode": "CA-ON-DF",
+    "code": "CA-ON-DF",
     "slug": "dufferin"
   },
   {
-    "ebirdCode": "CA-ON-DR",
-    "slug": "durham"
+    "code": "CA-ON-DR",
+    "slug": "durham",
+    "longName": "Durham Regional Municipality"
   },
   {
-    "ebirdCode": "CA-ON-EL",
+    "code": "CA-ON-EL",
     "slug": "elgin"
   },
   {
-    "ebirdCode": "CA-ON-ES",
+    "code": "CA-ON-ES",
     "slug": "essex"
   },
   {
-    "ebirdCode": "CA-ON-FR",
+    "code": "CA-ON-FR",
     "slug": "frontenac"
   },
   {
-    "ebirdCode": "CA-ON-SU",
-    "slug": "greater-sudbury"
+    "code": "CA-ON-SU",
+    "slug": "greater-sudbury",
+    "longName": "City of Greater Sudbury"
   },
   {
-    "ebirdCode": "CA-ON-GR",
+    "code": "CA-ON-GR",
     "slug": "grey"
   },
   {
-    "ebirdCode": "CA-ON-HD",
+    "code": "CA-ON-HD",
     "slug": "haldimand"
   },
   {
-    "ebirdCode": "CA-ON-HB",
+    "code": "CA-ON-HB",
     "slug": "haliburton"
   },
   {
-    "ebirdCode": "CA-ON-HT",
-    "slug": "halton"
+    "code": "CA-ON-HT",
+    "slug": "halton",
+    "longName": "Halton Regional Municipality"
   },
   {
-    "ebirdCode": "CA-ON-HA",
-    "slug": "hamilton"
+    "code": "CA-ON-HA",
+    "slug": "hamilton",
+    "longName": "City of Hamilton"
   },
   {
-    "ebirdCode": "CA-ON-HS",
+    "code": "CA-ON-HS",
     "slug": "hastings"
   },
   {
-    "ebirdCode": "CA-ON-HU",
+    "code": "CA-ON-HU",
     "slug": "huron"
   },
   {
-    "ebirdCode": "CA-ON-VI",
-    "slug": "kawartha-lakes"
+    "code": "CA-ON-VI",
+    "slug": "kawartha-lakes",
+    "longName": "City of Kawartha Lakes"
   },
   {
-    "ebirdCode": "CA-ON-KR",
-    "slug": "kenora"
+    "code": "CA-ON-KR",
+    "slug": "kenora",
+    "longName": "Kenora District"
   },
   {
-    "ebirdCode": "CA-ON-LM",
+    "code": "CA-ON-LM",
     "slug": "lambton"
   },
   {
-    "ebirdCode": "CA-ON-LN",
+    "code": "CA-ON-LN",
     "slug": "lanark"
   },
   {
-    "ebirdCode": "CA-ON-LG",
-    "slug": "leeds-and-grenville"
+    "code": "CA-ON-LG",
+    "slug": "leeds-and-grenville",
+    "name": "Leeds and Grenville",
+    "longName": "United Counties of Leeds and Grenville"
   },
   {
-    "ebirdCode": "CA-ON-LA",
-    "slug": "lennox-and-addington"
+    "code": "CA-ON-LA",
+    "slug": "lennox-and-addington",
+    "name": "Lennox and Addington",
+    "longName": "County of Lennox and Addington"
   },
   {
-    "ebirdCode": "CA-ON-MA",
+    "code": "CA-ON-MA",
     "slug": "manitoulin"
   },
   {
-    "ebirdCode": "CA-ON-MI",
+    "code": "CA-ON-MI",
     "slug": "middlesex"
   },
   {
-    "ebirdCode": "CA-ON-MU",
-    "slug": "muskoka"
+    "code": "CA-ON-MU",
+    "slug": "muskoka",
+    "longName": "Muskoka District Municipality"
   },
   {
-    "ebirdCode": "CA-ON-NG",
-    "slug": "niagara"
+    "code": "CA-ON-NG",
+    "slug": "niagara",
+    "longName": "Niagara Regional Municipality"
   },
   {
-    "ebirdCode": "CA-ON-NP",
-    "slug": "nipissing"
+    "code": "CA-ON-NP",
+    "slug": "nipissing",
+    "longName": "Nipissing District"
   },
   {
-    "ebirdCode": "CA-ON-NF",
+    "code": "CA-ON-NF",
     "slug": "norfolk"
   },
   {
-    "ebirdCode": "CA-ON-NU",
+    "code": "CA-ON-NU",
     "slug": "northumberland"
   },
   {
-    "ebirdCode": "CA-ON-OT",
-    "slug": "ottawa"
+    "code": "CA-ON-OT",
+    "slug": "ottawa",
+    "longName": "City of Ottawa"
   },
   {
-    "ebirdCode": "CA-ON-OX",
+    "code": "CA-ON-OX",
     "slug": "oxford"
   },
   {
-    "ebirdCode": "CA-ON-PS",
-    "slug": "parry-sound"
+    "code": "CA-ON-PS",
+    "slug": "parry-sound",
+    "longName": "Parry Sound District"
   },
   {
-    "ebirdCode": "CA-ON-PL",
-    "slug": "peel"
+    "code": "CA-ON-PL",
+    "slug": "peel",
+    "longName": "Peel Regional Municipality"
   },
   {
-    "ebirdCode": "CA-ON-PT",
+    "code": "CA-ON-PT",
     "slug": "perth"
   },
   {
-    "ebirdCode": "CA-ON-PB",
+    "code": "CA-ON-PB",
     "slug": "peterborough"
   },
   {
-    "ebirdCode": "CA-ON-PR",
-    "slug": "prescott-and-russell"
+    "code": "CA-ON-PR",
+    "slug": "prescott-and-russell",
+    "name": "Prescott and Russell",
+    "longName": "United Counties of Prescott and Russell"
   },
   {
-    "ebirdCode": "CA-ON-PE",
+    "code": "CA-ON-PE",
     "slug": "prince-edward"
   },
   {
-    "ebirdCode": "CA-ON-RR",
-    "slug": "rainy-river"
+    "code": "CA-ON-RR",
+    "slug": "rainy-river",
+    "longName": "Rainy River District"
   },
   {
-    "ebirdCode": "CA-ON-RE",
+    "code": "CA-ON-RE",
     "slug": "renfrew"
   },
   {
-    "ebirdCode": "CA-ON-SC",
+    "code": "CA-ON-SC",
     "slug": "simcoe"
   },
   {
-    "ebirdCode": "CA-ON-SD",
-    "slug": "stormont-dundas-and-glengarry"
+    "code": "CA-ON-SD",
+    "slug": "stormont-dundas-and-glengarry",
+    "name": "Stormont, Dundas and Glengarry",
+    "longName": "United Counties of Stormont, Dundas and Glengarry"
   },
   {
-    "ebirdCode": "CA-ON-SB",
-    "slug": "sudbury"
+    "code": "CA-ON-SB",
+    "slug": "sudbury",
+    "longName": "Sudbury District"
   },
   {
-    "ebirdCode": "CA-ON-TB",
-    "slug": "thunder-bay"
+    "code": "CA-ON-TB",
+    "slug": "thunder-bay",
+    "longName": "Thunder Bay District"
   },
   {
-    "ebirdCode": "CA-ON-TI",
-    "slug": "timiskaming"
+    "code": "CA-ON-TI",
+    "slug": "timiskaming",
+    "longName": "Timiskaming District"
   },
   {
-    "ebirdCode": "CA-ON-TO",
-    "slug": "toronto"
+    "code": "CA-ON-TO",
+    "slug": "toronto",
+    "longName": "City of Toronto"
   },
   {
-    "ebirdCode": "CA-ON-WT",
-    "slug": "waterloo"
+    "code": "CA-ON-WT",
+    "slug": "waterloo",
+    "longName": "Waterloo Regional Municipality"
   },
   {
-    "ebirdCode": "CA-ON-WL",
+    "code": "CA-ON-WL",
     "slug": "wellington"
   },
   {
-    "ebirdCode": "CA-ON-YO",
-    "slug": "york"
+    "code": "CA-ON-YO",
+    "slug": "york",
+    "longName": "York Regional Municipality"
   }
 ]

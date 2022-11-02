@@ -50,7 +50,7 @@ export function getCountyByCode(code: string) {
   const stateCode = `${pieces[0]}-${pieces[1]}`;
   const array = countyArrays[stateCode];
   if (!array) return null;
-  const county = array.find((county: County) => county.ebirdCode === code);
+  const county = array.find((county: County) => county.code === code);
   if (!county) return null;
 
   return formatCounty(stateCode, county);
@@ -62,10 +62,11 @@ export function getLocationText(countyCode: string, hideState?: boolean, hideCou
   const stateCode = `${pieces[0]}-${pieces[1]}`;
   const array = countyArrays[stateCode];
   if (!array) return null;
-  const county = array.find((county: County) => county.ebirdCode === countyCode);
+  const county = array.find((county: County) => county.code === countyCode);
   const state = getStateByCode(stateCode);
   if (!county || !state) return null;
-  let result = `${capitalize(county.slug.replaceAll("-", " "))} County`;
+  const formattedCounty = formatCounty(stateCode, county);
+  let result = formattedCounty.name;
   if (!hideState) {
     result = `${result}, ${state?.label}`;
   }
@@ -86,20 +87,25 @@ export function getCountyBySlug(stateCode: string, countySlug: string) {
 }
 
 function formatCounty(stateCode: string, county: County) {
-  const { region: regionCode, ebirdCode, slug } = county;
+  const { region: regionCode, code, slug, name, longName } = county;
   const region = regionCode && stateCode === "US-OH" ? (OhioRegions as any)[regionCode] : {};
+  const deSlugged = capitalize(slug.replaceAll("-", " "));
   return {
     slug,
-    name: capitalize(slug.replaceAll("-", " ")),
+    name: name || deSlugged,
+    longName: longName || `${deSlugged} County`,
     region: region || null,
-    ebirdCode,
+    code: code,
     regionLabel: region?.label || null,
     color: region?.color || "#4a84b2",
   };
 }
 
 export function getCounties(stateCode: string) {
-  return formatCountyArray(countyArrays[stateCode]);
+  const counties: County[] = countyArrays[stateCode];
+  if (!counties) return null;
+  console.log(counties.map((county: County) => formatCounty(stateCode, county)));
+  return counties.map((county: County) => formatCounty(stateCode, county));
 }
 
 export function getAllCounties(limitStates?: string[] | null) {
@@ -107,26 +113,15 @@ export function getAllCounties(limitStates?: string[] | null) {
   Object.entries(countyArrays).forEach(([stateCode, array]: any) => {
     if (limitStates && !limitStates.includes(stateCode)) return;
     const state = getStateByCode(stateCode);
-    array.forEach(({ slug, ebirdCode }: County) => {
-      const name = capitalize(slug.replaceAll("-", " "));
+    array.forEach((county: County) => {
       counties.push({
-        slug,
-        code: ebirdCode,
-        name: `${name} County, ${stateCode.split("-").pop()}, ${state?.country}`,
+        ...formatCounty(stateCode, county),
         stateSlug: state?.slug,
         country: state?.country,
       });
     });
   });
   return counties;
-}
-
-export function formatCountyArray(counties: County[]) {
-  if (!counties) return null;
-  return counties.map((county) => ({
-    ...county,
-    name: capitalize(county.slug.replaceAll("-", " ")),
-  }));
 }
 
 export function getRegionLabel(region: string) {

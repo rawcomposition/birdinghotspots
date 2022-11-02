@@ -2,58 +2,58 @@
 [
 	{
 		"slug": "addison",
-		"ebirdCode": "US-VT-001"
+		"code": "US-VT-001"
 	},
 	{
 		"slug": "bennington",
-		"ebirdCode": "US-VT-003"
+		"code": "US-VT-003"
 	},
 	{
 		"slug": "caledonia",
-		"ebirdCode": "US-VT-005"
+		"code": "US-VT-005"
 	},
 	{
 		"slug": "chittenden",
-		"ebirdCode": "US-VT-007"
+		"code": "US-VT-007"
 	},
 	{
 		"slug": "essex",
-		"ebirdCode": "US-VT-009"
+		"code": "US-VT-009"
 	},
 	{
 		"slug": "franklin",
-		"ebirdCode": "US-VT-011"
+		"code": "US-VT-011"
 	},
 	{
 		"slug": "grand-isle",
-		"ebirdCode": "US-VT-013"
+		"code": "US-VT-013"
 	},
 	{
 		"slug": "lamoille",
-		"ebirdCode": "US-VT-015"
+		"code": "US-VT-015"
 	},
 	{
 		"slug": "orange",
-		"ebirdCode": "US-VT-017"
+		"code": "US-VT-017"
 	},
 	{
 		"slug": "orleans",
-		"ebirdCode": "US-VT-019"
+		"code": "US-VT-019"
 	},
 	{
 		"slug": "rutland",
-		"ebirdCode": "US-VT-021"
+		"code": "US-VT-021"
 	},
 	{
 		"slug": "washington",
-		"ebirdCode": "US-VT-023"
+		"code": "US-VT-023"
 	},
 	{
 		"slug": "windham",
-		"ebirdCode": "US-VT-025"
+		"code": "US-VT-025"
 	},
 	{
 		"slug": "windsor",
-		"ebirdCode": "US-VT-027"
+		"code": "US-VT-027"
 	}
 ]

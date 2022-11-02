@@ -1,134 +1,134 @@
 [
   {
-    "ebirdCode": "US-NM-001",
+    "code": "US-NM-001",
     "slug": "bernalillo"
   },
   {
-    "ebirdCode": "US-NM-003",
+    "code": "US-NM-003",
     "slug": "catron"
   },
   {
-    "ebirdCode": "US-NM-005",
+    "code": "US-NM-005",
     "slug": "chaves"
   },
   {
-    "ebirdCode": "US-NM-006",
+    "code": "US-NM-006",
     "slug": "cibola"
   },
   {
-    "ebirdCode": "US-NM-007",
+    "code": "US-NM-007",
     "slug": "colfax"
   },
   {
-    "ebirdCode": "US-NM-009",
+    "code": "US-NM-009",
     "slug": "curry"
   },
   {
-    "ebirdCode": "US-NM-011",
+    "code": "US-NM-011",
     "slug": "de-baca"
   },
   {
-    "ebirdCode": "US-NM-013",
+    "code": "US-NM-013",
     "slug": "dona-ana"
   },
   {
-    "ebirdCode": "US-NM-015",
+    "code": "US-NM-015",
     "slug": "eddy"
   },
   {
-    "ebirdCode": "US-NM-017",
+    "code": "US-NM-017",
     "slug": "grant"
   },
   {
-    "ebirdCode": "US-NM-019",
+    "code": "US-NM-019",
     "slug": "guadalupe"
   },
   {
-    "ebirdCode": "US-NM-021",
+    "code": "US-NM-021",
     "slug": "harding"
   },
   {
-    "ebirdCode": "US-NM-023",
+    "code": "US-NM-023",
     "slug": "hidalgo"
   },
   {
-    "ebirdCode": "US-NM-025",
+    "code": "US-NM-025",
     "slug": "lea"
   },
   {
-    "ebirdCode": "US-NM-027",
+    "code": "US-NM-027",
     "slug": "lincoln"
   },
   {
-    "ebirdCode": "US-NM-028",
+    "code": "US-NM-028",
     "slug": "los-alamos"
   },
   {
-    "ebirdCode": "US-NM-029",
+    "code": "US-NM-029",
     "slug": "luna"
   },
   {
-    "ebirdCode": "US-NM-031",
+    "code": "US-NM-031",
     "slug": "mckinley"
   },
   {
-    "ebirdCode": "US-NM-033",
+    "code": "US-NM-033",
     "slug": "mora"
   },
   {
-    "ebirdCode": "US-NM-035",
+    "code": "US-NM-035",
     "slug": "otero"
   },
   {
-    "ebirdCode": "US-NM-037",
+    "code": "US-NM-037",
     "slug": "quay"
   },
   {
-    "ebirdCode": "US-NM-039",
+    "code": "US-NM-039",
     "slug": "rio-arriba"
   },
   {
-    "ebirdCode": "US-NM-041",
+    "code": "US-NM-041",
     "slug": "roosevelt"
   },
   {
-    "ebirdCode": "US-NM-045",
+    "code": "US-NM-045",
     "slug": "san-juan"
   },
   {
-    "ebirdCode": "US-NM-047",
+    "code": "US-NM-047",
     "slug": "san-miguel"
   },
   {
-    "ebirdCode": "US-NM-043",
+    "code": "US-NM-043",
     "slug": "sandoval"
   },
   {
-    "ebirdCode": "US-NM-049",
+    "code": "US-NM-049",
     "slug": "santa-fe"
   },
   {
-    "ebirdCode": "US-NM-051",
+    "code": "US-NM-051",
     "slug": "sierra"
   },
   {
-    "ebirdCode": "US-NM-053",
+    "code": "US-NM-053",
     "slug": "socorro"
   },
   {
-    "ebirdCode": "US-NM-055",
+    "code": "US-NM-055",
     "slug": "taos"
   },
   {
-    "ebirdCode": "US-NM-057",
+    "code": "US-NM-057",
     "slug": "torrance"
   },
   {
-    "ebirdCode": "US-NM-059",
+    "code": "US-NM-059",
     "slug": "union"
   },
   {
-    "ebirdCode": "US-NM-061",
+    "code": "US-NM-061",
     "slug": "valencia"
   }
 ]

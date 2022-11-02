@@ -1,22 +1,22 @@
 [
 	{
 		"slug": "bristol",
-		"ebirdCode": "US-RI-001"
+		"code": "US-RI-001"
 	},
 	{
 		"slug": "kent",
-		"ebirdCode": "US-RI-003"
+		"code": "US-RI-003"
 	},
 	{
 		"slug": "newport",
-		"ebirdCode": "US-RI-005"
+		"code": "US-RI-005"
 	},
 	{
 		"slug": "providence",
-		"ebirdCode": "US-RI-007"
+		"code": "US-RI-007"
 	},
 	{
 		"slug": "washington",
-		"ebirdCode": "US-RI-009"
+		"code": "US-RI-009"
 	}
 ]

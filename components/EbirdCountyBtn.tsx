@@ -7,11 +7,11 @@ type Props = {
 };
 
 export default function EbirdCountyBtn({ state, county }: Props) {
-  const { ebirdCode } = county || ({} as County);
+  const { code } = county || ({} as County);
   const { portal } = state || ({} as State);
 
   const getUrl = (bMonth: number, eMonth: number) => {
-    return `${base}/barchart?yr=all&bmo=${bMonth}&emo=${eMonth}&r=${ebirdCode}`;
+    return `${base}/barchart?yr=all&bmo=${bMonth}&emo=${eMonth}&r=${code}`;
   };
 
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
@@ -25,22 +25,22 @@ export default function EbirdCountyBtn({ state, county }: Props) {
         </Menu.Button>
         <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
           <Menu.Item>
-            <a href={`${base}/region/${ebirdCode}`} target="_blank" rel="noreferrer">
+            <a href={`${base}/region/${code}`} target="_blank" rel="noreferrer">
               Overview
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${ebirdCode}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`${base}/region/${code}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
               Hotspots
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${ebirdCode}/activity?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`${base}/region/${code}/activity?yr=all&m=`} target="_blank" rel="noreferrer">
               Recent Visits
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${ebirdCode}/media?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`${base}/region/${code}/media?yr=all&m=`} target="_blank" rel="noreferrer">
               Illustrated Checklist
             </a>
           </Menu.Item>
@@ -78,7 +78,7 @@ export default function EbirdCountyBtn({ state, county }: Props) {
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/top100?locInfo.regionCode=${ebirdCode}&year=AAAA&locInfo.regionType=subnational2`}
+              href={`${base}/top100?locInfo.regionCode=${code}&year=AAAA&locInfo.regionType=subnational2`}
               target="_blank"
               rel="noreferrer"
             >
@@ -87,7 +87,7 @@ export default function EbirdCountyBtn({ state, county }: Props) {
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/top100?year=${new Date().getFullYear()}&locInfo.regionType=subnational2&locInfo.regionCode=${ebirdCode}`}
+              href={`${base}/top100?year=${new Date().getFullYear()}&locInfo.regionType=subnational2&locInfo.regionCode=${code}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -99,7 +99,7 @@ export default function EbirdCountyBtn({ state, county }: Props) {
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/MyEBird?cmd=lifeList&listType=${ebirdCode}&listCategory=allCounties&time=life`}
+              href={`${base}/MyEBird?cmd=lifeList&listType=${code}&listCategory=allCounties&time=life`}
               target="_blank"
               rel="noreferrer"
             >
@@ -108,7 +108,7 @@ export default function EbirdCountyBtn({ state, county }: Props) {
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/MyEBird?cmd=lifeList&listType=${ebirdCode}&listCategory=allCounties&time=year`}
+              href={`${base}/MyEBird?cmd=lifeList&listType=${code}&listCategory=allCounties&time=year`}
               target="_blank"
               rel="noreferrer"
             >
