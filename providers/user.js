@@ -21,16 +21,15 @@ const UserProvider = ({ children }) => {
 			setLoading(false);
 		});
 		onIdTokenChanged(auth, async (user) => {
-      if (!user) {
-        await fetch("/api/auth/logout");
-      } else {
-				const result = await user.getIdTokenResult();
-				const claims = result.claims;
-				const role = claims.role;
-				const regions = claims.regions;
-				setUser(prev => ({...prev, role, regions}));
-				await secureFetch("/api/auth/init");
-      }
+      if (!user) return;
+			await fetch("/api/auth/logout");
+			const result = await user.getIdTokenResult();
+			const claims = result.claims;
+			const role = claims.role;
+			const regions = claims.regions;
+			setUser(prev => ({...prev, role, regions}));
+			await secureFetch("/api/auth/init");
+      
     });
 	}, []);
 

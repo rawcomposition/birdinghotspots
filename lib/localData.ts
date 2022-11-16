@@ -14,6 +14,7 @@ import TexasCounties from "data/tx-counties.json";
 import CaliforniaCounties from "data/ca-counties.json";
 import ArkansasCounties from "data/ar-counties.json";
 import OntarioCounties from "data/on-counties.json";
+import ConnecticutCounties from "data/ct-counties.json";
 import { capitalize } from "./helpers";
 import { County } from "lib/types";
 
@@ -31,6 +32,7 @@ const countyArrays: any = {
   "US-TX": TexasCounties,
   "US-CA": CaliforniaCounties,
   "US-AR": ArkansasCounties,
+  "US-CT": ConnecticutCounties,
   "CA-ON": OntarioCounties,
 };
 

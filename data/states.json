@@ -43,7 +43,8 @@
 		"country": "US",
 		"label": "Connecticut",
 		"slug": "connecticut",
-		"code": "US-CT"
+		"code": "US-CT",
+		"active": true
 	},
 	{
 		"country": "US",

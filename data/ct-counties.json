@@ -1,0 +1,34 @@
+[
+  {
+    "code": "US-CT-001",
+    "slug": "fairfield"
+  },
+  {
+    "code": "US-CT-003",
+    "slug": "hartford"
+  },
+  {
+    "code": "US-CT-005",
+    "slug": "litchfield"
+  },
+  {
+    "code": "US-CT-007",
+    "slug": "middlesex"
+  },
+  {
+    "code": "US-CT-009",
+    "slug": "new-haven"
+  },
+  {
+    "code": "US-CT-011",
+    "slug": "new-london"
+  },
+  {
+    "code": "US-CT-013",
+    "slug": "tolland"
+  },
+  {
+    "code": "US-CT-015",
+    "slug": "windham"
+  }
+]
