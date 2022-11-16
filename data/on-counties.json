@@ -111,7 +111,8 @@
   },
   {
     "code": "CA-ON-MA",
-    "slug": "manitoulin"
+    "slug": "manitoulin",
+    "longName": "Manitoulin District"
   },
   {
     "code": "CA-ON-MI",
