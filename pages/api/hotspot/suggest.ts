@@ -35,12 +35,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         notes,
       });
 
+      const additionalNotes = notes ? `<br /><br /><strong>Additional notes to editor</strong><br />${notes}` : "";
+
       if (process.env.NODE_ENV === "production" && emails.length > 0) {
         try {
           await sendEmail({
             to: emails.join(", "),
             subject: `Suggested edit submitted by ${name} (Review required)`,
-            html: `${name} submitted suggested edits for <a href="https://birdinghotspots.org${hotspot.url}" target="_blank">${hotspot.name}</a><br /><br /><a href="https://birdinghotspots.org/admin/revision-review">Review Edits</a><br /><br />Reply to this email to contact ${name} directly.<br />Email: ${email}`,
+            html: `${name} submitted suggested edits for <a href="https://birdinghotspots.org${hotspot.url}" target="_blank">${hotspot.name}</a><br /><br /><a href="https://birdinghotspots.org/admin/revision-review">Review Edits</a>${additionalNotes}<br /><br />Reply to this email to contact ${name} directly.<br />Email: ${email}`,
             replyTo: email,
           });
         } catch (error) {}

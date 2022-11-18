@@ -38,6 +38,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     );
     await Revision.updateOne({ _id: id }, { status: "approved" });
+
+    if (!hotspot.citations.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())) {
+      hotspot.citations.push({ label: revision.by });
+      await hotspot.save();
+    }
+
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
