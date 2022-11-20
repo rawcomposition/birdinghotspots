@@ -82,7 +82,7 @@ export type Hotspot = {
   citations?: Citation[];
   restrooms?: string;
   roadside?: string;
-  accessible?: string[];
+  accessible?: string;
   iba?: {
     value: string;
     label: string;

@@ -13,7 +13,7 @@ import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
-import { accessibleOptions, restroomOptions, formatMarker } from "lib/helpers";
+import { formatMarker } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
@@ -213,11 +213,10 @@ export default function Hotspot({
           )}
 
           <div className="space-y-1">
-            {restrooms !== null && <p>{restroomOptions.find((it) => it.value === restrooms)?.label}</p>}
-            {accessible?.map((option) => (
-              <p key={option}>{accessibleOptions.find((it) => it.value === option)?.label}</p>
-            ))}
+            {accessible === "Yes" && <p>Accessible parking and trails.</p>}
             {roadside === "Yes" && <p>Roadside accessible.</p>}
+            {restrooms === "Yes" && <p>Restrooms on site.</p>}
+            {restrooms === "No" && <p>No restroom facilities.</p>}
           </div>
 
           <Citations citations={citations} links={links} />

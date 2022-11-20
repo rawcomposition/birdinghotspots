@@ -11,7 +11,7 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { restroomOptions, formatMarker, getShortName } from "lib/helpers";
+import { formatMarker, getShortName } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
@@ -117,9 +117,8 @@ export default function Group({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
-          <div className="space-y-1">
-            {restrooms !== null && <p>{restroomOptions.find((it) => it.value === restrooms)?.label}</p>}
-          </div>
+          {restrooms === "Yes" && <p>Restrooms on site.</p>}
+          {restrooms === "No" && <p>No restroom facilities.</p>}
 
           <Citations citations={citations} links={links} />
         </div>

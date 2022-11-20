@@ -64,18 +64,20 @@ const HotspotSchema = new Schema({
   address: String,
   links: [LinkSchema],
   citations: [CitationSchema],
-  restrooms: {
-    type: String,
-    default: null,
-  },
   roadside: {
     type: String,
     enum: ["Yes", "No", "Unknown"],
     default: "Unknown",
   },
+  restrooms: {
+    type: String,
+    enum: ["Yes", "No", "Unknown"],
+    default: "Unknown",
+  },
   accessible: {
-    type: Array,
-    default: null,
+    type: String,
+    enum: ["Yes", "No", "Unknown"],
+    default: "Unknown",
   },
   iba: {
     value: String,

@@ -7,15 +7,13 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, getEbirdHotspot, accessibleOptions, restroomOptions, formatMarker } from "lib/helpers";
+import { geocode, getEbirdHotspot, formatMarker } from "lib/helpers";
 import InputLinks from "components/InputLinks";
 import InputCitations from "components/InputCitations";
-import Select from "components/Select";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
 import { Hotspot, EbirdHotspot, Link, Citation, Group, Image } from "lib/types";
 import RadioGroup from "components/RadioGroup";
-import CheckboxGroup from "components/CheckboxGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
 import Error from "next/error";
@@ -81,8 +79,6 @@ export default function Edit({
           birds: data.birds || "",
           hikes: data.hikes || "",
           iba: data.iba || null,
-          restrooms: data.restrooms || null,
-          accessible: data.accessible && data.accessible?.length > 0 ? data.accessible : null,
         },
       },
     });
@@ -169,15 +165,13 @@ export default function Edit({
               </div>
             </div>
             <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
-              <Field label="Restrooms">
-                <Select name="restrooms" options={restroomOptions} isClearable />
-              </Field>
               {isOH && (
                 <Field label="Important Bird Area">
                   <IbaSelect name="iba" isClearable />
                 </Field>
               )}
-              <CheckboxGroup name="accessible" label="Accessible Facilities" options={accessibleOptions} />
+              <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
+              <RadioGroup name="accessible" label="Accessible parking and trails" options={["Yes", "No", "Unknown"]} />
               <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} />
               {markers.length > 0 && (
                 <div className="flex-1">
@@ -270,8 +264,8 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         countyCode,
         locationId: locationId,
         roadside: data?.roadside || "Unknown",
-        restrooms: data?.restrooms || null,
-        accessible: data?.accessible || null,
+        restrooms: data?.restrooms || "Unknown",
+        accessible: data?.accessible || "Unknown",
       },
     },
   };

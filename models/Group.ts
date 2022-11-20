@@ -54,7 +54,8 @@ const GroupSchema = new Schema({
   citations: [CitationSchema],
   restrooms: {
     type: String,
-    default: null,
+    enum: ["Yes", "No", "Unknown"],
+    default: "Unknown",
   },
   hotspots: [
     {

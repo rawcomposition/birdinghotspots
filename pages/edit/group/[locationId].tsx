@@ -8,9 +8,9 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getGroupByLocationId } from "lib/mongo";
-import { geocode, restroomOptions } from "lib/helpers";
+import { geocode } from "lib/helpers";
 import InputLinks from "components/InputLinks";
-import Select from "components/Select";
+import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
 import { Group, Hotspot, GroupInputs } from "lib/types";
 import Field from "components/Field";
@@ -163,9 +163,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
             </div>
 
             <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
-              <Field label="Restrooms">
-                <Select name="restrooms" options={restroomOptions} isClearable />
-              </Field>
+              <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
               {lat && lng && (
                 <div className="flex-1">
                   <label className="text-gray-500 font-bold mb-1 block">Group Map</label>
@@ -222,6 +220,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         countyCodes: data?.countyCodes || [],
         zoom: data?.zoom || 12,
         hotspotSelect,
+        restrooms: data?.restrooms || "Unknown",
       },
     },
   };
