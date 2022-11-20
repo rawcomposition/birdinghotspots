@@ -173,6 +173,7 @@ export default function Edit({
               <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
               <RadioGroup name="accessible" label="Accessible parking and trails" options={["Yes", "No", "Unknown"]} />
               <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} />
+              <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} />
               {markers.length > 0 && (
                 <div className="flex-1">
                   <label className="text-gray-500 font-bold mb-1 block">Hotspot Map</label>
@@ -266,6 +267,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         roadside: data?.roadside || "Unknown",
         restrooms: data?.restrooms || "Unknown",
         accessible: data?.accessible || "Unknown",
+        fee: data?.fee || "Unknown",
       },
     },
   };

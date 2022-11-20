@@ -79,6 +79,11 @@ const HotspotSchema = new Schema({
     enum: ["Yes", "No", "Unknown"],
     default: "Unknown",
   },
+  fee: {
+    type: String,
+    enum: ["Yes", "No", "Unknown"],
+    default: "Unknown",
+  },
   iba: {
     value: String,
     label: String,

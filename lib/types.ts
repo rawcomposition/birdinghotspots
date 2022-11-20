@@ -83,6 +83,7 @@ export type Hotspot = {
   restrooms?: string;
   roadside?: string;
   accessible?: string;
+  fee?: string;
   iba?: {
     value: string;
     label: string;

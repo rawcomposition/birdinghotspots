@@ -46,6 +46,7 @@ export default function Hotspot({
   restrooms,
   roadside,
   accessible,
+  fee,
   locationId,
   iba,
   drives,
@@ -217,6 +218,8 @@ export default function Hotspot({
             {roadside === "Yes" && <p>Roadside accessible.</p>}
             {restrooms === "Yes" && <p>Restrooms on site.</p>}
             {restrooms === "No" && <p>No restroom facilities.</p>}
+            {fee === "Yes" && <p>Entrance fee may apply.</p>}
+            {fee === "No" && <p>No entrance fee.</p>}
           </div>
 
           <Citations citations={citations} links={links} />
