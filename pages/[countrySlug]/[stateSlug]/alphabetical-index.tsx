@@ -150,7 +150,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const formatted = hotspots.map((it: any) => ({
     ...it,
     noContent:
-      (it.noContent && !groupHotspotIds.includes(it._id.toString()) && !it.name.startsWith("stakeout ")) || false,
+      (cookies.session &&
+        it.noContent &&
+        !groupHotspotIds.includes(it._id.toString()) &&
+        !it.name.startsWith("stakeout ")) ||
+      false,
   }));
 
   return {

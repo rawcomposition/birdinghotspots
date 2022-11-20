@@ -22,7 +22,6 @@ const UserProvider = ({ children }) => {
 		});
 		onIdTokenChanged(auth, async (user) => {
       if (!user) return;
-			await fetch("/api/auth/logout");
 			const result = await user.getIdTokenResult();
 			const claims = result.claims;
 			const role = claims.role;
