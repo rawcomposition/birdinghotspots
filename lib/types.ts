@@ -309,5 +309,6 @@ export type Revision = {
 export type Profile = {
   uid: string;
   email: string;
+  inviteCode?: string;
   subscriptions: string[];
 };

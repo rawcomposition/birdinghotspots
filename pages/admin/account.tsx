@@ -69,6 +69,7 @@ export default function Edit({ subscriptions }: Props) {
       const res = await secureFetch("/api/account/set", "post", {
         subscriptions: subscriptions?.map((it) => it.value) || [],
         email,
+        name,
       });
       if (!res.success) throw new Error("Error updating account");
       toast.success("Account updated successfully");

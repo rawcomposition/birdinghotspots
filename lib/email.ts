@@ -25,3 +25,12 @@ export const sendEmail = async ({ to, subject, html, replyTo }: Props) => {
     replyTo,
   });
 };
+
+export const sendInviteEmail = async (name: string, email: string, inviteCode: string) => {
+  await sendEmail({
+    to: email,
+    subject: "BirdingHotspots.org Editor Invite",
+    html: `Hi ${name},<br /><br />You have been invited to join the BirdingHotspots.org team as an editor. Please click the link below to set your password and start editing.<br /><br /><a href="https://birdinghotspots.org/join/${inviteCode}">Set Password</a><br /><br />If you did not request this invite, please ignore this email.<br /><br />Thanks,<br />The BirdingHotspots.org Team`,
+    replyTo: email,
+  });
+};

@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "lib/firebaseAdmin";
 import Profile from "models/Profile";
-import { v4 as uuidv4 } from "uuid";
 import { sendInviteEmail } from "lib/email";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -15,33 +14,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    const { name, email, regions } = req.body;
+    const { email } = req.body;
 
-    const inviteCode = uuidv4();
-
-    const user = await admin.createUser({
-      email,
-      displayName: name,
-    });
-
-    await Profile.create({
-      uid: user.uid,
-      email,
-      name,
-      subscriptions: regions,
-      inviteCode,
-    });
-
-    await admin.setCustomUserClaims(user?.uid, {
-      role: "editor",
-      regions,
-    });
+    const profile = await Profile.findOne({ email }).lean();
+    const { name, inviteCode } = profile;
 
     try {
       await sendInviteEmail(name, email, inviteCode);
     } catch (error) {}
 
-    res.status(200).json({ message: "User invited successfully", success: true });
+    res.status(200).json({ message: "Email resent successfully", success: true });
   } catch ({ message }) {
     res.status(500).json({ message });
   }

@@ -288,6 +288,13 @@ export async function getProfile(uid: string) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
+export async function getProfileByCode(inviteCode: string) {
+  await connect();
+  const result = await Profile.findOne({ inviteCode }).lean().exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
 export async function getSubscriptions(uid: string): Promise<string[]> {
   await connect();
   const result = await Profile.findOne({ uid }).lean().exec();

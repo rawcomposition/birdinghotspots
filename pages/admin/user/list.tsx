@@ -8,11 +8,9 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import { useForm, SubmitHandler } from "react-hook-form";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import { resetPassword } from "lib/firebaseAuth";
 import useToast from "hooks/useToast";
 import StateSelect from "components/StateSelect";
 import Badge from "components/Badge";
-import toast from "react-hot-toast";
 
 type Inputs = {
   email: string;
@@ -44,15 +42,15 @@ export default function Users() {
     if (response.success) {
       fetchUsers();
       form.reset();
-      await resetPassword(email);
     }
   };
 
   const handleResend = async (email: string) => {
-    toast.promise(resetPassword(email), {
-      loading: "loading...",
-      success: <b>Invitation sent!</b>,
-      error: (message) => <b>{message.toString() || "An error occurred"}</b>,
+    await send({
+      url: "/api/admin/user/resend-invite",
+      method: "POST",
+      data: { email },
+      success: "Invitation sent!",
     });
   };
 
