@@ -19,6 +19,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const profile = await Profile.findOne({ email }).lean();
     const { name, inviteCode } = profile;
 
+    if (!inviteCode) {
+      res.status(401).json({ message: "No invite code" });
+      return;
+    }
+
     try {
       await sendInviteEmail(name, email, inviteCode);
     } catch (error) {}
