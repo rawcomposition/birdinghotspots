@@ -300,6 +300,10 @@ export type Revision = {
   birds?: string;
   hikes?: string;
   notes?: string;
+  roadside: string;
+  restrooms: string;
+  accessible: string;
+  fee: string;
   by: string;
   email: string;
   status: string;

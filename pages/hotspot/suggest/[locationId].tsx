@@ -16,6 +16,7 @@ import { useUser } from "providers/user";
 import Link from "next/link";
 import Title from "components/Title";
 import useRecaptcha from "hooks/useRecaptcha";
+import RadioGroup from "components/RadioGroup";
 
 type Inputs = {
   name: string;
@@ -24,6 +25,10 @@ type Inputs = {
   hikes: string;
   about: string;
   tips: string;
+  roadside: string;
+  restrooms: string;
+  accessible: string;
+  fee: string;
 };
 
 type Props = {
@@ -34,6 +39,10 @@ type Props = {
     hikes: string;
     about: string;
     tips: string;
+    roadside: string;
+    restrooms: string;
+    accessible: string;
+    fee: string;
   };
   error?: string;
 };
@@ -165,6 +174,16 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
             <TinyMCE name="hikes" defaultValue={data.hikes} />
           </Field>
 
+          <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
+          <RadioGroup
+            name="accessible"
+            label="Accessible parking and trails"
+            options={["Yes", "No", "Unknown"]}
+            inline
+          />
+          <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} inline />
+          <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} inline />
+
           <div className="bg-gray-100 px-4 pb-4 pt-3 rounded-lg">
             <Field label="Notes to the editor">
               <Textarea name="notes" />
@@ -200,6 +219,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         birds: hotspot?.birds || "",
         hikes: hotspot?.hikes || "",
         tips: hotspot?.tips || "",
+        roadside: hotspot?.roadside || "Unknown",
+        restrooms: hotspot?.restrooms || "Unknown",
+        accessible: hotspot?.accessible || "Unknown",
+        fee: hotspot?.fee || "Unknown",
       },
     },
   };

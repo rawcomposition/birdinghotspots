@@ -8,7 +8,21 @@ import Profile from "models/Profile";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   await connect();
-  const { name, email, about, tips, birds, hikes, notes, locationId, token: recaptchaToken } = req.body;
+  const {
+    name,
+    email,
+    about,
+    tips,
+    birds,
+    hikes,
+    accessible,
+    restrooms,
+    roadside,
+    fee,
+    notes,
+    locationId,
+    token: recaptchaToken,
+  } = req.body;
   const hotspot = await Hotspot.findOne({ locationId });
 
   const profiles = await Profile.find({
@@ -33,6 +47,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         birds,
         hikes,
         notes,
+        roadside,
+        restrooms,
+        accessible,
+        fee,
       });
 
       const additionalNotes = notes ? `<br /><br /><strong>Additional notes to editor</strong><br />${notes}` : "";

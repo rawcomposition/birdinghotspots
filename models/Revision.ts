@@ -26,6 +26,10 @@ const RevisionSchema = new Schema({
   birds: String,
   hikes: String,
   notes: String,
+  roadside: String,
+  restrooms: String,
+  accessible: String,
+  fee: String,
   status: {
     type: String,
     enum: ["pending", "approved", "rejected"],

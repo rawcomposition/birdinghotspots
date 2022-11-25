@@ -12,11 +12,14 @@ import toast from "react-hot-toast";
 import dayjs from "dayjs";
 
 interface Item extends Revision {
-  aboutDiff: string;
   name: string;
   stateLabel?: string;
   countyLabel?: string;
   approved?: boolean;
+  restroomsBefore?: string;
+  accessibleBefore?: string;
+  feeBefore?: string;
+  roadsideBefore?: string;
 }
 
 type Props = {
@@ -86,6 +89,29 @@ export default function RevisionReview({ items: allItems }: Props) {
                   </div>
                 </>
               )}
+              {!item.approved && item.restroomsBefore !== item.restrooms && (
+                <div>
+                  <strong>Restrooms on site</strong>: <del>{item.restroomsBefore}</del>&nbsp;→&nbsp;
+                  <ins>{item.restrooms}</ins>
+                </div>
+              )}
+              {!item.approved && item.accessibleBefore !== item.accessible && (
+                <div>
+                  <strong>Accessible parking and trails</strong>: <del>{item.accessibleBefore}</del>&nbsp;→&nbsp;
+                  <ins>{item.accessible}</ins>
+                </div>
+              )}
+              {!item.approved && item.feeBefore !== item.fee && (
+                <div>
+                  <strong>Entrance fee</strong>: <del>{item.feeBefore}</del>&nbsp;→&nbsp;<ins>{item.fee}</ins>
+                </div>
+              )}
+              {!item.approved && item.roadsideBefore !== item.roadside && (
+                <div>
+                  <strong>Can you bird from the roadside?</strong>: <del>{item.roadsideBefore}</del>&nbsp;→&nbsp;
+                  <ins>{item.roadside}</ins>
+                </div>
+              )}
               {item.notes && (
                 <div>
                   <h4 className="font-bold text-lime-600">Notes to the editor</h4>
@@ -151,6 +177,14 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
         tips: diff(hotspot.tips || "", revision.tips || ""),
         birds: diff(hotspot.birds || "", revision.birds || ""),
         hikes: diff(hotspot.hikes || "", revision.hikes || ""),
+        restroomsBefore: hotspot.restrooms || "",
+        accessibleBefore: hotspot.accessible || "",
+        roadsideBefore: hotspot.roadside || "",
+        feeBefore: hotspot.fee || "",
+        restrooms: revision.restrooms || "",
+        accessible: revision.accessible || "",
+        roadside: revision.roadside || "",
+        fee: revision.fee || "",
       };
     })
   );

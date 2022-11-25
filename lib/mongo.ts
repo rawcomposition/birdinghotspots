@@ -207,7 +207,7 @@ export async function getRevisions(states: string[], counties: string[]) {
     status: "pending",
     $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
   })
-    .sort({ name: 1 })
+    .sort({ createdAt: -1 })
     .lean()
     .exec();
 
@@ -216,7 +216,7 @@ export async function getRevisions(states: string[], counties: string[]) {
 
 export async function getAllRevisions() {
   await connect();
-  const result = await Revision.find({ status: "pending" }).sort({ name: 1 }).lean().exec();
+  const result = await Revision.find({ status: "pending" }).sort({ createdAt: -1 }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

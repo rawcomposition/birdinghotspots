@@ -34,6 +34,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           tips: revision.tips,
           birds: revision.birds,
           hikes: revision.hikes,
+          roadside: revision.roadside || hotspot.roadside,
+          restrooms: revision.restrooms || hotspot.restrooms,
+          accessible: revision.accessible || hotspot.accessible,
+          fee: revision.fee || hotspot.fee,
         },
       }
     );
