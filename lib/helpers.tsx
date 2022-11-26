@@ -22,6 +22,7 @@ export const tinyConfig = {
   valid_elements: "p,a[href|rel|target],strong/b,em/i,u,strike,br,ul,ol,li,cite", //TODO: Remove cite at a later point
   autoresize_bottom_margin: 0,
   convert_urls: false,
+  browser_spellcheck: true,
 };
 
 export function capitalize(str: string) {
