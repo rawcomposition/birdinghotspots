@@ -17,7 +17,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const profile = uid ? await Profile.findOne({ uid }) : null;
-    const { subscriptions, email, name } = req.body;
+    const { subscriptions, email, name, password } = req.body;
+
+    await admin.updateUser(uid, password ? { password, email, displayName: name } : { email, displayName: name });
+
     if (!profile) {
       await Profile.create({ uid, subscriptions, email, name });
     } else {

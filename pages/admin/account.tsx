@@ -8,24 +8,18 @@ import Field from "components/Field";
 import { useForm, SubmitHandler } from "react-hook-form";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { useUser } from "providers/user";
-import { auth } from "lib/firebaseAuth";
-import {
-  updateEmail,
-  updatePassword,
-  updateProfile,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
-} from "firebase/auth";
+import useToast from "hooks/useToast";
 import toast from "react-hot-toast";
 import RegionSelect from "components/RegionSelect";
 import useSecureFetch from "hooks/useSecureFetch";
 import { getProfile } from "lib/mongo";
 import { getRegionLabel } from "lib/localData";
+import useFirebaseLogin from "hooks/useFirebaseLogin";
 
 type AccountInput = {
   name: string;
   email: string;
-  new_password?: string;
+  confirm_password?: string;
   password?: string;
   subscriptions?: {
     label: string;
@@ -46,40 +40,39 @@ export default function Edit({ subscriptions }: Props) {
       subscriptions,
     },
   });
-  const { user, loading } = useUser();
+  const { user, loading: userLoading } = useUser();
   const { email, displayName } = user || {};
-  const secureFetch = useSecureFetch();
+  const { login } = useFirebaseLogin();
+  const { send, loading } = useToast();
 
-  const handleSubmit: SubmitHandler<AccountInput> = async ({ email, name, new_password, password, subscriptions }) => {
-    if (!auth.currentUser) {
-      toast.error("You must be logged in to update your account");
+  const handleSubmit: SubmitHandler<AccountInput> = async ({
+    email,
+    name,
+    confirm_password,
+    password,
+    subscriptions,
+  }) => {
+    if (password && confirm_password !== password) {
+      toast.error("Passwords do not match");
       return;
     }
-    if (!password) {
-      toast.error("You must enter your current password to update your account");
-      return;
-    }
-    const toastId = toast.loading("saving...");
-    try {
-      const credential = EmailAuthProvider.credential(email, password);
-      await reauthenticateWithCredential(auth.currentUser, credential);
-      await updateEmail(auth.currentUser, email);
-      await updateProfile(auth.currentUser, { displayName: name });
-      if (new_password) await updatePassword(auth.currentUser, new_password);
-      const res = await secureFetch("/api/account/set", "post", {
+
+    const response = await send({
+      url: "/api/account/set",
+      method: "POST",
+      success: "Account updated successfully",
+      error: "Error updating account",
+      data: {
         subscriptions: subscriptions?.map((it) => it.value) || [],
         email,
         name,
-      });
-      if (!res.success) throw new Error("Error updating account");
-      toast.success("Account updated successfully");
-    } catch (error: any) {
-      const message = error.message.includes("auth/wrong-password")
-        ? "Current password incorrect"
-        : error.message.replace("Firebase: ", "");
-      toast.error(message);
+        password,
+      },
+    });
+
+    if (response.success && password) {
+      await login(email, password);
     }
-    toast.dismiss(toastId);
   };
 
   React.useEffect(() => {
@@ -103,13 +96,13 @@ export default function Edit({ subscriptions }: Props) {
                 <Input type="email" name="email" required />
                 <FormError name="email" />
               </Field>
-              <Field label="Current Password">
+              <Field label="New Password (optional)">
                 <Input type="password" name="password" required />
                 <FormError name="password" />
               </Field>
-              <Field label="New Password (optional)">
-                <Input type="password" name="new_password" />
-                <FormError name="new_password" />
+              <Field label="Confirm Password">
+                <Input type="password" name="confirm_password" />
+                <FormError name="confirm_password" />
               </Field>
               <Field label="Region Subscription">
                 <RegionSelect name="subscriptions" isMulti restrict />
@@ -123,7 +116,7 @@ export default function Edit({ subscriptions }: Props) {
             </div>
           </div>
           <div className="px-4 py-3 bg-gray-50 flex justify-end sm:px-6 rounded-b-lg">
-            <Submit disabled={loading} color="green" className="font-medium">
+            <Submit disabled={loading || userLoading || !user} color="green" className="font-medium">
               Save Account
             </Submit>
           </div>
@@ -135,6 +128,7 @@ export default function Edit({ subscriptions }: Props) {
 
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
   const uid: string = token.uid;
+  if (!uid) return { notFound: true };
   const profile = await getProfile(uid);
 
   const subscriptions =
