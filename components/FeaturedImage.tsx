@@ -65,9 +65,7 @@ export default function FeaturedImage({ photos }: Props) {
                 <>
                   <button
                     type="button"
-                    className={`absolute top-4 ${
-                      isStreetview ? "right-[60px]" : "right-4"
-                    } flex items-center gap-2 px-3 py-0.5 text-sm font-medium bg-white  hover:opacity-100 opacity-80 rounded-sm transition-opacity`}
+                    className="absolute top-4 right-4 flex items-center gap-2 px-3 py-0.5 text-sm font-medium bg-white  hover:opacity-100 opacity-80 rounded-sm transition-opacity"
                     onClick={open}
                   >
                     {items.length} photos
