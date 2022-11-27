@@ -14,7 +14,7 @@ export default function EbirdHotspotBtn({ state, locationId, locationIds, isGrou
   return (
     <div className="relative inline-block">
       <Menu>
-        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-2 inline-block font-medium">
+        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap">
           Explore in
           <img src="/ebird.png" className="h-[18px] -mt-[1px] -mr-1.5 inline-block" alt="eBird" />
         </Menu.Button>

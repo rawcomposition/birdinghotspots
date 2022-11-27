@@ -16,7 +16,7 @@ export default function EditorActions({ children, className, allowPublic, requir
   if (requireRegion && user?.role !== "admin" && !user?.regions?.includes(requireRegion)) return <></>;
   return (
     <div className={`mb-6 bg-slate-100 rounded-sm ${className || ""}`}>
-      <div className="py-2 px-2.5 flex gap-6 text-xs">{children}</div>
+      <div className="py-2 px-2.5 flex gap-4 sm:gap-6 text-xs">{children}</div>
     </div>
   );
 }

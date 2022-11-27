@@ -136,11 +136,11 @@ export default function Hotspot({
         <div>
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
-            <div className="flex gap-2 mt-2 mb-4">
+            <div className="flex gap-2 mt-2 mb-4 flex-wrap">
               {species && (
                 <a
                   href={`https://ebird.org/hotspot/${locationId}`}
-                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium"
+                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -151,7 +151,7 @@ export default function Hotspot({
               {lat && lng && (
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
-                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium"
+                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
                   target="_blank"
                   rel="noreferrer"
                 >
