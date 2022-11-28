@@ -187,7 +187,7 @@ export async function getUploads(states: string[], counties: string[]) {
     status: "pending",
     $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
   })
-    .sort({ name: 1 })
+    .sort({ createdAt: -1 })
     .lean()
     .exec();
 
@@ -196,7 +196,7 @@ export async function getUploads(states: string[], counties: string[]) {
 
 export async function getAllUploads() {
   await connect();
-  const result = await Upload.find({ status: "pending" }).sort({ name: 1 }).lean().exec();
+  const result = await Upload.find({ status: "pending" }).sort({ createdAt: -1 }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
