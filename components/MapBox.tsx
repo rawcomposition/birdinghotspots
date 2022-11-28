@@ -1,7 +1,6 @@
 import * as React from "react";
 import mapboxgl from "mapbox-gl";
 import { Marker } from "lib/types";
-import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 
 const keys = process.env.NEXT_PUBLIC_MAPBOX_KEY?.split(",") || [];
 const key = keys[Math.floor(Math.random() * keys.length)];

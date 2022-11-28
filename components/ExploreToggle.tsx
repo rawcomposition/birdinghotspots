@@ -28,7 +28,10 @@ export default function ExploreToggle({ value, onChange }: Props) {
         {isOpen ? <ChevronUpIcon className="w-4 h-4" /> : <ChevronDownIcon className="w-4 h-4" />}
       </button>
       {isOpen && (
-        <div ref={ref} className="absolute top-14 left-0 rounded shadow-lg border bg-white flex flex-col w-[120px]">
+        <div
+          ref={ref}
+          className="absolute top-14 left-0 rounded shadow-lg border bg-white flex flex-col w-[120px] z-10"
+        >
           <button
             onClick={() => handleClick("nearby")}
             type="button"
