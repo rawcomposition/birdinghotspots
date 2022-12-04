@@ -12,7 +12,7 @@ export default function Footer() {
   const router = useRouter();
   const { stateSlug } = router.query;
   return (
-    <footer>
+    <footer id="footer">
       {stateSlug === "ohio" ? <OhioFooter /> : <GeneralFooter />}
       <div className="bg-[#325a79] py-3 text-xs text-gray-300 text-center">
         Most content is released into the public domain&nbsp;

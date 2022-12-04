@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     .filter((county: any) => {
       return county.name.toLowerCase().startsWith(q.toLowerCase());
     })
-    .map(({ name, code }: any) => ({ label: name, value: code }));
+    .map(({ name, code, stateLabel, country }: any) => ({ label: `${name}, ${stateLabel}, ${country}`, value: code }));
 
   const filteredStates = allowedStates
     .filter((state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase()))

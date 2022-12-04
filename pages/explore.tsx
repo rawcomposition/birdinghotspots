@@ -8,14 +8,13 @@ import HotspotGrid from "components/HotspotGrid";
 import RegionSearch from "components/RegionSearch";
 import ExploreToggle from "components/ExploreToggle";
 import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import ExploreMap from "components/ExploreMap";
+import toast from "react-hot-toast";
+import States from "data/states.json";
 
 type Option = {
   value: string;
   label: string;
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  return { props: { params: query } };
 };
 
 type Props = {
@@ -71,7 +70,7 @@ export default function Explore({ params }: Props) {
       const json = await response.json();
       setResults((prev) => [...prev, ...(json?.results || [])]);
     } catch (error) {
-      alert("Error fetching hotspots");
+      toast.error("Error fetching hotspots");
     }
     setLoadingMore(false);
   };
@@ -115,9 +114,9 @@ export default function Explore({ params }: Props) {
   }, [mode, regionCode, regionLabel, lat, lng, label]);
 
   return (
-    <div className="container pb-16 mt-12 max-w-[975px]">
+    <div className="container pb-16 mt-4 max-w-[975px]">
       <Title>Explore</Title>
-      <div className="flex justify-center items-center mb-12">
+      <div className="sm:flex justify-between items-center mb-12">
         <div className="relative w-full sm:w-[500px] flex">
           <ExploreToggle value={mode} onChange={setMode} />
           {mode === "nearby" && (
@@ -129,10 +128,10 @@ export default function Explore({ params }: Props) {
           )}
           {mode === "region" && <RegionSearch onChange={handleRegionChange} value={region} isClearable />}
         </div>
-        {/*<button
+        <button
           type="button"
-          className="border py-2 px-4 rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all"
-          onClick={() => setView((prev) => (prev === "grid" ? "list" : "grid"))}
+          className="sm:mt-0 mt-2 border py-1 sm:py-2 ml-auto sm:ml-0 px-4 rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all"
+          onClick={() => setView((prev) => (prev === "grid" ? "map" : "grid"))}
         >
           {view === "grid" ? (
             <>
@@ -140,10 +139,10 @@ export default function Explore({ params }: Props) {
             </>
           ) : (
             <>
-              <ViewGridIcon className="w-5 h-5" /> Grid
+              <Bars3Icon className="w-5 h-5" /> Grid
             </>
           )}
-          </button>*/}
+        </button>
       </div>
       {mode === "region" && !loading && regionName && (
         <p className="text-base text-gray-500 mb-6">
@@ -151,16 +150,27 @@ export default function Explore({ params }: Props) {
           <strong className="text-[#4a84b2]">{regionName}</strong> sorted by species count.
         </p>
       )}
-      <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px]">
-        <HotspotGrid
-          hotspots={results}
-          loading={loading}
-          lat={mode === "nearby" ? lat : undefined}
-          lng={mode === "nearby" ? lng : undefined}
+      {view === "grid" && (
+        <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px]">
+          <HotspotGrid
+            hotspots={results}
+            loading={loading}
+            lat={mode === "nearby" ? lat : undefined}
+            lng={mode === "nearby" ? lng : undefined}
+          />
+        </div>
+      )}
+      {view === "map" && (
+        <ExploreMap
+          key={`${region || "x"}_${location?.lat || "x"}_${location?.lng || "x"}`}
+          mode={mode}
+          region={region?.value}
+          lat={location?.lat}
+          lng={location?.lng}
         />
-      </div>
+      )}
       {error && <p className="text-center text-lg text-red-700 my-4">Error loading hotspots</p>}
-      {results.length > 0 && (
+      {view === "grid" && results.length > 0 && (
         <button
           type="button"
           onClick={loadMore}
@@ -172,3 +182,7 @@ export default function Explore({ params }: Props) {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  return { props: { params: query } };
+};

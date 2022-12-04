@@ -4,6 +4,7 @@ import Link from "next/link";
 import SearchModal from "components/SearchModal";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Logo from "components/Logo";
+import { useRouter } from "next/router";
 
 const links = [
   {
@@ -17,8 +18,11 @@ const links = [
 ];
 
 export default function Header() {
-  const [collapsed, setCollapsed] = React.useState<boolean>(false);
+  let [collapsed, setCollapsed] = React.useState<boolean>(false);
   const [showSearch, setShowSearch] = React.useState<boolean>(false);
+  const router = useRouter();
+
+  collapsed = collapsed || router.pathname === "/explore";
 
   React.useEffect(() => {
     const onScroll = () => {
