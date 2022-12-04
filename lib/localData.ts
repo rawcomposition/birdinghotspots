@@ -118,6 +118,7 @@ export function getAllCounties(limitStates?: string[] | null) {
       counties.push({
         ...formatCounty(stateCode, county),
         stateSlug: state?.slug,
+        stateLabel: state?.label,
         country: state?.country,
       });
     });

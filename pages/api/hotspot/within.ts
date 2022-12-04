@@ -19,15 +19,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const results = await Hotspot.find(query, ["-_id", "name", "url", "locationId", "lat", "lng"])
+    const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "url", "lat", "lng"])
       .limit(501)
       .lean()
       .exec();
+
+    const formattedResults = results.map(({ featuredImg, ...data }) => {
+      return {
+        img: featuredImg?.smUrl,
+        ...data,
+      };
+    });
+
     const tooLarge = results.length > 500;
     res.status(200).json({
       success: true,
       tooLarge,
-      results: tooLarge ? [] : results,
+      results: tooLarge ? [] : formattedResults,
     });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

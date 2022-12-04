@@ -23,7 +23,6 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
   const refs = React.useRef<any>(null);
   const tooLargeRef = React.useRef<boolean>(false);
   tooLargeRef.current = tooLarge;
-  console.log(lat, lng);
   const { regionBounds } = useRegionBounds(region);
 
   const fetchMarkers = async (swLat: number, swLng: number, neLat: number, neLng: number) => {
@@ -32,16 +31,16 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     if (!data.success) toast.error("Failed to load hotspots");
     setTooLarge(data.tooLarge);
     refs.current?.map((ref: any) => ref.remove());
-    refs.current = data.results.map(({ lat, lng, url, name }: any) => {
-      const img = document.createElement("img");
-      img.className = "marker";
-      img.src = `/child-marker.png`;
+    refs.current = data.results.map(({ lat, lng, url, name, img }: any) => {
+      const icon = document.createElement("img");
+      icon.className = "marker";
+      icon.src = `/child-marker.png`;
 
-      const marker = new mapboxgl.Marker(img);
-
-      const viewLink = url ? `<a href="${url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;` : "";
+      const marker = new mapboxgl.Marker(icon);
+      const photo = img ? `<a href="${url}"><img src="${img}" class="popup-img" /></a>` : "";
+      const viewLink = `<a href="${url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;`;
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-        `${name}<br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
+        `${photo}<span class="font-medium">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
       );
       marker.setLngLat([lng, lat]).setPopup(popup).addTo(map.current);
 
@@ -79,6 +78,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
 
     map.current.on("moveend", () => {
       const newZoom = map.current.getZoom();
+      if (newZoom < 7) return;
       const oldZoom = zoomRef.current;
       zoomRef.current = newZoom;
       if (newZoom > oldZoom && !tooLargeRef.current) return;
@@ -98,8 +98,15 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     );
   });
 
+  React.useEffect(() => {
+    document.getElementById("footer")?.classList.add("hidden");
+    return () => {
+      document.getElementById("footer")?.classList.remove("hidden");
+    };
+  }, []);
+
   return (
-    <div className={`fixed left-0 right-0 bottom-0 w-full h-[calc(100vh-250px)] overflow-hidden`}>
+    <div className={`fixed left-0 right-0 bottom-0 w-full h-[calc(100vh-220px)] overflow-hidden`}>
       <div ref={mapContainer} className="w-full h-full" />
       <div className="flex gap-2 absolute top-2 left-2">
         <button type="button" className="bg-white shadow text-black rounded-sm px-4" onClick={handleToggle}>

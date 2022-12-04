@@ -83,7 +83,7 @@ export default function RegionSearch({ onChange, value, ...props }: Props) {
       formatOptionLabel={formatOptionLabel}
       noOptionsMessage={() => null}
       loadingMessage={() => null}
-      placeholder="Find a region or hotspot..."
+      placeholder="Find a state or county..."
       onChange={onChange}
       value={value}
       escapeClearsValue

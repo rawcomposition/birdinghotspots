@@ -18,8 +18,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     .filter((county: any) => {
       return county.name.toLowerCase().startsWith(q.toLowerCase());
     })
-    .map(({ name, slug, stateSlug, country }: any) => ({
-      label: name,
+    .map(({ name, slug, stateSlug, stateLabel, country }: any) => ({
+      label: `${name}, ${stateLabel}, ${country}`,
       value: `/${country.toLowerCase()}/${stateSlug}/${slug}`,
     }));
 

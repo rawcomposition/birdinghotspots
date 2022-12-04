@@ -24,7 +24,7 @@ type Props = {
 export default function Explore({ params }: Props) {
   const router = useRouter();
   const [mode, setMode] = React.useState<string>((params.mode as string) || "nearby");
-  const [view, setView] = React.useState<string>((params.view as string) || "map");
+  const [view, setView] = React.useState<string>((params.view as string) || "grid");
   const [region, setRegion] = React.useState<Option | null>(() => {
     const value = params.region;
     const label = params.label;
@@ -114,9 +114,9 @@ export default function Explore({ params }: Props) {
   }, [mode, regionCode, regionLabel, lat, lng, label]);
 
   return (
-    <div className="container pb-16 mt-12 max-w-[975px]">
+    <div className="container pb-16 mt-4 max-w-[975px]">
       <Title>Explore</Title>
-      <div className="flex justify-between items-center mb-12">
+      <div className="sm:flex justify-between items-center mb-12">
         <div className="relative w-full sm:w-[500px] flex">
           <ExploreToggle value={mode} onChange={setMode} />
           {mode === "nearby" && (
@@ -130,8 +130,8 @@ export default function Explore({ params }: Props) {
         </div>
         <button
           type="button"
-          className="border py-2 px-4 rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all"
-          onClick={() => setView((prev) => (prev === "grid" ? "list" : "grid"))}
+          className="sm:mt-0 mt-2 border py-1 sm:py-2 ml-auto sm:ml-0 px-4 rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all"
+          onClick={() => setView((prev) => (prev === "grid" ? "map" : "grid"))}
         >
           {view === "grid" ? (
             <>
