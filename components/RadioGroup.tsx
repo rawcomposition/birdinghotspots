@@ -1,18 +1,21 @@
 import * as React from "react";
 import { useFormContext } from "react-hook-form";
+import Help from "components/Help";
 
 type InputProps = {
   name: string;
   label: string;
   options: string[];
   inline?: boolean;
+  help?: string;
 };
 
-const RadioGroup = ({ name, label, options, inline }: InputProps) => {
+const RadioGroup = ({ name, label, options, inline, help }: InputProps) => {
   const { register } = useFormContext();
   return (
     <div className={inline ? "flex gap-2 justify-between" : ""}>
       <label className="text-gray-500 font-bold">{label}</label>
+      {help && <Help text={help} />}
       <br />
       <div className="mt-1 flex gap-2">
         {options.map((option) => (

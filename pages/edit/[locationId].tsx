@@ -172,7 +172,12 @@ export default function Edit({
               )}
               <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
               <RadioGroup name="accessible" label="Accessible parking and trails" options={["Yes", "No", "Unknown"]} />
-              <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} />
+              <RadioGroup
+                name="roadside"
+                label="Roadside accessible"
+                help="Is this a location where birders may can watch from a vehicle?"
+                options={["Yes", "No", "Unknown"]}
+              />
               <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} />
               {markers.length > 0 && (
                 <div className="flex-1">

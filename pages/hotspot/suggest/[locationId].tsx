@@ -181,7 +181,13 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
             options={["Yes", "No", "Unknown"]}
             inline
           />
-          <RadioGroup name="roadside" label="Roadside accessible" options={["Yes", "No", "Unknown"]} inline />
+          <RadioGroup
+            name="roadside"
+            label="Roadside accessible"
+            help="Is this a location where birders may can watch from a vehicle?"
+            options={["Yes", "No", "Unknown"]}
+            inline
+          />
           <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} inline />
 
           <div className="bg-gray-100 px-4 pb-4 pt-3 rounded-lg">
