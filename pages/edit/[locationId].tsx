@@ -171,7 +171,12 @@ export default function Edit({
                 </Field>
               )}
               <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
-              <RadioGroup name="accessible" label="Accessible parking and trails" options={["Yes", "No", "Unknown"]} />
+              <RadioGroup
+                name="accessible"
+                help="Is there a wheelchair-accessible trail at this location?"
+                label="Accessible parking and trails"
+                options={["Yes", "No", "Unknown"]}
+              />
               <RadioGroup
                 name="roadside"
                 label="Roadside accessible"
