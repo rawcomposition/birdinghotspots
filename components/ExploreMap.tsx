@@ -82,7 +82,6 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
       const oldZoom = zoomRef.current;
       zoomRef.current = newZoom;
       if (newZoom > oldZoom && !tooLargeRef.current) return;
-      //TODO: debounce
       const bounds = map.current.getBounds();
       const ne = bounds.getNorthEast();
       const sw = bounds.getSouthWest();

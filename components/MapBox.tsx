@@ -39,9 +39,12 @@ export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, d
       interactive: !disabled,
       cooperativeGestures: disableScroll,
     });
-    map.current.addControl(new mapboxgl.NavigationControl());
 
-    map.current.addControl(new mapboxgl.FullscreenControl());
+    if (!disabled) {
+      map.current.addControl(new mapboxgl.NavigationControl());
+
+      map.current.addControl(new mapboxgl.FullscreenControl());
+    }
 
     const bounds = new mapboxgl.LngLatBounds();
 
