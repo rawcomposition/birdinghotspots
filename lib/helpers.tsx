@@ -23,6 +23,7 @@ export const tinyConfig = {
   autoresize_bottom_margin: 0,
   convert_urls: false,
   browser_spellcheck: true,
+  contextmenu: false,
 };
 
 export function capitalize(str: string) {
