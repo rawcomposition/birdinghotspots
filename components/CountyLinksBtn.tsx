@@ -6,7 +6,7 @@ type Props = {
   showIba: boolean;
 };
 
-export default function EbirdCountyBtn({ showIba }: Props) {
+export default function CountyLinksBtn({ showIba }: Props) {
   return (
     <div className="relative inline-block">
       <Menu>
@@ -16,13 +16,13 @@ export default function EbirdCountyBtn({ showIba }: Props) {
         </Menu.Button>
         <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
           <Menu.Item>
-            <a href="#hotspots" onClick={scrollToAnchor}>
-              All eBird Hotspots
+            <a href="#tophotspots" onClick={scrollToAnchor}>
+              Top Hotspots
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href="#tophotspots" onClick={scrollToAnchor}>
-              Top eBird Hotspots
+            <a href="#hotspots" onClick={scrollToAnchor}>
+              List of All Hotspots
             </a>
           </Menu.Item>
           {showIba && (
@@ -32,11 +32,6 @@ export default function EbirdCountyBtn({ showIba }: Props) {
               </a>
             </Menu.Item>
           )}
-          <Menu.Item>
-            <a href="#notable" onClick={scrollToAnchor}>
-              Notable Sightings
-            </a>
-          </Menu.Item>
         </Menu.Items>
       </Menu>
     </div>

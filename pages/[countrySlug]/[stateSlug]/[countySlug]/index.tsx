@@ -9,7 +9,7 @@ import HotspotList from "components/HotspotList";
 import RareBirds from "components/RareBirds";
 import Title from "components/Title";
 import TopHotspots from "components/TopHotspots";
-import EbirdCountyBtn from "components/EbirdCountyBtn";
+import EbirdRegionBtn from "components/EbirdRegionBtn";
 import CountyLinksBtn from "components/CountyLinksBtn";
 import MapBox from "components/MapBox";
 import nookies from "nookies";
@@ -64,7 +64,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       <section>
         <h3 className="text-lg mb-2 font-bold -mt-8">Where to Go Birding in {longName}</h3>
         <div className="flex gap-2 mt-2 mb-4">
-          <EbirdCountyBtn state={state} county={county} />
+          <EbirdRegionBtn code={code} portal={state.portal} />
           <CountyLinksBtn showIba={iba.length > 0} />
         </div>
       </section>
@@ -90,6 +90,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       <section className="mb-12">
         <h3 className="text-lg mb-2 font-bold" id="hotspots">
           All Hotspots
+          <span className="text-base text-gray-500"> ({hotspots.length})</span>
         </h3>
         <HotspotList hotspots={hotspots} className="md:columns-3" />
         {hotspots.length === 0 && (

@@ -2,14 +2,11 @@ import { Menu } from "@headlessui/react";
 import { State, County } from "lib/types";
 
 type Props = {
-  state?: State;
-  county?: County;
+  portal?: string;
+  code: string;
 };
 
-export default function EbirdCountyBtn({ state, county }: Props) {
-  const { code } = county || ({} as County);
-  const { portal } = state || ({} as State);
-
+export default function EbirdRegionBtn({ portal, code }: Props) {
   const getUrl = (bMonth: number, eMonth: number) => {
     return `${base}/barchart?yr=all&bmo=${bMonth}&emo=${eMonth}&r=${code}`;
   };

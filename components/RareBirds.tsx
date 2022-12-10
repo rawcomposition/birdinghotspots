@@ -25,7 +25,6 @@ export default function RareBirds({ region, className }: Props) {
 
   const call = React.useCallback(async () => {
     setLoading(true);
-    setNotable([]);
     try {
       const response = await fetch(`/api/notable?region=${region}`);
       const species = await response.json();
@@ -96,7 +95,7 @@ export default function RareBirds({ region, className }: Props) {
           );
         })}
       </div>
-      {loading && <p className="text-gra-700">Loading...</p>}
+      {!lastUpdate && loading && <p className="text-gra-700">Loading...</p>}
       {!loading && notable.length === 0 && <p className="text-gra-700">No notable reports in the last 7 days.</p>}
       <div className="flex items-center">
         {showViewAll && (
@@ -108,12 +107,12 @@ export default function RareBirds({ region, className }: Props) {
             View All Reports
           </button>
         )}
-        {lastUpdate && !loading && (
+        {lastUpdate && (
           <span className="text-xs text-gray-500 ml-auto">
             Updated <Timeago datetime={lastUpdate.toString()} />
             &nbsp;-&nbsp;
             <button type="button" className="text-blue-900" onClick={call}>
-              Reload
+              {loading ? "loading..." : "Reload"}
             </button>
           </span>
         )}

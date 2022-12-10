@@ -2,11 +2,9 @@ import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
-import EbirdStateSummary from "components/EbirdStateSummary";
 import { getState, getCounties } from "lib/localData";
 import EbirdDescription from "components/EbirdDescription";
 import EbirdHelpLinks from "components/EbirdHelpLinks";
-import StateFeatureLinks from "components/StateFeatureLinks";
 import RareBirds from "components/RareBirds";
 import { State as StateType, Article, County as CountyType } from "lib/types";
 import Heading from "components/Heading";
@@ -21,6 +19,11 @@ import { getArticlesByState } from "lib/mongo";
 import StateMap from "components/StateMap";
 import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import TopHotspots from "components/TopHotspots";
+import EbirdRegionBtn from "components/EbirdRegionBtn";
+import StateLinksBtn from "components/StateLinksBtn";
+import StateStats from "components/StateStats";
+import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
+import MapIconAlt from "icons/Map";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -58,19 +61,26 @@ export default function State({ countrySlug, state, counties, info, articles }: 
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
         <div>
           <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {label}</h3>
-          <p className="mb-4">
-            <Link href={`/${countrySlug}/${slug}/alphabetical-index`}>Alphabetical list of eBird Hotspots</Link>
-            <br />
-            <a href="#hotspots" onClick={scrollToAnchor}>
-              Top eBird Hotspots
-            </a>
-            <br />
-            <a href="#notable" onClick={scrollToAnchor}>
-              {label} Notable Bird Sightings
-            </a>
+          <div className="flex gap-2 mt-2 mb-4">
+            <EbirdRegionBtn code={code} portal={state.portal} />
+            <StateLinksBtn state={state} />
+          </div>
+          <p className="text-gray-600 mb-4 text-[15px]">
+            Discover where to go birding in {label} by browsing our tips, descriptions, maps, and images for many eBird
+            hotspots.
           </p>
-          <StateFeatureLinks countrySlug={countrySlug} slug={slug} features={features || []} />
-          <EbirdStateSummary {...state} code={state?.code} />
+          <StateStats stateCode={code} />
+          <div className="mt-8">
+            <Link href={`/explore?mode=region&region=${code}&label=${label}&view=map`}>
+              <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center">
+                <MapIconAlt className="inline-block text-xl mr-3" />
+                Explore Hotspot Map <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+              </a>
+            </Link>
+            <p className="ml-1 mt-0.5">
+              Or, <Link href={`/explore?mode=region&region=${code}&label=${label}`}>view top hotspots</Link> in {label}
+            </p>
+          </div>
         </div>
         <div className="mb-8">
           {!state.noMap && (
