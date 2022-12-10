@@ -33,7 +33,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     refs.current?.map((ref: any) => ref.remove());
     refs.current = data.results.map(({ lat, lng, url, name, img }: any) => {
       const icon = document.createElement("img");
-      icon.className = "marker";
+      icon.className = "marker-sm";
       icon.src = `/markers/default.png`;
 
       const marker = new mapboxgl.Marker(icon);

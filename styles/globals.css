@@ -3,365 +3,398 @@
 @tailwind utilities;
 
 @layer base {
-	html {
-		@apply scroll-pt-24;
-	}
-	body {
-		font-size: 14px;
-		color: #4f4f4f;
-		@apply leading-6;
-		@apply antialiased;
-		@apply pt-0;
-		@apply md:pt-[102px];
-	}
+  html {
+    @apply scroll-pt-24;
+  }
+  body {
+    font-size: 14px;
+    color: #4f4f4f;
+    @apply leading-6;
+    @apply antialiased;
+    @apply pt-0;
+    @apply md:pt-[102px];
+  }
 
-	a {
-		color: #4a84b2;
-	}
+  a {
+    color: #4a84b2;
+  }
 
-	ins {
-		background-color: #e6ffec;
-	}
+  ins {
+    background-color: #e6ffec;
+  }
 
-	del {
-		background-color: #ffebe9;
-	}
+  del {
+    background-color: #ffebe9;
+  }
 
-	input.form-input, textarea.form-input {
-		@apply w-full;
-		@apply mt-1;
-		@apply block;
-		@apply rounded-md;
-		@apply border-gray-200;
-		@apply shadow-sm;
-		@apply focus:border-indigo-300;
-		@apply focus:ring;
-		@apply focus:ring-indigo-200;
-		@apply focus:ring-opacity-50;
-		@apply text-sm;
-		@apply font-normal;
-	}
+  input.form-input,
+  textarea.form-input {
+    @apply w-full;
+    @apply mt-1;
+    @apply block;
+    @apply rounded-md;
+    @apply border-gray-200;
+    @apply shadow-sm;
+    @apply focus:border-indigo-300;
+    @apply focus:ring;
+    @apply focus:ring-indigo-200;
+    @apply focus:ring-opacity-50;
+    @apply text-sm;
+    @apply font-normal;
+  }
 
-	input.basic-input, textarea.basic-input {
-		@apply w-full;
-		@apply mt-1;
-		@apply block;
-		@apply rounded-md;
-		@apply border-gray-200;
-		@apply focus:border-indigo-200;
-		@apply shadow-sm;
-		@apply text-sm;
-		@apply font-normal;
-		box-shadow: none !important;
-	}
+  input.basic-input,
+  textarea.basic-input {
+    @apply w-full;
+    @apply mt-1;
+    @apply block;
+    @apply rounded-md;
+    @apply border-gray-200;
+    @apply focus:border-indigo-200;
+    @apply shadow-sm;
+    @apply text-sm;
+    @apply font-normal;
+    box-shadow: none !important;
+  }
 
-	[type="checkbox"]:focus:not(:focus-visible), [type="radio"]:focus:not(:focus-visible) {
+  [type="checkbox"]:focus:not(:focus-visible),
+  [type="radio"]:focus:not(:focus-visible) {
     @apply focus:ring-0 focus:ring-offset-0;
   }
 
-  [type="checkbox"]:focus-visible, [type="radio"]:focus-visible {
+  [type="checkbox"]:focus-visible,
+  [type="radio"]:focus-visible {
     @apply ring-2 ring-offset-2;
   }
 
-	.utility-page .form-input {
-		@apply text-lg;
-	}
+  .utility-page .form-input {
+    @apply text-lg;
+  }
 
-	.form-text-lg .form-input {
-		@apply text-base;
-	}
+  .form-text-lg .form-input {
+    @apply text-base;
+  }
 
-	.form-input.input-error {
-		border-color: #e90000ad;
-	}
+  .form-input.input-error {
+    border-color: #e90000ad;
+  }
 }
 
 .formatted p:not(:last-of-type) {
-	@apply mb-4;
+  @apply mb-4;
 }
 
 .formatted h3 {
-	@apply mb-1.5;
-	@apply text-lg;
-	@apply font-bold;
+  @apply mb-1.5;
+  @apply text-lg;
+  @apply font-bold;
 }
 
 .formatted h2 {
-	@apply mb-1.5;
-	@apply text-2xl;
-	@apply font-bold;
+  @apply mb-1.5;
+  @apply text-2xl;
+  @apply font-bold;
 }
 
 .formatted ul {
-	@apply list-disc;
-	@apply mb-4;
-	@apply ml-6;
+  @apply list-disc;
+  @apply mb-4;
+  @apply ml-6;
 }
 
 .formatted li {
-	@apply mb-0.5;
+  @apply mb-0.5;
 }
 
 .formatted cite {
-	font-size: 0.75em;
-	@apply not-italic;
-	@apply -mt-4;
-	@apply block;
+  font-size: 0.75em;
+  @apply not-italic;
+  @apply -mt-4;
+  @apply block;
 }
 
 .formatted p {
-	break-inside: avoid;
+  break-inside: avoid;
 }
 
 .formatted h3 {
-	break-after: avoid;
+  break-after: avoid;
 }
 
 .formatted br + cite {
-	@apply mt-0;
+  @apply mt-0;
 }
 
 .formatted .two-columns {
-	@apply md:grid;
-	@apply grid-cols-2;
-	@apply gap-12;
+  @apply md:grid;
+  @apply grid-cols-2;
+  @apply gap-12;
 }
 
 .formatted .three-columns {
-	@apply md:grid;
-	@apply grid-cols-3;
-	@apply gap-12;
+  @apply md:grid;
+  @apply grid-cols-3;
+  @apply gap-12;
 }
 
 .formatted .four-columns {
-	@apply md:grid;
-	@apply grid-cols-4;
-	@apply gap-12;
+  @apply md:grid;
+  @apply grid-cols-4;
+  @apply gap-12;
 }
 
-.formatted a[href^="/"], .formatted a[href^=".."], .formatted a[href^="https://birdinghotspots.org/"] {
-	font-weight: bold;
+.formatted a[href^="/"], .formatted a[href^=".."], .formatted a[href^="https://birdinghotspots.org/"]
+{
+  font-weight: bold;
 }
 
 svg.icon {
-	width: 1em;
-	height: 1em;		
-	@apply fill-current;
-	@apply inline;
+  width: 1em;
+  height: 1em;
+  @apply fill-current;
+  @apply inline;
 }
 
 .bg-puffin {
-	background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, .1), rgba(255, 255, 255, 0)), url("/bunting.jpg");
-	background-size: cover;
-	background-position-y: center;
-	background-position-x: center;
-	background-repeat: no-repeat;
+  background: linear-gradient(
+      to right,
+      rgb(255, 255, 255),
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0)
+    ),
+    url("/bunting.jpg");
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 640px) {
-	.bg-puffin {
-		background: linear-gradient(to bottom, #f2f6ec, #c4d4a9);
-	}
+  .bg-puffin {
+    background: linear-gradient(to bottom, #f2f6ec, #c4d4a9);
+  }
 }
 
 .header-gradient {
-	background-image: linear-gradient(90deg,var(--color) 69%, transparent 100%);
+  background-image: linear-gradient(90deg, var(--color) 69%, transparent 100%);
 }
 
 .breadcrumb-gradient {
-	background-image: linear-gradient(90deg, rgba(255,255,255,0.1) 69%, transparent 100%);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 69%, transparent 100%);
 }
 
 .tox-notification {
-	display: none !important; /* hide "This domain is not registered with Tiny Cloud" notice */
+  display: none !important; /* hide "This domain is not registered with Tiny Cloud" notice */
 }
 
 .tox-statusbar {
-	display: none !important;
+  display: none !important;
 }
 
 .tox-tinymce {
-	@apply border-gray-200 !important;
-	@apply shadow-sm !important;
-	border-width: 1px !important;
+  @apply border-gray-200 !important;
+  @apply shadow-sm !important;
+  border-width: 1px !important;
 }
 
 .tox-tinymce-aux {
-	z-index: 10000 !important;
+  z-index: 10000 !important;
 }
 
 .uppy-DragDrop-container {
-	@apply border-gray-300/90 !important;
+  @apply border-gray-300/90 !important;
 }
 
 /*react-photoswipe-gallery*/
 .pswp__default-caption {
-	left: 50% !important;
-	right: unset !important;
+  left: 50% !important;
+  right: unset !important;
   bottom: 10px !important;
-	transform: translateX(-50%);
+  transform: translateX(-50%);
   line-height: 1.3;
-	background: rgba(0,0,0,.4);
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
   padding: 10px 20px !important;
   position: absolute;
   white-space: normal;
-	position: absolute;
+  position: absolute;
 }
 
 .pswp__default-caption:empty {
-	display: none;
+  display: none;
 }
 
 .pswp__button--download.hidden {
-	display: none !important;
+  display: none !important;
 }
 
 /*Mapbox*/
 .mapboxAddMarkerMode .mapboxgl-canvas-container {
-	@apply cursor-crosshair;
+  @apply cursor-crosshair;
 }
 
 .mapboxgl-popup-close-button {
-	display: none;
+  display: none;
 }
 
-.mapboxgl-ctrl-fullscreen .mapboxgl-ctrl-icon, .mapboxgl-ctrl-shrink .mapboxgl-ctrl-icon {
-	background-size: 80%;
-	opacity: 0.8;
+.mapboxgl-ctrl-fullscreen .mapboxgl-ctrl-icon,
+.mapboxgl-ctrl-shrink .mapboxgl-ctrl-icon {
+  background-size: 80%;
+  opacity: 0.8;
 }
 
 .mapboxgl-popup-content {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .marker-link:focus-visible {
-	@apply outline-none;
+  @apply outline-none;
 }
 
 .popup-img {
-	width: calc(100% + 20px);
-	max-width: unset;
-	margin-left: -10px;
-	margin-right: -10px;
-	margin-top: -10px;
-	margin-bottom: 8px;
+  width: calc(100% + 20px);
+  max-width: unset;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -10px;
+  margin-bottom: 8px;
 }
 
 img.marker {
-	width: 21px;
-	height: 28px;
-	margin-top: -14px;
-	cursor: pointer;
+  width: 21px;
+  height: 28px;
+  margin-top: -14px;
+  cursor: pointer;
+}
+
+img.marker-sm {
+  width: 15px;
+  height: 20px;
+  margin-top: -10px;
+  cursor: pointer;
 }
 
 .hide-default .default-marker {
-	opacity: 0;
+  opacity: 0;
 }
 
 .mapboxgl-ctrl-compass {
-	display: none !important;
+  display: none !important;
 }
 
 .mapboxgl-popup-anchor-top {
-	margin-top: -25px;
+  margin-top: -25px;
 }
 
 .mapboxgl-popup-anchor-left {
-	margin-left: -15px;
+  margin-left: -15px;
   margin-top: -15px;
 }
 
 .mapboxgl-popup-anchor-right {
-	margin-right: -25px;
+  margin-right: -25px;
   margin-top: -15px;
 }
 
 /*Animations*/
 @keyframes zoom {
-	0% { transform: scale(0.5); opacity: 0; }
-	80% { transform: scale(1.02); opacity: 1; }
-	100% { transform: scale(1); }
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .zoom-in {
-	transform-origin: center;
-	animation-name: zoom;
-	animation-duration: 300ms;
-	animation-timing-function: ease;
+  transform-origin: center;
+  animation-name: zoom;
+  animation-duration: 300ms;
+  animation-timing-function: ease;
 }
 
 /*Google Places*/
 
 .pac-container {
-	border-radius: 8px;
-	border-top: none;
-	margin-top: 4px;
-	width: 50%;
-	padding: 5px;
+  border-radius: 8px;
+  border-top: none;
+  margin-top: 4px;
+  width: 50%;
+  padding: 5px;
 }
 
-.pac-item:first-of-type{
-	border-top: none;
+.pac-item:first-of-type {
+  border-top: none;
 }
 
 /*SVG Maps*/
 
 .state-map {
-	width: 100%;
+  width: 100%;
 }
 
-.state-map path, .state-map a {
-	cursor: pointer;
+.state-map path,
+.state-map a {
+  cursor: pointer;
 }
 
 .state-map path {
-	@apply fill-slate-200;
+  @apply fill-slate-200;
 }
 
 .state-map a:hover path {
-	opacity: 0.8;
+  opacity: 0.8;
 }
 
 .state-map text {
-	font-size: 9px;
-	font-weight: 500;
+  font-size: 9px;
+  font-weight: 500;
 }
 
 .hover-map a text {
-	display: none;
+  display: none;
 }
 
 .teal path {
-	fill: #46a695;
+  fill: #46a695;
 }
 
-.teal text, .purple text, .green text, .red text, .orange text {
-	fill: white;
+.teal text,
+.purple text,
+.green text,
+.red text,
+.orange text {
+  fill: white;
 }
 
 .green path {
-	fill: #92ad39;
+  fill: #92ad39;
 }
 
 .yellow path {
-	fill: #efd75e;
+  fill: #efd75e;
 }
 
 .purple path {
-	fill: #8d4cb6;
+  fill: #8d4cb6;
 }
 
 .orange path {
-	fill: #e57701;
+  fill: #e57701;
 }
 
 .red path {
-	fill: #ce0d03;
+  fill: #ce0d03;
 }
 
 /*NProgress bar*/
 #nprogress {
-	z-index: 100000;
-	position: absolute;
+  z-index: 100000;
+  position: absolute;
 }
