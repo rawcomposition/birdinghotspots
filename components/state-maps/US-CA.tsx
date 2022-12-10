@@ -9,7 +9,7 @@ export default function CaliforniaMap() {
     <>
       <MapTooltip {...tooltipProps} />
       <svg
-        className="state-map w-full hover-map"
+        className="state-map hover-map"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
         viewBox="150 0 600  540"

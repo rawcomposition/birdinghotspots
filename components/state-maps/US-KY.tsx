@@ -9,7 +9,7 @@ export default function KentuckyMap() {
     <>
       <MapTooltip {...tooltipProps} />
       <svg
-        className="state-map w-full hover-map"
+        className="state-map hover-map"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
         viewBox="0 0 960  540"

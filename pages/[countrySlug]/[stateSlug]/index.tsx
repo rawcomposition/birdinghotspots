@@ -40,7 +40,7 @@ type Props = {
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
-  const { label, code, slug, features } = state || ({} as StateType);
+  const { label, code, slug } = state || ({} as StateType);
 
   return (
     <div className="container pb-16 mt-12">
@@ -58,7 +58,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         <Link href={`/edit/group/new?country=${countrySlug}`}>Add Group</Link>
         <Link href={`/${countrySlug}/${slug}/article/edit/new`}>Add Article</Link>
       </EditorActions>
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+      <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
         <div>
           <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {label}</h3>
           <div className="flex gap-2 mt-2 mb-4">

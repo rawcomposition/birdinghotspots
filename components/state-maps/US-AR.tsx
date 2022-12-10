@@ -9,7 +9,7 @@ export default function ArkansasMap() {
     <>
       <MapTooltip {...tooltipProps} />
       <svg
-        className="state-map w-full"
+        className="state-map"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
         viewBox="238 30 585  505"

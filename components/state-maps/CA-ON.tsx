@@ -9,7 +9,7 @@ export default function OntarioMap() {
     <>
       <MapTooltip {...tooltipProps} />
       <svg
-        className="state-map w-full hover-map"
+        className="state-map hover-map"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
         viewBox="135 0 528  595"

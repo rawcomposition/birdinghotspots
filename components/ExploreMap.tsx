@@ -31,7 +31,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     if (!data.success) toast.error("Failed to load hotspots");
     setTooLarge(data.tooLarge);
     refs.current?.map((ref: any) => ref.remove());
-    refs.current = data.results.map(({ lat, lng, url, name, img }: any) => {
+    refs.current = data.results.map(([img, name, url, location]: any) => {
       const icon = document.createElement("img");
       icon.className = "marker-sm";
       icon.src = `/markers/default.png`;
@@ -40,9 +40,9 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
       const photo = img ? `<a href="${url}"><img src="${img}" class="popup-img" /></a>` : "";
       const viewLink = `<a href="${url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;`;
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-        `${photo}<span class="font-medium">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
+        `${photo}<span class="font-medium">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
       );
-      marker.setLngLat([lng, lat]).setPopup(popup).addTo(map.current);
+      marker.setLngLat(location).setPopup(popup).addTo(map.current);
 
       return marker;
     });

@@ -20,18 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "url", "lat", "lng"])
-      .limit(2501) // 1501 to check if there are more than 1500 results
+      .limit(1201) // 1201 to check if there are more than 1500 results
       .lean()
       .exec();
 
     const formattedResults = results.map(({ featuredImg, ...data }) => {
-      return {
-        img: featuredImg?.smUrl,
-        ...data,
-      };
+      return [featuredImg?.smUrl, data.name, data.url, [data.lng, data.lat]];
     });
 
-    const tooLarge = results.length > 2500;
+    const tooLarge = results.length > 1200;
     res.status(200).json({
       success: true,
       tooLarge,
