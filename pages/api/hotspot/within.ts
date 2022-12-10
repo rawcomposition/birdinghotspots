@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "url", "lat", "lng"])
-      .limit(501)
+      .limit(1501) // 1501 to check if there are more than 1500 results
       .lean()
       .exec();
 
@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       };
     });
 
-    const tooLarge = results.length > 500;
+    const tooLarge = results.length > 1500;
     res.status(200).json({
       success: true,
       tooLarge,
