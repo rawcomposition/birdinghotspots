@@ -34,3 +34,11 @@ export const sendInviteEmail = async (name: string, email: string, inviteCode: s
     replyTo: email,
   });
 };
+
+export const sendResetEmail = async (name: string, email: string, url: string) => {
+  await sendEmail({
+    to: email,
+    subject: "Reset your password for BirdingHotspots.org",
+    html: `Hi ${name},<br /><br />Follow this link to reset your BirdingHotspots password.<br /><br /><a href="${url}">${url}</a><br /><br />If you did not ask to reset your password, you can ignore this email.<br /><br />Thanks,<br />The BirdingHotspots.org Team`,
+  });
+};

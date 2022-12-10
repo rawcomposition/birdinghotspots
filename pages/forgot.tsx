@@ -6,22 +6,24 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "components/Form";
 import FormError from "components/FormError";
 import UtilityPage from "components/UtilityPage";
-import { resetPassword } from "lib/firebaseAuth";
+import useToast from "hooks/useToast";
 
 type Inputs = {
   email: string;
 };
 
 const Forgot: NextPage = () => {
-  const [loading, setLoading] = React.useState<boolean>(false);
   const [showSuccess, setShowSuccess] = React.useState<boolean>(false);
   const form = useForm<Inputs>();
+  const { send, loading } = useToast();
 
   const handleSubmit: SubmitHandler<Inputs> = async ({ email }) => {
-    setLoading(true);
-    await resetPassword(email);
-    setShowSuccess(true);
-    setLoading(false);
+    const res = await send({
+      url: "/api/auth/reset",
+      method: "POST",
+      data: { email },
+    });
+    if (res.success) setShowSuccess(true);
   };
 
   return (
@@ -40,7 +42,7 @@ const Forgot: NextPage = () => {
         )}
         {!showSuccess && (
           <p className="text-center mt-8">
-            <Submit loading={loading} color="green">
+            <Submit disabled={loading} color="green">
               Reset Password
             </Submit>
           </p>
