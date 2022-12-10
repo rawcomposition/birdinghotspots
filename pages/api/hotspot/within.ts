@@ -19,13 +19,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "locationId", "lat", "lng"])
+    const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "locationId", "lat", "lng", "species"])
       .limit(1201) // 1201 to check if there are more than 1500 results
       .lean()
       .exec();
 
     const formattedResults = results.map((data) => {
-      const hotspot = [data.name, data.locationId, [data.lng, data.lat]];
+      const hotspot = [data.name, data.locationId, [data.lng, data.lat], data.species];
       if (data.featuredImg) {
         hotspot.push(data.featuredImg?.smUrl?.replace("https://s3.us-east-1.wasabisys.com/birdinghotspots/", ""));
       }

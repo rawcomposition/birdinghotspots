@@ -219,18 +219,18 @@ export async function verifyRecaptcha(token: string) {
   return verifyData?.riskAnalysis?.score || 0;
 }
 
-export const getEbirdColor = (count: number) => {
-  if (count === 0) return "#bcbcbc";
-  if (count <= 15) return "#8f9ca0";
-  if (count <= 50) return "#8f9ca0";
-  if (count <= 100) return "#aaddeb";
-  if (count <= 150) return "#c7e466";
-  if (count <= 200) return "#eaeb1f";
-  if (count <= 250) return "#fac500";
-  if (count <= 300) return "#e57701";
-  if (count <= 400) return "#e33b15";
-  if (count <= 500) return "#ce0d02";
-  return "#ad0002";
+export const getMarkerShade = (count: number) => {
+  if (count === 0) return 1;
+  if (count <= 15) return 2;
+  if (count <= 50) return 3;
+  if (count <= 100) return 4;
+  if (count <= 150) return 5;
+  if (count <= 200) return 6;
+  if (count <= 250) return 7;
+  if (count <= 300) return 8;
+  if (count <= 400) return 9;
+  if (count <= 500) return 10;
+  return "#bcbcbc";
 };
 
 export function truncate(string: string, length: number) {

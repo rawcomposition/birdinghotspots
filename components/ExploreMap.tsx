@@ -2,6 +2,7 @@ import * as React from "react";
 import mapboxgl from "mapbox-gl";
 import toast from "react-hot-toast";
 import useRegionBounds from "hooks/useRegionBounds";
+import { getMarkerShade } from "lib/helpers";
 
 const keys = process.env.NEXT_PUBLIC_MAPBOX_KEY?.split(",") || [];
 const key = keys[Math.floor(Math.random() * keys.length)];
@@ -24,7 +25,6 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
   const tooLargeRef = React.useRef<boolean>(false);
   tooLargeRef.current = tooLarge;
   const { regionBounds } = useRegionBounds(region);
-  const popUpRef = React.useRef(new mapboxgl.Popup({ offset: 15 }));
 
   const fetchMarkers = async (swLat: number, swLng: number, neLat: number, neLng: number) => {
     const res = await fetch(`/api/hotspot/within?swLat=${swLat}&swLng=${swLng}&neLat=${neLat}&neLng=${neLng}`);
@@ -32,10 +32,10 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     if (!data.success) toast.error("Failed to load hotspots");
     setTooLarge(data.tooLarge);
     refs.current?.map((ref: any) => ref.remove());
-    refs.current = data.results.map(([name, locationId, location, img]: any) => {
+    refs.current = data.results.map(([name, locationId, location, species, img]: any) => {
       const icon = document.createElement("img");
       icon.className = "marker-sm";
-      icon.src = `/markers/default.png`;
+      icon.src = `/markers/shade-${getMarkerShade(species)}.svg`;
 
       //Attach popups in roundabout way to avoid all featured images loading at once
       icon.addEventListener("click", (e) => {
