@@ -275,6 +275,14 @@ img.marker-sm {
   cursor: pointer;
 }
 
+.mapboxgl-popup-anchor-top {
+  top: 28px;
+}
+
+.mapboxgl-popup-anchor-bottom {
+  top: -22px;
+}
+
 .hide-default .default-marker {
   opacity: 0;
 }

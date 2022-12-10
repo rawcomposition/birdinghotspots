@@ -24,6 +24,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
   const tooLargeRef = React.useRef<boolean>(false);
   tooLargeRef.current = tooLarge;
   const { regionBounds } = useRegionBounds(region);
+  const popUpRef = React.useRef(new mapboxgl.Popup({ offset: 15 }));
 
   const fetchMarkers = async (swLat: number, swLng: number, neLat: number, neLng: number) => {
     const res = await fetch(`/api/hotspot/within?swLat=${swLat}&swLng=${swLng}&neLat=${neLat}&neLng=${neLng}`);
@@ -31,18 +32,27 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     if (!data.success) toast.error("Failed to load hotspots");
     setTooLarge(data.tooLarge);
     refs.current?.map((ref: any) => ref.remove());
-    refs.current = data.results.map(([img, name, url, location]: any) => {
+    refs.current = data.results.map(([name, locationId, location, img]: any) => {
       const icon = document.createElement("img");
       icon.className = "marker-sm";
       icon.src = `/markers/default.png`;
 
+      //Attach popups in roundabout way to avoid all featured images loading at once
+      icon.addEventListener("click", (e) => {
+        const photo = img
+          ? `<a href="/hotspot/${locationId}"><img src="https://s3.us-east-1.wasabisys.com/birdinghotspots/${img}" class="popup-img" /></a>`
+          : "";
+        const viewLink = `<a href="/hotspot/${locationId}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;&nbsp;`;
+        const html = `${photo}<span class="font-medium">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;
+
+        setTimeout(() => {
+          new mapboxgl.Popup().setLngLat(location).setHTML(html).addTo(map.current);
+        }, 0); //Doesn't render without timeout
+      });
+
       const marker = new mapboxgl.Marker(icon);
-      const photo = img ? `<a href="${url}"><img src="${img}" class="popup-img" /></a>` : "";
-      const viewLink = `<a href="${url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;`;
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-        `${photo}<span class="font-medium">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
-      );
-      marker.setLngLat(location).setPopup(popup).addTo(map.current);
+
+      marker.setLngLat(location).addTo(map.current);
 
       return marker;
     });
