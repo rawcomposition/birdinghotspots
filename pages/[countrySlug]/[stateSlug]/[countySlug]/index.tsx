@@ -53,7 +53,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
   //@ts-ignore
   const sortedDrives = uniqueDrives.sort((a, b) => a.name.localeCompare(b.name));
 
-  const markers = hotspots?.map(({ lat, lng, name, url }) => ({ lat, lng, url, name, type: "child" })) || [];
+  const markers = hotspots?.map(({ lat, lng, name, url }) => ({ lat, lng, url, name })) || [];
 
   return (
     <div className="container pb-16">
@@ -65,7 +65,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
         <h3 className="text-lg mb-2 font-bold -mt-8">Where to Go Birding in {longName}</h3>
         <div className="flex gap-2 mt-2 mb-4">
           <EbirdRegionBtn code={code} portal={state.portal} />
-          <CountyLinksBtn showIba={iba.length > 0} />
+          <CountyLinksBtn showIba={iba.length > 0} code={code} label={name} />
         </div>
       </section>
       <section className="mb-16">

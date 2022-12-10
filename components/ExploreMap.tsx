@@ -34,7 +34,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     refs.current = data.results.map(({ lat, lng, url, name, img }: any) => {
       const icon = document.createElement("img");
       icon.className = "marker";
-      icon.src = `/child-marker.png`;
+      icon.src = `/markers/default.png`;
 
       const marker = new mapboxgl.Marker(icon);
       const photo = img ? `<a href="${url}"><img src="${img}" class="popup-img" /></a>` : "";

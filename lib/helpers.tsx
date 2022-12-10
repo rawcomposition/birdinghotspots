@@ -189,7 +189,6 @@ export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
   return {
     lat: hotspot.lat,
     lng: hotspot.lng,
-    type: "child",
     url: showLink ? hotspot.url : null,
     name,
   };
