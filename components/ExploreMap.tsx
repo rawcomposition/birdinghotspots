@@ -116,7 +116,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
 
   return (
     <div className={`fixed left-0 right-0 bottom-0 w-full h-[calc(100vh-220px)] overflow-hidden`}>
-      <div ref={mapContainer} className="w-full h-full" />
+      <div ref={mapContainer} className="w-full h-full explore-map" />
       <div className="flex gap-2 absolute top-2 left-2">
         <button type="button" className="bg-white shadow text-black rounded-sm px-4" onClick={handleToggle}>
           {satellite ? "Terrain" : "Satellite"}
