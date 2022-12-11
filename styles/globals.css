@@ -3,16 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply scroll-pt-24;
-  }
   body {
     font-size: 14px;
     color: #4f4f4f;
     @apply leading-6;
     @apply antialiased;
     @apply pt-0;
-    @apply md:pt-[102px];
   }
 
   a {
