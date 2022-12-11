@@ -46,6 +46,7 @@ export type Marker = {
   lng: number;
   type: string;
   url?: string;
+  species?: number;
 };
 
 export type Link = {

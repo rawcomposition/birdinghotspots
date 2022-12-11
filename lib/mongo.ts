@@ -33,6 +33,7 @@ export async function getHotspotsByCounty(countyCode: string) {
     "needsDeleting",
     "lat",
     "lng",
+    "species",
   ])
     .sort({ name: 1 })
     .lean()

@@ -191,6 +191,7 @@ export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
     lng: hotspot.lng,
     url: showLink ? hotspot.url : null,
     name,
+    species: hotspot.species,
   };
 }
 

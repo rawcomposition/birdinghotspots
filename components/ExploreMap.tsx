@@ -43,7 +43,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
           ? `<a href="/hotspot/${locationId}"><img src="https://s3.us-east-1.wasabisys.com/birdinghotspots/${img}" class="popup-img" /></a>`
           : "";
         const viewLink = `<a href="/hotspot/${locationId}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;&nbsp;`;
-        const html = `${photo}<span class="font-medium">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;
+        const html = `${photo}<span class="font-medium text-sm">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;
 
         setTimeout(() => {
           new mapboxgl.Popup().setLngLat(location).setHTML(html).addTo(map.current);

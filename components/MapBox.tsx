@@ -1,6 +1,7 @@
 import * as React from "react";
 import mapboxgl from "mapbox-gl";
 import { Marker } from "lib/types";
+import { getMarkerShade } from "lib/helpers";
 
 const keys = process.env.NEXT_PUBLIC_MAPBOX_KEY?.split(",") || [];
 const key = keys[Math.floor(Math.random() * keys.length)];
@@ -14,9 +15,10 @@ type Props = {
   disabled?: boolean;
   landscape?: boolean;
   disableScroll?: boolean;
+  lgMarkers?: boolean;
 };
 
-export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, disableScroll }: Props) {
+export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, disableScroll, lgMarkers }: Props) {
   const [satellite, setSatellite] = React.useState<boolean>(false);
   const mapContainer = React.useRef(null);
   const map = React.useRef<any>(null);
@@ -50,15 +52,15 @@ export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, d
 
     markers.map((data) => {
       const img = document.createElement("img");
-      img.className = "marker";
-      img.src = `/markers/default.png`;
+      img.className = lgMarkers ? "marker" : "marker-sm";
+      img.src = data.species ? `/markers/shade-${getMarkerShade(data.species)}.svg` : `/markers/default.png`;
 
       const id = new Date().getTime();
       const marker = new mapboxgl.Marker(img);
 
       const viewLink = data.url ? `<a href="${data.url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;` : "";
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-        `${data.name}<br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
+        `<span class="font-medium text-sm">${data.name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`
       );
       marker.setLngLat([data.lng, data.lat]).setPopup(popup).addTo(map.current);
       bounds.extend(marker.getLngLat());

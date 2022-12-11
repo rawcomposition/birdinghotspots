@@ -225,7 +225,7 @@ export default function Hotspot({
           <Citations citations={citations} links={links} />
         </div>
         <div>
-          {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} />}
+          {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} lgMarkers />}
           {!!mapImages?.length && <MapList images={mapImages} />}
           {lat && lng && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
         </div>

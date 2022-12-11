@@ -53,7 +53,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
   //@ts-ignore
   const sortedDrives = uniqueDrives.sort((a, b) => a.name.localeCompare(b.name));
 
-  const markers = hotspots?.map(({ lat, lng, name, url }) => ({ lat, lng, url, name })) || [];
+  const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
 
   return (
     <div className="container pb-16">
