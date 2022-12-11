@@ -47,7 +47,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
 
         setTimeout(() => {
           new mapboxgl.Popup().setLngLat(location).setHTML(html).addTo(map.current);
-        }, 50); //Doesn't render without timeout
+        }, 100); //Doesn't render without timeout
       });
 
       const marker = new mapboxgl.Marker(icon);
