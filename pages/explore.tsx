@@ -114,9 +114,9 @@ export default function Explore({ params }: Props) {
   }, [mode, regionCode, regionLabel, lat, lng, label]);
 
   return (
-    <div className="container pb-16 mt-4 max-w-[975px]">
+    <div className={view === "grid" ? "container pb-16 mt-4 max-w-[975px]" : "flex flex-col h-full"}>
       <Title>Explore</Title>
-      <div className="sm:flex justify-between items-center mb-12">
+      <div className={`sm:flex justify-between items-center ${view === "map" ? "container my-2 max-w-[975px]" : ""}`}>
         <div className="relative w-full sm:w-[500px] flex">
           <ExploreToggle value={mode} onChange={setMode} />
           {mode === "nearby" && (
@@ -151,7 +151,7 @@ export default function Explore({ params }: Props) {
         </p>
       )}
       {view === "grid" && (
-        <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px]">
+        <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-12">
           <HotspotGrid
             hotspots={results}
             loading={loading}
