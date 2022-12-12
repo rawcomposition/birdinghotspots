@@ -137,7 +137,7 @@ export default function Hotspot({
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4 flex-wrap">
-              {species && (
+              {!!species && (
                 <a
                   href={`https://ebird.org/hotspot/${locationId}`}
                   className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
