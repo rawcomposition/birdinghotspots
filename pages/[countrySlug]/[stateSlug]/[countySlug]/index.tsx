@@ -13,6 +13,7 @@ import EbirdRegionBtn from "components/EbirdRegionBtn";
 import CountyLinksBtn from "components/CountyLinksBtn";
 import MapBox from "components/MapBox";
 import nookies from "nookies";
+import RegionStats from "components/RegionStats";
 
 type Props = {
   countrySlug: string;
@@ -61,12 +62,15 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       <PageHeading countrySlug={countrySlug} state={state}>
         {longName}
       </PageHeading>
-      <section>
-        <h3 className="text-lg mb-2 font-bold -mt-8">Where to Go Birding in {longName}</h3>
-        <div className="flex gap-2 mt-2 mb-4">
-          <EbirdRegionBtn code={code} portal={state.portal} />
-          <CountyLinksBtn showIba={iba.length > 0} code={code} label={name} />
+      <section className="md:flex justify-between items-start -mt-8 mb-8">
+        <div>
+          <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {longName}</h3>
+          <div className="flex gap-2 mt-2 mb-4">
+            <EbirdRegionBtn code={code} portal={state.portal} />
+            <CountyLinksBtn showIba={iba.length > 0} code={code} label={name} />
+          </div>
         </div>
+        <RegionStats regionCode={code} />
       </section>
       <section className="mb-16">
         {markers.length > 0 && (

@@ -21,7 +21,7 @@ import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
 import StateLinksBtn from "components/StateLinksBtn";
-import StateStats from "components/StateStats";
+import RegionStats from "components/RegionStats";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import MapIconAlt from "icons/Map";
 
@@ -65,11 +65,11 @@ export default function State({ countrySlug, state, counties, info, articles }: 
             <EbirdRegionBtn code={code} portal={state.portal} />
             <StateLinksBtn state={state} />
           </div>
-          <p className="text-gray-600 mb-4 text-[15px]">
+          <p className="text-gray-600 mb-8 text-[15px]">
             Discover where to go birding in {label} by browsing our tips, descriptions, maps, and images for many eBird
             hotspots.
           </p>
-          <StateStats stateCode={code} />
+          <RegionStats regionCode={code} />
           <div className="mt-8">
             <Link href={`/explore?mode=region&region=${code}&label=${label}&view=map`}>
               <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center">
