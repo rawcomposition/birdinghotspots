@@ -74,17 +74,13 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
             <h4 className="font-bold">Top eBirders</h4>
           </Menu.Item>
           <Menu.Item>
-            <a
-              href={`${base}/top100?locInfo.regionCode=${code}&year=AAAA&locInfo.regionType=subnational2`}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={`${base}/top100?locInfo.regionCode=${code}&year=AAAA`} target="_blank" rel="noreferrer">
               All Time
             </a>
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/top100?year=${new Date().getFullYear()}&locInfo.regionType=subnational2&locInfo.regionCode=${code}`}
+              href={`${base}/top100?year=${new Date().getFullYear()}&locInfo.regionCode=${code}`}
               target="_blank"
               rel="noreferrer"
             >
