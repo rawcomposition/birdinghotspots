@@ -53,7 +53,7 @@ export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, d
     markers.map((data) => {
       const img = document.createElement("img");
       img.className = lgMarkers ? "marker" : "marker-sm";
-      img.src = data.species ? `/markers/shade-${getMarkerShade(data.species)}.svg` : `/markers/default.png`;
+      img.src = data.species ? `/markers/shade-${getMarkerShade(data.species)}.svg` : `/markers/shade-1.svg`;
 
       const id = new Date().getTime();
       const marker = new mapboxgl.Marker(img);
