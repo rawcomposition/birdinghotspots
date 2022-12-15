@@ -1,5 +1,4 @@
 import { Menu } from "@headlessui/react";
-import { scrollToAnchor } from "lib/helpers";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { State } from "lib/types";
 import Link from "next/link";
@@ -23,9 +22,9 @@ export default function StateLinksBtn({ state }: Props) {
             <Link href={`/explore?mode=region&region=${state.code}&label=${state.label}&view=map`}>Hotspot Map</Link>
           </Menu.Item>
           <Menu.Item>
-            <a href="#tophotspots" onClick={scrollToAnchor}>
-              Top Hotspots
-            </a>
+            <Menu.Item>
+              <Link href={`/explore?mode=region&region=${state.code}&label=${state.label}`}>Top Hotspots</Link>
+            </Menu.Item>
           </Menu.Item>
           <Menu.Item>
             <Link href={`/${countrySlug}/${slug}/alphabetical-index`}>List of All Hotspots</Link>

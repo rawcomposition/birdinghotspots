@@ -144,21 +144,23 @@ export default function Explore({ params }: Props) {
           )}
         </button>
       </div>
-      {mode === "region" && !loading && regionName && (
-        <p className="text-base text-gray-500 mb-6">
-          Found <strong className="text-[#4a84b2]">{count}</strong> hotspots in{" "}
-          <strong className="text-[#4a84b2]">{regionName}</strong> sorted by species count.
-        </p>
-      )}
       {view === "grid" && (
-        <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-12">
-          <HotspotGrid
-            hotspots={results}
-            loading={loading}
-            lat={mode === "nearby" ? lat : undefined}
-            lng={mode === "nearby" ? lng : undefined}
-          />
-        </div>
+        <>
+          {mode === "region" && !loading && regionName && (
+            <p className="text-base text-gray-500 mt-6">
+              Found <strong className="text-[#4a84b2]">{count}</strong> hotspots in{" "}
+              <strong className="text-[#4a84b2]">{regionName}</strong> sorted by species count.
+            </p>
+          )}
+          <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-4">
+            <HotspotGrid
+              hotspots={results}
+              loading={loading}
+              lat={mode === "nearby" ? lat : undefined}
+              lng={mode === "nearby" ? lng : undefined}
+            />
+          </div>
+        </>
       )}
       {view === "map" && (
         <ExploreMap

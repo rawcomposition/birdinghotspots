@@ -22,9 +22,9 @@ export default function CountyLinksBtn({ showIba, code, label }: Props) {
             <Link href={`/explore?mode=region&region=${code}&label=${label}&view=map`}>Hotspot Map</Link>
           </Menu.Item>
           <Menu.Item>
-            <a href="#tophotspots" onClick={scrollToAnchor}>
-              Top Hotspots
-            </a>
+            <Menu.Item>
+              <Link href={`/explore?mode=region&region=${code}&label=${label}`}>Top Hotspots</Link>
+            </Menu.Item>
           </Menu.Item>
           <Menu.Item>
             <a href="#hotspots" onClick={scrollToAnchor}>
