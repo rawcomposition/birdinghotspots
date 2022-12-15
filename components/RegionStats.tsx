@@ -16,7 +16,7 @@ export default function RegionStats({ regionCode }: Props) {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/region-stats?region=${regionCode}`);
+        const response = await fetch(`/api/region-stats/${regionCode}`);
         const json = await response.json();
         setStats(json);
       } catch (error) {}
