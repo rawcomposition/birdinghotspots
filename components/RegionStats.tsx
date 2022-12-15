@@ -34,10 +34,10 @@ export default function RegionStats({ regionCode }: Props) {
         <span className="text-2xl font-bold text-[#325a79]">{stats?.withImg?.toLocaleString() || "--"}</span>
         <span className="text-xs">With images</span>
       </div>
-      <div className="flex flex-col rounded bg-gray-100 px-4 py-3">
+      {/*<div className="flex flex-col rounded bg-gray-100 px-4 py-3">
         <span className="text-2xl font-bold text-[#325a79]">{stats?.withContent?.toLocaleString() || "--"}</span>
         <span className="text-xs">With content</span>
-      </div>
+  </div>*/}
     </div>
   );
 }
