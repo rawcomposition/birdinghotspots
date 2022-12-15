@@ -10,29 +10,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await connect();
 
     if (region.split("-").length === 3) {
+      // county
       const total = await Hotspot.countDocuments({ countyCode: region });
       const withImg = await Hotspot.countDocuments({ countyCode: region, featuredImg: { $ne: null } });
-      const withContent = await Hotspot.find({ countyCode: region, noContent: false }, ["_id"]);
-      const withContentIds = withContent.map((it) => it._id.toString());
+      const allHotspots = await Hotspot.find({ countyCode: region }, ["_id", "noContent"]);
       const groups = await Group.find({ countyCodes: region }, ["hotspots"]);
       const groupHotspotIds = groups
         .map((it) => it.hotspots)
         .flat()
         .map((it) => it.toString());
-      const withContentOrGroup = [...new Set([...withContentIds, ...groupHotspotIds])];
-      res.status(200).json({ total, withImg, withContent: withContentOrGroup.length });
+
+      const withContent = allHotspots.filter((it) => !it.noContent || groupHotspotIds.includes(it._id.toString()));
+
+      res.status(200).json({ total, withImg, withContent: withContent.length });
     } else {
+      // state
+      res.setHeader("Cache-Control", "s-maxage=21600"); //Cache for 6 hours
       const total = await Hotspot.countDocuments({ stateCode: region });
       const withImg = await Hotspot.countDocuments({ stateCode: region, featuredImg: { $ne: null } });
-      const withContent = await Hotspot.find({ stateCode: region, noContent: false }, ["_id"]);
-      const withContentIds = withContent.map((it) => it._id.toString());
-      const groups = await Group.find({ stateCodes: region }, ["hotspots"]);
+      const allHotspots = await Hotspot.find({ stateCode: region }, ["_id", "noContent"]);
+      const groups = await Group.find({ stateCode: region }, ["hotspots"]);
       const groupHotspotIds = groups
         .map((it) => it.hotspots)
         .flat()
         .map((it) => it.toString());
-      const withContentOrGroup = [...new Set([...withContentIds, ...groupHotspotIds])];
-      res.status(200).json({ total, withImg, withContent: withContentOrGroup.length });
+      const withContent = allHotspots.filter((it) => !it.noContent || groupHotspotIds.includes(it._id.toString()));
+      res.status(200).json({ total, withImg, withContent: withContent.length });
     }
   } catch (error: any) {
     res.status(500).json({ error: error.message });
