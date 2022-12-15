@@ -881,7 +881,7 @@ export default function KentuckyMap() {
                 <text>Estill</text>
               </a>
             </Link>
-            <Link href="/us/kentucky/garr-county">
+            <Link href="/us/kentucky/garrard-county">
               <a {...linkProps}>
                 <path
                   {...pathProps}
@@ -890,7 +890,7 @@ export default function KentuckyMap() {
                   strokeDasharray="1, 0"
                   strokeWidth="1"
                 ></path>
-                <text>Garr</text>
+                <text>Garrard</text>
               </a>
             </Link>
             <Link href="/us/kentucky/floyd-county">
