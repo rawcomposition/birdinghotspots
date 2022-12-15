@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         .flat()
         .map((it) => it.toString());
       const withContent = allHotspots.filter((it) => !it.noContent || groupHotspotIds.includes(it._id.toString()));
-      res.setHeader("Cache-Control", "max-age=0, s-maxage="); //Cache for 6 hours
+      res.setHeader("Cache-Control", "max-age=0, s-maxage=21600"); //Cache for 6 hours
       res.status(200).json({ total, withImg, withContent: withContent.length });
     }
   } catch (error: any) {
