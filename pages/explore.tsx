@@ -79,7 +79,7 @@ export default function Explore({ params }: Props) {
         className={`sm:flex justify-between items-center ${view === "map" ? "container my-2 max-w-[975px]" : "mb-8"}`}
       >
         <div className="relative w-full sm:w-[500px] flex">
-          <span className="bg-lime-600/90 py-2 pl-5 pr-4 text-base rounded-l-full text-white font-bold shadow border-gray-200 border border-r-0 flex gap-1 items-center">
+          <span className="bg-lime-600/90 py-2 pl-5 pr-4 text-sm rounded-l-full text-white font-bold shadow border-gray-200 border border-r-0 flex gap-1 items-center">
             Location
           </span>
           <LocationSearch
