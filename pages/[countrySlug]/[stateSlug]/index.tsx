@@ -71,14 +71,14 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           </p>
           <RegionStats regionCode={code} />
           <div className="mt-8">
-            <Link href={`/explore?mode=region&region=${code}&label=${label}&view=map`}>
+            <Link href={`/region/${code}?view=map`}>
               <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center">
                 <MapIconAlt className="inline-block text-xl mr-3" />
                 Explore Hotspot Map <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
               </a>
             </Link>
             <p className="ml-1 mt-0.5">
-              Or, <Link href={`/explore?mode=region&region=${code}&label=${label}`}>view top hotspots</Link> in {label}
+              Or, <Link href={`/region/${code}`}>view top hotspots</Link> in {label}
             </p>
           </div>
         </div>

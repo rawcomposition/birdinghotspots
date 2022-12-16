@@ -3,9 +3,11 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { neLat, neLng, swLat, swLng }: any = req.query;
+  const { neLat, neLng, swLat, swLng, region }: any = req.query;
 
-  const query = {
+  const isCounty = region?.split("-").length === 3;
+
+  const query: any = {
     location: {
       $geoWithin: {
         $box: [
@@ -16,6 +18,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     },
     name: { $not: /^stakeout/i },
   };
+
+  if (region && isCounty) {
+    query.countyCode = region;
+  } else if (region) {
+    query.stateCode = region;
+  }
 
   try {
     await connect();

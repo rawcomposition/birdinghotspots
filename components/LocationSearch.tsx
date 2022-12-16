@@ -56,7 +56,7 @@ export default function LocationSearch({ className, value, onChange, ...props }:
   return (
     <>
       <input
-        type="text"
+        type="search"
         ref={inputRef}
         onKeyDown={handleKeyDown}
         defaultValue={label}

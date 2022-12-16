@@ -27,7 +27,9 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
   const { regionBounds } = useRegionBounds(region);
 
   const fetchMarkers = async (swLat: number, swLng: number, neLat: number, neLng: number) => {
-    const res = await fetch(`/api/hotspot/within?swLat=${swLat}&swLng=${swLng}&neLat=${neLat}&neLng=${neLng}`);
+    const res = await fetch(
+      `/api/hotspot/within?swLat=${swLat}&swLng=${swLng}&neLat=${neLat}&neLng=${neLng}&region=${region || ""}`
+    );
     const data = await res.json();
     if (!data.success) toast.error("Failed to load hotspots");
     setTooLarge(data.tooLarge);

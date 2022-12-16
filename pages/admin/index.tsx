@@ -51,7 +51,7 @@ export default function Dashboard({ data }: Props) {
                   <Link href={`${url}/alphabetical-index`}>
                     <a className="font-medium text-orange-700 hover:text-orange-900">View List</a>
                   </Link>
-                  <Link href={`/explore?mode=region&region=${code}&label=${label}`}>
+                  <Link href={`/region/${code}`}>
                     <a className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2">Explore</a>
                   </Link>
                 </td>

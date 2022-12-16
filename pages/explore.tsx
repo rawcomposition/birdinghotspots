@@ -5,17 +5,9 @@ import { Hotspot, LocationSearchValue } from "lib/types";
 import LocationSearch from "components/LocationSearch";
 import { useRouter } from "next/router";
 import HotspotGrid from "components/HotspotGrid";
-import RegionSearch from "components/RegionSearch";
-import ExploreToggle from "components/ExploreToggle";
 import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import ExploreMap from "components/ExploreMap";
 import toast from "react-hot-toast";
-import States from "data/states.json";
-
-type Option = {
-  value: string;
-  label: string;
-};
 
 type Props = {
   params: any;
@@ -23,16 +15,7 @@ type Props = {
 
 export default function Explore({ params }: Props) {
   const router = useRouter();
-  const [mode, setMode] = React.useState<string>((params.mode as string) || "nearby");
   const [view, setView] = React.useState<string>((params.view as string) || "grid");
-  const [region, setRegion] = React.useState<Option | null>(() => {
-    const value = params.region;
-    const label = params.label;
-    if (params.mode === "region" && value && label) {
-      return { value, label };
-    }
-    return null;
-  });
   const [results, setResults] = React.useState<Hotspot[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<boolean>(false);
@@ -52,21 +35,14 @@ export default function Explore({ params }: Props) {
     }
     return null;
   });
-  const [regionName, setRegionName] = React.useState<string>("");
-  const [count, setCount] = React.useState<number | null>(null);
 
   const { lat, lng, label } = location || {};
-  const { value: regionCode, label: regionLabel } = region || {};
 
   const loadMore = async () => {
     if (loading) return;
     setLoadingMore(true);
     try {
-      const response = await fetch(
-        mode === "nearby"
-          ? `/api/hotspot/nearby?lat=${lat}&lng=${lng}&offset=${results.length || 0}`
-          : `/api/hotspot/by-region?region=${regionCode}&offset=${results.length || 0}`
-      );
+      const response = await fetch(`/api/hotspot/nearby?lat=${lat}&lng=${lng}&offset=${results.length || 0}`);
       const json = await response.json();
       setResults((prev) => [...prev, ...(json?.results || [])]);
     } catch (error) {
@@ -75,58 +51,42 @@ export default function Explore({ params }: Props) {
     setLoadingMore(false);
   };
 
-  const handleRegionChange = (option: Option) => {
-    setRegion(option);
-  };
-
   React.useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          mode === "nearby"
-            ? `/api/hotspot/nearby?lat=${lat}&lng=${lng}`
-            : `/api/hotspot/by-region?region=${regionCode}`
-        );
+        const response = await fetch(`/api/hotspot/nearby?lat=${lat}&lng=${lng}`);
         const json = await response.json();
         setResults(json?.results || []);
-        setCount(json?.count || 0);
-        setRegionName(json?.regionName || "");
       } catch (error) {
         setError(true);
       }
       setLoading(false);
     };
-    if ((lat && lng) || regionCode) fetchData();
-  }, [lat, lng, regionCode, mode]);
+    if (lat && lng) fetchData();
+  }, [lat, lng]);
 
   React.useEffect(() => {
     if (!lat || !lng || !label) return;
     localStorage.setItem("location", JSON.stringify({ lat, lng, label }));
+    router.replace({ query: { lat, lng, label } });
   }, [lat, lng, label]);
 
-  React.useEffect(() => {
-    if (mode === "nearby") {
-      router.replace({ query: { mode, lat, lng, label } });
-    } else {
-      router.replace({ query: { mode, region: regionCode, label: regionLabel } });
-    }
-  }, [mode, regionCode, regionLabel, lat, lng, label]);
-
   return (
-    <div className={view === "grid" ? "container pb-16 mt-4 max-w-[975px]" : "flex flex-col h-full"}>
+    <div className={view === "grid" ? "container pb-16 mt-8 max-w-[975px]" : "flex flex-col h-full"}>
       <Title>Explore</Title>
-      <div className={`sm:flex justify-between items-center ${view === "map" ? "container my-2 max-w-[975px]" : ""}`}>
+      <div
+        className={`sm:flex justify-between items-center ${view === "map" ? "container my-2 max-w-[975px]" : "mb-8"}`}
+      >
         <div className="relative w-full sm:w-[500px] flex">
-          <ExploreToggle value={mode} onChange={setMode} />
-          {mode === "nearby" && (
-            <LocationSearch
-              value={location}
-              onChange={setLocation}
-              className="w-full border-gray-200 focus:border-gray-200 block outline-none rounded-r-full px-6 py-3 shadow focus:ring-0"
-            />
-          )}
-          {mode === "region" && <RegionSearch onChange={handleRegionChange} value={region} isClearable />}
+          <span className="bg-lime-600/90 py-2 pl-5 pr-4 text-base rounded-l-full text-white font-bold shadow border-gray-200 border border-r-0 flex gap-1 items-center">
+            Location
+          </span>
+          <LocationSearch
+            value={location}
+            onChange={setLocation}
+            className="w-full border-gray-200 focus:border-gray-200 block text-base outline-none rounded-r-full px-6 py-2 shadow focus:ring-0"
+          />
         </div>
         <button
           type="button"
@@ -145,28 +105,14 @@ export default function Explore({ params }: Props) {
         </button>
       </div>
       {view === "grid" && (
-        <>
-          {mode === "region" && !loading && regionName && (
-            <p className="text-base text-gray-500 mt-6">
-              Found <strong className="text-[#4a84b2]">{count}</strong> hotspots in{" "}
-              <strong className="text-[#4a84b2]">{regionName}</strong> sorted by species count.
-            </p>
-          )}
-          <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-4">
-            <HotspotGrid
-              hotspots={results}
-              loading={loading}
-              lat={mode === "nearby" ? lat : undefined}
-              lng={mode === "nearby" ? lng : undefined}
-            />
-          </div>
-        </>
+        <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-4">
+          <HotspotGrid hotspots={results} loading={loading} lat={lat} lng={lng} />
+        </div>
       )}
       {view === "map" && (
         <ExploreMap
-          key={`${region || "x"}_${location?.lat || "x"}_${location?.lng || "x"}`}
-          mode={mode}
-          region={region?.value}
+          key={`${location?.lat || "x"}_${location?.lng || "x"}`}
+          mode="nearby"
           lat={location?.lat}
           lng={location?.lng}
         />
