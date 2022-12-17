@@ -27,7 +27,7 @@ export default function AlphabeticalIndex({ countrySlug, state, county, groups }
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Group Index - ${state.label}, ${state.country}`}</Title>
+      <Title>{`Group Index - ${county.name}, ${state.label}, ${state.country}`}</Title>
       <PageHeading countrySlug={countrySlug} state={state} county={county}>
         Group Index
       </PageHeading>
