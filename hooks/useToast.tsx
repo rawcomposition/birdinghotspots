@@ -32,6 +32,9 @@ export default function useToast() {
       body: data ? JSON.stringify(data) : null,
     });
     setLoading(false);
+    if (!response.ok) {
+      return Promise.reject(response.status === 404 ? "Route not found" : "An error ocurred");
+    }
     const json = await response.json();
     if (!json.success) {
       return Promise.reject(json.message || "An error ocurred");
@@ -47,9 +50,9 @@ export default function useToast() {
         error: (message) => <b>{error || message.toString() || "An error occurred"}</b>,
       });
     } catch (error) {
+      setLoading(false);
       return {};
     }
-    setLoading(false);
   };
 
   return { send: wrappedSend, loading };
