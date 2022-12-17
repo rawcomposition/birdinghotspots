@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`bg-white border-b static sm:pr-4 pr-6 pl-3  shadow-sm z-[10000]`}>
+      <header className={`bg-white border-b static pr-8 pl-3  shadow-sm z-[10000]`}>
         <div>
           <div className="flex py-2 items-center">
             <Link href="/">

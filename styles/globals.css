@@ -409,3 +409,9 @@ img.marker-sm {
   z-index: 100000;
   position: absolute;
 }
+
+#nprogress .spinner {
+  top: 5px !important;
+  right: 5px !important;
+  @apply !block sm:!hidden;
+}
