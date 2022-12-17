@@ -14,6 +14,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await admin.deleteUser(uid);
     await Profile.deleteOne({ uid });
+
+    try {
+      await res.revalidate("/about");
+    } catch (err) {}
+
     res.status(200).json({ message: "User deleted successfully", success: true });
   } catch (error) {
     res.status(500).json({ message: "Error deleting user" });

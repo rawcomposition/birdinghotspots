@@ -33,6 +33,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await Profile.updateOne({ uid }, { subscriptions, email, name });
     }
 
+    try {
+      await res.revalidate("/about");
+    } catch (err) {}
+
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ message: "Error updating user" });

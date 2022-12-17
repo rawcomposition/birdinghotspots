@@ -41,6 +41,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await sendInviteEmail(name, email, inviteCode);
     } catch (error) {}
 
+    try {
+      await res.revalidate("/about");
+    } catch (err) {}
+
     res.status(200).json({ message: "User invited successfully", success: true });
   } catch ({ message }) {
     res.status(500).json({ message });
