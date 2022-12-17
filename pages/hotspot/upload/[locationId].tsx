@@ -15,6 +15,7 @@ import { useUser } from "providers/user";
 import Link from "next/link";
 import Title from "components/Title";
 import useRecaptcha from "hooks/useRecaptcha";
+import { useRouter } from "next/router";
 
 type Inputs = {
   name: string;
@@ -50,6 +51,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
   const { user } = useUser();
   const userEmail = user?.email;
   useRecaptcha();
+  const router = useRouter();
 
   const defaultName = typeof localStorage !== "undefined" ? localStorage?.getItem("name") || "" : "";
   const defaultEmail = typeof localStorage !== "undefined" ? localStorage?.getItem("email") || "" : "";
@@ -89,6 +91,10 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
       },
     });
     if (response.success) {
+      if (user?.uid) {
+        router.push(`/hotspot/${locationId}`);
+        return;
+      }
       setSuccess(true);
     }
   };
@@ -114,7 +120,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
           Thanks for contributing!{" "}
           {user?.uid ? "Your photos have been added to the hotspot." : "An editor will review your photos shortly."}
         </p>
-        <Link href="/hotspot/[locationId]" as={`/hotspot/${locationId}`}>
+        <Link href={`/hotspot/${locationId}`}>
           <a className="text-sky-700 font-bold">Back to Hotspot</a>
         </Link>
       </div>
