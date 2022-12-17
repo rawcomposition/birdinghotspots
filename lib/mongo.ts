@@ -8,9 +8,41 @@ import Revision from "models/Revision";
 import Group from "models/Group";
 import Profile from "models/Profile";
 
+declare global {
+  var mongoose: any;
+}
+
 const URI = process.env.MONGO_URI;
-const connect = async () => (URI ? mongoose.connect(URI) : null);
-export default connect;
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+export default async function connect() {
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false,
+    };
+
+    cached.promise = mongoose.connect(process.env.MONGO_URI || "", opts).then((mongoose) => {
+      return mongoose;
+    });
+  }
+
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
+  }
+
+  return cached.conn;
+}
 
 export async function getHotspotsByState(stateCode: string) {
   await connect();
