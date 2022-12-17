@@ -67,7 +67,13 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
           <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {longName}</h3>
           <div className="flex gap-2 mt-2 mb-4">
             <EbirdRegionBtn code={code} portal={state.portal} />
-            <CountyLinksBtn showIba={iba.length > 0} code={code} label={name} />
+            <CountyLinksBtn
+              showIba={iba.length > 0}
+              countrySlug={countrySlug}
+              stateSlug={state.slug}
+              county={county}
+              label={name}
+            />
           </div>
         </div>
         <RegionStats regionCode={code} />

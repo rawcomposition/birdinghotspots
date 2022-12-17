@@ -30,7 +30,6 @@ export default async function connect() {
     };
 
     cached.promise = mongoose.connect(process.env.MONGO_URI || "", opts).then((mongoose) => {
-      console.log("NEW MONGO CONNECTION");
       return mongoose;
     });
   }
@@ -291,7 +290,12 @@ export async function getGroupByLocationId(locationId: string) {
 export async function getGroupsByState(stateCode: string) {
   await connect();
   const result = await Group.find({ stateCodes: stateCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
+  return result;
+}
 
+export async function getGroupsByCounty(countyCode: string) {
+  await connect();
+  const result = await Group.find({ countyCodes: countyCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
   return result;
 }
 

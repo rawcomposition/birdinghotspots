@@ -2,14 +2,17 @@ import { Menu } from "@headlessui/react";
 import { scrollToAnchor } from "lib/helpers";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { County } from "lib/types";
 
 type Props = {
   showIba: boolean;
-  code: string;
+  county: County;
+  countrySlug: string;
+  stateSlug: string;
   label: string;
 };
 
-export default function CountyLinksBtn({ showIba, code, label }: Props) {
+export default function CountyLinksBtn({ showIba, county, countrySlug, stateSlug, label }: Props) {
   return (
     <div className="relative inline-block">
       <Menu>
@@ -19,11 +22,11 @@ export default function CountyLinksBtn({ showIba, code, label }: Props) {
         </Menu.Button>
         <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
           <Menu.Item>
-            <Link href={`/region/${code}?view=map`}>Hotspot Map</Link>
+            <Link href={`/region/${county.code}?view=map`}>Hotspot Map</Link>
           </Menu.Item>
           <Menu.Item>
             <Menu.Item>
-              <Link href={`/region/${code}`}>Top Hotspots</Link>
+              <Link href={`/region/${county.code}`}>Top Hotspots</Link>
             </Menu.Item>
           </Menu.Item>
           <Menu.Item>
@@ -38,6 +41,9 @@ export default function CountyLinksBtn({ showIba, code, label }: Props) {
               </a>
             </Menu.Item>
           )}
+          <Menu.Item>
+            <Link href={`/${countrySlug}/${stateSlug}/${county.slug}/group-index`}>Group Locations</Link>
+          </Menu.Item>
         </Menu.Items>
       </Menu>
     </div>

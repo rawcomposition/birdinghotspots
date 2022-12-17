@@ -55,6 +55,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
         id,
         data: {
           ...data,
+          name: data.name.trim(),
           hotspots: data.hotspotSelect.map(({ value }) => value),
         },
       },

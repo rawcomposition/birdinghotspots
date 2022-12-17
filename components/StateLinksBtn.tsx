@@ -45,6 +45,9 @@ export default function StateLinksBtn({ state }: Props) {
               <Link href={`/${countrySlug}/${slug}/important-bird-areas`}>Important Bird Areas</Link>
             </Menu.Item>
           )}
+          <Menu.Item>
+            <Link href={`/${countrySlug}/${slug}/group-index`}>Group Locations</Link>
+          </Menu.Item>
         </Menu.Items>
       </Menu>
     </div>
