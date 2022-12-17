@@ -12,7 +12,7 @@ declare global {
   var mongoose: any;
 }
 
-const URI = process.env.MONGO_URI;
+//https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
 let cached = global.mongoose;
 
 if (!cached) {
@@ -30,6 +30,7 @@ export default async function connect() {
     };
 
     cached.promise = mongoose.connect(process.env.MONGO_URI || "", opts).then((mongoose) => {
+      console.log("NEW MONGO CONNECTION");
       return mongoose;
     });
   }
