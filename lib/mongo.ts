@@ -28,13 +28,19 @@ export default async function connect() {
   if (!cached.promise) {
     const opts = {
       maxPoolSize: 10,
+      serverSelectionTimeoutMS: 9000, //Stay within Vercel's 10 second function limit
     };
 
     console.log("---Connecting to MongoDB---");
 
-    cached.promise = mongoose.connect(process.env.MONGO_URI || "", opts).then((mongoose) => {
-      return mongoose;
-    });
+    try {
+      cached.promise = mongoose.connect(process.env.MONGO_URI || "", opts).then((mongoose) => {
+        return mongoose;
+      });
+    } catch (e) {
+      console.log("---Error connecting to MongoDB---", e);
+      throw new Error("Error connecting to database");
+    }
   }
 
   try {
