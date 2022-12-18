@@ -4,7 +4,11 @@ import dayjs from "dayjs";
 
 const LogsSchema = new Schema({
   user: String,
+  uid: String,
   message: String,
+  hotspotId: String,
+  driveId: String,
+  groupId: String,
   type: String,
   createdAt: {
     type: "string",

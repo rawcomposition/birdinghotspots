@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import admin from "lib/firebaseAdmin";
+import Logs from "models/Log";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
@@ -28,6 +29,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
     const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes;
     await Hotspot.replaceOne({ _id: id }, { ...data, url, location, featuredImg, noContent });
+
+    try {
+      await Logs.create({
+        user: result.displayName,
+        uid: result.uid,
+        type: "edit_hotspot",
+        message: `edited hotspot: ${data.name}`,
+        hotspotId: data.locationId,
+      });
+    } catch (error) {}
 
     res.status(200).json({ success: true, url });
   } catch (error: any) {

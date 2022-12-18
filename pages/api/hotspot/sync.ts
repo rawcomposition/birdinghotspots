@@ -3,7 +3,6 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import States from "data/states.json";
 import Logs from "models/Log";
-import dayjs from "dayjs";
 
 const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
@@ -135,6 +134,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
 
     const bulkWrites: any = [];
+    let insertCount = 0;
 
     hotspots.forEach((ebird: any) => {
       const index = dbHotspotIds.indexOf(ebird.locationId);
@@ -145,7 +145,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         return;
       }
       const insertOp = insertHotspot(ebird);
-      if (insertOp) bulkWrites.push(insertOp);
+      if (insertOp) {
+        bulkWrites.push(insertOp);
+        insertCount++;
+      }
     });
 
     dbHotspots.forEach(async (dbHotspot: any) => {
@@ -158,7 +161,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Logs.create({
       user: "BirdBot",
       type: "sync",
-      message: `Synced ${nextState}`,
+      message: `synced ${nextState}. Found ${insertCount || 0} new hotspots.`,
     });
     res.status(200).json({ success: true });
   } catch (error: any) {

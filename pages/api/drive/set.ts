@@ -3,6 +3,7 @@ import connect from "lib/mongo";
 import admin from "lib/firebaseAdmin";
 import Drive from "models/Drive";
 import Hotspot from "models/Hotspot";
+import Logs from "models/Log";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
@@ -38,6 +39,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       // @ts-ignore
       { $pull: { drives: { driveId } } }
     );
+
+    try {
+      await Logs.create({
+        user: result.displayName,
+        uid: result.uid,
+        type: isNew ? "add_drive" : "edit_drive",
+        message: `${isNew ? "added" : "edited"} drive: ${data.name}`,
+        driveId: driveId.toString(),
+      });
+    } catch (error) {}
 
     res.status(200).json({ success: true });
   } catch (error: any) {

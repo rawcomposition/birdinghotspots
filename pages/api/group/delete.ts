@@ -3,6 +3,7 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import Group from "models/Group";
 import admin from "lib/firebaseAdmin";
+import Logs from "models/Log";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
@@ -22,6 +23,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await Group.deleteOne({ _id: id });
     await Hotspot.updateMany({ groups: id }, { $pull: { groups: id } });
+
+    try {
+      await Logs.create({
+        user: result.displayName,
+        uid: result.uid,
+        type: "delete_group",
+        message: `deleted group: ${group.name}`,
+        hotspotId: group.locationId,
+      });
+    } catch (error) {}
+
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

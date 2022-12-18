@@ -317,3 +317,15 @@ export type Profile = {
   inviteCode?: string;
   subscriptions: string[];
 };
+
+export type Log = {
+  _id?: string;
+  uid: string;
+  user: string;
+  message: string;
+  type: string;
+  hotspotId?: string;
+  groupId?: string;
+  driveId?: string;
+  createdAt: string;
+};

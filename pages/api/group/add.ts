@@ -4,6 +4,7 @@ import admin from "lib/firebaseAdmin";
 import Group from "models/Group";
 import Hotspot from "models/Hotspot";
 import { generateRandomId } from "lib/helpers";
+import Logs from "models/Log";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
@@ -33,6 +34,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const locationId = data.locationId || `G${generateRandomId()}`;
     const url = `/group/${locationId}`;
     await Group.create({ ...data, locationId, url, stateCodes, countyCodes });
+
+    try {
+      await Logs.create({
+        user: result.displayName,
+        uid: result.uid,
+        type: "add_group",
+        message: `added group: ${data.name}`,
+        hotspotId: data.locationId,
+      });
+    } catch (error) {}
 
     res.status(200).json({ success: true, url });
   } catch (error: any) {

@@ -3,6 +3,7 @@ import connect from "lib/mongo";
 import admin from "lib/firebaseAdmin";
 import Group from "models/Group";
 import Hotspot from "models/Hotspot";
+import Logs from "models/Log";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
@@ -30,6 +31,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     await Group.replaceOne({ _id: id }, { ...data, stateCodes, countyCodes });
+
+    try {
+      await Logs.create({
+        user: result.displayName,
+        uid: result.uid,
+        type: "edit_group",
+        message: `edited group: ${data.name}`,
+        hotspotId: data.locationId,
+      });
+    } catch (error) {}
 
     res.status(200).json({ success: true, url: data.url });
   } catch (error: any) {

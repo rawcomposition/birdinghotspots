@@ -4,6 +4,7 @@ import Hotspot from "models/Hotspot";
 import Drive from "models/Drive";
 import Group from "models/Group";
 import admin from "lib/firebaseAdmin";
+import Logs from "models/Log";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
@@ -23,6 +24,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     // @ts-ignore
     await Drive.updateMany({ entries: { $elemMatch: { hotspot: id } } }, { $pull: { entries: { hotspot: id } } });
     await Group.updateMany({ hotspots: id }, { $pull: { hotspots: id } });
+
+    try {
+      await Logs.create({
+        user: result.displayName,
+        uid: result.uid,
+        type: "delete_hotspot",
+        message: `deleted hotspot: ${hotspot.name}`,
+        hotspotId: hotspot.locationId,
+      });
+    } catch (error) {}
+
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

@@ -7,6 +7,7 @@ import Upload from "models/Upload";
 import Revision from "models/Revision";
 import Group from "models/Group";
 import Profile from "models/Profile";
+import Log from "models/Log";
 
 declare global {
   var mongoose: any;
@@ -339,4 +340,11 @@ export async function getSubscriptions(uid: string): Promise<string[]> {
   await connect();
   const result = await Profile.findOne({ uid }).lean().exec();
   return result ? result.subscriptions || [] : [];
+}
+
+export async function getLogs() {
+  await connect();
+  const result = await Log.find({}).sort({ createdAt: -1 }).limit(300).lean().exec();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
 }

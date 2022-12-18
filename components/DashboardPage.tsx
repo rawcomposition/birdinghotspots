@@ -8,6 +8,7 @@ import {
   PhotoIcon,
   InformationCircleIcon,
   PencilSquareIcon,
+  DocumentTextIcon,
 } from "@heroicons/react/24/outline";
 import DashboardNavItem from "components/DashboardNavItem";
 import { useUser } from "providers/user";
@@ -28,6 +29,7 @@ export default function DashboardPage({ title, children }: PropTypes) {
 
   if (user?.role === "admin") {
     nav.push({ name: "Users", href: "/admin/user/list", icon: UsersIcon });
+    nav.push({ name: "Logs", href: "/admin/logs", icon: DocumentTextIcon });
   }
 
   nav.push({ name: "My Account", href: "/admin/account", icon: UserCircleIcon });
