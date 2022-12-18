@@ -5,11 +5,20 @@ import Countries from "data/countries.json";
 import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
-import FeaturedHotspots from "components/FeaturedHotspots";
 import Heading from "components/Heading";
 import EditorActions from "components/EditorActions";
+import Hotspot from "models/Hotspot";
+import Settings from "models/Settings";
+import { getLocationText, getStateByCode } from "lib/localData";
+import connect from "lib/mongo";
+import { Hotspot as HotspotType } from "lib/types";
+import HotspotGrid from "components/HotspotGrid";
 
-export default function Home() {
+type Props = {
+  featured: HotspotType[];
+};
+
+export default function Home({ featured }: Props) {
   return (
     <>
       <Title />
@@ -46,7 +55,9 @@ export default function Home() {
         <EditorActions className="-mt-10" requireAdmin>
           <Link href="/featured">Edit Featured Hotspots</Link>
         </EditorActions>
-        <FeaturedHotspots />
+        <div className="mt-12 grid xs:grid-cols-2 md:grid-cols-4 gap-6">
+          <HotspotGrid hotspots={featured} loading={false} />
+        </div>
         <Heading className="mb-16 mt-12" color="yellow">
           More Information
         </Heading>
@@ -146,3 +157,35 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  await connect();
+  const settings = await Settings.findOne({ key: "global" }).exec();
+  const featuredIds = settings.featuredIds;
+  const results = await Hotspot.find({ _id: { $in: featuredIds } }, [
+    "stateCode",
+    "countyCode",
+    "name",
+    "url",
+    "featuredImg",
+    "species",
+  ])
+    .sort({ name: 1 })
+    .lean()
+    .exec();
+  const formatted = results.map((hotspot) => {
+    const state = getStateByCode(hotspot.stateCode);
+    const locationLine = hotspot.countyCode
+      ? getLocationText(hotspot.countyCode)
+      : `${state?.label}, ${state?.country}`;
+    return {
+      ...hotspot,
+      _id: hotspot._id.toString(),
+      locationLine,
+    };
+  });
+
+  return {
+    props: { featured: formatted },
+  };
+};

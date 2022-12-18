@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await connect();
     const { featuredIds } = req.body;
     await Settings.updateOne({ key: "global" }, { $set: { featuredIds } });
-
+    res.revalidate("/");
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
