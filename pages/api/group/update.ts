@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.displayName,
+        user: result.name,
         uid: result.uid,
         type: "edit_group",
         message: `edited group: ${data.name}`,

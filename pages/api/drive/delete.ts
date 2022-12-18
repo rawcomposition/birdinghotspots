@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.displayName,
+        user: result.name,
         uid: result.uid,
         type: "delete_drive",
         message: `deleted drive: ${drive.name}`,

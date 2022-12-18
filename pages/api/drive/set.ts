@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.displayName,
+        user: result.name,
         uid: result.uid,
         type: isNew ? "add_drive" : "edit_drive",
         message: `${isNew ? "added" : "edited"} drive: ${data.name}`,
