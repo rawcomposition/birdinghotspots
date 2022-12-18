@@ -161,7 +161,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Logs.create({
       user: "BirdBot",
       type: "sync",
-      message: `synced ${nextState}. Found ${insertCount || 0} new hotspots.`,
+      message: `synced ${nextState}. Found ${insertCount || 0} new ${insertCount === 1 ? "hotspot" : "hotspots"}.`,
     });
     res.status(200).json({ success: true });
   } catch (error: any) {
