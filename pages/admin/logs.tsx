@@ -24,8 +24,8 @@ export default function Logs({ logs }: Props) {
               <span>
                 {user} {message}
               </span>
-              {hotspotId && <Link href={`/admin/hotspot/${hotspotId}`}>view hotspot</Link>}
-              {groupId && <Link href={`/admin/group/${groupId}`}>view group</Link>}
+              {hotspotId && <Link href={`/hotspot/${hotspotId}`}>view hotspot</Link>}
+              {groupId && <Link href={`/group/${groupId}`}>view group</Link>}
             </div>
           ))}
         </div>
