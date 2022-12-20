@@ -28,6 +28,7 @@ export default async function connect() {
   if (!cached.promise) {
     const opts = {
       maxPoolSize: 10,
+      bufferCommands: false,
       serverSelectionTimeoutMS: 9000, //Stay within Vercel's 10 second function limit
     };
 
