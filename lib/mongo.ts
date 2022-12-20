@@ -35,6 +35,7 @@ export default async function connect() {
 
     try {
       cached.promise = mongoose.connect(process.env.MONGO_URI || "", opts).then((mongoose) => {
+        console.log("---Connected!---");
         return mongoose;
       });
     } catch (e) {

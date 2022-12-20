@@ -7,6 +7,7 @@ import "photoswipe/dist/photoswipe.css";
 import { Log } from "lib/types";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import dayjs from "dayjs";
+import { truncate } from "lib/helpers";
 
 type Props = {
   logs: Log[];
@@ -19,10 +20,10 @@ export default function Logs({ logs }: Props) {
         <Title>Logs</Title>
         <div className="p-4 overflow-hidden shadow md:rounded-lg bg-white mb-4">
           {logs.map(({ _id, message, createdAt, hotspotId, user, groupId }) => (
-            <div key={_id} className="flex gap-3">
+            <div key={_id} className="flex flex-col sm:flex-row sm:gap-3 mb-4 sm:mb-0">
               <span className="text-gray-400">{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</span>
               <span>
-                {user} {message}
+                {user} {truncate(message, 64)}
               </span>
               {hotspotId && <Link href={`/hotspot/${hotspotId}`}>view hotspot</Link>}
               {groupId && <Link href={`/group/${groupId}`}>view group</Link>}
