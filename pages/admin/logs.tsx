@@ -23,7 +23,7 @@ export default function Logs({ logs }: Props) {
             <div key={_id} className="flex flex-col sm:flex-row sm:gap-3 mb-4 sm:mb-0">
               <span className="text-gray-400">{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</span>
               <span>
-                {user} {truncate(message, 64)}
+                {user} {truncate(message, 60)}
               </span>
               {hotspotId && <Link href={`/hotspot/${hotspotId}`}>view hotspot</Link>}
               {groupId && <Link href={`/group/${groupId}`}>view group</Link>}

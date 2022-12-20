@@ -111,7 +111,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const dates: DateType[] = [];
     await Promise.all(
       activeStates.map(async (state: any) => {
-        const result = await Logs.findOne({ message: { $regex: new RegExp(`^synced ${state.code}`) } }).sort({
+        const result = await Logs.findOne({
+          message: { $regex: new RegExp(`^synced ${state.code}`), $options: "i" },
+        }).sort({
           createdAt: -1,
         });
         dates.push({
