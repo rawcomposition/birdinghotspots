@@ -30,6 +30,7 @@ export default async function connect() {
       maxPoolSize: 2,
       bufferCommands: false,
       serverSelectionTimeoutMS: 8000, //Stay within Vercel's 10 second function limit
+      heartbeatFrequencyMS: 10000, //Attempting to see if this reduces query timeouts
     };
 
     console.log("---Connecting to MongoDB---");
