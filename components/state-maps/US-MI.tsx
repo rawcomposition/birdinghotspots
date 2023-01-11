@@ -8,7 +8,7 @@ export default function MichiganMap() {
     <>
       <MapTooltip {...tooltipProps} />
       <svg
-        className="state-map hover-map"
+        className="state-map hover-map max-w-[500px]"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
         viewBox="260 18 498 515"

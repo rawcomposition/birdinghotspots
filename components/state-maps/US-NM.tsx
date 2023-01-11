@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NewMexicoMap() {
   return (
     <svg
-      className="state-map"
+      className="state-map max-w-[500px]"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
       viewBox="260 40 430  490"

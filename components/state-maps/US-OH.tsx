@@ -6,7 +6,7 @@ export default function OhioMap() {
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
       viewBox="230 20 482 520"
-      className="state-map"
+      className="state-map max-w-[540px]"
     >
       <g>
         <g id="states">

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function VermontMap() {
   return (
     <svg
-      className="state-map"
+      className="state-map max-w-[500px]"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
       viewBox="250 45 440  480"

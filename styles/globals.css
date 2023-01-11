@@ -346,8 +346,8 @@ img.marker-sm {
 /*SVG Maps*/
 
 .state-map {
-  max-height: 600px;
-  margin-left: auto;
+  width: 100%;
+  @apply mx-auto lg:mr-0;
 }
 
 .state-map path,

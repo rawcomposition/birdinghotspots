@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function ArizonaMap() {
   return (
     <svg
-      className="state-map"
+      className="state-map max-w-[500px]"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
       viewBox="248 35 464 505"
