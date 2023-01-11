@@ -8,10 +8,7 @@ const ProfileSchema = new Schema({
     unique: true,
   },
   name: String,
-  inviteCode: {
-    type: "string",
-    unique: true,
-  },
+  inviteCode: String,
   email: {
     type: "string",
     required: true,
