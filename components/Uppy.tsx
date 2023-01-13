@@ -8,6 +8,7 @@ import "@uppy/core/dist/style.css";
 import "@uppy/status-bar/dist/style.css";
 import "@uppy/core/dist/style.css";
 import "@uppy/drag-drop/dist/style.css";
+import toast from "react-hot-toast";
 
 type Props = {
   onSuccess: (response: any) => void;
@@ -21,6 +22,9 @@ export default function ImageInput({ onSuccess }: Props) {
   const uppy = useUppy(() => {
     const instance = new Uppy({
       autoProceed: true,
+      restrictions: {
+        allowedFileTypes: ["image/*"],
+      },
       onBeforeFileAdded: (file) => {
         const name = `${uuidv4()}.${file.extension}`;
         return {
@@ -66,6 +70,10 @@ export default function ImageInput({ onSuccess }: Props) {
         };
       });
       onSuccess(images || []);
+    });
+
+    instance.on("restriction-failed", () => {
+      toast.error("Only images are allowed");
     });
 
     instance.on("upload", () => {
