@@ -231,6 +231,12 @@ svg.icon {
   display: none !important;
 }
 
+.pswp__img {
+  object-fit: contain;
+  @apply p-2;
+  @apply sm:p-12;
+}
+
 /*Mapbox*/
 .mapboxAddMarkerMode .mapboxgl-canvas-container {
   @apply cursor-crosshair;
