@@ -156,7 +156,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   } else {
     let states = subscriptions.filter((it) => it.split("-").length === 2);
     const counties = subscriptions.filter((it) => it.split("-").length === 3);
-    if (states?.length === 0) {
+    if (subscriptions.length === 0) {
       states = token.regions;
     }
     revisions = await getRevisions(states, counties);

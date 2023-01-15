@@ -97,7 +97,7 @@ export default function Edit({ subscriptions }: Props) {
                 <FormError name="email" />
               </Field>
               <Field label="New Password (optional)">
-                <Input type="password" name="password" required />
+                <Input type="password" name="password" />
                 <FormError name="password" />
               </Field>
               <Field label="Confirm Password">
