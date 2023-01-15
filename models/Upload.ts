@@ -12,6 +12,7 @@ const UploadSchema = new Schema({
   originalUrl: String,
   by: String,
   email: String,
+  uid: String,
   width: Number,
   height: Number,
   caption: String,

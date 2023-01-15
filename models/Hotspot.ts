@@ -104,6 +104,8 @@ const HotspotSchema = new Schema({
       lgUrl: String,
       originalUrl: String,
       by: String,
+      email: String,
+      uid: String,
       isMap: Boolean,
       isStreetview: Boolean,
       isPublicDomain: Boolean,

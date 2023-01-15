@@ -26,6 +26,8 @@ export type Image = {
   lgUrl: string;
   originalUrl: string;
   by?: string;
+  email?: string;
+  uid?: string;
   isMap?: boolean;
   isStreetview?: boolean;
   isPublicDomain?: boolean;
@@ -224,6 +226,7 @@ export type Upload = {
   originalUrl: string;
   by: string;
   email: string;
+  uid?: string;
   width?: number;
   height?: number;
   caption?: string;

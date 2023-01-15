@@ -15,28 +15,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const hotspot = await Hotspot.findOne({ locationId });
 
   try {
-    console.log("1");
-    await admin.verifyIdToken(authToken || "");
-    console.log("2");
+    const result = await admin.verifyIdToken(authToken || "");
     const formattedImages = images.map((it: Image) => ({
       ...it,
       isPublicDomain: true,
       by: name,
+      email,
+      uid: result.uid,
     }));
     let featuredImg = hotspot.featuredImg;
     if (!featuredImg?.smUrl) {
       featuredImg = formattedImages?.[0] || null;
     }
-    console.log("3");
     // @ts-ignore
     await Hotspot.updateOne({ locationId }, { featuredImg, $push: { images: { $each: formattedImages } } });
-    console.log("4");
     res.status(200).json({ success: true });
     return;
   } catch (error) {}
 
   try {
-    console.log("5");
     const score = await verifyRecaptcha(recaptchaToken);
     console.log("Score:", score);
     if (score > 0.5) {
@@ -62,7 +59,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       if (process.env.NODE_ENV === "production" && emails.length > 0) {
         try {
-          console.log("6");
           await sendEmail({
             to: emails.join(", "),
             subject: `${images.length} ${
@@ -77,7 +73,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           });
         } catch (error) {}
       }
-      console.log("7");
 
       res.status(200).json({ success: true });
     } else {
