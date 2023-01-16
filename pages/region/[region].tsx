@@ -50,7 +50,7 @@ export default function Explore({ region, name, url, view: initialView }: Props)
 
   return (
     <div className={view === "grid" ? "container pb-16 mt-4 max-w-[975px]" : "flex flex-col h-full"}>
-      <Title>Explore</Title>
+      <Title>{`Hotspots in ${name}`}</Title>
       <div
         className={`my-8 sm:flex justify-between items-center ${view === "map" ? "container my-2 max-w-[975px]" : ""}`}
       >
