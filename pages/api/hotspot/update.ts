@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
+import Group from "models/Group";
 import admin from "lib/firebaseAdmin";
 import Logs from "models/Log";
 
@@ -26,8 +27,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       };
     }
 
+    const hasGroup = await Group.exists({ hotspots: id });
+
     const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
-    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes;
+    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes && !hasGroup;
     await Hotspot.replaceOne({ _id: id }, { ...data, url, location, featuredImg, noContent });
 
     try {

@@ -4,17 +4,12 @@ import SearchModal from "components/SearchModal";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Logo from "components/Logo";
 import { useRouter } from "next/router";
-
-const links = [
-  {
-    label: "Explore Hotspots",
-    href: "/explore",
-  },
-];
+import { useUser } from "providers/user";
 
 export default function Header() {
   const [showSearch, setShowSearch] = React.useState<boolean>(false);
   const router = useRouter();
+  const { user } = useUser();
 
   const isHome = router.pathname === "/";
 
@@ -34,11 +29,11 @@ export default function Header() {
                 </div>
               </a>
             </Link>
-            <button type="button" onClick={() => setShowSearch(true)} className="ml-auto mr-6 sm:mr-4">
+            <button type="button" onClick={() => setShowSearch(true)} className="ml-auto mr-5 sm:mr-4">
               <MagnifyingGlassIcon className="h-5 w-5" />
             </button>
             <nav>
-              <ul className="flex gap-7">
+              <ul className="flex gap-6 sm:gap-7">
                 <li>
                   <Link href="/explore">
                     <a className="text-xs font-bold text-gray-700 hover:text-gray-600 cursor-pointer uppercase">
@@ -46,6 +41,21 @@ export default function Header() {
                       <span className="sm:hidden">Explore</span>
                     </a>
                   </Link>
+                </li>
+                <li className="hidden xs:block">
+                  {user ? (
+                    <Link href="/admin">
+                      <a className="text-xs font-bold text-gray-700 hover:text-gray-600 cursor-pointer uppercase">
+                        Dashboard
+                      </a>
+                    </Link>
+                  ) : (
+                    <Link href="/login">
+                      <a className="text-xs font-bold text-gray-700 hover:text-gray-600 cursor-pointer uppercase">
+                        Login
+                      </a>
+                    </Link>
+                  )}
                 </li>
               </ul>
             </nav>
