@@ -97,11 +97,11 @@ export default function Edit({ subscriptions }: Props) {
                 <FormError name="email" />
               </Field>
               <Field label="New Password (optional)">
-                <Input type="password" name="password" />
+                <Input type="password" name="password" autocomplete="new-password" />
                 <FormError name="password" />
               </Field>
               <Field label="Confirm Password">
-                <Input type="password" name="confirm_password" />
+                <Input type="password" name="confirm_password" autocomplete="new-password" />
                 <FormError name="confirm_password" />
               </Field>
               <Field label="Region Subscription">
