@@ -13,15 +13,17 @@ const getHotspotsForRegion = async (region: string) => {
     throw "Error fetching eBird photos";
   }
 
-  return json.map((hotspot: any) => ({
-    locationId: hotspot.locId,
-    name: hotspot.locName.trim(),
-    lat: hotspot.lat,
-    lng: hotspot.lng,
-    total: hotspot.numSpeciesAllTime || 0,
-    subnational1Code: hotspot.subnational1Code,
-    subnational2Code: hotspot.subnational2Code,
-  }));
+  return json
+    .map((hotspot: any) => ({
+      locationId: hotspot.locId,
+      name: hotspot.locName.trim(),
+      lat: hotspot.lat,
+      lng: hotspot.lng,
+      total: hotspot.numSpeciesAllTime || 0,
+      subnational1Code: hotspot.subnational1Code,
+      subnational2Code: hotspot.subnational2Code,
+    }))
+    .filter((hotspot: any) => !hotspot.name.startsWith("stakeout"));
 };
 
 const updateHotspot = (dbHotspot: any, ebird: any) => {
