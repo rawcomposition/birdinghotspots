@@ -68,7 +68,7 @@ export async function getHotspotsByState(stateCode: string) {
 
 export async function getHotspotsByCounty(countyCode: string) {
   await connect();
-  const result = await Hotspot.find({ countyCode, name: { $not: /^stakeout/i } }, [
+  const result = await Hotspot.find({ countyCode }, [
     "name",
     "url",
     "iba",

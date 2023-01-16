@@ -16,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         ],
       },
     },
-    name: { $not: /^stakeout/i },
   };
 
   if (region && isCounty) {
