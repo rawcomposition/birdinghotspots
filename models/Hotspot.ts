@@ -137,6 +137,17 @@ const HotspotSchema = new Schema({
   needsDeleting: Boolean,
 });
 
+HotspotSchema.index({ location: "2dsphere" });
+HotspotSchema.index({ locationId: 1 });
+HotspotSchema.index({ countyCode: 1 });
+HotspotSchema.index({ stateCode: 1 });
+HotspotSchema.index({ name: 1 });
+HotspotSchema.index({ locationId: 1, name: 1, _id: 1 }); //Hotspot async select
+HotspotSchema.index({ countyCode: 1, name: 1, species: -1 }); //Top county hotspots
+HotspotSchema.index({ stateCode: 1, name: 1, species: -1 }); //Top state hotspots
+HotspotSchema.index({ countryCode: 1, name: 1 });
+HotspotSchema.index({ stateCode: 1, name: 1 });
+
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);
 
 export default Hotspot;
