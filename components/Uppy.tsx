@@ -57,10 +57,12 @@ export default function ImageInput({ onSuccess }: Props) {
       const images = result.successful.map((file: any) => {
         const preview = previewsRef.current ? previewsRef.current[file.id] : null;
         const baseName = file.name.split(".")[0];
+        const ext = file.extension;
         return {
-          smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_small.jpg`,
-          lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_large.jpg`,
-          originalUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_original.jpg`,
+          //Transloadit converts .jpeg to jpg for small and large images. .jpeg will be retained for originals
+          smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_small.${ext === "jpeg" ? "jpg" : ext}`,
+          lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_large.${ext === "jpeg" ? "jpg" : ext}`,
+          originalUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_original.${ext}`,
           preview: preview,
           by: null,
           width: file.meta.width || null,
