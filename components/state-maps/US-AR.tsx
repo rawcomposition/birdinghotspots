@@ -1053,7 +1053,7 @@ export default function ArkansasMap() {
                 </text>
               </a>
             </Link>
-            <Link href="/us/arkansas/sebastion-county">
+            <Link href="/us/arkansas/sebastian-county">
               <a {...linkProps} className="teal">
                 <path
                   {...pathProps}
