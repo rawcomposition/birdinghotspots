@@ -1,3 +1,7 @@
+export type KeyValue = {
+  [key: string]: any;
+};
+
 export type State = {
   label: string;
   code: string;
@@ -102,6 +106,7 @@ export type Hotspot = {
   images?: Image[];
   featuredImg?: Image;
   species?: number;
+  groupIds?: string[] | Group[];
   noContent?: boolean;
   needsDeleting?: boolean;
 };
