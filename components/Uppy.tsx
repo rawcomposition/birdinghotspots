@@ -57,7 +57,7 @@ export default function ImageInput({ onSuccess }: Props) {
       const images = result.successful.map((file: any) => {
         const preview = previewsRef.current ? previewsRef.current[file.id] : null;
         const baseName = file.name.split(".")[0];
-        const ext = file.extension;
+        const ext = file.extension?.toLowerCase();
         return {
           //Transloadit converts .jpeg to jpg for small and large images. .jpeg will be retained for originals
           smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_small.${ext === "jpeg" ? "jpg" : ext}`,
