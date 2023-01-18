@@ -7,6 +7,8 @@
 ### Websites About Birding in Kentucky
 
 [Kentucky Ornithological Society](http://birdky.org/index.html)
+[Kentucky Birders - All Birds](https://m.facebook.com/groups/1167247486632116/)
+[Kentucky Birders Facebook](https://m.facebook.com/groups/163103813835132/)
 [Audubon Society of Kentucky](http://audubonsocietyofky.org/) – Lexington, KY  
 [Beckham Bird Club](http://www.beckhambirdclub.org/) – Louisville, KY  
 [Central Kentucky Audubon Society](https://www.facebook.com/pages/Central-Kentucky-Audubon-Society/144657555544256)  
