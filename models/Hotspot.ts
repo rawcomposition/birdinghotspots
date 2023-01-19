@@ -127,6 +127,7 @@ const HotspotSchema = new Schema({
     isStreetview: Boolean,
     streetviewData: Object,
   },
+  groupIds: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   createdAt: {
     type: "string",
     default: () => dayjs().format("YYYY-MM-DD"),
@@ -145,8 +146,9 @@ HotspotSchema.index({ name: 1 });
 HotspotSchema.index({ locationId: 1, name: 1, _id: 1 }); //Hotspot async select
 HotspotSchema.index({ countyCode: 1, name: 1, species: -1 }); //Top county hotspots
 HotspotSchema.index({ stateCode: 1, name: 1, species: -1 }); //Top state hotspots
-HotspotSchema.index({ countryCode: 1, name: 1 });
-HotspotSchema.index({ stateCode: 1, name: 1 });
+HotspotSchema.index({ "iba.value": 1, name: 1 });
+HotspotSchema.index({ roadside: 1, name: 1, stateCode: 1 });
+HotspotSchema.index({ accessible: 1, name: 1, stateCode: 1 });
 
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);
 
