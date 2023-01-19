@@ -22,9 +22,8 @@ export default function StateInfo({ label }: Props) {
             about birding locations where birds are being seen.
           </p>
           <p className="mb-4">
-            Hotspots are organized by county. If you know the county of a location, click on the county name in the{" "}
-            <a href="#counties">Alphabetical list of {label} Counties</a> to access information about birds and all the
-            eBird hotspots in that county.
+            Hotspots are organized by county. If you know the county of a location, click on the county name on the map
+            at the top of this page to access information about birds and all the eBird hotspots in that county.
           </p>
           <p className="mb-4">
             If you do not know the county, select a hotspot from the Alphabetical list of {label} Hotspots. Or use the

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function EbirdDescription() {
   return (
     <>
@@ -51,9 +53,7 @@ export default function EbirdDescription() {
           How to get a “life list” of bird species at a personal location
         </a>
         <br />
-        <a href="https://ebirdhotspots.com/how-to-help/" target="_blank" rel="noreferrer">
-          Corrections and How to Help
-        </a>
+        <Link href="/contact">Corrections and How to Help</Link>
       </p>
     </>
   );
