@@ -3,7 +3,7 @@ import Uppy from "components/Uppy";
 import SortableImage from "./SortableImage";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from "@dnd-kit/sortable";
-import AddStreetview from "components/AddStreetview";
+import { useModal } from "providers/modals";
 
 type Props = {
   hideExtraFields?: boolean;
@@ -20,6 +20,7 @@ export default function ImagesInput({
 }: Props) {
   const { control } = useFormContext();
   const { fields, append, remove, move } = useFieldArray({ name: "images", control });
+  const { open } = useModal();
 
   const handleDelete = async (i: number) => {
     if (!confirm("Are you sure you want to delete this image?")) return;
@@ -64,7 +65,19 @@ export default function ImagesInput({
       )}
 
       <Uppy onSuccess={(result) => append(result)} />
-      {enableStreetview && <AddStreetview />}
+      {enableStreetview && (
+        <button
+          type="button"
+          className="text-[#2275d7] text-xs font-medium"
+          onClick={() =>
+            open("addStreetView", {
+              onSuccess: (result: any) => append(result),
+            })
+          }
+        >
+          Or add Google Street View
+        </button>
+      )}
     </div>
   );
 }

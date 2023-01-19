@@ -8,7 +8,7 @@ type Props = {
   label: string;
 };
 
-export default function EditPoints({ label }: Props) {
+export default function StateInfo({ label }: Props) {
   const { close } = useModal();
 
   return (

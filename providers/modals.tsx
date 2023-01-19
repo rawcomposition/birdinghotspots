@@ -8,6 +8,7 @@ import ModalWrapper from "components/ModalWrapper";
 
 // modals
 import StateInfo from "modals/StateInfo";
+import AddStreetView from "modals/AddStreetview";
 
 const modals = [
   {
@@ -15,6 +16,13 @@ const modals = [
     title: "About This Website",
     maxWidth: "1100px",
     Component: StateInfo,
+    placement: "center",
+  },
+  {
+    id: "addStreetView",
+    title: "Add Google Street View or Photosphere",
+    maxWidth: "700px",
+    Component: AddStreetView,
     placement: "center",
   },
 ];
