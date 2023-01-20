@@ -150,8 +150,8 @@ HotspotSchema.index({ countyCode: 1 });
 HotspotSchema.index({ stateCode: 1 });
 HotspotSchema.index({ name: 1 });
 HotspotSchema.index({ locationId: 1, name: 1, _id: 1 }); //Hotspot async select
-HotspotSchema.index({ countyCode: 1, name: 1, species: -1 }); //Top county hotspots
-HotspotSchema.index({ stateCode: 1, name: 1, species: -1 }); //Top state hotspots
+HotspotSchema.index({ countyCode: 1, species: -1, name: 1 }); //Top county hotspots
+HotspotSchema.index({ stateCode: 1, species: -1, name: 1 }); //Top state hotspots
 HotspotSchema.index({ "iba.value": 1, name: 1 });
 HotspotSchema.index({ roadside: 1, name: 1, stateCode: 1 });
 HotspotSchema.index({ accessible: 1, name: 1, stateCode: 1 });
