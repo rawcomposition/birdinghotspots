@@ -142,14 +142,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const hotspots = (await getHotspotsByState(state.code)) || [];
 
-  let groupHotspotIds: string[] = [];
-  if (cookies.session) {
-    groupHotspotIds = (await getGroupHotspotIds(state.code)) || [];
-  }
-
   const formatted = hotspots.map((it: any) => ({
     ...it,
-    noContent: (cookies.session && it.noContent && !groupHotspotIds.includes(it._id.toString())) || false,
+    noContent: (cookies.session && it.noContent && !it.groupIds?.length) || false,
   }));
 
   return {
