@@ -136,10 +136,9 @@ export async function getIBAHotspots(ibaSlug: string) {
 
 export async function getHotspotByLocationId(locationId: string, populate?: boolean) {
   await connect();
-  const result = await Hotspot.findOne({ locationId }).lean().exec();
-  if (populate && result?._id) {
-    result.groups = await Group.find({ hotspots: result._id }).lean().exec();
-  }
+  const result = await Hotspot.findOne({ locationId })
+    .populate(populate ? "groups" : "")
+    .lean();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

@@ -33,7 +33,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await connect();
     const locationId = data.locationId || `G${generateRandomId()}`;
     const url = `/group/${locationId}`;
-    await Group.create({ ...data, locationId, url, stateCodes, countyCodes });
+    const group = await Group.create({ ...data, locationId, url, stateCodes, countyCodes });
+    await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: group._id } });
 
     try {
       await Logs.create({

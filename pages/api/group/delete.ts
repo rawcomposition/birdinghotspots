@@ -21,8 +21,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    await Group.deleteOne({ _id: id });
-    await Hotspot.updateMany({ groups: id }, { $pull: { groups: id } });
+    await Promise.all([
+      await Group.deleteOne({ _id: id }),
+      await Hotspot.updateMany({ groupIds: id }, { $pull: { groupIds: id } }),
+    ]);
 
     try {
       await Logs.create({

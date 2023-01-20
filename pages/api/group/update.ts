@@ -30,7 +30,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    await Group.replaceOne({ _id: id }, { ...data, stateCodes, countyCodes });
+    const group = await Group.findOne({ _id: id }, ["-_id", "hotspots"]);
+    const removedHotspots = group.hotspots.filter((it: string) => !data.hotspots.includes(it.toString()));
+
+    await Promise.all([
+      await Group.updateOne({ _id: id }, { ...data, stateCodes, countyCodes }),
+      await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: id } }),
+      await Hotspot.updateMany({ _id: { $in: removedHotspots } }, { $pull: { groupIds: id } }),
+    ]);
 
     try {
       await Logs.create({

@@ -138,6 +138,12 @@ const HotspotSchema = new Schema({
   needsDeleting: Boolean,
 });
 
+HotspotSchema.virtual("groups", {
+  localField: "groupIds",
+  foreignField: "_id",
+  ref: "Group",
+});
+
 HotspotSchema.index({ location: "2dsphere" });
 HotspotSchema.index({ locationId: 1 });
 HotspotSchema.index({ countyCode: 1 });
@@ -149,6 +155,7 @@ HotspotSchema.index({ stateCode: 1, name: 1, species: -1 }); //Top state hotspot
 HotspotSchema.index({ "iba.value": 1, name: 1 });
 HotspotSchema.index({ roadside: 1, name: 1, stateCode: 1 });
 HotspotSchema.index({ accessible: 1, name: 1, stateCode: 1 });
+HotspotSchema.index({ groupIds: 1 });
 
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);
 

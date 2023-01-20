@@ -102,7 +102,7 @@ export type Hotspot = {
       driveId: string;
     }
   ];
-  groups?: [Group];
+  groups?: Group[];
   images?: Image[];
   featuredImg?: Image;
   species?: number;
