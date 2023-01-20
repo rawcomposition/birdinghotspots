@@ -13,29 +13,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       // county
       const total = await Hotspot.countDocuments({ countyCode: region });
       const withImg = await Hotspot.countDocuments({ countyCode: region, featuredImg: { $ne: null } });
-      const allHotspots = await Hotspot.find({ countyCode: region }, ["_id", "noContent"]);
-      const groups = await Group.find({ countyCodes: region }, ["hotspots"]);
-      const groupHotspotIds = groups
-        .map((it) => it.hotspots)
-        .flat()
-        .map((it) => it.toString());
+      const withContent = await Hotspot.countDocuments({
+        countyCode: region,
+        $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
+      });
 
-      const withContent = allHotspots.filter((it) => !it.noContent || groupHotspotIds.includes(it._id.toString()));
-
-      res.status(200).json({ total, withImg, withContent: withContent.length });
+      res.status(200).json({ total, withImg, withContent });
     } else {
       // state
       const total = await Hotspot.countDocuments({ stateCode: region });
       const withImg = await Hotspot.countDocuments({ stateCode: region, featuredImg: { $ne: null } });
-      const allHotspots = await Hotspot.find({ stateCode: region }, ["_id", "noContent"]);
-      const groups = await Group.find({ stateCode: region }, ["hotspots"]);
-      const groupHotspotIds = groups
-        .map((it) => it.hotspots)
-        .flat()
-        .map((it) => it.toString());
-      const withContent = allHotspots.filter((it) => !it.noContent || groupHotspotIds.includes(it._id.toString()));
+      const withContent = await Hotspot.countDocuments({
+        stateCode: region,
+        $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
+      });
+
       res.setHeader("Cache-Control", "max-age=0, s-maxage=21600"); //Cache for 6 hours
-      res.status(200).json({ total, withImg, withContent: withContent.length });
+      res.status(200).json({ total, withImg, withContent });
     }
   } catch (error: any) {
     res.status(500).json({ error: error.message });

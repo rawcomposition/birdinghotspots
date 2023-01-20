@@ -156,6 +156,8 @@ HotspotSchema.index({ "iba.value": 1, name: 1 });
 HotspotSchema.index({ roadside: 1, name: 1, stateCode: 1 });
 HotspotSchema.index({ accessible: 1, name: 1, stateCode: 1 });
 HotspotSchema.index({ groupIds: 1 });
+HotspotSchema.index({ stateCode: 1, noContent: 1, groupIds: 1 });
+HotspotSchema.index({ countyCode: 1, noContent: 1, groupIds: 1 });
 
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);
 
