@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (isNew === "true") {
       await Article.create({ ...data, _id: id });
     } else {
-      await Article.replaceOne({ _id: id }, data);
+      await Article.updateOne({ _id: id }, data);
     }
 
     res.status(200).json({ success: true });

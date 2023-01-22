@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const newDrive = await Drive.create(data);
       driveId = newDrive._id;
     } else {
-      await Drive.replaceOne({ _id: id }, data);
+      await Drive.updateOne({ _id: id }, data);
     }
 
     const hotspotIds = data.entries.map((entry: any) => entry.hotspot);
