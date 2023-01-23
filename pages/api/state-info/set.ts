@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await RegionInfo.create({ ...data, code });
     }
 
-    await res.revalidate(`/${state.country}/${state.slug}`);
+    await res.revalidate(`/${state.country.toLowerCase()}/${state.slug}`);
 
     res.status(200).json({ success: true });
   } catch (error: any) {

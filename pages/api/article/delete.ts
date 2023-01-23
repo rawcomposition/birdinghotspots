@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     await Article.findByIdAndDelete(id);
 
-    await res.revalidate(`/${state.country}/${state.slug}`);
+    await res.revalidate(`/${state.country.toLowerCase()}/${state.slug}`);
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
