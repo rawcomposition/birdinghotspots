@@ -154,7 +154,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         </button>
       </Heading>
 
-      <EditorActions className="-mt-2" requireAdmin>
+      <EditorActions className="-mt-2">
         <Link href={`/${countrySlug}/${slug}/edit-info`}>
           <a className="flex gap-1">
             <PencilSquareIcon className="h-4 w-4" />

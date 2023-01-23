@@ -16,9 +16,9 @@ export const StateLinkSection = ({ heading, links, external }: Props) => {
   const visibleLinks = viewMore ? sortedLinks : sortedLinks.slice(0, limit);
   if (!links?.length) return null;
   return (
-    <>
-      <h3 className="text-lg mb-1.5 font-bold break-after-avoid">{heading}</h3>
-      <p className="mb-4 break-inside-avoid">
+    <div className="break-inside-avoid">
+      <h3 className="text-lg mb-1.5 font-bold">{heading}</h3>
+      <p className="mb-4">
         {visibleLinks.map(({ label, url }) => (
           <React.Fragment key={url}>
             {external ? (
@@ -42,6 +42,6 @@ export const StateLinkSection = ({ heading, links, external }: Props) => {
           </button>
         )}
       </p>
-    </>
+    </div>
   );
 };
