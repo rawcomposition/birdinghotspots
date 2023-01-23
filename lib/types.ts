@@ -339,7 +339,7 @@ export type Log = {
 
 export type RegionInfo = {
   stateCode: string;
-  websiteHeading?: string;
+  websitesHeading?: string;
   socialHeading?: string;
   clubsHeading?: string;
   websiteLinks?: Link[];
