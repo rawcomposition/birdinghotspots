@@ -8,7 +8,7 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
 import { geocode, getEbirdHotspot, formatMarker } from "lib/helpers";
-import InputLinks from "components/InputLinks";
+import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
@@ -121,7 +121,7 @@ export default function Edit({
                 )}
               </Field>
 
-              <InputLinks groupLinks={groupLinks} />
+              <InputHotspotLinks groupLinks={groupLinks} />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />

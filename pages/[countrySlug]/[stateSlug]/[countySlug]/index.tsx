@@ -14,6 +14,8 @@ import CountyLinksBtn from "components/CountyLinksBtn";
 import MapBox from "components/MapBox";
 import nookies from "nookies";
 import RegionStats from "components/RegionStats";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import EditorActions from "components/EditorActions";
 
 type Props = {
   countrySlug: string;
@@ -62,7 +64,15 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       <PageHeading countrySlug={countrySlug} state={state}>
         {longName}
       </PageHeading>
-      <section className="md:flex justify-between items-start -mt-8 mb-8">
+      <EditorActions className="-mt-10" requireRegion={state.code}>
+        <Link href={`/edit/group/new?country=${countrySlug}`}>
+          <a className="flex gap-1">
+            <PlusCircleIcon className="h-4 w-4" />
+            Add Group
+          </a>
+        </Link>
+      </EditorActions>
+      <section className="md:flex justify-between items-start mb-8">
         <div>
           <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {longName}</h3>
           <div className="flex gap-2 mt-2 mb-4">

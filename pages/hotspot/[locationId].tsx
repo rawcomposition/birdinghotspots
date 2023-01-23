@@ -108,7 +108,14 @@ export default function Hotspot({
       </PageHeading>
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
-        {canEdit && <Link href={`/edit/${locationId}`}>Edit Hotspot</Link>}
+        {canEdit && (
+          <Link href={`/edit/${locationId}`}>
+            <a className="flex gap-1">
+              <PencilSquareIcon className="h-4 w-4" />
+              Edit Hotspot
+            </a>
+          </Link>
+        )}
         <Link href={`/hotspot/upload/${locationId}`}>
           <a className="flex gap-1">
             <CameraIcon className="h-4 w-4" />

@@ -337,3 +337,13 @@ export type Log = {
   driveId?: string;
   createdAt: string;
 };
+
+export type RegionInfo = {
+  stateCode: string;
+  websitesHeading?: string;
+  socialHeading?: string;
+  clubsHeading?: string;
+  websiteLinks?: Link[];
+  socialLinks?: Link[];
+  clubLinks?: Link[];
+};

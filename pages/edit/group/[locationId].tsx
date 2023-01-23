@@ -9,7 +9,7 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import { getGroupByLocationId } from "lib/mongo";
 import { geocode } from "lib/helpers";
-import InputLinks from "components/InputLinks";
+import InputHotspotLinks from "components/InputHotspotLinks";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
 import { Group, Hotspot, GroupInputs } from "lib/types";
@@ -127,7 +127,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 )}
               </Field>
 
-              <InputLinks />
+              <InputHotspotLinks />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />

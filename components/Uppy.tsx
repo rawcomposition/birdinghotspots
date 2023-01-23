@@ -23,7 +23,7 @@ export default function ImageInput({ onSuccess }: Props) {
     const instance = new Uppy({
       autoProceed: true,
       restrictions: {
-        allowedFileTypes: ["image/*"],
+        allowedFileTypes: [".jpg", ".jpeg", ".png"],
       },
       onBeforeFileAdded: (file) => {
         const name = `${uuidv4()}.${file.extension}`;

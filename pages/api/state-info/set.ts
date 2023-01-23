@@ -1,30 +1,32 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import admin from "lib/firebaseAdmin";
-import Article from "models/Article";
+import RegionInfo from "models/RegionInfo";
 import { getStateByCode } from "lib/localData";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const token = req.headers.authorization;
-  const { isNew }: any = req.query;
-  const { data, id } = req.body;
+  const { data, code } = req.body;
 
   const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(data?.stateCode)) {
+  if (result.role !== "admin" && !result.regions?.includes(code)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
   try {
-    const state = getStateByCode(data?.stateCode);
+    const state = getStateByCode(code);
+
     if (!state) {
       throw new Error("Invalid state code");
     }
+
     await connect();
-    if (isNew === "true") {
-      await Article.create({ ...data, _id: id });
+    const current = await RegionInfo.findOne({ code });
+    if (current) {
+      await RegionInfo.updateOne({ code }, { $set: data });
     } else {
-      await Article.updateOne({ _id: id }, data);
+      await RegionInfo.create({ ...data, code });
     }
 
     await res.revalidate(`/${state.country}/${state.slug}`);

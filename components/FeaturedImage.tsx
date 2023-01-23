@@ -38,7 +38,7 @@ export default function FeaturedImage({ photos }: Props) {
   return (
     <Gallery options={{ dataSource: items }} uiElements={uiElements} withCaption>
       {items.map((item, i) => (
-        <Item key={photos[i].originalUrl} {...item}>
+        <Item key={i} {...item}>
           {({ ref, open }) => {
             const imgRef = ref as any;
             return (

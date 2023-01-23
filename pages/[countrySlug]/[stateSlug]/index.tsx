@@ -1,27 +1,26 @@
 import * as React from "react";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import { getState, getCounties } from "lib/localData";
 import RareBirds from "components/RareBirds";
-import { State as StateType, Article, County as CountyType } from "lib/types";
+import { State as StateType, Article, County as CountyType, RegionInfo } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
 import Title from "components/Title";
-import fs from "fs";
-import path from "path";
-import ReactMarkdown from "react-markdown";
-import { getArticlesByState } from "lib/mongo";
+import { getArticlesByState, getRegionInfo } from "lib/mongo";
 import StateMap from "components/StateMap";
-import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
 import StateLinksBtn from "components/StateLinksBtn";
 import RegionStats from "components/RegionStats";
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
+import States from "data/states.json";
+import { StateLinkSection } from "components/StateLinkSection";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -32,14 +31,21 @@ type Props = {
   countrySlug: string;
   state: StateType;
   counties: CountyType[];
-  info: string;
+  info: RegionInfo;
   articles: Article[];
 };
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
+  const [showMoreInfo, setShowMoreInfo] = React.useState<boolean>(false);
   const { label, code, slug } = state || ({} as StateType);
   const { open } = useModal();
+
+  const infoLinksCount =
+    articles.length +
+    (info?.websiteLinks?.length || 0) +
+    (info?.socialLinks?.length || 0) +
+    (info?.clubLinks?.length || 0);
 
   return (
     <div className="container pb-16 mt-12">
@@ -54,8 +60,18 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         )}
       </PageHeading>
       <EditorActions className="-mt-10" requireRegion={state.code}>
-        <Link href={`/edit/group/new?country=${countrySlug}`}>Add Group</Link>
-        <Link href={`/${countrySlug}/${slug}/article/edit/new`}>Add Article</Link>
+        <Link href={`/edit/group/new?country=${countrySlug}`}>
+          <a className="flex gap-1">
+            <PlusCircleIcon className="h-4 w-4" />
+            Add Group
+          </a>
+        </Link>
+        <Link href={`/${countrySlug}/${slug}/article/edit/new`}>
+          <a className="flex gap-1">
+            <DocumentPlusIcon className="h-4 w-4" />
+            Add Article
+          </a>
+        </Link>
       </EditorActions>
       <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
         <div>
@@ -144,44 +160,76 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         </button>
       </Heading>
 
-      <div className="md:columns-2 gap-16 formatted">
-        {articles.length > 0 && (
-          <>
-            <h3 className="text-lg mb-1.5 font-bold">Birding in {label} Articles</h3>
-            <p className="mb-4">
-              {articles.map(({ name, slug: articleSlug }) => (
-                <React.Fragment key={articleSlug}>
-                  <Link href={`/${countrySlug}/${slug}/article/${articleSlug}`}>
-                    <a style={{ fontWeight: "normal" }}>{name}</a>
-                  </Link>
-                  <br />
-                </React.Fragment>
-              ))}
-            </p>
-          </>
-        )}
-        <ReactMarkdown linkTarget="_blank">{info}</ReactMarkdown>
-        {!info && articles.length === 0 && (
-          <p className="text-gray-500 text-base -mt-2">No additional information available.</p>
+      <EditorActions className="-mt-2" requireAdmin>
+        <Link href={`/${countrySlug}/${slug}/edit-info`}>
+          <a className="flex gap-1">
+            <PencilSquareIcon className="h-4 w-4" />
+            Edit Links
+          </a>
+        </Link>
+        <Link href={`/${countrySlug}/${slug}/article/edit/new`}>
+          <a className="flex gap-1">
+            <DocumentPlusIcon className="h-4 w-4" />
+            Add Article
+          </a>
+        </Link>
+      </EditorActions>
+
+      <div className="relative">
+        <div className={`md:columns-2 gap-16 ${!showMoreInfo ? "h-60 overflow-hidden" : ""}`}>
+          {articles.length > 0 && (
+            <>
+              <h3 className="text-lg mb-1.5 font-bold">Birding in {label} Articles</h3>
+              <p className="mb-4">
+                {articles.map(({ name, slug: articleSlug }) => (
+                  <React.Fragment key={articleSlug}>
+                    <Link href={`/${countrySlug}/${slug}/article/${articleSlug}`}>{name}</Link>
+                    <br />
+                  </React.Fragment>
+                ))}
+              </p>
+            </>
+          )}
+          <StateLinkSection links={info?.websiteLinks} heading={info?.websitesHeading} />
+          <StateLinkSection links={info?.socialLinks} heading={info?.socialHeading} />
+          <StateLinkSection links={info?.clubLinks} heading={info?.clubsHeading} />
+
+          {!info && articles.length === 0 && (
+            <p className="text-gray-500 text-base -mt-2">No additional information available.</p>
+          )}
+        </div>
+        {infoLinksCount > 12 && !showMoreInfo && (
+          <div className="w-full h-20 bg-gradient-to-t from-white absolute bottom-0 flex flex-col justify-end">
+            <button
+              type="button"
+              onClick={() => setShowMoreInfo(true)}
+              className="text-[#4a84b2] font-bold block mx-auto z-10"
+            >
+              View More
+            </button>
+          </div>
         )}
       </div>
-      {(info || articles.length > 0) && <hr className="my-8 opacity-70" />}
+      <hr className="my-8 opacity-70" />
       <RareBirds region={code} className="mt-12" />
     </div>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = States.map(({ country, slug }) => ({
+    params: { countrySlug: country.toLowerCase(), stateSlug: slug },
+  }));
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { countrySlug, stateSlug } = params as Params;
   const state = getState(stateSlug);
   if (!countrySlug || !state) return { notFound: true };
   const counties = getCounties(state.code);
 
-  const infoFile = path.join(process.cwd(), "data", "state-info", `${state.code}.md`);
-  let info = "";
-  if (fs.existsSync(infoFile)) {
-    info = fs.readFileSync(infoFile.toString(), "utf8");
-  }
+  const info = await getRegionInfo(state.code);
 
   const articles = (await getArticlesByState(state.code)) || [];
 
