@@ -217,7 +217,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = States.map(({ country, slug }) => ({
+  const paths = States.filter(({ active }) => active).map(({ country, slug }) => ({
     params: { countrySlug: country.toLowerCase(), stateSlug: slug },
   }));
   return { paths, fallback: false };
