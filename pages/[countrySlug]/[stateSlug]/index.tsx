@@ -190,7 +190,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
               </p>
             </>
           )}
-          <StateLinkSection links={info?.websiteLinks} heading={info?.websitesHeading} />
+          <StateLinkSection links={info?.websiteLinks} heading={info?.websiteHeading} />
           <StateLinkSection links={info?.socialLinks} heading={info?.socialHeading} />
           <StateLinkSection links={info?.clubLinks} heading={info?.clubsHeading} />
 
