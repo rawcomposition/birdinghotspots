@@ -195,7 +195,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = States.filter(({ active }) => active).map(({ country, slug }) => ({
     params: { countrySlug: country.toLowerCase(), stateSlug: slug },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
