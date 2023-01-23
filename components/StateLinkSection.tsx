@@ -1,24 +1,46 @@
 import * as React from "react";
+import Link from "next/link";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 type Props = {
   heading?: string;
-  links?: { label: string; url: string }[];
+  links: { label: string; url: string }[];
+  external?: boolean;
 };
 
-export const StateLinkSection = ({ heading, links }: Props) => {
+const limit = 4;
+
+export const StateLinkSection = ({ heading, links, external }: Props) => {
+  const [viewMore, setViewMore] = React.useState<boolean>(false);
+  const sortedLinks = links.sort((a, b) => a.label.localeCompare(b.label));
+  const visibleLinks = viewMore ? sortedLinks : sortedLinks.slice(0, limit);
   if (!links?.length) return null;
   return (
     <>
       <h3 className="text-lg mb-1.5 font-bold break-after-avoid">{heading}</h3>
       <p className="mb-4 break-inside-avoid">
-        {links.map(({ label, url }) => (
+        {visibleLinks.map(({ label, url }) => (
           <React.Fragment key={url}>
-            <a href={url} target="_blank" rel="noreferrer">
-              {label}
-            </a>
+            {external ? (
+              <a href={url} target="_blank" rel="noreferrer">
+                {label}
+              </a>
+            ) : (
+              <Link href={url}>{label}</Link>
+            )}
             <br />
           </React.Fragment>
         ))}
+        {links.length > 5 && !viewMore && (
+          <button
+            type="button"
+            className="mt-1 flex gap-1 items-center font-medium text-sm text-gray-600"
+            onClick={() => setViewMore(!viewMore)}
+          >
+            View {links.length - limit} more
+            <ChevronDownIcon className="h-4 w-4 inline-block" />
+          </button>
+        )}
       </p>
     </>
   );

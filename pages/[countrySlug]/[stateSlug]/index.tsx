@@ -37,7 +37,7 @@ type Props = {
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
-  const [showMoreInfo, setShowMoreInfo] = React.useState<boolean>(false);
+  const [viewMoreArticles, setViewMoreArticles] = React.useState<boolean>(false);
   const { label, code, slug } = state || ({} as StateType);
   const { open } = useModal();
 
@@ -64,12 +64,6 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           <a className="flex gap-1">
             <PlusCircleIcon className="h-4 w-4" />
             Add Group
-          </a>
-        </Link>
-        <Link href={`/${countrySlug}/${slug}/article/edit/new`}>
-          <a className="flex gap-1">
-            <DocumentPlusIcon className="h-4 w-4" />
-            Add Article
           </a>
         </Link>
       </EditorActions>
@@ -175,39 +169,20 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         </Link>
       </EditorActions>
 
-      <div className="relative">
-        <div className={`md:columns-2 gap-16 ${!showMoreInfo ? "h-60 overflow-hidden" : ""}`}>
-          {articles.length > 0 && (
-            <>
-              <h3 className="text-lg mb-1.5 font-bold">Birding in {label} Articles</h3>
-              <p className="mb-4">
-                {articles.map(({ name, slug: articleSlug }) => (
-                  <React.Fragment key={articleSlug}>
-                    <Link href={`/${countrySlug}/${slug}/article/${articleSlug}`}>{name}</Link>
-                    <br />
-                  </React.Fragment>
-                ))}
-              </p>
-            </>
-          )}
-          <StateLinkSection links={info?.websiteLinks} heading={info?.websitesHeading} />
-          <StateLinkSection links={info?.socialLinks} heading={info?.socialHeading} />
-          <StateLinkSection links={info?.clubLinks} heading={info?.clubsHeading} />
+      <div className="md:columns-2 gap-16">
+        <StateLinkSection
+          links={articles.map(({ name, slug: articleSlug }) => ({
+            label: name,
+            url: `/${countrySlug}/${slug}/article/${articleSlug}`,
+          }))}
+          heading="Articles"
+        />
+        <StateLinkSection links={info?.websiteLinks || []} heading={info?.websitesHeading} external />
+        <StateLinkSection links={info?.socialLinks || []} heading={info?.socialHeading} external />
+        <StateLinkSection links={info?.clubLinks || []} heading={info?.clubsHeading} external />
 
-          {!info && articles.length === 0 && (
-            <p className="text-gray-500 text-base -mt-2">No additional information available.</p>
-          )}
-        </div>
-        {infoLinksCount > 20 && !showMoreInfo && (
-          <div className="w-full h-20 bg-gradient-to-t from-white absolute bottom-0 flex flex-col justify-end">
-            <button
-              type="button"
-              onClick={() => setShowMoreInfo(true)}
-              className="text-[#4a84b2] font-bold block mx-auto z-10"
-            >
-              View More
-            </button>
-          </div>
+        {!info && articles.length === 0 && (
+          <p className="text-gray-500 text-base -mt-2">No additional information available.</p>
         )}
       </div>
       <hr className="my-8 opacity-70" />
