@@ -10,7 +10,6 @@ export type State = {
   portal?: string;
   coordinates: string;
   mapZoom: number;
-  color: string;
   country: string;
   noMap?: boolean;
   subheading?: string;

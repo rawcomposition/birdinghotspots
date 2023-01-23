@@ -29,7 +29,7 @@ export default function PageHeading({
   extraCrumb,
   ...props
 }: Props) {
-  const bgColor = state?.color || "#4a84b2";
+  const bgColor = "#4a84b2";
   const countryLabel = Countries.find((it) => it.code === countrySlug?.toUpperCase())?.label;
   return (
     <header
