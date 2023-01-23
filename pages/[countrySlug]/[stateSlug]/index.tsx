@@ -198,7 +198,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
             <p className="text-gray-500 text-base -mt-2">No additional information available.</p>
           )}
         </div>
-        {infoLinksCount > 12 && !showMoreInfo && (
+        {infoLinksCount > 20 && !showMoreInfo && (
           <div className="w-full h-20 bg-gradient-to-t from-white absolute bottom-0 flex flex-col justify-end">
             <button
               type="button"
