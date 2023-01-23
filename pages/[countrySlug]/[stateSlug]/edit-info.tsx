@@ -66,7 +66,8 @@ export default function EditLinks({ state, data, error, errorCode }: Props) {
         <Form form={form} onSubmit={handleSubmit}>
           <div className="max-w-4xl mx-auto">
             <div className="px-4 py-5 bg-white sm:p-6">
-              <h2 className="text-xl font-bold text-gray-600 border-b pb-4 mb-8">Edit {state.label} Links</h2>
+              <h2 className="text-xl font-bold text-gray-600 border-b pb-4 mb-4">Edit {state.label} Links</h2>
+              <p className="mb-8 text-gray-600">Links will be displayed alphabetically</p>
               <div className="space-y-4 mb-12">
                 <Input type="text" name="websitesHeading" required />
                 <FormError name="websitesHeading" />
