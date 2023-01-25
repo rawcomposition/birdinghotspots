@@ -1,0 +1,12 @@
+name: Daily Email
+on:
+  schedule:
+    - cron: "0 16 * * *"
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Daily Email
+        run: |
+          curl --request POST \
+          --url 'https://birdinghotspots.org/api/email-digest?key=${{ secrets.CRON_KEY }}' \
