@@ -11,7 +11,7 @@ import { useUser } from "providers/user";
 import useToast from "hooks/useToast";
 import toast from "react-hot-toast";
 import RegionSelect from "components/RegionSelect";
-import useSecureFetch from "hooks/useSecureFetch";
+import Select from "components/Select";
 import { getProfile } from "lib/mongo";
 import { getRegionLabel } from "lib/localData";
 import useFirebaseLogin from "hooks/useFirebaseLogin";
@@ -25,6 +25,7 @@ type AccountInput = {
     label: string;
     value: string;
   }[];
+  emailFrequency?: string;
 };
 
 type Props = {
@@ -32,12 +33,14 @@ type Props = {
     label: string;
     value: string;
   }[];
+  emailFrequency: string;
 };
 
-export default function Edit({ subscriptions }: Props) {
+export default function Edit({ subscriptions, emailFrequency }: Props) {
   const form = useForm<AccountInput>({
     defaultValues: {
       subscriptions,
+      emailFrequency,
     },
   });
   const { user, loading: userLoading } = useUser();
@@ -51,6 +54,7 @@ export default function Edit({ subscriptions }: Props) {
     confirm_password,
     password,
     subscriptions,
+    emailFrequency,
   }) => {
     if (password && confirm_password !== password) {
       toast.error("Passwords do not match");
@@ -67,6 +71,7 @@ export default function Edit({ subscriptions }: Props) {
         email,
         name,
         password,
+        emailFrequency,
       },
     });
 
@@ -81,6 +86,11 @@ export default function Edit({ subscriptions }: Props) {
       email,
     });
   }, [email, displayName]);
+
+  const frequencyOptions = [
+    { label: "Daily", value: "daily" },
+    { label: "Instant", value: "instant" },
+  ];
 
   return (
     <DashboardPage title="My Account">
@@ -113,6 +123,10 @@ export default function Edit({ subscriptions }: Props) {
                   any email notifications. States take precedence over counties.
                 </p>
               </Field>
+              <Field label="Email Frequency">
+                <Select name="emailFrequency" options={frequencyOptions} required />
+                <FormError name="emailFrequency" />
+              </Field>
             </div>
           </div>
           <div className="px-4 py-3 bg-gray-50 flex justify-end sm:px-6 rounded-b-lg">
@@ -140,6 +154,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   return {
     props: {
       subscriptions,
+      emailFrequency: profile?.emailFrequency || "daily",
     },
   };
 });

@@ -18,6 +18,12 @@ const ProfileSchema = new Schema({
       type: String,
     },
   ],
+  emailFrequency: {
+    type: "string",
+    enum: ["daily", "instant"],
+    default: "daily",
+    required: true,
+  },
 });
 
 const Profile = models.Profile || model("Profile", ProfileSchema);

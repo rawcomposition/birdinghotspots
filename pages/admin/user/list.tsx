@@ -119,7 +119,7 @@ export default function Users() {
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
                   {roles.find(({ id }) => id === role)?.name || "User"}
                 </td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
+                <td className="px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
                   {regions?.join(", ") || "None"}
                 </td>
                 <td className="whitespace-nowrap px-3 py-2 text-sm text-gray-500">

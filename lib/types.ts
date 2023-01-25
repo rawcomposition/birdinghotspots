@@ -321,8 +321,10 @@ export type Revision = {
 export type Profile = {
   uid: string;
   email: string;
+  name: string;
   inviteCode?: string;
   subscriptions: string[];
+  emailFrequency: "daily" | "instant";
 };
 
 export type Log = {

@@ -29,6 +29,7 @@ type UserInput = {
     label: string;
     value: string;
   }[];
+  emailFrequency?: string;
 };
 
 type Props = {
@@ -37,11 +38,12 @@ type Props = {
     label: string;
     value: string;
   }[];
+  emailFrequency: string;
 };
 
 const roleOptions = roles.map(({ id, name }) => ({ value: id, label: name }));
 
-export default function Edit({ user, subscriptions }: Props) {
+export default function Edit({ user, subscriptions, emailFrequency }: Props) {
   const router = useRouter();
   const form = useForm<UserInput>({
     defaultValues: {
@@ -50,6 +52,7 @@ export default function Edit({ user, subscriptions }: Props) {
       role: user.role,
       regions: user.regions || [],
       subscriptions: subscriptions,
+      emailFrequency,
     },
   });
 
@@ -72,6 +75,11 @@ export default function Edit({ user, subscriptions }: Props) {
   };
 
   const role = form.watch("role");
+
+  const frequencyOptions = [
+    { label: "Daily", value: "daily" },
+    { label: "Instant", value: "instant" },
+  ];
 
   return (
     <DashboardPage title="Edit User">
@@ -101,6 +109,10 @@ export default function Edit({ user, subscriptions }: Props) {
                 The editor will recieve email notifications when users submit content for hotspots in the selected
                 regions.
               </p>
+            </Field>
+            <Field label="Email Frequency">
+              <Select name="emailFrequency" options={frequencyOptions} required />
+              <FormError name="emailFrequency" />
             </Field>
           </div>
           <div className="px-4 py-3 bg-gray-50 flex justify-between sm:px-6 rounded-b-lg">
@@ -143,6 +155,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
           regions: customClaims?.regions || [],
         },
         subscriptions,
+        emailFrequency: profile?.emailFrequency || "daily",
       },
     };
   } catch (error) {

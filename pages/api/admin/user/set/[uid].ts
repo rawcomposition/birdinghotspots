@@ -25,12 +25,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     });
 
     const profile = uid ? await Profile.findOne({ uid }) : null;
-    const { subscriptions, email, name } = data;
+    const { subscriptions, email, name, emailFrequency } = data;
 
     if (!profile) {
-      await Profile.create({ uid, subscriptions, email, name });
+      await Profile.create({ uid, subscriptions, email, name, emailFrequency });
     } else {
-      await Profile.updateOne({ uid }, { subscriptions, email, name });
+      await Profile.updateOne({ uid }, { subscriptions, email, name, emailFrequency });
     }
 
     try {

@@ -37,15 +37,8 @@ type Props = {
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
-  const [viewMoreArticles, setViewMoreArticles] = React.useState<boolean>(false);
   const { label, code, slug } = state || ({} as StateType);
   const { open } = useModal();
-
-  const infoLinksCount =
-    articles.length +
-    (info?.websiteLinks?.length || 0) +
-    (info?.socialLinks?.length || 0) +
-    (info?.clubLinks?.length || 0);
 
   return (
     <div className="container pb-16 mt-12">
