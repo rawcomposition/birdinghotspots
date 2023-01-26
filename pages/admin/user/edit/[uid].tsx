@@ -79,6 +79,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
   const frequencyOptions = [
     { label: "Daily", value: "daily" },
     { label: "Instant", value: "instant" },
+    { label: "No Email", value: "none" },
   ];
 
   return (

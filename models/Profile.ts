@@ -20,7 +20,7 @@ const ProfileSchema = new Schema({
   ],
   emailFrequency: {
     type: "string",
-    enum: ["daily", "instant"],
+    enum: ["daily", "instant", "none"],
     default: "daily",
     required: true,
   },

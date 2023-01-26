@@ -324,7 +324,7 @@ export type Profile = {
   name: string;
   inviteCode?: string;
   subscriptions: string[];
-  emailFrequency: "daily" | "instant";
+  emailFrequency: "daily" | "instant" | "none";
 };
 
 export type Log = {
