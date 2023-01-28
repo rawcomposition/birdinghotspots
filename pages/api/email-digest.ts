@@ -40,14 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
         if (hasUploads || hasRevisions) {
           const countHtml = [
-            hasUploads &&
-              `<a href="https://birdinghotspots.org/admin/image-review">${userUploads.length} pending ${
-                userUploads.length === 1 ? "image" : "images"
-              }</a>`,
-            hasRevisions &&
-              `<a href="https://birdinghotspots.org/admin/revision-review">${userRevisions.length} pending ${
-                userRevisions.length === 1 ? "revision" : "revisions"
-              }</a>`,
+            hasUploads && `${userUploads.length} pending ${userUploads.length === 1 ? "image" : "images"}`,
+            hasRevisions && `${userRevisions.length} pending ${userRevisions.length === 1 ? "revision" : "revisions"}`,
           ]
             .filter(Boolean)
             .join(" and ");
