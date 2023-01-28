@@ -174,7 +174,7 @@ export default function Edit({
               <RadioGroup
                 name="accessible"
                 help="Is there a wheelchair-accessible trail at this location?"
-                label="Accessible parking and trails"
+                label="Wheelchair accessible parking and trails"
                 options={["Yes", "No", "Unknown"]}
               />
               <RadioGroup

@@ -177,7 +177,7 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
           <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
           <RadioGroup
             name="accessible"
-            label="Accessible parking and trails"
+            label="Wheelchair accessible parking and trails"
             help="Is there a wheelchair-accessible trail at this location?"
             options={["Yes", "No", "Unknown"]}
             inline
