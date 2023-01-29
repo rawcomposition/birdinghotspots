@@ -134,7 +134,6 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   }
 
   const items: Item[] = [];
-
   uploads.forEach(async (upload: Upload) => {
     if (!items.find((item) => item.locationId === upload.locationId)) {
       items.push({
