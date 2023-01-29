@@ -103,10 +103,10 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
               </h2>
             )}
             <Link href={url}>{name}</Link>
-            {user && noContent && <NoticeIcon color="yellow" title="Needs content" />}
+            {user && noContent && <NoticeIcon color="yellow" tooltip="Needs content" />}
             {needsDeleting && user && (
               <span className={`bg-red-600 rounded-full text-xs px-2 text-white font-bold ml-2`}>
-                removed from eBird
+                Removed from eBird
               </span>
             )}
             <br />
