@@ -80,6 +80,7 @@ export async function getHotspotsByCounty(countyCode: string) {
     "lat",
     "lng",
     "species",
+    "groupIds",
   ])
     .sort({ name: 1 })
     .lean()
@@ -310,26 +311,6 @@ export async function getGroupsByCounty(countyCode: string) {
   await connect();
   const result = await Group.find({ countyCodes: countyCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
   return result;
-}
-
-export async function getGroupHotspotIds(stateCode: string) {
-  await connect();
-  const result = await Group.find({ stateCodes: stateCode }, ["-_id", "hotspots"]).lean().exec();
-  const ids = result.reduce((acc: string[], group) => {
-    return [...acc, ...group.hotspots.map((id: any) => id.toString())];
-  }, []);
-
-  return [...new Set(ids as string[])];
-}
-
-export async function getGroupHotspotIdsByCounty(countyCode: string) {
-  await connect();
-  const result = await Group.find({ countyCode }, ["-_id", "hotspots"]).lean().exec();
-  const ids = result.reduce((acc: string[], group) => {
-    return [...acc, ...group.hotspots.map((id: any) => id.toString())];
-  }, []);
-
-  return [...new Set(ids as string[])];
 }
 
 export async function getProfile(uid: string) {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { getHotspotsByState, getGroupHotspotIds } from "lib/mongo";
+import { getHotspotsByState } from "lib/mongo";
 import { getState } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";

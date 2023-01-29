@@ -50,6 +50,8 @@ const DriveSchema = new Schema({
   },
 });
 
+DriveSchema.index({ stateCode: 1, name: 1 });
+
 const Drive = models.Drive || model("Drive", DriveSchema);
 
 export default Drive;

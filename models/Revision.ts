@@ -42,6 +42,8 @@ const RevisionSchema = new Schema({
   },
 });
 
+RevisionSchema.index({ status: 1 });
+
 const Revision = models.Revision || model("Revision", RevisionSchema);
 
 export default Revision;

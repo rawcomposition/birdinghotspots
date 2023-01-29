@@ -44,6 +44,8 @@ const ArticleSchema = new Schema({
   },
 });
 
+ArticleSchema.index({ stateCode: 1 });
+
 const Article = models.Article || model("Article", ArticleSchema);
 
 export default Article;

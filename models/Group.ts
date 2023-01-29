@@ -82,6 +82,11 @@ const GroupSchema = new Schema({
   },
 });
 
+GroupSchema.index({ hotspots: 1 });
+GroupSchema.index({ locationId: 1 });
+GroupSchema.index({ stateCodes: 1, name: 1 });
+GroupSchema.index({ countyCodes: 1, name: 1 });
+
 const Group = models.Group || model("Group", GroupSchema);
 
 export default Group;

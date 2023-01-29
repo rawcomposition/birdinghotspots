@@ -30,6 +30,8 @@ const UploadSchema = new Schema({
   },
 });
 
+UploadSchema.index({ status: 1 });
+
 const Upload = models.Upload || model("Upload", UploadSchema);
 
 export default Upload;

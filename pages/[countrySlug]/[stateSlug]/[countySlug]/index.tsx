@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { getHotspotsByCounty, getGroupHotspotIdsByCounty } from "lib/mongo";
+import { getHotspotsByCounty } from "lib/mongo";
 import { getState, getCountyBySlug } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { State, HotspotDrive, Hotspot, County as CountyType, Marker } from "lib/types";
@@ -169,14 +169,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const hotspots = (await getHotspotsByCounty(county.code)) || [];
 
-  let groupHotspotIds: string[] = [];
-  if (cookies.session) {
-    groupHotspotIds = (await getGroupHotspotIdsByCounty(state.code)) || [];
-  }
-
   const formatted = hotspots.map((it: any) => ({
     ...it,
-    noContent: (cookies.session && it.noContent && !groupHotspotIds.includes(it._id.toString())) || false,
+    noContent: (cookies.session && it.noContent && !it.groupIds?.length) || false,
   }));
 
   return {
