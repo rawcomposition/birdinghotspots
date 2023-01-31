@@ -299,19 +299,44 @@ export interface GroupInputs extends Group {
 
 export type Revision = {
   _id?: string;
+  name: string;
   locationId: string;
   countryCode: string;
   stateCode: string;
   countyCode: string;
-  about?: string;
-  tips?: string;
-  birds?: string;
-  hikes?: string;
+  about?: {
+    old: string;
+    new: string;
+  };
+  tips?: {
+    old: string;
+    new: string;
+  };
+  birds?: {
+    old: string;
+    new: string;
+  };
+  hikes?: {
+    old: string;
+    new: string;
+  };
   notes?: string;
-  roadside: string;
-  restrooms: string;
-  accessible: string;
-  fee: string;
+  roadside?: {
+    old: string;
+    new: string;
+  };
+  restrooms?: {
+    old: string;
+    new: string;
+  };
+  accessible?: {
+    old: string;
+    new: string;
+  };
+  fee?: {
+    old: string;
+    new: string;
+  };
   by: string;
   email: string;
   status: string;
@@ -348,3 +373,8 @@ export type RegionInfo = {
   socialLinks?: Link[];
   clubLinks?: Link[];
 };
+
+export interface FormattedSuggestion extends Revision {
+  stateLabel?: string;
+  countyLabel?: string;
+}

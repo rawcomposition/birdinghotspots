@@ -23,21 +23,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return;
     }
 
-    const noContent = !revision?.about && !revision?.tips && !revision?.birds && !revision?.hikes;
+    const about = revision.about?.new || hotspot.about;
+    const tips = revision.tips?.new || hotspot.tips;
+    const birds = revision.birds?.new || hotspot.birds;
+    const hikes = revision.hikes?.new || hotspot.hikes;
+    const roadside = revision.roadside?.new || hotspot.roadside;
+    const restrooms = revision.restrooms?.new || hotspot.restrooms;
+    const accessible = revision.accessible?.new || hotspot.accessible;
+    const fee = revision.fee?.new || hotspot.fee;
+
+    const noContent = !about && !tips && !birds && !hikes;
 
     await Hotspot.updateOne(
       { locationId: revision.locationId },
       {
         $set: {
           noContent,
-          about: revision.about,
-          tips: revision.tips,
-          birds: revision.birds,
-          hikes: revision.hikes,
-          roadside: revision.roadside || hotspot.roadside,
-          restrooms: revision.restrooms || hotspot.restrooms,
-          accessible: revision.accessible || hotspot.accessible,
-          fee: revision.fee || hotspot.fee,
+          about,
+          tips,
+          birds,
+          hikes,
+          roadside,
+          restrooms,
+          accessible,
+          fee,
         },
       }
     );

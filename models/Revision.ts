@@ -7,6 +7,10 @@ const RevisionSchema = new Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   countryCode: {
     type: String,
     required: true,
@@ -21,15 +25,39 @@ const RevisionSchema = new Schema({
   },
   by: String,
   email: String,
-  about: String,
-  tips: String,
-  birds: String,
-  hikes: String,
+  about: {
+    old: String,
+    new: String,
+  },
+  tips: {
+    old: String,
+    new: String,
+  },
+  birds: {
+    old: String,
+    new: String,
+  },
+  hikes: {
+    old: String,
+    new: String,
+  },
   notes: String,
-  roadside: String,
-  restrooms: String,
-  accessible: String,
-  fee: String,
+  roadside: {
+    old: String,
+    new: String,
+  },
+  restrooms: {
+    old: String,
+    new: String,
+  },
+  accessible: {
+    old: String,
+    new: String,
+  },
+  fee: {
+    old: String,
+    new: String,
+  },
   status: {
     type: String,
     enum: ["pending", "approved", "rejected"],

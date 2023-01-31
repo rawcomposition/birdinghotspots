@@ -10,139 +10,116 @@ import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import diff from "node-htmldiff";
 import toast from "react-hot-toast";
 import dayjs from "dayjs";
-
-interface Item extends Revision {
-  name: string;
-  stateLabel?: string;
-  countyLabel?: string;
-  approved?: boolean;
-  restroomsBefore?: string;
-  accessibleBefore?: string;
-  feeBefore?: string;
-  roadsideBefore?: string;
-}
+import Button from "components/Button";
+import { FormattedSuggestion } from "lib/types";
+import { useModal } from "providers/modals";
 
 type Props = {
-  items: Item[];
+  items: FormattedSuggestion[];
 };
 
 export default function RevisionReview({ items: allItems }: Props) {
-  const [items, setItems] = React.useState(allItems);
-  const secureFetch = useSecureFetch();
+  const [items, setItems] = React.useState<FormattedSuggestion[]>(allItems);
+  const { open } = useModal();
 
-  const handleReject = async (id: string) => {
-    if (!confirm("Are you sure you want to reject this suggestion?")) return;
-    setItems((prev) => prev.filter((item) => item._id !== id));
-    toast.success("Suggestion rejected");
-    await secureFetch(`/api/revision/reject?id=${id}`, "GET");
+  const statusColors = {
+    pending: "bg-amber-100/80 text-amber-800/80",
+    approved: "bg-green-100 text-green-800",
+    rejected: "bg-red-100 text-red-800",
   };
 
-  const handleApprove = async (id: string) => {
-    if (!confirm("Are you sure? Existing text will be replaced with the suggested text.")) return;
-    setItems((prev) => prev.map((item) => (item._id === id ? { ...item, approved: true } : item)));
-    toast.success("Suggestion approved");
-    await secureFetch(`/api/revision/approve?id=${id}`, "GET");
+  const statusOptions = [
+    { label: "Pending", value: "pending" },
+    { label: "Approved", value: "approved" },
+    { label: "Rejected", value: "rejected" },
+  ];
+
+  const handleApproved = async (id: string) => {
+    setItems((items) => items.map((item) => (item._id === id ? { ...item, status: "approved" } : item)));
+  };
+
+  const handleRejected = async (id: string) => {
+    setItems((items) => items.map((item) => (item._id === id ? { ...item, status: "rejected" } : item)));
   };
 
   return (
     <DashboardPage title="Suggested Edit Review">
       <div className="container pb-16">
         <Title>Suggested Edit Review</Title>
-        {items.map((item) => (
-          <section
-            className={`p-4 overflow-hidden shadow md:rounded-lg bg-white mb-4 ${
-              item.approved ? "border-2 border-lime-600" : ""
-            }`}
-            key={item.locationId}
-          >
-            <p className="text-sm text-gray-500">
-              {item.countyLabel}, {item.stateLabel}, {item.countryCode}
-            </p>
-            <h3 className="text-lg font-bold">
-              {item.name}{" "}
-              <Link href={`/hotspot/${item.locationId}`}>
-                <a className="font-bold text-sm" target="_blank">
-                  (View Hotspot)
-                </a>
-              </Link>
-            </h3>
 
-            <div className="mt-4 space-y-4">
-              {!item.approved && (
-                <>
-                  <div>
-                    <h4 className="font-bold">Tips for Birding</h4>
-                    <div dangerouslySetInnerHTML={{ __html: item.tips || "(no content)" }} className="formatted" />
-                  </div>
-
-                  <div>
-                    <h4 className="font-bold">Birds of Interest</h4>
-                    <div dangerouslySetInnerHTML={{ __html: item.birds || "(no content)" }} className="formatted" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold">About this location</h4>
-                    <div dangerouslySetInnerHTML={{ __html: item.about || "(no content)" }} className="formatted" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold">Notable trails</h4>
-                    <div dangerouslySetInnerHTML={{ __html: item.hikes || "(no content)" }} className="formatted" />
-                  </div>
-                </>
+        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <table className="min-w-full divide-y divide-gray-300">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                  Hotspot
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  User
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  Date
+                </th>
+                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  Status
+                </th>
+                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span className="sr-only">Review</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {items.map((item) => (
+                <tr key={item._id}>
+                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                    <div>
+                      <div className="font-bold">
+                        <Link href={`/hotspot/${item.locationId}`}>
+                          <a target="_blank">{item.name}</a>
+                        </Link>
+                      </div>
+                      <div className="text-gray-500">
+                        {item.countyLabel}, {item.stateLabel}, {item.countryCode}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <div className="text-gray-900">{item.by}</div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    {dayjs(item.createdAt).format("MMM D, YYYY")}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <span
+                      className={`inline-flex rounded-full ${
+                        statusColors[item.status as keyof typeof statusColors] || "bg-gray-100 text-gray-800"
+                      } px-2 text-xs font-semibold leading-5 capitalize`}
+                    >
+                      {item.status}
+                    </span>
+                  </td>
+                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                    <Button
+                      color="gray"
+                      onClick={() =>
+                        open("revision", { data: item, onApprove: handleApproved, onReject: handleRejected })
+                      }
+                    >
+                      {item.status === "pending" ? "Review" : "View"}
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+              {items.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="py-4 text-center text-gray-500 text-base">
+                    No suggestions to review
+                  </td>
+                </tr>
               )}
-              {!item.approved && item.restroomsBefore !== item.restrooms && (
-                <div>
-                  <strong>Restrooms on site</strong>: <del>{item.restroomsBefore}</del>&nbsp;→&nbsp;
-                  <ins>{item.restrooms}</ins>
-                </div>
-              )}
-              {!item.approved && item.accessibleBefore !== item.accessible && (
-                <div>
-                  <strong>Accessible parking and trails</strong>: <del>{item.accessibleBefore}</del>&nbsp;→&nbsp;
-                  <ins>{item.accessible}</ins>
-                </div>
-              )}
-              {!item.approved && item.feeBefore !== item.fee && (
-                <div>
-                  <strong>Entrance fee</strong>: <del>{item.feeBefore}</del>&nbsp;→&nbsp;<ins>{item.fee}</ins>
-                </div>
-              )}
-              {!item.approved && item.roadsideBefore !== item.roadside && (
-                <div>
-                  <strong>Can you bird from the roadside?</strong>: <del>{item.roadsideBefore}</del>&nbsp;→&nbsp;
-                  <ins>{item.roadside}</ins>
-                </div>
-              )}
-              {item.notes && (
-                <div>
-                  <h4 className="font-bold text-lime-600">Notes to the editor</h4>
-                  {item.notes}
-                </div>
-              )}
-              <p className="text-xs font-medium">
-                By <strong>{item.by}</strong> ({item.email}) on {dayjs(item.createdAt).format("MMM D, YYYY")}
-              </p>
-            </div>
-            {!item.approved && (
-              <div className="flex gap-4 mt-4 max-w-xs">
-                <button
-                  type="button"
-                  onClick={() => handleApprove(item._id as string)}
-                  className="text-green-700 text-sm opacity-60 hover:opacity-100 font-bold py-0.5 px-4 w-full transition-opacity border border-gray-300 rounded-sm"
-                >
-                  Approve
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleReject(item._id as string)}
-                  className="text-red-700 text-sm opacity-60 hover:opacity-100 border border-gray-300 font-bold py-0.5 px-4 w-full transition-opacity rounded-sm"
-                >
-                  Reject
-                </button>
-              </div>
-            )}
-          </section>
-        ))}
-        {items.length === 0 ? <p className="text-lg text-gray-500">No suggestions to review</p> : null}
+            </tbody>
+          </table>
+        </div>
       </div>
     </DashboardPage>
   );
@@ -162,32 +139,36 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     revisions = await getRevisions(states, counties);
   }
 
-  const formattedRevisions = await Promise.all(
-    revisions.map(async (revision: Revision) => {
-      const hotspot = await getHotspotByLocationId(revision.locationId);
-      const state = getStateByCode(hotspot?.stateCode);
-      const county = getCountyByCode(hotspot.countyCode);
-      return {
-        ...revision,
-        stateLabel: state?.label || "",
-        countyLabel: county?.name || "",
-        countryCode: hotspot.countryCode,
-        name: hotspot.name,
-        about: diff(hotspot.about || "", revision.about || ""),
-        tips: diff(hotspot.tips || "", revision.tips || ""),
-        birds: diff(hotspot.birds || "", revision.birds || ""),
-        hikes: diff(hotspot.hikes || "", revision.hikes || ""),
-        restroomsBefore: hotspot.restrooms || "",
-        accessibleBefore: hotspot.accessible || "",
-        roadsideBefore: hotspot.roadside || "",
-        feeBefore: hotspot.fee || "",
-        restrooms: revision.restrooms || "",
-        accessible: revision.accessible || "",
-        roadside: revision.roadside || "",
-        fee: revision.fee || "",
-      };
-    })
-  );
+  const formatDiff = (oldValue?: string, newValue?: string) => {
+    if (!newValue) return null; //No edit made for this field
+    if (!oldValue) return newValue; //Legacy revision with no old value saved
+    return {
+      old: oldValue,
+      new: newValue,
+      diff: diff(oldValue, newValue),
+    };
+  };
+
+  const formattedRevisions = revisions.map((it: Revision) => {
+    const state = getStateByCode(it?.stateCode);
+    const county = getCountyByCode(it.countyCode);
+    const formatted = {
+      ...it,
+      stateLabel: state?.label || "",
+      countyLabel: county?.name || "",
+      countryCode: it.countryCode,
+      about: formatDiff(it.about?.old, it.about?.new),
+      tips: formatDiff(it.tips?.old, it.tips?.new),
+      birds: formatDiff(it.birds?.old, it.birds?.new),
+      hikes: formatDiff(it.hikes?.old, it.hikes?.new),
+      roadside: formatDiff(it.roadside?.old, it.roadside?.new),
+      accessible: formatDiff(it.accessible?.old, it.accessible?.new),
+      restrooms: formatDiff(it.restrooms?.old, it.restrooms?.new),
+      fee: formatDiff(it.fee?.old, it.fee?.new),
+    };
+    return formatted;
+  });
+  console.log(formattedRevisions);
 
   return {
     props: { items: formattedRevisions },

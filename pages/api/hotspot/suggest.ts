@@ -32,26 +32,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const emails = profiles.map((profile) => profile.email);
 
+  const formatValue = (oldValue: string, newValue: string) => {
+    if (oldValue === newValue) return undefined;
+    return {
+      old: oldValue,
+      new: newValue.trim().replaceAll(".&nbsp; ", ". "),
+    };
+  };
+
   try {
     const score = await verifyRecaptcha(recaptchaToken);
     console.log("Score:", score);
     if (score > 0.5) {
       await Revision.create({
         locationId,
+        name: hotspot.name,
         by: name,
         email,
         countryCode: hotspot.countryCode,
         stateCode: hotspot.stateCode,
         countyCode: hotspot.countyCode,
-        about: about.trim().replaceAll(".&nbsp; ", ". "),
-        tips: tips.trim().replaceAll(".&nbsp; ", ". "),
-        birds: birds.trim().replaceAll(".&nbsp; ", ". "),
-        hikes: hikes.trim().replaceAll(".&nbsp; ", ". "),
+        about: formatValue(hotspot.about, about),
+        tips: formatValue(hotspot.tips, tips),
+        birds: formatValue(hotspot.birds, birds),
+        hikes: formatValue(hotspot.hikes, hikes),
         notes,
-        roadside,
-        restrooms,
-        accessible,
-        fee,
+        roadside: formatValue(hotspot.roadside, roadside),
+        restrooms: formatValue(hotspot.restrooms, restrooms),
+        accessible: formatValue(hotspot.accessible, accessible),
+        fee: formatValue(hotspot.fee, fee),
       });
 
       const additionalNotes = notes ? `<br /><br /><strong>Additional notes to editor</strong><br />${notes}` : "";
