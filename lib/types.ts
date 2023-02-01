@@ -375,6 +375,7 @@ export type RegionInfo = {
 };
 
 export interface FormattedSuggestion extends Revision {
+  hasMultiple?: boolean;
   stateLabel?: string;
   countyLabel?: string;
   about?: {

@@ -5,7 +5,7 @@ import admin from "lib/firebaseAdmin";
 import { Revision as RevisionType } from "lib/types";
 import { getStateByCode, getCountyByCode } from "lib/localData";
 import diff from "node-htmldiff";
-import { getRevisions, getAllRevisions, getSubscriptions } from "lib/mongo";
+import { getSubscriptions } from "lib/mongo";
 import nookies from "nookies";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -62,6 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const county = getCountyByCode(it.countyCode);
       const formatted = {
         ...it,
+        hasMultiple: revisions.filter((rev: RevisionType) => rev.locationId === it.locationId).length > 1,
         stateLabel: state?.label || "",
         countyLabel: county?.name || "",
         countryCode: it.countryCode,

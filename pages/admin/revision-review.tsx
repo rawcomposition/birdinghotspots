@@ -14,6 +14,7 @@ import { useModal } from "providers/modals";
 import { useForm } from "react-hook-form";
 import Form from "components/Form";
 import { debounce } from "lib/helpers";
+import Badge from "components/Badge";
 
 type Inputs = {
   search: string;
@@ -156,6 +157,11 @@ export default function RevisionReview() {
                         <Link href={`/hotspot/${item.locationId}`}>
                           <a target="_blank">{item.name}</a>
                         </Link>
+                        {item.hasMultiple && (
+                          <Badge color="amber" tooltip="Multiple suggestions for this hotspot.">
+                            Multiple
+                          </Badge>
+                        )}
                       </div>
                       <div className="text-gray-500">
                         {item.countyLabel}, {item.stateLabel}, {item.countryCode}
