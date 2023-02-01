@@ -30,6 +30,7 @@ export default async function connect() {
   if (!cached.promise) {
     const opts = {
       maxPoolSize: 2,
+      maxIdleTimeMS: 60000,
       bufferCommands: false,
       serverSelectionTimeoutMS: 8000, //Stay within Vercel's 10 second function limit
       heartbeatFrequencyMS: 10000, //Attempting to see if this reduces query timeouts
