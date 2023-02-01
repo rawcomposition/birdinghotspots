@@ -47,7 +47,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
       method: "GET",
     });
     onApprove();
-    toast.success("Suggestion approved");
+    toast.success(hideReject ? "Note acknowledged" : "Suggestion approved");
     close();
   };
 
