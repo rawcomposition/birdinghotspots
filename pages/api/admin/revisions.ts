@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
-  const { status, skip }: any = req.body;
+  const { search, status, skip }: any = req.body;
   const limit = status === "pending" ? undefined : 20;
 
   try {
@@ -36,6 +36,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         ...query,
         $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
       };
+    }
+
+    if (search) {
+      query.name = { $regex: search, $options: "i" };
     }
 
     const [revisions, total] = await Promise.all([
