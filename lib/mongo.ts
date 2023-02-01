@@ -9,7 +9,7 @@ import Group from "models/Group";
 import Profile from "models/Profile";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
-import { RegionInfo as RegionInfoType } from "lib/types";
+import { RegionInfo as RegionInfoType, Revision as RevisionType } from "lib/types";
 
 declare global {
   var mongoose: any;
@@ -248,24 +248,43 @@ export async function getAllUploads() {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getRevisions(states: string[], counties: string[]) {
+type RevisionProps = {
+  states: string[];
+  counties: string[];
+  status: string;
+  limit?: number;
+  skip?: number;
+};
+
+export async function getRevisions({ states, counties, limit, skip, status }: RevisionProps): Promise<RevisionType[]> {
   await connect();
   const result = await Revision.find({
-    status: "pending",
+    status,
     $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
   })
     .sort({ createdAt: -1 })
-    .lean()
-    .exec();
+    .limit(limit || 0)
+    .skip(skip || 0)
+    .lean();
 
-  return result ? JSON.parse(JSON.stringify(result)) : null;
+  return result || [];
 }
 
-export async function getAllRevisions() {
-  await connect();
-  const result = await Revision.find({ status: "pending" }).sort({ createdAt: -1 }).lean().exec();
+type AllRevisionProps = {
+  status: string;
+  limit?: number;
+  skip?: number;
+};
 
-  return result ? JSON.parse(JSON.stringify(result)) : null;
+export async function getAllRevisions({ limit, skip, status }: AllRevisionProps): Promise<RevisionType[]> {
+  await connect();
+  const result = await Revision.find({ status })
+    .sort({ createdAt: -1 })
+    .limit(limit || 0)
+    .skip(skip || 0)
+    .lean();
+
+  return result || [];
 }
 
 export async function getImgStats() {

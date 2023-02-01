@@ -12,7 +12,7 @@ type Props = {
   [x: string]: any;
 };
 
-export default function Select({ name, required, isMulti, options, ...props }: Props) {
+export default function Select({ name, required, isMulti, options, onChange: customOnChange, ...props }: Props) {
   const { control } = useFormContext();
 
   return (
@@ -29,8 +29,10 @@ export default function Select({ name, required, isMulti, options, ...props }: P
         }
         const onSelect = (value: any) => {
           if (isMulti) {
+            customOnChange?.(value?.map((option: any) => option.value));
             onChange(value?.map((option: any) => option.value));
           } else {
+            customOnChange?.(value?.value);
             onChange(value?.value);
           }
         };

@@ -20,7 +20,7 @@ export default function License() {
           . However, content in the following scenarios belongs to the respective owner:
         </p>
         <p className="mb-2 ml-6">
-          - Quoted text as indicted by <em>From ...</em> at the end of the section
+          - Content sourced from external websites
           <br />
           - All maps
           <br />
