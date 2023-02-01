@@ -39,6 +39,16 @@ export default function Revision({ data, onApprove, onReject }: Props) {
     close();
   };
 
+  const hideReject =
+    !data.tips &&
+    !data.birds &&
+    !data.about &&
+    !data.hikes &&
+    !data.restrooms &&
+    !data.accessible &&
+    !data.fee &&
+    !data.roadside;
+
   return (
     <>
       <div>
@@ -80,14 +90,14 @@ export default function Revision({ data, onApprove, onReject }: Props) {
             </div>
           )}
 
-          {data.restrooms?.new && (
+          {data.restrooms && (
             <div>
               <strong>Restrooms on site</strong>: <del>{data.restrooms.old}</del>&nbsp;→&nbsp;
               <ins>{data.restrooms.new}</ins>
             </div>
           )}
 
-          {data.accessible?.new && (
+          {data.accessible && (
             <div>
               <strong>Wheelchair accessible parking and trails</strong>: <del>{data.accessible.old}</del>
               &nbsp;→&nbsp;
@@ -95,13 +105,13 @@ export default function Revision({ data, onApprove, onReject }: Props) {
             </div>
           )}
 
-          {data.fee?.new && (
+          {data.fee && (
             <div>
               <strong>Entrance fee</strong>: <del>{data.fee.old}</del>&nbsp;→&nbsp;<ins>{data.fee.new}</ins>
             </div>
           )}
 
-          {data.roadside?.new && (
+          {data.roadside && (
             <div>
               <strong>Can you bird from the roadside?</strong>: <del>{data.roadside.old}</del>&nbsp;→&nbsp;
               <ins>{data.roadside.new}</ins>
@@ -133,7 +143,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
               {data.status === "pending" ? "Approve" : "Approved"}
             </BtnSmall>
           )}
-          {data.status !== "approved" && (
+          {data.status !== "approved" && !hideReject && (
             <BtnSmall
               disabled={data.status !== "pending"}
               type="button"
