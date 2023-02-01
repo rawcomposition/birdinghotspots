@@ -17,6 +17,18 @@ export default function Revision({ data, onApprove, onReject }: Props) {
   const { close } = useModal();
   const { send } = useSecureFetch();
 
+  const hideReject =
+    !data.tips &&
+    !data.birds &&
+    !data.about &&
+    !data.hikes &&
+    !data.restrooms &&
+    !data.accessible &&
+    !data.fee &&
+    !data.roadside;
+
+  const approveLabel = hideReject ? "Acknowledge" : "Approve";
+
   const handleReject = async (id: string) => {
     if (!confirm("Are you sure you want to reject?")) return;
     await send({
@@ -29,7 +41,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
   };
 
   const handleApprove = async (id: string) => {
-    if (!confirm("Are you sure you want to accept?")) return;
+    if (!hideReject && !confirm("Are you sure you want to accept?")) return;
     await send({
       url: `/api/revision/approve?id=${id}`,
       method: "GET",
@@ -38,18 +50,6 @@ export default function Revision({ data, onApprove, onReject }: Props) {
     toast.success("Suggestion approved");
     close();
   };
-
-  const hideReject =
-    !data.tips &&
-    !data.birds &&
-    !data.about &&
-    !data.hikes &&
-    !data.restrooms &&
-    !data.accessible &&
-    !data.fee &&
-    !data.roadside;
-
-  const approveLabel = hideReject ? "Acknowledge" : "Approve";
 
   return (
     <>
