@@ -49,6 +49,8 @@ export default function Revision({ data, onApprove, onReject }: Props) {
     !data.fee &&
     !data.roadside;
 
+  const approveLabel = hideReject ? "Acknowledge" : "Approve";
+
   return (
     <>
       <div>
@@ -140,7 +142,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
               color="green"
               onClick={() => handleApprove(data._id as string)}
             >
-              {data.status === "pending" ? "Approve" : "Approved"}
+              {data.status === "pending" ? approveLabel : "Approved"}
             </BtnSmall>
           )}
           {data.status !== "approved" && !hideReject && (
