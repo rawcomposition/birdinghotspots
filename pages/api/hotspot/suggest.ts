@@ -33,9 +33,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const emails = profiles.map((profile) => profile.email);
 
   const formatValue = (oldValue: string, newValue: string) => {
-    if (oldValue === newValue) return undefined;
+    const old = oldValue || "";
+    if (old === newValue) return undefined;
     return {
-      old: oldValue,
+      old,
       new: newValue.trim().replaceAll(".&nbsp; ", ". "),
     };
   };
