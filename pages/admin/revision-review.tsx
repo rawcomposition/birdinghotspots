@@ -150,7 +150,7 @@ export default function RevisionReview() {
             <tbody className="divide-y divide-gray-200 bg-white">
               {items.map((item) => (
                 <tr key={item._id}>
-                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                  <td className="py-4 pl-4 pr-3 text-sm sm:pl-6">
                     <div>
                       <div className="font-bold">
                         <Link href={`/hotspot/${item.locationId}`}>
@@ -162,7 +162,7 @@ export default function RevisionReview() {
                       </div>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     <div className="text-gray-900">{item.by}</div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -181,7 +181,11 @@ export default function RevisionReview() {
                     <Button
                       color="gray"
                       onClick={() =>
-                        open("revision", { data: item, onApprove: handleApproved, onReject: handleRejected })
+                        open("revision", {
+                          data: item,
+                          onApprove: () => handleApproved(item._id || ""),
+                          onReject: () => handleRejected(item._id || ""),
+                        })
                       }
                     >
                       {item.status === "pending" ? "Review" : "View"}

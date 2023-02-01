@@ -52,31 +52,31 @@ export default function Revision({ data, onApprove, onReject }: Props) {
             </Link>
           </h3>
 
-          {data.tips?.new && (
+          {data.tips && (
             <div>
               <h4 className="font-bold">Tips for Birding</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.tips.new }} className="formatted" />
+              <div dangerouslySetInnerHTML={{ __html: data.tips.diff }} className="formatted" />
             </div>
           )}
 
-          {data.birds?.new && (
+          {data.birds && (
             <div>
               <h4 className="font-bold">Birds of Interest</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.birds.new }} className="formatted" />
+              <div dangerouslySetInnerHTML={{ __html: data.birds.diff }} className="formatted" />
             </div>
           )}
 
-          {data.about?.new && (
+          {data.about && (
             <div>
               <h4 className="font-bold">About this location</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.about.new }} className="formatted" />
+              <div dangerouslySetInnerHTML={{ __html: data.about.diff }} className="formatted" />
             </div>
           )}
 
-          {data.hikes?.new && (
+          {data.hikes && (
             <div>
               <h4 className="font-bold">Notable trails</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.hikes.new }} className="formatted" />
+              <div dangerouslySetInnerHTML={{ __html: data.hikes.diff }} className="formatted" />
             </div>
           )}
 

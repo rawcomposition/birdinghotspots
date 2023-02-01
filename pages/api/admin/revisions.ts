@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const formatDiff = (oldValue?: string, newValue?: string) => {
       if (!newValue) return null; //No edit made for this field
-      if (!oldValue) return newValue; //Legacy revision with no old value saved
+      if (oldValue === undefined) return newValue; //Legacy revision with no old value saved
       return {
         old: oldValue,
         new: newValue,
@@ -69,10 +69,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         tips: formatDiff(it.tips?.old, it.tips?.new),
         birds: formatDiff(it.birds?.old, it.birds?.new),
         hikes: formatDiff(it.hikes?.old, it.hikes?.new),
-        roadside: formatDiff(it.roadside?.old, it.roadside?.new),
-        accessible: formatDiff(it.accessible?.old, it.accessible?.new),
-        restrooms: formatDiff(it.restrooms?.old, it.restrooms?.new),
-        fee: formatDiff(it.fee?.old, it.fee?.new),
       };
       return formatted;
     });
