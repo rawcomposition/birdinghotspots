@@ -17,6 +17,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     const revision = await Revision.findOne({ _id: id });
+    if (!revision) {
+      res.status(500).json({ error: "suggestion not found" });
+      return;
+    }
+
     const hotspot = await Hotspot.findOne({ locationId: revision.locationId });
     if (!hotspot) {
       res.status(500).json({ error: "Hotspot not found" });
