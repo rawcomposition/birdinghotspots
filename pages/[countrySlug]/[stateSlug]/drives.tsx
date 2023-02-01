@@ -75,7 +75,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const drives = (await getDrivesByState(state.code)) || [];
   const drivesByCounty = restructureDrivesByCounty(drives as any, countrySlug, stateSlug);
-  console.log("drivesByCounty", drivesByCounty);
 
   return {
     props: { countrySlug, state, drives: drivesByCounty },

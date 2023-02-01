@@ -25,17 +25,23 @@ type Props = {
 
 export default function ImageReview({ items: allItems }: Props) {
   const [items, setItems] = React.useState(allItems);
-  const secureFetch = useSecureFetch();
+  const { send } = useSecureFetch();
 
   const handleReject = async (id: string) => {
     if (!confirm("Are you sure you want to reject this photo?")) return;
     setItems((prev) => prev.map((item) => ({ ...item, uploads: item.uploads.filter((upload) => upload._id !== id) })));
-    await secureFetch(`/api/upload/reject?id=${id}`, "GET");
+    await send({
+      url: `/api/upload/reject?id=${id}`,
+      method: "GET",
+    });
   };
 
   const handleApprove = async (id: string) => {
     setItems((prev) => prev.map((item) => ({ ...item, uploads: item.uploads.filter((upload) => upload._id !== id) })));
-    await secureFetch(`/api/upload/approve?id=${id}`, "GET");
+    await send({
+      url: `/api/upload/approve?id=${id}`,
+      method: "GET",
+    });
   };
 
   return (

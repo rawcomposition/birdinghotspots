@@ -15,11 +15,14 @@ type Props = {
 
 export default function Revision({ data, onApprove, onReject }: Props) {
   const { close } = useModal();
-  const secureFetch = useSecureFetch();
+  const { send } = useSecureFetch();
 
   const handleReject = async (id: string) => {
     if (!confirm("Are you sure you want to reject?")) return;
-    await secureFetch(`/api/revision/reject?id=${id}`, "GET");
+    await send({
+      url: `/api/revision/reject?id=${id}`,
+      method: "GET",
+    });
     onReject();
     toast.success("Suggestion rejected");
     close();
@@ -27,7 +30,10 @@ export default function Revision({ data, onApprove, onReject }: Props) {
 
   const handleApprove = async (id: string) => {
     if (!confirm("Are you sure you want to accept?")) return;
-    await secureFetch(`/api/revision/approve?id=${id}`, "GET");
+    await send({
+      url: `/api/revision/approve?id=${id}`,
+      method: "GET",
+    });
     onApprove();
     toast.success("Suggestion approved");
     close();
@@ -127,7 +133,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
               {data.status === "pending" ? "Approve" : "Approved"}
             </BtnSmall>
           )}
-          {data.status !== "accepted" && (
+          {data.status !== "approved" && (
             <BtnSmall
               disabled={data.status !== "pending"}
               type="button"

@@ -1,26 +1,91 @@
 import * as React from "react";
 import Link from "next/link";
-import { getRevisions, getAllRevisions, getHotspotByLocationId, getSubscriptions } from "lib/mongo";
-import { getStateByCode, getCountyByCode } from "lib/localData";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
-import { Revision } from "lib/types";
 import useSecureFetch from "hooks/useSecureFetch";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import diff from "node-htmldiff";
+import Input from "components/Input";
+import Select from "components/Select";
 import toast from "react-hot-toast";
 import dayjs from "dayjs";
 import Button from "components/Button";
 import { FormattedSuggestion } from "lib/types";
 import { useModal } from "providers/modals";
+import { useForm } from "react-hook-form";
+import Form from "components/Form";
+import { debounce } from "lib/helpers";
 
-type Props = {
-  items: FormattedSuggestion[];
+type Inputs = {
+  search: string;
+  status: string;
 };
 
-export default function RevisionReview({ items: allItems }: Props) {
-  const [items, setItems] = React.useState<FormattedSuggestion[]>(allItems);
+export default function RevisionReview() {
+  const [items, setItems] = React.useState<FormattedSuggestion[]>([]);
+  const [total, setTotal] = React.useState(0);
   const { open } = useModal();
+  const { send, loading } = useSecureFetch();
+
+  const form = useForm<Inputs>({
+    defaultValues: {
+      status: "pending",
+    },
+  });
+  const status = form.watch("status");
+
+  type GetProps = {
+    skip?: number;
+    loader?: boolean;
+    search?: string;
+    status?: string;
+  };
+
+  const get = async ({ skip, loader, search, status }: GetProps) => {
+    let toastId: string | undefined;
+    if (loader) {
+      toastId = toast.loading("loading...");
+    }
+
+    const data = await send({
+      url: "/api/admin/revisions",
+      method: "POST",
+      data: { skip: skip || 0, search: search || "", status: status || "" },
+    });
+
+    if (data?.results) {
+      if (skip) {
+        setItems((items) => [...items, ...data.results]);
+      } else {
+        setItems(data.results);
+      }
+      setTotal(data.total);
+    }
+
+    if (loader) {
+      toast.dismiss(toastId);
+    }
+  };
+
+  const loadMore = () => {
+    const data = form.getValues();
+    get({ skip: items.length, status: data.status || "", search: data.search || "" });
+  };
+
+  React.useEffect(() => {
+    get({ loader: true, status: "pending" });
+  }, []);
+
+  const handleSearchUpdate = () => {
+    const data = form.getValues();
+    get({ search: data.search || "", status: data.status || "" });
+  };
+
+  const handleStatusUpdate = (value: string) => {
+    const search = form.getValues("search") || "";
+    get({ search, status: value || "" });
+  };
+
+  const handleSearch = debounce(handleSearchUpdate, 500);
 
   const statusColors = {
     pending: "bg-amber-100/80 text-amber-800/80",
@@ -42,10 +107,24 @@ export default function RevisionReview({ items: allItems }: Props) {
     setItems((items) => items.map((item) => (item._id === id ? { ...item, status: "rejected" } : item)));
   };
 
+  const showLoadMore = status !== "pending" && items.length < total;
+
   return (
     <DashboardPage title="Suggested Edit Review">
       <div className="container pb-16">
         <Title>Suggested Edit Review</Title>
+
+        <Form form={form} onSubmit={() => null} className="mb-4 grid gap-8 sm:grid-cols-3">
+          <Input type="search" name="search" placeholder="Search..." onChange={handleSearch} style={{ marginTop: 0 }} />
+          <Select
+            onChange={handleStatusUpdate}
+            options={statusOptions}
+            name="status"
+            inline
+            instanceId="status"
+            className="max-w-[150px]"
+          />
+        </Form>
 
         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
           <table className="min-w-full divide-y divide-gray-300">
@@ -120,57 +199,17 @@ export default function RevisionReview({ items: allItems }: Props) {
             </tbody>
           </table>
         </div>
+        {showLoadMore && (
+          <button
+            type="button"
+            onClick={loadMore}
+            className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-2 px-4 rounded-full w-[220px] mx-auto block mt-8"
+          >
+            {loading ? "Loading..." : "Load More"}
+          </button>
+        )}
       </div>
     </DashboardPage>
   );
 }
-export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
-  const subscriptions = await getSubscriptions(token.uid);
-  let revisions: Revision[] = [];
-
-  if (token.role === "admin" && subscriptions.length === 0) {
-    revisions = await getAllRevisions();
-  } else {
-    let states = subscriptions.filter((it) => it.split("-").length === 2);
-    const counties = subscriptions.filter((it) => it.split("-").length === 3);
-    if (subscriptions.length === 0) {
-      states = token.regions;
-    }
-    revisions = await getRevisions(states, counties);
-  }
-
-  const formatDiff = (oldValue?: string, newValue?: string) => {
-    if (!newValue) return null; //No edit made for this field
-    if (!oldValue) return newValue; //Legacy revision with no old value saved
-    return {
-      old: oldValue,
-      new: newValue,
-      diff: diff(oldValue, newValue),
-    };
-  };
-
-  const formattedRevisions = revisions.map((it: Revision) => {
-    const state = getStateByCode(it?.stateCode);
-    const county = getCountyByCode(it.countyCode);
-    const formatted = {
-      ...it,
-      stateLabel: state?.label || "",
-      countyLabel: county?.name || "",
-      countryCode: it.countryCode,
-      about: formatDiff(it.about?.old, it.about?.new),
-      tips: formatDiff(it.tips?.old, it.tips?.new),
-      birds: formatDiff(it.birds?.old, it.birds?.new),
-      hikes: formatDiff(it.hikes?.old, it.hikes?.new),
-      roadside: formatDiff(it.roadside?.old, it.roadside?.new),
-      accessible: formatDiff(it.accessible?.old, it.accessible?.new),
-      restrooms: formatDiff(it.restrooms?.old, it.restrooms?.new),
-      fee: formatDiff(it.fee?.old, it.fee?.new),
-    };
-    return formatted;
-  });
-  console.log(formattedRevisions);
-
-  return {
-    props: { items: formattedRevisions },
-  };
-});
+export const getServerSideProps = getSecureServerSideProps(async () => ({ props: {} }));

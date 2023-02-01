@@ -20,11 +20,11 @@ const AsyncSelectStyled = (props: any) => {
         }),
         control: (base, state) => ({
           ...base,
-          borderColor: state.isFocused ? "rgb(165, 180, 252)" : base.borderColor,
+          borderColor: state.isFocused ? "rgb(165, 180, 252)" : "#e5e7eb",
           outline: "none",
           boxShadow: state.isFocused
             ? "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(199, 210, 254, 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
-            : base.boxShadow,
+            : "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         }),
         menu: (base) => ({
           ...base,

@@ -7,13 +7,16 @@ import toast from "react-hot-toast";
 
 export default function useFirebaseLogout() {
   const [loading, setLoading] = React.useState(false);
-  const secureFetch = useSecureFetch();
+  const { send } = useSecureFetch();
   const router = useRouter();
 
   const logout = async () => {
     setLoading(true);
     try {
-      await secureFetch("/api/auth/logout", "post");
+      await send({
+        url: "/api/auth/logout",
+        method: "post",
+      });
       await signOut(auth);
       toast.success("Logged out");
       router.push("/");

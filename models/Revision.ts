@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Revision as RevisionType } from "lib/types";
 import dayjs from "dayjs";
 const { Schema, model, models } = mongoose;
 
@@ -74,4 +75,4 @@ RevisionSchema.index({ status: 1 });
 
 const Revision = models.Revision || model("Revision", RevisionSchema);
 
-export default Revision;
+export default Revision as mongoose.Model<RevisionType>;
