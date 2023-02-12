@@ -94,7 +94,8 @@
     "country": "US",
     "label": "Iowa",
     "slug": "iowa",
-    "code": "US-IA"
+    "code": "US-IA",
+    "active": true
   },
   {
     "country": "US",
