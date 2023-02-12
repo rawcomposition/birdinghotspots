@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     let query: any = { status };
 
-    if (result.role !== "admin" || subscriptions.length > 0) {
+    if (result.role !== "admin") {
       let states = subscriptions.filter((it) => it.split("-").length === 2);
       const counties = subscriptions.filter((it) => it.split("-").length === 3);
       if (subscriptions.length === 0) {
