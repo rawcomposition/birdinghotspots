@@ -128,12 +128,12 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   const subscriptions = await getSubscriptions(token.uid);
   let uploads: Upload[] = [];
 
-  if (token.role === "admin" && subscriptions.length === 0) {
+  if (token.role === "admin") {
     uploads = await getAllUploads();
   } else {
     let states = subscriptions.filter((it) => it.split("-").length === 2);
     const counties = subscriptions.filter((it) => it.split("-").length === 3);
-    if (states?.length === 0) {
+    if (subscriptions.length === 0) {
       states = token.regions;
     }
     uploads = await getUploads(states, counties);
