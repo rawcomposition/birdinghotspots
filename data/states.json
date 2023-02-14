@@ -121,7 +121,8 @@
     "country": "US",
     "label": "Maine",
     "slug": "maine",
-    "code": "US-ME"
+    "code": "US-ME",
+    "active": true
   },
   {
     "country": "US",

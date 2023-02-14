@@ -16,6 +16,7 @@ import ArkansasCounties from "data/ar-counties.json";
 import OntarioCounties from "data/on-counties.json";
 import ConnecticutCounties from "data/ct-counties.json";
 import IowaCounties from "data/ia-counties.json";
+import MaineCounties from "data/me-counties.json";
 import { capitalize } from "./helpers";
 import { County } from "lib/types";
 
@@ -36,6 +37,7 @@ const countyArrays: any = {
   "US-CT": ConnecticutCounties,
   "CA-ON": OntarioCounties,
   "US-IA": IowaCounties,
+  "US-ME": MaineCounties,
 };
 
 export function getState(param: string) {
