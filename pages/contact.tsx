@@ -62,7 +62,7 @@ export default function Contact() {
       <Form form={form} onSubmit={handleSubmit}>
         <div className="max-w-2xl mx-auto">
           <p className="mb-4">
-            Please send comments, questions about this website , corrections, or additional information on locations by
+            Please send comments, questions about this website, corrections, or additional information on locations by
             filling out the contact form below.
           </p>
           <div className="py-5 bg-white space-y-6">

@@ -37,7 +37,7 @@ export default function useToast() {
     if (!response.ok) return Promise.reject("An error ocurred");
     const json = await response.json();
     if (!json.success) {
-      return Promise.reject(json.message || "An error ocurred");
+      return Promise.reject(json.error || "An error ocurred");
     }
     return json;
   };
