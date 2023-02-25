@@ -48,11 +48,17 @@ export default function Dashboard({ data }: Props) {
                   </div>
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
-                  <Link href={`${url}/alphabetical-index`}>
-                    <a className="font-medium text-orange-700 hover:text-orange-900">View List</a>
+                  <Link
+                    href={`${url}/alphabetical-index`}
+                    className="font-medium text-orange-700 hover:text-orange-900"
+                  >
+                    View List
                   </Link>
-                  <Link href={`/region/${code}`}>
-                    <a className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2">Explore</a>
+                  <Link
+                    href={`/region/${code}`}
+                    className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2"
+                  >
+                    Explore
                   </Link>
                 </td>
               </tr>

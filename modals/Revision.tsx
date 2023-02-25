@@ -57,10 +57,8 @@ export default function Revision({ data, onApprove, onReject }: Props) {
         <div className="space-y-4">
           <h3 className="text-lg font-bold">
             {data.name}{" "}
-            <Link href={`/hotspot/${data.locationId}`}>
-              <a className="font-bold text-sm" target="_blank">
-                (View Hotspot)
-              </a>
+            <Link href={`/hotspot/${data.locationId}`} className="font-bold text-sm" target="_blank">
+              (View Hotspot)
             </Link>
           </h3>
 

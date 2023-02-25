@@ -120,8 +120,8 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
           Thanks for contributing!{" "}
           {user?.uid ? "Your photos have been added to the hotspot." : "An editor will review your photos shortly."}
         </p>
-        <Link href={`/hotspot/${locationId}`}>
-          <a className="text-sky-700 font-bold">Back to Hotspot</a>
+        <Link href={`/hotspot/${locationId}`} className="text-sky-700 font-bold">
+          Back to Hotspot
         </Link>
       </div>
     );

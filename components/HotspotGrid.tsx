@@ -41,21 +41,19 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, s
         return (
           <article key={_id} className="flex flex-col gap-3">
             <Link href={url}>
-              <a>
-                <img
-                  src={featuredImg?.smUrl || "/placeholder.png"}
-                  alt={featuredImg?.caption || ""}
-                  className="object-cover rounded-md bg-gray-100 w-full aspect-[1.55]"
-                />
-              </a>
+              <img
+                src={featuredImg?.smUrl || "/placeholder.png"}
+                alt={featuredImg?.caption || ""}
+                className="object-cover rounded-md bg-gray-100 w-full aspect-[1.55]"
+              />
             </Link>
             <div className="flex-1">
               <div className="mb-4 leading-5 flex items-start">
                 <div>
                   {locationLine && <p className="text-gray-600 text-[11px]">{locationLine}</p>}
                   <h2 className="font-bold">
-                    <Link href={url}>
-                      <a className={`text-gray-700 ${smallTitle ? "text-[13px] leading-3" : ""}`}>{name}</a>
+                    <Link href={url} className={`text-gray-700 ${smallTitle ? "text-[13px] leading-3" : ""}`}>
+                      {name}
                     </Link>
                   </h2>
                   {showMeta && (
