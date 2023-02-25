@@ -44,20 +44,20 @@ export default function OhioFooter() {
 
         <section>
           <h3 className="text-lg font-bold mb-2">Learn More</h3>
-          <Link href="/about">
-            <a className="text-white">About this Website</a>
+          <Link href="/about" className="text-white">
+            About this Website
           </Link>
           <br />
-          <Link href="/about-ebird">
-            <a className="text-white">About eBird</a>
+          <Link href="/about-ebird" className="text-white">
+            About eBird
           </Link>
           <br />
-          <Link href="/contact">
-            <a className="text-white">Contact</a>
+          <Link href="/contact" className="text-white">
+            Contact
           </Link>
           <br />
-          <Link href="/license">
-            <a className="text-white">License & Copyright</a>
+          <Link href="/license" className="text-white">
+            License & Copyright
           </Link>
         </section>
       </div>

@@ -36,10 +36,12 @@ export default function TopHotspots({ region, label, className }: Props) {
         <HotspotGrid hotspots={results} loading={loading} skeletonCount={10} smallTitle />
       </div>
       {results.length > 0 && (
-        <Link href={`/region/${region}`}>
-          <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center">
-            View More <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
-          </a>
+        <Link
+          href={`/region/${region}`}
+          className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
+        >
+          View More
+          <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
         </Link>
       )}
     </>

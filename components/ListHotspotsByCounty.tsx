@@ -14,8 +14,8 @@ export default function ListHotspotsByCounty({ stateSlug, countrySlug, hotspots 
       {hotspots.map(({ countySlug, countyName, hotspots }) => (
         <p key={countySlug} className="mb-4 break-inside-avoid">
           {stateSlug && countrySlug ? (
-            <Link href={`/${countrySlug}/${stateSlug}/${countySlug}-county`}>
-              <a className="font-bold">{countyName}</a>
+            <Link href={`/${countrySlug}/${stateSlug}/${countySlug}-county`} className="font-bold">
+              {countyName}
             </Link>
           ) : (
             <span>{countyName}</span>

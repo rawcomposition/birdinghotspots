@@ -32,8 +32,12 @@ export default function Home({ featured }: Props) {
                 <div className="columns-2 lg:columns-3 mb-12">
                   {States.filter((state) => state.active && state.country === country.code).map(
                     ({ label, slug, code }) => (
-                      <Link key={code} href={`/${country.code.toLowerCase()}/${slug}`}>
-                        <a className="font-bold px-2 py-1 text-base mb-1 block">{label}</a>
+                      <Link
+                        key={code}
+                        href={`/${country.code.toLowerCase()}/${slug}`}
+                        className="font-bold px-2 py-1 text-base mb-1 block"
+                      >
+                        {label}
                       </Link>
                     )
                   )}

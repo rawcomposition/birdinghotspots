@@ -79,8 +79,8 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
         {alphabet.map((letter) => {
           if (activeLetters.includes(letter)) {
             return (
-              <Link key={letter} href={`#${letter}`}>
-                <a className="inline-block mr-3 text-lg">{letter.toUpperCase()}</a>
+              <Link key={letter} href={`#${letter}`} className="inline-block mr-3 text-lg">
+                {letter.toUpperCase()}
               </Link>
             );
           }

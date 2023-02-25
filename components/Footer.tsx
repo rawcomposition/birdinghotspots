@@ -25,14 +25,14 @@ export default function Footer() {
           CC0
         </a>
         &nbsp;with some exceptions -{" "}
-        <Link href="/license">
-          <a className="text-[#81b5e0]">learn More</a>
+        <Link href="/license" className="text-[#81b5e0]">
+          learn More
         </Link>
         <p className="mt-2">
           {user ? (
             <>
-              <Link href="/admin">
-                <a className="text-[#81b5e0]">Editor Dashboard</a>
+              <Link href="/admin" className="text-[#81b5e0]">
+                Editor Dashboard
               </Link>
               &nbsp;-&nbsp;
               <button type="button" onClick={logout} className="text-[#81b5e0]">
@@ -40,10 +40,9 @@ export default function Footer() {
               </button>
             </>
           ) : (
-            <Link href="/login">
-              <a className="text-[#81b5e0]">
-                <PencilSquareIcon className="h-3 w-3 inline" /> Editor Login
-              </a>
+            <Link href="/login" className="text-[#81b5e0]">
+              <PencilSquareIcon className="h-3 w-3 inline" />
+              Editor Login
             </Link>
           )}
         </p>

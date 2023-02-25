@@ -131,8 +131,8 @@ export default function Users() {
                       Resend Invite
                     </button>
                   )}
-                  <Link href={`/admin/user/edit/${uid}`}>
-                    <a className="font-medium text-orange-700 hover:text-orange-900">Edit</a>
+                  <Link href={`/admin/user/edit/${uid}`} className="font-medium text-orange-700 hover:text-orange-900">
+                    Edit
                   </Link>
                 </td>
               </tr>

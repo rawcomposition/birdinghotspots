@@ -109,24 +109,18 @@ export default function Hotspot({
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
-          <Link href={`/edit/${locationId}`}>
-            <a className="flex gap-1">
-              <PencilSquareIcon className="h-4 w-4" />
-              Edit Hotspot
-            </a>
+          <Link href={`/edit/${locationId}`} className="flex gap-1">
+            <PencilSquareIcon className="h-4 w-4" />
+            Edit Hotspot
           </Link>
         )}
-        <Link href={`/hotspot/upload/${locationId}`}>
-          <a className="flex gap-1">
-            <CameraIcon className="h-4 w-4" />
-            Upload Photos
-          </a>
+        <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
+          <CameraIcon className="h-4 w-4" />
+          Upload Photos
         </Link>
-        <Link href={`/hotspot/suggest/${locationId}`}>
-          <a className="flex gap-1">
-            <PencilSquareIcon className="h-4 w-4" />
-            Suggest Edit
-          </a>
+        <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
+          <PencilSquareIcon className="h-4 w-4" />
+          Suggest Edit
         </Link>
         {canEdit && needsDeleting && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">

@@ -50,8 +50,8 @@ export default function Drives({ countrySlug, state, drives }: Props) {
       <div className="columns-1 sm:columns-3 mb-12">
         {drives.map(({ countySlug, countyName, drives }) => (
           <p key={countySlug} className="mb-4 break-inside-avoid">
-            <Link href={`/${countrySlug}/${state.slug}/${countySlug}-county`}>
-              <a className="font-bold">{countyName}</a>
+            <Link href={`/${countrySlug}/${state.slug}/${countySlug}-county`} className="font-bold">
+              {countyName}
             </Link>
             <br />
             {drives.map(({ name, url }) => (

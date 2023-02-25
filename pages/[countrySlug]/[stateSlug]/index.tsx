@@ -53,11 +53,9 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         )}
       </PageHeading>
       <EditorActions className="-mt-10" requireRegion={state.code}>
-        <Link href={`/edit/group/new?country=${countrySlug}`}>
-          <a className="flex gap-1">
-            <PlusCircleIcon className="h-4 w-4" />
-            Add Group
-          </a>
+        <Link href={`/edit/group/new?country=${countrySlug}`} className="flex gap-1">
+          <PlusCircleIcon className="h-4 w-4" />
+          Add Group
         </Link>
       </EditorActions>
       <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
@@ -73,11 +71,13 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           </p>
           <RegionStats regionCode={code} />
           <div className="mt-8">
-            <Link href={`/region/${code}?view=map`}>
-              <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center">
-                <MapIconAlt className="inline-block text-xl mr-3" />
-                Explore Hotspot Map <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
-              </a>
+            <Link
+              href={`/region/${code}?view=map`}
+              className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
+            >
+              <MapIconAlt className="inline-block text-xl mr-3" />
+              Explore Hotspot Map
+              <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
             </Link>
             <p className="ml-1 mt-0.5">
               Or, <Link href={`/region/${code}`}>view top hotspots</Link> in {label}
@@ -112,10 +112,12 @@ export default function State({ countrySlug, state, counties, info, articles }: 
             <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded">
               {counties?.map(({ name, slug: countySlug }) => (
                 <p key={name}>
-                  <Link href={`/${countrySlug}/${slug}/${countySlug}-county`}>
-                    <a className="font-bold text-slate-300" title={name}>
-                      {name.length > 12 ? `${name.slice(0, 12)}...` : name}
-                    </a>
+                  <Link
+                    href={`/${countrySlug}/${slug}/${countySlug}-county`}
+                    className="font-bold text-slate-300"
+                    title={name}
+                  >
+                    {name.length > 12 ? `${name.slice(0, 12)}...` : name}
                   </Link>
                 </p>
               ))}
@@ -148,17 +150,13 @@ export default function State({ countrySlug, state, counties, info, articles }: 
       </Heading>
 
       <EditorActions className="-mt-2">
-        <Link href={`/${countrySlug}/${slug}/edit-info`}>
-          <a className="flex gap-1">
-            <PencilSquareIcon className="h-4 w-4" />
-            Edit Links
-          </a>
+        <Link href={`/${countrySlug}/${slug}/edit-info`} className="flex gap-1">
+          <PencilSquareIcon className="h-4 w-4" />
+          Edit Links
         </Link>
-        <Link href={`/${countrySlug}/${slug}/article/edit/new`}>
-          <a className="flex gap-1">
-            <DocumentPlusIcon className="h-4 w-4" />
-            Add Article
-          </a>
+        <Link href={`/${countrySlug}/${slug}/article/edit/new`} className="flex gap-1">
+          <DocumentPlusIcon className="h-4 w-4" />
+          Add Article
         </Link>
       </EditorActions>
 

@@ -58,8 +58,8 @@ export default function Explore({ region, name, url, view: initialView }: Props)
           <div>
             <p className="text-lg text-gray-500">
               Found <strong className="text-[#4a84b2]">{count}</strong> hotspots in{" "}
-              <Link href={url}>
-                <a className="text-[#4a84b2] font-bold">{name}</a>
+              <Link href={url} className="text-[#4a84b2] font-bold">
+                {name}
               </Link>
             </p>
             {view === "grid" && <p className="text-xs text-gray-500">Sorted by species count</p>}

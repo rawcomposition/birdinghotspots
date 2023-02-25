@@ -113,8 +113,8 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
         <p className="text-lg text-gray-500 mb-4">
           Thanks for contributing! An editor will review your suggestion shortly.
         </p>
-        <Link href="/hotspot/[locationId]" as={`/hotspot/${locationId}`}>
-          <a className="text-sky-700 font-bold">Back to Hotspot</a>
+        <Link href="/hotspot/[locationId]" as={`/hotspot/${locationId}`} className="text-sky-700 font-bold">
+          Back to Hotspot
         </Link>
       </div>
     );

@@ -109,10 +109,8 @@ export default function ImageReview({ items: allItems }: Props) {
               {item.uploads.length === 0 && (
                 <p>
                   Consider sorting the images for this hotspot based on quality/relevance.{" "}
-                  <Link href={`/hotspot/${item.locationId}`}>
-                    <a className="font-bold" target="_blank">
-                      View Hotspot
-                    </a>
+                  <Link href={`/hotspot/${item.locationId}`} className="font-bold" target="_blank">
+                    View Hotspot
                   </Link>
                 </p>
               )}

@@ -163,8 +163,8 @@ export default function RevisionReview() {
                   <td className="py-4 pl-4 pr-3 text-sm sm:pl-6">
                     <div>
                       <div className="font-bold">
-                        <Link href={`/hotspot/${item.locationId}`}>
-                          <a target="_blank">{item.name}</a>
+                        <Link href={`/hotspot/${item.locationId}`} target="_blank">
+                          {item.name}
                         </Link>
                         {item.hasMultiple && (
                           <Badge color="amber" tooltip="Multiple suggestions for this hotspot.">

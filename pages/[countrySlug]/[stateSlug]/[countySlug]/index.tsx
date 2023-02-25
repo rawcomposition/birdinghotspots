@@ -65,11 +65,9 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
         {longName}
       </PageHeading>
       <EditorActions className="-mt-10" requireRegion={state.code}>
-        <Link href={`/edit/group/new?country=${countrySlug}`}>
-          <a className="flex gap-1">
-            <PlusCircleIcon className="h-4 w-4" />
-            Add Group
-          </a>
+        <Link href={`/edit/group/new?country=${countrySlug}`} className="flex gap-1">
+          <PlusCircleIcon className="h-4 w-4" />
+          Add Group
         </Link>
       </EditorActions>
       <section className="md:flex justify-between items-start mb-8">
