@@ -135,7 +135,6 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cookies = nookies.get(context);
   const { countrySlug, stateSlug } = context.query as Params;
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
@@ -144,7 +143,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const formatted = hotspots.map((it: any) => ({
     ...it,
-    noContent: (cookies.session && it.noContent && !it.groupIds?.length) || false,
+    noContent: (it.noContent && !it.groupIds?.length) || false,
   }));
 
   return {
