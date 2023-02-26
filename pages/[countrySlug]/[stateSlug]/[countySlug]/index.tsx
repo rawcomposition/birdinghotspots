@@ -12,7 +12,6 @@ import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
 import CountyLinksBtn from "components/CountyLinksBtn";
 import MapBox from "components/MapBox";
-import nookies from "nookies";
 import RegionStats from "components/RegionStats";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import EditorActions from "components/EditorActions";
@@ -157,7 +156,6 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cookies = nookies.get(context);
   const { countrySlug, stateSlug, countySlug } = context.query as Params;
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
@@ -169,7 +167,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const formatted = hotspots.map((it: any) => ({
     ...it,
-    noContent: (cookies.session && it.noContent && !it.groupIds?.length) || false,
+    noContent: (it.noContent && !it.groupIds?.length) || false,
   }));
 
   return {

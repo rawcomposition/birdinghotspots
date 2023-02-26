@@ -9,7 +9,6 @@ import Title from "components/Title";
 import { State } from "lib/types";
 import { useUser } from "providers/user";
 import { useDebounce } from "hooks/useDebounce";
-import nookies from "nookies";
 
 type Props = {
   countrySlug: string;
