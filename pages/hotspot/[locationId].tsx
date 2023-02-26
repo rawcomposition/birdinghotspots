@@ -21,6 +21,7 @@ import { useUser } from "providers/user";
 import { CameraIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import Citations from "components/Citations";
+import Features from "components/Features";
 
 interface Props extends HotspotType {
   county: County;
@@ -195,6 +196,8 @@ export default function Hotspot({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
+          <Features {...{ fee, accessible, roadside, restrooms }} />
+
           {noContent && !groups?.length && (
             <div className="mb-6 formatted">
               <h3 className="font-bold text-lg mb-1.5">About this location</h3>
@@ -205,16 +208,6 @@ export default function Hotspot({
               </div>
             </div>
           )}
-
-          <div className="space-y-1">
-            {accessible === "Yes" && <p>Accessible parking and trails.</p>}
-            {roadside === "Yes" && <p>Roadside accessible.</p>}
-            {restrooms === "Yes" && <p>Restrooms on site.</p>}
-            {restrooms === "No" && <p>No restroom facilities.</p>}
-            {fee === "Yes" && <p>Entrance fee may apply.</p>}
-            {fee === "No" && <p>No entrance fee.</p>}
-          </div>
-
           <Citations citations={citations} links={links} />
         </div>
         <div>
