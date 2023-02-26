@@ -84,8 +84,9 @@ export default function EditLinks({ state, data, error, errorCode }: Props) {
                 <InputLinks name="clubLinks" />
               </div>
             </div>
-            <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit disabled={loading} color="green" className="font-medium">
+            <div className="px-4 py-3 bg-gray-100 sm:px-6 rounded flex justify-between items-center">
+              <p className="text-gray-600 hidden md:block">Note: A browser refresh may be required to see changes.</p>
+              <Submit disabled={loading} color="green" className="font-medium ml-auto">
                 Save Links
               </Submit>
             </div>
