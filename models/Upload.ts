@@ -7,17 +7,39 @@ const UploadSchema = new Schema({
     type: String,
     required: true,
   },
-  smUrl: String,
-  lgUrl: String,
-  originalUrl: String,
-  by: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  smUrl: {
+    type: String,
+    required: true,
+  },
+  lgUrl: {
+    type: String,
+    required: true,
+  },
+  originalUrl: {
+    type: String,
+    required: true,
+  },
+  by: {
+    type: String,
+    required: true,
+  },
   email: String,
   uid: String,
   width: Number,
   height: Number,
   caption: String,
-  countryCode: String,
-  stateCode: String,
+  countryCode: {
+    type: String,
+    required: true,
+  },
+  stateCode: {
+    type: String,
+    required: true,
+  },
   countyCode: String,
   status: {
     type: String,

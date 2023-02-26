@@ -23,22 +23,6 @@ type Inputs = {
   images: Image[];
 };
 
-interface Params extends ParsedUrlQuery {
-  locationId: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { locationId } = query as Params;
-  const hotspot = await getHotspotByLocationId(locationId);
-
-  return {
-    props: {
-      locationId,
-      hotspotName: hotspot?.name,
-    },
-  };
-};
-
 type Props = {
   locationId: string;
   hotspotName: string;
@@ -183,3 +167,20 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
     </div>
   );
 }
+
+interface Params extends ParsedUrlQuery {
+  locationId: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { locationId } = query as Params;
+  const hotspot = await getHotspotByLocationId(locationId);
+  if (!hotspot) return { notFound: true };
+
+  return {
+    props: {
+      locationId,
+      hotspotName: hotspot?.name,
+    },
+  };
+};

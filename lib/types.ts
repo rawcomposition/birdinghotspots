@@ -222,6 +222,7 @@ export type LocationSearchValue = {
 
 export type Upload = {
   locationId: string;
+  name: string;
   countryCode: string;
   stateCode: string;
   countyCode: string;
