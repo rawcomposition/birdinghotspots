@@ -189,8 +189,8 @@ export default function Hotspot({
 
           {about && <AboutSection heading="About this Location" text={about} />}
 
-          {groups?.map(({ _id, name, about }) => (
-            <AboutSection key={_id} heading={`About ${name}`} text={about || ""} />
+          {groups?.map(({ _id, name, about, locationId }) => (
+            <AboutSection key={_id} heading={`About ${name}`} text={about || ""} link={`/group/${locationId}`} />
           ))}
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
