@@ -137,7 +137,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 <TinyMCE name="birds" defaultValue={data?.birds} />
               </Field>
 
-              <Field label="About this location (required)">
+              <Field label="About this location (required)" help="This will be displayed on all child hotspots">
                 <TinyMCE name="about" defaultValue={data?.about} />
               </Field>
 
