@@ -8,7 +8,6 @@ import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { State } from "lib/types";
 import { useUser } from "providers/user";
-import NoticeIcon from "components/NoticeIcon";
 import { useDebounce } from "hooks/useDebounce";
 import nookies from "nookies";
 
@@ -102,8 +101,9 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
                 {isNumber ? "" : name[0].toUpperCase()}
               </h2>
             )}
-            <Link href={url}>{name}</Link>
-            {user && noContent && <NoticeIcon color="yellow" tooltip="Needs content" />}
+            <Link href={url} className={noContent ? "" : "font-bold"}>
+              {name}
+            </Link>
             {needsDeleting && user && (
               <span className={`bg-red-600 rounded-full text-xs px-2 text-white font-bold ml-2`}>
                 Removed from eBird
