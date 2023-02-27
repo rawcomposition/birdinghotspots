@@ -62,7 +62,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
     <div className="container pb-16">
       <Title>{`${longName}, ${state.label}, ${state.country}`}</Title>
       <Head>
-        <meta property="og:image" content="/social-banner.jpg" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
       </Head>
       <PageHeading countrySlug={countrySlug} state={state}>
         {longName}

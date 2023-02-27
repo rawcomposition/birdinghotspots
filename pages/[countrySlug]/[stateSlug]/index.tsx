@@ -45,7 +45,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${label}`}</Title>
       <Head>
-        <meta property="og:image" content="/social-banner.jpg" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
       </Head>
       <PageHeading countrySlug={countrySlug} state={state} hideState>
         {label} Birding Hotspots
