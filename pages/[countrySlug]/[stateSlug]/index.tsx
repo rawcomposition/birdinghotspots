@@ -2,6 +2,7 @@ import * as React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
+import Head from "next/head";
 import { getState, getCounties } from "lib/localData";
 import RareBirds from "components/RareBirds";
 import { State as StateType, Article, County as CountyType, RegionInfo } from "lib/types";
@@ -43,6 +44,9 @@ export default function State({ countrySlug, state, counties, info, articles }: 
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${label}`}</Title>
+      <Head>
+        <meta property="og:image" content="/social-banner.jpg" />
+      </Head>
       <PageHeading countrySlug={countrySlug} state={state} hideState>
         {label} Birding Hotspots
         {state.subheading && (

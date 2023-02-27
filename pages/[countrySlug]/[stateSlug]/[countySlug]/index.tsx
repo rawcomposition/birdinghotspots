@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { getHotspotsByCounty } from "lib/mongo";
@@ -60,6 +61,9 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
   return (
     <div className="container pb-16">
       <Title>{`${longName}, ${state.label}, ${state.country}`}</Title>
+      <Head>
+        <meta property="og:image" content="/social-banner.jpg" />
+      </Head>
       <PageHeading countrySlug={countrySlug} state={state}>
         {longName}
       </PageHeading>

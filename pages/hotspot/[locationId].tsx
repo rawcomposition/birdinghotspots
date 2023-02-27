@@ -2,6 +2,7 @@ import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
+import Head from "next/head";
 import { getHotspotByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getCountyByCode, getStateByCode } from "lib/localData";
@@ -58,6 +59,7 @@ export default function Hotspot({
   species,
   groups,
   noContent,
+  featuredImg,
 }: Props) {
   const { user } = useUser();
   const countrySlug = countryCode?.toLowerCase();
@@ -104,6 +106,11 @@ export default function Hotspot({
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${state.label}, ${state.country}`}</Title>
+      {featuredImg && (
+        <Head>
+          <meta property="og:image" content={featuredImg.smUrl} />
+        </Head>
+      )}
       <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
         {name}
       </PageHeading>

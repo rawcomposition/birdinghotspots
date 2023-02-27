@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Head from "next/head";
 import States from "data/states.json";
 import Countries from "data/countries.json";
 import EbirdDescription from "components/EbirdDescription";
@@ -22,6 +23,9 @@ export default function Home({ featured }: Props) {
   return (
     <>
       <Title />
+      <Head>
+        <meta property="og:image" content="/social-banner.jpg" />
+      </Head>
       <Banner />
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
