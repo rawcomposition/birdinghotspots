@@ -79,7 +79,11 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
               </Field>
 
               <Field label="Address">
-                <Textarea name="address" rows={2} />
+                <Textarea
+                  name="address"
+                  rows={2}
+                  help="City, state, and zip is sufficient if a full address is unavailable"
+                />
               </Field>
 
               <InputHotspotLinks />
