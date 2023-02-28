@@ -48,6 +48,8 @@ export default function Explore({ region, name, url, view: initialView }: Props)
     setLoading(false);
   }, []);
 
+  const hasMore = count !== null && results.length < count;
+
   return (
     <div className={view === "grid" ? "container pb-16 mt-4 max-w-[975px]" : "flex flex-col h-full"}>
       <Title>{`Hotspots in ${name}`}</Title>
@@ -89,7 +91,7 @@ export default function Explore({ region, name, url, view: initialView }: Props)
         </>
       )}
       {view === "map" && <ExploreMap mode="region" region={region} />}
-      {view === "grid" && results.length > 0 && (
+      {view === "grid" && results.length > 0 && hasMore && (
         <button
           type="button"
           onClick={loadMore}
