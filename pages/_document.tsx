@@ -5,7 +5,7 @@ class MyDocument extends Document {
   render() {
     const ga = process.env.NEXT_PUBLIC_GA;
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
