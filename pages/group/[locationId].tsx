@@ -17,6 +17,7 @@ import { useUser } from "providers/user";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import HotspotGrid from "components/HotspotGrid";
 import Citations from "components/Citations";
+import Features from "components/Features";
 
 interface Props extends GroupType {
   county?: County;
@@ -114,8 +115,7 @@ export default function Group({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
-          {restrooms === "Yes" && <p>Restrooms on site.</p>}
-          {restrooms === "No" && <p>No restroom facilities.</p>}
+          <Features {...{ restrooms }} />
 
           <Citations citations={citations} links={links} />
         </div>
