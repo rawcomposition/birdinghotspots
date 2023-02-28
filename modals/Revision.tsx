@@ -99,7 +99,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
 
           {data.accessible && (
             <div>
-              <strong>Wheelchair accessible parking and trails</strong>: <del>{data.accessible.old}</del>
+              <strong>Wheelchair accessible trail</strong>: <del>{data.accessible.old}</del>
               &nbsp;→&nbsp;
               <ins>{data.accessible.new}</ins>
             </div>

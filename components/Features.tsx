@@ -14,8 +14,8 @@ export default function Features({ fee, roadside, accessible, restrooms }: Props
   if (!fee && !roadside && !accessible && !restrooms) return null;
   const items = [
     { label: "Restrooms on site", icon: <Toilets />, value: restrooms },
-    { label: "Accessible parking and trails", icon: <Wheelchair />, value: accessible },
-    { label: "Entrance Fee", icon: <Dollar />, value: fee },
+    { label: "Wheelchair accessible trail", icon: <Wheelchair />, value: accessible },
+    { label: "Entrance fee", icon: <Dollar />, value: fee },
     { label: "Roadside viewing", icon: <Road />, value: roadside },
   ].filter((it) => it.value && it.value !== "Unknown");
 
