@@ -91,15 +91,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
       </section>
       <section className="mb-16">
         {markers.length > 0 && (
-          <MapBox
-            key={county.code}
-            markers={markers as Marker[]}
-            lat={markers[0].lat}
-            lng={markers[0].lng}
-            zoom={8}
-            landscape
-            disableScroll
-          />
+          <MapBox key={county.code} markers={markers as Marker[]} zoom={8} landscape disableScroll />
         )}
       </section>
       <section className="mb-16">

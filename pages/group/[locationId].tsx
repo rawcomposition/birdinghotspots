@@ -32,9 +32,6 @@ export default function Group({
   countryCode,
   name,
   _id,
-  lat,
-  lng,
-  zoom,
   address,
   links,
   citations,
@@ -123,7 +120,7 @@ export default function Group({
           <Citations citations={citations} links={links} />
         </div>
         <div>
-          {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
+          {markers.length > 0 && <MapBox key={_id} markers={markers} zoom={12} />}
           {!!images?.length && <MapList images={images} />}
         </div>
       </div>

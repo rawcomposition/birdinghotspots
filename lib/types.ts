@@ -272,9 +272,6 @@ export type Group = {
   name: string;
   _id?: string;
   url: string;
-  lat: number;
-  lng: number;
-  zoom: number;
   locationId: string;
   countryCode: string;
   stateCodes: string[];
