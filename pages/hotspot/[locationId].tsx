@@ -197,8 +197,14 @@ export default function Hotspot({
 
           {about && <AboutSection heading="About this Location" text={about} />}
 
-          {groups?.map(({ _id, name, about, locationId }) => (
-            <AboutSection key={_id} heading={`About ${name}`} text={about || ""} link={`/group/${locationId}`} />
+          {groups?.map(({ name, about, locationId }) => (
+            <div className="mb-6 formatted" key={locationId}>
+              <h3 className="font-bold text-lg">About {name}</h3>
+              <p className="mb-1.5">
+                See all hotspots at <Link href={`/group/${locationId}`}>{name}</Link>
+              </p>
+              <div dangerouslySetInnerHTML={{ __html: about || "" }} />
+            </div>
           ))}
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
