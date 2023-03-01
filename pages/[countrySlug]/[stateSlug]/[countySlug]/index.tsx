@@ -18,6 +18,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import EditorActions from "components/EditorActions";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
+import useLogPageview from "hooks/useLogPageview";
 
 type Props = {
   countrySlug: string;
@@ -27,6 +28,12 @@ type Props = {
 };
 
 export default function County({ countrySlug, state, county, hotspots }: Props) {
+  useLogPageview({
+    stateCode: state.code,
+    countyCode: county.code,
+    countryCode: state.country.toUpperCase(),
+    entity: "county",
+  });
   const { name, longName, code } = county;
   const hotspotIBA = hotspots.filter(({ iba }) => iba?.value).map(({ iba }) => iba);
   const drives: HotspotDrive[] = [];

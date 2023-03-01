@@ -18,6 +18,7 @@ import BarChartBtn from "components/BarChartBtn";
 import HotspotGrid from "components/HotspotGrid";
 import Citations from "components/Citations";
 import Features from "components/Features";
+import useLogPageview from "hooks/useLogPageview";
 
 interface Props extends GroupType {
   county?: County;
@@ -46,6 +47,7 @@ export default function Group({
   markers,
   hotspots,
 }: Props) {
+  useLogPageview({ locationId, stateCode: state?.code, countyCode: county?.code, countryCode, entity: "group" });
   const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
   const canEdit = user?.role === "admin" || stateCodes.filter((it) => user?.regions?.includes(it)).length > 0;

@@ -25,6 +25,7 @@ import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import Citations from "components/Citations";
 import Features from "components/Features";
 import ExternalLinkButton from "components/ExternalLinkButton";
+import useLogPageview from "hooks/useLogPageview";
 
 interface Props extends HotspotType {
   county: County;
@@ -64,6 +65,7 @@ export default function Hotspot({
   featuredImg,
 }: Props) {
   const { user } = useUser();
+  useLogPageview({ locationId, stateCode: state.code, countyCode: county.code, countryCode, entity: "hotspot" });
   const countrySlug = countryCode?.toLowerCase();
   let extraLinks = [];
   if (roadside === "Yes") {

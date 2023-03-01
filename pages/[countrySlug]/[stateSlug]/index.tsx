@@ -24,6 +24,7 @@ import States from "data/states.json";
 import { StateLinkSection } from "components/StateLinkSection";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
+import useLogPageview from "hooks/useLogPageview";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -39,6 +40,7 @@ type Props = {
 };
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
+  useLogPageview({ stateCode: state.code, countryCode: state.country.toUpperCase(), entity: "state" });
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
   const { label, code, slug } = state || ({} as StateType);
   const { open } = useModal();

@@ -397,3 +397,14 @@ export interface FormattedSuggestion extends Revision {
     diff: string;
   };
 }
+
+export type Pageview = {
+  count: number;
+  locationId?: string;
+  stateCode?: string;
+  countyCode?: string;
+  countryCode?: string;
+  entity: "hotspot" | "group" | "county" | "state";
+  year: number;
+  month: number;
+};

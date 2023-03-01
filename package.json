@@ -23,6 +23,7 @@
     "firebase": "^9.8.2",
     "firebase-admin": "^10.3.0",
     "html-react-parser": "^3.0.1",
+    "isbot": "^3.6.6",
     "jsdom": "^20.0.0",
     "mapbox-gl": "^2.9.1",
     "mongoose": "^6.3.5",

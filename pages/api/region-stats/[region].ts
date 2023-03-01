@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import Group from "models/Group";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { region }: any = req.query;
