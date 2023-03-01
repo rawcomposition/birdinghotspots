@@ -19,12 +19,12 @@ const PageviewSchema = new Schema({
     required: true,
   },
   year: {
-    type: "string",
+    type: "number",
     default: () => Number(dayjs().format("YYYY")),
     required: true,
   },
   month: {
-    type: "string",
+    type: "number",
     default: () => Number(dayjs().format("M")),
     required: true,
   },
