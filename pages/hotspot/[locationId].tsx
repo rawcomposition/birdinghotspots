@@ -75,13 +75,6 @@ export default function Hotspot({
     });
   }
 
-  groups?.forEach((it) => {
-    extraLinks.push({
-      label: it.name,
-      url: it.url,
-    });
-  });
-
   if (iba) {
     extraLinks.push({
       label: `${iba.label} Important Bird Area`,
