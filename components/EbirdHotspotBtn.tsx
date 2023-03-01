@@ -1,5 +1,6 @@
 import { State } from "lib/types";
 import { Menu } from "@headlessui/react";
+import VerticalDots from "icons/VerticalDots";
 
 type Props = {
   state?: State;
@@ -14,29 +15,17 @@ export default function EbirdHotspotBtn({ state, locationId, locationIds, isGrou
   return (
     <div className="relative inline-block">
       <Menu>
-        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap">
-          Explore in
-          <img src="/ebird.png" className="h-[18px] -mt-[1px] -mr-1.5 inline-block" alt="eBird" />
+        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-1.5 py-[6px] inline-flex items-center">
+          <VerticalDots />
         </Menu.Button>
-        <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1">
-          {!isGroup && (
-            <Menu.Item>
-              <a href={`${base}/hotspot/${locationId}?yr=all&m=&rank=mrec`} target="_blank" rel="noreferrer">
-                View Details
-              </a>
-            </Menu.Item>
-          )}
+        <Menu.Items className="absolute right-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1">
+          <Menu.Item>
+            <h4 className="font-bold">Explore in eBird</h4>
+          </Menu.Item>
           {!isGroup && (
             <Menu.Item>
               <a href={`${base}/hotspot/${locationId}/activity?yr=all&m=`} target="_blank" rel="noreferrer">
                 Recent Visits
-              </a>
-            </Menu.Item>
-          )}
-          {!isGroup && (
-            <Menu.Item>
-              <a href={`${base}/hotspot/${region}/media?yr=all&m=`} target="_blank" rel="noreferrer">
-                Illustrated Checklist
               </a>
             </Menu.Item>
           )}

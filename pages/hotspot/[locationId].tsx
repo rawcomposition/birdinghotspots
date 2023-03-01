@@ -14,6 +14,7 @@ import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
+import ImageIcon from "icons/Image";
 import { formatMarker } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
@@ -23,6 +24,7 @@ import { CameraIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import Citations from "components/Citations";
 import Features from "components/Features";
+import ExternalLinkButton from "components/ExternalLinkButton";
 
 interface Props extends HotspotType {
   county: County;
@@ -103,6 +105,8 @@ export default function Hotspot({
 
   const canEdit = user?.role === "admin" || user?.regions?.includes(state.code);
 
+  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${state.label}, ${state.country}`}</Title>
@@ -147,26 +151,22 @@ export default function Hotspot({
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4 flex-wrap">
               {!!species && (
-                <a
-                  href={`https://ebird.org/hotspot/${locationId}`}
-                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <ExternalLinkButton href={`https://ebird.org/hotspot/${locationId}`}>
                   <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
-                </a>
+                </ExternalLinkButton>
               )}
-              <EbirdHotspotBtn {...{ state, locationId }} />
               {lat && lng && (
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
-                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <ExternalLinkButton href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>
                   <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
-                </a>
+                </ExternalLinkButton>
               )}
+              <div className="inline-flex gap-2">
+                {/*Grouped to prevent the last button from wrapping on its own*/}
+                <ExternalLinkButton href={`${base}/hotspot/${locationId}/media?yr=all&m=`}>
+                  <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+                </ExternalLinkButton>
+                <EbirdHotspotBtn {...{ state, locationId }} />
+              </div>
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (

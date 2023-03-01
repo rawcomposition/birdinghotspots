@@ -16,6 +16,8 @@ import MapBox from "components/MapBox";
 import RegionStats from "components/RegionStats";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import EditorActions from "components/EditorActions";
+import ExternalLinkButton from "components/ExternalLinkButton";
+import ImageIcon from "icons/Image";
 
 type Props = {
   countrySlug: string;
@@ -58,6 +60,8 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
 
+  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+
   return (
     <div className="container pb-16">
       <Title>{`${longName}, ${state.label}, ${state.country}`}</Title>
@@ -77,7 +81,6 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
         <div>
           <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {longName}</h3>
           <div className="flex gap-2 mt-2 mb-4">
-            <EbirdRegionBtn code={code} portal={state.portal} />
             <CountyLinksBtn
               showIba={iba.length > 0}
               countrySlug={countrySlug}
@@ -85,6 +88,14 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
               county={county}
               label={name}
             />
+
+            <div className="inline-flex gap-2">
+              {/*Grouped to prevent the last button from wrapping on its own*/}
+              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
+                <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+              </ExternalLinkButton>
+              <EbirdRegionBtn code={code} portal={state.portal} />
+            </div>
           </div>
         </div>
         <RegionStats regionCode={code} />

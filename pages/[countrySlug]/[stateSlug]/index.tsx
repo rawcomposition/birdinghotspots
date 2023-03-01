@@ -22,6 +22,8 @@ import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
 import States from "data/states.json";
 import { StateLinkSection } from "components/StateLinkSection";
+import ExternalLinkButton from "components/ExternalLinkButton";
+import ImageIcon from "icons/Image";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -40,6 +42,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
   const { label, code, slug } = state || ({} as StateType);
   const { open } = useModal();
+  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
 
   return (
     <div className="container pb-16 mt-12">
@@ -66,8 +69,14 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         <div>
           <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {label}</h3>
           <div className="flex gap-2 mt-2 mb-4">
-            <EbirdRegionBtn code={code} portal={state.portal} />
             <StateLinksBtn state={state} />
+            <div className="inline-flex gap-2">
+              {/*Grouped to prevent the last button from wrapping on its own*/}
+              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
+                <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+              </ExternalLinkButton>
+              <EbirdRegionBtn code={code} portal={state.portal} />
+            </div>
           </div>
           <p className="text-gray-600 mb-8 text-[15px]">
             Discover where to go birding in {label} by browsing our tips, descriptions, maps, and images for many eBird

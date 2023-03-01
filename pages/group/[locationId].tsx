@@ -14,7 +14,7 @@ import MapList from "components/MapList";
 import { formatMarker, getShortName } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
-import EbirdHotspotBtn from "components/EbirdHotspotBtn";
+import BarChartBtn from "components/BarChartBtn";
 import HotspotGrid from "components/HotspotGrid";
 import Citations from "components/Citations";
 import Features from "components/Features";
@@ -94,7 +94,7 @@ export default function Group({
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4">
-              <EbirdHotspotBtn {...{ state, locationId, locationIds }} isGroup />
+              <BarChartBtn {...{ state, locationId, locationIds }} />
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
