@@ -10,6 +10,7 @@ import ModalWrapper from "components/ModalWrapper";
 import StateInfo from "modals/StateInfo";
 import AddStreetView from "modals/AddStreetview";
 import Revision from "modals/Revision";
+import InviteEditor from "modals/InviteEditor";
 
 const modals = [
   {
@@ -29,6 +30,12 @@ const modals = [
     title: "Review Suggestion",
     maxWidth: "700px",
     Component: Revision,
+  },
+  {
+    id: "inviteEditor",
+    title: "Invite Editor",
+    maxWidth: "500px",
+    Component: InviteEditor,
   },
 ];
 

@@ -30,6 +30,7 @@ const AsyncSelectStyled = (props: any) => {
           ...base,
           zIndex: 100,
         }),
+        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
       }}
       {...props}
     />

@@ -5,21 +5,17 @@ import { User } from "lib/types";
 import { roles } from "lib/helpers";
 import Input from "components/Input";
 import Form from "components/Form";
-import Submit from "components/Submit";
+import Button from "components/Button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import useToast from "hooks/useToast";
 import StateSelect from "components/StateSelect";
 import Badge from "components/Badge";
-
-type Inputs = {
-  email: string;
-  name: string;
-  regions: string[];
-};
+import { useModal } from "providers/modals";
 
 export default function Users() {
   const { send, loading } = useToast();
+  const { open } = useModal();
   const [users, setUsers] = React.useState<User[]>([]);
 
   const fetchUsers = React.useCallback(async () => {
@@ -27,23 +23,6 @@ export default function Users() {
     const json = await response.json();
     setUsers(json.users);
   }, []);
-
-  const form = useForm<Inputs>({ mode: "onChange" });
-  const {
-    formState: { isValid },
-  } = form;
-
-  const handleSubmit: SubmitHandler<Inputs> = async ({ name, email, regions }) => {
-    const response = await send({
-      url: "/api/admin/user/invite",
-      method: "POST",
-      data: { name, email, regions },
-    });
-    if (response.success) {
-      fetchUsers();
-      form.reset();
-    }
-  };
 
   const handleResend = async (email: string) => {
     await send({
@@ -60,16 +39,11 @@ export default function Users() {
 
   return (
     <DashboardPage title="Users">
-      <Form form={form} onSubmit={handleSubmit}>
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
-          <Input type="text" name="name" placeholder="Name" style={{ marginTop: 0 }} required />
-          <Input type="email" name="email" placeholder="Email Address" style={{ marginTop: 0 }} required />
-          <StateSelect name="regions" className="min-w-[200px]" placeholder="Select regions..." required isMulti />
-          <Submit disabled={!isValid || loading} color="green" className="font-medium">
-            Invite
-          </Submit>
-        </div>
-      </Form>
+      <div className="flex justify-end mb-4">
+        <Button onClick={() => open("inviteEditor", { onSuccess: fetchUsers })} color="green" className="font-medium">
+          Invite Editor
+        </Button>
+      </div>
       <div className="overflow-hidden shadow md:rounded-lg mb-12">
         <table className="min-w-full divide-y divide-gray-300">
           <thead className="bg-gray-50">

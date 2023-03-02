@@ -22,6 +22,7 @@ const ReactSelectStyled = (props: any) => {
             ? "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(199, 210, 254, 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"
             : "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         }),
+        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
       }}
       {...props}
     />

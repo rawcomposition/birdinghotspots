@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    const { name, email, regions } = req.body;
+    const { name, email, regions, subscriptions } = req.body;
 
     const inviteCode = uuidv4();
 
@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       uid: user.uid,
       email,
       name,
-      subscriptions: regions,
+      subscriptions,
       inviteCode,
     });
 
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     } catch (err) {}
 
     res.status(200).json({ message: "User invited successfully", success: true });
-  } catch ({ message }) {
-    res.status(500).json({ message });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 }

@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await sendResetEmail(profile.name, email, url);
 
     res.status(200).json({ success: true });
-  } catch ({ message }) {
-    res.status(500).json({ error: message });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 }

@@ -84,7 +84,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
 
   return (
     <DashboardPage title="Edit User">
-      <Form form={form} onSubmit={handleSubmit}>
+      <Form form={form} onSubmit={handleSubmit} className="mb-12">
         <div className="shadow sm:rounded-lg bg-white">
           <div className="px-4 py-5 space-y-6 sm:p-6">
             <Field label="Name">

@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     } catch (error) {}
 
     res.status(200).json({ message: "Email resent successfully", success: true });
-  } catch ({ message }) {
-    res.status(500).json({ message });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 }
