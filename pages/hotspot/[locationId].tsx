@@ -20,12 +20,14 @@ import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
-import { CameraIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { CameraIcon, PencilSquareIcon, MapIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import Citations from "components/Citations";
 import Features from "components/Features";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import useLogPageview from "hooks/useLogPageview";
+import { useModal } from "providers/modals";
+import { useReloadProps } from "hooks/useReloadProps";
 
 interface Props extends HotspotType {
   county: County;
@@ -66,6 +68,8 @@ export default function Hotspot({
 }: Props) {
   const { user } = useUser();
   useLogPageview({ locationId, stateCode: state.code, countyCode: county.code, countryCode, entity: "hotspot" });
+  const { open } = useModal();
+  const reload = useReloadProps();
   const countrySlug = countryCode?.toLowerCase();
   let extraLinks = [];
   if (roadside === "Yes") {
@@ -129,6 +133,16 @@ export default function Hotspot({
           <PencilSquareIcon className="h-4 w-4" />
           Suggest Edit
         </Link>
+        {canEdit && !featuredImg && (
+          <button
+            type="button"
+            onClick={() => open("addStreetView", { locationId, onSuccess: reload })}
+            className="flex gap-1 text-[#4a84b2]"
+          >
+            <MapIcon className="h-4 w-4" />
+            Add Google Street View
+          </button>
+        )}
         {canEdit && needsDeleting && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
