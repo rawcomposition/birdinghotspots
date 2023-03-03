@@ -124,7 +124,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
               <StateMap regionCode={code} />
             </div>
           ) : (
-            <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded">
+            <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">
               {counties?.map(({ name, slug: countySlug }) => (
                 <p key={name}>
                   <Link

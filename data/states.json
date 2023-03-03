@@ -70,7 +70,8 @@
     "country": "US",
     "label": "Hawaii",
     "slug": "hawaii",
-    "code": "US-HI"
+    "code": "US-HI",
+    "active": true
   },
   {
     "country": "US",
