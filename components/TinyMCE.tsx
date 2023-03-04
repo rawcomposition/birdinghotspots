@@ -1,6 +1,6 @@
 import { useFormContext, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
-import { tinyConfig } from "lib/helpers";
+import { config as defaultConfig } from "lib/tinymce";
 
 type InputProps = {
   name: string;
@@ -21,7 +21,7 @@ const TinyMCE = ({ name, defaultValue, config, ...props }: InputProps) => {
             <Editor
               id={name}
               initialValue={defaultValue || ""}
-              init={config || tinyConfig}
+              init={config || defaultConfig}
               onEditorChange={onChange}
               {...props}
             />
