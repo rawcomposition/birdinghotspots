@@ -11,21 +11,6 @@ export function slugify(title?: string) {
   return slug.endsWith("-") ? slug.slice(0, -1) : slug;
 }
 
-export const tinyConfig = {
-  menubar: false,
-  plugins: "link autoresize lists",
-  toolbar: "bold italic underline bullist link",
-  content_style:
-    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } cite { font-size: 0.75em; font-style: normal; color: #666; }", //TODO: Remove cite styles a later point
-  branding: false,
-  elementpath: false,
-  valid_elements: "p,a[href|rel|target],strong/b,em/i,u,strike,br,ul,ol,li,cite", //TODO: Remove cite at a later point
-  autoresize_bottom_margin: 0,
-  convert_urls: false,
-  browser_spellcheck: true,
-  contextmenu: false,
-};
-
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
   const words = str.split(" ");
