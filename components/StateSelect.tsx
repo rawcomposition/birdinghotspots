@@ -1,7 +1,7 @@
 import Select from "components/Select";
 import States from "data/states.json";
 
-const options = States.filter((state) => state.active).map(({ label, code, country }) => ({
+const options = States.filter((state) => state.active).map(({ label, code }) => ({
   value: code,
   label,
 }));
