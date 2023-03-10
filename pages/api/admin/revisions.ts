@@ -20,7 +20,7 @@ export default secureApi(async (req, res, token) => {
       let states = subscriptions.filter((it) => it.split("-").length === 2);
       const counties = subscriptions.filter((it) => it.split("-").length === 3);
       if (subscriptions.length === 0) {
-        states = token.regions;
+        states = token.regions || [];
       }
       query = {
         ...query,
