@@ -1,17 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import admin from "lib/firebaseAdmin";
 import RegionInfo from "models/RegionInfo";
 import { getStateByCode } from "lib/localData";
+import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { data, code } = req.body;
 
-  const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(code)) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
+  if (!canEdit(token, code)) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
@@ -35,4 +32,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

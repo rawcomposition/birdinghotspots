@@ -1,17 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import admin from "lib/firebaseAdmin";
 import Drive from "models/Drive";
 import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { isNew }: any = req.query;
   const { data, id } = req.body;
 
-  const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(data?.stateCode)) {
+  if (!token.isAdmin && !token.regions?.includes(data?.stateCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
@@ -42,8 +39,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.name,
-        uid: result.uid,
+        user: token.name,
+        uid: token.uid,
         type: isNew ? "add_drive" : "edit_drive",
         message: `${isNew ? "added" : "edited"} drive: ${data.name}`,
         driveId: driveId.toString(),
@@ -54,4 +51,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

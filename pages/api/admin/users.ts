@@ -1,17 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "lib/firebaseAdmin";
-import nookies from "nookies";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const cookies = nookies.get({ req });
-  const token = cookies.session;
-
-  const result = await admin.verifySessionCookie(token || "");
-  if (result.role !== "admin") {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
+export default secureApi(async (req, res, token) => {
   const request = await admin.listUsers();
   const response = request.users
     .filter(({ email }) => email)
@@ -25,4 +15,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }));
 
   res.status(200).json({ users: response });
-}
+}, "admin");

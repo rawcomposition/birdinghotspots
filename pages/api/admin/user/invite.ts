@@ -1,19 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "lib/firebaseAdmin";
 import Profile from "models/Profile";
 import { v4 as uuidv4 } from "uuid";
 import { sendInviteEmail } from "lib/email";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
-
-  const result = await admin.verifyIdToken(token || "");
-
-  if (result.role !== "admin") {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
+export default secureApi(async (req, res, token) => {
   try {
     const { name, email, regions, subscriptions } = req.body;
 
@@ -49,4 +40,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "admin");

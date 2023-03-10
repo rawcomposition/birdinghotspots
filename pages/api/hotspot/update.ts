@@ -1,16 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import Group from "models/Group";
-import admin from "lib/firebaseAdmin";
 import Logs from "models/Log";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
 
-  const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(data?.stateCode)) {
+  if (!token.isAdmin && !token.regions?.includes(data?.stateCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
@@ -33,8 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.name,
-        uid: result.uid,
+        user: token.name,
+        uid: token.uid,
         type: "edit_hotspot",
         message: `edited hotspot: ${data.name}`,
         hotspotId: data.locationId,
@@ -45,4 +41,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

@@ -1,4 +1,4 @@
-import { Hotspot, Drive, Marker } from "lib/types";
+import { Hotspot, Drive, Token } from "lib/types";
 import { getCountyByCode } from "lib/localData";
 
 export function slugify(title?: string) {
@@ -167,7 +167,7 @@ export function distanceBetween(lat1: number, lon1: number, lat2: number, lon2: 
 }
 
 export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
-  let name = hotspot.name;
+  let name = hotspot.name || "";
   if (name.includes("--")) {
     name = name.split("--")[1];
   }
@@ -250,4 +250,15 @@ export const debounce = (fn: Function, ms = 300) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn.apply(this, args), ms);
   };
+};
+
+export const canEdit = (token: Token, region: string | string[]) => {
+  if (token?.role === "admin") return true;
+  if (!region || token?.role !== "editor") return false;
+
+  if (typeof region === "string") {
+    return !!token.regions?.includes(region);
+  }
+
+  return region?.filter((it: string) => token.regions?.includes(it)).length > 0;
 };

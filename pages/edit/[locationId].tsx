@@ -7,7 +7,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, getEbirdHotspot, formatMarker } from "lib/helpers";
+import { geocode, getEbirdHotspot, formatMarker, canEdit } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
@@ -222,8 +222,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const stateCode = data?.stateCode || ebirdData?.subnational1Code;
   const countyCode = data?.countyCode || ebirdData?.subnational2Code;
 
-  const { role, regions } = token;
-  if (role !== "admin" && !regions.includes(stateCode)) {
+  if (!canEdit(token, stateCode)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }

@@ -408,3 +408,29 @@ export type Pageview = {
   year: number;
   month: number;
 };
+
+export type Species = {
+  _id: string;
+  name: string;
+  sciName: string;
+  order: number;
+  images: [
+    {
+      smUrl: string;
+      lgUrl: string;
+      originalUrl: string;
+      by: string;
+      width: number;
+      height: number;
+      caption: string;
+    }
+  ];
+};
+
+export type Token = {
+  uid: string;
+  role?: string;
+  regions?: string[];
+  name?: string;
+  isAdmin?: boolean;
+};

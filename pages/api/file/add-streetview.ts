@@ -1,12 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import admin from "lib/firebaseAdmin";
 import aws from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
 import Hotspot from "models/Hotspot";
 import connect from "lib/mongo";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   aws.config.update({
     accessKeyId: process.env.WASABI_KEY,
     secretAccessKey: process.env.WASABI_SECRET,
@@ -15,13 +13,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   });
   const endpoint = new aws.Endpoint("s3.wasabisys.com");
   const s3 = new aws.S3({ endpoint });
-
-  try {
-    await admin.verifyIdToken(token || "");
-  } catch (error) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
 
   const uploadUrlToS3 = async (url: string, key: string) => {
     const response = await s3
@@ -75,4 +66,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(500).json({ error: error.message });
     return;
   }
-}
+}, "editor");

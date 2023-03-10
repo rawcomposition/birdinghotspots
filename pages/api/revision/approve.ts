@@ -1,21 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Revision from "models/Revision";
 import Hotspot from "models/Hotspot";
-import admin from "lib/firebaseAdmin";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
 
-  await connect();
-  const result = await admin.verifyIdToken(token || "");
-  if (!["admin", "editor"].includes(result.role)) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
   try {
+    await connect();
     const revision = await Revision.findOne({ _id: id });
     if (!revision) {
       res.status(500).json({ error: "suggestion not found" });
@@ -66,4 +58,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

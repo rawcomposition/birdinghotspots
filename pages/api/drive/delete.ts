@@ -1,36 +1,29 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Drive from "models/Drive";
 import Hotspot from "models/Hotspot";
-import admin from "lib/firebaseAdmin";
 import Logs from "models/Log";
+import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
 
   await connect();
   const drive = await Drive.findById(id);
 
-  const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(drive?.stateCode)) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
+  if (!canEdit(token, drive?.stateCode)) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
     await connect();
     await Drive.deleteOne({ _id: id });
-    await Hotspot.updateMany(
-      { drives: { $elemMatch: { driveId: id } } },
-      // @ts-ignore
-      { $pull: { drives: { driveId: id } } }
-    );
+    await Hotspot.updateMany({ drives: { $elemMatch: { driveId: id } } }, { $pull: { drives: { driveId: id } } });
 
     try {
       await Logs.create({
-        user: result.name,
-        uid: result.uid,
+        user: token.name,
+        uid: token.uid,
         type: "delete_drive",
         message: `deleted drive: ${drive.name}`,
         driveId: drive._id.toString(),
@@ -41,4 +34,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");
