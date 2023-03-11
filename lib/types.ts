@@ -434,3 +434,16 @@ export type Token = {
   name?: string;
   isAdmin?: boolean;
 };
+
+export type Iba = {
+  _id: string;
+  name: string;
+  countryCode: string;
+  stateCode: string;
+  countyCode?: string;
+  lat: number;
+  lng: number;
+  website?: string;
+  ebirdUrl?: string;
+  hotspots: Hotspot[];
+};
