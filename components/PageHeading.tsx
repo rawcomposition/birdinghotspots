@@ -42,32 +42,36 @@ export default function PageHeading({
         <nav className="text-xs sm:text-[13px] leading-4 sm:leading-5 flex items-stretch">
           {extraCrumb && (
             <>
-              <Link href={extraCrumb.href}>
-                <a className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">{extraCrumb.label}</a>
+              <Link href={extraCrumb.href} className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">
+                {extraCrumb.label}
               </Link>
               <Icon />
             </>
           )}
           {county && state && (
             <>
-              <Link href={`/${countrySlug}/${state.slug}/${county.slug}-county`}>
-                <a className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">{county.name}</a>
+              <Link
+                href={`/${countrySlug}/${state.slug}/${county.slug}-county`}
+                className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center"
+              >
+                {county.name}
               </Link>
               <Icon />
             </>
           )}
           {state && !hideState && (
             <>
-              <Link href={`/${countrySlug}/${state.slug}`}>
-                <a className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">{state.label}</a>
+              <Link
+                href={`/${countrySlug}/${state.slug}`}
+                className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center"
+              >
+                {state.label}
               </Link>
               <Icon />
             </>
           )}
-          <Link href="/">
-            <a className="text-white/90 pl-5 pr-8 py-1.5 rounded-r-lg breadcrumb-gradient flex items-center">
-              {countryLabel || "United States"}
-            </a>
+          <Link href="/" className="text-white/90 pl-5 pr-8 py-1.5 rounded-r-lg breadcrumb-gradient flex items-center">
+            {countryLabel || "United States"}
           </Link>
         </nav>
       )}

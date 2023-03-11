@@ -74,8 +74,8 @@ export default function ImportantBirdAreas({ countrySlug, areas, state }: Props)
       <div className="columns-1 sm:columns-3 mb-12">
         {areas.map(({ name, slug }) => (
           <React.Fragment key={slug}>
-            <Link href={`/${countrySlug}/${state.slug}/important-bird-areas/${slug}`}>
-              <a className="font-bold">{name}</a>
+            <Link href={`/${countrySlug}/${state.slug}/important-bird-areas/${slug}`} className="font-bold">
+              {name}
             </Link>
             <br />
           </React.Fragment>

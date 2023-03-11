@@ -2,6 +2,7 @@ import * as React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
+import Head from "next/head";
 import { getState, getCounties } from "lib/localData";
 import RareBirds from "components/RareBirds";
 import { State as StateType, Article, County as CountyType, RegionInfo } from "lib/types";
@@ -21,6 +22,9 @@ import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
 import States from "data/states.json";
 import { StateLinkSection } from "components/StateLinkSection";
+import ExternalLinkButton from "components/ExternalLinkButton";
+import ImageIcon from "icons/Image";
+import useLogPageview from "hooks/useLogPageview";
 
 interface Params extends ParsedUrlQuery {
   countrySlug: string;
@@ -36,13 +40,18 @@ type Props = {
 };
 
 export default function State({ countrySlug, state, counties, info, articles }: Props) {
+  useLogPageview({ stateCode: state.code, countryCode: state.country.toUpperCase(), entity: "state" });
   const [view, setView] = React.useState<string>(state.noMap ? "list" : "map");
   const { label, code, slug } = state || ({} as StateType);
   const { open } = useModal();
+  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
 
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${label}`}</Title>
+      <Head>
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
+      </Head>
       <PageHeading countrySlug={countrySlug} state={state} hideState>
         {label} Birding Hotspots
         {state.subheading && (
@@ -53,19 +62,23 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         )}
       </PageHeading>
       <EditorActions className="-mt-10" requireRegion={state.code}>
-        <Link href={`/edit/group/new?country=${countrySlug}`}>
-          <a className="flex gap-1">
-            <PlusCircleIcon className="h-4 w-4" />
-            Add Group
-          </a>
+        <Link href={`/edit/group/new?country=${countrySlug}`} className="flex gap-1">
+          <PlusCircleIcon className="h-4 w-4" />
+          Add Group
         </Link>
       </EditorActions>
       <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
         <div>
           <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {label}</h3>
           <div className="flex gap-2 mt-2 mb-4">
-            <EbirdRegionBtn code={code} portal={state.portal} />
             <StateLinksBtn state={state} />
+            <div className="inline-flex gap-2">
+              {/*Grouped to prevent the last button from wrapping on its own*/}
+              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
+                <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+              </ExternalLinkButton>
+              <EbirdRegionBtn code={code} portal={state.portal} />
+            </div>
           </div>
           <p className="text-gray-600 mb-8 text-[15px]">
             Discover where to go birding in {label} by browsing our tips, descriptions, maps, and images for many eBird
@@ -73,11 +86,13 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           </p>
           <RegionStats regionCode={code} />
           <div className="mt-8">
-            <Link href={`/region/${code}?view=map`}>
-              <a className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center">
-                <MapIconAlt className="inline-block text-xl mr-3" />
-                Explore Hotspot Map <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
-              </a>
+            <Link
+              href={`/region/${code}?view=map`}
+              className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
+            >
+              <MapIconAlt className="inline-block text-xl mr-3" />
+              Explore Hotspot Map
+              <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
             </Link>
             <p className="ml-1 mt-0.5">
               Or, <Link href={`/region/${code}`}>view top hotspots</Link> in {label}
@@ -109,13 +124,15 @@ export default function State({ countrySlug, state, counties, info, articles }: 
               <StateMap regionCode={code} />
             </div>
           ) : (
-            <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded">
+            <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">
               {counties?.map(({ name, slug: countySlug }) => (
                 <p key={name}>
-                  <Link href={`/${countrySlug}/${slug}/${countySlug}-county`}>
-                    <a className="font-bold text-slate-300" title={name}>
-                      {name.length > 12 ? `${name.slice(0, 12)}...` : name}
-                    </a>
+                  <Link
+                    href={`/${countrySlug}/${slug}/${countySlug}-county`}
+                    className="font-bold text-slate-300"
+                    title={name}
+                  >
+                    {name.length > 12 ? `${name.slice(0, 12)}...` : name}
                   </Link>
                 </p>
               ))}
@@ -148,17 +165,13 @@ export default function State({ countrySlug, state, counties, info, articles }: 
       </Heading>
 
       <EditorActions className="-mt-2">
-        <Link href={`/${countrySlug}/${slug}/edit-info`}>
-          <a className="flex gap-1">
-            <PencilSquareIcon className="h-4 w-4" />
-            Edit Links
-          </a>
+        <Link href={`/${countrySlug}/${slug}/edit-info`} className="flex gap-1">
+          <PencilSquareIcon className="h-4 w-4" />
+          Edit Links
         </Link>
-        <Link href={`/${countrySlug}/${slug}/article/edit/new`}>
-          <a className="flex gap-1">
-            <DocumentPlusIcon className="h-4 w-4" />
-            Add Article
-          </a>
+        <Link href={`/${countrySlug}/${slug}/article/edit/new`} className="flex gap-1">
+          <DocumentPlusIcon className="h-4 w-4" />
+          Add Article
         </Link>
       </EditorActions>
 

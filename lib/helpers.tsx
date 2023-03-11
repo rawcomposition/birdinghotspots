@@ -1,4 +1,4 @@
-import { Hotspot, Drive, Marker } from "lib/types";
+import { Hotspot, Drive, Token } from "lib/types";
 import { getCountyByCode } from "lib/localData";
 
 export function slugify(title?: string) {
@@ -10,21 +10,6 @@ export function slugify(title?: string) {
     .replace(/[^a-z0-9]+/g, "-");
   return slug.endsWith("-") ? slug.slice(0, -1) : slug;
 }
-
-export const tinyConfig = {
-  menubar: false,
-  plugins: "link autoresize lists",
-  toolbar: "bold italic underline bullist link",
-  content_style:
-    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } cite { font-size: 0.75em; font-style: normal; color: #666; }", //TODO: Remove cite styles a later point
-  branding: false,
-  elementpath: false,
-  valid_elements: "p,a[href|rel|target],strong/b,em/i,u,strike,br,ul,ol,li,cite", //TODO: Remove cite at a later point
-  autoresize_bottom_margin: 0,
-  convert_urls: false,
-  browser_spellcheck: true,
-  contextmenu: false,
-};
 
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
@@ -182,7 +167,7 @@ export function distanceBetween(lat1: number, lon1: number, lat2: number, lon2: 
 }
 
 export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
-  let name = hotspot.name;
+  let name = hotspot.name || "";
   if (name.includes("--")) {
     name = name.split("--")[1];
   }
@@ -265,4 +250,15 @@ export const debounce = (fn: Function, ms = 300) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn.apply(this, args), ms);
   };
+};
+
+export const canEdit = (token: Token, region: string | string[]) => {
+  if (token?.role === "admin") return true;
+  if (!region || token?.role !== "editor") return false;
+
+  if (typeof region === "string") {
+    return !!token.regions?.includes(region);
+  }
+
+  return region?.filter((it: string) => token.regions?.includes(it)).length > 0;
 };

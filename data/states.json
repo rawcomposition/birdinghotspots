@@ -70,7 +70,8 @@
     "country": "US",
     "label": "Hawaii",
     "slug": "hawaii",
-    "code": "US-HI"
+    "code": "US-HI",
+    "active": true
   },
   {
     "country": "US",
@@ -94,7 +95,8 @@
     "country": "US",
     "label": "Iowa",
     "slug": "iowa",
-    "code": "US-IA"
+    "code": "US-IA",
+    "active": true
   },
   {
     "country": "US",
@@ -120,7 +122,8 @@
     "country": "US",
     "label": "Maine",
     "slug": "maine",
-    "code": "US-ME"
+    "code": "US-ME",
+    "active": true
   },
   {
     "country": "US",

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { auth } from "lib/firebaseAuth";
 import toast from "react-hot-toast";
 
@@ -32,12 +32,14 @@ export default function useToast() {
       body: data ? JSON.stringify(data) : null,
     });
     setLoading(false);
+    let json: any = {};
+    try {
+      json = await response.json();
+    } catch (error) {}
     if (response.status === 504) return Promise.reject("Please try again, operation timed out.");
     if (response.status === 404) return Promise.reject("Route not found");
-    if (!response.ok) return Promise.reject("An error ocurred");
-    const json = await response.json();
-    if (!json.success) {
-      return Promise.reject(json.message || "An error ocurred");
+    if (!response.ok || !json.success) {
+      return Promise.reject(json.error || "An error ocurred");
     }
     return json;
   };

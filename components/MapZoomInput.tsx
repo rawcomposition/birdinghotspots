@@ -48,7 +48,7 @@ export default function MapZoomInput({ markers }: Props) {
           />
           <div className="fixed left-0 right-0 top-0 bottom-0 overflow-auto z-[10001]">
             <div className={`mt-[5%] mb-12 max-w-[510px]  mx-auto bg-white shadow-md rounded-lg `}>
-              <MapBox markers={markers} lat={lat} lng={lng} zoom={value} disabled />
+              <MapBox markers={markers} zoom={value} disabled />
 
               <footer className="p-4 border-t flex items-center">
                 <BtnSmall type="button" color="green" onClick={handleDone} className="pl-4 pr-4">

@@ -50,7 +50,12 @@ export default function ImageReview({ items: allItems }: Props) {
         <Title>Image Review</Title>
         {items.map((item) => (
           <section className="p-4 overflow-hidden shadow md:rounded-lg bg-white mb-4" key={item.locationId}>
-            <h3 className="text-lg font-bold">{item.name}</h3>
+            <h3 className="text-lg font-bold">
+              {item.name}{" "}
+              <Link href={`/hotspot/${item.locationId}`} className="font-bold text-sm" target="_blank">
+                (View Hotspot)
+              </Link>
+            </h3>
             {item.countyLabel ? (
               <p>
                 {item.countyLabel}, {item.stateLabel}, {item.countryCode}
@@ -109,10 +114,8 @@ export default function ImageReview({ items: allItems }: Props) {
               {item.uploads.length === 0 && (
                 <p>
                   Consider sorting the images for this hotspot based on quality/relevance.{" "}
-                  <Link href={`/hotspot/${item.locationId}`}>
-                    <a className="font-bold" target="_blank">
-                      View Hotspot
-                    </a>
+                  <Link href={`/hotspot/${item.locationId}`} className="font-bold" target="_blank">
+                    View Hotspot
                   </Link>
                 </p>
               )}
@@ -133,7 +136,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   } else {
     let states = subscriptions.filter((it) => it.split("-").length === 2);
     const counties = subscriptions.filter((it) => it.split("-").length === 3);
-    if (states?.length === 0) {
+    if (subscriptions.length === 0) {
       states = token.regions;
     }
     uploads = await getUploads(states, counties);
@@ -143,8 +146,12 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
   uploads.forEach(async (upload: Upload) => {
     if (!items.find((item) => item.locationId === upload.locationId)) {
+      const state = getStateByCode(upload.stateCode);
+      const county = getCountyByCode(upload.countyCode);
       items.push({
-        name: "",
+        name: upload.name,
+        stateLabel: state?.label || "",
+        countyLabel: county?.name || "",
         locationId: upload.locationId,
         uploads: [upload],
       });
@@ -154,22 +161,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     }
   });
 
-  const formattedItems = await Promise.all(
-    items.map(async (item) => {
-      const hotspot = await getHotspotByLocationId(item.locationId);
-      const state = getStateByCode(hotspot?.stateCode);
-      const county = getCountyByCode(hotspot.countyCode);
-      return {
-        ...item,
-        stateLabel: state?.label || "",
-        countyLabel: county?.name || "",
-        countryCode: hotspot.countryCode,
-        name: hotspot.name,
-      };
-    })
-  );
-
   return {
-    props: { items: formattedItems },
+    props: { items },
   };
 });

@@ -79,7 +79,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       res.status(200).json({ success: true });
     } else {
-      res.status(500).json({ error: "You might be a robot" });
+      res.status(500).json({ error: "reCAPTCHA Failed" });
     }
   } catch (error: any) {
     res.status(500).json({ error: error.message });

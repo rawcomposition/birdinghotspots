@@ -14,6 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { locationId, name, email, images, token: recaptchaToken } = req.body;
   const hotspot = await Hotspot.findOne({ locationId });
 
+  if (!hotspot) throw new Error("Hotspot not found");
+
   try {
     const result = await admin.verifyIdToken(authToken || "");
     const formattedImages = images.map((it: Image) => ({
@@ -42,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           await Upload.create({
             ...image,
             locationId,
+            name: hotspot.name,
             by: name,
             email,
             countryCode: hotspot.countryCode,

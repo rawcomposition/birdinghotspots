@@ -18,7 +18,6 @@ const RadioGroup = ({ name, label, options, inline, help }: InputProps) => {
         <label className="text-gray-500 font-bold">{label}</label>
         {help && <Help text={help} />}
       </div>
-      <br />
       <div className="mt-1 flex gap-2">
         {options.map((option) => (
           <React.Fragment key={option}>

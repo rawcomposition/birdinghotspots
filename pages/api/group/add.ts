@@ -1,13 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import admin from "lib/firebaseAdmin";
 import Group from "models/Group";
 import Hotspot from "models/Hotspot";
-import { generateRandomId } from "lib/helpers";
+import { generateRandomId, canEdit } from "lib/helpers";
 import Logs from "models/Log";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { data } = req.body;
 
   const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, ["-_id", "stateCode", "countyCode"]);
@@ -21,12 +19,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
   });
 
-  const result = await admin.verifyIdToken(token || "");
-  const canEdit =
-    result.role === "admin" || stateCodes?.filter((it: string) => result.regions?.includes(it)).length > 0;
-  if (!canEdit) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
+  if (!canEdit(token, stateCodes)) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
@@ -38,8 +32,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.name,
-        uid: result.uid,
+        user: token.name,
+        uid: token.uid,
         type: "add_group",
         message: `added group: ${data.name}`,
         hotspotId: data.locationId,
@@ -50,4 +44,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

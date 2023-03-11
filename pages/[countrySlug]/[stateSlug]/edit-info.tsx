@@ -14,6 +14,7 @@ import { getState } from "lib/localData";
 import InputLinks from "components/InputLinks";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Error from "next/error";
+import { canEdit } from "lib/helpers";
 
 type Props = {
   state: State;
@@ -84,8 +85,9 @@ export default function EditLinks({ state, data, error, errorCode }: Props) {
                 <InputLinks name="clubLinks" />
               </div>
             </div>
-            <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit disabled={loading} color="green" className="font-medium">
+            <div className="px-4 py-3 bg-gray-100 sm:px-6 rounded flex justify-between items-center">
+              <p className="text-gray-600 hidden md:block">Note: A browser refresh may be required to see changes.</p>
+              <Submit disabled={loading} color="green" className="font-medium ml-auto">
                 Save Links
               </Submit>
             </div>
@@ -107,8 +109,8 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   if (!state) return { notFound: true };
 
   const data = (await getRegionInfo(state.code)) || null;
-  const { role, regions } = token;
-  if (role !== "admin" && !regions.includes(state.code)) {
+
+  if (!canEdit(token, state.code)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }

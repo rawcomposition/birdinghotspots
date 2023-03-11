@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Head from "next/head";
 import States from "data/states.json";
 import Countries from "data/countries.json";
 import EbirdDescription from "components/EbirdDescription";
@@ -22,6 +23,9 @@ export default function Home({ featured }: Props) {
   return (
     <>
       <Title />
+      <Head>
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
+      </Head>
       <Banner />
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
@@ -32,8 +36,12 @@ export default function Home({ featured }: Props) {
                 <div className="columns-2 lg:columns-3 mb-12">
                   {States.filter((state) => state.active && state.country === country.code).map(
                     ({ label, slug, code }) => (
-                      <Link key={code} href={`/${country.code.toLowerCase()}/${slug}`}>
-                        <a className="font-bold px-2 py-1 text-base mb-1 block">{label}</a>
+                      <Link
+                        key={code}
+                        href={`/${country.code.toLowerCase()}/${slug}`}
+                        className="font-bold px-2 py-1 text-base mb-1 block"
+                      >
+                        {label}
                       </Link>
                     )
                   )}

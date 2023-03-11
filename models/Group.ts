@@ -34,12 +34,6 @@ const GroupSchema = new Schema({
     type: [String],
     required: true,
   },
-  lat: Number,
-  lng: Number,
-  zoom: {
-    type: Number,
-    default: 15,
-  },
   locationId: {
     type: String,
     required: true,

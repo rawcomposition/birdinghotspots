@@ -1,24 +1,16 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Upload from "models/Upload";
 import Hotspot from "models/Hotspot";
-import admin from "lib/firebaseAdmin";
 import { Image } from "lib/types";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
 
-  await connect();
-  const upload = await Upload.findById(id);
-
-  const result = await admin.verifyIdToken(token || "");
-  if (!["admin", "editor"].includes(result.role)) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
   try {
+    await connect();
+    const upload = await Upload.findById(id);
+
     const hotspot = await Hotspot.findOne({ locationId: upload.locationId });
     if (!hotspot) {
       res.status(500).json({ error: "Hotspot not found" });
@@ -40,4 +32,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

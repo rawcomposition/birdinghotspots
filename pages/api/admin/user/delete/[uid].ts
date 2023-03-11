@@ -1,15 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "lib/firebaseAdmin";
 import Profile from "models/Profile";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
-  const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin") {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
+export default secureApi(async (req, res, token) => {
   const { uid }: any = req.query;
   try {
     await admin.deleteUser(uid);
@@ -23,4 +16,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error) {
     res.status(500).json({ message: "Error deleting user" });
   }
-}
+}, "admin");

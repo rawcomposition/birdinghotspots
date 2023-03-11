@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Profile.updateOne({ inviteCode }, { inviteCode: null });
 
     res.status(200).json({ success: true });
-  } catch ({ message }) {
-    res.status(500).json({ message });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 }

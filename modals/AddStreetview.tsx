@@ -7,9 +7,10 @@ import useToast from "hooks/useToast";
 
 type Props = {
   onSuccess: (data: any) => void;
+  locationId?: string;
 };
 
-export default function AddStreetView({ onSuccess }: Props) {
+export default function AddStreetView({ locationId, onSuccess }: Props) {
   const [url, setUrl] = React.useState("");
   const [fov, setFov] = React.useState(80);
   const { send, loading } = useToast();
@@ -31,6 +32,7 @@ export default function AddStreetView({ onSuccess }: Props) {
       url: `/api/file/add-streetview`,
       method: "POST",
       data: {
+        locationId,
         lat,
         lng,
         fov,
@@ -38,22 +40,10 @@ export default function AddStreetView({ onSuccess }: Props) {
         pitch,
       },
     });
-    const { small, large, success } = response;
+    const { imgObject, success } = response;
 
     if (success) {
-      const image = {
-        smUrl: small,
-        lgUrl: large,
-        by: "© Google Street View",
-        caption: "",
-        width: 640,
-        height: 413,
-        isStreetview: true,
-        isNew: true,
-        isMap: false,
-        streetviewData: { lat, lng, fov, heading, pitch },
-      };
-      onSuccess(image);
+      onSuccess(imgObject);
       handleClose();
     } else {
       alert("Error adding street view");

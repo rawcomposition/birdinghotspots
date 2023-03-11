@@ -222,6 +222,7 @@ export type LocationSearchValue = {
 
 export type Upload = {
   locationId: string;
+  name: string;
   countryCode: string;
   stateCode: string;
   countyCode: string;
@@ -271,9 +272,6 @@ export type Group = {
   name: string;
   _id?: string;
   url: string;
-  lat: number;
-  lng: number;
-  zoom: number;
   locationId: string;
   countryCode: string;
   stateCodes: string[];
@@ -399,3 +397,40 @@ export interface FormattedSuggestion extends Revision {
     diff: string;
   };
 }
+
+export type Pageview = {
+  count: number;
+  locationId?: string;
+  stateCode?: string;
+  countyCode?: string;
+  countryCode?: string;
+  entity: "hotspot" | "group" | "county" | "state";
+  year: number;
+  month: number;
+};
+
+export type Species = {
+  _id: string;
+  name: string;
+  sciName: string;
+  order: number;
+  images: [
+    {
+      smUrl: string;
+      lgUrl: string;
+      originalUrl: string;
+      by: string;
+      width: number;
+      height: number;
+      caption: string;
+    }
+  ];
+};
+
+export type Token = {
+  uid: string;
+  role?: string;
+  regions?: string[];
+  name?: string;
+  isAdmin?: boolean;
+};

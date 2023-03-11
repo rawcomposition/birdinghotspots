@@ -14,11 +14,9 @@ export default function Banner() {
         <div className="md:max-w-lg">
           <Search pill />
           <p className="mt-3 pl-2 font-bold">
-            <Link href="/explore">
-              <a className="flex items-center gap-2">
-                <Location />
-                Explore nearby hotspots
-              </a>
+            <Link href="/explore" className="flex items-center gap-2">
+              <Location />
+              Explore nearby hotspots
             </Link>
           </p>
         </div>

@@ -1,21 +1,17 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Article from "models/Article";
-import admin from "lib/firebaseAdmin";
 import { getStateByCode } from "lib/localData";
+import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
-
+export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
 
   await connect();
   const article = await Article.findById(id);
 
-  const result = await admin.verifyIdToken(token || "");
-  if (result.role !== "admin" && !result.regions?.includes(article?.stateCode)) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
+  if (!canEdit(token, article?.stateCode)) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
@@ -31,4 +27,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

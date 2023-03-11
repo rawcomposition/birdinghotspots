@@ -9,8 +9,6 @@ mapboxgl.accessToken = key || "";
 
 type Props = {
   markers: Marker[];
-  lat: number;
-  lng: number;
   zoom: number;
   disabled?: boolean;
   landscape?: boolean;
@@ -18,7 +16,7 @@ type Props = {
   lgMarkers?: boolean;
 };
 
-export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, disableScroll, lgMarkers }: Props) {
+export default function MapBox({ markers, zoom, disabled, landscape, disableScroll, lgMarkers }: Props) {
   const [satellite, setSatellite] = React.useState<boolean>(false);
   const mapContainer = React.useRef(null);
   const map = React.useRef<any>(null);
@@ -31,12 +29,12 @@ export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, d
   };
 
   React.useEffect(() => {
-    if (!mapContainer.current || !lat || !lng) return;
+    if (!mapContainer.current || markers.length === 0) return;
     if (map.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/outdoors-v11",
-      center: [lng, lat],
+      center: [markers[0].lng, markers[0].lat],
       zoom: zoom || 15,
       interactive: !disabled,
       cooperativeGestures: disableScroll,
@@ -68,13 +66,14 @@ export default function MapBox({ markers, lat, lng, zoom, disabled, landscape, d
       return { ...data, id, ref: marker };
     });
 
-    if (markers.length >= 5) {
-      map.current.fitBounds(bounds, { padding: 40, duration: 0 });
+    if (markers.length > 1) {
+      const padding = markers.length > 15 ? 40 : markers.length > 10 ? 80 : markers.length > 2 ? 120 : 160;
+      map.current.fitBounds(bounds, { padding, duration: 0 });
     }
   });
 
   React.useEffect(() => {
-    if (!map.current || markerCount >= 5) return;
+    if (!map.current || markerCount > 1) return;
     map.current.flyTo({ zoom });
   }, [zoom, markerCount]);
 

@@ -1,21 +1,17 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import Group from "models/Group";
-import admin from "lib/firebaseAdmin";
 import Logs from "models/Log";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const token = req.headers.authorization;
+export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
 
   await connect();
   const group = await Group.findById(id);
 
-  const result = await admin.verifyIdToken(token || "");
-  const canEdit =
-    result.role === "admin" || group?.stateCodes?.filter((it: string) => result.regions?.includes(it)).length > 0;
-  if (!canEdit) {
+  const canEdit = group?.stateCodes?.filter((it: string) => token.regions?.includes(it)).length > 0;
+  if (!token.isAdmin && !canEdit) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
@@ -28,8 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     try {
       await Logs.create({
-        user: result.name,
-        uid: result.uid,
+        user: token.name,
+        uid: token.uid,
         type: "delete_group",
         message: `deleted group: ${group.name}`,
         hotspotId: group.locationId,
@@ -40,4 +36,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

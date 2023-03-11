@@ -1,36 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Revision from "models/Revision";
-import admin from "lib/firebaseAdmin";
 import { Revision as RevisionType } from "lib/types";
 import { getStateByCode, getCountyByCode } from "lib/localData";
 import diff from "node-htmldiff";
 import { getSubscriptions } from "lib/mongo";
-import nookies from "nookies";
+import secureApi from "lib/secureApi";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const cookies = nookies.get({ req });
-  const token = cookies.session;
-
-  const result = await admin.verifySessionCookie(token || "");
-  if (!["admin", "editor"].includes(result.role)) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
+export default secureApi(async (req, res, token) => {
   const { search, status, skip }: any = req.body;
   const limit = status === "pending" ? undefined : 20;
 
   try {
     await connect();
-    const subscriptions = await getSubscriptions(result.uid);
+    const subscriptions = await getSubscriptions(token.uid);
 
     let query: any = { status };
 
-    if (result.role !== "admin") {
+    if (token.role !== "admin") {
       let states = subscriptions.filter((it) => it.split("-").length === 2);
       const counties = subscriptions.filter((it) => it.split("-").length === 3);
       if (subscriptions.length === 0) {
-        states = result.regions;
+        states = token.regions || [];
       }
       query = {
         ...query,
@@ -82,4 +72,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}
+}, "editor");

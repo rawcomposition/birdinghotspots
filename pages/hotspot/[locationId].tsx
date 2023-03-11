@@ -2,6 +2,7 @@ import * as React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
+import Head from "next/head";
 import { getHotspotByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getCountyByCode, getStateByCode } from "lib/localData";
@@ -13,14 +14,20 @@ import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
+import ImageIcon from "icons/Image";
 import { formatMarker } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
-import { CameraIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { CameraIcon, PencilSquareIcon, MapIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
 import Citations from "components/Citations";
+import Features from "components/Features";
+import ExternalLinkButton from "components/ExternalLinkButton";
+import useLogPageview from "hooks/useLogPageview";
+import { useModal } from "providers/modals";
+import { useReloadProps } from "hooks/useReloadProps";
 
 interface Props extends HotspotType {
   county: County;
@@ -57,8 +64,12 @@ export default function Hotspot({
   species,
   groups,
   noContent,
+  featuredImg,
 }: Props) {
   const { user } = useUser();
+  useLogPageview({ locationId, stateCode: state.code, countyCode: county.code, countryCode, entity: "hotspot" });
+  const { open } = useModal();
+  const reload = useReloadProps();
   const countrySlug = countryCode?.toLowerCase();
   let extraLinks = [];
   if (roadside === "Yes") {
@@ -67,13 +78,6 @@ export default function Hotspot({
       url: `/${countrySlug}/${state.slug}/roadside-birding`,
     });
   }
-
-  groups?.forEach((it) => {
-    extraLinks.push({
-      label: it.name,
-      url: it.url,
-    });
-  });
 
   if (iba) {
     extraLinks.push({
@@ -100,34 +104,45 @@ export default function Hotspot({
 
   const canEdit = user?.role === "admin" || user?.regions?.includes(state.code);
 
+  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${state.label}, ${state.country}`}</Title>
+      {featuredImg && (
+        <Head>
+          <meta property="og:image" content={featuredImg.smUrl} />
+        </Head>
+      )}
       <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
         {name}
       </PageHeading>
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
-          <Link href={`/edit/${locationId}`}>
-            <a className="flex gap-1">
-              <PencilSquareIcon className="h-4 w-4" />
-              Edit Hotspot
-            </a>
+          <Link href={`/edit/${locationId}`} className="flex gap-1">
+            <PencilSquareIcon className="h-4 w-4" />
+            Edit Hotspot
           </Link>
         )}
-        <Link href={`/hotspot/upload/${locationId}`}>
-          <a className="flex gap-1">
-            <CameraIcon className="h-4 w-4" />
-            Upload Photos
-          </a>
+        <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
+          <CameraIcon className="h-4 w-4" />
+          Upload Photos
         </Link>
-        <Link href={`/hotspot/suggest/${locationId}`}>
-          <a className="flex gap-1">
-            <PencilSquareIcon className="h-4 w-4" />
-            Suggest Edit
-          </a>
+        <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
+          <PencilSquareIcon className="h-4 w-4" />
+          Suggest Edit
         </Link>
+        {canEdit && !featuredImg && (
+          <button
+            type="button"
+            onClick={() => open("addStreetView", { locationId, onSuccess: reload })}
+            className="flex gap-1 text-[#4a84b2]"
+          >
+            <MapIcon className="h-4 w-4" />
+            Add Google Street View
+          </button>
+        )}
         {canEdit && needsDeleting && (
           <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
@@ -145,26 +160,22 @@ export default function Hotspot({
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4 flex-wrap">
               {!!species && (
-                <a
-                  href={`https://ebird.org/hotspot/${locationId}`}
-                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <ExternalLinkButton href={`https://ebird.org/hotspot/${locationId}`}>
                   <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
-                </a>
+                </ExternalLinkButton>
               )}
-              <EbirdHotspotBtn {...{ state, locationId }} />
               {lat && lng && (
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
-                  className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-block font-medium whitespace-nowrap"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <ExternalLinkButton href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>
                   <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
-                </a>
+                </ExternalLinkButton>
               )}
+              <div className="inline-flex gap-2">
+                {/*Grouped to prevent the last button from wrapping on its own*/}
+                <ExternalLinkButton href={`${base}/hotspot/${locationId}/media?yr=all&m=`}>
+                  <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+                </ExternalLinkButton>
+                <EbirdHotspotBtn {...{ state, locationId }} />
+              </div>
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
@@ -195,11 +206,19 @@ export default function Hotspot({
 
           {about && <AboutSection heading="About this Location" text={about} />}
 
-          {groups?.map(({ _id, name, about }) => (
-            <AboutSection key={_id} heading={`About ${name}`} text={about || ""} />
+          {groups?.map(({ name, about, locationId }) => (
+            <div className="mb-6 formatted" key={locationId}>
+              <h3 className="font-bold text-lg">About {name}</h3>
+              <p className="mb-1.5">
+                See all hotspots at <Link href={`/group/${locationId}`}>{name}</Link>
+              </p>
+              <div dangerouslySetInnerHTML={{ __html: about || "" }} />
+            </div>
           ))}
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
+
+          <Features {...{ fee, accessible, roadside, restrooms }} />
 
           {noContent && !groups?.length && (
             <div className="mb-6 formatted">
@@ -211,20 +230,10 @@ export default function Hotspot({
               </div>
             </div>
           )}
-
-          <div className="space-y-1">
-            {accessible === "Yes" && <p>Accessible parking and trails.</p>}
-            {roadside === "Yes" && <p>Roadside accessible.</p>}
-            {restrooms === "Yes" && <p>Restrooms on site.</p>}
-            {restrooms === "No" && <p>No restroom facilities.</p>}
-            {fee === "Yes" && <p>Entrance fee may apply.</p>}
-            {fee === "No" && <p>No entrance fee.</p>}
-          </div>
-
           <Citations citations={citations} links={links} />
         </div>
         <div>
-          {lat && lng && marker && <MapBox key={_id} markers={[marker]} lat={lat} lng={lng} zoom={zoom} lgMarkers />}
+          {lat && lng && marker && <MapBox key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
           {!!mapImages?.length && <MapList images={mapImages} />}
           {lat && lng && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
         </div>

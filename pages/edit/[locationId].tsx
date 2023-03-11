@@ -7,7 +7,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, getEbirdHotspot, formatMarker } from "lib/helpers";
+import { geocode, getEbirdHotspot, formatMarker, canEdit } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
@@ -112,7 +112,7 @@ export default function Edit({
         <Form form={form} onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="pt-5 bg-white space-y-6 flex-1">
-              <Field label="Address">
+              <Field label="Address" help="City, state, and zip is sufficient if a full address is unavailable">
                 <Textarea name="address" rows={2} />
                 {isGeocoded && (
                   <small>
@@ -173,13 +173,13 @@ export default function Edit({
               <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
               <RadioGroup
                 name="accessible"
-                help="Is there a wheelchair-accessible trail at this location?"
-                label="Wheelchair accessible parking and trails"
+                help="Is there a wheelchair accessible trail at this location?"
+                label="Wheelchair accessible trail"
                 options={["Yes", "No", "Unknown"]}
               />
               <RadioGroup
                 name="roadside"
-                label="Roadside accessible"
+                label="Roadside viewing"
                 help="Is this a location where birders may can watch from a vehicle?"
                 options={["Yes", "No", "Unknown"]}
               />
@@ -222,8 +222,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const stateCode = data?.stateCode || ebirdData?.subnational1Code;
   const countyCode = data?.countyCode || ebirdData?.subnational2Code;
 
-  const { role, regions } = token;
-  if (role !== "admin" && !regions.includes(stateCode)) {
+  if (!canEdit(token, stateCode)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }

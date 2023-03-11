@@ -8,17 +8,16 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getGroupByLocationId } from "lib/mongo";
-import { geocode } from "lib/helpers";
+import { formatMarker } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
-import { Group, Hotspot, GroupInputs } from "lib/types";
+import { Group, Hotspot, GroupInputs, Marker } from "lib/types";
 import Field from "components/Field";
 import FormError from "components/FormError";
 import useToast from "hooks/useToast";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
-import MapZoomInput from "components/MapZoomInput";
 import Error from "next/error";
 import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
@@ -27,13 +26,13 @@ import InputCitations from "components/InputCitations";
 type Props = {
   id?: string;
   isNew: boolean;
+  markers: Marker[];
   data: Group;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ id, isNew, data, error, errorCode }: Props) {
-  const [isGeocoded, setIsGeocoded] = React.useState(false);
+export default function Edit({ id, isNew, data, markers, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -65,36 +64,6 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
     }
   };
 
-  //@ts-ignore
-  const address = form.watch("address");
-  //@ts-ignore
-  const lat = form.watch("lat");
-  //@ts-ignore
-  const lng = form.watch("lng");
-
-  const geocodeCoorinates = async (lat: number, lng: number) => {
-    if (address) return;
-    const { city, state, zip } = await geocode(lat, lng);
-    if (city && state && zip) {
-      form.setValue("address", `${city}, ${state} ${zip}`);
-      setIsGeocoded(true);
-    }
-  };
-
-  const handleLatChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const lat = Number(e.target.value);
-    if (lat && lng) {
-      geocodeCoorinates(lat, lng);
-    }
-  };
-
-  const handleLngChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const lng = Number(e.target.value);
-    if (lat && lng) {
-      geocodeCoorinates(lat, lng);
-    }
-  };
-
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
@@ -109,22 +78,12 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 <FormError name="name" />
               </Field>
 
-              <div className="grid grid-cols-2 gap-4">
-                <Field label="Latitude">
-                  <Input type="text" name="lat" onChange={handleLatChange} />
-                </Field>
-                <Field label="Longitude">
-                  <Input type="text" name="lng" onChange={handleLngChange} />
-                </Field>
-              </div>
-
               <Field label="Address">
-                <Textarea name="address" rows={2} />
-                {isGeocoded && (
-                  <small>
-                    <span className="text-orange-700">Note</span>: Address is estimated, confirm it is correct.
-                  </small>
-                )}
+                <Textarea
+                  name="address"
+                  rows={2}
+                  help="City, state, and zip is sufficient if a full address is unavailable"
+                />
               </Field>
 
               <InputHotspotLinks />
@@ -137,7 +96,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 <TinyMCE name="birds" defaultValue={data?.birds} />
               </Field>
 
-              <Field label="About this location (required)">
+              <Field label="About this location (required)" help="This will be displayed on all child hotspots">
                 <TinyMCE name="about" defaultValue={data?.about} />
               </Field>
 
@@ -165,12 +124,6 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
             <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
               <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
-              {lat && lng && (
-                <div className="flex-1">
-                  <label className="text-gray-500 font-bold mb-1 block">Group Map</label>
-                  <MapZoomInput markers={[]} />
-                </div>
-              )}
             </aside>
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
@@ -209,17 +162,19 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
 
   const hotspotSelect = data?.hotspots?.map((hotspot: Hotspot) => ({ label: hotspot.name, value: hotspot._id })) || [];
 
+  const markers = data?.hotspots?.map((it: Hotspot) => formatMarker(it, true)) || [];
+
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
+      markers,
       data: {
         ...data,
         countryCode,
         name: data?.name || "",
         stateCodes: data?.stateCodes || [],
         countyCodes: data?.countyCodes || [],
-        zoom: data?.zoom || 12,
         hotspotSelect,
         restrooms: data?.restrooms || "Unknown",
       },

@@ -1,5 +1,5 @@
 import { Menu } from "@headlessui/react";
-import { State, County } from "lib/types";
+import VerticalDots from "icons/VerticalDots";
 
 type Props = {
   portal?: string;
@@ -16,15 +16,12 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
   return (
     <div className="relative inline-block">
       <Menu>
-        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-2 inline-block font-medium">
-          Explore in
-          <img src="/ebird.png" className="h-[18px] -mt-[1px] -mr-1.5 inline-block" alt="eBird" />
+        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-1.5 py-[6px] inline-flex">
+          <VerticalDots />
         </Menu.Button>
-        <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
+        <Menu.Items className="absolute right-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
           <Menu.Item>
-            <a href={`${base}/region/${code}`} target="_blank" rel="noreferrer">
-              Overview
-            </a>
+            <h4 className="font-bold">Explore in eBird</h4>
           </Menu.Item>
           <Menu.Item>
             <a href={`${base}/region/${code}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
@@ -36,12 +33,6 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
               Recent Visits
             </a>
           </Menu.Item>
-          <Menu.Item>
-            <a href={`${base}/region/${code}/media?yr=all&m=`} target="_blank" rel="noreferrer">
-              Illustrated Checklist
-            </a>
-          </Menu.Item>
-
           <Menu.Item>
             <h4 className="font-bold">Bar Charts</h4>
           </Menu.Item>

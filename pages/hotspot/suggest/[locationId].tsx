@@ -113,8 +113,8 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
         <p className="text-lg text-gray-500 mb-4">
           Thanks for contributing! An editor will review your suggestion shortly.
         </p>
-        <Link href="/hotspot/[locationId]" as={`/hotspot/${locationId}`}>
-          <a className="text-sky-700 font-bold">Back to Hotspot</a>
+        <Link href="/hotspot/[locationId]" as={`/hotspot/${locationId}`} className="text-sky-700 font-bold">
+          Back to Hotspot
         </Link>
       </div>
     );
@@ -177,14 +177,14 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
           <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
           <RadioGroup
             name="accessible"
-            label="Wheelchair accessible parking and trails"
-            help="Is there a wheelchair-accessible trail at this location?"
+            label="Wheelchair accessible trail"
+            help="Is there a wheelchair accessible trail at this location?"
             options={["Yes", "No", "Unknown"]}
             inline
           />
           <RadioGroup
             name="roadside"
-            label="Roadside accessible"
+            label="Roadside viewing"
             help="Is this a location where birders may can watch from a vehicle?"
             options={["Yes", "No", "Unknown"]}
             inline

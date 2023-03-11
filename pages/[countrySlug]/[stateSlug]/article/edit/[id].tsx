@@ -12,7 +12,7 @@ import Field from "components/Field";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
 import { getState } from "lib/localData";
-import { slugify } from "lib/helpers";
+import { slugify, canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
 import HotspotSelect from "components/HotspotSelect";
@@ -121,8 +121,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
-  const { role, regions } = token;
-  if (role !== "admin" && !regions.includes(state.code)) {
+  if (!canEdit(token, state.code)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }

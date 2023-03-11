@@ -3,10 +3,20 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { region, limit, offset }: any = req.query;
+  const { region, limit, offset, filter }: any = req.query;
   const isCounty = region.split("-").length === 3;
 
-  const query = isCounty ? { countyCode: region } : { stateCode: region };
+  let query: any = isCounty ? { countyCode: region } : { stateCode: region };
+
+  if (filter === "with-images") {
+    query.featuredImg = { $exists: true };
+  } else if (filter === "without-images") {
+    query.featuredImg = { $exists: false };
+  } else if (filter === "with-content") {
+    query.$or = [{ noContent: false }, { "groupIds.0": { $exists: true } }];
+  } else if (filter === "without-content") {
+    query.$and = [{ noContent: true }, { "groupIds.0": { $exists: false } }];
+  }
 
   try {
     await connect();

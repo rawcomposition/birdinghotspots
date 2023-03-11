@@ -61,9 +61,18 @@ export default function Contact() {
 
       <Form form={form} onSubmit={handleSubmit}>
         <div className="max-w-2xl mx-auto">
+          <p className="mb-4 font-bold text-gray-600">
+            Use this form to make general suggestions about the Birding Hotspots website, express interest in opening
+            sections for new states or provinces, offer to help with editing, or send a message to us.
+          </p>
           <p className="mb-4">
-            Please send comments, questions about this website , corrections, or additional information on locations by
-            filling out the contact form below.
+            To make a comment or correction about a specific hotspot, please go to that hotspot page and suggest the
+            information using the link “Suggest Edit.”
+          </p>
+          <p className="mb-4">
+            The Birding Hotspot website collects information about hotspots from birders, published information, and the
+            internet. We do not own or manage any properties. Please contact property owners or managers with inquiries
+            about rentals or other concerns you wish to share about a particular property.
           </p>
           <div className="py-5 bg-white space-y-6">
             <div className="flex gap-4">

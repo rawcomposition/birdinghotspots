@@ -14,9 +14,11 @@ import MapList from "components/MapList";
 import { formatMarker, getShortName } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
-import EbirdHotspotBtn from "components/EbirdHotspotBtn";
+import BarChartBtn from "components/BarChartBtn";
 import HotspotGrid from "components/HotspotGrid";
 import Citations from "components/Citations";
+import Features from "components/Features";
+import useLogPageview from "hooks/useLogPageview";
 
 interface Props extends GroupType {
   county?: County;
@@ -32,9 +34,6 @@ export default function Group({
   countryCode,
   name,
   _id,
-  lat,
-  lng,
-  zoom,
   address,
   links,
   citations,
@@ -48,6 +47,7 @@ export default function Group({
   markers,
   hotspots,
 }: Props) {
+  useLogPageview({ locationId, stateCode: state?.code, countyCode: county?.code, countryCode, entity: "group" });
   const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
   const canEdit = user?.role === "admin" || stateCodes.filter((it) => user?.regions?.includes(it)).length > 0;
@@ -96,7 +96,7 @@ export default function Group({
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4">
-              <EbirdHotspotBtn {...{ state, locationId, locationIds }} isGroup />
+              <BarChartBtn {...{ state, locationId, locationIds }} />
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
@@ -117,13 +117,12 @@ export default function Group({
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
-          {restrooms === "Yes" && <p>Restrooms on site.</p>}
-          {restrooms === "No" && <p>No restroom facilities.</p>}
+          <Features {...{ restrooms }} />
 
           <Citations citations={citations} links={links} />
         </div>
         <div>
-          {lat && lng && markers.length > 0 && <MapBox key={_id} markers={markers} lat={lat} lng={lng} zoom={zoom} />}
+          {markers.length > 0 && <MapBox key={_id} markers={markers} zoom={12} />}
           {!!images?.length && <MapList images={images} />}
         </div>
       </div>

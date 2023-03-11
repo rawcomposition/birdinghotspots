@@ -9,6 +9,7 @@ import {
   InformationCircleIcon,
   PencilSquareIcon,
   DocumentTextIcon,
+  DocumentChartBarIcon,
 } from "@heroicons/react/24/outline";
 import DashboardNavItem from "components/DashboardNavItem";
 import { useUser } from "providers/user";
@@ -32,6 +33,7 @@ export default function DashboardPage({ title, children }: PropTypes) {
     nav.push({ name: "Logs", href: "/admin/logs", icon: DocumentTextIcon });
   }
 
+  nav.push({ name: "Analytics", href: "/analytics", icon: DocumentChartBarIcon });
   nav.push({ name: "My Account", href: "/admin/account", icon: UserCircleIcon });
 
   React.useEffect(() => {
