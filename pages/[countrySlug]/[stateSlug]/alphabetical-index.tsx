@@ -52,7 +52,7 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
 
       <div className="mb-6 space-y-3">
         <input
-          type="text"
+          type="search"
           className="form-input"
           value={query}
           onChange={(e) => setQuery(e.target.value)}

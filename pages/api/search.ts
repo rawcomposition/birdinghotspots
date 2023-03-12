@@ -2,8 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import States from "data/states.json";
-import { getAllCounties, getStateByCode } from "lib/localData";
-import { Hotspot as HotspotType } from "lib/types";
+import USCities from "data/cities/us.json";
+import { getAllCounties, getStateByCode, getAllCities } from "lib/localData";
+import { Hotspot as HotspotType, City } from "lib/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { q }: any = req.query;
@@ -12,14 +13,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     name: { $regex: new RegExp(q), $options: "i" },
   };
 
+  const activeStateCodes = States.filter((state) => state.active).map((state) => state.code);
+  const allCities = getAllCities();
   const allCounties = getAllCounties();
 
   const filteredCounties = allCounties
     .filter((county: any) => {
       return county.name.toLowerCase().startsWith(q.toLowerCase());
     })
-    .map(({ name, slug, stateSlug, stateLabel, country }: any) => ({
-      label: `${name}, ${stateLabel}, ${country}`,
+    .map(({ longName, slug, stateSlug, stateLabel, country }: any) => ({
+      label: `${longName}, ${stateLabel}, ${country}`,
       value: `/${country.toLowerCase()}/${stateSlug}/${slug}`,
     }));
 
@@ -29,6 +32,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     label: `${state.label}, ${state.country}`,
     value: `/${state.country.toLowerCase()}/${state.slug}`,
   }));
+
+  const filteredCities = allCities
+    .filter((city: City) => {
+      return activeStateCodes.includes(city.state) && city.name.toLowerCase().startsWith(q.toLowerCase());
+    })
+    .map((city: City) => {
+      const state = States.find((state) => state.code === city.state);
+      return {
+        label: `${city.name}, ${state?.label}, ${state?.country}`,
+        value: `/${state?.country?.toLowerCase()}/${state?.slug}/cities/${city.slug}`,
+      };
+    });
 
   try {
     await connect();
@@ -45,6 +60,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(200).json({
       success: true,
       results: [
+        {
+          label: "Cities/Towns",
+          options: filteredCities,
+        },
         {
           label: "Regions",
           options: [...filteredStates, ...filteredCounties],

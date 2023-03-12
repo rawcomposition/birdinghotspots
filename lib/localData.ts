@@ -19,7 +19,9 @@ import IowaCounties from "data/ia-counties.json";
 import MaineCounties from "data/me-counties.json";
 import HawaiiCounties from "data/hi-counties.json";
 import { capitalize } from "./helpers";
-import { County } from "lib/types";
+import { County, City } from "lib/types";
+import USCities from "data/cities/us.json";
+import CACities from "data/cities/ca.json";
 
 const countyArrays: any = {
   "US-OH": OhioCounties,
@@ -40,6 +42,11 @@ const countyArrays: any = {
   "US-IA": IowaCounties,
   "US-ME": MaineCounties,
   "US-HI": HawaiiCounties,
+};
+
+const cityArrays: any = {
+  US: USCities,
+  CA: CACities,
 };
 
 export function getState(param: string) {
@@ -143,4 +150,20 @@ export function getRegionLabel(region: string) {
   }
   const state = getStateByCode(region);
   return `${state?.label}, ${state?.country}`;
+}
+
+export function getCityBySlug(stateCode: string, slug: string): City | null {
+  const countryCities = cityArrays[stateCode.slice(0, 2)];
+  const city = countryCities.find((city: City) => city.slug === slug && city.state === stateCode);
+  return city || null;
+}
+
+export function getCities(stateCode: string) {
+  const countryCities = cityArrays[stateCode.slice(0, 2)];
+  if (!countryCities) return [];
+  return countryCities.filter((city: City) => city.state === stateCode);
+}
+
+export function getAllCities(): City[] {
+  return Object.values(cityArrays).flat() as City[];
 }
