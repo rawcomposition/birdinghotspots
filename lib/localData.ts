@@ -158,7 +158,7 @@ export function getCityBySlug(stateCode: string, slug: string): City | null {
   return city || null;
 }
 
-export function getCities(stateCode: string) {
+export function getCities(stateCode: string): City[] {
   const countryCities = cityArrays[stateCode.slice(0, 2)];
   if (!countryCities) return [];
   return countryCities.filter((city: City) => city.state === stateCode);

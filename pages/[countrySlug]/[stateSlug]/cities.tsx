@@ -65,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
-  const cities = getCities(state.code);
+  const cities = getCities(state.code).sort((a, b) => a.name.localeCompare(b.name));
 
   return {
     props: { countrySlug, state, cities },
