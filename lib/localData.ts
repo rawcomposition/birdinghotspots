@@ -19,7 +19,8 @@ import IowaCounties from "data/ia-counties.json";
 import MaineCounties from "data/me-counties.json";
 import HawaiiCounties from "data/hi-counties.json";
 import { capitalize } from "./helpers";
-import { County } from "lib/types";
+import { County, City } from "lib/types";
+import USCities from "data/cities/us.json";
 
 const countyArrays: any = {
   "US-OH": OhioCounties,
@@ -143,4 +144,9 @@ export function getRegionLabel(region: string) {
   }
   const state = getStateByCode(region);
   return `${state?.label}, ${state?.country}`;
+}
+
+export function getCityBySlug(slug: string): City | null {
+  const city = USCities.find((city) => city.slug === slug);
+  return city || null;
 }

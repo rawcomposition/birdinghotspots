@@ -434,3 +434,15 @@ export type Token = {
   name?: string;
   isAdmin?: boolean;
 };
+
+export type City = {
+  name: string;
+  state: string;
+  county: string;
+  lat: number;
+  lng: number;
+  pop: number;
+  density: number;
+  tz: string;
+  slug: string;
+};

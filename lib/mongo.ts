@@ -9,7 +9,7 @@ import Group from "models/Group";
 import Profile from "models/Profile";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
-import { RegionInfo as RegionInfoType, Revision as RevisionType } from "lib/types";
+import { RegionInfo as RegionInfoType, Revision as RevisionType, Hotspot as HotspotType } from "lib/types";
 
 declare global {
   var mongoose: any;
@@ -363,5 +363,22 @@ export async function getLogs() {
 export async function getRegionInfo(code: string): Promise<RegionInfoType[] | null> {
   await connect();
   const result = await RegionInfo.findOne({ code });
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getHotspotsInRadius(lat: number, lng: number, radius: number): Promise<HotspotType[] | null> {
+  //Convert radius from miles to radians
+  const radians = radius / 3963.2;
+  await connect();
+  const result = await Hotspot.find({
+    location: {
+      $geoWithin: {
+        $centerSphere: [[lng, lat], radians],
+      },
+    },
+  })
+    .sort({ species: -1 })
+    .lean();
+
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

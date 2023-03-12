@@ -48,6 +48,11 @@ export default function StateLinksBtn({ state }: Props) {
           <Menu.Item>
             <Link href={`/${countrySlug}/${slug}/group-index`}>Group Locations</Link>
           </Menu.Item>
+          {country === "US" && (
+            <Menu.Item>
+              <Link href={`/${countrySlug}/${slug}/cities`}>Cities/Towns</Link>
+            </Menu.Item>
+          )}
         </Menu.Items>
       </Menu>
     </div>
