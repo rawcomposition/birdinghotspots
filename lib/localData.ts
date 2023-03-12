@@ -152,9 +152,9 @@ export function getRegionLabel(region: string) {
   return `${state?.label}, ${state?.country}`;
 }
 
-export function getCityBySlug(countryCode: string, slug: string): City | null {
-  const cityArray = cityArrays[countryCode.toUpperCase()];
-  const city = cityArray.find((city: City) => city.slug === slug);
+export function getCityBySlug(stateCode: string, slug: string): City | null {
+  const countryCities = cityArrays[stateCode.slice(0, 2)];
+  const city = countryCities.find((city: City) => city.slug === slug && city.state === stateCode);
   return city || null;
 }
 

@@ -62,7 +62,7 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
         {markers.length > 0 && <MapBox key={slug} markers={markers as Marker[]} zoom={8} landscape disableScroll />}
       </section>
       <p className="mb-16 text-[13px] mt-2 text-gray-600">
-        Showing <strong>{hotspots.length}</strong> hotspots within a 5 mile radius of the city center.
+        Showing <strong>{hotspots.length}</strong> hotspots within a 5 mile radius of city center.
       </p>
       <section className="mb-16">
         <div className="flex justify-between items-center mb-2">
@@ -78,8 +78,9 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
         </div>
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <HotspotGrid hotspots={visibleHotspots} loading={false} />
+          {hotspots.length === 0 && <p className="text-gray-500 text-lg">No hotspots found.</p>}
         </div>
-        {!expand && (
+        {!expand && hotspots.length > 12 && (
           <button
             type="button"
             className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
@@ -104,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
-  const city = getCityBySlug(countrySlug, citySlug);
+  const city = getCityBySlug(state.code, citySlug);
   if (!city?.name) return { notFound: true };
 
   const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];
