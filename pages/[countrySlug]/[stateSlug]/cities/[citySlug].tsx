@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
@@ -9,6 +10,8 @@ import { State, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
 import MapBox from "components/MapBox";
 import HotspotGrid from "components/HotspotGrid";
+import MapIconAlt from "icons/Map";
+import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   countrySlug: string;
@@ -37,21 +40,42 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
       >
         {name}
       </PageHeading>
-      <section className="md:flex justify-between items-start mb-4 -mt-8">
+      <section className="lg:flex justify-between items-start mb-4 -mt-8">
         <div>
           <h3 className="text-lg mb-1 font-bold">Where to Go Birding in {name}</h3>
           <p className="mb-2 text-base">
             Plan to go birding in {name}? Below are some of the best eBird hotspots in the area.
           </p>
         </div>
+        <div className="my-4 lg:my-0">
+          <Link
+            href={`/explore?lat=${city.lat}&lng=${city.lng}&view=map&label=${city.name}`}
+            className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
+          >
+            <MapIconAlt className="inline-block text-xl mr-3" />
+            Explore Hotspot Map
+            <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+          </Link>
+        </div>
       </section>
-      <section className="mb-16">
+      <section>
         {markers.length > 0 && <MapBox key={slug} markers={markers as Marker[]} zoom={8} landscape disableScroll />}
       </section>
+      <p className="mb-16 text-[13px] mt-2 text-gray-600">
+        Showing <strong>{hotspots.length}</strong> hotspots within a 5 mile radius of the city center.
+      </p>
       <section className="mb-16">
-        <h3 className="text-lg mb-2 font-bold" id="tophotspots">
-          Top eBird Hotspots <span className="text-gray-500 font-normal">({hotspots.length})</span>
-        </h3>
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-lg font-bold" id="tophotspots">
+            Top eBird Hotspots
+          </h3>
+          <Link
+            href={`/explore?lat=${city.lat}&lng=${city.lng}&view=grid&label=${city.name}`}
+            className="font-bold text-sm"
+          >
+            View All
+          </Link>
+        </div>
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <HotspotGrid hotspots={visibleHotspots} loading={false} />
         </div>
@@ -80,7 +104,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
-  const city = getCityBySlug(citySlug);
+  const city = getCityBySlug(countrySlug, citySlug);
   if (!city?.name) return { notFound: true };
 
   const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];

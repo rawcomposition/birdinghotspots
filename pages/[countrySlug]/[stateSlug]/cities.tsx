@@ -1,12 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
-import { getState } from "lib/localData";
+import { getState, getCities } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { City, State } from "lib/types";
 import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import AllCities from "data/cities/us.json";
 
 type Props = {
   countrySlug: string;
@@ -66,12 +65,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const state = getState(stateSlug);
   if (!state) return { notFound: true };
 
-  const filteredCities = AllCities.filter((city) => city.state === state.code).map(({ name, slug }) => ({
-    name,
-    slug,
-  }));
+  const cities = getCities(state.code);
 
   return {
-    props: { countrySlug, state, cities: filteredCities },
+    props: { countrySlug, state, cities },
   };
 };
