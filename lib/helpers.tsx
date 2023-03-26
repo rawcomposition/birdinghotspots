@@ -216,7 +216,7 @@ export const getMarkerShade = (count: number) => {
   if (count <= 300) return 8;
   if (count <= 400) return 9;
   if (count <= 500) return 10;
-  return "#bcbcbc";
+  return 1;
 };
 
 export function truncate(string: string, length: number) {
