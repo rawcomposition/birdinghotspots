@@ -3,7 +3,8 @@
     "country": "US",
     "label": "Alabama",
     "slug": "alabama",
-    "code": "US-AL"
+    "code": "US-AL",
+    "active": true
   },
   {
     "country": "US",
