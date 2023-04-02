@@ -29,7 +29,7 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
 
   return (
     <div className="container pb-16">
-      <Title>{`${name}, ${state.label}, ${state.country}`}</Title>
+      <Title>{`Where to Go Birding in ${name}, ${state.label}`}</Title>
       <Head>
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
       </Head>
