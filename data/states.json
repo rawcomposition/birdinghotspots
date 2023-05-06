@@ -164,7 +164,8 @@
     "country": "US",
     "label": "Missouri",
     "slug": "missouri",
-    "code": "US-MO"
+    "code": "US-MO",
+    "active": true
   },
   {
     "country": "US",
