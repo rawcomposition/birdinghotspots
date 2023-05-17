@@ -16,7 +16,7 @@ export default function AlabamaMap() {
         ref={svgRef}
       >
         <g>
-          <g id="states">
+          <g>
             <Link href="/us/alabama/conecuh-county" {...linkProps}>
               <path
                 {...pathProps}

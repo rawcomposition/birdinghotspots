@@ -303,7 +303,8 @@
     "country": "US",
     "label": "Virginia",
     "slug": "virginia",
-    "code": "US-VA"
+    "code": "US-VA",
+    "active": true
   },
   {
     "country": "US",
