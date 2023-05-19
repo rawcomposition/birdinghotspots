@@ -21,6 +21,7 @@ import HawaiiCounties from "data/hi-counties.json";
 import AlabamaCounties from "data/al-counties.json";
 import MissouriCounties from "data/mo-counties.json";
 import VirginiaCounties from "data/va-counties.json";
+import IllinoisConties from "data/il-counties.json";
 import { capitalize } from "./helpers";
 import { County, City } from "lib/types";
 import USCities from "data/cities/us.json";
@@ -48,6 +49,7 @@ const countyArrays: any = {
   "US-AL": AlabamaCounties,
   "US-MO": MissouriCounties,
   "US-VA": VirginiaCounties,
+  "US-IL": IllinoisConties,
 };
 
 const cityArrays: any = {

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getLogs } from "lib/mongo";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
-import "photoswipe/dist/photoswipe.css";
 import { Log } from "lib/types";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import dayjs from "dayjs";

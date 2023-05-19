@@ -84,7 +84,8 @@
     "country": "US",
     "label": "Illinois",
     "slug": "illinois",
-    "code": "US-IL"
+    "code": "US-IL",
+    "active": true
   },
   {
     "country": "US",
