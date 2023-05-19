@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
     "@hookform/error-message": "^2.0.0",
+    "@sentry/nextjs": "^7.52.1",
     "@tinymce/tinymce-react": "^4.1.0",
     "@types/aws-sdk": "^2.7.0",
     "@uppy/react": "^2.2.2",

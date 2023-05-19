@@ -33,3 +33,5 @@ yarn-error.log*
 .env
 
 public/top10/*.json
+# Sentry Auth Token
+.sentryclirc
