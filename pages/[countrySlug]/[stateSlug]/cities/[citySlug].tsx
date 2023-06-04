@@ -50,7 +50,7 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
         <div className="my-4 lg:my-0">
           <Link
             href={`/explore?lat=${city.lat}&lng=${city.lng}&view=map&label=${city.name}`}
-            className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
+            className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
           >
             <MapIconAlt className="inline-block text-xl mr-3" />
             Explore Hotspot Map
@@ -83,7 +83,7 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
         {!expand && hotspots.length > 12 && (
           <button
             type="button"
-            className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
+            className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
             onClick={() => setExpand(true)}
           >
             View More

@@ -20,6 +20,7 @@
     "@uppy/thumbnail-generator": "^2.2.0",
     "@uppy/transloadit": "^2.3.1",
     "aws-sdk": "^2.1181.0",
+    "clsx": "^1.2.1",
     "dayjs": "^1.11.3",
     "firebase": "^9.8.2",
     "firebase-admin": "^10.3.0",

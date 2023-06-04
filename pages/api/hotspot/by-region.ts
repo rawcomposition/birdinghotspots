@@ -3,19 +3,31 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { region, limit, offset, filter }: any = req.query;
+  const { region, limit, offset, images, content, features }: any = req.query;
   const isCounty = region.split("-").length === 3;
 
   let query: any = isCounty ? { countyCode: region } : { stateCode: region };
 
-  if (filter === "with-images") {
+  if (images === "Yes") {
     query.featuredImg = { $exists: true };
-  } else if (filter === "without-images") {
+  } else if (images === "No") {
     query.featuredImg = { $exists: false };
-  } else if (filter === "with-content") {
+  }
+
+  if (content === "Yes") {
     query.$or = [{ noContent: false }, { "groupIds.0": { $exists: true } }];
-  } else if (filter === "without-content") {
+  } else if (content === "No") {
     query.$and = [{ noContent: true }, { "groupIds.0": { $exists: false } }];
+  }
+
+  if (features === "Restrooms") {
+    query.restrooms = "Yes";
+  } else if (features === "Accessible") {
+    query.accessible = "Yes";
+  } else if (features === "Roadside") {
+    query.roadside = "Yes";
+  } else if (features === "Free") {
+    query.fee = "No";
   }
 
   try {

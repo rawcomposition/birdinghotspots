@@ -22,7 +22,12 @@ module.exports = {
     fontFamily: {
       sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#4a84b2",
+        secondary: "#325a79",
+      },
+    },
   },
   plugins: [require("@tailwindcss/forms")],
 };

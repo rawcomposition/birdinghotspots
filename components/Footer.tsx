@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer id="footer">
       {stateSlug === "ohio" ? <OhioFooter /> : <GeneralFooter />}
-      <div className="bg-[#325a79] py-3 text-xs text-gray-300 text-center">
+      <div className="bg-secondary py-3 text-xs text-gray-300 text-center">
         Most content is released into the public domain&nbsp;
         <a
           href="https://creativecommons.org/share-your-work/public-domain/cc0/"

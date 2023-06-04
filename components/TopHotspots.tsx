@@ -38,7 +38,7 @@ export default function TopHotspots({ region, label, className }: Props) {
       {results.length > 0 && (
         <Link
           href={`/region/${region}`}
-          className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
+          className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
         >
           View More
           <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />

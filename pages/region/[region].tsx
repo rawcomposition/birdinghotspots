@@ -8,33 +8,30 @@ import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import ExploreMap from "components/ExploreMap";
 import toast from "react-hot-toast";
 import { getStateByCode, getCountyByCode } from "lib/localData";
+import HotspotFilters from "components/HotspotFilters";
+import { useRouter } from "next/router";
 
 type Props = {
   region: string;
   name: string;
   url: string;
-  view: "grid" | "map";
-  filter: string;
 };
 
-const filters = [
-  { name: "All", value: "all" },
-  { name: "With Images", value: "with-images" },
-  { name: "Without Images", value: "without-images" },
-  { name: "With Content", value: "with-content" },
-  { name: "Without Content", value: "without-content" },
-];
-
-export default function Explore({ region, name, url, view, filter }: Props) {
+export default function Explore({ region, name, url }: Props) {
   const [loading, setLoading] = React.useState(false);
   const [results, setResults] = React.useState<Hotspot[]>([]);
   const [loadingMore, setLoadingMore] = React.useState(false);
   const [count, setCount] = React.useState<number | null>(null);
+  const router = useRouter();
+  const view = router.query.view || "grid";
+  const { images, content, features } = router.query;
 
   const fetchHotspots = async (reset?: boolean) => {
     const offset = reset ? 0 : results.length;
     try {
-      const response = await fetch(`/api/hotspot/by-region?region=${region}&offset=${offset}&filter=${filter}`);
+      const response = await fetch(
+        `/api/hotspot/by-region?region=${region}&offset=${offset}&images=${images}&content=${content}&features=${features}`
+      );
       const json = await response.json();
       if (reset) {
         setResults(json?.results || []);
@@ -58,7 +55,7 @@ export default function Explore({ region, name, url, view, filter }: Props) {
     setLoading(true);
     fetchHotspots(true);
     setLoading(false);
-  }, [filter]);
+  }, [images, content, features]);
 
   const hasMore = count !== null && results.length < count;
 
@@ -73,28 +70,13 @@ export default function Explore({ region, name, url, view, filter }: Props) {
         {!loading && (
           <div>
             <p className="text-lg text-gray-500">
-              Found <strong className="text-[#4a84b2]">{count}</strong> hotspots in{" "}
-              <Link href={url} className="text-[#4a84b2] font-bold">
+              Found <strong className="text-primary">{count}</strong> hotspots in{" "}
+              <Link href={url} className="text-primary font-bold">
                 {name}
               </Link>
-              {filter && filter !== "all" && <> {filters.find((it) => it.value === filter)?.name.toLowerCase()}</>}
             </p>
             {view === "grid" && <p className="text-xs text-gray-500">Sorted by species count</p>}
-            {view === "grid" && (
-              <div className="flex gap-2 mt-6 flex-wrap">
-                {filters.map(({ name, value }) => (
-                  <Link
-                    href={`/region/${region}?view=${view}&filter=${value}`}
-                    key={value}
-                    className={`border rounded-full px-3 font-medium leading-5 text-[12px] whitespace-nowrap ${
-                      filter === value ? "bg-gray-500 border-gray-500 text-white" : "text-gray-800"
-                    }`}
-                  >
-                    {name}
-                  </Link>
-                ))}
-              </div>
-            )}
+            {view === "grid" && <HotspotFilters />}
           </div>
         )}
         <Link
@@ -124,7 +106,7 @@ export default function Explore({ region, name, url, view, filter }: Props) {
         <button
           type="button"
           onClick={loadMore}
-          className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-2 px-4 rounded-full w-[220px] mx-auto block mt-8"
+          className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full w-[220px] mx-auto block mt-8"
         >
           {loadingMore ? "loading..." : "Load More"}
         </button>
@@ -135,8 +117,6 @@ export default function Explore({ region, name, url, view, filter }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
-  const filter = (query.filter as string) || "all";
-  const view = (query.view as string) || "grid";
   const isCounty = regionCode.split("-").length === 3;
 
   const state = getStateByCode(regionCode.slice(0, 5));
@@ -155,9 +135,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       region: regionCode,
       name,
       isCounty,
-      view,
       url,
-      filter,
     },
   };
 };

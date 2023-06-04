@@ -6,7 +6,7 @@ type Props = {
 export default function EbirdBarcharts({ region, portal }: Props) {
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
   return (
-    <section className="mb-6 p-2 border-2 border-[#4a84b2] rounded">
+    <section className="mb-6 p-2 border-2 border-primary rounded">
       <h3 className="font-bold text-lg">Explore in eBird</h3>
       <p>
         <a href={`${base}/barchart?yr=all&bmo=1&emo=12&r=${region}`} target="_blank" rel="noreferrer">

@@ -137,7 +137,7 @@ export default function Hotspot({
           <button
             type="button"
             onClick={() => open("addStreetView", { locationId, onSuccess: reload })}
-            className="flex gap-1 text-[#4a84b2]"
+            className="flex gap-1 text-primary"
           >
             <MapIcon className="h-4 w-4" />
             Add Google Street View
@@ -172,7 +172,7 @@ export default function Hotspot({
               <div className="inline-flex gap-2">
                 {/*Grouped to prevent the last button from wrapping on its own*/}
                 <ExternalLinkButton href={`${base}/hotspot/${locationId}/media?yr=all&m=`}>
-                  <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+                  <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
                 </ExternalLinkButton>
                 <EbirdHotspotBtn {...{ state, locationId }} />
               </div>

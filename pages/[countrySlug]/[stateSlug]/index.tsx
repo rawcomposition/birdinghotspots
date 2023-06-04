@@ -75,7 +75,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
             <div className="inline-flex gap-2">
               {/*Grouped to prevent the last button from wrapping on its own*/}
               <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
-                <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+                <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
               </ExternalLinkButton>
               <EbirdRegionBtn code={code} portal={state.portal} />
             </div>
@@ -88,7 +88,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
           <div className="mt-8">
             <Link
               href={`/region/${code}?view=map`}
-              className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
+              className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
             >
               <MapIconAlt className="inline-block text-xl mr-3" />
               Explore Hotspot Map

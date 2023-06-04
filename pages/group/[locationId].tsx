@@ -82,11 +82,7 @@ export default function Group({
           <HotspotGrid hotspots={filteredHotspots} loading={false} />
         </div>
         {!showMore && hotspots.length > 12 && (
-          <button
-            type="button"
-            onClick={() => setShowMore(true)}
-            className="text-[#4a84b2] font-bold block mx-auto mt-2"
-          >
+          <button type="button" onClick={() => setShowMore(true)} className="text-primary font-bold block mx-auto mt-2">
             View {moreCount} more {moreCount === 1 ? "hotspot" : "hotspots"}
           </button>
         )}

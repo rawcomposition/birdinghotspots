@@ -24,7 +24,7 @@ export const ScrollTop = () => {
       type="button"
       className={`fixed right-5 ${
         visible ? "bottom-4 opacity-100 visible" : "bottom-4 opacity-0 invisible"
-      } p-2 bg-[#4a84b2]/90 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#4a84b2] hover:shadow-lg focus:bg-[#4a84b2] focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg duration-150 ease-in-out transition-all`}
+      } p-2 bg-primary/90 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-primary hover:shadow-lg focus:bg-primary focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg duration-150 ease-in-out transition-all`}
       onClick={scrollToTop}
     >
       <ArrowSmallUpIcon className="h-7 w-7" />

@@ -52,7 +52,7 @@ export default function NearbyHotspots({ limit, exclude, lat, lng }: Props) {
       <div className="grid xs:grid-cols-2 gap-6">
         <HotspotGrid hotspots={results} loading={false} lat={lat} lng={lng} />
       </div>
-      <button type="button" onClick={loadMore} className="text-[#4a84b2] font-bold block mx-auto">
+      <button type="button" onClick={loadMore} className="text-primary font-bold block mx-auto">
         {loadingMore ? "loading..." : "View More"}
       </button>
     </div>
