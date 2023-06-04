@@ -220,7 +220,7 @@ export default function Hotspot({
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 
-          {noContent && !groups?.length && (
+          {noContent && (
             <div className="mb-6 formatted">
               <h3 className="font-bold text-lg mb-1.5">About this location</h3>
               <div className="p-4 bg-gray-100 rounded-lg mb-6">
