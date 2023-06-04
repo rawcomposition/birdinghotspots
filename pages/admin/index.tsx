@@ -1,10 +1,12 @@
 import DashboardPage from "components/DashboardPage";
 import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import { getImgStats } from "lib/mongo";
+import { getImgStats, getDeletedHotspots } from "lib/mongo";
 import States from "data/states.json";
+import { Hotspot } from "lib/types";
 
 type Props = {
+  deletedHotspots: Hotspot[];
   data: {
     code: string;
     label: string;
@@ -15,9 +17,25 @@ type Props = {
   }[];
 };
 
-export default function Dashboard({ data }: Props) {
+export default function Dashboard({ data, deletedHotspots }: Props) {
   return (
     <DashboardPage title="Dashboard">
+      {!!deletedHotspots?.length && (
+        <section className="p-6 pt-5 overflow-hidden shadow md:rounded-lg bg-white mb-4">
+          <h3 className="text-lg font-bold mb-1">Hotspots Pending Deletion</h3>
+          <p className="text-sm text-gray-500 mb-4">
+            The following hotspots have been deleted from eBird and should be removed from BirdingHotspots.org.
+          </p>
+          {deletedHotspots.map((hotspot) => (
+            <div key={hotspot._id} className="flex items-center gap-2 mt-2">
+              <Link href={hotspot.url} className="font-bold text-sm" target="_blank">
+                {hotspot.name}
+              </Link>
+              <span className="text-xs text-gray-500">({hotspot.stateCode?.replace("-", ", ")})</span>
+            </div>
+          ))}
+        </section>
+      )}
       <div className="overflow-hidden shadow md:rounded-lg mb-12">
         <table className="min-w-full divide-y divide-gray-300">
           <thead className="bg-gray-50">
@@ -80,7 +98,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     count,
   }));
 
-  const filteredStates = States.filter(({ active, code, country }) => {
+  const filteredStates = States.filter(({ active, code }) => {
     return active && (role === "admin" || regions.includes(code));
   });
 
@@ -94,5 +112,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
   const sorted = data.sort((a, b) => b.total - a.total);
 
-  return { props: { data: sorted } };
+  const deletedHotspots = await getDeletedHotspots(role === "admin" ? null : token.regions);
+
+  return { props: { data: sorted, deletedHotspots } };
 });

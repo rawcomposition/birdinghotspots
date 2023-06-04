@@ -382,3 +382,15 @@ export async function getHotspotsInRadius(lat: number, lng: number, radius: numb
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
+
+export async function getDeletedHotspots(states: string[] | null): Promise<HotspotType[] | null> {
+  await connect();
+  const result = await Hotspot.find({
+    stateCode: states ? { $in: states } : { $exists: true },
+    needsDeleting: true,
+  })
+    .sort({ species: -1 })
+    .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
