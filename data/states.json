@@ -38,7 +38,8 @@
     "country": "US",
     "label": "Colorado",
     "slug": "colorado",
-    "code": "US-CO"
+    "code": "US-CO",
+    "active": true
   },
   {
     "country": "US",
