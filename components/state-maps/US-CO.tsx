@@ -265,7 +265,7 @@ export default function GeorgiaMap() {
                 strokeDasharray="1, 0"
                 strokeWidth="1"
               ></path>
-              <text>Hinsdale</text>
+              <text>Huerfano</text>
             </Link>
             <Link href="/us/colorado/jackson-county" {...linkProps}>
               <path
