@@ -23,6 +23,7 @@ import MissouriCounties from "data/mo-counties.json";
 import VirginiaCounties from "data/va-counties.json";
 import IllinoisConties from "data/il-counties.json";
 import ColoradoCounties from "data/co-counties.json";
+import SouthDakotaCounties from "data/sd-counties.json";
 import { capitalize } from "./helpers";
 import { County, City } from "lib/types";
 import USCities from "data/cities/us.json";
@@ -52,6 +53,7 @@ const countyArrays: any = {
   "US-VA": VirginiaCounties,
   "US-IL": IllinoisConties,
   "US-CO": ColoradoCounties,
+  "US-SD": SouthDakotaCounties,
 };
 
 const cityArrays: any = {

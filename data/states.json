@@ -272,7 +272,8 @@
     "country": "US",
     "label": "South Dakota",
     "slug": "south-dakota",
-    "code": "US-SD"
+    "code": "US-SD",
+    "active": true
   },
   {
     "country": "US",
