@@ -27,6 +27,16 @@ export default function Home({ featured }: Props) {
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
       </Head>
       <Banner />
+      <div className="bg-amber-100 border-t border-b border-amber-200 text-amber-600 px-4 py-3 text-center">
+        <div className="container mx-auto">
+          <p className="text-sm">
+            <span className="font-bold">Server Errors</span> The service that hosts our site, AWS, is experiencing an
+            outage. It&apos;s outside of our control but hopefully will be back up shortly.
+            <br />
+            Thanks for your patience!
+          </p>
+        </div>
+      </div>
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
