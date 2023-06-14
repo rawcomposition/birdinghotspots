@@ -34,7 +34,7 @@ export default function AccessibleFacilities({ state, countrySlug, hotspots }: P
       </p>
       <p className="mb-4">
         Also, see <Link href={`/${countrySlug}/${state.slug}/roadside-birding`}>Roadside Birding</Link> for hotspots
-        where you may view birds from your vehicle. We also recommend checkig out the&nbsp;
+        where you may view birds from your vehicle. We also recommend checking out the&nbsp;
         <a href="https://www.birdability.org/" target="_blank" rel="noreferrer">
           Birdability
         </a>
