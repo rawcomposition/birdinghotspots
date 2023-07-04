@@ -17,7 +17,7 @@ export default function useRegionBounds(region?: string) {
     const fetchBounds = async () => {
       setLoading(true);
       const res = await fetch(
-        `https://api.ebird.org/v2/ref/region/info/${region}?key=${process.env.NEXT_PUBLIC_EBIRD_API}`
+        `https://api.ebird.org/v2/ref/hotspots/info/${region}?key=${process.env.NEXT_PUBLIC_EBIRD_API}`
       );
       const json = await res.json();
       setLoading(false);

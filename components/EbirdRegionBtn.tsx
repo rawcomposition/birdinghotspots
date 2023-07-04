@@ -24,12 +24,12 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
             <h4 className="font-bold">Explore in eBird</h4>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${code}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`${base}/hotspots/${code}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
               Hotspots
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${code}/activity?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`${base}/hotspots/${code}/activity?yr=all&m=`} target="_blank" rel="noreferrer">
               Recent Visits
             </a>
           </Menu.Item>

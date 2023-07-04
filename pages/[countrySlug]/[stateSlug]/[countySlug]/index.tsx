@@ -98,7 +98,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
 
             <div className="inline-flex gap-2">
               {/*Grouped to prevent the last button from wrapping on its own*/}
-              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
+              <ExternalLinkButton href={`${base}/hotspots/${code}/media?yr=all&m=`}>
                 <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
               </ExternalLinkButton>
               <EbirdRegionBtn code={code} portal={state.portal} />

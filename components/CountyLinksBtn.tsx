@@ -22,11 +22,11 @@ export default function CountyLinksBtn({ showIba, county, countrySlug, stateSlug
         </Menu.Button>
         <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
           <Menu.Item>
-            <Link href={`/region/${county.code}?view=map`}>Hotspot Map</Link>
+            <Link href={`/hotspots/${county.code}?view=map`}>Hotspot Map</Link>
           </Menu.Item>
           <Menu.Item>
             <Menu.Item>
-              <Link href={`/region/${county.code}`}>Top Hotspots</Link>
+              <Link href={`/hotspots/${county.code}`}>Top Hotspots</Link>
             </Menu.Item>
           </Menu.Item>
           <Menu.Item>

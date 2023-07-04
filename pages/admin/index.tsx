@@ -73,7 +73,7 @@ export default function Dashboard({ data, deletedHotspots }: Props) {
                     View List
                   </Link>
                   <Link
-                    href={`/region/${code}`}
+                    href={`/hotspots/${code}`}
                     className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2"
                   >
                     Explore

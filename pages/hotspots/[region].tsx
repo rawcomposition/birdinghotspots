@@ -81,7 +81,7 @@ export default function Explore({ region, name, url }: Props) {
         )}
         <Link
           className="sm:mt-0 mt-2 border py-1 sm:py-2 ml-auto sm:ml-0 px-4 rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all"
-          href={view === "grid" ? `/region/${region}?view=map` : `/region/${region}?view=grid`}
+          href={view === "grid" ? `/hotspots/${region}?view=map` : `/hotspots/${region}?view=grid`}
         >
           {view === "grid" ? (
             <>
