@@ -92,7 +92,8 @@
     "country": "US",
     "label": "Indiana",
     "slug": "indiana",
-    "code": "US-IN"
+    "code": "US-IN",
+    "active": true
   },
   {
     "country": "US",
