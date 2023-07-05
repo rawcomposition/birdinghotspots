@@ -446,3 +446,14 @@ export type City = {
   tz: string;
   slug: string;
 };
+
+export type Region = {
+  code: string;
+  name: string;
+  subregions?: {
+    code: string;
+    name: string;
+  }[];
+  portal?: string;
+  subheading?: string;
+};

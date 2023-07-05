@@ -74,7 +74,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
             <StateLinksBtn state={state} />
             <div className="inline-flex gap-2">
               {/*Grouped to prevent the last button from wrapping on its own*/}
-              <ExternalLinkButton href={`${base}/hotspots/${code}/media?yr=all&m=`}>
+              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
                 <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
               </ExternalLinkButton>
               <EbirdRegionBtn code={code} portal={state.portal} />
@@ -150,7 +150,7 @@ export default function State({ countrySlug, state, counties, info, articles }: 
         <Heading id="hotspots" color="green" className="mt-12 mb-8">
           Top eBird Hotspots
         </Heading>
-        <TopHotspots region={code} label={`${label}, ${countrySlug.toUpperCase()}`} className="mt-12" />
+        <TopHotspots region={code} className="mt-12" />
       </section>
 
       <Heading id="hotspots" color="yellow" className="mt-12 mb-8 flex items-center gap-2">

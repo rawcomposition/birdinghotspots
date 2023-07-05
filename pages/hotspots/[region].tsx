@@ -2,22 +2,20 @@ import * as React from "react";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import Title from "components/Title";
-import { Hotspot } from "lib/types";
+import { Hotspot, Region } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import ExploreMap from "components/ExploreMap";
 import toast from "react-hot-toast";
-import { getStateByCode, getCountyByCode } from "lib/localData";
+import { getRegion } from "lib/data";
 import HotspotFilters from "components/HotspotFilters";
 import { useRouter } from "next/router";
 
 type Props = {
-  region: string;
-  name: string;
-  url: string;
+  region: Region;
 };
 
-export default function Explore({ region, name, url }: Props) {
+export default function Explore({ region }: Props) {
   const [loading, setLoading] = React.useState(false);
   const [results, setResults] = React.useState<Hotspot[]>([]);
   const [loadingMore, setLoadingMore] = React.useState(false);
@@ -30,7 +28,7 @@ export default function Explore({ region, name, url }: Props) {
     const offset = reset ? 0 : results.length;
     try {
       const response = await fetch(
-        `/api/hotspot/by-region?region=${region}&offset=${offset}&images=${images}&content=${content}&features=${features}`
+        `/api/hotspot/by-region?region=${region.code}&offset=${offset}&images=${images}&content=${content}&features=${features}`
       );
       const json = await response.json();
       if (reset) {
@@ -61,7 +59,7 @@ export default function Explore({ region, name, url }: Props) {
 
   return (
     <div className={view === "grid" ? "container pb-16 mt-4 max-w-[975px]" : "flex flex-col h-full"}>
-      <Title>{`Hotspots in ${name}`}</Title>
+      <Title>{`Hotspots in ${region.name}`}</Title>
       <div
         className={`mt-8 mb-4 sm:flex justify-between items-center ${
           view === "map" ? "container my-2 max-w-[975px]" : ""
@@ -70,9 +68,9 @@ export default function Explore({ region, name, url }: Props) {
         {!loading && (
           <div>
             <p className="text-lg text-gray-500">
-              Found <strong className="text-primary">{count}</strong> hotspots in{" "}
-              <Link href={url} className="text-primary font-bold">
-                {name}
+              Found <strong className="text-primary">{count?.toLocaleString()}</strong> hotspots in{" "}
+              <Link href={`/region/${region.code}`} className="text-primary font-bold">
+                {region.name}
               </Link>
             </p>
             {view === "grid" && <p className="text-xs text-gray-500">Sorted by species count</p>}
@@ -101,7 +99,7 @@ export default function Explore({ region, name, url }: Props) {
           </div>
         </>
       )}
-      {view === "map" && <ExploreMap mode="region" region={region} />}
+      {view === "map" && <ExploreMap mode="region" region={region.code} />}
       {view === "grid" && results.length > 0 && hasMore && (
         <button
           type="button"
@@ -117,25 +115,12 @@ export default function Explore({ region, name, url }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
-  const isCounty = regionCode.split("-").length === 3;
-
-  const state = getStateByCode(regionCode.slice(0, 5));
-  const county = isCounty ? getCountyByCode(regionCode) : null;
-
-  if (!state && !county) return { notFound: true };
-
-  const country = regionCode.split("-")[0];
-  const countrySlug = country.toLowerCase();
-
-  const url = isCounty ? `/${countrySlug}/${state?.slug}/${county?.slug}-county` : `/${countrySlug}/${state?.slug}`;
-  const name = isCounty ? `${county?.longName}, ${country}` : `${state?.label}, ${country}`;
+  const region = await getRegion(regionCode);
+  if (!region) return { notFound: true };
 
   return {
     props: {
-      region: regionCode,
-      name,
-      isCounty,
-      url,
+      region,
     },
   };
 };

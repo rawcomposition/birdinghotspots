@@ -378,7 +378,15 @@ img.marker-sm {
   @apply fill-slate-200;
 }
 
-.state-map a:hover path {
+.state-map .disabled path {
+  @apply fill-gray-100 cursor-default;
+}
+
+.state-map .disabled text {
+  @apply hidden;
+}
+
+.state-map a:not(.disabled):hover path {
   opacity: 0.8;
 }
 

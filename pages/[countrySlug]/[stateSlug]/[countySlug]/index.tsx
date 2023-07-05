@@ -98,7 +98,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
 
             <div className="inline-flex gap-2">
               {/*Grouped to prevent the last button from wrapping on its own*/}
-              <ExternalLinkButton href={`${base}/hotspots/${code}/media?yr=all&m=`}>
+              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
                 <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
               </ExternalLinkButton>
               <EbirdRegionBtn code={code} portal={state.portal} />
@@ -116,7 +116,7 @@ export default function County({ countrySlug, state, county, hotspots }: Props) 
         <h3 className="text-lg mb-2 font-bold" id="tophotspots">
           Top eBird Hotspots
         </h3>
-        <TopHotspots region={code} label={`${name}, ${state.label}, ${countrySlug.toUpperCase()}`} className="mt-4" />
+        <TopHotspots region={code} className="mt-4" />
       </section>
       <section className="mb-12">
         <h3 className="text-lg mb-2 font-bold" id="hotspots">

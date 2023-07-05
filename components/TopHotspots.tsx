@@ -6,11 +6,10 @@ import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   region: string;
-  label?: string;
   className?: string;
 };
 
-export default function TopHotspots({ region, label, className }: Props) {
+export default function TopHotspots({ region, className }: Props) {
   const [results, setResults] = React.useState<Hotspot[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 

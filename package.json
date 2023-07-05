@@ -57,7 +57,6 @@
     "dotenv": "^16.0.1",
     "eslint": "8.16.0",
     "eslint-config-next": "^13.2.1",
-    "fs": "^0.0.1-security",
     "node-fetch": "^3.2.6",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"

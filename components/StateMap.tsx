@@ -6,6 +6,6 @@ type Props = {
 
 //SVG maps adapted from https://www.createaclickablemap.com/counties-california.php?maplocation=ca
 export default function StateMap({ regionCode }: Props) {
-  const Map = dynamic(() => import(`./state-maps/${regionCode}`));
+  const Map = dynamic(() => import(`./region-maps/${regionCode}`));
   return <Map />;
 }
