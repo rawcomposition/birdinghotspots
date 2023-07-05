@@ -4,7 +4,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { getRegion } from "lib/data";
 import RareBirds from "components/RareBirds";
-import { Region } from "lib/types";
+import { Region, RegionInfo, Article, Hotspot, Marker } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
@@ -21,22 +21,31 @@ import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
+import { getArticlesByState, getRegionInfo, getHotspotsByCounty } from "lib/mongo";
+import MapBox from "components/MapBox";
+import HotspotList from "components/HotspotList";
 
 type Props = {
   region: Region;
+  info: RegionInfo;
+  articles: Article[];
+  hotspots: Hotspot[];
+  hasSubregions: boolean;
 };
 
-export default function RegionPage({ region }: Props) {
+export default function RegionPage({ region, info, articles, hotspots, hasSubregions }: Props) {
   const [view, setView] = React.useState<string>("map");
   const { open } = useModal();
   const { code, name, portal, subregions, subheading } = region;
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
 
+  const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
+
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${name}`}</Title>
       <PageHeading>
-        {!!subregions?.length ? `${name} Birding Hotspots` : name}
+        {hasSubregions ? `${name} Birding Hotspots` : name}
         {subheading && (
           <>
             <br />
@@ -44,80 +53,103 @@ export default function RegionPage({ region }: Props) {
           </>
         )}
       </PageHeading>
-      <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
-        <div>
-          <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {name}</h3>
-          <div className="flex gap-2 mt-2 mb-4">
-            {/*<StateLinksBtn state={state} />*/}
-            <div className="inline-flex gap-2">
-              {/*Grouped to prevent the last button from wrapping on its own*/}
-              <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
-                <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
-              </ExternalLinkButton>
-              <EbirdRegionBtn code={code} portal={portal} />
+      {hasSubregions ? (
+        <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
+          <section>
+            <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {name}</h3>
+            <div className="flex gap-2 mt-2 mb-4">
+              {/*<StateLinksBtn state={state} />*/}
+              <div className="inline-flex gap-2">
+                {/*Grouped to prevent the last button from wrapping on its own*/}
+                <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
+                  <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
+                </ExternalLinkButton>
+                <EbirdRegionBtn code={code} portal={portal} />
+              </div>
             </div>
-          </div>
-          <p className="text-gray-600 mb-8 text-[15px]">
-            Discover where to go birding in {name} by browsing our tips, descriptions, maps, and images for many eBird
-            hotspots.
-          </p>
-          <RegionStats regionCode={code} />
-          <div className="mt-8">
-            <Link
-              href={`/hotspots/${code}?view=map`}
-              className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
-            >
-              <MapIconAlt className="inline-block text-xl mr-3" />
-              Explore Hotspot Map
-              <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
-            </Link>
-            <p className="ml-1 mt-0.5">
-              Or, <Link href={`/hotspots/${code}`}>view top hotspots</Link> in {name}
+            <p className="text-gray-600 mb-8 text-[15px]">
+              Discover where to go birding in {name} by browsing our tips, descriptions, maps, and images for many eBird
+              hotspots.
             </p>
-          </div>
-        </div>
-        <div className="mb-8">
-          {!!subregions?.length && (
-            <div className="flex">
-              <button
-                type="button"
-                className="border py-1 px-2.5 text-xs rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all ml-auto mb-2"
-                onClick={() => setView((prev) => (prev === "map" ? "list" : "map"))}
+            <RegionStats regionCode={code} />
+            <div className="mt-8">
+              <Link
+                href={`/hotspots/${code}?view=map`}
+                className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
               >
-                {view === "list" ? (
-                  <>
-                    <MapIcon className="w-4 h-4" /> View Map
-                  </>
-                ) : (
-                  <>
-                    <Bars3Icon className="w-4 h-4" /> View Region List
-                  </>
-                )}
-              </button>
+                <MapIconAlt className="inline-block text-xl mr-3" />
+                Explore Hotspot Map
+                <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+              </Link>
+              <p className="ml-1 mt-0.5">
+                Or, <Link href={`/hotspots/${code}`}>view top hotspots</Link> in {name}
+              </p>
             </div>
-          )}
-          {view === "map" ? (
-            <div className="flex justify-center items-start">
-              <StateMap regionCode={code} />
-            </div>
-          ) : (
-            <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">
-              {subregions?.map((it) => (
-                <p key={name}>
-                  <Link href={`/region/${it.code}`} className="font-bold text-slate-300" title={it.name}>
-                    {it.name.length > 12 ? `${it.name.slice(0, 12)}...` : it.name}
-                  </Link>
-                </p>
-              ))}
-            </div>
-          )}
-          <div className="grid gap-8 grid-cols-2">
-            <div className="flex gap-4 items-center">
-              <div className="w-6 h-3" />
+          </section>
+          <div className="mb-8">
+            {hasSubregions && (
+              <div className="flex">
+                <button
+                  type="button"
+                  className="border py-1 px-2.5 text-xs rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all ml-auto mb-2"
+                  onClick={() => setView((prev) => (prev === "map" ? "list" : "map"))}
+                >
+                  {view === "list" ? (
+                    <>
+                      <MapIcon className="w-4 h-4" /> View Map
+                    </>
+                  ) : (
+                    <>
+                      <Bars3Icon className="w-4 h-4" /> View Region List
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+            {view === "map" ? (
+              <div className="flex justify-center items-start">
+                <StateMap regionCode={code} />
+              </div>
+            ) : (
+              <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">
+                {subregions?.map((it) => (
+                  <p key={name}>
+                    <Link href={`/region/${it.code}`} className="font-bold text-slate-300" title={it.name}>
+                      {it.name.length > 12 ? `${it.name.slice(0, 12)}...` : it.name}
+                    </Link>
+                  </p>
+                ))}
+              </div>
+            )}
+            <div className="grid gap-8 grid-cols-2">
+              <div className="flex gap-4 items-center">
+                <div className="w-6 h-3" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <section className="md:flex justify-between items-start mb-8">
+            <div>
+              <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {name}</h3>
+              <div className="flex gap-2 mt-2 mb-4">
+                <div className="inline-flex gap-2">
+                  {/*Grouped to prevent the last button from wrapping on its own*/}
+                  <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
+                    <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
+                  </ExternalLinkButton>
+                  <EbirdRegionBtn code={code} portal={portal} />
+                </div>
+              </div>
+            </div>
+            <RegionStats regionCode={code} />
+          </section>
+          <section className="mb-16">
+            {markers.length > 0 && <MapBox key={code} markers={markers as Marker[]} zoom={8} landscape disableScroll />}
+          </section>
+        </>
+      )}
 
       <section>
         <Heading id="hotspots" color="green" className="mt-12 mb-8">
@@ -126,18 +158,62 @@ export default function RegionPage({ region }: Props) {
         <TopHotspots region={code} className="mt-12" />
       </section>
 
-      <Heading id="hotspots" color="yellow" className="mt-12 mb-8 flex items-center gap-2">
-        More Information{" "}
-        <button
-          type="button"
-          className="font-bold text-sm text-gray-100 hover:bg-neutral-800/40 rounded-full inline-flex items-center justify-center bg-neutral-800/30 w-5 h-5"
-          onClick={() => open("stateInfo")}
-        >
-          ?
-        </button>
-      </Heading>
-      <hr className="my-8 opacity-70" />
-      {/*<RareBirds region={code} className="mt-12" />*/}
+      {!hasSubregions && (
+        <section className="mb-12">
+          <h3 className="text-lg mb-2 font-bold" id="hotspots">
+            All Hotspots
+            <span className="text-base text-gray-500"> ({hotspots.length})</span>
+          </h3>
+          <HotspotList hotspots={hotspots} className="md:columns-3" />
+          {hotspots.length === 0 && (
+            <p className="text-base text-gray-500">No data has been entered for this region yet</p>
+          )}
+        </section>
+      )}
+
+      {hasSubregions && (
+        <>
+          <Heading id="hotspots" color="yellow" className="mt-12 mb-8 flex items-center gap-2">
+            More Information{" "}
+            <button
+              type="button"
+              className="font-bold text-sm text-gray-100 hover:bg-neutral-800/40 rounded-full inline-flex items-center justify-center bg-neutral-800/30 w-5 h-5"
+              onClick={() => open("stateInfo")}
+            >
+              ?
+            </button>
+          </Heading>
+          <EditorActions className="-mt-2">
+            <Link href={`/region/${code}/edit-info`} className="flex gap-1">
+              <PencilSquareIcon className="h-4 w-4" />
+              Edit Links
+            </Link>
+            <Link href={`/${region}/article/edit/new`} className="flex gap-1">
+              <DocumentPlusIcon className="h-4 w-4" />
+              Add Article
+            </Link>
+          </EditorActions>
+
+          <div className="md:columns-2 gap-16">
+            <StateLinkSection
+              links={articles.map(({ name, slug: articleSlug }) => ({
+                label: name,
+                url: `/${region}/article/${articleSlug}`,
+              }))}
+              heading="Articles"
+            />
+            <StateLinkSection links={info?.websiteLinks || []} heading={info?.websitesHeading} external />
+            <StateLinkSection links={info?.socialLinks || []} heading={info?.socialHeading} external />
+            <StateLinkSection links={info?.clubLinks || []} heading={info?.clubsHeading} external />
+
+            {!info && articles.length === 0 && (
+              <p className="text-gray-500 text-base -mt-2">No additional information available.</p>
+            )}
+          </div>
+          <hr className="my-8 opacity-70" />
+        </>
+      )}
+      {code !== "US" && <RareBirds region={code} className="mt-12" />}
     </div>
   );
 }
@@ -146,8 +222,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const regionCode = context.params?.region as string;
   const region = await getRegion(regionCode);
   if (!region) return { notFound: true };
+  const hasSubregions = !!region.subregions?.length;
+
+  const info = hasSubregions ? await getRegionInfo(regionCode) : null;
+  const articles = hasSubregions ? (await getArticlesByState(regionCode)) || [] : [];
+
+  const hotspots = !hasSubregions ? (await getHotspotsByCounty(regionCode)) || [] : [];
+
+  const formattedHotspots = hotspots.map((it: any) => ({
+    ...it,
+    noContent: (it.noContent && !it.groupIds?.length) || false,
+  }));
 
   return {
-    props: { region },
+    props: { region, info, articles, hasSubregions, hotspots: formattedHotspots },
   };
 };

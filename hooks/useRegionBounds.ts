@@ -14,6 +14,16 @@ export default function useRegionBounds(region?: string) {
 
   React.useEffect(() => {
     if (!region) return;
+    if (region === "US") {
+      // Just return the lower 48 bounds
+      setBounds({
+        minX: -125.0011,
+        minY: 24.9493,
+        maxX: -66.9326,
+        maxY: 49.5904,
+      });
+      return;
+    }
     const fetchBounds = async () => {
       setLoading(true);
       const res = await fetch(

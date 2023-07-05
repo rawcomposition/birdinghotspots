@@ -450,9 +450,11 @@ export type City = {
 export type Region = {
   code: string;
   name: string;
+  longName?: string;
   subregions?: {
     code: string;
     name: string;
+    longName?: string;
   }[];
   portal?: string;
   subheading?: string;
