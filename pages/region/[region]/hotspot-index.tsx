@@ -1,18 +1,17 @@
 import * as React from "react";
 import Link from "next/link";
-import { getHotspotsByState } from "lib/mongo";
-import { getState } from "lib/localData";
+import { getHotspotsByRegion } from "lib/mongo";
+import { getRegion } from "lib/data";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import { State } from "lib/types";
+import { Region } from "lib/types";
 import { useUser } from "providers/user";
 import { useDebounce } from "hooks/useDebounce";
 
 type Props = {
-  countrySlug: string;
-  state: State;
+  region: Region;
   hotspots: {
     name: string;
     url: string;
@@ -23,7 +22,7 @@ type Props = {
 
 const filters = ["All", "Needs Content", "Needs Deleting"];
 
-export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Props) {
+export default function AlphabeticalIndex({ region, hotspots }: Props) {
   const [query, setQuery] = React.useState("");
   const [filter, setFilter] = React.useState<number>(0);
   const debouncedQuery = useDebounce(query, 250);
@@ -45,10 +44,8 @@ export default function AlphabeticalIndex({ countrySlug, state, hotspots }: Prop
   const { user } = useUser();
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Alphabetical Index - ${state.label}, ${state.country}`}</Title>
-      <PageHeading countrySlug={countrySlug} state={state}>
-        Alphabetical Index
-      </PageHeading>
+      <Title>{`Alphabetical Hotspot Index - ${region.detailedName}`}</Title>
+      <PageHeading region={region}>Alphabetical Hotspot Index</PageHeading>
 
       <div className="mb-6 space-y-3">
         <input
@@ -133,12 +130,12 @@ interface Params extends ParsedUrlQuery {
   countrySlug: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { countrySlug, stateSlug } = context.query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const regionCode = query.region as string;
+  const region = await getRegion(regionCode);
+  if (!region) return { notFound: true };
 
-  const hotspots = (await getHotspotsByState(state.code)) || [];
+  const hotspots = (await getHotspotsByRegion(regionCode)) || [];
 
   const formatted = hotspots.map((it: any) => ({
     ...it,
@@ -146,6 +143,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }));
 
   return {
-    props: { countrySlug, state, hotspots: formatted },
+    props: { region, hotspots: formatted },
   };
 };

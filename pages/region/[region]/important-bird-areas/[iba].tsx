@@ -1,42 +1,28 @@
 import Link from "next/link";
-import { getState } from "lib/localData";
+import { getRegion, restructureHotspotsByCounty } from "lib/data";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";
 import OhioIBA from "data/oh-iba.json";
-import { State, IBA, HotspotsByCounty } from "lib/types";
+import { Region, IBA, HotspotsByCounty } from "lib/types";
 import { getIBAHotspots } from "lib/mongo";
-import { restructureHotspotsByCounty } from "lib/helpers";
 import ListHotspotsByCounty from "components/ListHotspotsByCounty";
 import EbirdBarcharts from "components/EbirdBarcharts";
 import Title from "components/Title";
 
 interface Props extends IBA {
-  countrySlug: string;
-  state: State;
+  region: Region;
   locationIds: string[];
   hotspots: HotspotsByCounty;
 }
 
-export default function ImportantBirdAreas({
-  countrySlug,
-  state,
-  name,
-  slug,
-  about,
-  webpage,
-  hotspots,
-  code,
-  locationIds,
-}: Props) {
-  const region = code || locationIds.join(",");
+export default function ImportantBirdAreas({ region, name, slug, about, webpage, hotspots, code, locationIds }: Props) {
   return (
     <div className="container pb-16 mt-12">
       <Title>{`${name} Important Bird Area`}</Title>
       <PageHeading
-        countrySlug={countrySlug}
-        state={state}
-        extraCrumb={{ href: `/${countrySlug}/${state?.slug}/important-bird-areas`, label: "Important Bird Areas" }}
+        region={region}
+        extraCrumb={{ href: `/region/${region.code}/important-bird-areas`, label: "Important Bird Areas" }}
       >
         {name} Important Bird Area
       </PageHeading>
@@ -52,9 +38,9 @@ export default function ImportantBirdAreas({
               View webpage
             </a>
           </p>
-          <EbirdBarcharts portal={state.portal} region={region} />
+          <EbirdBarcharts portal={region.portal} region={code || locationIds.join(",")} />
           <h3 className="font-bold mb-1.5 text-lg">Locations</h3>
-          <ListHotspotsByCounty countrySlug={countrySlug} stateSlug={state?.slug} hotspots={hotspots} />
+          <ListHotspotsByCounty hotspots={hotspots} />
         </div>
         <div>
           <img src={`/iba/${slug}.jpg`} className="w-full mb-6" />
@@ -73,18 +59,17 @@ export default function ImportantBirdAreas({
 }
 
 interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
+  region: string;
   iba: string;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug, iba } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const { region: regionCode, iba } = query as Params;
+  const region = await getRegion(regionCode);
+  if (!region) return { notFound: true };
 
   const hotspots = (await getIBAHotspots(iba)) || [];
-  const hotspotsByCounty = restructureHotspotsByCounty(hotspots as any);
+  const hotspotsByCounty = await restructureHotspotsByCounty(hotspots as any, region.code);
 
   const data = OhioIBA.find((item) => item.slug === iba);
   if (!data) return { notFound: true };
@@ -92,6 +77,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const locationIds = data?.code ? [] : hotspots.map((item) => item.locationId);
 
   return {
-    props: { countrySlug, state, hotspots: hotspotsByCounty, locationIds, ...data },
+    props: { region, hotspots: hotspotsByCounty, locationIds, ...data },
   };
 };

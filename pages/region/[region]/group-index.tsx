@@ -1,16 +1,14 @@
 import * as React from "react";
 import Link from "next/link";
-import { getGroupsByState } from "lib/mongo";
-import { getState } from "lib/localData";
+import { getGroupsByRegion } from "lib/mongo";
+import { getRegion } from "lib/data";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import { State } from "lib/types";
+import { Region } from "lib/types";
 
 type Props = {
-  countrySlug: string;
-  state: State;
+  region: Region;
   groups: {
     name: string;
     url: string;
@@ -19,17 +17,15 @@ type Props = {
   }[];
 };
 
-export default function AlphabeticalIndex({ countrySlug, state, groups }: Props) {
+export default function AlphabeticalIndex({ region, groups }: Props) {
   let activeLetters = groups.map((group) => group.name.charAt(0).toUpperCase());
   activeLetters = [...new Set(activeLetters)];
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Group Index - ${state.label}, ${state.country}`}</Title>
-      <PageHeading countrySlug={countrySlug} state={state}>
-        Group Index
-      </PageHeading>
+      <Title>{`Group Index - ${region.detailedName}`}</Title>
+      <PageHeading region={region}>Group Locations</PageHeading>
 
       <p>
         {alphabet.map((letter) => {
@@ -70,19 +66,14 @@ export default function AlphabeticalIndex({ countrySlug, state, groups }: Props)
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  stateSlug: string;
-  countrySlug: string;
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const regionCode = query.region as string;
+  const region = await getRegion(regionCode);
+  if (!region) return { notFound: true };
 
-  const groups = (await getGroupsByState(state.code)) || [];
+  const groups = (await getGroupsByRegion(regionCode)) || [];
 
   return {
-    props: { countrySlug, state, groups },
+    props: { region, groups },
   };
 };

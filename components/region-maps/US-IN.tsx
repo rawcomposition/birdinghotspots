@@ -177,7 +177,7 @@ export default function AlabamaMap() {
               ></path>
               <text>Decatur</text>
             </Link>
-            <Link href="/us/indiana/deKalb-county" {...linkProps}>
+            <Link href="/us/indiana/dekalb-county" {...linkProps}>
               <path
                 {...pathProps}
                 d="M620.1576203556724,52.14114580468413L620.1975445321214,63.077768970518264L582.7319837318373,63.98408355296033L582.590706150926,56.573393251454036L582.5400776662973,30.274077566841697L620.0916586728436,29.797845414132098Z"

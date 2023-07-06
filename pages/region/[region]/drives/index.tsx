@@ -1,29 +1,25 @@
 import * as React from "react";
 import Link from "next/link";
 import { getDrivesByState } from "lib/mongo";
-import { restructureDrivesByCounty } from "lib/helpers";
-import { getState } from "lib/localData";
+import { getRegion, restructureDrivesByCounty } from "lib/data";
 import PageHeading from "components/PageHeading";
 import { GetServerSideProps } from "next";
-import { DrivesByCounty, State } from "lib/types";
+import { DrivesByCounty, Region } from "lib/types";
 import Title from "components/Title";
 import EditorActions from "components/EditorActions";
 
 type Props = {
-  countrySlug: string;
-  state: State;
+  region: Region;
   drives: DrivesByCounty;
 };
 
-export default function Drives({ countrySlug, state, drives }: Props) {
+export default function Drives({ region, drives }: Props) {
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Birding Drives - ${state.label}, ${state.country}`}</Title>
-      <PageHeading countrySlug={countrySlug} state={state}>
-        Birding Drives
-      </PageHeading>
-      <EditorActions className="-mt-12" requireRegion={state.code}>
-        <Link href={`/${countrySlug}/${state.slug}/drive/edit/new`}>Add Drive</Link>
+      <Title>{`Birding Drives - ${region.detailedName}`}</Title>
+      <PageHeading region={region}>Birding Drives</PageHeading>
+      <EditorActions className="-mt-12" requireRegion={region.code}>
+        <Link href={`/region/${region.code}/drives/edit/new`}>Add Drive</Link>
       </EditorActions>
       <div className="md:flex gap-8 items-start mb-8">
         <div>
@@ -48,9 +44,9 @@ export default function Drives({ countrySlug, state, drives }: Props) {
       </div>
       <h3 className="text-lg mb-8 font-bold">Birding Drives Listed by County</h3>
       <div className="columns-1 sm:columns-3 mb-12">
-        {drives.map(({ countySlug, countyName, drives }) => (
-          <p key={countySlug} className="mb-4 break-inside-avoid">
-            <Link href={`/${countrySlug}/${state.slug}/${countySlug}-county`} className="font-bold">
+        {drives.map(({ countyCode, countyName, drives }) => (
+          <p key={countyCode} className="mb-4 break-inside-avoid">
+            <Link href={`/region/${countyCode}`} className="font-bold">
               {countyName}
             </Link>
             <br />
@@ -68,15 +64,15 @@ export default function Drives({ countrySlug, state, drives }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const countrySlug = query.countrySlug as string;
-  const stateSlug = query.stateSlug as string;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const regionCode = query.region as string;
+  const region = await getRegion(regionCode);
+  const isState = regionCode.split("-").length === 2;
+  if (!region || !isState) return { notFound: true };
 
-  const drives = (await getDrivesByState(state.code)) || [];
-  const drivesByCounty = restructureDrivesByCounty(drives as any, countrySlug, stateSlug);
+  const drives = (await getDrivesByState(regionCode)) || [];
+  const drivesByCounty = await restructureDrivesByCounty(drives as any, regionCode);
 
   return {
-    props: { countrySlug, state, drives: drivesByCounty },
+    props: { region, drives: drivesByCounty },
   };
 };

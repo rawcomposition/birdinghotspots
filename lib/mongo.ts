@@ -59,9 +59,20 @@ export default async function connect() {
   return cached.conn;
 }
 
-export async function getHotspotsByState(stateCode: string) {
+export async function getHotspotsByRegion(region: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode }, ["name", "url", "iba", "noContent", "needsDeleting", "groupIds"])
+
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  const result = await Hotspot.find(query, ["name", "url", "iba", "noContent", "needsDeleting", "groupIds"])
     .sort({ name: 1 })
     .lean()
     .exec();
@@ -327,9 +338,19 @@ export async function getGroupsByState(stateCode: string) {
   return result;
 }
 
-export async function getGroupsByCounty(countyCode: string) {
+export async function getGroupsByRegion(region: string) {
   await connect();
-  const result = await Group.find({ countyCodes: countyCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  const result = await Group.find(query, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
   return result;
 }
 

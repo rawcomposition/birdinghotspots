@@ -4,9 +4,9 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { getHotspotsInRadius } from "lib/mongo";
-import { getState, getCityBySlug } from "lib/localData";
+import { getRegion, getCityBySlug } from "lib/data";
 import PageHeading from "components/PageHeading";
-import { State, Hotspot, City as CityType, Marker } from "lib/types";
+import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
 import MapBox from "components/MapBox";
 import HotspotGrid from "components/HotspotGrid";
@@ -14,13 +14,12 @@ import MapIconAlt from "icons/Map";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 type Props = {
-  countrySlug: string;
-  state: State;
+  region: Region;
   city: CityType;
   hotspots: Hotspot[];
 };
 
-export default function County({ countrySlug, state, city, hotspots }: Props) {
+export default function County({ region, city, hotspots }: Props) {
   const [expand, setExpand] = React.useState<boolean>(false);
   const { name, slug } = city;
 
@@ -29,15 +28,11 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
 
   return (
     <div className="container pb-16">
-      <Title>{`Where to Go Birding in ${name}, ${state.label}`}</Title>
+      <Title>{`Where to Go Birding in ${name}, ${region.name}`}</Title>
       <Head>
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
       </Head>
-      <PageHeading
-        countrySlug={countrySlug}
-        state={state}
-        extraCrumb={{ label: "Cities/Towns", href: `/${countrySlug}/${state.slug}/cities` }}
-      >
+      <PageHeading region={region} extraCrumb={{ label: "Cities/Towns", href: `/region/${region.code}/cities` }}>
         {name}
       </PageHeading>
       <section className="lg:flex justify-between items-start mb-4 -mt-8">
@@ -95,17 +90,17 @@ export default function County({ countrySlug, state, city, hotspots }: Props) {
 }
 
 interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
+  region: string;
   citySlug: string;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { countrySlug, stateSlug, citySlug } = context.query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const { region: regionCode, citySlug } = context.query as Params;
+  const region = await getRegion(regionCode);
+  const isState = regionCode.split("-").length === 2;
+  if (!region || !isState) return { notFound: true };
 
-  const city = getCityBySlug(state.code, citySlug);
+  const city = getCityBySlug(region.code, citySlug);
   if (!city?.name) return { notFound: true };
 
   const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];
@@ -116,6 +111,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }));
 
   return {
-    props: { countrySlug, state, city, hotspots: formatted },
+    props: { region, city, hotspots: formatted },
   };
 };

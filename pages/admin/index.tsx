@@ -67,13 +67,13 @@ export default function Dashboard({ data, deletedHotspots }: Props) {
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
                   <Link
-                    href={`${url}/alphabetical-index`}
+                    href={`/region/${code}/hotspot-index`}
                     className="font-medium text-orange-700 hover:text-orange-900"
                   >
                     View List
                   </Link>
                   <Link
-                    href={`/hotspots/${code}`}
+                    href={`/region/${code}/hotspots`}
                     className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2"
                   >
                     Explore

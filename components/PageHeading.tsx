@@ -1,78 +1,64 @@
 import Link from "next/link";
-import { State, County } from "lib/types";
-import Countries from "data/countries.json";
+import { Region } from "lib/types";
+import clsx from "clsx";
 
 type Props = {
-  countrySlug?: string;
-  state?: State;
-  county?: County;
-  breadcrumbs?: boolean;
-  hideState?: boolean;
+  region?: Region;
   children: React.ReactNode;
-  color?: "red" | "blue" | "green" | "yellow" | "orange" | "purple" | "turquoise";
   className?: string;
+  hideCurrent?: boolean;
   extraCrumb?: {
     href: string;
     label: string;
   };
-  [x: string]: any;
 };
 
-export default function PageHeading({
-  countrySlug,
-  state,
-  county,
-  children,
-  breadcrumbs = true,
-  hideState,
-  className,
-  extraCrumb,
-  ...props
-}: Props) {
-  const bgColor = "#4a84b2";
-  const countryLabel = Countries.find((it) => it.code === countrySlug?.toUpperCase())?.label;
+type Breadcrumb = {
+  url: string;
+  name: string;
+};
+
+export default function PageHeading({ region, children, className, extraCrumb, hideCurrent = false, ...props }: Props) {
+  const breadcrumbs: Breadcrumb[] = [];
+
+  if (extraCrumb) {
+    breadcrumbs.push({ url: extraCrumb.href, name: extraCrumb.label });
+  }
+
+  if (region && !hideCurrent) {
+    breadcrumbs.push({ url: `/region/${region.code}`, name: region.name });
+  }
+
+  if (region?.parents?.length) {
+    breadcrumbs.push(...region.parents.map(({ code, name }) => ({ url: `/region/${code}`, name })));
+  }
+
   return (
     <header
       className={`font-bold text-white text-2xl header-gradient my-16 rounded-md ${className || ""}`}
-      style={{ "--color": bgColor } as React.CSSProperties}
+      style={{ "--color": "#4a84b2" } as React.CSSProperties}
       {...props}
     >
       <h1 className="p-3">{children}</h1>
-      {breadcrumbs && (
+      {breadcrumbs.length > 0 && (
         <nav className="text-xs sm:text-[13px] leading-4 sm:leading-5 flex items-stretch">
-          {extraCrumb && (
-            <>
-              <Link href={extraCrumb.href} className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center">
-                {extraCrumb.label}
-              </Link>
-              <Icon />
-            </>
-          )}
-          {county && state && (
-            <>
-              <Link
-                href={`/${countrySlug}/${state.slug}/${county.slug}-county`}
-                className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center"
-              >
-                {county.name}
-              </Link>
-              <Icon />
-            </>
-          )}
-          {state && !hideState && (
-            <>
-              <Link
-                href={`/${countrySlug}/${state.slug}`}
-                className="text-white/90 px-5 py-1.5 bg-white/10 flex items-center"
-              >
-                {state.label}
-              </Link>
-              <Icon />
-            </>
-          )}
-          <Link href="/" className="text-white/90 pl-5 pr-8 py-1.5 rounded-r-lg breadcrumb-gradient flex items-center">
-            {countryLabel || "United States"}
-          </Link>
+          {breadcrumbs.map(({ url, name }, index) => {
+            const isLast = index === breadcrumbs.length - 1;
+            return (
+              <>
+                <Link
+                  href={url}
+                  className={clsx(
+                    "text-white/90 px-5 py-1.5 flex items-center",
+                    isLast ? "breadcrumb-gradient pr-8" : "bg-white/10"
+                  )}
+                >
+                  {name}
+                </Link>
+                {!isLast && <Icon />}
+              </>
+            );
+          })}
         </nav>
       )}
     </header>

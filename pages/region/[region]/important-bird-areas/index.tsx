@@ -1,43 +1,22 @@
 import * as React from "react";
 import Link from "next/link";
-import { getState } from "lib/localData";
+import { getRegion } from "lib/data";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import OhioIBA from "data/oh-iba.json";
 import PageHeading from "components/PageHeading";
-import { State } from "lib/types";
+import { Region } from "lib/types";
 import Title from "components/Title";
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
-
-  const areas = OhioIBA.filter(({ name, slug }) => ({ name, slug })) || [];
-
-  return {
-    props: { countrySlug, state, areas },
-  };
-};
-
 type Props = {
-  countrySlug: string;
-  state: State;
+  region: Region;
   areas: { name: string; slug: string }[];
 };
 
-export default function ImportantBirdAreas({ countrySlug, areas, state }: Props) {
+export default function ImportantBirdAreas({ areas, region }: Props) {
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Important Bird Areas - ${state.label}, ${state.country}`}</Title>
-      <PageHeading countrySlug={countrySlug} state={state}>
-        Important Bird Areas
-      </PageHeading>
+      <Title>{`Important Bird Areas - ${region.detailedName}`}</Title>
+      <PageHeading region={region}>Important Bird Areas</PageHeading>
       <div className="md:flex gap-8 items-start mb-8">
         <div>
           <p className="mb-4">
@@ -74,7 +53,7 @@ export default function ImportantBirdAreas({ countrySlug, areas, state }: Props)
       <div className="columns-1 sm:columns-3 mb-12">
         {areas.map(({ name, slug }) => (
           <React.Fragment key={slug}>
-            <Link href={`/${countrySlug}/${state.slug}/important-bird-areas/${slug}`} className="font-bold">
+            <Link href={`/region/${region.code}/important-bird-areas/${slug}`} className="font-bold">
               {name}
             </Link>
             <br />
@@ -84,3 +63,15 @@ export default function ImportantBirdAreas({ countrySlug, areas, state }: Props)
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const regionCode = query.region as string;
+  const region = await getRegion(regionCode);
+  if (!region) return { notFound: true };
+
+  const areas = OhioIBA.filter(({ name, slug }) => ({ name, slug })) || [];
+
+  return {
+    props: { region, areas },
+  };
+};

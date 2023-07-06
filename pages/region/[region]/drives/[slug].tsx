@@ -3,8 +3,8 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import { getDriveBySlug } from "lib/mongo";
-import { getState } from "lib/localData";
-import { State, Drive as DriveType } from "lib/types";
+import { getRegion } from "lib/data";
+import { Drive as DriveType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import EditorActions from "components/EditorActions";
@@ -12,28 +12,22 @@ import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 
 interface Props extends DriveType {
-  countrySlug: string;
-  state: State;
-  portal: string;
+  region: Region;
 }
 
-export default function Drive({ countrySlug, name, description, state, mapId, entries, images, _id }: Props) {
+export default function Drive({ region, name, description, mapId, entries, images, _id }: Props) {
   const [rendered, isRendered] = React.useState(false);
   React.useEffect(() => {
     isRendered(true);
   }, []);
   return (
     <div className="container pb-16">
-      <Title>{`${name} - ${state.label}, ${state.country}`}</Title>
-      <PageHeading
-        countrySlug={countrySlug}
-        state={state}
-        extraCrumb={{ label: "Birding Drives", href: `/${countrySlug}/${state.slug}/drives` }}
-      >
+      <Title>{`${name} - ${region.detailedName}`}</Title>
+      <PageHeading region={region} extraCrumb={{ label: "Birding Drives", href: `/region/${region.code}/drives` }}>
         {name}
       </PageHeading>
-      <EditorActions className="-mt-12" requireRegion={state.code}>
-        <Link href={`/${countrySlug}/${state.slug}/drive/edit/${_id}`}>Edit Drive</Link>
+      <EditorActions className="-mt-12" requireRegion={region.code}>
+        <Link href={`/region/${region.code}/drives/edit/${_id}`}>Edit Drive</Link>
         <DeleteBtn url={`/api/drive/delete?id=${_id}`} entity="drive" className="ml-auto">
           Delete Drive
         </DeleteBtn>
@@ -89,20 +83,20 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug, slug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const regionCode = query.region as string;
+  const slug = query.slug as string;
+  const region = await getRegion(regionCode);
+  const isState = regionCode.split("-").length === 2;
+  if (!region || !isState) return { notFound: true };
 
-  const data = await getDriveBySlug(state.code, slug);
+  const data = await getDriveBySlug(region.code, slug);
   if (!data) return { notFound: true };
 
   const filteredEntries = data.entries.filter((entry: any) => entry.hotspot);
 
   return {
     props: {
-      countrySlug,
-      state,
-      portal: state.portal || null,
+      region,
       ...data,
       entries: filteredEntries,
     },

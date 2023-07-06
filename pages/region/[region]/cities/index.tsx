@@ -1,35 +1,31 @@
 import * as React from "react";
 import Link from "next/link";
-import { getState, getCities } from "lib/localData";
+import { getRegion, getCities } from "lib/data";
 import { GetServerSideProps } from "next";
-import { City, State } from "lib/types";
-import { ParsedUrlQuery } from "querystring";
+import { City, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 
 type Props = {
-  countrySlug: string;
-  state: State;
+  region: Region;
   cities: City[];
 };
 
 //City data sourced from https://simplemaps.com/data/us-cities
 //All cities with a population of 10,000 or more
 
-export default function Cities({ state, countrySlug, cities }: Props) {
+export default function Cities({ region, cities }: Props) {
   const [query, setQuery] = React.useState("");
 
   const filtered = query ? cities.filter((it) => it.name.toLowerCase().includes(query.toLowerCase())) : cities;
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Cities - ${state.label}, ${state.country}`}</Title>
-      <PageHeading countrySlug={countrySlug} state={state}>
-        Cities/Towns in {state.label}
-      </PageHeading>
-      <h3 className="text-lg font-bold mb-1 -mt-8">Cities/Towns in {state.label} Sorted Alphabetically</h3>
+      <Title>{`Cities - ${region.detailedName}`}</Title>
+      <PageHeading region={region}>Cities/Towns in {region.name}</PageHeading>
+      <h3 className="text-lg font-bold mb-1 -mt-8">Cities/Towns in {region.name} Sorted Alphabetically</h3>
       <p className="mb-4">
-        We found <strong>{filtered.length}</strong> cities/towns in {state.label} with a population of 10,000 or more.
+        We found <strong>{filtered.length}</strong> cities/towns in {region.name} with a population of 10,000 or more.
       </p>
 
       <div className="mb-6 space-y-3">
@@ -46,7 +42,7 @@ export default function Cities({ state, countrySlug, cities }: Props) {
         <ul>
           {filtered.map(({ name, slug }) => (
             <li key={name}>
-              <Link href={`/${countrySlug}/${state.slug}/cities/${slug}`}>{name}</Link>
+              <Link href={`/region/${region.code}/cities/${slug}`}>{name}</Link>
             </li>
           ))}
         </ul>
@@ -55,19 +51,15 @@ export default function Cities({ state, countrySlug, cities }: Props) {
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { countrySlug, stateSlug } = query as Params;
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const regionCode = query.region as string;
+  const region = await getRegion(regionCode);
+  const isState = regionCode.split("-").length === 2;
+  if (!region || !isState) return { notFound: true };
 
-  const cities = getCities(state.code).sort((a, b) => a.name.localeCompare(b.name));
+  const cities = getCities(region.code).sort((a, b) => a.name.localeCompare(b.name));
 
   return {
-    props: { countrySlug, state, cities },
+    props: { region, cities },
   };
 };

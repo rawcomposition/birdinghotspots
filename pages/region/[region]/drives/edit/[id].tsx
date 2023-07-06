@@ -9,11 +9,11 @@ import Input from "components/Input";
 import CountySelect from "components/CountySelect";
 import { getDriveById } from "lib/mongo";
 import AdminPage from "components/AdminPage";
-import { Drive, DriveInputs, State } from "lib/types";
+import { Drive, DriveInputs, Region } from "lib/types";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
-import { getState } from "lib/localData";
+import { getRegion } from "lib/data";
 import { slugify, canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
@@ -21,15 +21,14 @@ import Error from "next/error";
 
 type Props = {
   id?: string;
-  countrySlug: string;
-  state: State;
+  region: Region;
   isNew: boolean;
   data: Drive;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ isNew, data, id, state, countrySlug, error, errorCode }: Props) {
+export default function Edit({ isNew, data, id, region, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -47,15 +46,15 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
         id,
         data: {
           ...data,
-          stateCode: state.code,
-          countryCode: countrySlug.toUpperCase(),
+          stateCode: region.code,
+          countryCode: region.code.split("-")[0],
           slug: newSlug,
           entries: data.entries.map(({ hotspotSelect, ...it }) => ({ ...it, hotspot: hotspotSelect.value })),
         },
       },
     });
     if (response.success) {
-      router.push(`/${countrySlug}/${state.slug}/drive/${newSlug}`);
+      router.push(`/region/${region.code}/drives/${newSlug}`);
     }
   };
 
@@ -81,14 +80,14 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
                 <FormError name="mapId" />
               </Field>
               <Field label="Counties">
-                <CountySelect name="counties" stateCode={state.code} isMulti required />
+                <CountySelect name="counties" stateCode={region.code} isMulti required />
                 <FormError name="counties" />
               </Field>
               <div>
                 <label className="text-gray-500 font-bold">Images</label>
                 <ImagesInput hideExtraFields />
               </div>
-              <InputDrives stateCode={state.code} />
+              <InputDrives stateCode={region.code} />
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
               <Submit disabled={loading} color="green" className="font-medium">
@@ -104,18 +103,18 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
 
 interface Params extends ParsedUrlQuery {
   id: string;
-  countrySlug: string;
-  stateSlug: string;
+  region: string;
 }
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
-  const { id, countrySlug, stateSlug } = query as Params;
+  const { id, region: regionCode } = query as Params;
   const data: Drive = id !== "new" ? await getDriveById(id) : null;
 
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const region = await getRegion(regionCode);
+  const isState = region?.code?.split("-").length === 2;
+  if (!region || !isState) return { notFound: true };
 
-  if (!canEdit(token, state.code)) {
+  if (!canEdit(token, region.code)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
@@ -128,8 +127,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   return {
     props: {
       id: data?._id || null,
-      countrySlug,
-      state,
+      region,
       isNew: !data,
       data: { ...data, entries, counties: data?.counties || [] },
     },

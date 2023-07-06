@@ -1,6 +1,13 @@
 {
   "code": "US-OH",
   "name": "Ohio",
+  "parents": [
+    {
+      "code": "US",
+      "name": "United States"
+    }
+  ],
+  "features": ["iba", "drives"],
   "subregions": [
     { "code": "US-OH-001", "name": "Adams" },
     { "code": "US-OH-003", "name": "Allen" },

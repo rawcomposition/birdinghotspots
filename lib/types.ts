@@ -112,7 +112,7 @@ export type Hotspot = {
 
 export type HotspotsByCounty = [
   {
-    countySlug: string;
+    countyCode: string;
     countyName: string;
     hotspots: {
       name: string;
@@ -123,7 +123,7 @@ export type HotspotsByCounty = [
 
 export type DrivesByCounty = [
   {
-    countySlug: string;
+    countyCode: string;
     countyName: string;
     drives: {
       name: string;
@@ -450,12 +450,18 @@ export type City = {
 export type Region = {
   code: string;
   name: string;
-  longName?: string;
+  detailedName: string;
+  altName?: string;
   subregions?: {
     code: string;
     name: string;
     longName?: string;
   }[];
+  parents?: {
+    code: string;
+    name: string;
+  }[];
+  features?: string[];
   portal?: string;
   subheading?: string;
 };

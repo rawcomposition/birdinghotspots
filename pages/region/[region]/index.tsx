@@ -1,7 +1,6 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import Head from "next/head";
 import { getRegion } from "lib/data";
 import RareBirds from "components/RareBirds";
 import { Region, RegionInfo, Article, Hotspot, Marker } from "lib/types";
@@ -10,11 +9,10 @@ import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
 import Title from "components/Title";
 import StateMap from "components/StateMap";
-import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon } from "@heroicons/react/24/outline";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
-import StateLinksBtn from "components/StateLinksBtn";
 import RegionStats from "components/RegionStats";
 import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
@@ -24,6 +22,7 @@ import ImageIcon from "icons/Image";
 import { getArticlesByState, getRegionInfo, getHotspotsByCounty } from "lib/mongo";
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
+import RegionLinksBtn from "components/RegionLinksBtn";
 
 type Props = {
   region: Region;
@@ -44,7 +43,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${name}`}</Title>
-      <PageHeading>
+      <PageHeading region={region} hideCurrent>
         {hasSubregions ? `${name} Birding Hotspots` : name}
         {subheading && (
           <>
@@ -58,7 +57,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
           <section>
             <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {name}</h3>
             <div className="flex gap-2 mt-2 mb-4">
-              {/*<StateLinksBtn state={state} />*/}
+              <RegionLinksBtn region={region} />
               <div className="inline-flex gap-2">
                 {/*Grouped to prevent the last button from wrapping on its own*/}
                 <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
@@ -74,7 +73,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             <RegionStats regionCode={code} />
             <div className="mt-8">
               <Link
-                href={`/hotspots/${code}?view=map`}
+                href={`/region/${code}/hotspots?view=map`}
                 className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
               >
                 <MapIconAlt className="inline-block text-xl mr-3" />
@@ -82,7 +81,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
                 <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
               </Link>
               <p className="ml-1 mt-0.5">
-                Or, <Link href={`/hotspots/${code}`}>view top hotspots</Link> in {name}
+                Or, <Link href={`/region/${code}/hotspots`}>view top hotspots</Link> in {name}
               </p>
             </div>
           </section>

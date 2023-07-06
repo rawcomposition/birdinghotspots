@@ -165,19 +165,3 @@ export function getRegionLabel(region: string) {
   const state = getStateByCode(region);
   return `${state?.label}, ${state?.country}`;
 }
-
-export function getCityBySlug(stateCode: string, slug: string): City | null {
-  const countryCities = cityArrays[stateCode.slice(0, 2)];
-  const city = countryCities.find((city: City) => city.slug === slug && city.state === stateCode);
-  return city || null;
-}
-
-export function getCities(stateCode: string): City[] {
-  const countryCities = cityArrays[stateCode.slice(0, 2)];
-  if (!countryCities) return [];
-  return countryCities.filter((city: City) => city.state === stateCode);
-}
-
-export function getAllCities(): City[] {
-  return Object.values(cityArrays).flat() as City[];
-}
