@@ -19,7 +19,7 @@ import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
-import { getArticlesByState, getRegionInfo, getHotspotsByCounty } from "lib/mongo";
+import { getArticlesByRegion, getRegionInfo, getHotspotsByCounty } from "lib/mongo";
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
@@ -86,25 +86,23 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             </div>
           </section>
           <div className="mb-8">
-            {hasSubregions && (
-              <div className="flex">
-                <button
-                  type="button"
-                  className="border py-1 px-2.5 text-xs rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all ml-auto mb-2"
-                  onClick={() => setView((prev) => (prev === "map" ? "list" : "map"))}
-                >
-                  {view === "list" ? (
-                    <>
-                      <MapIcon className="w-4 h-4" /> View Map
-                    </>
-                  ) : (
-                    <>
-                      <Bars3Icon className="w-4 h-4" /> View Region List
-                    </>
-                  )}
-                </button>
-              </div>
-            )}
+            <div className="flex">
+              <button
+                type="button"
+                className="border py-1 px-2.5 text-xs rounded-full text-gray-600 flex items-center gap-2 hover:bg-gray-50/75 transition-all ml-auto mb-2"
+                onClick={() => setView((prev) => (prev === "map" ? "list" : "map"))}
+              >
+                {view === "list" ? (
+                  <>
+                    <MapIcon className="w-4 h-4" /> View Map
+                  </>
+                ) : (
+                  <>
+                    <Bars3Icon className="w-4 h-4" /> View Region List
+                  </>
+                )}
+              </button>
+            </div>
             {view === "map" ? (
               <div className="flex justify-center items-start">
                 <StateMap regionCode={code} />
@@ -187,7 +185,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
               <PencilSquareIcon className="h-4 w-4" />
               Edit Links
             </Link>
-            <Link href={`/${region}/article/edit/new`} className="flex gap-1">
+            <Link href={`/region/${region.code}/articles/edit/new`} className="flex gap-1">
               <DocumentPlusIcon className="h-4 w-4" />
               Add Article
             </Link>
@@ -197,7 +195,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             <StateLinkSection
               links={articles.map(({ name, slug: articleSlug }) => ({
                 label: name,
-                url: `/${region}/article/${articleSlug}`,
+                url: `/region/${region.code}/articles/${articleSlug}`,
               }))}
               heading="Articles"
             />
@@ -224,7 +222,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const hasSubregions = !!region.subregions?.length;
 
   const info = hasSubregions ? await getRegionInfo(regionCode) : null;
-  const articles = hasSubregions ? (await getArticlesByState(regionCode)) || [] : [];
+  const articles = hasSubregions ? (await getArticlesByRegion(regionCode)) || [] : [];
 
   const hotspots = !hasSubregions ? (await getHotspotsByCounty(regionCode)) || [] : [];
 

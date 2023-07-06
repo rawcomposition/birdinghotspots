@@ -193,7 +193,7 @@ export type Article = {
   _id?: string;
   name: string;
   countryCode: string;
-  stateCode: string;
+  stateCode?: string;
   slug: string;
   content: string;
   images?: Image[];

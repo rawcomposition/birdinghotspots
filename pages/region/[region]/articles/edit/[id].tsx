@@ -7,11 +7,11 @@ import Submit from "components/Submit";
 import Input from "components/Input";
 import { getArticleById } from "lib/mongo";
 import AdminPage from "components/AdminPage";
-import { Article, ArticleInputs, State } from "lib/types";
+import { Article, ArticleInputs, Region } from "lib/types";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
-import { getState } from "lib/localData";
+import { getRegion } from "lib/data";
 import { slugify, canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
@@ -33,19 +33,22 @@ const tinyConfig = {
 
 type Props = {
   id?: string;
-  countrySlug: string;
-  state: State;
+  region: Region;
   isNew: boolean;
   data: Article;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ isNew, data, id, state, countrySlug, error, errorCode }: Props) {
+export default function Edit({ isNew, data, id, region, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
   const form = useForm<ArticleInputs>({ defaultValues: data });
+
+  const isState = region.code.split("-").length === 2;
+  const stateCode = isState ? region.code : undefined;
+  const countryCode = region.code.split("-")[0];
 
   const handleSubmit: SubmitHandler<ArticleInputs> = async (data) => {
     // @ts-ignore
@@ -59,15 +62,15 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
         id,
         data: {
           ...data,
-          stateCode: state.code,
-          countryCode: countrySlug.toUpperCase(),
+          stateCode,
+          countryCode,
           slug: newSlug,
           hotspots: data.hotspotSelect.map(({ value }) => value),
         },
       },
     });
     if (response.success) {
-      router.push(`/${countrySlug}/${state.slug}/article/${newSlug}`);
+      router.push(`/region/${region.code}/articles/${newSlug}`);
     }
   };
 
@@ -93,7 +96,7 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
                 <ImagesInput hideExtraFields />
               </div>
               <Field label="Attached Hotspots">
-                <HotspotSelect name="hotspotSelect" stateCode={state.code} className="mt-1 w-full" isMulti />
+                <HotspotSelect name="hotspotSelect" regionCode={region.code} className="mt-1 w-full" isMulti />
               </Field>
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
@@ -110,18 +113,17 @@ export default function Edit({ isNew, data, id, state, countrySlug, error, error
 
 interface Params extends ParsedUrlQuery {
   id: string;
-  countrySlug: string;
-  stateSlug: string;
+  region: string;
 }
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
-  const { id, countrySlug, stateSlug } = query as Params;
+  const { id, region: regionCode } = query as Params;
   const data: Article = id !== "new" ? await getArticleById(id) : null;
 
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const region = await getRegion(regionCode);
+  if (!region || !region.subregions?.length) return { notFound: true };
 
-  if (!canEdit(token, state.code)) {
+  if (!canEdit(token, region.code)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
@@ -131,8 +133,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   return {
     props: {
       id: data?._id || null,
-      countrySlug,
-      state,
+      region,
       isNew: !data,
       data: { ...data, hotspotSelect },
     },

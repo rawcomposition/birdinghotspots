@@ -1,6 +1,5 @@
 import connect from "lib/mongo";
 import RegionInfo from "models/RegionInfo";
-import { getStateByCode } from "lib/localData";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
 
@@ -12,12 +11,6 @@ export default secureApi(async (req, res, token) => {
   }
 
   try {
-    const state = getStateByCode(code);
-
-    if (!state) {
-      throw new Error("Invalid state code");
-    }
-
     await connect();
     const current = await RegionInfo.findOne({ code });
     if (current) {
@@ -25,8 +18,6 @@ export default secureApi(async (req, res, token) => {
     } else {
       await RegionInfo.create({ ...data, code });
     }
-
-    await res.revalidate(`/${state.country.toLowerCase()}/${state.slug}`);
 
     res.status(200).json({ success: true });
   } catch (error: any) {

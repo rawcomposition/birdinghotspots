@@ -11,10 +11,7 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
-  stateCode: {
-    type: String,
-    required: true,
-  },
+  stateCode: String,
   slug: {
     type: String,
     required: true,

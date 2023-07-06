@@ -201,27 +201,36 @@ export async function getDriveById(_id: string) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getArticlesByState(stateCode: string) {
+export async function getArticlesByRegion(regionCode: string) {
   await connect();
-  const result = await Article.find(
-    {
-      stateCode,
-    },
-    ["-_id", "name", "slug"]
-  )
-    .sort({ name: 1 })
-    .lean()
-    .exec();
+
+  let query: any = {};
+
+  if (regionCode.split("-").length === 2) {
+    query = { stateCode: regionCode };
+  } else {
+    query = { countryCode: regionCode };
+  }
+
+  const result = await Article.find(query, ["-_id", "name", "slug"]).sort({ name: 1 }).lean().exec();
 
   return result;
 }
 
-export async function getArticleBySlug(stateCode: string, slug: string) {
+export async function getArticleBySlug(region: string, slug: string) {
   await connect();
-  const result = await Article.findOne({ stateCode, slug })
-    .populate("hotspots", ["url", "name", "countyCode"])
-    .lean()
-    .exec();
+
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { slug, countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { slug, stateCode: region };
+  } else {
+    query = { slug, countryCode: region };
+  }
+
+  const result = await Article.findOne(query).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

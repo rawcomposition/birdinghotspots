@@ -5,7 +5,7 @@ import { getStateByCode } from "lib/localData";
 import { Hotspot as HotspotType } from "lib/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { q, stateCode, ids }: any = req.query;
+  const { q, regionCode, ids }: any = req.query;
   const selectedIds = ids?.split(",")?.filter((it: string) => it) || [];
 
   let query: any = {
@@ -16,8 +16,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     query = { ...query, _id: { $nin: selectedIds } };
   }
 
-  if (stateCode) {
-    query = { ...query, stateCode };
+  if (regionCode) {
+    if (regionCode.split("-").length === 3) {
+      query = { ...query, countyCode: regionCode };
+    } else if (regionCode.split("-").length === 2) {
+      query = { ...query, stateCode: regionCode };
+    } else {
+      query = { ...query, countryCode: regionCode };
+    }
   }
 
   let select = ["name", "countryCode", "stateCode"];
