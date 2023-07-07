@@ -47,6 +47,7 @@ export default function PageHeading({ region, children, className, extraCrumb, h
             return (
               <>
                 <Link
+                  key={url}
                   href={url}
                   className={clsx(
                     "text-white/90 px-5 py-1.5 flex items-center",

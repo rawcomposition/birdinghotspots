@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { getRegion } from "lib/data";
 import RareBirds from "components/RareBirds";
-import { Region, RegionInfo, Article, Hotspot, Marker } from "lib/types";
+import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
@@ -39,6 +39,36 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
+
+  const hotspotIBA = hotspots.filter(({ iba }) => iba?.value).map(({ iba }) => iba);
+  const drives: HotspotDrive[] = [];
+  hotspots.forEach((hotspot) => {
+    hotspot.drives?.forEach((drive) => {
+      drives.push(drive);
+    });
+  });
+
+  //Removes duplicate objects from IBA array
+  const iba = hotspotIBA.filter(
+    (elem, index, self) =>
+      self.findIndex((t) => {
+        return t?.value === elem?.value && t?.label === elem?.label;
+      }) === index
+  );
+
+  //Removes duplicate objects from drive array
+  const uniqueDrives = drives.filter(
+    (elem, index, self) =>
+      self.findIndex((t) => {
+        return t?.slug === elem?.slug && t?.name === elem?.name;
+      }) === index
+  );
+
+  //@ts-ignore
+  const sortedIba = iba.sort((a, b) => a.label.localeCompare(b.label));
+
+  //@ts-ignore
+  const sortedDrives = uniqueDrives.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="container pb-16 mt-12">
@@ -156,16 +186,48 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
       </section>
 
       {!hasSubregions && (
-        <section className="mb-12">
-          <h3 className="text-lg mb-2 font-bold" id="hotspots">
-            All Hotspots
-            <span className="text-base text-gray-500"> ({hotspots.length})</span>
-          </h3>
-          <HotspotList hotspots={hotspots} className="md:columns-3" />
-          {hotspots.length === 0 && (
-            <p className="text-base text-gray-500">No data has been entered for this region yet</p>
-          )}
-        </section>
+        <>
+          <section className="mb-12">
+            <h3 className="text-lg mb-2 font-bold" id="hotspots">
+              All Hotspots
+              <span className="text-base text-gray-500"> ({hotspots.length})</span>
+            </h3>
+            <HotspotList hotspots={hotspots} className="md:columns-3" />
+            {hotspots.length === 0 && (
+              <p className="text-base text-gray-500">No data has been entered for this region yet</p>
+            )}
+          </section>
+          <div className="md:columns-3">
+            {sortedIba.length > 0 && (
+              <section className="break-inside-avoid-column mb-4">
+                <h3 className="text-lg mb-2 font-bold" id="iba">
+                  Important Bird Areas
+                </h3>
+                <ul>
+                  {sortedIba?.map(({ label, value }: any) => (
+                    <li key={value}>
+                      <Link href={`/region/${region.code}/important-bird-areas/${value}`}>{label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+            {sortedDrives.length > 0 && (
+              <section className="break-inside-avoid-column mb-4">
+                <h3 className="text-lg mb-2 font-bold" id="iba">
+                  Birding Drives
+                </h3>
+                <ul>
+                  {sortedDrives?.map(({ name, slug }: any) => (
+                    <li key={slug}>
+                      <Link href={`/region/${region.code}/drives/${slug}`}>{name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </div>
+        </>
       )}
 
       {hasSubregions && (

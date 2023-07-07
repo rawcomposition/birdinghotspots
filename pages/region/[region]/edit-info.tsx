@@ -7,17 +7,17 @@ import Submit from "components/Submit";
 import Input from "components/Input";
 import { getRegionInfo } from "lib/mongo";
 import AdminPage from "components/AdminPage";
-import { State, Link, RegionInfo } from "lib/types";
+import { Region, Link, RegionInfo } from "lib/types";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
-import { getState } from "lib/localData";
+import { getRegion } from "lib/data";
 import InputLinks from "components/InputLinks";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Error from "next/error";
 import { canEdit } from "lib/helpers";
 
 type Props = {
-  state: State;
+  region: Region;
   data: RegionInfo | null;
   error?: string;
   errorCode?: number;
@@ -32,7 +32,7 @@ type Inputs = {
   clubLinks: Link[];
 };
 
-export default function EditLinks({ state, data, error, errorCode }: Props) {
+export default function EditLinks({ region, data, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -47,15 +47,15 @@ export default function EditLinks({ state, data, error, errorCode }: Props) {
 
   const handleSubmit: SubmitHandler<Inputs> = async (data) => {
     const response = await send({
-      url: "/api/state-info/set",
+      url: "/api/region-info/set",
       method: "POST",
       data: {
-        code: state.code,
+        code: region.code,
         data,
       },
     });
     if (response.success) {
-      router.push(`/${state.country.toLowerCase()}/${state.slug}`);
+      router.push(`/region/${region.code}`);
     }
   };
 
@@ -67,7 +67,7 @@ export default function EditLinks({ state, data, error, errorCode }: Props) {
         <Form form={form} onSubmit={handleSubmit}>
           <div className="max-w-4xl mx-auto">
             <div className="px-4 py-5 bg-white sm:p-6">
-              <h2 className="text-xl font-bold text-gray-600 border-b pb-4 mb-4">Edit {state.label} Links</h2>
+              <h2 className="text-xl font-bold text-gray-600 border-b pb-4 mb-4">Edit {region.name} Links</h2>
               <p className="mb-8 text-gray-600">Links will be displayed alphabetically</p>
               <div className="space-y-4 mb-12">
                 <Input type="text" name="websitesHeading" required />
@@ -99,23 +99,23 @@ export default function EditLinks({ state, data, error, errorCode }: Props) {
 }
 
 interface Params extends ParsedUrlQuery {
-  stateSlug: string;
+  region: string;
 }
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
-  const { stateSlug } = query as Params;
+  const { region: regionCode } = query as Params;
 
-  const state = getState(stateSlug);
-  if (!state) return { notFound: true };
+  const region = await getRegion(regionCode);
+  if (!region) return { notFound: true };
 
-  const data = (await getRegionInfo(state.code)) || null;
+  const data = (await getRegionInfo(region.code)) || null;
 
-  if (!canEdit(token, state.code)) {
+  if (!canEdit(token, region.code)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
 
   return {
-    props: { state, data },
+    props: { region, data },
   };
 });
