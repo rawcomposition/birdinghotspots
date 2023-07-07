@@ -1,11 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import States from "data/states.json";
 import { getRegion } from "lib/localData";
 import { getAllCities } from "lib/localData";
 import { Hotspot as HotspotType, City } from "lib/types";
 import FlatRegions from "data/flat-regions.json";
+
+const regionCodes = FlatRegions.map((region) => region.code);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { q }: any = req.query;
@@ -14,7 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     name: { $regex: new RegExp(q), $options: "i" },
   };
 
-  const activeStateCodes = States.filter((state) => state.active).map((state) => state.code);
   const allCities = getAllCities();
 
   const filteredRegions = FlatRegions.filter(({ name }) => name.toLowerCase().startsWith(q.toLowerCase())).map(
@@ -26,13 +26,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const filteredCities = allCities
     .filter((city: City) => {
-      return activeStateCodes.includes(city.state) && city.name.toLowerCase().startsWith(q.toLowerCase());
+      return regionCodes.includes(city.state) && city.name.toLowerCase().startsWith(q.toLowerCase());
     })
     .map((city: City) => {
-      const state = States.find((state) => state.code === city.state);
+      const region = getRegion(city.state);
       return {
-        label: `${city.name}, ${state?.label}, ${state?.country}`,
-        value: `/${state?.country?.toLowerCase()}/${state?.slug}/cities/${city.slug}`,
+        label: `${city.name}, ${region?.detailedName || city.state}`,
+        value: `/region/${city.state}/cities/${city.slug}`,
       };
     });
 
