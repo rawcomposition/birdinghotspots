@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getRegion, restructureHotspotsByCounty } from "lib/data";
+import { getRegion, restructureHotspotsByCounty } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";

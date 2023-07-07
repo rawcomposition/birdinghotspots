@@ -1,6 +1,4 @@
-import { Hotspot, Drive, Token } from "lib/types";
-import { getCountyByCode } from "lib/localData";
-import { getRegion } from "lib/data";
+import { Hotspot, Token } from "lib/types";
 
 export function slugify(title?: string) {
   if (!title) return null;

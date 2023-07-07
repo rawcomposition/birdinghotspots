@@ -13,7 +13,7 @@ import { Drive, DriveInputs, Region } from "lib/types";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import { slugify, canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";

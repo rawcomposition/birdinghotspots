@@ -1,7 +1,7 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import RareBirds from "components/RareBirds";
 import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive } from "lib/types";
 import Heading from "components/Heading";

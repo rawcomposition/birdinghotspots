@@ -1,7 +1,7 @@
 import connect from "lib/mongo";
 import Revision from "models/Revision";
 import { Revision as RevisionType } from "lib/types";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import diff from "node-htmldiff";
 import { getSubscriptions } from "lib/mongo";
 import secureApi from "lib/secureApi";

@@ -10,7 +10,7 @@ import AdminPage from "components/AdminPage";
 import { Region, Link, RegionInfo } from "lib/types";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import InputLinks from "components/InputLinks";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Error from "next/error";

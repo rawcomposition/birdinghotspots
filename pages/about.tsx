@@ -4,7 +4,7 @@ import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import EbirdDescription from "components/EbirdDescription";
 import admin from "lib/firebaseAdmin";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 
 type Props = {
   editors: {

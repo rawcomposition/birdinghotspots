@@ -14,7 +14,7 @@ type Props = {
   [x: string]: any;
 };
 
-export default function Select({ name, required, isMulti, options, restrict, ...props }: Props) {
+export default function RegionSelect({ name, required, isMulti, options, restrict, ...props }: Props) {
   const { control } = useFormContext();
 
   const loadOptions = (inputValue: string, callback: (options: Option[]) => void) => {

@@ -4,8 +4,8 @@ import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import { getGroupByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
-import { getCountyByCode, getStateByCode, getLocationText } from "lib/localData";
-import { County, State, Marker, Group as GroupType } from "lib/types";
+import { getRegion } from "lib/localData";
+import { Region, Marker, Group as GroupType } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
@@ -21,16 +21,15 @@ import Features from "components/Features";
 import useLogPageview from "hooks/useLogPageview";
 
 interface Props extends GroupType {
-  county?: County;
-  state?: State;
+  region: Region;
   locationIds: string[];
   markers: Marker[];
 }
 
 export default function Group({
-  state,
-  county,
+  region,
   stateCodes,
+  countyCodes,
   countryCode,
   name,
   _id,
@@ -47,16 +46,13 @@ export default function Group({
   markers,
   hotspots,
 }: Props) {
-  useLogPageview({ locationId, stateCode: state?.code, countyCode: county?.code, countryCode, entity: "group" });
+  const stateCode = (stateCodes || []).length === 1 ? stateCodes[0] : undefined;
+  const countyCode = (countyCodes || []).length === 1 ? countyCodes[0] : undefined;
+  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "group" });
   const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
   const canEdit = user?.role === "admin" || stateCodes.filter((it) => user?.regions?.includes(it)).length > 0;
-  let title = name;
-  if (state && county) {
-    title = `${name} - ${county.name}, ${state.label}`;
-  } else if (state) {
-    title = `${name} - ${state.label}`;
-  }
+
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
 
@@ -65,10 +61,8 @@ export default function Group({
 
   return (
     <div className="container pb-16">
-      <Title>{title}</Title>
-      <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
-        {name}
-      </PageHeading>
+      <Title>{region.detailedName}</Title>
+      <PageHeading region={region}>{name}</PageHeading>
       <EditorActions className="font-medium -mt-10">
         {canEdit && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
         {canEdit && (
@@ -92,7 +86,7 @@ export default function Group({
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4">
-              <BarChartBtn {...{ state, locationId, locationIds }} />
+              <BarChartBtn locationIds={locationIds} locationId={locationId} portal={region?.portal} />
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
@@ -136,23 +130,25 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = (await getGroupByLocationId(locationId)) as GroupType;
   if (!data?._id) return { notFound: true };
 
-  const state = data.stateCodes.length === 1 ? getStateByCode(data.stateCodes[0]) : null;
-  const county = data.countyCodes.length === 1 ? getCountyByCode(data.countyCodes[0]) : null;
+  const region = getRegion(
+    data.countyCodes.length === 1
+      ? data.countyCodes[0]
+      : data.stateCodes.length === 1
+      ? data.stateCodes[0]
+      : data.countryCode
+  );
 
   const markers = data?.hotspots?.map((it) => formatMarker(it, true)) || [];
 
   const hotspots = data?.hotspots?.map((it) => ({
     ...it,
-    locationLine: it.countyCode
-      ? getLocationText(it.countyCode, !!state, true)
-      : `${getStateByCode(it.stateCode)?.label}`,
+    locationLine: getRegion(it.countyCode || it.stateCode || it.countryCode)?.detailedName || "",
     name: getShortName(it.name),
   }));
 
   return {
     props: {
-      state,
-      county,
+      region,
       markers,
       ...data,
       hotspots,

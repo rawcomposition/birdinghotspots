@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import { getStateByCode } from "lib/localData";
+import { getRegion } from "lib/localData";
 import { Hotspot as HotspotType } from "lib/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -26,16 +26,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
   }
 
-  let select = ["name", "countryCode", "stateCode"];
+  let select = ["name", "stateCode"];
 
   try {
     await connect();
     const results = (await Hotspot.find(query, select).limit(50).sort({ name: 1 }).lean().exec()) as HotspotType[];
 
     const formatted = results?.map((result) => {
-      const country = result.countryCode.toUpperCase();
-      const state = getStateByCode(result.stateCode);
-      let label = `${result.name}, ${state?.label}, ${country}`;
+      const state = getRegion(result.stateCode);
+      let label = `${result.name}, ${state?.detailedName || result.stateCode}`;
       return { label, value: result._id };
     });
 

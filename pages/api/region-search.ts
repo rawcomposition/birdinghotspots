@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import States from "data/states.json";
-import { getAllCounties } from "lib/localData";
 import admin from "lib/firebaseAdmin";
 import nookies from "nookies";
+import FlatRegions from "data/flat-regions.json";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { q, restrict }: any = req.query;
@@ -19,20 +19,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
   }
 
-  const allCounties = getAllCounties(limitStates);
-
-  const filteredCounties = allCounties
-    .filter((county: any) => {
-      return county.name.toLowerCase().startsWith(q.toLowerCase());
+  const filteredRegions = FlatRegions.filter(({ name }) => name.toLowerCase().startsWith(q.toLowerCase())).map(
+    ({ code, name }) => ({
+      label: name,
+      value: `/region/${code}`,
     })
-    .map(({ name, code, stateLabel, country }: any) => ({ label: `${name}, ${stateLabel}, ${country}`, value: code }));
-
-  const filteredStates = allowedStates
-    .filter((state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase()))
-    .map((state) => ({ label: `${state.label.split("-").pop()}, ${state.country}`, value: state.code }));
+  );
 
   res.status(200).json({
     success: true,
-    results: [...filteredStates, ...filteredCounties],
+    results: filteredRegions,
   });
 }

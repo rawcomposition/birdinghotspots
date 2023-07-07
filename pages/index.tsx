@@ -10,7 +10,7 @@ import Heading from "components/Heading";
 import EditorActions from "components/EditorActions";
 import Hotspot from "models/Hotspot";
 import Settings from "models/Settings";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import connect from "lib/mongo";
 import { Hotspot as HotspotType } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";

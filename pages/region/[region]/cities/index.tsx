@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { getRegion, getCities } from "lib/data";
+import { getRegion, getCities } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { City, Region } from "lib/types";
 import PageHeading from "components/PageHeading";

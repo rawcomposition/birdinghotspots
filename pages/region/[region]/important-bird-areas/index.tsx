@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import OhioIBA from "data/oh-iba.json";
 import PageHeading from "components/PageHeading";

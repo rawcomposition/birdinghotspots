@@ -11,7 +11,7 @@ import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 import parse from "html-react-parser";
 import ListHotspotsByCounty from "components/ListHotspotsByCounty";
-import { restructureHotspotsByCounty, getRegion } from "lib/data";
+import { restructureHotspotsByCounty, getRegion } from "lib/localData";
 
 interface Props extends ArticleType {
   region: Region;

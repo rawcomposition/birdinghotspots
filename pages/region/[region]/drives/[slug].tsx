@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import { getDriveBySlug } from "lib/mongo";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import { Drive as DriveType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";

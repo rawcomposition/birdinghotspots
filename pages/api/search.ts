@@ -2,9 +2,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import States from "data/states.json";
-import { getAllCounties, getStateByCode } from "lib/localData";
-import { getAllCities } from "lib/data";
+import { getRegion } from "lib/localData";
+import { getAllCities } from "lib/localData";
 import { Hotspot as HotspotType, City } from "lib/types";
+import FlatRegions from "data/flat-regions.json";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { q }: any = req.query;
@@ -15,23 +16,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const activeStateCodes = States.filter((state) => state.active).map((state) => state.code);
   const allCities = getAllCities();
-  const allCounties = getAllCounties();
 
-  const filteredCounties = allCounties
-    .filter((county: any) => {
-      return county.name.toLowerCase().startsWith(q.toLowerCase());
+  const filteredRegions = FlatRegions.filter(({ name }) => name.toLowerCase().startsWith(q.toLowerCase())).map(
+    ({ code, name }) => ({
+      label: name,
+      value: `/region/${code}`,
     })
-    .map(({ longName, slug, stateSlug, stateLabel, country }: any) => ({
-      label: `${longName}, ${stateLabel}, ${country}`,
-      value: `/${country.toLowerCase()}/${stateSlug}/${slug}`,
-    }));
-
-  const filteredStates = States.filter(
-    (state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase())
-  ).map((state) => ({
-    label: `${state.label}, ${state.country}`,
-    value: `/${state.country.toLowerCase()}/${state.slug}`,
-  }));
+  );
 
   const filteredCities = allCities
     .filter((city: City) => {
@@ -52,9 +43,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       .lean()
       .exec()) as HotspotType[];
     const formatted = results?.map((result) => {
-      const country = result.countryCode.toUpperCase();
-      const state = getStateByCode(result.stateCode);
-      const label = `${result.name}, ${state?.label}, ${country}`;
+      const region = getRegion(result.stateCode || result.countryCode);
+      const label = `${result.name}, ${region?.detailedName || result.stateCode || result.countryCode}`;
       return { label, value: result.url };
     });
     res.status(200).json({
@@ -66,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         },
         {
           label: "Regions",
-          options: [...filteredStates, ...filteredCounties],
+          options: filteredRegions,
         },
         {
           label: "Hotspots",

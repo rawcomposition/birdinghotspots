@@ -3,14 +3,14 @@ import { Menu } from "@headlessui/react";
 import BarChart from "icons/BarChart";
 
 type Props = {
-  state?: State;
+  portal?: string;
   locationId: string;
   locationIds?: string[];
 };
 
-export default function BarChartBtn({ state, locationId, locationIds }: Props) {
+export default function BarChartBtn({ portal, locationId, locationIds }: Props) {
   const region = locationIds?.length ? locationIds.join(",") : locationId;
-  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+  const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
   return (
     <div className="relative inline-block">
       <Menu>

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "node scripts/generateFlatRegions.js",
+    "flatten-regions": "node scripts/generateFlatRegions.js"
   },
   "dependencies": {
     "@dnd-kit/sortable": "^7.0.1",

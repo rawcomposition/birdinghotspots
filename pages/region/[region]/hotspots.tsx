@@ -7,7 +7,7 @@ import HotspotGrid from "components/HotspotGrid";
 import { MapIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import ExploreMap from "components/ExploreMap";
 import toast from "react-hot-toast";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import HotspotFilters from "components/HotspotFilters";
 import { useRouter } from "next/router";
 

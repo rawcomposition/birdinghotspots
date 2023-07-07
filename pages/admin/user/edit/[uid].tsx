@@ -18,7 +18,7 @@ import { roles } from "lib/helpers";
 import DeleteBtn from "components/DeleteBtn";
 import RegionSelect from "components/RegionSelect";
 import { getProfile } from "lib/mongo";
-import { getRegionLabel } from "lib/localData";
+import { getRegion } from "lib/localData";
 
 type UserInput = {
   role: string;
@@ -142,7 +142,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
     const subscriptions =
       profile?.subscriptions?.map((it: string) => ({
-        label: getRegionLabel(it),
+        label: getRegion(it)?.detailedName || it,
         value: it,
       })) || [];
 

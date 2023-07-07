@@ -1,0 +1,686 @@
+[
+  {
+    "code": "US",
+    "name": "United States"
+  },
+  {
+    "code": "US-AL",
+    "name": "Alabama, US"
+  },
+  {
+    "code": "US-AZ",
+    "name": "Arizona, US"
+  },
+  {
+    "code": "US-AR",
+    "name": "Arkansas, US"
+  },
+  {
+    "code": "US-CA",
+    "name": "California, US"
+  },
+  {
+    "code": "US-CA-001",
+    "name": "Alameda, California, US"
+  },
+  {
+    "code": "US-CA-003",
+    "name": "Alpine, California, US"
+  },
+  {
+    "code": "US-CA-005",
+    "name": "Amador, California, US"
+  },
+  {
+    "code": "US-CA-007",
+    "name": "Butte, California, US"
+  },
+  {
+    "code": "US-CA-009",
+    "name": "Calaveras, California, US"
+  },
+  {
+    "code": "US-CA-011",
+    "name": "Colusa, California, US"
+  },
+  {
+    "code": "US-CA-013",
+    "name": "Contra Costa, California, US"
+  },
+  {
+    "code": "US-CA-015",
+    "name": "Del Norte, California, US"
+  },
+  {
+    "code": "US-CA-017",
+    "name": "El Dorado, California, US"
+  },
+  {
+    "code": "US-CA-019",
+    "name": "Fresno, California, US"
+  },
+  {
+    "code": "US-CA-021",
+    "name": "Glenn, California, US"
+  },
+  {
+    "code": "US-CA-023",
+    "name": "Humboldt, California, US"
+  },
+  {
+    "code": "US-CA-025",
+    "name": "Imperial, California, US"
+  },
+  {
+    "code": "US-CA-027",
+    "name": "Inyo, California, US"
+  },
+  {
+    "code": "US-CA-029",
+    "name": "Kern, California, US"
+  },
+  {
+    "code": "US-CA-031",
+    "name": "Kings, California, US"
+  },
+  {
+    "code": "US-CA-033",
+    "name": "Lake, California, US"
+  },
+  {
+    "code": "US-CA-035",
+    "name": "Lassen, California, US"
+  },
+  {
+    "code": "US-CA-037",
+    "name": "Los Angeles, California, US"
+  },
+  {
+    "code": "US-CA-039",
+    "name": "Madera, California, US"
+  },
+  {
+    "code": "US-CA-041",
+    "name": "Marin, California, US"
+  },
+  {
+    "code": "US-CA-043",
+    "name": "Mariposa, California, US"
+  },
+  {
+    "code": "US-CA-045",
+    "name": "Mendocino, California, US"
+  },
+  {
+    "code": "US-CA-047",
+    "name": "Merced, California, US"
+  },
+  {
+    "code": "US-CA-049",
+    "name": "Modoc, California, US"
+  },
+  {
+    "code": "US-CA-051",
+    "name": "Mono, California, US"
+  },
+  {
+    "code": "US-CA-053",
+    "name": "Monterey, California, US"
+  },
+  {
+    "code": "US-CA-055",
+    "name": "Napa, California, US"
+  },
+  {
+    "code": "US-CA-057",
+    "name": "Nevada, California, US"
+  },
+  {
+    "code": "US-CA-059",
+    "name": "Orange, California, US"
+  },
+  {
+    "code": "US-CA-061",
+    "name": "Placer, California, US"
+  },
+  {
+    "code": "US-CA-063",
+    "name": "Plumas, California, US"
+  },
+  {
+    "code": "US-CA-065",
+    "name": "Riverside, California, US"
+  },
+  {
+    "code": "US-CA-067",
+    "name": "Sacramento, California, US"
+  },
+  {
+    "code": "US-CA-069",
+    "name": "San Benito, California, US"
+  },
+  {
+    "code": "US-CA-071",
+    "name": "San Bernardino, California, US"
+  },
+  {
+    "code": "US-CA-073",
+    "name": "San Diego, California, US"
+  },
+  {
+    "code": "US-CA-075",
+    "name": "San Francisco, California, US"
+  },
+  {
+    "code": "US-CA-077",
+    "name": "San Joaquin, California, US"
+  },
+  {
+    "code": "US-CA-079",
+    "name": "San Luis Obispo, California, US"
+  },
+  {
+    "code": "US-CA-081",
+    "name": "San Mateo, California, US"
+  },
+  {
+    "code": "US-CA-083",
+    "name": "Santa Barbara, California, US"
+  },
+  {
+    "code": "US-CA-085",
+    "name": "Santa Clara, California, US"
+  },
+  {
+    "code": "US-CA-087",
+    "name": "Santa Cruz, California, US"
+  },
+  {
+    "code": "US-CA-089",
+    "name": "Shasta, California, US"
+  },
+  {
+    "code": "US-CA-091",
+    "name": "Sierra, California, US"
+  },
+  {
+    "code": "US-CA-093",
+    "name": "Siskiyou, California, US"
+  },
+  {
+    "code": "US-CA-095",
+    "name": "Solano, California, US"
+  },
+  {
+    "code": "US-CA-097",
+    "name": "Sonoma, California, US"
+  },
+  {
+    "code": "US-CA-099",
+    "name": "Stanislaus, California, US"
+  },
+  {
+    "code": "US-CA-101",
+    "name": "Sutter, California, US"
+  },
+  {
+    "code": "US-CA-103",
+    "name": "Tehama, California, US"
+  },
+  {
+    "code": "US-CA-105",
+    "name": "Trinity, California, US"
+  },
+  {
+    "code": "US-CA-107",
+    "name": "Tulare, California, US"
+  },
+  {
+    "code": "US-CA-109",
+    "name": "Tuolumne, California, US"
+  },
+  {
+    "code": "US-CA-111",
+    "name": "Ventura, California, US"
+  },
+  {
+    "code": "US-CA-113",
+    "name": "Yolo, California, US"
+  },
+  {
+    "code": "US-CA-115",
+    "name": "Yuba, California, US"
+  },
+  {
+    "code": "US-CO",
+    "name": "Colorado, US"
+  },
+  {
+    "code": "US-CT",
+    "name": "Connecticut, US"
+  },
+  {
+    "code": "US-GA",
+    "name": "Georgia, US"
+  },
+  {
+    "code": "US-HI",
+    "name": "Hawaii, US"
+  },
+  {
+    "code": "US-IL",
+    "name": "Illinois, US"
+  },
+  {
+    "code": "US-IN",
+    "name": "Indiana, US"
+  },
+  {
+    "code": "US-IA",
+    "name": "Iowa, US"
+  },
+  {
+    "code": "US-KY",
+    "name": "Kentucky, US"
+  },
+  {
+    "code": "US-ME",
+    "name": "Maine, US"
+  },
+  {
+    "code": "US-MA",
+    "name": "Massachusetts, US"
+  },
+  {
+    "code": "US-MI",
+    "name": "Michigan, US"
+  },
+  {
+    "code": "US-MO",
+    "name": "Missouri, US"
+  },
+  {
+    "code": "US-NH",
+    "name": "New Hampshire, US"
+  },
+  {
+    "code": "US-NM",
+    "name": "New Mexico, US"
+  },
+  {
+    "code": "US-OH",
+    "name": "Ohio, US"
+  },
+  {
+    "code": "US-OH-001",
+    "name": "Adams, Ohio, US"
+  },
+  {
+    "code": "US-OH-003",
+    "name": "Allen, Ohio, US"
+  },
+  {
+    "code": "US-OH-005",
+    "name": "Ashland, Ohio, US"
+  },
+  {
+    "code": "US-OH-007",
+    "name": "Ashtabula, Ohio, US"
+  },
+  {
+    "code": "US-OH-009",
+    "name": "Athens, Ohio, US"
+  },
+  {
+    "code": "US-OH-011",
+    "name": "Auglaize, Ohio, US"
+  },
+  {
+    "code": "US-OH-013",
+    "name": "Belmont, Ohio, US"
+  },
+  {
+    "code": "US-OH-015",
+    "name": "Brown, Ohio, US"
+  },
+  {
+    "code": "US-OH-017",
+    "name": "Butler, Ohio, US"
+  },
+  {
+    "code": "US-OH-019",
+    "name": "Carroll, Ohio, US"
+  },
+  {
+    "code": "US-OH-021",
+    "name": "Champaign, Ohio, US"
+  },
+  {
+    "code": "US-OH-023",
+    "name": "Clark, Ohio, US"
+  },
+  {
+    "code": "US-OH-025",
+    "name": "Clermont, Ohio, US"
+  },
+  {
+    "code": "US-OH-027",
+    "name": "Clinton, Ohio, US"
+  },
+  {
+    "code": "US-OH-029",
+    "name": "Columbiana, Ohio, US"
+  },
+  {
+    "code": "US-OH-031",
+    "name": "Coshocton, Ohio, US"
+  },
+  {
+    "code": "US-OH-033",
+    "name": "Crawford, Ohio, US"
+  },
+  {
+    "code": "US-OH-035",
+    "name": "Cuyahoga, Ohio, US"
+  },
+  {
+    "code": "US-OH-037",
+    "name": "Darke, Ohio, US"
+  },
+  {
+    "code": "US-OH-039",
+    "name": "Defiance, Ohio, US"
+  },
+  {
+    "code": "US-OH-041",
+    "name": "Delaware, Ohio, US"
+  },
+  {
+    "code": "US-OH-043",
+    "name": "Erie, Ohio, US"
+  },
+  {
+    "code": "US-OH-045",
+    "name": "Fairfield, Ohio, US"
+  },
+  {
+    "code": "US-OH-047",
+    "name": "Fayette, Ohio, US"
+  },
+  {
+    "code": "US-OH-049",
+    "name": "Franklin, Ohio, US"
+  },
+  {
+    "code": "US-OH-051",
+    "name": "Fulton, Ohio, US"
+  },
+  {
+    "code": "US-OH-053",
+    "name": "Gallia, Ohio, US"
+  },
+  {
+    "code": "US-OH-055",
+    "name": "Geauga, Ohio, US"
+  },
+  {
+    "code": "US-OH-057",
+    "name": "Greene, Ohio, US"
+  },
+  {
+    "code": "US-OH-059",
+    "name": "Guernsey, Ohio, US"
+  },
+  {
+    "code": "US-OH-061",
+    "name": "Hamilton, Ohio, US"
+  },
+  {
+    "code": "US-OH-063",
+    "name": "Hancock, Ohio, US"
+  },
+  {
+    "code": "US-OH-065",
+    "name": "Hardin, Ohio, US"
+  },
+  {
+    "code": "US-OH-067",
+    "name": "Harrison, Ohio, US"
+  },
+  {
+    "code": "US-OH-069",
+    "name": "Henry, Ohio, US"
+  },
+  {
+    "code": "US-OH-071",
+    "name": "Highland, Ohio, US"
+  },
+  {
+    "code": "US-OH-073",
+    "name": "Hocking, Ohio, US"
+  },
+  {
+    "code": "US-OH-075",
+    "name": "Holmes, Ohio, US"
+  },
+  {
+    "code": "US-OH-077",
+    "name": "Huron, Ohio, US"
+  },
+  {
+    "code": "US-OH-079",
+    "name": "Jackson, Ohio, US"
+  },
+  {
+    "code": "US-OH-081",
+    "name": "Jefferson, Ohio, US"
+  },
+  {
+    "code": "US-OH-083",
+    "name": "Knox, Ohio, US"
+  },
+  {
+    "code": "US-OH-085",
+    "name": "Lake, Ohio, US"
+  },
+  {
+    "code": "US-OH-087",
+    "name": "Lawrence, Ohio, US"
+  },
+  {
+    "code": "US-OH-089",
+    "name": "Licking, Ohio, US"
+  },
+  {
+    "code": "US-OH-091",
+    "name": "Logan, Ohio, US"
+  },
+  {
+    "code": "US-OH-093",
+    "name": "Lorain, Ohio, US"
+  },
+  {
+    "code": "US-OH-095",
+    "name": "Lucas, Ohio, US"
+  },
+  {
+    "code": "US-OH-097",
+    "name": "Madison, Ohio, US"
+  },
+  {
+    "code": "US-OH-099",
+    "name": "Mahoning, Ohio, US"
+  },
+  {
+    "code": "US-OH-101",
+    "name": "Marion, Ohio, US"
+  },
+  {
+    "code": "US-OH-103",
+    "name": "Medina, Ohio, US"
+  },
+  {
+    "code": "US-OH-105",
+    "name": "Meigs, Ohio, US"
+  },
+  {
+    "code": "US-OH-107",
+    "name": "Mercer, Ohio, US"
+  },
+  {
+    "code": "US-OH-109",
+    "name": "Miami, Ohio, US"
+  },
+  {
+    "code": "US-OH-111",
+    "name": "Monroe, Ohio, US"
+  },
+  {
+    "code": "US-OH-113",
+    "name": "Montgomery, Ohio, US"
+  },
+  {
+    "code": "US-OH-115",
+    "name": "Morgan, Ohio, US"
+  },
+  {
+    "code": "US-OH-117",
+    "name": "Morrow, Ohio, US"
+  },
+  {
+    "code": "US-OH-119",
+    "name": "Muskingum, Ohio, US"
+  },
+  {
+    "code": "US-OH-121",
+    "name": "Noble, Ohio, US"
+  },
+  {
+    "code": "US-OH-123",
+    "name": "Ottawa, Ohio, US"
+  },
+  {
+    "code": "US-OH-125",
+    "name": "Paulding, Ohio, US"
+  },
+  {
+    "code": "US-OH-127",
+    "name": "Perry, Ohio, US"
+  },
+  {
+    "code": "US-OH-129",
+    "name": "Pickaway, Ohio, US"
+  },
+  {
+    "code": "US-OH-131",
+    "name": "Pike, Ohio, US"
+  },
+  {
+    "code": "US-OH-133",
+    "name": "Portage, Ohio, US"
+  },
+  {
+    "code": "US-OH-135",
+    "name": "Preble, Ohio, US"
+  },
+  {
+    "code": "US-OH-137",
+    "name": "Putnam, Ohio, US"
+  },
+  {
+    "code": "US-OH-139",
+    "name": "Richland, Ohio, US"
+  },
+  {
+    "code": "US-OH-141",
+    "name": "Ross, Ohio, US"
+  },
+  {
+    "code": "US-OH-143",
+    "name": "Sandusky, Ohio, US"
+  },
+  {
+    "code": "US-OH-145",
+    "name": "Scioto, Ohio, US"
+  },
+  {
+    "code": "US-OH-147",
+    "name": "Seneca, Ohio, US"
+  },
+  {
+    "code": "US-OH-149",
+    "name": "Shelby, Ohio, US"
+  },
+  {
+    "code": "US-OH-151",
+    "name": "Stark, Ohio, US"
+  },
+  {
+    "code": "US-OH-153",
+    "name": "Summit, Ohio, US"
+  },
+  {
+    "code": "US-OH-155",
+    "name": "Trumbull, Ohio, US"
+  },
+  {
+    "code": "US-OH-157",
+    "name": "Tuscarawas, Ohio, US"
+  },
+  {
+    "code": "US-OH-159",
+    "name": "Union, Ohio, US"
+  },
+  {
+    "code": "US-OH-161",
+    "name": "Van Wert, Ohio, US"
+  },
+  {
+    "code": "US-OH-163",
+    "name": "Vinton, Ohio, US"
+  },
+  {
+    "code": "US-OH-165",
+    "name": "Warren, Ohio, US"
+  },
+  {
+    "code": "US-OH-167",
+    "name": "Washington, Ohio, US"
+  },
+  {
+    "code": "US-OH-169",
+    "name": "Wayne, Ohio, US"
+  },
+  {
+    "code": "US-OH-171",
+    "name": "Williams, Ohio, US"
+  },
+  {
+    "code": "US-OH-173",
+    "name": "Wood, Ohio, US"
+  },
+  {
+    "code": "US-OH-175",
+    "name": "Wyandot, Ohio, US"
+  },
+  {
+    "code": "US-RI",
+    "name": "Rhode Island, US"
+  },
+  {
+    "code": "US-SD",
+    "name": "South Dakota, US"
+  },
+  {
+    "code": "US-TX",
+    "name": "Texas, US"
+  },
+  {
+    "code": "US-VT",
+    "name": "Vermont, US"
+  },
+  {
+    "code": "US-VA",
+    "name": "Virginia, US"
+  }
+]

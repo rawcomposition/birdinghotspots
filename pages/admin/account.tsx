@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import RegionSelect from "components/RegionSelect";
 import Select from "components/Select";
 import { getProfile } from "lib/mongo";
-import { getRegionLabel } from "lib/localData";
+import { getRegion } from "lib/localData";
 import useFirebaseLogin from "hooks/useFirebaseLogin";
 
 type AccountInput = {
@@ -148,7 +148,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
   const subscriptions =
     profile?.subscriptions?.map((it: string) => ({
-      label: getRegionLabel(it),
+      label: getRegion(it)?.detailedName || it,
       value: it,
     })) || [];
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { getHotspotsByRegion } from "lib/mongo";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";

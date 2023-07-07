@@ -3,15 +3,15 @@ import { Menu } from "@headlessui/react";
 import VerticalDots from "icons/VerticalDots";
 
 type Props = {
-  state?: State;
+  portal?: string;
   isGroup?: boolean;
   locationId: string;
   locationIds?: string[];
 };
 
-export default function EbirdHotspotBtn({ state, locationId, locationIds, isGroup }: Props) {
+export default function EbirdHotspotBtn({ portal, locationId, locationIds, isGroup }: Props) {
   const region = locationIds?.length ? locationIds.join(",") : locationId;
-  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+  const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
   return (
     <div className="relative inline-block">
       <Menu>

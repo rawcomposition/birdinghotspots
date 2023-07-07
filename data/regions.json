@@ -244,7 +244,8 @@
       },
       {
         "name": "Vermont",
-        "code": "US-VT"
+        "code": "US-VT",
+        "portal": "vt"
       },
       {
         "name": "Virginia",

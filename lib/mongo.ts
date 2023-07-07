@@ -352,12 +352,14 @@ export async function getGroupsByRegion(region: string) {
   let query: any = {};
 
   if (region.split("-").length === 3) {
-    query = { countyCode: region };
+    query = { countyCodes: region };
   } else if (region.split("-").length === 2) {
-    query = { stateCode: region };
+    query = { stateCodes: region };
   } else {
     query = { countryCode: region };
   }
+
+  console.log(query);
 
   const result = await Group.find(query, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
   return result;

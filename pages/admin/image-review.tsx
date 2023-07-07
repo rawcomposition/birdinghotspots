@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { getUploads, getAllUploads, getSubscriptions } from "lib/mongo";
-import { getRegion } from "lib/data";
+import { getRegion } from "lib/localData";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
 import { Upload } from "lib/types";

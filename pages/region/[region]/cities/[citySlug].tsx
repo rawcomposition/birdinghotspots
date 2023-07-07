@@ -4,7 +4,7 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { getHotspotsInRadius } from "lib/mongo";
-import { getRegion, getCityBySlug } from "lib/data";
+import { getRegion, getCityBySlug } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
