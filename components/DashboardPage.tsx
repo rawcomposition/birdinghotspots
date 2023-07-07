@@ -33,7 +33,6 @@ export default function DashboardPage({ title, children }: PropTypes) {
     nav.push({ name: "Logs", href: "/admin/logs", icon: DocumentTextIcon });
   }
 
-  nav.push({ name: "Analytics", href: "/analytics", icon: DocumentChartBarIcon });
   nav.push({ name: "My Account", href: "/admin/account", icon: UserCircleIcon });
 
   React.useEffect(() => {
