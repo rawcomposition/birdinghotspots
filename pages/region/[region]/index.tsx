@@ -24,6 +24,7 @@ import { getArticlesByRegion, getRegionInfo, getHotspotsByCounty } from "lib/mon
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
+import useLogPageview from "hooks/useLogPageview";
 
 type Props = {
   region: Region;
@@ -38,6 +39,13 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   const { open } = useModal();
   const { code, name, portal, subregions, subheading } = region;
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
+
+  const regionPieces = code.split("-");
+  const countryCode = regionPieces.length >= 1 ? regionPieces[0] : undefined;
+  const stateCode = regionPieces.length >= 2 ? regionPieces.slice(0, 2).join("-") : undefined;
+  const countyCode = regionPieces.length === 3 ? code : undefined;
+
+  useLogPageview({ stateCode, countyCode, countryCode, entity: "hotspot" });
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
 

@@ -402,7 +402,7 @@ export type Pageview = {
   stateCode?: string;
   countyCode?: string;
   countryCode?: string;
-  entity: "hotspot" | "group" | "county" | "state";
+  entity: "hotspot" | "group" | "county" | "state" | "country";
   year: number;
   month: number;
 };
