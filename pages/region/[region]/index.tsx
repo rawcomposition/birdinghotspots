@@ -267,9 +267,9 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
 
           <div className="md:columns-2 gap-16">
             <StateLinkSection
-              links={articles.map(({ name, slug: articleSlug }) => ({
+              links={articles.map(({ stateCode, countryCode, name, slug: articleSlug }) => ({
                 label: name,
-                url: `/region/${region.code}/articles/${articleSlug}`,
+                url: `/region/${stateCode || countryCode}/articles/${articleSlug}`,
               }))}
               heading="Articles"
             />

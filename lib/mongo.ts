@@ -212,7 +212,10 @@ export async function getArticlesByRegion(regionCode: string) {
     query = { countryCode: regionCode };
   }
 
-  const result = await Article.find(query, ["-_id", "name", "slug"]).sort({ name: 1 }).lean().exec();
+  const result = await Article.find(query, ["-_id", "name", "slug", "countryCode", "stateCode"])
+    .sort({ name: 1 })
+    .lean()
+    .exec();
 
   return result;
 }

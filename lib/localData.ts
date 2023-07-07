@@ -147,7 +147,7 @@ export async function restructureHotspotsByCounty(hotspots: Hotspot[], regionCod
       const county = stateCounties.find((it) => it.code === key);
       return {
         countyCode: county?.code || "",
-        countyName: county?.longName || "",
+        countyName: county?.name || "",
         hotspots,
       };
     }) || [];

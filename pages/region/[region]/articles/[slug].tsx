@@ -36,7 +36,9 @@ export default function Article({ region, name, content, hotspotsByCounty, image
           </div>
           {parse(content || "")}
         </div>
-        {hotspotsByCounty.length > 0 && <ListHotspotsByCounty hotspots={hotspotsByCounty} />}
+        <div className="mt-8">
+          {hotspotsByCounty.length > 0 && <ListHotspotsByCounty hotspots={hotspotsByCounty} />}
+        </div>
       </div>
     </div>
   );
