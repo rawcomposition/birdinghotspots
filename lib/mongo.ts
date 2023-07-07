@@ -249,11 +249,15 @@ export async function getSettings() {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getUploads(states: string[], counties: string[]) {
+export async function getUploads(countries: string[], states: string[], counties: string[]) {
   await connect();
   const result = await Upload.find({
     status: "pending",
-    $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
+    $or: [
+      { countryCode: { $in: countries || [] } },
+      { stateCode: { $in: states || [] } },
+      { countyCode: { $in: counties || [] } },
+    ],
   })
     .sort({ createdAt: -1 })
     .lean()
@@ -306,19 +310,6 @@ export async function getAllRevisions({ limit, skip, status }: AllRevisionProps)
     .lean();
 
   return result || [];
-}
-
-export async function getImgStats() {
-  await connect();
-  const result = await Hotspot.aggregate([
-    {
-      $group: {
-        _id: { featuredImg: { $gt: ["$featuredImg", null] }, stateCode: "$stateCode" },
-        count: { $sum: 1 },
-      },
-    },
-  ]);
-  return result;
 }
 
 export async function getGroupByLocationId(locationId: string) {

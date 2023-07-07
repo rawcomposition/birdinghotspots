@@ -17,14 +17,17 @@ export default secureApi(async (req, res, token) => {
     let query: any = { status };
 
     if (token.role !== "admin") {
-      let states = subscriptions.filter((it) => it.split("-").length === 2);
+      const regions = subscriptions.length === 0 ? token.regions || [] : subscriptions;
+      const countries = regions.filter((it) => it.split("-").length === 1);
+      const states = regions.filter((it) => it.split("-").length === 2);
       const counties = subscriptions.filter((it) => it.split("-").length === 3);
-      if (subscriptions.length === 0) {
-        states = token.regions || [];
-      }
       query = {
         ...query,
-        $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
+        $or: [
+          { countryCode: { $in: countries || [] } },
+          { stateCode: { $in: states || [] } },
+          { countyCode: { $in: counties || [] } },
+        ],
       };
     }
 
@@ -51,7 +54,7 @@ export default secureApi(async (req, res, token) => {
       };
     };
 
-    const results = revisions.map(async (it) => {
+    const results = revisions.map((it) => {
       const regionCode = it.countyCode || it.stateCode;
       const region = getRegion(regionCode);
       const formatted = {

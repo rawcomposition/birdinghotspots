@@ -124,12 +124,11 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   if (token.role === "admin") {
     uploads = await getAllUploads();
   } else {
-    let states = subscriptions.filter((it) => it.split("-").length === 2);
+    const regions: string[] = subscriptions.length === 0 ? token.regions || [] : subscriptions;
+    const countries = regions.filter((it) => it.split("-").length === 1);
+    const states = regions.filter((it) => it.split("-").length === 2);
     const counties = subscriptions.filter((it) => it.split("-").length === 3);
-    if (subscriptions.length === 0) {
-      states = token.regions;
-    }
-    uploads = await getUploads(states, counties);
+    uploads = await getUploads(countries, states, counties);
   }
 
   const items: Item[] = [];
