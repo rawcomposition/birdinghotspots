@@ -120,7 +120,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const { id, region: regionCode } = query as Params;
   const data: Article = id !== "new" ? await getArticleById(id) : null;
 
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   if (!region || !region.subregions?.length) return { notFound: true };
 
   if (!canEdit(token, region.code)) {

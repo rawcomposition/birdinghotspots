@@ -1,0 +1,255 @@
+[
+  {
+    "code": "US",
+    "name": "United States",
+    "subregions": [
+      {
+        "name": "Alabama",
+        "code": "US-AL"
+      },
+      {
+        "name": "Arizona",
+        "code": "US-AZ"
+      },
+      {
+        "name": "Arkansas",
+        "code": "US-AR"
+      },
+      {
+        "name": "California",
+        "code": "US-CA",
+        "subregions": [
+          { "code": "US-CA-001", "name": "Alameda" },
+          { "code": "US-CA-003", "name": "Alpine" },
+          { "code": "US-CA-005", "name": "Amador" },
+          { "code": "US-CA-007", "name": "Butte" },
+          { "code": "US-CA-009", "name": "Calaveras" },
+          { "code": "US-CA-011", "name": "Colusa" },
+          { "code": "US-CA-013", "name": "Contra Costa" },
+          { "code": "US-CA-015", "name": "Del Norte" },
+          { "code": "US-CA-017", "name": "El Dorado" },
+          { "code": "US-CA-019", "name": "Fresno" },
+          { "code": "US-CA-021", "name": "Glenn" },
+          { "code": "US-CA-023", "name": "Humboldt" },
+          { "code": "US-CA-025", "name": "Imperial" },
+          { "code": "US-CA-027", "name": "Inyo" },
+          { "code": "US-CA-029", "name": "Kern" },
+          { "code": "US-CA-031", "name": "Kings" },
+          { "code": "US-CA-033", "name": "Lake" },
+          { "code": "US-CA-035", "name": "Lassen" },
+          { "code": "US-CA-037", "name": "Los Angeles" },
+          { "code": "US-CA-039", "name": "Madera" },
+          { "code": "US-CA-041", "name": "Marin" },
+          { "code": "US-CA-043", "name": "Mariposa" },
+          { "code": "US-CA-045", "name": "Mendocino" },
+          { "code": "US-CA-047", "name": "Merced" },
+          { "code": "US-CA-049", "name": "Modoc" },
+          { "code": "US-CA-051", "name": "Mono" },
+          { "code": "US-CA-053", "name": "Monterey" },
+          { "code": "US-CA-055", "name": "Napa" },
+          { "code": "US-CA-057", "name": "Nevada" },
+          { "code": "US-CA-059", "name": "Orange" },
+          { "code": "US-CA-061", "name": "Placer" },
+          { "code": "US-CA-063", "name": "Plumas" },
+          { "code": "US-CA-065", "name": "Riverside" },
+          { "code": "US-CA-067", "name": "Sacramento" },
+          { "code": "US-CA-069", "name": "San Benito" },
+          { "code": "US-CA-071", "name": "San Bernardino" },
+          { "code": "US-CA-073", "name": "San Diego" },
+          { "code": "US-CA-075", "name": "San Francisco" },
+          { "code": "US-CA-077", "name": "San Joaquin" },
+          { "code": "US-CA-079", "name": "San Luis Obispo" },
+          { "code": "US-CA-081", "name": "San Mateo" },
+          { "code": "US-CA-083", "name": "Santa Barbara" },
+          { "code": "US-CA-085", "name": "Santa Clara" },
+          { "code": "US-CA-087", "name": "Santa Cruz" },
+          { "code": "US-CA-089", "name": "Shasta" },
+          { "code": "US-CA-091", "name": "Sierra" },
+          { "code": "US-CA-093", "name": "Siskiyou" },
+          { "code": "US-CA-095", "name": "Solano" },
+          { "code": "US-CA-097", "name": "Sonoma" },
+          { "code": "US-CA-099", "name": "Stanislaus" },
+          { "code": "US-CA-101", "name": "Sutter" },
+          { "code": "US-CA-103", "name": "Tehama" },
+          { "code": "US-CA-105", "name": "Trinity" },
+          { "code": "US-CA-107", "name": "Tulare" },
+          { "code": "US-CA-109", "name": "Tuolumne" },
+          { "code": "US-CA-111", "name": "Ventura" },
+          { "code": "US-CA-113", "name": "Yolo" },
+          { "code": "US-CA-115", "name": "Yuba" }
+        ]
+      },
+      {
+        "name": "Colorado",
+        "code": "US-CO"
+      },
+      {
+        "name": "Connecticut",
+        "code": "US-CT"
+      },
+      {
+        "name": "Georgia",
+        "code": "US-GA"
+      },
+      {
+        "name": "Hawaii",
+        "code": "US-HI"
+      },
+      {
+        "name": "Illinois",
+        "code": "US-IL"
+      },
+      {
+        "name": "Indiana",
+        "code": "US-IN"
+      },
+      {
+        "name": "Iowa",
+        "code": "US-IA"
+      },
+      {
+        "name": "Kentucky",
+        "code": "US-KY"
+      },
+      {
+        "name": "Maine",
+        "code": "US-ME"
+      },
+      {
+        "name": "Massachusetts",
+        "code": "US-MA"
+      },
+      {
+        "name": "Michigan",
+        "code": "US-MI"
+      },
+      {
+        "name": "Missouri",
+        "code": "US-MO"
+      },
+      {
+        "name": "New Hampshire",
+        "code": "US-NH"
+      },
+      {
+        "name": "New Mexico",
+        "code": "US-NM"
+      },
+      {
+        "name": "Ohio",
+        "code": "US-OH",
+        "features": ["iba", "drives"],
+        "subregions": [
+          { "code": "US-OH-001", "name": "Adams" },
+          { "code": "US-OH-003", "name": "Allen" },
+          { "code": "US-OH-005", "name": "Ashland" },
+          { "code": "US-OH-007", "name": "Ashtabula" },
+          { "code": "US-OH-009", "name": "Athens" },
+          { "code": "US-OH-011", "name": "Auglaize" },
+          { "code": "US-OH-013", "name": "Belmont" },
+          { "code": "US-OH-015", "name": "Brown" },
+          { "code": "US-OH-017", "name": "Butler" },
+          { "code": "US-OH-019", "name": "Carroll" },
+          { "code": "US-OH-021", "name": "Champaign" },
+          { "code": "US-OH-023", "name": "Clark" },
+          { "code": "US-OH-025", "name": "Clermont" },
+          { "code": "US-OH-027", "name": "Clinton" },
+          { "code": "US-OH-029", "name": "Columbiana" },
+          { "code": "US-OH-031", "name": "Coshocton" },
+          { "code": "US-OH-033", "name": "Crawford" },
+          { "code": "US-OH-035", "name": "Cuyahoga" },
+          { "code": "US-OH-037", "name": "Darke" },
+          { "code": "US-OH-039", "name": "Defiance" },
+          { "code": "US-OH-041", "name": "Delaware" },
+          { "code": "US-OH-043", "name": "Erie" },
+          { "code": "US-OH-045", "name": "Fairfield" },
+          { "code": "US-OH-047", "name": "Fayette" },
+          { "code": "US-OH-049", "name": "Franklin" },
+          { "code": "US-OH-051", "name": "Fulton" },
+          { "code": "US-OH-053", "name": "Gallia" },
+          { "code": "US-OH-055", "name": "Geauga" },
+          { "code": "US-OH-057", "name": "Greene" },
+          { "code": "US-OH-059", "name": "Guernsey" },
+          { "code": "US-OH-061", "name": "Hamilton" },
+          { "code": "US-OH-063", "name": "Hancock" },
+          { "code": "US-OH-065", "name": "Hardin" },
+          { "code": "US-OH-067", "name": "Harrison" },
+          { "code": "US-OH-069", "name": "Henry" },
+          { "code": "US-OH-071", "name": "Highland" },
+          { "code": "US-OH-073", "name": "Hocking" },
+          { "code": "US-OH-075", "name": "Holmes" },
+          { "code": "US-OH-077", "name": "Huron" },
+          { "code": "US-OH-079", "name": "Jackson" },
+          { "code": "US-OH-081", "name": "Jefferson" },
+          { "code": "US-OH-083", "name": "Knox" },
+          { "code": "US-OH-085", "name": "Lake" },
+          { "code": "US-OH-087", "name": "Lawrence" },
+          { "code": "US-OH-089", "name": "Licking" },
+          { "code": "US-OH-091", "name": "Logan" },
+          { "code": "US-OH-093", "name": "Lorain" },
+          { "code": "US-OH-095", "name": "Lucas" },
+          { "code": "US-OH-097", "name": "Madison" },
+          { "code": "US-OH-099", "name": "Mahoning" },
+          { "code": "US-OH-101", "name": "Marion" },
+          { "code": "US-OH-103", "name": "Medina" },
+          { "code": "US-OH-105", "name": "Meigs" },
+          { "code": "US-OH-107", "name": "Mercer" },
+          { "code": "US-OH-109", "name": "Miami" },
+          { "code": "US-OH-111", "name": "Monroe" },
+          { "code": "US-OH-113", "name": "Montgomery" },
+          { "code": "US-OH-115", "name": "Morgan" },
+          { "code": "US-OH-117", "name": "Morrow" },
+          { "code": "US-OH-119", "name": "Muskingum" },
+          { "code": "US-OH-121", "name": "Noble" },
+          { "code": "US-OH-123", "name": "Ottawa" },
+          { "code": "US-OH-125", "name": "Paulding" },
+          { "code": "US-OH-127", "name": "Perry" },
+          { "code": "US-OH-129", "name": "Pickaway" },
+          { "code": "US-OH-131", "name": "Pike" },
+          { "code": "US-OH-133", "name": "Portage" },
+          { "code": "US-OH-135", "name": "Preble" },
+          { "code": "US-OH-137", "name": "Putnam" },
+          { "code": "US-OH-139", "name": "Richland" },
+          { "code": "US-OH-141", "name": "Ross" },
+          { "code": "US-OH-143", "name": "Sandusky" },
+          { "code": "US-OH-145", "name": "Scioto" },
+          { "code": "US-OH-147", "name": "Seneca" },
+          { "code": "US-OH-149", "name": "Shelby" },
+          { "code": "US-OH-151", "name": "Stark" },
+          { "code": "US-OH-153", "name": "Summit" },
+          { "code": "US-OH-155", "name": "Trumbull" },
+          { "code": "US-OH-157", "name": "Tuscarawas" },
+          { "code": "US-OH-159", "name": "Union" },
+          { "code": "US-OH-161", "name": "Van Wert" },
+          { "code": "US-OH-163", "name": "Vinton" },
+          { "code": "US-OH-165", "name": "Warren" },
+          { "code": "US-OH-167", "name": "Washington" },
+          { "code": "US-OH-169", "name": "Wayne" },
+          { "code": "US-OH-171", "name": "Williams" },
+          { "code": "US-OH-173", "name": "Wood" },
+          { "code": "US-OH-175", "name": "Wyandot" }
+        ]
+      },
+      {
+        "name": "Rhode Island",
+        "code": "US-RI"
+      },
+      {
+        "name": "South Dakota",
+        "code": "US-SD"
+      },
+      {
+        "name": "Texas",
+        "code": "US-TX"
+      },
+      {
+        "name": "Vermont",
+        "code": "US-VT"
+      },
+      {
+        "name": "Virginia",
+        "code": "US-VA"
+      }
+    ]
+  }
+]

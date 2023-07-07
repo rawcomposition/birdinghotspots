@@ -110,7 +110,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const { id, region: regionCode } = query as Params;
   const data: Drive = id !== "new" ? await getDriveById(id) : null;
 
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   const isState = region?.code?.split("-").length === 2;
   if (!region || !isState) return { notFound: true };
 

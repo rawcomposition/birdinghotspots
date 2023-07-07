@@ -132,7 +132,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
   const hotspots = (await getHotspotsByRegion(regionCode)) || [];

@@ -10,7 +10,7 @@ import Heading from "components/Heading";
 import EditorActions from "components/EditorActions";
 import Hotspot from "models/Hotspot";
 import Settings from "models/Settings";
-import { getLocationText, getStateByCode } from "lib/localData";
+import { getRegion } from "lib/data";
 import connect from "lib/mongo";
 import { Hotspot as HotspotType } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
@@ -32,19 +32,15 @@ export default function Home({ featured }: Props) {
           <section>
             {Countries.map((country) => (
               <React.Fragment key={country.code}>
-                <h3 className="text-lg mb-4 font-bold">{country.label}</h3>
+                <Link href={`/region/${country.code}`} className="text-gray-700">
+                  <h3 className="text-lg mb-4 font-bold">{country.label}</h3>
+                </Link>
                 <div className="columns-2 lg:columns-3 mb-12">
-                  {States.filter((state) => state.active && state.country === country.code).map(
-                    ({ label, slug, code }) => (
-                      <Link
-                        key={code}
-                        href={`/${country.code.toLowerCase()}/${slug}`}
-                        className="font-bold px-2 py-1 text-base mb-1 block"
-                      >
-                        {label}
-                      </Link>
-                    )
-                  )}
+                  {States.filter((state) => state.active && state.country === country.code).map(({ label, code }) => (
+                    <Link key={code} href={`/region/${code}`} className="font-bold px-2 py-1 text-base mb-1 block">
+                      {label}
+                    </Link>
+                  ))}
                 </div>
               </React.Fragment>
             ))}
@@ -181,11 +177,11 @@ export const getStaticProps = async () => {
     .sort({ name: 1 })
     .lean()
     .exec();
+
   const formatted = results.map((hotspot) => {
-    const state = getStateByCode(hotspot.stateCode);
-    const locationLine = hotspot.countyCode
-      ? getLocationText(hotspot.countyCode)
-      : `${state?.label}, ${state?.country}`;
+    const regionCode = hotspot.countyCode || hotspot.stateCode;
+    const region = getRegion(regionCode);
+    const locationLine = region ? `${region.detailedName}` : regionCode;
     return {
       ...hotspot,
       _id: hotspot._id.toString(),

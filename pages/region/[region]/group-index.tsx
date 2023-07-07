@@ -68,7 +68,7 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
   const groups = (await getGroupsByRegion(regionCode)) || [];

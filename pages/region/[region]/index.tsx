@@ -140,7 +140,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             ) : (
               <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">
                 {subregions?.map((it) => (
-                  <p key={name}>
+                  <p key={it.code}>
                     <Link href={`/region/${it.code}`} className="font-bold text-slate-300" title={it.name}>
                       {it.name.length > 12 ? `${it.name.slice(0, 12)}...` : it.name}
                     </Link>
@@ -279,7 +279,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const regionCode = context.params?.region as string;
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   if (!region) return { notFound: true };
   const hasSubregions = !!region.subregions?.length;
 

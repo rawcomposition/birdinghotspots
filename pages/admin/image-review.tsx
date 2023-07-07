@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
-import { getUploads, getAllUploads, getHotspotByLocationId, getSubscriptions } from "lib/mongo";
-import { getStateByCode, getCountyByCode } from "lib/localData";
+import { getUploads, getAllUploads, getSubscriptions } from "lib/mongo";
+import { getRegion } from "lib/data";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
 import { Upload } from "lib/types";
@@ -13,9 +13,7 @@ import getSecureServerSideProps from "lib/getSecureServerSideProps";
 type Item = {
   name: string;
   locationId: string;
-  countryCode?: string;
-  stateLabel?: string;
-  countyLabel?: string;
+  locationName: string;
   uploads: Upload[];
 };
 
@@ -56,15 +54,7 @@ export default function ImageReview({ items: allItems }: Props) {
                 (View Hotspot)
               </Link>
             </h3>
-            {item.countyLabel ? (
-              <p>
-                {item.countyLabel}, {item.stateLabel}, {item.countryCode}
-              </p>
-            ) : (
-              <p>
-                {item.stateLabel}, {item.countryCode}
-              </p>
-            )}
+            <p>{item.locationName}</p>
             <div
               className={`grid ${item.uploads.length > 0 ? "xs:grid-cols-2 md:grid-cols-3" : ""} gap-x-4 gap-y-8 mt-4`}
             >
@@ -144,14 +134,13 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
   const items: Item[] = [];
 
-  uploads.forEach(async (upload: Upload) => {
+  uploads.forEach((upload) => {
     if (!items.find((item) => item.locationId === upload.locationId)) {
-      const state = getStateByCode(upload.stateCode);
-      const county = getCountyByCode(upload.countyCode);
+      const regionCode = upload.countyCode || upload.stateCode;
+      const region = getRegion(regionCode);
       items.push({
         name: upload.name,
-        stateLabel: state?.label || "",
-        countyLabel: county?.name || "",
+        locationName: region?.detailedName || regionCode,
         locationId: upload.locationId,
         uploads: [upload],
       });

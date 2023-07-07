@@ -1,14 +1,17 @@
-import { promises as fs } from "fs";
 import { Region, Drive, Hotspot, City } from "lib/types";
 import USCities from "data/cities/us.json";
 import CACities from "data/cities/ca.json";
+import Regions from "data/regions.json";
 
 const formatRegion = (region: Omit<Region, "detailedName">): Region => {
   let detailedName = region.name;
   if (region.parents?.length === 2) {
-    detailedName = `${region.name}, ${region.parents[1].name}, ${region.parents[0].name}`;
+    detailedName = `${region.name}, ${region.parents[0].name}, ${region.parents[1].name.replace(
+      "United States",
+      "US"
+    )}`;
   } else if (region.parents?.length === 1) {
-    detailedName = `${region.name}, ${region.parents[0].name}`;
+    detailedName = `${region.name}, ${region.parents[0].name.replace("United States", "US")}`;
   }
   return {
     ...region,
@@ -16,32 +19,68 @@ const formatRegion = (region: Omit<Region, "detailedName">): Region => {
   };
 };
 
-export async function getRegion(code: string): Promise<Region | null> {
-  const isCounty = code.split("-").length === 3;
-  const trimmedCode = isCounty ? `${code.split("-")[0]}-${code.split("-")[1]}` : code;
-  const path = `data/regions/${trimmedCode}.json`;
-  try {
-    const region = await fs.readFile(path, "utf8");
-    const data: Region = JSON.parse(region);
-    if (isCounty) {
-      const county = data?.subregions?.find((it) => it.code === code);
-      if (!county) return null;
-      return formatRegion({
-        ...county,
-        features: data.features,
-        parents: [
-          {
-            code: data.code,
-            name: data.name,
-          },
-          ...(data.parents || []),
-        ],
-      });
-    }
-    return formatRegion(data);
-  } catch (err) {
-    return null;
+export function getRegion(code: string): Region | null {
+  const pieces = code.split("-");
+
+  if (pieces.length === 3) {
+    // County
+    const countryCode = pieces[0];
+    const stateCode = `${pieces[0]}-${pieces[1]}`;
+    const countyCode = code;
+
+    const country = Regions.find((it) => it.code === countryCode);
+    if (!country) return null;
+    const state = country.subregions?.find((it) => it.code === stateCode);
+    if (!state) return null;
+    const county = state.subregions?.find((it) => it.code === countyCode);
+    if (!county) return null;
+
+    return formatRegion({
+      ...county,
+      features: state.features,
+      parents: [
+        {
+          code: state.code,
+          name: state.name,
+        },
+        {
+          code: country.code,
+          name: country.name,
+        },
+      ],
+    });
+  } else if (pieces.length === 2) {
+    // State
+    const countryCode = pieces[0];
+    const stateCode = code;
+
+    const country = Regions.find((it) => it.code === countryCode);
+    if (!country) return null;
+    const state = country.subregions?.find((it) => it.code === stateCode);
+    if (!state) return null;
+
+    return formatRegion({
+      ...state,
+      parents: [
+        {
+          code: country.code,
+          name: country.name,
+        },
+      ],
+    });
+  } else if (pieces.length === 1) {
+    // Country
+    const countryCode = code;
+
+    const country = Regions.find((it) => it.code === countryCode);
+    if (!country) return null;
+
+    return formatRegion({
+      ...country,
+      subregions: country.subregions?.map(({ subregions, ...rest }) => rest),
+    });
   }
+  return null;
 }
 
 type DriveMap = {
@@ -63,7 +102,7 @@ export async function restructureDrivesByCounty(drives: Drive[], regionCode: str
     });
   });
 
-  const stateRegion = await getRegion(regionCode);
+  const stateRegion = getRegion(regionCode);
   const counties = stateRegion?.subregions || [];
 
   const unsorted =
@@ -95,7 +134,7 @@ export async function restructureHotspotsByCounty(hotspots: Hotspot[], regionCod
     counties[countyCode].push({ name, url });
   });
 
-  const stateRegion = await getRegion(regionCode);
+  const stateRegion = getRegion(regionCode);
   const stateCounties = stateRegion?.subregions || [];
 
   const unsorted =

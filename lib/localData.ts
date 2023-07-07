@@ -58,16 +58,6 @@ const countyArrays: any = {
   "US-IN": IndianaCounties,
 };
 
-const cityArrays: any = {
-  US: USCities,
-  CA: CACities,
-};
-
-export function getState(param: string) {
-  const data = States.find((state) => state.slug === param);
-  return data;
-}
-
 export function getStateByCode(code: string) {
   const data = States.find((state) => state.code === code);
   return data;
@@ -103,16 +93,6 @@ export function getLocationText(countyCode: string, hideState?: boolean, hideCou
     result = `${result}, ${state?.country}`;
   }
   return result;
-}
-
-export function getCountyBySlug(stateCode: string, countySlug: string) {
-  const slug = countySlug.replace("-county", "");
-  const array = countyArrays[stateCode];
-  if (!array) return null;
-  const county = array.find((county: County) => county.slug === slug);
-  if (!county) return null;
-
-  return formatCounty(stateCode, county);
 }
 
 function formatCounty(stateCode: string, county: County) {

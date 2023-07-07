@@ -53,7 +53,7 @@ export default function Cities({ region, cities }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   const isState = regionCode.split("-").length === 2;
   if (!region || !isState) return { notFound: true };
 

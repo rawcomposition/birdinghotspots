@@ -102,12 +102,12 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     return active && (role === "admin" || regions.includes(code));
   });
 
-  const data = filteredStates.map(({ code, label, country, slug }) => {
-    const url = `/${country.toLowerCase()}/${slug}`;
+  const data = filteredStates.map(({ code, label }) => {
+    const url = `/region/${code}`;
     const withImg = imgCount.find((it) => it.stateCode === code && it.featuredImg)?.count || 0;
     const withoutImg = imgCount.find((it) => it.stateCode === code && !it.featuredImg)?.count || 0;
     const total = withImg + withoutImg;
-    return { code, label, country, url, withImg, total };
+    return { code, label, url, withImg, total };
   });
 
   const sorted = data.sort((a, b) => b.total - a.total);

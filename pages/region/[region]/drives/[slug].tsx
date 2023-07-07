@@ -85,7 +85,7 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
   const slug = query.slug as string;
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   const isState = regionCode.split("-").length === 2;
   if (!region || !isState) return { notFound: true };
 

@@ -49,7 +49,7 @@ type Params = ParsedUrlQuery & {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { slug, region: regionCode } = query as Params;
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
   const data = await getArticleBySlug(region.code, slug);

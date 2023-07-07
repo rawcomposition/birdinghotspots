@@ -172,9 +172,7 @@ export default function RevisionReview() {
                           </Badge>
                         )}
                       </div>
-                      <div className="text-gray-500">
-                        {item.countyLabel}, {item.stateLabel}, {item.countryCode}
-                      </div>
+                      <div className="text-gray-500">{item.locationName}</div>
                     </div>
                   </td>
                   <td className="px-3 py-4 text-sm text-gray-500 hidden sm:table-cell">

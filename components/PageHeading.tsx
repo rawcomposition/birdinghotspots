@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Region } from "lib/types";
 import clsx from "clsx";
+import React from "react";
 
 type Props = {
   region?: Region;
@@ -45,9 +46,8 @@ export default function PageHeading({ region, children, className, extraCrumb, h
           {breadcrumbs.map(({ url, name }, index) => {
             const isLast = index === breadcrumbs.length - 1;
             return (
-              <>
+              <React.Fragment key={url}>
                 <Link
-                  key={url}
                   href={url}
                   className={clsx(
                     "text-white/90 px-5 py-1.5 flex items-center",
@@ -57,7 +57,7 @@ export default function PageHeading({ region, children, className, extraCrumb, h
                   {name}
                 </Link>
                 {!isLast && <Icon />}
-              </>
+              </React.Fragment>
             );
           })}
         </nav>

@@ -105,7 +105,7 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { region: regionCode } = query as Params;
 
-  const region = await getRegion(regionCode);
+  const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
   const data = (await getRegionInfo(region.code)) || null;
