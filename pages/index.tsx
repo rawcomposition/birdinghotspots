@@ -15,11 +15,11 @@ import { Hotspot as HotspotType, Region } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 
 type Props = {
-  regions: Region[];
+  northAmericaRegions: Region[];
   featured: HotspotType[];
 };
 
-export default function Home({ featured, regions }: Props) {
+export default function Home({ featured, northAmericaRegions }: Props) {
   return (
     <>
       <Title />
@@ -30,7 +30,7 @@ export default function Home({ featured, regions }: Props) {
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
-            {regions.map((country) => (
+            {northAmericaRegions.map((country) => (
               <React.Fragment key={country.code}>
                 <Link href={`/region/${country.code}`} className="text-gray-700">
                   <h3 className="text-lg mb-4 font-bold">{country.name}</h3>
@@ -46,6 +46,12 @@ export default function Home({ featured, regions }: Props) {
                 )}
               </React.Fragment>
             ))}
+            <h3 className="text-lg mb-4 font-bold">Worldwide</h3>
+            <div className="columns-2 lg:columns-3 mb-12">
+              <Link href={`/region/NA`} className="font-bold px-2 py-1 text-base mb-1 block">
+                Namibia
+              </Link>
+            </div>
           </section>
           <section>
             <div className="bg-gray-100 p-4 mt-10">
@@ -191,7 +197,9 @@ export const getStaticProps = async () => {
     };
   });
 
+  const northAmericaRegions = Regions.filter(({ code }) => ["US", "CA"].includes(code));
+
   return {
-    props: { featured: formatted, regions: Regions },
+    props: { featured: formatted, northAmericaRegions },
   };
 };
