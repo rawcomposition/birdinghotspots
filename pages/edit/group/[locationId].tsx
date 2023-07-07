@@ -8,7 +8,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getGroupByLocationId } from "lib/mongo";
-import { formatMarker } from "lib/helpers";
+import { formatMarker, canEdit } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
@@ -151,11 +151,10 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
 
   const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
 
-  const { role, regions } = token;
-  const canEdit =
-    isNew || role === "admin" || data?.stateCodes?.filter((it: string) => regions?.includes(it)).length > 0;
+  const { role } = token;
+  const canEditGroup = isNew || role === "admin" || canEdit(token, data?.stateCodes);
 
-  if (!canEdit) {
+  if (!canEditGroup) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }

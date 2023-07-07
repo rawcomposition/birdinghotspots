@@ -70,7 +70,6 @@ export default function Hotspot({
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot" });
   const { open } = useModal();
   const reload = useReloadProps();
-  const countrySlug = countryCode?.toLowerCase();
   let extraLinks = [];
 
   if (iba) {
@@ -96,7 +95,9 @@ export default function Hotspot({
 
   const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];
 
-  const canEdit = user?.role === "admin" || user?.regions?.includes(stateCode);
+  const canEdit =
+    user?.role === "admin" ||
+    !!user.regions?.some((it: string) => countyCode?.startsWith(it) || stateCode?.startsWith(it));
 
   const base = region?.portal ? `https://ebird.org/${region?.portal}` : "https://ebird.org";
 

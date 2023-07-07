@@ -196,8 +196,8 @@ export const canEdit = (token: Token, region: string | string[]) => {
   if (!region || token?.role !== "editor") return false;
 
   if (typeof region === "string") {
-    return !!token.regions?.includes(region);
+    return !!token.regions?.some((it: string) => region.startsWith(it));
   }
 
-  return region?.filter((it: string) => token.regions?.includes(it)).length > 0;
+  return region?.filter((it: string) => !!token.regions?.some((region: string) => region.startsWith(it))).length > 0;
 };

@@ -78,7 +78,6 @@ export type Hotspot = {
   countryCode: string;
   stateCode: string;
   countyCode?: string;
-  countySlug: string;
   about?: string;
   tips?: string;
   birds?: string;

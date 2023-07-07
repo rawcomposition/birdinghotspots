@@ -76,12 +76,6 @@ export default function Drive({ region, name, description, mapId, entries, image
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  countrySlug: string;
-  stateSlug: string;
-  slug: string;
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
   const slug = query.slug as string;

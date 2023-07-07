@@ -125,11 +125,6 @@ export default function AlphabeticalIndex({ region, hotspots }: Props) {
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  stateSlug: string;
-  countrySlug: string;
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
   const region = getRegion(regionCode);

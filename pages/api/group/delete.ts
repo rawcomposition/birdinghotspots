@@ -3,6 +3,7 @@ import Hotspot from "models/Hotspot";
 import Group from "models/Group";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
 export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
@@ -10,8 +11,7 @@ export default secureApi(async (req, res, token) => {
   await connect();
   const group = await Group.findById(id);
 
-  const canEdit = group?.stateCodes?.filter((it: string) => token.regions?.includes(it)).length > 0;
-  if (!token.isAdmin && !canEdit) {
+  if (!token.isAdmin && !canEdit(token, group.stateCodes)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }

@@ -11,7 +11,7 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { formatMarker, getShortName } from "lib/helpers";
+import { formatMarker, getShortName, canEdit } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
@@ -51,7 +51,9 @@ export default function Group({
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "group" });
   const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
-  const canEdit = user?.role === "admin" || stateCodes.filter((it) => user?.regions?.includes(it)).length > 0;
+  const canEditGroup =
+    user?.role === "admin" ||
+    stateCodes?.filter((it: string) => !!user.regions?.some((region: string) => region.startsWith(it))).length > 0;
 
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
@@ -64,8 +66,8 @@ export default function Group({
       <Title>{region.detailedName}</Title>
       <PageHeading region={region}>{name}</PageHeading>
       <EditorActions className="font-medium -mt-10">
-        {canEdit && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
-        {canEdit && (
+        {canEditGroup && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
+        {canEditGroup && (
           <DeleteBtn url={`/api/group/delete?id=${_id}`} entity="group" className="ml-auto">
             Delete Group
           </DeleteBtn>
