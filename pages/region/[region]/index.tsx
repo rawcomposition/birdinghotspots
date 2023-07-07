@@ -294,6 +294,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }));
 
   return {
-    props: { region, info, articles, hasSubregions, hotspots: formattedHotspots },
+    props: { key: region.code, region, info, articles, hasSubregions, hotspots: formattedHotspots },
   };
 };
