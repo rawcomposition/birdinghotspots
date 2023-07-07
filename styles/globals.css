@@ -376,6 +376,8 @@ img.marker-sm {
 
 .state-map path {
   @apply fill-slate-200;
+  stroke-width: 1;
+  stroke: #fff;
 }
 
 .state-map .disabled path {
