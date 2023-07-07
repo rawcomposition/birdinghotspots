@@ -449,12 +449,9 @@ export type Region = {
   code: string;
   name: string;
   detailedName: string;
+  longName?: string;
   altName?: string;
-  subregions?: {
-    code: string;
-    name: string;
-    longName?: string;
-  }[];
+  subregions?: Region[];
   parents?: {
     code: string;
     name: string;

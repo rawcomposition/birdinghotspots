@@ -20,6 +20,7 @@ const formatRegion = (region: Omit<Region, "detailedName">): Region => {
 };
 
 export function getRegion(code: string): Region | null {
+  const regions = Regions as Region[];
   const pieces = code.split("-");
 
   if (pieces.length === 3) {
@@ -28,7 +29,7 @@ export function getRegion(code: string): Region | null {
     const stateCode = `${pieces[0]}-${pieces[1]}`;
     const countyCode = code;
 
-    const country = Regions.find((it) => it.code === countryCode);
+    const country = regions.find((it) => it.code === countryCode);
     if (!country) return null;
     const state = country.subregions?.find((it) => it.code === stateCode);
     if (!state) return null;
@@ -73,7 +74,7 @@ export function getRegion(code: string): Region | null {
     // Country
     const countryCode = code;
 
-    const country = Regions.find((it) => it.code === countryCode);
+    const country = Regions.find((it) => it.code === countryCode) as Region;
     if (!country) return null;
 
     return formatRegion({
