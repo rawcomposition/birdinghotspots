@@ -1,6 +1,7 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import Head from "next/head";
 import { getRegion } from "lib/localData";
 import RareBirds from "components/RareBirds";
 import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive } from "lib/types";
@@ -73,6 +74,9 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${name}`}</Title>
+      <Head>
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
+      </Head>
       <PageHeading region={region} hideCurrent>
         {hasSubregions ? `${name} Birding Hotspots` : name}
         {subheading && (
