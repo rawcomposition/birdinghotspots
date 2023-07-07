@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from "next/link";
 import connect from "lib/mongo";
 import Pageview from "models/Pageview";
 import PageHeading from "components/PageHeading";
@@ -7,7 +6,6 @@ import { GetServerSideProps } from "next";
 import { State } from "lib/types";
 import dayjs from "dayjs";
 import Title from "components/Title";
-import States from "data/states.json";
 import { useRouter } from "next/router";
 import Form from "components/Form";
 import Select from "components/Select";
@@ -56,7 +54,7 @@ export default function Analytics({ data, year, month }: Props) {
   return (
     <div className="container pb-16 mt-12">
       <Title>Pageview Analytics</Title>
-      <PageHeading breadcrumbs={false}>Pageview Analytics</PageHeading>
+      <PageHeading>Pageview Analytics</PageHeading>
 
       <Form form={form} className="grid gap-4 max-w-xs grid-cols-2 -mt-8 mb-8" onSubmit={() => {}}>
         <Select name="year" label="Year" options={yearOptions} onChange={handleYearChange} />

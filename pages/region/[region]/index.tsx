@@ -8,7 +8,7 @@ import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
 import Title from "components/Title";
-import StateMap from "components/StateMap";
+import RegionMap from "components/RegionMap";
 import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon } from "@heroicons/react/24/outline";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import TopHotspots from "components/TopHotspots";
@@ -135,7 +135,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             </div>
             {view === "map" ? (
               <div className="flex justify-center items-start">
-                <StateMap regionCode={code} />
+                <RegionMap regionCode={code} />
               </div>
             ) : (
               <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">

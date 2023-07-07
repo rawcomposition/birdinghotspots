@@ -9,7 +9,6 @@ import FormError from "components/FormError";
 import Form from "components/Form";
 import Field from "components/Field";
 import Select from "components/Select";
-import StateSelect from "components/StateSelect";
 import { useForm, SubmitHandler } from "react-hook-form";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { useRouter } from "next/router";
@@ -100,7 +99,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
             </Field>
             {role === "editor" && (
               <Field label="Region Access">
-                <StateSelect name="regions" required isMulti />
+                <RegionSelect name="regions" required isMulti />
                 <FormError name="marketIds" />
               </Field>
             )}

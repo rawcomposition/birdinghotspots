@@ -1,4 +1,3 @@
-import { State } from "lib/types";
 import { Menu } from "@headlessui/react";
 import BarChart from "icons/BarChart";
 

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import States from "data/states.json";
+import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
 
 const getHotspotsForRegion = async (region: string) => {
@@ -108,13 +108,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
   await connect();
   try {
-    const activeStates = States.filter((state) => state.active);
-
     const dates: DateType[] = [];
     await Promise.all(
-      activeStates.map(async (state: any) => {
+      SyncRegions.map(async (code: any) => {
         const result = await Logs.findOne({
-          message: { $regex: new RegExp(`^synced ${state.code}`), $options: "i" },
+          message: { $regex: new RegExp(`^synced ${code}`), $options: "i" },
         }).sort({
           createdAt: -1,
         });

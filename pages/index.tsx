@@ -1,8 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import States from "data/states.json";
-import Countries from "data/countries.json";
+import Regions from "data/regions.json";
 import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
@@ -12,14 +11,15 @@ import Hotspot from "models/Hotspot";
 import Settings from "models/Settings";
 import { getRegion } from "lib/localData";
 import connect from "lib/mongo";
-import { Hotspot as HotspotType } from "lib/types";
+import { Hotspot as HotspotType, Region } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 
 type Props = {
+  regions: Region[];
   featured: HotspotType[];
 };
 
-export default function Home({ featured }: Props) {
+export default function Home({ featured, regions }: Props) {
   return (
     <>
       <Title />
@@ -30,18 +30,20 @@ export default function Home({ featured }: Props) {
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
-            {Countries.map((country) => (
+            {regions.map((country) => (
               <React.Fragment key={country.code}>
                 <Link href={`/region/${country.code}`} className="text-gray-700">
-                  <h3 className="text-lg mb-4 font-bold">{country.label}</h3>
+                  <h3 className="text-lg mb-4 font-bold">{country.name}</h3>
                 </Link>
-                <div className="columns-2 lg:columns-3 mb-12">
-                  {States.filter((state) => state.active && state.country === country.code).map(({ label, code }) => (
-                    <Link key={code} href={`/region/${code}`} className="font-bold px-2 py-1 text-base mb-1 block">
-                      {label}
-                    </Link>
-                  ))}
-                </div>
+                {!!country.subregions?.length && (
+                  <div className="columns-2 lg:columns-3 mb-12">
+                    {country.subregions.map(({ name, code }) => (
+                      <Link key={code} href={`/region/${code}`} className="font-bold px-2 py-1 text-base mb-1 block">
+                        {name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </React.Fragment>
             ))}
           </section>
@@ -190,6 +192,6 @@ export const getStaticProps = async () => {
   });
 
   return {
-    props: { featured: formatted },
+    props: { featured: formatted, regions: Regions },
   };
 };

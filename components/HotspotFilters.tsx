@@ -1,7 +1,7 @@
 import { Menu } from "@headlessui/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 
 export const filters = [

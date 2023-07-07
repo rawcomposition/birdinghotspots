@@ -2,7 +2,6 @@ import DashboardPage from "components/DashboardPage";
 import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { getImgStats, getDeletedHotspots } from "lib/mongo";
-import States from "data/states.json";
 import { Hotspot } from "lib/types";
 
 type Props = {
