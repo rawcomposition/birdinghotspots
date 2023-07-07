@@ -57,7 +57,7 @@ export default function Contact() {
   return (
     <div className="container pb-16 mt-12">
       <Title>Contact Us</Title>
-      <PageHeading breadcrumbs={false}>Contact Us</PageHeading>
+      <PageHeading>Contact Us</PageHeading>
 
       <Form form={form} onSubmit={handleSubmit}>
         <div className="max-w-2xl mx-auto">

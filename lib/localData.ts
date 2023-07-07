@@ -40,6 +40,7 @@ export function getRegion(code: string): Region | null {
       ...county,
       features: state.features || [],
       ...(state.portal ? { portal: state.portal } : {}),
+      longName: county.longName || `${county.name} County`,
       parents: [
         {
           code: state.code,
@@ -63,6 +64,7 @@ export function getRegion(code: string): Region | null {
 
     return formatRegion({
       ...state,
+      longName: state.name,
       parents: [
         {
           code: country.code,
@@ -79,6 +81,7 @@ export function getRegion(code: string): Region | null {
 
     return formatRegion({
       ...country,
+      longName: country.name,
       subregions: country.subregions?.map(({ subregions, ...rest }) => rest),
     });
   }

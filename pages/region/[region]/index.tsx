@@ -37,7 +37,7 @@ type Props = {
 export default function RegionPage({ region, info, articles, hotspots, hasSubregions }: Props) {
   const [view, setView] = React.useState<string>("map");
   const { open } = useModal();
-  const { code, name, portal, subregions, subheading } = region;
+  const { code, name, longName, portal, subregions, subheading } = region;
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
 
   const regionPieces = code.split("-");
@@ -81,12 +81,12 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Birding in ${name}`}</Title>
+      <Title>{`Birding in ${longName}`}</Title>
       <Head>
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN}/social-banner.jpg`} />
       </Head>
       <PageHeading region={region} hideCurrent>
-        {hasSubregions ? `${name} Birding Hotspots` : name}
+        {hasSubregions ? `${longName} Birding Hotspots` : longName}
         {subheading && (
           <>
             <br />
@@ -97,7 +97,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
       {hasSubregions ? (
         <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
           <section>
-            <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {name}</h3>
+            <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {longName}</h3>
             <div className="flex gap-2 mt-2 mb-4">
               <RegionLinksBtn region={region} />
               <div className="inline-flex gap-2">
