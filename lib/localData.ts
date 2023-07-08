@@ -2,6 +2,7 @@ import { Region, Drive, Hotspot, City } from "lib/types";
 import USCities from "data/cities/us.json";
 import CACities from "data/cities/ca.json";
 import Regions from "data/regions.json";
+import { get } from "http";
 
 const formatRegion = (region: Omit<Region, "detailedName">): Region => {
   let detailedName = region.name;
@@ -168,9 +169,15 @@ export function getCityBySlug(stateCode: string, slug: string): City | null {
 export function getCities(stateCode: string): City[] {
   const countryCities = cityArrays[stateCode.slice(0, 2)];
   if (!countryCities) return [];
+
   return countryCities.filter((city: City) => city.state === stateCode);
 }
 
 export function getAllCities(): City[] {
-  return Object.values(cityArrays).flat() as City[];
+  const cities = Object.values(cityArrays).flat() as City[];
+  const usStateCodes = Regions.find((it) => it.code === "US")?.subregions?.map((it) => it.code) || [];
+  const caStateCodes = Regions.find((it) => it.code === "CA")?.subregions?.map((it) => it.code) || [];
+  const activeStateCodes = [...usStateCodes, ...caStateCodes];
+  const filteredCities = cities.filter((city) => activeStateCodes.includes(city.state));
+  return filteredCities;
 }
