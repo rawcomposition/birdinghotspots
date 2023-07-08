@@ -65,6 +65,7 @@ export default function InviteEditor({ onSuccess }: Props) {
           menuPortalTarget={document.body}
           required
           isMulti
+          syncRegionsOnly
         />
       </Field>
       <Field label="Region Subscription">

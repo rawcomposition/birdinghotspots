@@ -23,7 +23,10 @@ type UserInput = {
   role: string;
   name: string;
   email: string;
-  regions: string[];
+  regions?: {
+    label: string;
+    value: string;
+  }[];
   subscriptions?: {
     label: string;
     value: string;
@@ -37,20 +40,24 @@ type Props = {
     label: string;
     value: string;
   }[];
+  regions: {
+    label: string;
+    value: string;
+  }[];
   emailFrequency: string;
 };
 
 const roleOptions = roles.map(({ id, name }) => ({ value: id, label: name }));
 
-export default function Edit({ user, subscriptions, emailFrequency }: Props) {
+export default function Edit({ user, subscriptions, regions, emailFrequency }: Props) {
   const router = useRouter();
   const form = useForm<UserInput>({
     defaultValues: {
       name: user.displayName,
       email: user.email,
       role: user.role,
-      regions: user.regions || [],
-      subscriptions: subscriptions,
+      regions,
+      subscriptions,
       emailFrequency,
     },
   });
@@ -65,6 +72,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
         data: {
           ...data,
           subscriptions: data?.subscriptions?.map((it) => it.value) || [],
+          regions: data?.regions?.map((it) => it.value) || [],
         },
       },
     });
@@ -99,7 +107,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
             </Field>
             {role === "editor" && (
               <Field label="Region Access">
-                <RegionSelect name="regions" required isMulti />
+                <RegionSelect name="regions" required isMulti syncRegionsOnly />
                 <FormError name="marketIds" />
               </Field>
             )}
@@ -145,6 +153,12 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
         value: it,
       })) || [];
 
+    const regions =
+      customClaims?.regions?.map((it: string) => ({
+        label: getRegion(it)?.detailedName || it,
+        value: it,
+      })) || [];
+
     return {
       props: {
         user: {
@@ -152,9 +166,9 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
           email,
           displayName: displayName || null,
           role: customClaims?.role || null,
-          regions: customClaims?.regions || [],
         },
         subscriptions,
+        regions,
         emailFrequency: profile?.emailFrequency || "daily",
       },
     };

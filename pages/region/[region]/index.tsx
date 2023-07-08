@@ -25,6 +25,7 @@ import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
 import useLogPageview from "hooks/useLogPageview";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   region: Region;
@@ -94,6 +95,12 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
           </>
         )}
       </PageHeading>
+      <EditorActions className="-mt-10" requireRegion={code}>
+        <Link href={`/edit/group/new?country=${countryCode}`} className="flex gap-1">
+          <PlusCircleIcon className="h-4 w-4" />
+          Add Group
+        </Link>
+      </EditorActions>
       {hasSubregions ? (
         <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
           <section>
