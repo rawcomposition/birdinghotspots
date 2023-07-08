@@ -2,7 +2,6 @@ import { Region, Drive, Hotspot, City } from "lib/types";
 import USCities from "data/cities/us.json";
 import CACities from "data/cities/ca.json";
 import Regions from "data/regions.json";
-import { get } from "http";
 
 const formatRegion = (region: Omit<Region, "detailedName">): Region => {
   let detailedName = region.name;
@@ -98,13 +97,13 @@ type DriveMap = {
 
 export async function restructureDrivesByCounty(drives: Drive[], regionCode: string) {
   let drivesByCounty: DriveMap = {};
-  drives.forEach(({ counties, slug, name }) => {
+  drives.forEach(({ counties, locationId, name }) => {
     counties.forEach((countyCode) => {
       if (!countyCode) return;
       if (!drivesByCounty[countyCode]) {
         drivesByCounty[countyCode] = [];
       }
-      drivesByCounty[countyCode].push({ name, url: `/region/${regionCode}/drives/${slug}` });
+      drivesByCounty[countyCode].push({ name, url: `/drive/${locationId}` });
     });
   });
 

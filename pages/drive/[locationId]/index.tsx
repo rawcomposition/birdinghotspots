@@ -1,8 +1,7 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
-import { getDriveBySlug } from "lib/mongo";
+import { getDriveByLocationId } from "lib/mongo";
 import { getRegion } from "lib/localData";
 import { Drive as DriveType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
@@ -15,7 +14,7 @@ interface Props extends DriveType {
   region: Region;
 }
 
-export default function Drive({ region, name, description, mapId, entries, images, _id }: Props) {
+export default function Drive({ region, name, description, mapId, entries, images, locationId, _id }: Props) {
   const [rendered, isRendered] = React.useState(false);
   React.useEffect(() => {
     isRendered(true);
@@ -27,7 +26,7 @@ export default function Drive({ region, name, description, mapId, entries, image
         {name}
       </PageHeading>
       <EditorActions className="-mt-12" requireRegion={region.code}>
-        <Link href={`/region/${region.code}/drives/edit/${_id}`}>Edit Drive</Link>
+        <Link href={`/drive/${locationId}/edit`}>Edit Drive</Link>
         <DeleteBtn url={`/api/drive/delete?id=${_id}`} entity="drive" className="ml-auto">
           Delete Drive
         </DeleteBtn>
@@ -77,14 +76,12 @@ export default function Drive({ region, name, description, mapId, entries, image
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const regionCode = query.region as string;
-  const slug = query.slug as string;
-  const region = getRegion(regionCode);
-  const isState = regionCode.split("-").length === 2;
-  if (!region || !isState) return { notFound: true };
+  const locationId = query.locationId as string;
 
-  const data = await getDriveBySlug(region.code, slug);
+  const data = await getDriveByLocationId(locationId);
   if (!data) return { notFound: true };
+
+  const region = getRegion(data.stateCode || data.countyCode);
 
   const filteredEntries = data.entries.filter((entry: any) => entry.hotspot);
 

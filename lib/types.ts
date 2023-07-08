@@ -131,6 +131,7 @@ export type EbirdHotspot = {
 
 export type Drive = {
   _id?: string;
+  locationId: string;
   name: string;
   countryCode: string;
   stateCode: string;

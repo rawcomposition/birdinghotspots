@@ -4,6 +4,7 @@ import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
+import { generateRandomId } from "lib/helpers";
 
 export default secureApi(async (req, res, token) => {
   const { isNew }: any = req.query;
@@ -18,7 +19,7 @@ export default secureApi(async (req, res, token) => {
     await connect();
     let driveId = id;
     if (isNew === "true") {
-      const newDrive = await Drive.create(data);
+      const newDrive = await Drive.create({ ...data, locationId: `D${generateRandomId()}` });
       driveId = newDrive._id;
     } else {
       await Drive.updateOne({ _id: id }, data);

@@ -165,7 +165,7 @@ export async function getDrivesByState(stateCode: string) {
     {
       stateCode,
     },
-    ["-_id", "name", "slug", "counties"]
+    ["-_id", "locationId", "name", "slug", "counties"]
   )
     .sort({ name: 1 })
     .lean()
@@ -174,9 +174,9 @@ export async function getDrivesByState(stateCode: string) {
   return result;
 }
 
-export async function getDriveBySlug(stateCode: string, slug: string) {
+export async function getDriveByLocationId(locationId: string) {
   await connect();
-  const result = await Drive.findOne({ stateCode, slug })
+  const result = await Drive.findOne({ locationId })
     .populate("entries.hotspot", ["url", "name", "address"])
     .lean()
     .exec();

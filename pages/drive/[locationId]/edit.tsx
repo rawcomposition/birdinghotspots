@@ -7,7 +7,7 @@ import Form from "components/Form";
 import Submit from "components/Submit";
 import Input from "components/Input";
 import CountySelect from "components/CountySelect";
-import { getDriveById } from "lib/mongo";
+import { getDriveByLocationId } from "lib/mongo";
 import AdminPage from "components/AdminPage";
 import { Drive, DriveInputs, Region } from "lib/types";
 import Field from "components/Field";
@@ -107,10 +107,11 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
-  const { id, region: regionCode } = query as Params;
-  const data: Drive = id !== "new" ? await getDriveById(id) : null;
+  const locationId = query.locationId as string;
+  const regionCode = query.region as string;
+  const data: Drive = locationId !== "new" ? await getDriveByLocationId(locationId) : null;
 
-  const region = getRegion(regionCode);
+  const region = getRegion(data ? data.stateCode || data.countryCode : regionCode);
   const isState = region?.code?.split("-").length === 2;
   if (!region || !isState) return { notFound: true };
 

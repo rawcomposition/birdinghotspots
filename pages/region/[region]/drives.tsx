@@ -19,7 +19,7 @@ export default function Drives({ region, drives }: Props) {
       <Title>{`Birding Drives - ${region.detailedName}`}</Title>
       <PageHeading region={region}>Birding Drives</PageHeading>
       <EditorActions className="-mt-12" requireRegion={region.code}>
-        <Link href={`/region/${region.code}/drives/edit/new`}>Add Drive</Link>
+        <Link href={`/drive/new/edit?region=${region.code}`}>Add Drive</Link>
       </EditorActions>
       <div className="md:flex gap-8 items-start mb-8">
         <div>
