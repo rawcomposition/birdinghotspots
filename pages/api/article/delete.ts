@@ -9,7 +9,7 @@ export default secureApi(async (req, res, token) => {
   await connect();
   const article = await Article.findById(id);
 
-  if (!canEdit(token, article?.stateCode)) {
+  if (!canEdit(token, article?.stateCode || article?.countryCode)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 

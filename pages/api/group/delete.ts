@@ -11,7 +11,7 @@ export default secureApi(async (req, res, token) => {
   await connect();
   const group = await Group.findById(id);
 
-  if (!token.isAdmin && !canEdit(token, group.stateCodes)) {
+  if (!token.isAdmin && !canEdit(token, group.stateCodes.length > 0 ? group.stateCodes : group.countryCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }

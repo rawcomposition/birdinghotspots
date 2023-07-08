@@ -152,7 +152,8 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
 
   const { role } = token;
-  const canEditGroup = isNew || role === "admin" || canEdit(token, data?.stateCodes);
+  const canEditGroup =
+    isNew || role === "admin" || canEdit(token, !!data?.stateCodes?.length ? data.stateCodes[0] : countryCode);
 
   if (!canEditGroup) {
     res.statusCode = 403;

@@ -4,6 +4,7 @@ import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
+import dayjs from "dayjs";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
@@ -19,7 +20,7 @@ export default secureApi(async (req, res, token) => {
     }
   });
 
-  if (!canEdit(token, data?.stateCodes)) {
+  if (!canEdit(token, !!data?.stateCodes?.length ? data.stateCodes : data.countryCode)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
@@ -28,8 +29,9 @@ export default secureApi(async (req, res, token) => {
     const group = await Group.findOne({ _id: id }, ["-_id", "hotspots"]);
     const removedHotspots = group.hotspots.filter((it: string) => !data.hotspots.includes(it.toString()));
 
+    const updatedAt = dayjs().format();
     await Promise.all([
-      await Group.updateOne({ _id: id }, { ...data, stateCodes, countyCodes }),
+      await Group.updateOne({ _id: id }, { ...data, stateCodes, countyCodes, updatedAt }),
       await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: id } }),
       await Hotspot.updateMany({ _id: { $in: removedHotspots } }, { $pull: { groupIds: id } }),
     ]);

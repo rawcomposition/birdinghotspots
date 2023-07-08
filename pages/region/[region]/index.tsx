@@ -20,7 +20,7 @@ import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
-import { getArticlesByRegion, getRegionInfo, getHotspotsByCounty } from "lib/mongo";
+import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion } from "lib/mongo";
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
@@ -180,6 +180,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             <div>
               <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {name}</h3>
               <div className="flex gap-2 mt-2 mb-4">
+                <RegionLinksBtn region={region} />
                 <div className="inline-flex gap-2">
                   {/*Grouped to prevent the last button from wrapping on its own*/}
                   <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
@@ -261,7 +262,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
               ?
             </button>
           </Heading>
-          <EditorActions className="-mt-2">
+          <EditorActions className="-mt-2" requireRegion={code}>
             <Link href={`/region/${code}/edit-info`} className="flex gap-1">
               <PencilSquareIcon className="h-4 w-4" />
               Edit Links
@@ -305,7 +306,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const info = hasSubregions ? await getRegionInfo(regionCode) : null;
   const articles = hasSubregions ? (await getArticlesByRegion(regionCode)) || [] : [];
 
-  const hotspots = !hasSubregions ? (await getHotspotsByCounty(regionCode)) || [] : [];
+  const hotspots = !hasSubregions ? (await getHotspotsByRegion(regionCode)) || [] : [];
 
   const formattedHotspots = hotspots.map((it: any) => ({
     ...it,

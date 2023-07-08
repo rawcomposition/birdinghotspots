@@ -9,7 +9,7 @@ export default secureApi(async (req, res, token) => {
   const { isNew }: any = req.query;
   const { data, id } = req.body;
 
-  if (!canEdit(token, data.stateCode)) {
+  if (!canEdit(token, data.stateCode || data.countryCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }

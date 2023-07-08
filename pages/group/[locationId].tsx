@@ -53,7 +53,7 @@ export default function Group({
   const { user } = useUser();
   const canEditGroup =
     user?.role === "admin" ||
-    stateCodes?.filter((it: string) => !!user.regions?.some((region: string) => region.startsWith(it))).length > 0;
+    stateCodes?.filter((it: string) => !!user?.regions?.some((region: string) => region.startsWith(it))).length > 0;
 
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
@@ -63,7 +63,7 @@ export default function Group({
 
   return (
     <div className="container pb-16">
-      <Title>{region.detailedName}</Title>
+      <Title>{name}</Title>
       <PageHeading region={region}>{name}</PageHeading>
       <EditorActions className="font-medium -mt-10">
         {canEditGroup && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}

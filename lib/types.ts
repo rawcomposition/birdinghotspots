@@ -107,6 +107,8 @@ export type Hotspot = {
   groupIds?: string[] | Group[];
   noContent?: boolean;
   needsDeleting?: boolean;
+  createdAt: string;
+  updatedAt?: string;
 };
 
 export type HotspotsByCounty = [
@@ -285,6 +287,7 @@ export type Group = {
   restrooms?: string;
   images?: Image[];
   hotspots: [Hotspot];
+  updatedAt?: string;
 };
 
 export interface GroupInputs extends Group {

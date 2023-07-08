@@ -10,6 +10,7 @@ type Props = {
 export default function RegionLinksBtn({ region }: Props) {
   const { code, features } = region;
   const isState = code.split("-").length === 2;
+  const hasCities = ["US", "CA"].includes(code.split("-")[0]) && isState;
   return (
     <div className="relative inline-block">
       <Menu>
@@ -50,7 +51,7 @@ export default function RegionLinksBtn({ region }: Props) {
           <Menu.Item>
             <Link href={`/region/${code}/group-index`}>Group Locations</Link>
           </Menu.Item>
-          {isState && (
+          {hasCities && (
             <Menu.Item>
               <Link href={`/region/${code}/cities`}>Cities/Towns</Link>
             </Menu.Item>

@@ -97,7 +97,7 @@ export default function Hotspot({
 
   const canEdit =
     user?.role === "admin" ||
-    !!user.regions?.some((it: string) => countyCode?.startsWith(it) || stateCode?.startsWith(it));
+    !!user?.regions?.some((it: string) => countyCode?.startsWith(it) || stateCode?.startsWith(it));
 
   const base = region?.portal ? `https://ebird.org/${region?.portal}` : "https://ebird.org";
 

@@ -72,21 +72,11 @@ export async function getHotspotsByRegion(region: string) {
     query = { countryCode: region };
   }
 
-  const result = await Hotspot.find(query, ["name", "url", "iba", "noContent", "needsDeleting", "groupIds"])
-    .sort({ name: 1 })
-    .lean()
-    .exec();
-
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
-
-export async function getHotspotsByCounty(countyCode: string) {
-  await connect();
-  const result = await Hotspot.find({ countyCode }, [
+  const result = await Hotspot.find(query, [
     "name",
+    "drives",
     "url",
     "iba",
-    "drives",
     "noContent",
     "needsDeleting",
     "lat",
