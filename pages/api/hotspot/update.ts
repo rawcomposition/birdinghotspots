@@ -2,11 +2,12 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
 
-  if (!token.isAdmin && !token.regions?.includes(data?.stateCode)) {
+  if (!canEdit(token, data.stateCode || data.countryCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
