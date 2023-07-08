@@ -2,28 +2,6 @@ export type KeyValue = {
   [key: string]: any;
 };
 
-export type State = {
-  label: string;
-  code: string;
-  slug: string;
-  features: string[];
-  portal?: string;
-  coordinates: string;
-  mapZoom: number;
-  country: string;
-  noMap?: boolean;
-  subheading?: string;
-};
-
-export type County = {
-  slug: string;
-  name: string;
-  longName?: string;
-  region: string | null;
-  code: string;
-  regionLabel: string | null;
-};
-
 export type Image = {
   smUrl: string;
   lgUrl: string;

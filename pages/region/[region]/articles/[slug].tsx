@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import { getArticleBySlug } from "lib/mongo";
-import { State, HotspotsByCounty, Article as ArticleType, Region } from "lib/types";
+import { HotspotsByCounty, Article as ArticleType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import EditorActions from "components/EditorActions";
