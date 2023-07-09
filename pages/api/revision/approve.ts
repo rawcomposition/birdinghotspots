@@ -2,6 +2,7 @@ import connect from "lib/mongo";
 import Revision from "models/Revision";
 import Hotspot from "models/Hotspot";
 import secureApi from "lib/secureApi";
+import dayjs from "dayjs";
 
 export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
@@ -31,6 +32,7 @@ export default secureApi(async (req, res, token) => {
 
     const noContent = !about && !tips && !birds && !hikes;
 
+    const updatedAt = dayjs().format();
     await Hotspot.updateOne(
       { locationId: revision.locationId },
       {
@@ -44,6 +46,7 @@ export default secureApi(async (req, res, token) => {
           restrooms,
           accessible,
           fee,
+          updatedAt,
         },
       }
     );

@@ -9,7 +9,7 @@ type Option = {
 
 type Props = {
   name: string;
-  stateCode?: string;
+  regionCode?: string;
   required?: boolean;
   [x: string]: any;
 };
@@ -18,7 +18,7 @@ function formatOptionLabel({ label }: any, { inputValue }: any) {
   return <Highlighter searchWords={[inputValue]} textToHighlight={label} highlightTag="b" />;
 }
 
-export default function HotspotSelect({ name, stateCode, required, ...props }: Props) {
+export default function HotspotSelect({ name, regionCode, required, ...props }: Props) {
   const { control, watch } = useFormContext();
   const value = watch(name);
 
@@ -29,7 +29,7 @@ export default function HotspotSelect({ name, stateCode, required, ...props }: P
     } else if (typeof value === "string") {
       ids = value;
     }
-    const response = await fetch(`/api/hotspot/search?stateCode=${stateCode || ""}&q=${inputValue}&ids=${ids}`);
+    const response = await fetch(`/api/hotspot/search?regionCode=${regionCode || ""}&q=${inputValue}&ids=${ids}`);
     const json = await response.json();
     const options = json.results;
     callback(options || []);

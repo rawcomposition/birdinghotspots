@@ -1,6 +1,6 @@
 import { useFormContext, Controller } from "react-hook-form";
 import ReactSelectStyled from "components/ReactSelectStyled";
-import { getCounties } from "lib/localData";
+import { getRegion } from "lib/localData";
 
 type Props = {
   name: string;
@@ -11,7 +11,8 @@ type Props = {
 
 export default function CountySelect({ name, stateCode, required, ...props }: Props) {
   const { control } = useFormContext();
-  const counties = getCounties(stateCode)?.map(({ code, name }) => ({ value: code, label: name }));
+  const region = getRegion(stateCode);
+  const counties = region?.subregions?.map(({ code, name }) => ({ value: code, label: name })) || [];
   return (
     <Controller
       control={control}

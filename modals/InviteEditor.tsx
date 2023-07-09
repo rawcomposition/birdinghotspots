@@ -7,7 +7,6 @@ import useToast from "hooks/useToast";
 import Input from "components/Input";
 import Form from "components/Form";
 import { useForm, SubmitHandler } from "react-hook-form";
-import StateSelect from "components/StateSelect";
 
 type Props = {
   onSuccess: () => void;
@@ -60,7 +59,14 @@ export default function InviteEditor({ onSuccess }: Props) {
         <Input type="email" name="email" required />
       </Field>
       <Field label="Region Access">
-        <StateSelect name="regions" placeholder="Select regions..." menuPortalTarget={document.body} required isMulti />
+        <RegionSelect
+          name="regions"
+          placeholder="Select regions..."
+          menuPortalTarget={document.body}
+          required
+          isMulti
+          syncRegionsOnly
+        />
       </Field>
       <Field label="Region Subscription">
         <RegionSelect name="subscriptions" menuPortalTarget={document.body} isMulti required />

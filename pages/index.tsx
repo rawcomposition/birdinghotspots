@@ -1,8 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import States from "data/states.json";
-import Countries from "data/countries.json";
+import Regions from "data/regions.json";
 import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
@@ -10,16 +9,17 @@ import Heading from "components/Heading";
 import EditorActions from "components/EditorActions";
 import Hotspot from "models/Hotspot";
 import Settings from "models/Settings";
-import { getLocationText, getStateByCode } from "lib/localData";
+import { getRegion } from "lib/localData";
 import connect from "lib/mongo";
-import { Hotspot as HotspotType } from "lib/types";
+import { Hotspot as HotspotType, Region } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 
 type Props = {
+  northAmericaRegions: Region[];
   featured: HotspotType[];
 };
 
-export default function Home({ featured }: Props) {
+export default function Home({ featured, northAmericaRegions }: Props) {
   return (
     <>
       <Title />
@@ -30,24 +30,28 @@ export default function Home({ featured }: Props) {
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
-            {Countries.map((country) => (
+            {northAmericaRegions.map((country) => (
               <React.Fragment key={country.code}>
-                <h3 className="text-lg mb-4 font-bold">{country.label}</h3>
-                <div className="columns-2 lg:columns-3 mb-12">
-                  {States.filter((state) => state.active && state.country === country.code).map(
-                    ({ label, slug, code }) => (
-                      <Link
-                        key={code}
-                        href={`/${country.code.toLowerCase()}/${slug}`}
-                        className="font-bold px-2 py-1 text-base mb-1 block"
-                      >
-                        {label}
+                <Link href={`/region/${country.code}`} className="text-gray-700">
+                  <h3 className="text-lg mb-4 font-bold">{country.name}</h3>
+                </Link>
+                {!!country.subregions?.length && (
+                  <div className="columns-2 lg:columns-3 mb-12">
+                    {country.subregions.map(({ name, code }) => (
+                      <Link key={code} href={`/region/${code}`} className="font-bold px-2 py-1 text-base mb-1 block">
+                        {name}
                       </Link>
-                    )
-                  )}
-                </div>
+                    ))}
+                  </div>
+                )}
               </React.Fragment>
             ))}
+            <h3 className="text-lg mb-4 font-bold">Worldwide</h3>
+            <div className="columns-2 lg:columns-3 mb-12">
+              <Link href={`/region/NA`} className="font-bold px-2 py-1 text-base mb-1 block">
+                Namibia
+              </Link>
+            </div>
           </section>
           <section>
             <div className="bg-gray-100 p-4 mt-10">
@@ -181,11 +185,11 @@ export const getStaticProps = async () => {
     .sort({ name: 1 })
     .lean()
     .exec();
+
   const formatted = results.map((hotspot) => {
-    const state = getStateByCode(hotspot.stateCode);
-    const locationLine = hotspot.countyCode
-      ? getLocationText(hotspot.countyCode)
-      : `${state?.label}, ${state?.country}`;
+    const regionCode = hotspot.countyCode || hotspot.stateCode;
+    const region = getRegion(regionCode);
+    const locationLine = region ? `${region.detailedName}` : regionCode;
     return {
       ...hotspot,
       _id: hotspot._id.toString(),
@@ -193,7 +197,9 @@ export const getStaticProps = async () => {
     };
   });
 
+  const northAmericaRegions = Regions.filter(({ code }) => ["US", "CA"].includes(code));
+
   return {
-    props: { featured: formatted },
+    props: { featured: formatted, northAmericaRegions },
   };
 };

@@ -7,6 +7,14 @@ const DriveSchema = new Schema({
     type: String,
     required: true,
   },
+  locationId: {
+    type: String,
+    unique: true,
+  },
+  int: {
+    type: Number,
+    unique: true,
+  },
   countryCode: {
     type: String,
     required: true,
@@ -51,6 +59,26 @@ const DriveSchema = new Schema({
 });
 
 DriveSchema.index({ stateCode: 1, name: 1 });
+
+DriveSchema.pre("save", function (next) {
+  if (!this.isNew) {
+    next();
+    return;
+  }
+
+  Drive.findOne({})
+    .sort({ int: -1 })
+    .then((last) => {
+      const lastInt = last?.int || 1001;
+      const newInt = lastInt + 1;
+      this.locationId = `D${newInt}`;
+      this.int = newInt;
+      next();
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 const Drive = models.Drive || model("Drive", DriveSchema);
 

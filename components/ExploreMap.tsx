@@ -70,7 +70,6 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     if (!mapContainer.current) return;
     if (map.current) return;
     if (region && !regionBounds) return;
-    console.log(lat, lng);
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/outdoors-v11",
@@ -81,7 +80,6 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
     map.current.addControl(new mapboxgl.FullscreenControl());
 
     if (regionBounds) {
-      console.log("Fitting to bounds");
       const mapBounds = new mapboxgl.LngLatBounds();
       mapBounds.extend([regionBounds.minX, regionBounds.minY]);
       mapBounds.extend([regionBounds.maxX, regionBounds.maxY]);

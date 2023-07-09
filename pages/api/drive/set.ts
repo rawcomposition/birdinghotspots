@@ -3,12 +3,13 @@ import Drive from "models/Drive";
 import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
 export default secureApi(async (req, res, token) => {
   const { isNew }: any = req.query;
   const { data, id } = req.body;
 
-  if (!token.isAdmin && !token.regions?.includes(data?.stateCode)) {
+  if (!canEdit(token, data.stateCode || data.countryCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
@@ -16,9 +17,11 @@ export default secureApi(async (req, res, token) => {
   try {
     await connect();
     let driveId = id;
+    let locationId = data.locationId;
     if (isNew === "true") {
       const newDrive = await Drive.create(data);
       driveId = newDrive._id;
+      locationId = newDrive.locationId;
     } else {
       await Drive.updateOne({ _id: id }, data);
     }
@@ -47,7 +50,7 @@ export default secureApi(async (req, res, token) => {
       });
     } catch (error) {}
 
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true, locationId });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }

@@ -4,6 +4,7 @@ import Hotspot from "models/Hotspot";
 import { generateRandomId, canEdit } from "lib/helpers";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
+import dayjs from "dayjs";
 
 export default secureApi(async (req, res, token) => {
   const { data } = req.body;
@@ -19,7 +20,7 @@ export default secureApi(async (req, res, token) => {
     }
   });
 
-  if (!canEdit(token, stateCodes)) {
+  if (!canEdit(token, stateCodes.length > 0 ? stateCodes : data.countryCode)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
@@ -27,7 +28,8 @@ export default secureApi(async (req, res, token) => {
     await connect();
     const locationId = data.locationId || `G${generateRandomId()}`;
     const url = `/group/${locationId}`;
-    const group = await Group.create({ ...data, locationId, url, stateCodes, countyCodes });
+    const updatedAt = dayjs().format();
+    const group = await Group.create({ ...data, locationId, url, stateCodes, countyCodes, updatedAt });
     await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: group._id } });
 
     try {

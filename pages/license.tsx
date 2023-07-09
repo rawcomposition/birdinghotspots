@@ -5,7 +5,7 @@ export default function License() {
   return (
     <div className="container pb-16 mt-12">
       <Title>License & Copyright</Title>
-      <PageHeading breadcrumbs={false}>License & Copyright</PageHeading>
+      <PageHeading>License & Copyright</PageHeading>
       <div className="max-w-2xl mx-auto text-lg">
         <p className="mb-4">
           Most photos and content are released into the public domain{" "}

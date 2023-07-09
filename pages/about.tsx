@@ -4,23 +4,20 @@ import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import EbirdDescription from "components/EbirdDescription";
 import admin from "lib/firebaseAdmin";
-import { getStateByCode } from "lib/localData";
-
-type EditorState = {
-  editors: string[];
-  code: string;
-  label: string;
-};
+import { getRegion } from "lib/localData";
 
 type Props = {
-  states: EditorState[];
+  editors: {
+    name: string;
+    regions: string[];
+  }[];
 };
 
-export default function About({ states }: Props) {
+export default function About({ editors }: Props) {
   return (
     <div className="container pb-16 mt-12">
       <Title>About</Title>
-      <PageHeading breadcrumbs={false}>About BirdingHotspots.org</PageHeading>
+      <PageHeading>About BirdingHotspots.org</PageHeading>
       <div className="md:grid grid-cols-2 gap-16">
         <div>
           <p className="mb-4">
@@ -53,12 +50,12 @@ export default function About({ states }: Props) {
         <div>
           <h3 className="text-lg font-bold mb-4">Regional Editors</h3>
           <div className="columns-2">
-            {states?.map(({ code, label, editors }) => (
-              <div key={code} className="mb-4 break-inside-avoid-column">
-                <h4 className="text-base font-bold">{label}</h4>
-                <ul className="ml-2">
-                  {editors.map((editor) => (
-                    <li key={editor}>{editor}</li>
+            {editors?.map(({ name, regions }) => (
+              <div key={name} className="mb-4 break-inside-avoid-column">
+                <h4 className="text-sm font-bold">{name}</h4>
+                <ul className="text-xs">
+                  {regions.map((region) => (
+                    <li key={region}>{region}</li>
                   ))}
                 </ul>
               </div>
@@ -71,8 +68,6 @@ export default function About({ states }: Props) {
 }
 
 export async function getStaticProps() {
-  const states: EditorState[] = [];
-
   const request = await admin.listUsers();
   const editors = request.users
     .filter(({ customClaims }) => customClaims?.role === "editor")
@@ -81,24 +76,14 @@ export async function getStaticProps() {
       regions: customClaims?.regions,
     }));
 
-  editors.forEach(({ displayName, regions }) => {
-    if (!displayName || !regions) return;
-    regions?.forEach((region: string) => {
-      const state = getStateByCode(region);
-      if (state) {
-        const { code, label } = state;
-        const index = states.findIndex((it) => it.code === code);
-        if (index === -1) {
-          states.push({ code, label, editors: [displayName] });
-        } else {
-          states[index].editors.push(displayName);
-        }
-      }
-    });
-  });
+  const formattedEditors = editors.map(({ displayName, regions }) => ({
+    name: displayName,
+    regions: regions.map((code: string) => getRegion(code)?.detailedName)?.filter(Boolean),
+  }));
+
   return {
     props: {
-      states,
+      editors: formattedEditors,
     },
   };
 }

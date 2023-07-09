@@ -11,7 +11,7 @@ export default secureApi(async (req, res, token) => {
   await connect();
   const drive = await Drive.findById(id);
 
-  if (!canEdit(token, drive?.stateCode)) {
+  if (!canEdit(token, drive?.stateCode || drive?.countryCode)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 

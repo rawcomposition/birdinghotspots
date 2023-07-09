@@ -74,6 +74,7 @@ const GroupSchema = new Schema({
     default: () => dayjs().format("YYYY-MM-DD"),
     required: true,
   },
+  updatedAt: String,
 });
 
 GroupSchema.index({ hotspots: 1 });

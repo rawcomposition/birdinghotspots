@@ -2,28 +2,6 @@ export type KeyValue = {
   [key: string]: any;
 };
 
-export type State = {
-  label: string;
-  code: string;
-  slug: string;
-  features: string[];
-  portal?: string;
-  coordinates: string;
-  mapZoom: number;
-  country: string;
-  noMap?: boolean;
-  subheading?: string;
-};
-
-export type County = {
-  slug: string;
-  name: string;
-  longName?: string;
-  region: string | null;
-  code: string;
-  regionLabel: string | null;
-};
-
 export type Image = {
   smUrl: string;
   lgUrl: string;
@@ -78,7 +56,6 @@ export type Hotspot = {
   countryCode: string;
   stateCode: string;
   countyCode?: string;
-  countySlug: string;
   about?: string;
   tips?: string;
   birds?: string;
@@ -108,11 +85,13 @@ export type Hotspot = {
   groupIds?: string[] | Group[];
   noContent?: boolean;
   needsDeleting?: boolean;
+  createdAt: string;
+  updatedAt?: string;
 };
 
 export type HotspotsByCounty = [
   {
-    countySlug: string;
+    countyCode: string;
     countyName: string;
     hotspots: {
       name: string;
@@ -123,7 +102,7 @@ export type HotspotsByCounty = [
 
 export type DrivesByCounty = [
   {
-    countySlug: string;
+    countyCode: string;
     countyName: string;
     drives: {
       name: string;
@@ -152,6 +131,7 @@ export type EbirdHotspot = {
 
 export type Drive = {
   _id?: string;
+  locationId: string;
   name: string;
   countryCode: string;
   stateCode: string;
@@ -191,9 +171,11 @@ export type DriveInputs = {
 
 export type Article = {
   _id?: string;
+  articleId: string;
+  int: number;
   name: string;
   countryCode: string;
-  stateCode: string;
+  stateCode?: string;
   slug: string;
   content: string;
   images?: Image[];
@@ -286,6 +268,7 @@ export type Group = {
   restrooms?: string;
   images?: Image[];
   hotspots: [Hotspot];
+  updatedAt?: string;
 };
 
 export interface GroupInputs extends Group {
@@ -374,8 +357,7 @@ export type RegionInfo = {
 
 export interface FormattedSuggestion extends Revision {
   hasMultiple?: boolean;
-  stateLabel?: string;
-  countyLabel?: string;
+  locationName: string;
   about?: {
     old: string;
     new: string;
@@ -404,7 +386,7 @@ export type Pageview = {
   stateCode?: string;
   countyCode?: string;
   countryCode?: string;
-  entity: "hotspot" | "group" | "county" | "state";
+  entity: "hotspot" | "group" | "county" | "state" | "country";
   year: number;
   month: number;
 };
@@ -437,12 +419,30 @@ export type Token = {
 
 export type City = {
   name: string;
-  state: string;
-  county: string;
+  locationId: string;
+  countryCode: string;
+  stateCode: string;
+  countyName: string;
+  slug: string;
   lat: number;
   lng: number;
   pop: number;
   density: number;
   tz: string;
-  slug: string;
+};
+
+export type Region = {
+  code: string;
+  name: string;
+  detailedName: string;
+  longName?: string;
+  altName?: string;
+  subregions?: Region[];
+  parents?: {
+    code: string;
+    name: string;
+  }[];
+  features?: string[];
+  portal?: string;
+  subheading?: string;
 };

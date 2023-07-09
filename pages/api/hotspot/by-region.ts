@@ -4,9 +4,16 @@ import Hotspot from "models/Hotspot";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { region, limit, offset, images, content, features }: any = req.query;
-  const isCounty = region.split("-").length === 3;
 
-  let query: any = isCounty ? { countyCode: region } : { stateCode: region };
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    query = { countryCode: region };
+  }
 
   if (images === "Yes") {
     query.featuredImg = { $exists: true };

@@ -1,0 +1,7150 @@
+[
+  {
+    "code": "US",
+    "name": "United States"
+  },
+  {
+    "code": "US-AL",
+    "name": "Alabama, US"
+  },
+  {
+    "code": "US-AL-001",
+    "name": "Autauga, Alabama, US"
+  },
+  {
+    "code": "US-AL-003",
+    "name": "Baldwin, Alabama, US"
+  },
+  {
+    "code": "US-AL-005",
+    "name": "Barbour, Alabama, US"
+  },
+  {
+    "code": "US-AL-007",
+    "name": "Bibb, Alabama, US"
+  },
+  {
+    "code": "US-AL-009",
+    "name": "Blount, Alabama, US"
+  },
+  {
+    "code": "US-AL-011",
+    "name": "Bullock, Alabama, US"
+  },
+  {
+    "code": "US-AL-013",
+    "name": "Butler, Alabama, US"
+  },
+  {
+    "code": "US-AL-015",
+    "name": "Calhoun, Alabama, US"
+  },
+  {
+    "code": "US-AL-017",
+    "name": "Chambers, Alabama, US"
+  },
+  {
+    "code": "US-AL-019",
+    "name": "Cherokee, Alabama, US"
+  },
+  {
+    "code": "US-AL-021",
+    "name": "Chilton, Alabama, US"
+  },
+  {
+    "code": "US-AL-023",
+    "name": "Choctaw, Alabama, US"
+  },
+  {
+    "code": "US-AL-025",
+    "name": "Clarke, Alabama, US"
+  },
+  {
+    "code": "US-AL-027",
+    "name": "Clay, Alabama, US"
+  },
+  {
+    "code": "US-AL-029",
+    "name": "Cleburne, Alabama, US"
+  },
+  {
+    "code": "US-AL-031",
+    "name": "Coffee, Alabama, US"
+  },
+  {
+    "code": "US-AL-033",
+    "name": "Colbert, Alabama, US"
+  },
+  {
+    "code": "US-AL-035",
+    "name": "Conecuh, Alabama, US"
+  },
+  {
+    "code": "US-AL-037",
+    "name": "Coosa, Alabama, US"
+  },
+  {
+    "code": "US-AL-039",
+    "name": "Covington, Alabama, US"
+  },
+  {
+    "code": "US-AL-041",
+    "name": "Crenshaw, Alabama, US"
+  },
+  {
+    "code": "US-AL-043",
+    "name": "Cullman, Alabama, US"
+  },
+  {
+    "code": "US-AL-045",
+    "name": "Dale, Alabama, US"
+  },
+  {
+    "code": "US-AL-047",
+    "name": "Dallas, Alabama, US"
+  },
+  {
+    "code": "US-AL-049",
+    "name": "DeKalb, Alabama, US"
+  },
+  {
+    "code": "US-AL-051",
+    "name": "Elmore, Alabama, US"
+  },
+  {
+    "code": "US-AL-053",
+    "name": "Escambia, Alabama, US"
+  },
+  {
+    "code": "US-AL-055",
+    "name": "Etowah, Alabama, US"
+  },
+  {
+    "code": "US-AL-057",
+    "name": "Fayette, Alabama, US"
+  },
+  {
+    "code": "US-AL-059",
+    "name": "Franklin, Alabama, US"
+  },
+  {
+    "code": "US-AL-061",
+    "name": "Geneva, Alabama, US"
+  },
+  {
+    "code": "US-AL-063",
+    "name": "Greene, Alabama, US"
+  },
+  {
+    "code": "US-AL-065",
+    "name": "Hale, Alabama, US"
+  },
+  {
+    "code": "US-AL-067",
+    "name": "Henry, Alabama, US"
+  },
+  {
+    "code": "US-AL-069",
+    "name": "Houston, Alabama, US"
+  },
+  {
+    "code": "US-AL-071",
+    "name": "Jackson, Alabama, US"
+  },
+  {
+    "code": "US-AL-073",
+    "name": "Jefferson, Alabama, US"
+  },
+  {
+    "code": "US-AL-075",
+    "name": "Lamar, Alabama, US"
+  },
+  {
+    "code": "US-AL-077",
+    "name": "Lauderdale, Alabama, US"
+  },
+  {
+    "code": "US-AL-079",
+    "name": "Lawrence, Alabama, US"
+  },
+  {
+    "code": "US-AL-081",
+    "name": "Lee, Alabama, US"
+  },
+  {
+    "code": "US-AL-083",
+    "name": "Limestone, Alabama, US"
+  },
+  {
+    "code": "US-AL-085",
+    "name": "Lowndes, Alabama, US"
+  },
+  {
+    "code": "US-AL-087",
+    "name": "Macon, Alabama, US"
+  },
+  {
+    "code": "US-AL-089",
+    "name": "Madison, Alabama, US"
+  },
+  {
+    "code": "US-AL-091",
+    "name": "Marengo, Alabama, US"
+  },
+  {
+    "code": "US-AL-093",
+    "name": "Marion, Alabama, US"
+  },
+  {
+    "code": "US-AL-095",
+    "name": "Marshall, Alabama, US"
+  },
+  {
+    "code": "US-AL-097",
+    "name": "Mobile, Alabama, US"
+  },
+  {
+    "code": "US-AL-099",
+    "name": "Monroe, Alabama, US"
+  },
+  {
+    "code": "US-AL-101",
+    "name": "Montgomery, Alabama, US"
+  },
+  {
+    "code": "US-AL-103",
+    "name": "Morgan, Alabama, US"
+  },
+  {
+    "code": "US-AL-105",
+    "name": "Perry, Alabama, US"
+  },
+  {
+    "code": "US-AL-107",
+    "name": "Pickens, Alabama, US"
+  },
+  {
+    "code": "US-AL-109",
+    "name": "Pike, Alabama, US"
+  },
+  {
+    "code": "US-AL-111",
+    "name": "Randolph, Alabama, US"
+  },
+  {
+    "code": "US-AL-113",
+    "name": "Russell, Alabama, US"
+  },
+  {
+    "code": "US-AL-117",
+    "name": "Shelby, Alabama, US"
+  },
+  {
+    "code": "US-AL-115",
+    "name": "St. Clair, Alabama, US"
+  },
+  {
+    "code": "US-AL-119",
+    "name": "Sumter, Alabama, US"
+  },
+  {
+    "code": "US-AL-121",
+    "name": "Talladega, Alabama, US"
+  },
+  {
+    "code": "US-AL-123",
+    "name": "Tallapoosa, Alabama, US"
+  },
+  {
+    "code": "US-AL-125",
+    "name": "Tuscaloosa, Alabama, US"
+  },
+  {
+    "code": "US-AL-127",
+    "name": "Walker, Alabama, US"
+  },
+  {
+    "code": "US-AL-129",
+    "name": "Washington, Alabama, US"
+  },
+  {
+    "code": "US-AL-131",
+    "name": "Wilcox, Alabama, US"
+  },
+  {
+    "code": "US-AL-133",
+    "name": "Winston, Alabama, US"
+  },
+  {
+    "code": "US-AZ",
+    "name": "Arizona, US"
+  },
+  {
+    "code": "US-AZ-001",
+    "name": "Apache, Arizona, US"
+  },
+  {
+    "code": "US-AZ-003",
+    "name": "Cochise, Arizona, US"
+  },
+  {
+    "code": "US-AZ-005",
+    "name": "Coconino, Arizona, US"
+  },
+  {
+    "code": "US-AZ-007",
+    "name": "Gila, Arizona, US"
+  },
+  {
+    "code": "US-AZ-009",
+    "name": "Graham, Arizona, US"
+  },
+  {
+    "code": "US-AZ-011",
+    "name": "Greenlee, Arizona, US"
+  },
+  {
+    "code": "US-AZ-012",
+    "name": "La Paz, Arizona, US"
+  },
+  {
+    "code": "US-AZ-013",
+    "name": "Maricopa, Arizona, US"
+  },
+  {
+    "code": "US-AZ-015",
+    "name": "Mohave, Arizona, US"
+  },
+  {
+    "code": "US-AZ-017",
+    "name": "Navajo, Arizona, US"
+  },
+  {
+    "code": "US-AZ-019",
+    "name": "Pima, Arizona, US"
+  },
+  {
+    "code": "US-AZ-021",
+    "name": "Pinal, Arizona, US"
+  },
+  {
+    "code": "US-AZ-023",
+    "name": "Santa Cruz, Arizona, US"
+  },
+  {
+    "code": "US-AZ-025",
+    "name": "Yavapai, Arizona, US"
+  },
+  {
+    "code": "US-AZ-027",
+    "name": "Yuma, Arizona, US"
+  },
+  {
+    "code": "US-AR",
+    "name": "Arkansas, US"
+  },
+  {
+    "code": "US-AR-001",
+    "name": "Arkansas, Arkansas, US"
+  },
+  {
+    "code": "US-AR-003",
+    "name": "Ashley, Arkansas, US"
+  },
+  {
+    "code": "US-AR-005",
+    "name": "Baxter, Arkansas, US"
+  },
+  {
+    "code": "US-AR-007",
+    "name": "Benton, Arkansas, US"
+  },
+  {
+    "code": "US-AR-009",
+    "name": "Boone, Arkansas, US"
+  },
+  {
+    "code": "US-AR-011",
+    "name": "Bradley, Arkansas, US"
+  },
+  {
+    "code": "US-AR-013",
+    "name": "Calhoun, Arkansas, US"
+  },
+  {
+    "code": "US-AR-015",
+    "name": "Carroll, Arkansas, US"
+  },
+  {
+    "code": "US-AR-017",
+    "name": "Chicot, Arkansas, US"
+  },
+  {
+    "code": "US-AR-019",
+    "name": "Clark, Arkansas, US"
+  },
+  {
+    "code": "US-AR-021",
+    "name": "Clay, Arkansas, US"
+  },
+  {
+    "code": "US-AR-023",
+    "name": "Cleburne, Arkansas, US"
+  },
+  {
+    "code": "US-AR-025",
+    "name": "Cleveland, Arkansas, US"
+  },
+  {
+    "code": "US-AR-027",
+    "name": "Columbia, Arkansas, US"
+  },
+  {
+    "code": "US-AR-029",
+    "name": "Conway, Arkansas, US"
+  },
+  {
+    "code": "US-AR-031",
+    "name": "Craighead, Arkansas, US"
+  },
+  {
+    "code": "US-AR-033",
+    "name": "Crawford, Arkansas, US"
+  },
+  {
+    "code": "US-AR-035",
+    "name": "Crittenden, Arkansas, US"
+  },
+  {
+    "code": "US-AR-037",
+    "name": "Cross, Arkansas, US"
+  },
+  {
+    "code": "US-AR-039",
+    "name": "Dallas, Arkansas, US"
+  },
+  {
+    "code": "US-AR-041",
+    "name": "Desha, Arkansas, US"
+  },
+  {
+    "code": "US-AR-043",
+    "name": "Drew, Arkansas, US"
+  },
+  {
+    "code": "US-AR-045",
+    "name": "Faulkner, Arkansas, US"
+  },
+  {
+    "code": "US-AR-047",
+    "name": "Franklin, Arkansas, US"
+  },
+  {
+    "code": "US-AR-049",
+    "name": "Fulton, Arkansas, US"
+  },
+  {
+    "code": "US-AR-051",
+    "name": "Garland, Arkansas, US"
+  },
+  {
+    "code": "US-AR-053",
+    "name": "Grant, Arkansas, US"
+  },
+  {
+    "code": "US-AR-055",
+    "name": "Greene, Arkansas, US"
+  },
+  {
+    "code": "US-AR-057",
+    "name": "Hempstead, Arkansas, US"
+  },
+  {
+    "code": "US-AR-059",
+    "name": "Hot Spring, Arkansas, US"
+  },
+  {
+    "code": "US-AR-061",
+    "name": "Howard, Arkansas, US"
+  },
+  {
+    "code": "US-AR-063",
+    "name": "Independence, Arkansas, US"
+  },
+  {
+    "code": "US-AR-065",
+    "name": "Izard, Arkansas, US"
+  },
+  {
+    "code": "US-AR-067",
+    "name": "Jackson, Arkansas, US"
+  },
+  {
+    "code": "US-AR-069",
+    "name": "Jefferson, Arkansas, US"
+  },
+  {
+    "code": "US-AR-071",
+    "name": "Johnson, Arkansas, US"
+  },
+  {
+    "code": "US-AR-073",
+    "name": "Lafayette, Arkansas, US"
+  },
+  {
+    "code": "US-AR-075",
+    "name": "Lawrence, Arkansas, US"
+  },
+  {
+    "code": "US-AR-077",
+    "name": "Lee, Arkansas, US"
+  },
+  {
+    "code": "US-AR-079",
+    "name": "Lincoln, Arkansas, US"
+  },
+  {
+    "code": "US-AR-081",
+    "name": "Little River, Arkansas, US"
+  },
+  {
+    "code": "US-AR-083",
+    "name": "Logan, Arkansas, US"
+  },
+  {
+    "code": "US-AR-085",
+    "name": "Lonoke, Arkansas, US"
+  },
+  {
+    "code": "US-AR-087",
+    "name": "Madison, Arkansas, US"
+  },
+  {
+    "code": "US-AR-089",
+    "name": "Marion, Arkansas, US"
+  },
+  {
+    "code": "US-AR-091",
+    "name": "Miller, Arkansas, US"
+  },
+  {
+    "code": "US-AR-093",
+    "name": "Mississippi, Arkansas, US"
+  },
+  {
+    "code": "US-AR-095",
+    "name": "Monroe, Arkansas, US"
+  },
+  {
+    "code": "US-AR-097",
+    "name": "Montgomery, Arkansas, US"
+  },
+  {
+    "code": "US-AR-099",
+    "name": "Nevada, Arkansas, US"
+  },
+  {
+    "code": "US-AR-101",
+    "name": "Newton, Arkansas, US"
+  },
+  {
+    "code": "US-AR-103",
+    "name": "Ouachita, Arkansas, US"
+  },
+  {
+    "code": "US-AR-105",
+    "name": "Perry, Arkansas, US"
+  },
+  {
+    "code": "US-AR-107",
+    "name": "Phillips, Arkansas, US"
+  },
+  {
+    "code": "US-AR-109",
+    "name": "Pike, Arkansas, US"
+  },
+  {
+    "code": "US-AR-111",
+    "name": "Poinsett, Arkansas, US"
+  },
+  {
+    "code": "US-AR-113",
+    "name": "Polk, Arkansas, US"
+  },
+  {
+    "code": "US-AR-115",
+    "name": "Pope, Arkansas, US"
+  },
+  {
+    "code": "US-AR-117",
+    "name": "Prairie, Arkansas, US"
+  },
+  {
+    "code": "US-AR-119",
+    "name": "Pulaski, Arkansas, US"
+  },
+  {
+    "code": "US-AR-121",
+    "name": "Randolph, Arkansas, US"
+  },
+  {
+    "code": "US-AR-125",
+    "name": "Saline, Arkansas, US"
+  },
+  {
+    "code": "US-AR-127",
+    "name": "Scott, Arkansas, US"
+  },
+  {
+    "code": "US-AR-129",
+    "name": "Searcy, Arkansas, US"
+  },
+  {
+    "code": "US-AR-131",
+    "name": "Sebastian, Arkansas, US"
+  },
+  {
+    "code": "US-AR-133",
+    "name": "Sevier, Arkansas, US"
+  },
+  {
+    "code": "US-AR-135",
+    "name": "Sharp, Arkansas, US"
+  },
+  {
+    "code": "US-AR-123",
+    "name": "St. Francis, Arkansas, US"
+  },
+  {
+    "code": "US-AR-137",
+    "name": "Stone, Arkansas, US"
+  },
+  {
+    "code": "US-AR-139",
+    "name": "Union, Arkansas, US"
+  },
+  {
+    "code": "US-AR-141",
+    "name": "Van Buren, Arkansas, US"
+  },
+  {
+    "code": "US-AR-143",
+    "name": "Washington, Arkansas, US"
+  },
+  {
+    "code": "US-AR-145",
+    "name": "White, Arkansas, US"
+  },
+  {
+    "code": "US-AR-147",
+    "name": "Woodruff, Arkansas, US"
+  },
+  {
+    "code": "US-AR-149",
+    "name": "Yell, Arkansas, US"
+  },
+  {
+    "code": "US-CA",
+    "name": "California, US"
+  },
+  {
+    "code": "US-CA-001",
+    "name": "Alameda, California, US"
+  },
+  {
+    "code": "US-CA-003",
+    "name": "Alpine, California, US"
+  },
+  {
+    "code": "US-CA-005",
+    "name": "Amador, California, US"
+  },
+  {
+    "code": "US-CA-007",
+    "name": "Butte, California, US"
+  },
+  {
+    "code": "US-CA-009",
+    "name": "Calaveras, California, US"
+  },
+  {
+    "code": "US-CA-011",
+    "name": "Colusa, California, US"
+  },
+  {
+    "code": "US-CA-013",
+    "name": "Contra Costa, California, US"
+  },
+  {
+    "code": "US-CA-015",
+    "name": "Del Norte, California, US"
+  },
+  {
+    "code": "US-CA-017",
+    "name": "El Dorado, California, US"
+  },
+  {
+    "code": "US-CA-019",
+    "name": "Fresno, California, US"
+  },
+  {
+    "code": "US-CA-021",
+    "name": "Glenn, California, US"
+  },
+  {
+    "code": "US-CA-023",
+    "name": "Humboldt, California, US"
+  },
+  {
+    "code": "US-CA-025",
+    "name": "Imperial, California, US"
+  },
+  {
+    "code": "US-CA-027",
+    "name": "Inyo, California, US"
+  },
+  {
+    "code": "US-CA-029",
+    "name": "Kern, California, US"
+  },
+  {
+    "code": "US-CA-031",
+    "name": "Kings, California, US"
+  },
+  {
+    "code": "US-CA-033",
+    "name": "Lake, California, US"
+  },
+  {
+    "code": "US-CA-035",
+    "name": "Lassen, California, US"
+  },
+  {
+    "code": "US-CA-037",
+    "name": "Los Angeles, California, US"
+  },
+  {
+    "code": "US-CA-039",
+    "name": "Madera, California, US"
+  },
+  {
+    "code": "US-CA-041",
+    "name": "Marin, California, US"
+  },
+  {
+    "code": "US-CA-043",
+    "name": "Mariposa, California, US"
+  },
+  {
+    "code": "US-CA-045",
+    "name": "Mendocino, California, US"
+  },
+  {
+    "code": "US-CA-047",
+    "name": "Merced, California, US"
+  },
+  {
+    "code": "US-CA-049",
+    "name": "Modoc, California, US"
+  },
+  {
+    "code": "US-CA-051",
+    "name": "Mono, California, US"
+  },
+  {
+    "code": "US-CA-053",
+    "name": "Monterey, California, US"
+  },
+  {
+    "code": "US-CA-055",
+    "name": "Napa, California, US"
+  },
+  {
+    "code": "US-CA-057",
+    "name": "Nevada, California, US"
+  },
+  {
+    "code": "US-CA-059",
+    "name": "Orange, California, US"
+  },
+  {
+    "code": "US-CA-061",
+    "name": "Placer, California, US"
+  },
+  {
+    "code": "US-CA-063",
+    "name": "Plumas, California, US"
+  },
+  {
+    "code": "US-CA-065",
+    "name": "Riverside, California, US"
+  },
+  {
+    "code": "US-CA-067",
+    "name": "Sacramento, California, US"
+  },
+  {
+    "code": "US-CA-069",
+    "name": "San Benito, California, US"
+  },
+  {
+    "code": "US-CA-071",
+    "name": "San Bernardino, California, US"
+  },
+  {
+    "code": "US-CA-073",
+    "name": "San Diego, California, US"
+  },
+  {
+    "code": "US-CA-075",
+    "name": "San Francisco, California, US"
+  },
+  {
+    "code": "US-CA-077",
+    "name": "San Joaquin, California, US"
+  },
+  {
+    "code": "US-CA-079",
+    "name": "San Luis Obispo, California, US"
+  },
+  {
+    "code": "US-CA-081",
+    "name": "San Mateo, California, US"
+  },
+  {
+    "code": "US-CA-083",
+    "name": "Santa Barbara, California, US"
+  },
+  {
+    "code": "US-CA-085",
+    "name": "Santa Clara, California, US"
+  },
+  {
+    "code": "US-CA-087",
+    "name": "Santa Cruz, California, US"
+  },
+  {
+    "code": "US-CA-089",
+    "name": "Shasta, California, US"
+  },
+  {
+    "code": "US-CA-091",
+    "name": "Sierra, California, US"
+  },
+  {
+    "code": "US-CA-093",
+    "name": "Siskiyou, California, US"
+  },
+  {
+    "code": "US-CA-095",
+    "name": "Solano, California, US"
+  },
+  {
+    "code": "US-CA-097",
+    "name": "Sonoma, California, US"
+  },
+  {
+    "code": "US-CA-099",
+    "name": "Stanislaus, California, US"
+  },
+  {
+    "code": "US-CA-101",
+    "name": "Sutter, California, US"
+  },
+  {
+    "code": "US-CA-103",
+    "name": "Tehama, California, US"
+  },
+  {
+    "code": "US-CA-105",
+    "name": "Trinity, California, US"
+  },
+  {
+    "code": "US-CA-107",
+    "name": "Tulare, California, US"
+  },
+  {
+    "code": "US-CA-109",
+    "name": "Tuolumne, California, US"
+  },
+  {
+    "code": "US-CA-111",
+    "name": "Ventura, California, US"
+  },
+  {
+    "code": "US-CA-113",
+    "name": "Yolo, California, US"
+  },
+  {
+    "code": "US-CA-115",
+    "name": "Yuba, California, US"
+  },
+  {
+    "code": "US-CO",
+    "name": "Colorado, US"
+  },
+  {
+    "code": "US-CO-001",
+    "name": "Adams, Colorado, US"
+  },
+  {
+    "code": "US-CO-003",
+    "name": "Alamosa, Colorado, US"
+  },
+  {
+    "code": "US-CO-005",
+    "name": "Arapahoe, Colorado, US"
+  },
+  {
+    "code": "US-CO-007",
+    "name": "Archuleta, Colorado, US"
+  },
+  {
+    "code": "US-CO-009",
+    "name": "Baca, Colorado, US"
+  },
+  {
+    "code": "US-CO-011",
+    "name": "Bent, Colorado, US"
+  },
+  {
+    "code": "US-CO-013",
+    "name": "Boulder, Colorado, US"
+  },
+  {
+    "code": "US-CO-014",
+    "name": "Broomfield, Colorado, US"
+  },
+  {
+    "code": "US-CO-015",
+    "name": "Chaffee, Colorado, US"
+  },
+  {
+    "code": "US-CO-017",
+    "name": "Cheyenne, Colorado, US"
+  },
+  {
+    "code": "US-CO-019",
+    "name": "Clear Creek, Colorado, US"
+  },
+  {
+    "code": "US-CO-021",
+    "name": "Conejos, Colorado, US"
+  },
+  {
+    "code": "US-CO-023",
+    "name": "Costilla, Colorado, US"
+  },
+  {
+    "code": "US-CO-025",
+    "name": "Crowley, Colorado, US"
+  },
+  {
+    "code": "US-CO-027",
+    "name": "Custer, Colorado, US"
+  },
+  {
+    "code": "US-CO-029",
+    "name": "Delta, Colorado, US"
+  },
+  {
+    "code": "US-CO-031",
+    "name": "Denver, Colorado, US"
+  },
+  {
+    "code": "US-CO-033",
+    "name": "Dolores, Colorado, US"
+  },
+  {
+    "code": "US-CO-035",
+    "name": "Douglas, Colorado, US"
+  },
+  {
+    "code": "US-CO-037",
+    "name": "Eagle, Colorado, US"
+  },
+  {
+    "code": "US-CO-041",
+    "name": "El Paso, Colorado, US"
+  },
+  {
+    "code": "US-CO-039",
+    "name": "Elbert, Colorado, US"
+  },
+  {
+    "code": "US-CO-043",
+    "name": "Fremont, Colorado, US"
+  },
+  {
+    "code": "US-CO-045",
+    "name": "Garfield, Colorado, US"
+  },
+  {
+    "code": "US-CO-047",
+    "name": "Gilpin, Colorado, US"
+  },
+  {
+    "code": "US-CO-049",
+    "name": "Grand, Colorado, US"
+  },
+  {
+    "code": "US-CO-051",
+    "name": "Gunnison, Colorado, US"
+  },
+  {
+    "code": "US-CO-053",
+    "name": "Hinsdale, Colorado, US"
+  },
+  {
+    "code": "US-CO-055",
+    "name": "Huerfano, Colorado, US"
+  },
+  {
+    "code": "US-CO-057",
+    "name": "Jackson, Colorado, US"
+  },
+  {
+    "code": "US-CO-059",
+    "name": "Jefferson, Colorado, US"
+  },
+  {
+    "code": "US-CO-061",
+    "name": "Kiowa, Colorado, US"
+  },
+  {
+    "code": "US-CO-063",
+    "name": "Kit Carson, Colorado, US"
+  },
+  {
+    "code": "US-CO-067",
+    "name": "La Plata, Colorado, US"
+  },
+  {
+    "code": "US-CO-065",
+    "name": "Lake, Colorado, US"
+  },
+  {
+    "code": "US-CO-069",
+    "name": "Larimer, Colorado, US"
+  },
+  {
+    "code": "US-CO-071",
+    "name": "Las Animas, Colorado, US"
+  },
+  {
+    "code": "US-CO-073",
+    "name": "Lincoln, Colorado, US"
+  },
+  {
+    "code": "US-CO-075",
+    "name": "Logan, Colorado, US"
+  },
+  {
+    "code": "US-CO-077",
+    "name": "Mesa, Colorado, US"
+  },
+  {
+    "code": "US-CO-079",
+    "name": "Mineral, Colorado, US"
+  },
+  {
+    "code": "US-CO-081",
+    "name": "Moffat, Colorado, US"
+  },
+  {
+    "code": "US-CO-083",
+    "name": "Montezuma, Colorado, US"
+  },
+  {
+    "code": "US-CO-085",
+    "name": "Montrose, Colorado, US"
+  },
+  {
+    "code": "US-CO-087",
+    "name": "Morgan, Colorado, US"
+  },
+  {
+    "code": "US-CO-089",
+    "name": "Otero, Colorado, US"
+  },
+  {
+    "code": "US-CO-091",
+    "name": "Ouray, Colorado, US"
+  },
+  {
+    "code": "US-CO-093",
+    "name": "Park, Colorado, US"
+  },
+  {
+    "code": "US-CO-095",
+    "name": "Phillips, Colorado, US"
+  },
+  {
+    "code": "US-CO-097",
+    "name": "Pitkin, Colorado, US"
+  },
+  {
+    "code": "US-CO-099",
+    "name": "Prowers, Colorado, US"
+  },
+  {
+    "code": "US-CO-101",
+    "name": "Pueblo, Colorado, US"
+  },
+  {
+    "code": "US-CO-103",
+    "name": "Rio Blanco, Colorado, US"
+  },
+  {
+    "code": "US-CO-105",
+    "name": "Rio Grande, Colorado, US"
+  },
+  {
+    "code": "US-CO-107",
+    "name": "Routt, Colorado, US"
+  },
+  {
+    "code": "US-CO-109",
+    "name": "Saguache, Colorado, US"
+  },
+  {
+    "code": "US-CO-111",
+    "name": "San Juan, Colorado, US"
+  },
+  {
+    "code": "US-CO-113",
+    "name": "San Miguel, Colorado, US"
+  },
+  {
+    "code": "US-CO-115",
+    "name": "Sedgwick, Colorado, US"
+  },
+  {
+    "code": "US-CO-117",
+    "name": "Summit, Colorado, US"
+  },
+  {
+    "code": "US-CO-119",
+    "name": "Teller, Colorado, US"
+  },
+  {
+    "code": "US-CO-121",
+    "name": "Washington, Colorado, US"
+  },
+  {
+    "code": "US-CO-123",
+    "name": "Weld, Colorado, US"
+  },
+  {
+    "code": "US-CO-125",
+    "name": "Yuma, Colorado, US"
+  },
+  {
+    "code": "US-CT",
+    "name": "Connecticut, US"
+  },
+  {
+    "code": "US-CT-001",
+    "name": "Fairfield, Connecticut, US"
+  },
+  {
+    "code": "US-CT-003",
+    "name": "Hartford, Connecticut, US"
+  },
+  {
+    "code": "US-CT-005",
+    "name": "Litchfield, Connecticut, US"
+  },
+  {
+    "code": "US-CT-007",
+    "name": "Middlesex, Connecticut, US"
+  },
+  {
+    "code": "US-CT-009",
+    "name": "New Haven, Connecticut, US"
+  },
+  {
+    "code": "US-CT-011",
+    "name": "New London, Connecticut, US"
+  },
+  {
+    "code": "US-CT-013",
+    "name": "Tolland, Connecticut, US"
+  },
+  {
+    "code": "US-CT-015",
+    "name": "Windham, Connecticut, US"
+  },
+  {
+    "code": "US-GA",
+    "name": "Georgia, US"
+  },
+  {
+    "code": "US-GA-001",
+    "name": "Appling, Georgia, US"
+  },
+  {
+    "code": "US-GA-003",
+    "name": "Atkinson, Georgia, US"
+  },
+  {
+    "code": "US-GA-005",
+    "name": "Bacon, Georgia, US"
+  },
+  {
+    "code": "US-GA-007",
+    "name": "Baker, Georgia, US"
+  },
+  {
+    "code": "US-GA-009",
+    "name": "Baldwin, Georgia, US"
+  },
+  {
+    "code": "US-GA-011",
+    "name": "Banks, Georgia, US"
+  },
+  {
+    "code": "US-GA-013",
+    "name": "Barrow, Georgia, US"
+  },
+  {
+    "code": "US-GA-015",
+    "name": "Bartow, Georgia, US"
+  },
+  {
+    "code": "US-GA-017",
+    "name": "Ben Hill, Georgia, US"
+  },
+  {
+    "code": "US-GA-019",
+    "name": "Berrien, Georgia, US"
+  },
+  {
+    "code": "US-GA-021",
+    "name": "Bibb, Georgia, US"
+  },
+  {
+    "code": "US-GA-023",
+    "name": "Bleckley, Georgia, US"
+  },
+  {
+    "code": "US-GA-025",
+    "name": "Brantley, Georgia, US"
+  },
+  {
+    "code": "US-GA-027",
+    "name": "Brooks, Georgia, US"
+  },
+  {
+    "code": "US-GA-029",
+    "name": "Bryan, Georgia, US"
+  },
+  {
+    "code": "US-GA-031",
+    "name": "Bulloch, Georgia, US"
+  },
+  {
+    "code": "US-GA-033",
+    "name": "Burke, Georgia, US"
+  },
+  {
+    "code": "US-GA-035",
+    "name": "Butts, Georgia, US"
+  },
+  {
+    "code": "US-GA-037",
+    "name": "Calhoun, Georgia, US"
+  },
+  {
+    "code": "US-GA-039",
+    "name": "Camden, Georgia, US"
+  },
+  {
+    "code": "US-GA-043",
+    "name": "Candler, Georgia, US"
+  },
+  {
+    "code": "US-GA-045",
+    "name": "Carroll, Georgia, US"
+  },
+  {
+    "code": "US-GA-047",
+    "name": "Catoosa, Georgia, US"
+  },
+  {
+    "code": "US-GA-049",
+    "name": "Charlton, Georgia, US"
+  },
+  {
+    "code": "US-GA-051",
+    "name": "Chatham, Georgia, US"
+  },
+  {
+    "code": "US-GA-053",
+    "name": "Chattahoochee, Georgia, US"
+  },
+  {
+    "code": "US-GA-055",
+    "name": "Chattooga, Georgia, US"
+  },
+  {
+    "code": "US-GA-057",
+    "name": "Cherokee, Georgia, US"
+  },
+  {
+    "code": "US-GA-059",
+    "name": "Clarke, Georgia, US"
+  },
+  {
+    "code": "US-GA-061",
+    "name": "Clay, Georgia, US"
+  },
+  {
+    "code": "US-GA-063",
+    "name": "Clayton, Georgia, US"
+  },
+  {
+    "code": "US-GA-065",
+    "name": "Clinch, Georgia, US"
+  },
+  {
+    "code": "US-GA-067",
+    "name": "Cobb, Georgia, US"
+  },
+  {
+    "code": "US-GA-069",
+    "name": "Coffee, Georgia, US"
+  },
+  {
+    "code": "US-GA-071",
+    "name": "Colquitt, Georgia, US"
+  },
+  {
+    "code": "US-GA-073",
+    "name": "Columbia, Georgia, US"
+  },
+  {
+    "code": "US-GA-075",
+    "name": "Cook, Georgia, US"
+  },
+  {
+    "code": "US-GA-077",
+    "name": "Coweta, Georgia, US"
+  },
+  {
+    "code": "US-GA-079",
+    "name": "Crawford, Georgia, US"
+  },
+  {
+    "code": "US-GA-081",
+    "name": "Crisp, Georgia, US"
+  },
+  {
+    "code": "US-GA-083",
+    "name": "Dade, Georgia, US"
+  },
+  {
+    "code": "US-GA-085",
+    "name": "Dawson, Georgia, US"
+  },
+  {
+    "code": "US-GA-089",
+    "name": "DeKalb, Georgia, US"
+  },
+  {
+    "code": "US-GA-087",
+    "name": "Decatur, Georgia, US"
+  },
+  {
+    "code": "US-GA-091",
+    "name": "Dodge, Georgia, US"
+  },
+  {
+    "code": "US-GA-093",
+    "name": "Dooly, Georgia, US"
+  },
+  {
+    "code": "US-GA-095",
+    "name": "Dougherty, Georgia, US"
+  },
+  {
+    "code": "US-GA-097",
+    "name": "Douglas, Georgia, US"
+  },
+  {
+    "code": "US-GA-099",
+    "name": "Early, Georgia, US"
+  },
+  {
+    "code": "US-GA-101",
+    "name": "Echols, Georgia, US"
+  },
+  {
+    "code": "US-GA-103",
+    "name": "Effingham, Georgia, US"
+  },
+  {
+    "code": "US-GA-105",
+    "name": "Elbert, Georgia, US"
+  },
+  {
+    "code": "US-GA-107",
+    "name": "Emanuel, Georgia, US"
+  },
+  {
+    "code": "US-GA-109",
+    "name": "Evans, Georgia, US"
+  },
+  {
+    "code": "US-GA-111",
+    "name": "Fannin, Georgia, US"
+  },
+  {
+    "code": "US-GA-113",
+    "name": "Fayette, Georgia, US"
+  },
+  {
+    "code": "US-GA-115",
+    "name": "Floyd, Georgia, US"
+  },
+  {
+    "code": "US-GA-117",
+    "name": "Forsyth, Georgia, US"
+  },
+  {
+    "code": "US-GA-119",
+    "name": "Franklin, Georgia, US"
+  },
+  {
+    "code": "US-GA-121",
+    "name": "Fulton, Georgia, US"
+  },
+  {
+    "code": "US-GA-123",
+    "name": "Gilmer, Georgia, US"
+  },
+  {
+    "code": "US-GA-125",
+    "name": "Glascock, Georgia, US"
+  },
+  {
+    "code": "US-GA-127",
+    "name": "Glynn, Georgia, US"
+  },
+  {
+    "code": "US-GA-129",
+    "name": "Gordon, Georgia, US"
+  },
+  {
+    "code": "US-GA-131",
+    "name": "Grady, Georgia, US"
+  },
+  {
+    "code": "US-GA-133",
+    "name": "Greene, Georgia, US"
+  },
+  {
+    "code": "US-GA-135",
+    "name": "Gwinnett, Georgia, US"
+  },
+  {
+    "code": "US-GA-137",
+    "name": "Habersham, Georgia, US"
+  },
+  {
+    "code": "US-GA-139",
+    "name": "Hall, Georgia, US"
+  },
+  {
+    "code": "US-GA-141",
+    "name": "Hancock, Georgia, US"
+  },
+  {
+    "code": "US-GA-143",
+    "name": "Haralson, Georgia, US"
+  },
+  {
+    "code": "US-GA-145",
+    "name": "Harris, Georgia, US"
+  },
+  {
+    "code": "US-GA-147",
+    "name": "Hart, Georgia, US"
+  },
+  {
+    "code": "US-GA-149",
+    "name": "Heard, Georgia, US"
+  },
+  {
+    "code": "US-GA-151",
+    "name": "Henry, Georgia, US"
+  },
+  {
+    "code": "US-GA-153",
+    "name": "Houston, Georgia, US"
+  },
+  {
+    "code": "US-GA-155",
+    "name": "Irwin, Georgia, US"
+  },
+  {
+    "code": "US-GA-157",
+    "name": "Jackson, Georgia, US"
+  },
+  {
+    "code": "US-GA-159",
+    "name": "Jasper, Georgia, US"
+  },
+  {
+    "code": "US-GA-161",
+    "name": "Jeff Davis, Georgia, US"
+  },
+  {
+    "code": "US-GA-163",
+    "name": "Jefferson, Georgia, US"
+  },
+  {
+    "code": "US-GA-165",
+    "name": "Jenkins, Georgia, US"
+  },
+  {
+    "code": "US-GA-167",
+    "name": "Johnson, Georgia, US"
+  },
+  {
+    "code": "US-GA-169",
+    "name": "Jones, Georgia, US"
+  },
+  {
+    "code": "US-GA-171",
+    "name": "Lamar, Georgia, US"
+  },
+  {
+    "code": "US-GA-173",
+    "name": "Lanier, Georgia, US"
+  },
+  {
+    "code": "US-GA-175",
+    "name": "Laurens, Georgia, US"
+  },
+  {
+    "code": "US-GA-177",
+    "name": "Lee, Georgia, US"
+  },
+  {
+    "code": "US-GA-179",
+    "name": "Liberty, Georgia, US"
+  },
+  {
+    "code": "US-GA-181",
+    "name": "Lincoln, Georgia, US"
+  },
+  {
+    "code": "US-GA-183",
+    "name": "Long, Georgia, US"
+  },
+  {
+    "code": "US-GA-185",
+    "name": "Lowndes, Georgia, US"
+  },
+  {
+    "code": "US-GA-187",
+    "name": "Lumpkin, Georgia, US"
+  },
+  {
+    "code": "US-GA-193",
+    "name": "Macon, Georgia, US"
+  },
+  {
+    "code": "US-GA-195",
+    "name": "Madison, Georgia, US"
+  },
+  {
+    "code": "US-GA-197",
+    "name": "Marion, Georgia, US"
+  },
+  {
+    "code": "US-GA-189",
+    "name": "McDuffie, Georgia, US"
+  },
+  {
+    "code": "US-GA-191",
+    "name": "McIntosh, Georgia, US"
+  },
+  {
+    "code": "US-GA-199",
+    "name": "Meriwether, Georgia, US"
+  },
+  {
+    "code": "US-GA-201",
+    "name": "Miller, Georgia, US"
+  },
+  {
+    "code": "US-GA-205",
+    "name": "Mitchell, Georgia, US"
+  },
+  {
+    "code": "US-GA-207",
+    "name": "Monroe, Georgia, US"
+  },
+  {
+    "code": "US-GA-209",
+    "name": "Montgomery, Georgia, US"
+  },
+  {
+    "code": "US-GA-211",
+    "name": "Morgan, Georgia, US"
+  },
+  {
+    "code": "US-GA-213",
+    "name": "Murray, Georgia, US"
+  },
+  {
+    "code": "US-GA-215",
+    "name": "Muscogee, Georgia, US"
+  },
+  {
+    "code": "US-GA-217",
+    "name": "Newton, Georgia, US"
+  },
+  {
+    "code": "US-GA-219",
+    "name": "Oconee, Georgia, US"
+  },
+  {
+    "code": "US-GA-221",
+    "name": "Oglethorpe, Georgia, US"
+  },
+  {
+    "code": "US-GA-223",
+    "name": "Paulding, Georgia, US"
+  },
+  {
+    "code": "US-GA-225",
+    "name": "Peach, Georgia, US"
+  },
+  {
+    "code": "US-GA-227",
+    "name": "Pickens, Georgia, US"
+  },
+  {
+    "code": "US-GA-229",
+    "name": "Pierce, Georgia, US"
+  },
+  {
+    "code": "US-GA-231",
+    "name": "Pike, Georgia, US"
+  },
+  {
+    "code": "US-GA-233",
+    "name": "Polk, Georgia, US"
+  },
+  {
+    "code": "US-GA-235",
+    "name": "Pulaski, Georgia, US"
+  },
+  {
+    "code": "US-GA-237",
+    "name": "Putnam, Georgia, US"
+  },
+  {
+    "code": "US-GA-239",
+    "name": "Quitman, Georgia, US"
+  },
+  {
+    "code": "US-GA-241",
+    "name": "Rabun, Georgia, US"
+  },
+  {
+    "code": "US-GA-243",
+    "name": "Randolph, Georgia, US"
+  },
+  {
+    "code": "US-GA-245",
+    "name": "Richmond, Georgia, US"
+  },
+  {
+    "code": "US-GA-247",
+    "name": "Rockdale, Georgia, US"
+  },
+  {
+    "code": "US-GA-249",
+    "name": "Schley, Georgia, US"
+  },
+  {
+    "code": "US-GA-251",
+    "name": "Screven, Georgia, US"
+  },
+  {
+    "code": "US-GA-253",
+    "name": "Seminole, Georgia, US"
+  },
+  {
+    "code": "US-GA-255",
+    "name": "Spalding, Georgia, US"
+  },
+  {
+    "code": "US-GA-257",
+    "name": "Stephens, Georgia, US"
+  },
+  {
+    "code": "US-GA-259",
+    "name": "Stewart, Georgia, US"
+  },
+  {
+    "code": "US-GA-261",
+    "name": "Sumter, Georgia, US"
+  },
+  {
+    "code": "US-GA-263",
+    "name": "Talbot, Georgia, US"
+  },
+  {
+    "code": "US-GA-265",
+    "name": "Taliaferro, Georgia, US"
+  },
+  {
+    "code": "US-GA-267",
+    "name": "Tattnall, Georgia, US"
+  },
+  {
+    "code": "US-GA-269",
+    "name": "Taylor, Georgia, US"
+  },
+  {
+    "code": "US-GA-271",
+    "name": "Telfair, Georgia, US"
+  },
+  {
+    "code": "US-GA-273",
+    "name": "Terrell, Georgia, US"
+  },
+  {
+    "code": "US-GA-275",
+    "name": "Thomas, Georgia, US"
+  },
+  {
+    "code": "US-GA-277",
+    "name": "Tift, Georgia, US"
+  },
+  {
+    "code": "US-GA-279",
+    "name": "Toombs, Georgia, US"
+  },
+  {
+    "code": "US-GA-281",
+    "name": "Towns, Georgia, US"
+  },
+  {
+    "code": "US-GA-283",
+    "name": "Treutlen, Georgia, US"
+  },
+  {
+    "code": "US-GA-285",
+    "name": "Troup, Georgia, US"
+  },
+  {
+    "code": "US-GA-287",
+    "name": "Turner, Georgia, US"
+  },
+  {
+    "code": "US-GA-289",
+    "name": "Twiggs, Georgia, US"
+  },
+  {
+    "code": "US-GA-291",
+    "name": "Union, Georgia, US"
+  },
+  {
+    "code": "US-GA-293",
+    "name": "Upson, Georgia, US"
+  },
+  {
+    "code": "US-GA-295",
+    "name": "Walker, Georgia, US"
+  },
+  {
+    "code": "US-GA-297",
+    "name": "Walton, Georgia, US"
+  },
+  {
+    "code": "US-GA-299",
+    "name": "Ware, Georgia, US"
+  },
+  {
+    "code": "US-GA-301",
+    "name": "Warren, Georgia, US"
+  },
+  {
+    "code": "US-GA-303",
+    "name": "Washington, Georgia, US"
+  },
+  {
+    "code": "US-GA-305",
+    "name": "Wayne, Georgia, US"
+  },
+  {
+    "code": "US-GA-307",
+    "name": "Webster, Georgia, US"
+  },
+  {
+    "code": "US-GA-309",
+    "name": "Wheeler, Georgia, US"
+  },
+  {
+    "code": "US-GA-311",
+    "name": "White, Georgia, US"
+  },
+  {
+    "code": "US-GA-313",
+    "name": "Whitfield, Georgia, US"
+  },
+  {
+    "code": "US-GA-315",
+    "name": "Wilcox, Georgia, US"
+  },
+  {
+    "code": "US-GA-317",
+    "name": "Wilkes, Georgia, US"
+  },
+  {
+    "code": "US-GA-319",
+    "name": "Wilkinson, Georgia, US"
+  },
+  {
+    "code": "US-GA-321",
+    "name": "Worth, Georgia, US"
+  },
+  {
+    "code": "US-HI",
+    "name": "Hawaii, US"
+  },
+  {
+    "code": "US-HI-001",
+    "name": "Hawaii, Hawaii, US"
+  },
+  {
+    "code": "US-HI-003",
+    "name": "Honolulu, Hawaii, US"
+  },
+  {
+    "code": "US-HI-005",
+    "name": "Kalawao, Hawaii, US"
+  },
+  {
+    "code": "US-HI-007",
+    "name": "Kauai, Hawaii, US"
+  },
+  {
+    "code": "US-HI-009",
+    "name": "Maui, Hawaii, US"
+  },
+  {
+    "code": "US-HI-010",
+    "name": "Northwestern Hawaiian Islands, Hawaii, US"
+  },
+  {
+    "code": "US-IL",
+    "name": "Illinois, US"
+  },
+  {
+    "code": "US-IL-001",
+    "name": "Adams, Illinois, US"
+  },
+  {
+    "code": "US-IL-003",
+    "name": "Alexander, Illinois, US"
+  },
+  {
+    "code": "US-IL-005",
+    "name": "Bond, Illinois, US"
+  },
+  {
+    "code": "US-IL-007",
+    "name": "Boone, Illinois, US"
+  },
+  {
+    "code": "US-IL-009",
+    "name": "Brown, Illinois, US"
+  },
+  {
+    "code": "US-IL-011",
+    "name": "Bureau, Illinois, US"
+  },
+  {
+    "code": "US-IL-013",
+    "name": "Calhoun, Illinois, US"
+  },
+  {
+    "code": "US-IL-015",
+    "name": "Carroll, Illinois, US"
+  },
+  {
+    "code": "US-IL-017",
+    "name": "Cass, Illinois, US"
+  },
+  {
+    "code": "US-IL-019",
+    "name": "Champaign, Illinois, US"
+  },
+  {
+    "code": "US-IL-021",
+    "name": "Christian, Illinois, US"
+  },
+  {
+    "code": "US-IL-023",
+    "name": "Clark, Illinois, US"
+  },
+  {
+    "code": "US-IL-025",
+    "name": "Clay, Illinois, US"
+  },
+  {
+    "code": "US-IL-027",
+    "name": "Clinton, Illinois, US"
+  },
+  {
+    "code": "US-IL-029",
+    "name": "Coles, Illinois, US"
+  },
+  {
+    "code": "US-IL-031",
+    "name": "Cook, Illinois, US"
+  },
+  {
+    "code": "US-IL-033",
+    "name": "Crawford, Illinois, US"
+  },
+  {
+    "code": "US-IL-035",
+    "name": "Cumberland, Illinois, US"
+  },
+  {
+    "code": "US-IL-039",
+    "name": "De Witt, Illinois, US"
+  },
+  {
+    "code": "US-IL-037",
+    "name": "DeKalb, Illinois, US"
+  },
+  {
+    "code": "US-IL-041",
+    "name": "Douglas, Illinois, US"
+  },
+  {
+    "code": "US-IL-043",
+    "name": "DuPage, Illinois, US"
+  },
+  {
+    "code": "US-IL-045",
+    "name": "Edgar, Illinois, US"
+  },
+  {
+    "code": "US-IL-047",
+    "name": "Edwards, Illinois, US"
+  },
+  {
+    "code": "US-IL-049",
+    "name": "Effingham, Illinois, US"
+  },
+  {
+    "code": "US-IL-051",
+    "name": "Fayette, Illinois, US"
+  },
+  {
+    "code": "US-IL-053",
+    "name": "Ford, Illinois, US"
+  },
+  {
+    "code": "US-IL-055",
+    "name": "Franklin, Illinois, US"
+  },
+  {
+    "code": "US-IL-057",
+    "name": "Fulton, Illinois, US"
+  },
+  {
+    "code": "US-IL-059",
+    "name": "Gallatin, Illinois, US"
+  },
+  {
+    "code": "US-IL-061",
+    "name": "Greene, Illinois, US"
+  },
+  {
+    "code": "US-IL-063",
+    "name": "Grundy, Illinois, US"
+  },
+  {
+    "code": "US-IL-065",
+    "name": "Hamilton, Illinois, US"
+  },
+  {
+    "code": "US-IL-067",
+    "name": "Hancock, Illinois, US"
+  },
+  {
+    "code": "US-IL-069",
+    "name": "Hardin, Illinois, US"
+  },
+  {
+    "code": "US-IL-071",
+    "name": "Henderson, Illinois, US"
+  },
+  {
+    "code": "US-IL-073",
+    "name": "Henry, Illinois, US"
+  },
+  {
+    "code": "US-IL-075",
+    "name": "Iroquois, Illinois, US"
+  },
+  {
+    "code": "US-IL-077",
+    "name": "Jackson, Illinois, US"
+  },
+  {
+    "code": "US-IL-079",
+    "name": "Jasper, Illinois, US"
+  },
+  {
+    "code": "US-IL-081",
+    "name": "Jefferson, Illinois, US"
+  },
+  {
+    "code": "US-IL-083",
+    "name": "Jersey, Illinois, US"
+  },
+  {
+    "code": "US-IL-085",
+    "name": "Jo Daviess, Illinois, US"
+  },
+  {
+    "code": "US-IL-087",
+    "name": "Johnson, Illinois, US"
+  },
+  {
+    "code": "US-IL-089",
+    "name": "Kane, Illinois, US"
+  },
+  {
+    "code": "US-IL-091",
+    "name": "Kankakee, Illinois, US"
+  },
+  {
+    "code": "US-IL-093",
+    "name": "Kendall, Illinois, US"
+  },
+  {
+    "code": "US-IL-095",
+    "name": "Knox, Illinois, US"
+  },
+  {
+    "code": "US-IL-099",
+    "name": "La Salle, Illinois, US"
+  },
+  {
+    "code": "US-IL-097",
+    "name": "Lake, Illinois, US"
+  },
+  {
+    "code": "US-IL-101",
+    "name": "Lawrence, Illinois, US"
+  },
+  {
+    "code": "US-IL-103",
+    "name": "Lee, Illinois, US"
+  },
+  {
+    "code": "US-IL-105",
+    "name": "Livingston, Illinois, US"
+  },
+  {
+    "code": "US-IL-107",
+    "name": "Logan, Illinois, US"
+  },
+  {
+    "code": "US-IL-115",
+    "name": "Macon, Illinois, US"
+  },
+  {
+    "code": "US-IL-117",
+    "name": "Macoupin, Illinois, US"
+  },
+  {
+    "code": "US-IL-119",
+    "name": "Madison, Illinois, US"
+  },
+  {
+    "code": "US-IL-121",
+    "name": "Marion, Illinois, US"
+  },
+  {
+    "code": "US-IL-123",
+    "name": "Marshall, Illinois, US"
+  },
+  {
+    "code": "US-IL-125",
+    "name": "Mason, Illinois, US"
+  },
+  {
+    "code": "US-IL-127",
+    "name": "Massac, Illinois, US"
+  },
+  {
+    "code": "US-IL-109",
+    "name": "McDonough, Illinois, US"
+  },
+  {
+    "code": "US-IL-111",
+    "name": "McHenry, Illinois, US"
+  },
+  {
+    "code": "US-IL-113",
+    "name": "McLean, Illinois, US"
+  },
+  {
+    "code": "US-IL-129",
+    "name": "Menard, Illinois, US"
+  },
+  {
+    "code": "US-IL-131",
+    "name": "Mercer, Illinois, US"
+  },
+  {
+    "code": "US-IL-133",
+    "name": "Monroe, Illinois, US"
+  },
+  {
+    "code": "US-IL-135",
+    "name": "Montgomery, Illinois, US"
+  },
+  {
+    "code": "US-IL-137",
+    "name": "Morgan, Illinois, US"
+  },
+  {
+    "code": "US-IL-139",
+    "name": "Moultrie, Illinois, US"
+  },
+  {
+    "code": "US-IL-141",
+    "name": "Ogle, Illinois, US"
+  },
+  {
+    "code": "US-IL-143",
+    "name": "Peoria, Illinois, US"
+  },
+  {
+    "code": "US-IL-145",
+    "name": "Perry, Illinois, US"
+  },
+  {
+    "code": "US-IL-147",
+    "name": "Piatt, Illinois, US"
+  },
+  {
+    "code": "US-IL-149",
+    "name": "Pike, Illinois, US"
+  },
+  {
+    "code": "US-IL-151",
+    "name": "Pope, Illinois, US"
+  },
+  {
+    "code": "US-IL-153",
+    "name": "Pulaski, Illinois, US"
+  },
+  {
+    "code": "US-IL-155",
+    "name": "Putnam, Illinois, US"
+  },
+  {
+    "code": "US-IL-157",
+    "name": "Randolph, Illinois, US"
+  },
+  {
+    "code": "US-IL-159",
+    "name": "Richland, Illinois, US"
+  },
+  {
+    "code": "US-IL-161",
+    "name": "Rock Island, Illinois, US"
+  },
+  {
+    "code": "US-IL-165",
+    "name": "Saline, Illinois, US"
+  },
+  {
+    "code": "US-IL-167",
+    "name": "Sangamon, Illinois, US"
+  },
+  {
+    "code": "US-IL-169",
+    "name": "Schuyler, Illinois, US"
+  },
+  {
+    "code": "US-IL-171",
+    "name": "Scott, Illinois, US"
+  },
+  {
+    "code": "US-IL-173",
+    "name": "Shelby, Illinois, US"
+  },
+  {
+    "code": "US-IL-163",
+    "name": "St. Clair, Illinois, US"
+  },
+  {
+    "code": "US-IL-175",
+    "name": "Stark, Illinois, US"
+  },
+  {
+    "code": "US-IL-177",
+    "name": "Stephenson, Illinois, US"
+  },
+  {
+    "code": "US-IL-179",
+    "name": "Tazewell, Illinois, US"
+  },
+  {
+    "code": "US-IL-181",
+    "name": "Union, Illinois, US"
+  },
+  {
+    "code": "US-IL-183",
+    "name": "Vermilion, Illinois, US"
+  },
+  {
+    "code": "US-IL-185",
+    "name": "Wabash, Illinois, US"
+  },
+  {
+    "code": "US-IL-187",
+    "name": "Warren, Illinois, US"
+  },
+  {
+    "code": "US-IL-189",
+    "name": "Washington, Illinois, US"
+  },
+  {
+    "code": "US-IL-191",
+    "name": "Wayne, Illinois, US"
+  },
+  {
+    "code": "US-IL-193",
+    "name": "White, Illinois, US"
+  },
+  {
+    "code": "US-IL-195",
+    "name": "Whiteside, Illinois, US"
+  },
+  {
+    "code": "US-IL-197",
+    "name": "Will, Illinois, US"
+  },
+  {
+    "code": "US-IL-199",
+    "name": "Williamson, Illinois, US"
+  },
+  {
+    "code": "US-IL-201",
+    "name": "Winnebago, Illinois, US"
+  },
+  {
+    "code": "US-IL-203",
+    "name": "Woodford, Illinois, US"
+  },
+  {
+    "code": "US-IN",
+    "name": "Indiana, US"
+  },
+  {
+    "code": "US-IN-001",
+    "name": "Adams, Indiana, US"
+  },
+  {
+    "code": "US-IN-003",
+    "name": "Allen, Indiana, US"
+  },
+  {
+    "code": "US-IN-005",
+    "name": "Bartholomew, Indiana, US"
+  },
+  {
+    "code": "US-IN-007",
+    "name": "Benton, Indiana, US"
+  },
+  {
+    "code": "US-IN-009",
+    "name": "Blackford, Indiana, US"
+  },
+  {
+    "code": "US-IN-011",
+    "name": "Boone, Indiana, US"
+  },
+  {
+    "code": "US-IN-013",
+    "name": "Brown, Indiana, US"
+  },
+  {
+    "code": "US-IN-015",
+    "name": "Carroll, Indiana, US"
+  },
+  {
+    "code": "US-IN-017",
+    "name": "Cass, Indiana, US"
+  },
+  {
+    "code": "US-IN-019",
+    "name": "Clark, Indiana, US"
+  },
+  {
+    "code": "US-IN-021",
+    "name": "Clay, Indiana, US"
+  },
+  {
+    "code": "US-IN-023",
+    "name": "Clinton, Indiana, US"
+  },
+  {
+    "code": "US-IN-025",
+    "name": "Crawford, Indiana, US"
+  },
+  {
+    "code": "US-IN-027",
+    "name": "Daviess, Indiana, US"
+  },
+  {
+    "code": "US-IN-033",
+    "name": "DeKalb, Indiana, US"
+  },
+  {
+    "code": "US-IN-029",
+    "name": "Dearborn, Indiana, US"
+  },
+  {
+    "code": "US-IN-031",
+    "name": "Decatur, Indiana, US"
+  },
+  {
+    "code": "US-IN-035",
+    "name": "Delaware, Indiana, US"
+  },
+  {
+    "code": "US-IN-037",
+    "name": "Dubois, Indiana, US"
+  },
+  {
+    "code": "US-IN-039",
+    "name": "Elkhart, Indiana, US"
+  },
+  {
+    "code": "US-IN-041",
+    "name": "Fayette, Indiana, US"
+  },
+  {
+    "code": "US-IN-043",
+    "name": "Floyd, Indiana, US"
+  },
+  {
+    "code": "US-IN-045",
+    "name": "Fountain, Indiana, US"
+  },
+  {
+    "code": "US-IN-047",
+    "name": "Franklin, Indiana, US"
+  },
+  {
+    "code": "US-IN-049",
+    "name": "Fulton, Indiana, US"
+  },
+  {
+    "code": "US-IN-051",
+    "name": "Gibson, Indiana, US"
+  },
+  {
+    "code": "US-IN-053",
+    "name": "Grant, Indiana, US"
+  },
+  {
+    "code": "US-IN-055",
+    "name": "Greene, Indiana, US"
+  },
+  {
+    "code": "US-IN-057",
+    "name": "Hamilton, Indiana, US"
+  },
+  {
+    "code": "US-IN-059",
+    "name": "Hancock, Indiana, US"
+  },
+  {
+    "code": "US-IN-061",
+    "name": "Harrison, Indiana, US"
+  },
+  {
+    "code": "US-IN-063",
+    "name": "Hendricks, Indiana, US"
+  },
+  {
+    "code": "US-IN-065",
+    "name": "Henry, Indiana, US"
+  },
+  {
+    "code": "US-IN-067",
+    "name": "Howard, Indiana, US"
+  },
+  {
+    "code": "US-IN-069",
+    "name": "Huntington, Indiana, US"
+  },
+  {
+    "code": "US-IN-071",
+    "name": "Jackson, Indiana, US"
+  },
+  {
+    "code": "US-IN-073",
+    "name": "Jasper, Indiana, US"
+  },
+  {
+    "code": "US-IN-075",
+    "name": "Jay, Indiana, US"
+  },
+  {
+    "code": "US-IN-077",
+    "name": "Jefferson, Indiana, US"
+  },
+  {
+    "code": "US-IN-079",
+    "name": "Jennings, Indiana, US"
+  },
+  {
+    "code": "US-IN-081",
+    "name": "Johnson, Indiana, US"
+  },
+  {
+    "code": "US-IN-083",
+    "name": "Knox, Indiana, US"
+  },
+  {
+    "code": "US-IN-085",
+    "name": "Kosciusko, Indiana, US"
+  },
+  {
+    "code": "US-IN-087",
+    "name": "LaGrange, Indiana, US"
+  },
+  {
+    "code": "US-IN-091",
+    "name": "LaPorte, Indiana, US"
+  },
+  {
+    "code": "US-IN-089",
+    "name": "Lake, Indiana, US"
+  },
+  {
+    "code": "US-IN-093",
+    "name": "Lawrence, Indiana, US"
+  },
+  {
+    "code": "US-IN-095",
+    "name": "Madison, Indiana, US"
+  },
+  {
+    "code": "US-IN-097",
+    "name": "Marion, Indiana, US"
+  },
+  {
+    "code": "US-IN-099",
+    "name": "Marshall, Indiana, US"
+  },
+  {
+    "code": "US-IN-101",
+    "name": "Martin, Indiana, US"
+  },
+  {
+    "code": "US-IN-103",
+    "name": "Miami, Indiana, US"
+  },
+  {
+    "code": "US-IN-105",
+    "name": "Monroe, Indiana, US"
+  },
+  {
+    "code": "US-IN-107",
+    "name": "Montgomery, Indiana, US"
+  },
+  {
+    "code": "US-IN-109",
+    "name": "Morgan, Indiana, US"
+  },
+  {
+    "code": "US-IN-111",
+    "name": "Newton, Indiana, US"
+  },
+  {
+    "code": "US-IN-113",
+    "name": "Noble, Indiana, US"
+  },
+  {
+    "code": "US-IN-115",
+    "name": "Ohio, Indiana, US"
+  },
+  {
+    "code": "US-IN-117",
+    "name": "Orange, Indiana, US"
+  },
+  {
+    "code": "US-IN-119",
+    "name": "Owen, Indiana, US"
+  },
+  {
+    "code": "US-IN-121",
+    "name": "Parke, Indiana, US"
+  },
+  {
+    "code": "US-IN-123",
+    "name": "Perry, Indiana, US"
+  },
+  {
+    "code": "US-IN-125",
+    "name": "Pike, Indiana, US"
+  },
+  {
+    "code": "US-IN-127",
+    "name": "Porter, Indiana, US"
+  },
+  {
+    "code": "US-IN-129",
+    "name": "Posey, Indiana, US"
+  },
+  {
+    "code": "US-IN-131",
+    "name": "Pulaski, Indiana, US"
+  },
+  {
+    "code": "US-IN-133",
+    "name": "Putnam, Indiana, US"
+  },
+  {
+    "code": "US-IN-135",
+    "name": "Randolph, Indiana, US"
+  },
+  {
+    "code": "US-IN-137",
+    "name": "Ripley, Indiana, US"
+  },
+  {
+    "code": "US-IN-139",
+    "name": "Rush, Indiana, US"
+  },
+  {
+    "code": "US-IN-143",
+    "name": "Scott, Indiana, US"
+  },
+  {
+    "code": "US-IN-145",
+    "name": "Shelby, Indiana, US"
+  },
+  {
+    "code": "US-IN-147",
+    "name": "Spencer, Indiana, US"
+  },
+  {
+    "code": "US-IN-141",
+    "name": "St. Joseph, Indiana, US"
+  },
+  {
+    "code": "US-IN-149",
+    "name": "Starke, Indiana, US"
+  },
+  {
+    "code": "US-IN-151",
+    "name": "Steuben, Indiana, US"
+  },
+  {
+    "code": "US-IN-153",
+    "name": "Sullivan, Indiana, US"
+  },
+  {
+    "code": "US-IN-155",
+    "name": "Switzerland, Indiana, US"
+  },
+  {
+    "code": "US-IN-157",
+    "name": "Tippecanoe, Indiana, US"
+  },
+  {
+    "code": "US-IN-159",
+    "name": "Tipton, Indiana, US"
+  },
+  {
+    "code": "US-IN-161",
+    "name": "Union, Indiana, US"
+  },
+  {
+    "code": "US-IN-163",
+    "name": "Vanderburgh, Indiana, US"
+  },
+  {
+    "code": "US-IN-165",
+    "name": "Vermillion, Indiana, US"
+  },
+  {
+    "code": "US-IN-167",
+    "name": "Vigo, Indiana, US"
+  },
+  {
+    "code": "US-IN-169",
+    "name": "Wabash, Indiana, US"
+  },
+  {
+    "code": "US-IN-171",
+    "name": "Warren, Indiana, US"
+  },
+  {
+    "code": "US-IN-173",
+    "name": "Warrick, Indiana, US"
+  },
+  {
+    "code": "US-IN-175",
+    "name": "Washington, Indiana, US"
+  },
+  {
+    "code": "US-IN-177",
+    "name": "Wayne, Indiana, US"
+  },
+  {
+    "code": "US-IN-179",
+    "name": "Wells, Indiana, US"
+  },
+  {
+    "code": "US-IN-181",
+    "name": "White, Indiana, US"
+  },
+  {
+    "code": "US-IN-183",
+    "name": "Whitley, Indiana, US"
+  },
+  {
+    "code": "US-IA",
+    "name": "Iowa, US"
+  },
+  {
+    "code": "US-IA-001",
+    "name": "Adair, Iowa, US"
+  },
+  {
+    "code": "US-IA-003",
+    "name": "Adams, Iowa, US"
+  },
+  {
+    "code": "US-IA-005",
+    "name": "Allamakee, Iowa, US"
+  },
+  {
+    "code": "US-IA-007",
+    "name": "Appanoose, Iowa, US"
+  },
+  {
+    "code": "US-IA-009",
+    "name": "Audubon, Iowa, US"
+  },
+  {
+    "code": "US-IA-011",
+    "name": "Benton, Iowa, US"
+  },
+  {
+    "code": "US-IA-013",
+    "name": "Black Hawk, Iowa, US"
+  },
+  {
+    "code": "US-IA-015",
+    "name": "Boone, Iowa, US"
+  },
+  {
+    "code": "US-IA-017",
+    "name": "Bremer, Iowa, US"
+  },
+  {
+    "code": "US-IA-019",
+    "name": "Buchanan, Iowa, US"
+  },
+  {
+    "code": "US-IA-021",
+    "name": "Buena Vista, Iowa, US"
+  },
+  {
+    "code": "US-IA-023",
+    "name": "Butler, Iowa, US"
+  },
+  {
+    "code": "US-IA-025",
+    "name": "Calhoun, Iowa, US"
+  },
+  {
+    "code": "US-IA-027",
+    "name": "Carroll, Iowa, US"
+  },
+  {
+    "code": "US-IA-029",
+    "name": "Cass, Iowa, US"
+  },
+  {
+    "code": "US-IA-031",
+    "name": "Cedar, Iowa, US"
+  },
+  {
+    "code": "US-IA-033",
+    "name": "Cerro Gordo, Iowa, US"
+  },
+  {
+    "code": "US-IA-035",
+    "name": "Cherokee, Iowa, US"
+  },
+  {
+    "code": "US-IA-037",
+    "name": "Chickasaw, Iowa, US"
+  },
+  {
+    "code": "US-IA-039",
+    "name": "Clarke, Iowa, US"
+  },
+  {
+    "code": "US-IA-041",
+    "name": "Clay, Iowa, US"
+  },
+  {
+    "code": "US-IA-043",
+    "name": "Clayton, Iowa, US"
+  },
+  {
+    "code": "US-IA-045",
+    "name": "Clinton, Iowa, US"
+  },
+  {
+    "code": "US-IA-047",
+    "name": "Crawford, Iowa, US"
+  },
+  {
+    "code": "US-IA-049",
+    "name": "Dallas, Iowa, US"
+  },
+  {
+    "code": "US-IA-051",
+    "name": "Davis, Iowa, US"
+  },
+  {
+    "code": "US-IA-053",
+    "name": "Decatur, Iowa, US"
+  },
+  {
+    "code": "US-IA-055",
+    "name": "Delaware, Iowa, US"
+  },
+  {
+    "code": "US-IA-057",
+    "name": "Des Moines, Iowa, US"
+  },
+  {
+    "code": "US-IA-059",
+    "name": "Dickinson, Iowa, US"
+  },
+  {
+    "code": "US-IA-061",
+    "name": "Dubuque, Iowa, US"
+  },
+  {
+    "code": "US-IA-063",
+    "name": "Emmet, Iowa, US"
+  },
+  {
+    "code": "US-IA-065",
+    "name": "Fayette, Iowa, US"
+  },
+  {
+    "code": "US-IA-067",
+    "name": "Floyd, Iowa, US"
+  },
+  {
+    "code": "US-IA-069",
+    "name": "Franklin, Iowa, US"
+  },
+  {
+    "code": "US-IA-071",
+    "name": "Fremont, Iowa, US"
+  },
+  {
+    "code": "US-IA-073",
+    "name": "Greene, Iowa, US"
+  },
+  {
+    "code": "US-IA-075",
+    "name": "Grundy, Iowa, US"
+  },
+  {
+    "code": "US-IA-077",
+    "name": "Guthrie, Iowa, US"
+  },
+  {
+    "code": "US-IA-079",
+    "name": "Hamilton, Iowa, US"
+  },
+  {
+    "code": "US-IA-081",
+    "name": "Hancock, Iowa, US"
+  },
+  {
+    "code": "US-IA-083",
+    "name": "Hardin, Iowa, US"
+  },
+  {
+    "code": "US-IA-085",
+    "name": "Harrison, Iowa, US"
+  },
+  {
+    "code": "US-IA-087",
+    "name": "Henry, Iowa, US"
+  },
+  {
+    "code": "US-IA-089",
+    "name": "Howard, Iowa, US"
+  },
+  {
+    "code": "US-IA-091",
+    "name": "Humboldt, Iowa, US"
+  },
+  {
+    "code": "US-IA-093",
+    "name": "Ida, Iowa, US"
+  },
+  {
+    "code": "US-IA-095",
+    "name": "Iowa, Iowa, US"
+  },
+  {
+    "code": "US-IA-097",
+    "name": "Jackson, Iowa, US"
+  },
+  {
+    "code": "US-IA-099",
+    "name": "Jasper, Iowa, US"
+  },
+  {
+    "code": "US-IA-101",
+    "name": "Jefferson, Iowa, US"
+  },
+  {
+    "code": "US-IA-103",
+    "name": "Johnson, Iowa, US"
+  },
+  {
+    "code": "US-IA-105",
+    "name": "Jones, Iowa, US"
+  },
+  {
+    "code": "US-IA-107",
+    "name": "Keokuk, Iowa, US"
+  },
+  {
+    "code": "US-IA-109",
+    "name": "Kossuth, Iowa, US"
+  },
+  {
+    "code": "US-IA-111",
+    "name": "Lee, Iowa, US"
+  },
+  {
+    "code": "US-IA-113",
+    "name": "Linn, Iowa, US"
+  },
+  {
+    "code": "US-IA-115",
+    "name": "Louisa, Iowa, US"
+  },
+  {
+    "code": "US-IA-117",
+    "name": "Lucas, Iowa, US"
+  },
+  {
+    "code": "US-IA-119",
+    "name": "Lyon, Iowa, US"
+  },
+  {
+    "code": "US-IA-121",
+    "name": "Madison, Iowa, US"
+  },
+  {
+    "code": "US-IA-123",
+    "name": "Mahaska, Iowa, US"
+  },
+  {
+    "code": "US-IA-125",
+    "name": "Marion, Iowa, US"
+  },
+  {
+    "code": "US-IA-127",
+    "name": "Marshall, Iowa, US"
+  },
+  {
+    "code": "US-IA-129",
+    "name": "Mills, Iowa, US"
+  },
+  {
+    "code": "US-IA-131",
+    "name": "Mitchell, Iowa, US"
+  },
+  {
+    "code": "US-IA-133",
+    "name": "Monona, Iowa, US"
+  },
+  {
+    "code": "US-IA-135",
+    "name": "Monroe, Iowa, US"
+  },
+  {
+    "code": "US-IA-137",
+    "name": "Montgomery, Iowa, US"
+  },
+  {
+    "code": "US-IA-139",
+    "name": "Muscatine, Iowa, US"
+  },
+  {
+    "code": "US-IA-141",
+    "name": "O'Brien, Iowa, US"
+  },
+  {
+    "code": "US-IA-143",
+    "name": "Osceola, Iowa, US"
+  },
+  {
+    "code": "US-IA-145",
+    "name": "Page, Iowa, US"
+  },
+  {
+    "code": "US-IA-147",
+    "name": "Palo Alto, Iowa, US"
+  },
+  {
+    "code": "US-IA-149",
+    "name": "Plymouth, Iowa, US"
+  },
+  {
+    "code": "US-IA-151",
+    "name": "Pocahontas, Iowa, US"
+  },
+  {
+    "code": "US-IA-153",
+    "name": "Polk, Iowa, US"
+  },
+  {
+    "code": "US-IA-155",
+    "name": "Pottawattamie, Iowa, US"
+  },
+  {
+    "code": "US-IA-157",
+    "name": "Poweshiek, Iowa, US"
+  },
+  {
+    "code": "US-IA-159",
+    "name": "Ringgold, Iowa, US"
+  },
+  {
+    "code": "US-IA-161",
+    "name": "Sac, Iowa, US"
+  },
+  {
+    "code": "US-IA-163",
+    "name": "Scott, Iowa, US"
+  },
+  {
+    "code": "US-IA-165",
+    "name": "Shelby, Iowa, US"
+  },
+  {
+    "code": "US-IA-167",
+    "name": "Sioux, Iowa, US"
+  },
+  {
+    "code": "US-IA-169",
+    "name": "Story, Iowa, US"
+  },
+  {
+    "code": "US-IA-171",
+    "name": "Tama, Iowa, US"
+  },
+  {
+    "code": "US-IA-173",
+    "name": "Taylor, Iowa, US"
+  },
+  {
+    "code": "US-IA-175",
+    "name": "Union, Iowa, US"
+  },
+  {
+    "code": "US-IA-177",
+    "name": "Van Buren, Iowa, US"
+  },
+  {
+    "code": "US-IA-179",
+    "name": "Wapello, Iowa, US"
+  },
+  {
+    "code": "US-IA-181",
+    "name": "Warren, Iowa, US"
+  },
+  {
+    "code": "US-IA-183",
+    "name": "Washington, Iowa, US"
+  },
+  {
+    "code": "US-IA-185",
+    "name": "Wayne, Iowa, US"
+  },
+  {
+    "code": "US-IA-187",
+    "name": "Webster, Iowa, US"
+  },
+  {
+    "code": "US-IA-189",
+    "name": "Winnebago, Iowa, US"
+  },
+  {
+    "code": "US-IA-191",
+    "name": "Winneshiek, Iowa, US"
+  },
+  {
+    "code": "US-IA-193",
+    "name": "Woodbury, Iowa, US"
+  },
+  {
+    "code": "US-IA-195",
+    "name": "Worth, Iowa, US"
+  },
+  {
+    "code": "US-IA-197",
+    "name": "Wright, Iowa, US"
+  },
+  {
+    "code": "US-KY",
+    "name": "Kentucky, US"
+  },
+  {
+    "code": "US-KY-001",
+    "name": "Adair, Kentucky, US"
+  },
+  {
+    "code": "US-KY-003",
+    "name": "Allen, Kentucky, US"
+  },
+  {
+    "code": "US-KY-005",
+    "name": "Anderson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-007",
+    "name": "Ballard, Kentucky, US"
+  },
+  {
+    "code": "US-KY-009",
+    "name": "Barren, Kentucky, US"
+  },
+  {
+    "code": "US-KY-011",
+    "name": "Bath, Kentucky, US"
+  },
+  {
+    "code": "US-KY-013",
+    "name": "Bell, Kentucky, US"
+  },
+  {
+    "code": "US-KY-015",
+    "name": "Boone, Kentucky, US"
+  },
+  {
+    "code": "US-KY-017",
+    "name": "Bourbon, Kentucky, US"
+  },
+  {
+    "code": "US-KY-019",
+    "name": "Boyd, Kentucky, US"
+  },
+  {
+    "code": "US-KY-021",
+    "name": "Boyle, Kentucky, US"
+  },
+  {
+    "code": "US-KY-023",
+    "name": "Bracken, Kentucky, US"
+  },
+  {
+    "code": "US-KY-025",
+    "name": "Breathitt, Kentucky, US"
+  },
+  {
+    "code": "US-KY-027",
+    "name": "Breckinridge, Kentucky, US"
+  },
+  {
+    "code": "US-KY-029",
+    "name": "Bullitt, Kentucky, US"
+  },
+  {
+    "code": "US-KY-031",
+    "name": "Butler, Kentucky, US"
+  },
+  {
+    "code": "US-KY-033",
+    "name": "Caldwell, Kentucky, US"
+  },
+  {
+    "code": "US-KY-035",
+    "name": "Calloway, Kentucky, US"
+  },
+  {
+    "code": "US-KY-037",
+    "name": "Campbell, Kentucky, US"
+  },
+  {
+    "code": "US-KY-039",
+    "name": "Carlisle, Kentucky, US"
+  },
+  {
+    "code": "US-KY-041",
+    "name": "Carroll, Kentucky, US"
+  },
+  {
+    "code": "US-KY-043",
+    "name": "Carter, Kentucky, US"
+  },
+  {
+    "code": "US-KY-045",
+    "name": "Casey, Kentucky, US"
+  },
+  {
+    "code": "US-KY-047",
+    "name": "Christian, Kentucky, US"
+  },
+  {
+    "code": "US-KY-049",
+    "name": "Clark, Kentucky, US"
+  },
+  {
+    "code": "US-KY-051",
+    "name": "Clay, Kentucky, US"
+  },
+  {
+    "code": "US-KY-053",
+    "name": "Clinton, Kentucky, US"
+  },
+  {
+    "code": "US-KY-055",
+    "name": "Crittenden, Kentucky, US"
+  },
+  {
+    "code": "US-KY-057",
+    "name": "Cumberland, Kentucky, US"
+  },
+  {
+    "code": "US-KY-059",
+    "name": "Daviess, Kentucky, US"
+  },
+  {
+    "code": "US-KY-061",
+    "name": "Edmonson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-063",
+    "name": "Elliott, Kentucky, US"
+  },
+  {
+    "code": "US-KY-065",
+    "name": "Estill, Kentucky, US"
+  },
+  {
+    "code": "US-KY-067",
+    "name": "Fayette, Kentucky, US"
+  },
+  {
+    "code": "US-KY-069",
+    "name": "Fleming, Kentucky, US"
+  },
+  {
+    "code": "US-KY-071",
+    "name": "Floyd, Kentucky, US"
+  },
+  {
+    "code": "US-KY-073",
+    "name": "Franklin, Kentucky, US"
+  },
+  {
+    "code": "US-KY-075",
+    "name": "Fulton, Kentucky, US"
+  },
+  {
+    "code": "US-KY-077",
+    "name": "Gallatin, Kentucky, US"
+  },
+  {
+    "code": "US-KY-079",
+    "name": "Garrard, Kentucky, US"
+  },
+  {
+    "code": "US-KY-081",
+    "name": "Grant, Kentucky, US"
+  },
+  {
+    "code": "US-KY-083",
+    "name": "Graves, Kentucky, US"
+  },
+  {
+    "code": "US-KY-085",
+    "name": "Grayson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-087",
+    "name": "Green, Kentucky, US"
+  },
+  {
+    "code": "US-KY-089",
+    "name": "Greenup, Kentucky, US"
+  },
+  {
+    "code": "US-KY-091",
+    "name": "Hancock, Kentucky, US"
+  },
+  {
+    "code": "US-KY-093",
+    "name": "Hardin, Kentucky, US"
+  },
+  {
+    "code": "US-KY-095",
+    "name": "Harlan, Kentucky, US"
+  },
+  {
+    "code": "US-KY-097",
+    "name": "Harrison, Kentucky, US"
+  },
+  {
+    "code": "US-KY-099",
+    "name": "Hart, Kentucky, US"
+  },
+  {
+    "code": "US-KY-101",
+    "name": "Henderson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-103",
+    "name": "Henry, Kentucky, US"
+  },
+  {
+    "code": "US-KY-105",
+    "name": "Hickman, Kentucky, US"
+  },
+  {
+    "code": "US-KY-107",
+    "name": "Hopkins, Kentucky, US"
+  },
+  {
+    "code": "US-KY-109",
+    "name": "Jackson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-111",
+    "name": "Jefferson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-113",
+    "name": "Jessamine, Kentucky, US"
+  },
+  {
+    "code": "US-KY-115",
+    "name": "Johnson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-117",
+    "name": "Kenton, Kentucky, US"
+  },
+  {
+    "code": "US-KY-119",
+    "name": "Knott, Kentucky, US"
+  },
+  {
+    "code": "US-KY-121",
+    "name": "Knox, Kentucky, US"
+  },
+  {
+    "code": "US-KY-123",
+    "name": "Larue, Kentucky, US"
+  },
+  {
+    "code": "US-KY-125",
+    "name": "Laurel, Kentucky, US"
+  },
+  {
+    "code": "US-KY-127",
+    "name": "Lawrence, Kentucky, US"
+  },
+  {
+    "code": "US-KY-129",
+    "name": "Lee, Kentucky, US"
+  },
+  {
+    "code": "US-KY-131",
+    "name": "Leslie, Kentucky, US"
+  },
+  {
+    "code": "US-KY-133",
+    "name": "Letcher, Kentucky, US"
+  },
+  {
+    "code": "US-KY-135",
+    "name": "Lewis, Kentucky, US"
+  },
+  {
+    "code": "US-KY-137",
+    "name": "Lincoln, Kentucky, US"
+  },
+  {
+    "code": "US-KY-139",
+    "name": "Livingston, Kentucky, US"
+  },
+  {
+    "code": "US-KY-141",
+    "name": "Logan, Kentucky, US"
+  },
+  {
+    "code": "US-KY-143",
+    "name": "Lyon, Kentucky, US"
+  },
+  {
+    "code": "US-KY-151",
+    "name": "Madison, Kentucky, US"
+  },
+  {
+    "code": "US-KY-153",
+    "name": "Magoffin, Kentucky, US"
+  },
+  {
+    "code": "US-KY-155",
+    "name": "Marion, Kentucky, US"
+  },
+  {
+    "code": "US-KY-157",
+    "name": "Marshall, Kentucky, US"
+  },
+  {
+    "code": "US-KY-159",
+    "name": "Martin, Kentucky, US"
+  },
+  {
+    "code": "US-KY-161",
+    "name": "Mason, Kentucky, US"
+  },
+  {
+    "code": "US-KY-145",
+    "name": "McCracken, Kentucky, US"
+  },
+  {
+    "code": "US-KY-147",
+    "name": "McCreary, Kentucky, US"
+  },
+  {
+    "code": "US-KY-149",
+    "name": "McLean, Kentucky, US"
+  },
+  {
+    "code": "US-KY-163",
+    "name": "Meade, Kentucky, US"
+  },
+  {
+    "code": "US-KY-165",
+    "name": "Menifee, Kentucky, US"
+  },
+  {
+    "code": "US-KY-167",
+    "name": "Mercer, Kentucky, US"
+  },
+  {
+    "code": "US-KY-169",
+    "name": "Metcalfe, Kentucky, US"
+  },
+  {
+    "code": "US-KY-171",
+    "name": "Monroe, Kentucky, US"
+  },
+  {
+    "code": "US-KY-173",
+    "name": "Montgomery, Kentucky, US"
+  },
+  {
+    "code": "US-KY-175",
+    "name": "Morgan, Kentucky, US"
+  },
+  {
+    "code": "US-KY-177",
+    "name": "Muhlenberg, Kentucky, US"
+  },
+  {
+    "code": "US-KY-179",
+    "name": "Nelson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-181",
+    "name": "Nicholas, Kentucky, US"
+  },
+  {
+    "code": "US-KY-183",
+    "name": "Ohio, Kentucky, US"
+  },
+  {
+    "code": "US-KY-185",
+    "name": "Oldham, Kentucky, US"
+  },
+  {
+    "code": "US-KY-187",
+    "name": "Owen, Kentucky, US"
+  },
+  {
+    "code": "US-KY-189",
+    "name": "Owsley, Kentucky, US"
+  },
+  {
+    "code": "US-KY-191",
+    "name": "Pendleton, Kentucky, US"
+  },
+  {
+    "code": "US-KY-193",
+    "name": "Perry, Kentucky, US"
+  },
+  {
+    "code": "US-KY-195",
+    "name": "Pike, Kentucky, US"
+  },
+  {
+    "code": "US-KY-197",
+    "name": "Powell, Kentucky, US"
+  },
+  {
+    "code": "US-KY-199",
+    "name": "Pulaski, Kentucky, US"
+  },
+  {
+    "code": "US-KY-201",
+    "name": "Robertson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-203",
+    "name": "Rockcastle, Kentucky, US"
+  },
+  {
+    "code": "US-KY-205",
+    "name": "Rowan, Kentucky, US"
+  },
+  {
+    "code": "US-KY-207",
+    "name": "Russell, Kentucky, US"
+  },
+  {
+    "code": "US-KY-209",
+    "name": "Scott, Kentucky, US"
+  },
+  {
+    "code": "US-KY-211",
+    "name": "Shelby, Kentucky, US"
+  },
+  {
+    "code": "US-KY-213",
+    "name": "Simpson, Kentucky, US"
+  },
+  {
+    "code": "US-KY-215",
+    "name": "Spencer, Kentucky, US"
+  },
+  {
+    "code": "US-KY-217",
+    "name": "Taylor, Kentucky, US"
+  },
+  {
+    "code": "US-KY-219",
+    "name": "Todd, Kentucky, US"
+  },
+  {
+    "code": "US-KY-221",
+    "name": "Trigg, Kentucky, US"
+  },
+  {
+    "code": "US-KY-223",
+    "name": "Trimble, Kentucky, US"
+  },
+  {
+    "code": "US-KY-225",
+    "name": "Union, Kentucky, US"
+  },
+  {
+    "code": "US-KY-227",
+    "name": "Warren, Kentucky, US"
+  },
+  {
+    "code": "US-KY-229",
+    "name": "Washington, Kentucky, US"
+  },
+  {
+    "code": "US-KY-231",
+    "name": "Wayne, Kentucky, US"
+  },
+  {
+    "code": "US-KY-233",
+    "name": "Webster, Kentucky, US"
+  },
+  {
+    "code": "US-KY-235",
+    "name": "Whitley, Kentucky, US"
+  },
+  {
+    "code": "US-KY-237",
+    "name": "Wolfe, Kentucky, US"
+  },
+  {
+    "code": "US-KY-239",
+    "name": "Woodford, Kentucky, US"
+  },
+  {
+    "code": "US-ME",
+    "name": "Maine, US"
+  },
+  {
+    "code": "US-ME-001",
+    "name": "Androscoggin, Maine, US"
+  },
+  {
+    "code": "US-ME-003",
+    "name": "Aroostook, Maine, US"
+  },
+  {
+    "code": "US-ME-005",
+    "name": "Cumberland, Maine, US"
+  },
+  {
+    "code": "US-ME-007",
+    "name": "Franklin, Maine, US"
+  },
+  {
+    "code": "US-ME-009",
+    "name": "Hancock, Maine, US"
+  },
+  {
+    "code": "US-ME-011",
+    "name": "Kennebec, Maine, US"
+  },
+  {
+    "code": "US-ME-013",
+    "name": "Knox, Maine, US"
+  },
+  {
+    "code": "US-ME-015",
+    "name": "Lincoln, Maine, US"
+  },
+  {
+    "code": "US-ME-017",
+    "name": "Oxford, Maine, US"
+  },
+  {
+    "code": "US-ME-019",
+    "name": "Penobscot, Maine, US"
+  },
+  {
+    "code": "US-ME-021",
+    "name": "Piscataquis, Maine, US"
+  },
+  {
+    "code": "US-ME-023",
+    "name": "Sagadahoc, Maine, US"
+  },
+  {
+    "code": "US-ME-025",
+    "name": "Somerset, Maine, US"
+  },
+  {
+    "code": "US-ME-027",
+    "name": "Waldo, Maine, US"
+  },
+  {
+    "code": "US-ME-029",
+    "name": "Washington, Maine, US"
+  },
+  {
+    "code": "US-ME-031",
+    "name": "York, Maine, US"
+  },
+  {
+    "code": "US-MA",
+    "name": "Massachusetts, US"
+  },
+  {
+    "code": "US-MA-001",
+    "name": "Barnstable, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-003",
+    "name": "Berkshire, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-005",
+    "name": "Bristol, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-007",
+    "name": "Dukes, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-009",
+    "name": "Essex, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-011",
+    "name": "Franklin, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-013",
+    "name": "Hampden, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-015",
+    "name": "Hampshire, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-017",
+    "name": "Middlesex, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-019",
+    "name": "Nantucket, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-021",
+    "name": "Norfolk, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-023",
+    "name": "Plymouth, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-025",
+    "name": "Suffolk, Massachusetts, US"
+  },
+  {
+    "code": "US-MA-027",
+    "name": "Worcester, Massachusetts, US"
+  },
+  {
+    "code": "US-MI",
+    "name": "Michigan, US"
+  },
+  {
+    "code": "US-MI-001",
+    "name": "Alcona, Michigan, US"
+  },
+  {
+    "code": "US-MI-003",
+    "name": "Alger, Michigan, US"
+  },
+  {
+    "code": "US-MI-005",
+    "name": "Allegan, Michigan, US"
+  },
+  {
+    "code": "US-MI-007",
+    "name": "Alpena, Michigan, US"
+  },
+  {
+    "code": "US-MI-009",
+    "name": "Antrim, Michigan, US"
+  },
+  {
+    "code": "US-MI-011",
+    "name": "Arenac, Michigan, US"
+  },
+  {
+    "code": "US-MI-013",
+    "name": "Baraga, Michigan, US"
+  },
+  {
+    "code": "US-MI-015",
+    "name": "Barry, Michigan, US"
+  },
+  {
+    "code": "US-MI-017",
+    "name": "Bay, Michigan, US"
+  },
+  {
+    "code": "US-MI-019",
+    "name": "Benzie, Michigan, US"
+  },
+  {
+    "code": "US-MI-021",
+    "name": "Berrien, Michigan, US"
+  },
+  {
+    "code": "US-MI-023",
+    "name": "Branch, Michigan, US"
+  },
+  {
+    "code": "US-MI-025",
+    "name": "Calhoun, Michigan, US"
+  },
+  {
+    "code": "US-MI-027",
+    "name": "Cass, Michigan, US"
+  },
+  {
+    "code": "US-MI-029",
+    "name": "Charlevoix, Michigan, US"
+  },
+  {
+    "code": "US-MI-031",
+    "name": "Cheboygan, Michigan, US"
+  },
+  {
+    "code": "US-MI-033",
+    "name": "Chippewa, Michigan, US"
+  },
+  {
+    "code": "US-MI-035",
+    "name": "Clare, Michigan, US"
+  },
+  {
+    "code": "US-MI-037",
+    "name": "Clinton, Michigan, US"
+  },
+  {
+    "code": "US-MI-039",
+    "name": "Crawford, Michigan, US"
+  },
+  {
+    "code": "US-MI-041",
+    "name": "Delta, Michigan, US"
+  },
+  {
+    "code": "US-MI-043",
+    "name": "Dickinson, Michigan, US"
+  },
+  {
+    "code": "US-MI-045",
+    "name": "Eaton, Michigan, US"
+  },
+  {
+    "code": "US-MI-047",
+    "name": "Emmet, Michigan, US"
+  },
+  {
+    "code": "US-MI-049",
+    "name": "Genesee, Michigan, US"
+  },
+  {
+    "code": "US-MI-051",
+    "name": "Gladwin, Michigan, US"
+  },
+  {
+    "code": "US-MI-053",
+    "name": "Gogebic, Michigan, US"
+  },
+  {
+    "code": "US-MI-055",
+    "name": "Grand Traverse, Michigan, US"
+  },
+  {
+    "code": "US-MI-057",
+    "name": "Gratiot, Michigan, US"
+  },
+  {
+    "code": "US-MI-059",
+    "name": "Hillsdale, Michigan, US"
+  },
+  {
+    "code": "US-MI-061",
+    "name": "Houghton, Michigan, US"
+  },
+  {
+    "code": "US-MI-063",
+    "name": "Huron, Michigan, US"
+  },
+  {
+    "code": "US-MI-065",
+    "name": "Ingham, Michigan, US"
+  },
+  {
+    "code": "US-MI-067",
+    "name": "Ionia, Michigan, US"
+  },
+  {
+    "code": "US-MI-069",
+    "name": "Iosco, Michigan, US"
+  },
+  {
+    "code": "US-MI-071",
+    "name": "Iron, Michigan, US"
+  },
+  {
+    "code": "US-MI-073",
+    "name": "Isabella, Michigan, US"
+  },
+  {
+    "code": "US-MI-075",
+    "name": "Jackson, Michigan, US"
+  },
+  {
+    "code": "US-MI-077",
+    "name": "Kalamazoo, Michigan, US"
+  },
+  {
+    "code": "US-MI-079",
+    "name": "Kalkaska, Michigan, US"
+  },
+  {
+    "code": "US-MI-081",
+    "name": "Kent, Michigan, US"
+  },
+  {
+    "code": "US-MI-083",
+    "name": "Keweenaw, Michigan, US"
+  },
+  {
+    "code": "US-MI-085",
+    "name": "Lake, Michigan, US"
+  },
+  {
+    "code": "US-MI-087",
+    "name": "Lapeer, Michigan, US"
+  },
+  {
+    "code": "US-MI-089",
+    "name": "Leelanau, Michigan, US"
+  },
+  {
+    "code": "US-MI-091",
+    "name": "Lenawee, Michigan, US"
+  },
+  {
+    "code": "US-MI-093",
+    "name": "Livingston, Michigan, US"
+  },
+  {
+    "code": "US-MI-095",
+    "name": "Luce, Michigan, US"
+  },
+  {
+    "code": "US-MI-097",
+    "name": "Mackinac, Michigan, US"
+  },
+  {
+    "code": "US-MI-099",
+    "name": "Macomb, Michigan, US"
+  },
+  {
+    "code": "US-MI-101",
+    "name": "Manistee, Michigan, US"
+  },
+  {
+    "code": "US-MI-103",
+    "name": "Marquette, Michigan, US"
+  },
+  {
+    "code": "US-MI-105",
+    "name": "Mason, Michigan, US"
+  },
+  {
+    "code": "US-MI-107",
+    "name": "Mecosta, Michigan, US"
+  },
+  {
+    "code": "US-MI-109",
+    "name": "Menominee, Michigan, US"
+  },
+  {
+    "code": "US-MI-111",
+    "name": "Midland, Michigan, US"
+  },
+  {
+    "code": "US-MI-113",
+    "name": "Missaukee, Michigan, US"
+  },
+  {
+    "code": "US-MI-115",
+    "name": "Monroe, Michigan, US"
+  },
+  {
+    "code": "US-MI-117",
+    "name": "Montcalm, Michigan, US"
+  },
+  {
+    "code": "US-MI-119",
+    "name": "Montmorency, Michigan, US"
+  },
+  {
+    "code": "US-MI-121",
+    "name": "Muskegon, Michigan, US"
+  },
+  {
+    "code": "US-MI-123",
+    "name": "Newaygo, Michigan, US"
+  },
+  {
+    "code": "US-MI-125",
+    "name": "Oakland, Michigan, US"
+  },
+  {
+    "code": "US-MI-127",
+    "name": "Oceana, Michigan, US"
+  },
+  {
+    "code": "US-MI-129",
+    "name": "Ogemaw, Michigan, US"
+  },
+  {
+    "code": "US-MI-131",
+    "name": "Ontonagon, Michigan, US"
+  },
+  {
+    "code": "US-MI-133",
+    "name": "Osceola, Michigan, US"
+  },
+  {
+    "code": "US-MI-135",
+    "name": "Oscoda, Michigan, US"
+  },
+  {
+    "code": "US-MI-137",
+    "name": "Otsego, Michigan, US"
+  },
+  {
+    "code": "US-MI-139",
+    "name": "Ottawa, Michigan, US"
+  },
+  {
+    "code": "US-MI-141",
+    "name": "Presque Isle, Michigan, US"
+  },
+  {
+    "code": "US-MI-143",
+    "name": "Roscommon, Michigan, US"
+  },
+  {
+    "code": "US-MI-145",
+    "name": "Saginaw, Michigan, US"
+  },
+  {
+    "code": "US-MI-151",
+    "name": "Sanilac, Michigan, US"
+  },
+  {
+    "code": "US-MI-153",
+    "name": "Schoolcraft, Michigan, US"
+  },
+  {
+    "code": "US-MI-155",
+    "name": "Shiawassee, Michigan, US"
+  },
+  {
+    "code": "US-MI-147",
+    "name": "St. Clair, Michigan, US"
+  },
+  {
+    "code": "US-MI-149",
+    "name": "St. Joseph, Michigan, US"
+  },
+  {
+    "code": "US-MI-157",
+    "name": "Tuscola, Michigan, US"
+  },
+  {
+    "code": "US-MI-159",
+    "name": "Van Buren, Michigan, US"
+  },
+  {
+    "code": "US-MI-161",
+    "name": "Washtenaw, Michigan, US"
+  },
+  {
+    "code": "US-MI-163",
+    "name": "Wayne, Michigan, US"
+  },
+  {
+    "code": "US-MI-165",
+    "name": "Wexford, Michigan, US"
+  },
+  {
+    "code": "US-MO",
+    "name": "Missouri, US"
+  },
+  {
+    "code": "US-MO-001",
+    "name": "Adair, Missouri, US"
+  },
+  {
+    "code": "US-MO-003",
+    "name": "Andrew, Missouri, US"
+  },
+  {
+    "code": "US-MO-005",
+    "name": "Atchison, Missouri, US"
+  },
+  {
+    "code": "US-MO-007",
+    "name": "Audrain, Missouri, US"
+  },
+  {
+    "code": "US-MO-009",
+    "name": "Barry, Missouri, US"
+  },
+  {
+    "code": "US-MO-011",
+    "name": "Barton, Missouri, US"
+  },
+  {
+    "code": "US-MO-013",
+    "name": "Bates, Missouri, US"
+  },
+  {
+    "code": "US-MO-015",
+    "name": "Benton, Missouri, US"
+  },
+  {
+    "code": "US-MO-017",
+    "name": "Bollinger, Missouri, US"
+  },
+  {
+    "code": "US-MO-019",
+    "name": "Boone, Missouri, US"
+  },
+  {
+    "code": "US-MO-021",
+    "name": "Buchanan, Missouri, US"
+  },
+  {
+    "code": "US-MO-023",
+    "name": "Butler, Missouri, US"
+  },
+  {
+    "code": "US-MO-025",
+    "name": "Caldwell, Missouri, US"
+  },
+  {
+    "code": "US-MO-027",
+    "name": "Callaway, Missouri, US"
+  },
+  {
+    "code": "US-MO-029",
+    "name": "Camden, Missouri, US"
+  },
+  {
+    "code": "US-MO-031",
+    "name": "Cape Girardeau, Missouri, US"
+  },
+  {
+    "code": "US-MO-033",
+    "name": "Carroll, Missouri, US"
+  },
+  {
+    "code": "US-MO-035",
+    "name": "Carter, Missouri, US"
+  },
+  {
+    "code": "US-MO-037",
+    "name": "Cass, Missouri, US"
+  },
+  {
+    "code": "US-MO-039",
+    "name": "Cedar, Missouri, US"
+  },
+  {
+    "code": "US-MO-041",
+    "name": "Chariton, Missouri, US"
+  },
+  {
+    "code": "US-MO-043",
+    "name": "Christian, Missouri, US"
+  },
+  {
+    "code": "US-MO-045",
+    "name": "Clark, Missouri, US"
+  },
+  {
+    "code": "US-MO-047",
+    "name": "Clay, Missouri, US"
+  },
+  {
+    "code": "US-MO-049",
+    "name": "Clinton, Missouri, US"
+  },
+  {
+    "code": "US-MO-051",
+    "name": "Cole, Missouri, US"
+  },
+  {
+    "code": "US-MO-053",
+    "name": "Cooper, Missouri, US"
+  },
+  {
+    "code": "US-MO-055",
+    "name": "Crawford, Missouri, US"
+  },
+  {
+    "code": "US-MO-057",
+    "name": "Dade, Missouri, US"
+  },
+  {
+    "code": "US-MO-059",
+    "name": "Dallas, Missouri, US"
+  },
+  {
+    "code": "US-MO-061",
+    "name": "Daviess, Missouri, US"
+  },
+  {
+    "code": "US-MO-063",
+    "name": "DeKalb, Missouri, US"
+  },
+  {
+    "code": "US-MO-065",
+    "name": "Dent, Missouri, US"
+  },
+  {
+    "code": "US-MO-067",
+    "name": "Douglas, Missouri, US"
+  },
+  {
+    "code": "US-MO-069",
+    "name": "Dunklin, Missouri, US"
+  },
+  {
+    "code": "US-MO-071",
+    "name": "Franklin, Missouri, US"
+  },
+  {
+    "code": "US-MO-073",
+    "name": "Gasconade, Missouri, US"
+  },
+  {
+    "code": "US-MO-075",
+    "name": "Gentry, Missouri, US"
+  },
+  {
+    "code": "US-MO-077",
+    "name": "Greene, Missouri, US"
+  },
+  {
+    "code": "US-MO-079",
+    "name": "Grundy, Missouri, US"
+  },
+  {
+    "code": "US-MO-081",
+    "name": "Harrison, Missouri, US"
+  },
+  {
+    "code": "US-MO-083",
+    "name": "Henry, Missouri, US"
+  },
+  {
+    "code": "US-MO-085",
+    "name": "Hickory, Missouri, US"
+  },
+  {
+    "code": "US-MO-087",
+    "name": "Holt, Missouri, US"
+  },
+  {
+    "code": "US-MO-089",
+    "name": "Howard, Missouri, US"
+  },
+  {
+    "code": "US-MO-091",
+    "name": "Howell, Missouri, US"
+  },
+  {
+    "code": "US-MO-093",
+    "name": "Iron, Missouri, US"
+  },
+  {
+    "code": "US-MO-095",
+    "name": "Jackson, Missouri, US"
+  },
+  {
+    "code": "US-MO-097",
+    "name": "Jasper, Missouri, US"
+  },
+  {
+    "code": "US-MO-099",
+    "name": "Jefferson, Missouri, US"
+  },
+  {
+    "code": "US-MO-101",
+    "name": "Johnson, Missouri, US"
+  },
+  {
+    "code": "US-MO-103",
+    "name": "Knox, Missouri, US"
+  },
+  {
+    "code": "US-MO-105",
+    "name": "Laclede, Missouri, US"
+  },
+  {
+    "code": "US-MO-107",
+    "name": "Lafayette, Missouri, US"
+  },
+  {
+    "code": "US-MO-109",
+    "name": "Lawrence, Missouri, US"
+  },
+  {
+    "code": "US-MO-111",
+    "name": "Lewis, Missouri, US"
+  },
+  {
+    "code": "US-MO-113",
+    "name": "Lincoln, Missouri, US"
+  },
+  {
+    "code": "US-MO-115",
+    "name": "Linn, Missouri, US"
+  },
+  {
+    "code": "US-MO-117",
+    "name": "Livingston, Missouri, US"
+  },
+  {
+    "code": "US-MO-121",
+    "name": "Macon, Missouri, US"
+  },
+  {
+    "code": "US-MO-123",
+    "name": "Madison, Missouri, US"
+  },
+  {
+    "code": "US-MO-125",
+    "name": "Maries, Missouri, US"
+  },
+  {
+    "code": "US-MO-127",
+    "name": "Marion, Missouri, US"
+  },
+  {
+    "code": "US-MO-119",
+    "name": "McDonald, Missouri, US"
+  },
+  {
+    "code": "US-MO-129",
+    "name": "Mercer, Missouri, US"
+  },
+  {
+    "code": "US-MO-131",
+    "name": "Miller, Missouri, US"
+  },
+  {
+    "code": "US-MO-133",
+    "name": "Mississippi, Missouri, US"
+  },
+  {
+    "code": "US-MO-135",
+    "name": "Moniteau, Missouri, US"
+  },
+  {
+    "code": "US-MO-137",
+    "name": "Monroe, Missouri, US"
+  },
+  {
+    "code": "US-MO-139",
+    "name": "Montgomery, Missouri, US"
+  },
+  {
+    "code": "US-MO-141",
+    "name": "Morgan, Missouri, US"
+  },
+  {
+    "code": "US-MO-143",
+    "name": "New Madrid, Missouri, US"
+  },
+  {
+    "code": "US-MO-145",
+    "name": "Newton, Missouri, US"
+  },
+  {
+    "code": "US-MO-147",
+    "name": "Nodaway, Missouri, US"
+  },
+  {
+    "code": "US-MO-149",
+    "name": "Oregon, Missouri, US"
+  },
+  {
+    "code": "US-MO-151",
+    "name": "Osage, Missouri, US"
+  },
+  {
+    "code": "US-MO-153",
+    "name": "Ozark, Missouri, US"
+  },
+  {
+    "code": "US-MO-155",
+    "name": "Pemiscot, Missouri, US"
+  },
+  {
+    "code": "US-MO-157",
+    "name": "Perry, Missouri, US"
+  },
+  {
+    "code": "US-MO-159",
+    "name": "Pettis, Missouri, US"
+  },
+  {
+    "code": "US-MO-161",
+    "name": "Phelps, Missouri, US"
+  },
+  {
+    "code": "US-MO-163",
+    "name": "Pike, Missouri, US"
+  },
+  {
+    "code": "US-MO-165",
+    "name": "Platte, Missouri, US"
+  },
+  {
+    "code": "US-MO-167",
+    "name": "Polk, Missouri, US"
+  },
+  {
+    "code": "US-MO-169",
+    "name": "Pulaski, Missouri, US"
+  },
+  {
+    "code": "US-MO-171",
+    "name": "Putnam, Missouri, US"
+  },
+  {
+    "code": "US-MO-173",
+    "name": "Ralls, Missouri, US"
+  },
+  {
+    "code": "US-MO-175",
+    "name": "Randolph, Missouri, US"
+  },
+  {
+    "code": "US-MO-177",
+    "name": "Ray, Missouri, US"
+  },
+  {
+    "code": "US-MO-179",
+    "name": "Reynolds, Missouri, US"
+  },
+  {
+    "code": "US-MO-181",
+    "name": "Ripley, Missouri, US"
+  },
+  {
+    "code": "US-MO-195",
+    "name": "Saline, Missouri, US"
+  },
+  {
+    "code": "US-MO-197",
+    "name": "Schuyler, Missouri, US"
+  },
+  {
+    "code": "US-MO-199",
+    "name": "Scotland, Missouri, US"
+  },
+  {
+    "code": "US-MO-201",
+    "name": "Scott, Missouri, US"
+  },
+  {
+    "code": "US-MO-203",
+    "name": "Shannon, Missouri, US"
+  },
+  {
+    "code": "US-MO-205",
+    "name": "Shelby, Missouri, US"
+  },
+  {
+    "code": "US-MO-183",
+    "name": "St. Charles, Missouri, US"
+  },
+  {
+    "code": "US-MO-185",
+    "name": "St. Clair, Missouri, US"
+  },
+  {
+    "code": "US-MO-187",
+    "name": "St. Francois, Missouri, US"
+  },
+  {
+    "code": "US-MO-189",
+    "name": "St. Louis, Missouri, US"
+  },
+  {
+    "code": "US-MO-510",
+    "name": "St. Louis City, Missouri, US"
+  },
+  {
+    "code": "US-MO-186",
+    "name": "Ste. Genevieve, Missouri, US"
+  },
+  {
+    "code": "US-MO-207",
+    "name": "Stoddard, Missouri, US"
+  },
+  {
+    "code": "US-MO-209",
+    "name": "Stone, Missouri, US"
+  },
+  {
+    "code": "US-MO-211",
+    "name": "Sullivan, Missouri, US"
+  },
+  {
+    "code": "US-MO-213",
+    "name": "Taney, Missouri, US"
+  },
+  {
+    "code": "US-MO-215",
+    "name": "Texas, Missouri, US"
+  },
+  {
+    "code": "US-MO-217",
+    "name": "Vernon, Missouri, US"
+  },
+  {
+    "code": "US-MO-219",
+    "name": "Warren, Missouri, US"
+  },
+  {
+    "code": "US-MO-221",
+    "name": "Washington, Missouri, US"
+  },
+  {
+    "code": "US-MO-223",
+    "name": "Wayne, Missouri, US"
+  },
+  {
+    "code": "US-MO-225",
+    "name": "Webster, Missouri, US"
+  },
+  {
+    "code": "US-MO-227",
+    "name": "Worth, Missouri, US"
+  },
+  {
+    "code": "US-MO-229",
+    "name": "Wright, Missouri, US"
+  },
+  {
+    "code": "US-NH",
+    "name": "New Hampshire, US"
+  },
+  {
+    "code": "US-NH-001",
+    "name": "Belknap, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-003",
+    "name": "Carroll, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-005",
+    "name": "Cheshire, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-007",
+    "name": "Coos, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-009",
+    "name": "Grafton, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-011",
+    "name": "Hillsborough, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-013",
+    "name": "Merrimack, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-015",
+    "name": "Rockingham, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-017",
+    "name": "Strafford, New Hampshire, US"
+  },
+  {
+    "code": "US-NH-019",
+    "name": "Sullivan, New Hampshire, US"
+  },
+  {
+    "code": "US-NM",
+    "name": "New Mexico, US"
+  },
+  {
+    "code": "US-NM-001",
+    "name": "Bernalillo, New Mexico, US"
+  },
+  {
+    "code": "US-NM-003",
+    "name": "Catron, New Mexico, US"
+  },
+  {
+    "code": "US-NM-005",
+    "name": "Chaves, New Mexico, US"
+  },
+  {
+    "code": "US-NM-006",
+    "name": "Cibola, New Mexico, US"
+  },
+  {
+    "code": "US-NM-007",
+    "name": "Colfax, New Mexico, US"
+  },
+  {
+    "code": "US-NM-009",
+    "name": "Curry, New Mexico, US"
+  },
+  {
+    "code": "US-NM-011",
+    "name": "De Baca, New Mexico, US"
+  },
+  {
+    "code": "US-NM-013",
+    "name": "Dona Ana, New Mexico, US"
+  },
+  {
+    "code": "US-NM-015",
+    "name": "Eddy, New Mexico, US"
+  },
+  {
+    "code": "US-NM-017",
+    "name": "Grant, New Mexico, US"
+  },
+  {
+    "code": "US-NM-019",
+    "name": "Guadalupe, New Mexico, US"
+  },
+  {
+    "code": "US-NM-021",
+    "name": "Harding, New Mexico, US"
+  },
+  {
+    "code": "US-NM-023",
+    "name": "Hidalgo, New Mexico, US"
+  },
+  {
+    "code": "US-NM-025",
+    "name": "Lea, New Mexico, US"
+  },
+  {
+    "code": "US-NM-027",
+    "name": "Lincoln, New Mexico, US"
+  },
+  {
+    "code": "US-NM-028",
+    "name": "Los Alamos, New Mexico, US"
+  },
+  {
+    "code": "US-NM-029",
+    "name": "Luna, New Mexico, US"
+  },
+  {
+    "code": "US-NM-031",
+    "name": "McKinley, New Mexico, US"
+  },
+  {
+    "code": "US-NM-033",
+    "name": "Mora, New Mexico, US"
+  },
+  {
+    "code": "US-NM-035",
+    "name": "Otero, New Mexico, US"
+  },
+  {
+    "code": "US-NM-037",
+    "name": "Quay, New Mexico, US"
+  },
+  {
+    "code": "US-NM-039",
+    "name": "Rio Arriba, New Mexico, US"
+  },
+  {
+    "code": "US-NM-041",
+    "name": "Roosevelt, New Mexico, US"
+  },
+  {
+    "code": "US-NM-045",
+    "name": "San Juan, New Mexico, US"
+  },
+  {
+    "code": "US-NM-047",
+    "name": "San Miguel, New Mexico, US"
+  },
+  {
+    "code": "US-NM-043",
+    "name": "Sandoval, New Mexico, US"
+  },
+  {
+    "code": "US-NM-049",
+    "name": "Santa Fe, New Mexico, US"
+  },
+  {
+    "code": "US-NM-051",
+    "name": "Sierra, New Mexico, US"
+  },
+  {
+    "code": "US-NM-053",
+    "name": "Socorro, New Mexico, US"
+  },
+  {
+    "code": "US-NM-055",
+    "name": "Taos, New Mexico, US"
+  },
+  {
+    "code": "US-NM-057",
+    "name": "Torrance, New Mexico, US"
+  },
+  {
+    "code": "US-NM-059",
+    "name": "Union, New Mexico, US"
+  },
+  {
+    "code": "US-NM-061",
+    "name": "Valencia, New Mexico, US"
+  },
+  {
+    "code": "US-OH",
+    "name": "Ohio, US"
+  },
+  {
+    "code": "US-OH-001",
+    "name": "Adams, Ohio, US"
+  },
+  {
+    "code": "US-OH-003",
+    "name": "Allen, Ohio, US"
+  },
+  {
+    "code": "US-OH-005",
+    "name": "Ashland, Ohio, US"
+  },
+  {
+    "code": "US-OH-007",
+    "name": "Ashtabula, Ohio, US"
+  },
+  {
+    "code": "US-OH-009",
+    "name": "Athens, Ohio, US"
+  },
+  {
+    "code": "US-OH-011",
+    "name": "Auglaize, Ohio, US"
+  },
+  {
+    "code": "US-OH-013",
+    "name": "Belmont, Ohio, US"
+  },
+  {
+    "code": "US-OH-015",
+    "name": "Brown, Ohio, US"
+  },
+  {
+    "code": "US-OH-017",
+    "name": "Butler, Ohio, US"
+  },
+  {
+    "code": "US-OH-019",
+    "name": "Carroll, Ohio, US"
+  },
+  {
+    "code": "US-OH-021",
+    "name": "Champaign, Ohio, US"
+  },
+  {
+    "code": "US-OH-023",
+    "name": "Clark, Ohio, US"
+  },
+  {
+    "code": "US-OH-025",
+    "name": "Clermont, Ohio, US"
+  },
+  {
+    "code": "US-OH-027",
+    "name": "Clinton, Ohio, US"
+  },
+  {
+    "code": "US-OH-029",
+    "name": "Columbiana, Ohio, US"
+  },
+  {
+    "code": "US-OH-031",
+    "name": "Coshocton, Ohio, US"
+  },
+  {
+    "code": "US-OH-033",
+    "name": "Crawford, Ohio, US"
+  },
+  {
+    "code": "US-OH-035",
+    "name": "Cuyahoga, Ohio, US"
+  },
+  {
+    "code": "US-OH-037",
+    "name": "Darke, Ohio, US"
+  },
+  {
+    "code": "US-OH-039",
+    "name": "Defiance, Ohio, US"
+  },
+  {
+    "code": "US-OH-041",
+    "name": "Delaware, Ohio, US"
+  },
+  {
+    "code": "US-OH-043",
+    "name": "Erie, Ohio, US"
+  },
+  {
+    "code": "US-OH-045",
+    "name": "Fairfield, Ohio, US"
+  },
+  {
+    "code": "US-OH-047",
+    "name": "Fayette, Ohio, US"
+  },
+  {
+    "code": "US-OH-049",
+    "name": "Franklin, Ohio, US"
+  },
+  {
+    "code": "US-OH-051",
+    "name": "Fulton, Ohio, US"
+  },
+  {
+    "code": "US-OH-053",
+    "name": "Gallia, Ohio, US"
+  },
+  {
+    "code": "US-OH-055",
+    "name": "Geauga, Ohio, US"
+  },
+  {
+    "code": "US-OH-057",
+    "name": "Greene, Ohio, US"
+  },
+  {
+    "code": "US-OH-059",
+    "name": "Guernsey, Ohio, US"
+  },
+  {
+    "code": "US-OH-061",
+    "name": "Hamilton, Ohio, US"
+  },
+  {
+    "code": "US-OH-063",
+    "name": "Hancock, Ohio, US"
+  },
+  {
+    "code": "US-OH-065",
+    "name": "Hardin, Ohio, US"
+  },
+  {
+    "code": "US-OH-067",
+    "name": "Harrison, Ohio, US"
+  },
+  {
+    "code": "US-OH-069",
+    "name": "Henry, Ohio, US"
+  },
+  {
+    "code": "US-OH-071",
+    "name": "Highland, Ohio, US"
+  },
+  {
+    "code": "US-OH-073",
+    "name": "Hocking, Ohio, US"
+  },
+  {
+    "code": "US-OH-075",
+    "name": "Holmes, Ohio, US"
+  },
+  {
+    "code": "US-OH-077",
+    "name": "Huron, Ohio, US"
+  },
+  {
+    "code": "US-OH-079",
+    "name": "Jackson, Ohio, US"
+  },
+  {
+    "code": "US-OH-081",
+    "name": "Jefferson, Ohio, US"
+  },
+  {
+    "code": "US-OH-083",
+    "name": "Knox, Ohio, US"
+  },
+  {
+    "code": "US-OH-085",
+    "name": "Lake, Ohio, US"
+  },
+  {
+    "code": "US-OH-087",
+    "name": "Lawrence, Ohio, US"
+  },
+  {
+    "code": "US-OH-089",
+    "name": "Licking, Ohio, US"
+  },
+  {
+    "code": "US-OH-091",
+    "name": "Logan, Ohio, US"
+  },
+  {
+    "code": "US-OH-093",
+    "name": "Lorain, Ohio, US"
+  },
+  {
+    "code": "US-OH-095",
+    "name": "Lucas, Ohio, US"
+  },
+  {
+    "code": "US-OH-097",
+    "name": "Madison, Ohio, US"
+  },
+  {
+    "code": "US-OH-099",
+    "name": "Mahoning, Ohio, US"
+  },
+  {
+    "code": "US-OH-101",
+    "name": "Marion, Ohio, US"
+  },
+  {
+    "code": "US-OH-103",
+    "name": "Medina, Ohio, US"
+  },
+  {
+    "code": "US-OH-105",
+    "name": "Meigs, Ohio, US"
+  },
+  {
+    "code": "US-OH-107",
+    "name": "Mercer, Ohio, US"
+  },
+  {
+    "code": "US-OH-109",
+    "name": "Miami, Ohio, US"
+  },
+  {
+    "code": "US-OH-111",
+    "name": "Monroe, Ohio, US"
+  },
+  {
+    "code": "US-OH-113",
+    "name": "Montgomery, Ohio, US"
+  },
+  {
+    "code": "US-OH-115",
+    "name": "Morgan, Ohio, US"
+  },
+  {
+    "code": "US-OH-117",
+    "name": "Morrow, Ohio, US"
+  },
+  {
+    "code": "US-OH-119",
+    "name": "Muskingum, Ohio, US"
+  },
+  {
+    "code": "US-OH-121",
+    "name": "Noble, Ohio, US"
+  },
+  {
+    "code": "US-OH-123",
+    "name": "Ottawa, Ohio, US"
+  },
+  {
+    "code": "US-OH-125",
+    "name": "Paulding, Ohio, US"
+  },
+  {
+    "code": "US-OH-127",
+    "name": "Perry, Ohio, US"
+  },
+  {
+    "code": "US-OH-129",
+    "name": "Pickaway, Ohio, US"
+  },
+  {
+    "code": "US-OH-131",
+    "name": "Pike, Ohio, US"
+  },
+  {
+    "code": "US-OH-133",
+    "name": "Portage, Ohio, US"
+  },
+  {
+    "code": "US-OH-135",
+    "name": "Preble, Ohio, US"
+  },
+  {
+    "code": "US-OH-137",
+    "name": "Putnam, Ohio, US"
+  },
+  {
+    "code": "US-OH-139",
+    "name": "Richland, Ohio, US"
+  },
+  {
+    "code": "US-OH-141",
+    "name": "Ross, Ohio, US"
+  },
+  {
+    "code": "US-OH-143",
+    "name": "Sandusky, Ohio, US"
+  },
+  {
+    "code": "US-OH-145",
+    "name": "Scioto, Ohio, US"
+  },
+  {
+    "code": "US-OH-147",
+    "name": "Seneca, Ohio, US"
+  },
+  {
+    "code": "US-OH-149",
+    "name": "Shelby, Ohio, US"
+  },
+  {
+    "code": "US-OH-151",
+    "name": "Stark, Ohio, US"
+  },
+  {
+    "code": "US-OH-153",
+    "name": "Summit, Ohio, US"
+  },
+  {
+    "code": "US-OH-155",
+    "name": "Trumbull, Ohio, US"
+  },
+  {
+    "code": "US-OH-157",
+    "name": "Tuscarawas, Ohio, US"
+  },
+  {
+    "code": "US-OH-159",
+    "name": "Union, Ohio, US"
+  },
+  {
+    "code": "US-OH-161",
+    "name": "Van Wert, Ohio, US"
+  },
+  {
+    "code": "US-OH-163",
+    "name": "Vinton, Ohio, US"
+  },
+  {
+    "code": "US-OH-165",
+    "name": "Warren, Ohio, US"
+  },
+  {
+    "code": "US-OH-167",
+    "name": "Washington, Ohio, US"
+  },
+  {
+    "code": "US-OH-169",
+    "name": "Wayne, Ohio, US"
+  },
+  {
+    "code": "US-OH-171",
+    "name": "Williams, Ohio, US"
+  },
+  {
+    "code": "US-OH-173",
+    "name": "Wood, Ohio, US"
+  },
+  {
+    "code": "US-OH-175",
+    "name": "Wyandot, Ohio, US"
+  },
+  {
+    "code": "US-RI",
+    "name": "Rhode Island, US"
+  },
+  {
+    "code": "US-RI-001",
+    "name": "Bristol, Rhode Island, US"
+  },
+  {
+    "code": "US-RI-003",
+    "name": "Kent, Rhode Island, US"
+  },
+  {
+    "code": "US-RI-005",
+    "name": "Newport, Rhode Island, US"
+  },
+  {
+    "code": "US-RI-007",
+    "name": "Providence, Rhode Island, US"
+  },
+  {
+    "code": "US-RI-009",
+    "name": "Washington, Rhode Island, US"
+  },
+  {
+    "code": "US-SD",
+    "name": "South Dakota, US"
+  },
+  {
+    "code": "US-SD-003",
+    "name": "Aurora, South Dakota, US"
+  },
+  {
+    "code": "US-SD-005",
+    "name": "Beadle, South Dakota, US"
+  },
+  {
+    "code": "US-SD-007",
+    "name": "Bennett, South Dakota, US"
+  },
+  {
+    "code": "US-SD-009",
+    "name": "Bon Homme, South Dakota, US"
+  },
+  {
+    "code": "US-SD-011",
+    "name": "Brookings, South Dakota, US"
+  },
+  {
+    "code": "US-SD-013",
+    "name": "Brown, South Dakota, US"
+  },
+  {
+    "code": "US-SD-015",
+    "name": "Brule, South Dakota, US"
+  },
+  {
+    "code": "US-SD-017",
+    "name": "Buffalo, South Dakota, US"
+  },
+  {
+    "code": "US-SD-019",
+    "name": "Butte, South Dakota, US"
+  },
+  {
+    "code": "US-SD-021",
+    "name": "Campbell, South Dakota, US"
+  },
+  {
+    "code": "US-SD-023",
+    "name": "Charles Mix, South Dakota, US"
+  },
+  {
+    "code": "US-SD-025",
+    "name": "Clark, South Dakota, US"
+  },
+  {
+    "code": "US-SD-027",
+    "name": "Clay, South Dakota, US"
+  },
+  {
+    "code": "US-SD-029",
+    "name": "Codington, South Dakota, US"
+  },
+  {
+    "code": "US-SD-031",
+    "name": "Corson, South Dakota, US"
+  },
+  {
+    "code": "US-SD-033",
+    "name": "Custer, South Dakota, US"
+  },
+  {
+    "code": "US-SD-035",
+    "name": "Davison, South Dakota, US"
+  },
+  {
+    "code": "US-SD-037",
+    "name": "Day, South Dakota, US"
+  },
+  {
+    "code": "US-SD-039",
+    "name": "Deuel, South Dakota, US"
+  },
+  {
+    "code": "US-SD-041",
+    "name": "Dewey, South Dakota, US"
+  },
+  {
+    "code": "US-SD-043",
+    "name": "Douglas, South Dakota, US"
+  },
+  {
+    "code": "US-SD-045",
+    "name": "Edmunds, South Dakota, US"
+  },
+  {
+    "code": "US-SD-047",
+    "name": "Fall River, South Dakota, US"
+  },
+  {
+    "code": "US-SD-049",
+    "name": "Faulk, South Dakota, US"
+  },
+  {
+    "code": "US-SD-051",
+    "name": "Grant, South Dakota, US"
+  },
+  {
+    "code": "US-SD-053",
+    "name": "Gregory, South Dakota, US"
+  },
+  {
+    "code": "US-SD-055",
+    "name": "Haakon, South Dakota, US"
+  },
+  {
+    "code": "US-SD-057",
+    "name": "Hamlin, South Dakota, US"
+  },
+  {
+    "code": "US-SD-059",
+    "name": "Hand, South Dakota, US"
+  },
+  {
+    "code": "US-SD-061",
+    "name": "Hanson, South Dakota, US"
+  },
+  {
+    "code": "US-SD-063",
+    "name": "Harding, South Dakota, US"
+  },
+  {
+    "code": "US-SD-065",
+    "name": "Hughes, South Dakota, US"
+  },
+  {
+    "code": "US-SD-067",
+    "name": "Hutchinson, South Dakota, US"
+  },
+  {
+    "code": "US-SD-069",
+    "name": "Hyde, South Dakota, US"
+  },
+  {
+    "code": "US-SD-071",
+    "name": "Jackson, South Dakota, US"
+  },
+  {
+    "code": "US-SD-073",
+    "name": "Jerauld, South Dakota, US"
+  },
+  {
+    "code": "US-SD-075",
+    "name": "Jones, South Dakota, US"
+  },
+  {
+    "code": "US-SD-077",
+    "name": "Kingsbury, South Dakota, US"
+  },
+  {
+    "code": "US-SD-079",
+    "name": "Lake, South Dakota, US"
+  },
+  {
+    "code": "US-SD-081",
+    "name": "Lawrence, South Dakota, US"
+  },
+  {
+    "code": "US-SD-083",
+    "name": "Lincoln, South Dakota, US"
+  },
+  {
+    "code": "US-SD-085",
+    "name": "Lyman, South Dakota, US"
+  },
+  {
+    "code": "US-SD-091",
+    "name": "Marshall, South Dakota, US"
+  },
+  {
+    "code": "US-SD-087",
+    "name": "McCook, South Dakota, US"
+  },
+  {
+    "code": "US-SD-089",
+    "name": "McPherson, South Dakota, US"
+  },
+  {
+    "code": "US-SD-093",
+    "name": "Meade, South Dakota, US"
+  },
+  {
+    "code": "US-SD-095",
+    "name": "Mellette, South Dakota, US"
+  },
+  {
+    "code": "US-SD-097",
+    "name": "Miner, South Dakota, US"
+  },
+  {
+    "code": "US-SD-099",
+    "name": "Minnehaha, South Dakota, US"
+  },
+  {
+    "code": "US-SD-101",
+    "name": "Moody, South Dakota, US"
+  },
+  {
+    "code": "US-SD-113",
+    "name": "Oglala Lakota, South Dakota, US"
+  },
+  {
+    "code": "US-SD-103",
+    "name": "Pennington, South Dakota, US"
+  },
+  {
+    "code": "US-SD-105",
+    "name": "Perkins, South Dakota, US"
+  },
+  {
+    "code": "US-SD-107",
+    "name": "Potter, South Dakota, US"
+  },
+  {
+    "code": "US-SD-109",
+    "name": "Roberts, South Dakota, US"
+  },
+  {
+    "code": "US-SD-111",
+    "name": "Sanborn, South Dakota, US"
+  },
+  {
+    "code": "US-SD-115",
+    "name": "Spink, South Dakota, US"
+  },
+  {
+    "code": "US-SD-117",
+    "name": "Stanley, South Dakota, US"
+  },
+  {
+    "code": "US-SD-119",
+    "name": "Sully, South Dakota, US"
+  },
+  {
+    "code": "US-SD-121",
+    "name": "Todd, South Dakota, US"
+  },
+  {
+    "code": "US-SD-123",
+    "name": "Tripp, South Dakota, US"
+  },
+  {
+    "code": "US-SD-125",
+    "name": "Turner, South Dakota, US"
+  },
+  {
+    "code": "US-SD-127",
+    "name": "Union, South Dakota, US"
+  },
+  {
+    "code": "US-SD-129",
+    "name": "Walworth, South Dakota, US"
+  },
+  {
+    "code": "US-SD-135",
+    "name": "Yankton, South Dakota, US"
+  },
+  {
+    "code": "US-SD-137",
+    "name": "Ziebach, South Dakota, US"
+  },
+  {
+    "code": "US-TX",
+    "name": "Texas, US"
+  },
+  {
+    "code": "US-TX-001",
+    "name": "Anderson, Texas, US"
+  },
+  {
+    "code": "US-TX-003",
+    "name": "Andrews, Texas, US"
+  },
+  {
+    "code": "US-TX-005",
+    "name": "Angelina, Texas, US"
+  },
+  {
+    "code": "US-TX-007",
+    "name": "Aransas, Texas, US"
+  },
+  {
+    "code": "US-TX-009",
+    "name": "Archer, Texas, US"
+  },
+  {
+    "code": "US-TX-011",
+    "name": "Armstrong, Texas, US"
+  },
+  {
+    "code": "US-TX-013",
+    "name": "Atascosa, Texas, US"
+  },
+  {
+    "code": "US-TX-015",
+    "name": "Austin, Texas, US"
+  },
+  {
+    "code": "US-TX-017",
+    "name": "Bailey, Texas, US"
+  },
+  {
+    "code": "US-TX-019",
+    "name": "Bandera, Texas, US"
+  },
+  {
+    "code": "US-TX-021",
+    "name": "Bastrop, Texas, US"
+  },
+  {
+    "code": "US-TX-023",
+    "name": "Baylor, Texas, US"
+  },
+  {
+    "code": "US-TX-025",
+    "name": "Bee, Texas, US"
+  },
+  {
+    "code": "US-TX-027",
+    "name": "Bell, Texas, US"
+  },
+  {
+    "code": "US-TX-029",
+    "name": "Bexar, Texas, US"
+  },
+  {
+    "code": "US-TX-031",
+    "name": "Blanco, Texas, US"
+  },
+  {
+    "code": "US-TX-033",
+    "name": "Borden, Texas, US"
+  },
+  {
+    "code": "US-TX-035",
+    "name": "Bosque, Texas, US"
+  },
+  {
+    "code": "US-TX-037",
+    "name": "Bowie, Texas, US"
+  },
+  {
+    "code": "US-TX-039",
+    "name": "Brazoria, Texas, US"
+  },
+  {
+    "code": "US-TX-041",
+    "name": "Brazos, Texas, US"
+  },
+  {
+    "code": "US-TX-043",
+    "name": "Brewster, Texas, US"
+  },
+  {
+    "code": "US-TX-045",
+    "name": "Briscoe, Texas, US"
+  },
+  {
+    "code": "US-TX-047",
+    "name": "Brooks, Texas, US"
+  },
+  {
+    "code": "US-TX-049",
+    "name": "Brown, Texas, US"
+  },
+  {
+    "code": "US-TX-051",
+    "name": "Burleson, Texas, US"
+  },
+  {
+    "code": "US-TX-053",
+    "name": "Burnet, Texas, US"
+  },
+  {
+    "code": "US-TX-055",
+    "name": "Caldwell, Texas, US"
+  },
+  {
+    "code": "US-TX-057",
+    "name": "Calhoun, Texas, US"
+  },
+  {
+    "code": "US-TX-059",
+    "name": "Callahan, Texas, US"
+  },
+  {
+    "code": "US-TX-061",
+    "name": "Cameron, Texas, US"
+  },
+  {
+    "code": "US-TX-063",
+    "name": "Camp, Texas, US"
+  },
+  {
+    "code": "US-TX-065",
+    "name": "Carson, Texas, US"
+  },
+  {
+    "code": "US-TX-067",
+    "name": "Cass, Texas, US"
+  },
+  {
+    "code": "US-TX-069",
+    "name": "Castro, Texas, US"
+  },
+  {
+    "code": "US-TX-071",
+    "name": "Chambers, Texas, US"
+  },
+  {
+    "code": "US-TX-073",
+    "name": "Cherokee, Texas, US"
+  },
+  {
+    "code": "US-TX-075",
+    "name": "Childress, Texas, US"
+  },
+  {
+    "code": "US-TX-077",
+    "name": "Clay, Texas, US"
+  },
+  {
+    "code": "US-TX-079",
+    "name": "Cochran, Texas, US"
+  },
+  {
+    "code": "US-TX-081",
+    "name": "Coke, Texas, US"
+  },
+  {
+    "code": "US-TX-083",
+    "name": "Coleman, Texas, US"
+  },
+  {
+    "code": "US-TX-085",
+    "name": "Collin, Texas, US"
+  },
+  {
+    "code": "US-TX-087",
+    "name": "Collingsworth, Texas, US"
+  },
+  {
+    "code": "US-TX-089",
+    "name": "Colorado, Texas, US"
+  },
+  {
+    "code": "US-TX-091",
+    "name": "Comal, Texas, US"
+  },
+  {
+    "code": "US-TX-093",
+    "name": "Comanche, Texas, US"
+  },
+  {
+    "code": "US-TX-095",
+    "name": "Concho, Texas, US"
+  },
+  {
+    "code": "US-TX-097",
+    "name": "Cooke, Texas, US"
+  },
+  {
+    "code": "US-TX-099",
+    "name": "Coryell, Texas, US"
+  },
+  {
+    "code": "US-TX-101",
+    "name": "Cottle, Texas, US"
+  },
+  {
+    "code": "US-TX-103",
+    "name": "Crane, Texas, US"
+  },
+  {
+    "code": "US-TX-105",
+    "name": "Crockett, Texas, US"
+  },
+  {
+    "code": "US-TX-107",
+    "name": "Crosby, Texas, US"
+  },
+  {
+    "code": "US-TX-109",
+    "name": "Culberson, Texas, US"
+  },
+  {
+    "code": "US-TX-111",
+    "name": "Dallam, Texas, US"
+  },
+  {
+    "code": "US-TX-113",
+    "name": "Dallas, Texas, US"
+  },
+  {
+    "code": "US-TX-115",
+    "name": "Dawson, Texas, US"
+  },
+  {
+    "code": "US-TX-123",
+    "name": "DeWitt, Texas, US"
+  },
+  {
+    "code": "US-TX-117",
+    "name": "Deaf Smith, Texas, US"
+  },
+  {
+    "code": "US-TX-119",
+    "name": "Delta, Texas, US"
+  },
+  {
+    "code": "US-TX-121",
+    "name": "Denton, Texas, US"
+  },
+  {
+    "code": "US-TX-125",
+    "name": "Dickens, Texas, US"
+  },
+  {
+    "code": "US-TX-127",
+    "name": "Dimmit, Texas, US"
+  },
+  {
+    "code": "US-TX-129",
+    "name": "Donley, Texas, US"
+  },
+  {
+    "code": "US-TX-131",
+    "name": "Duval, Texas, US"
+  },
+  {
+    "code": "US-TX-133",
+    "name": "Eastland, Texas, US"
+  },
+  {
+    "code": "US-TX-135",
+    "name": "Ector, Texas, US"
+  },
+  {
+    "code": "US-TX-137",
+    "name": "Edwards, Texas, US"
+  },
+  {
+    "code": "US-TX-141",
+    "name": "El Paso, Texas, US"
+  },
+  {
+    "code": "US-TX-139",
+    "name": "Ellis, Texas, US"
+  },
+  {
+    "code": "US-TX-143",
+    "name": "Erath, Texas, US"
+  },
+  {
+    "code": "US-TX-145",
+    "name": "Falls, Texas, US"
+  },
+  {
+    "code": "US-TX-147",
+    "name": "Fannin, Texas, US"
+  },
+  {
+    "code": "US-TX-149",
+    "name": "Fayette, Texas, US"
+  },
+  {
+    "code": "US-TX-151",
+    "name": "Fisher, Texas, US"
+  },
+  {
+    "code": "US-TX-153",
+    "name": "Floyd, Texas, US"
+  },
+  {
+    "code": "US-TX-155",
+    "name": "Foard, Texas, US"
+  },
+  {
+    "code": "US-TX-157",
+    "name": "Fort Bend, Texas, US"
+  },
+  {
+    "code": "US-TX-159",
+    "name": "Franklin, Texas, US"
+  },
+  {
+    "code": "US-TX-161",
+    "name": "Freestone, Texas, US"
+  },
+  {
+    "code": "US-TX-163",
+    "name": "Frio, Texas, US"
+  },
+  {
+    "code": "US-TX-165",
+    "name": "Gaines, Texas, US"
+  },
+  {
+    "code": "US-TX-167",
+    "name": "Galveston, Texas, US"
+  },
+  {
+    "code": "US-TX-169",
+    "name": "Garza, Texas, US"
+  },
+  {
+    "code": "US-TX-171",
+    "name": "Gillespie, Texas, US"
+  },
+  {
+    "code": "US-TX-173",
+    "name": "Glasscock, Texas, US"
+  },
+  {
+    "code": "US-TX-175",
+    "name": "Goliad, Texas, US"
+  },
+  {
+    "code": "US-TX-177",
+    "name": "Gonzales, Texas, US"
+  },
+  {
+    "code": "US-TX-179",
+    "name": "Gray, Texas, US"
+  },
+  {
+    "code": "US-TX-181",
+    "name": "Grayson, Texas, US"
+  },
+  {
+    "code": "US-TX-183",
+    "name": "Gregg, Texas, US"
+  },
+  {
+    "code": "US-TX-185",
+    "name": "Grimes, Texas, US"
+  },
+  {
+    "code": "US-TX-187",
+    "name": "Guadalupe, Texas, US"
+  },
+  {
+    "code": "US-TX-189",
+    "name": "Hale, Texas, US"
+  },
+  {
+    "code": "US-TX-191",
+    "name": "Hall, Texas, US"
+  },
+  {
+    "code": "US-TX-193",
+    "name": "Hamilton, Texas, US"
+  },
+  {
+    "code": "US-TX-195",
+    "name": "Hansford, Texas, US"
+  },
+  {
+    "code": "US-TX-197",
+    "name": "Hardeman, Texas, US"
+  },
+  {
+    "code": "US-TX-199",
+    "name": "Hardin, Texas, US"
+  },
+  {
+    "code": "US-TX-201",
+    "name": "Harris, Texas, US"
+  },
+  {
+    "code": "US-TX-203",
+    "name": "Harrison, Texas, US"
+  },
+  {
+    "code": "US-TX-205",
+    "name": "Hartley, Texas, US"
+  },
+  {
+    "code": "US-TX-207",
+    "name": "Haskell, Texas, US"
+  },
+  {
+    "code": "US-TX-209",
+    "name": "Hays, Texas, US"
+  },
+  {
+    "code": "US-TX-211",
+    "name": "Hemphill, Texas, US"
+  },
+  {
+    "code": "US-TX-213",
+    "name": "Henderson, Texas, US"
+  },
+  {
+    "code": "US-TX-215",
+    "name": "Hidalgo, Texas, US"
+  },
+  {
+    "code": "US-TX-217",
+    "name": "Hill, Texas, US"
+  },
+  {
+    "code": "US-TX-219",
+    "name": "Hockley, Texas, US"
+  },
+  {
+    "code": "US-TX-221",
+    "name": "Hood, Texas, US"
+  },
+  {
+    "code": "US-TX-223",
+    "name": "Hopkins, Texas, US"
+  },
+  {
+    "code": "US-TX-225",
+    "name": "Houston, Texas, US"
+  },
+  {
+    "code": "US-TX-227",
+    "name": "Howard, Texas, US"
+  },
+  {
+    "code": "US-TX-229",
+    "name": "Hudspeth, Texas, US"
+  },
+  {
+    "code": "US-TX-231",
+    "name": "Hunt, Texas, US"
+  },
+  {
+    "code": "US-TX-233",
+    "name": "Hutchinson, Texas, US"
+  },
+  {
+    "code": "US-TX-235",
+    "name": "Irion, Texas, US"
+  },
+  {
+    "code": "US-TX-237",
+    "name": "Jack, Texas, US"
+  },
+  {
+    "code": "US-TX-239",
+    "name": "Jackson, Texas, US"
+  },
+  {
+    "code": "US-TX-241",
+    "name": "Jasper, Texas, US"
+  },
+  {
+    "code": "US-TX-243",
+    "name": "Jeff Davis, Texas, US"
+  },
+  {
+    "code": "US-TX-245",
+    "name": "Jefferson, Texas, US"
+  },
+  {
+    "code": "US-TX-247",
+    "name": "Jim Hogg, Texas, US"
+  },
+  {
+    "code": "US-TX-249",
+    "name": "Jim Wells, Texas, US"
+  },
+  {
+    "code": "US-TX-251",
+    "name": "Johnson, Texas, US"
+  },
+  {
+    "code": "US-TX-253",
+    "name": "Jones, Texas, US"
+  },
+  {
+    "code": "US-TX-255",
+    "name": "Karnes, Texas, US"
+  },
+  {
+    "code": "US-TX-257",
+    "name": "Kaufman, Texas, US"
+  },
+  {
+    "code": "US-TX-259",
+    "name": "Kendall, Texas, US"
+  },
+  {
+    "code": "US-TX-261",
+    "name": "Kenedy, Texas, US"
+  },
+  {
+    "code": "US-TX-263",
+    "name": "Kent, Texas, US"
+  },
+  {
+    "code": "US-TX-265",
+    "name": "Kerr, Texas, US"
+  },
+  {
+    "code": "US-TX-267",
+    "name": "Kimble, Texas, US"
+  },
+  {
+    "code": "US-TX-269",
+    "name": "King, Texas, US"
+  },
+  {
+    "code": "US-TX-271",
+    "name": "Kinney, Texas, US"
+  },
+  {
+    "code": "US-TX-273",
+    "name": "Kleberg, Texas, US"
+  },
+  {
+    "code": "US-TX-275",
+    "name": "Knox, Texas, US"
+  },
+  {
+    "code": "US-TX-283",
+    "name": "La Salle, Texas, US"
+  },
+  {
+    "code": "US-TX-277",
+    "name": "Lamar, Texas, US"
+  },
+  {
+    "code": "US-TX-279",
+    "name": "Lamb, Texas, US"
+  },
+  {
+    "code": "US-TX-281",
+    "name": "Lampasas, Texas, US"
+  },
+  {
+    "code": "US-TX-285",
+    "name": "Lavaca, Texas, US"
+  },
+  {
+    "code": "US-TX-287",
+    "name": "Lee, Texas, US"
+  },
+  {
+    "code": "US-TX-289",
+    "name": "Leon, Texas, US"
+  },
+  {
+    "code": "US-TX-291",
+    "name": "Liberty, Texas, US"
+  },
+  {
+    "code": "US-TX-293",
+    "name": "Limestone, Texas, US"
+  },
+  {
+    "code": "US-TX-295",
+    "name": "Lipscomb, Texas, US"
+  },
+  {
+    "code": "US-TX-297",
+    "name": "Live Oak, Texas, US"
+  },
+  {
+    "code": "US-TX-299",
+    "name": "Llano, Texas, US"
+  },
+  {
+    "code": "US-TX-301",
+    "name": "Loving, Texas, US"
+  },
+  {
+    "code": "US-TX-303",
+    "name": "Lubbock, Texas, US"
+  },
+  {
+    "code": "US-TX-305",
+    "name": "Lynn, Texas, US"
+  },
+  {
+    "code": "US-TX-313",
+    "name": "Madison, Texas, US"
+  },
+  {
+    "code": "US-TX-315",
+    "name": "Marion, Texas, US"
+  },
+  {
+    "code": "US-TX-317",
+    "name": "Martin, Texas, US"
+  },
+  {
+    "code": "US-TX-319",
+    "name": "Mason, Texas, US"
+  },
+  {
+    "code": "US-TX-321",
+    "name": "Matagorda, Texas, US"
+  },
+  {
+    "code": "US-TX-323",
+    "name": "Maverick, Texas, US"
+  },
+  {
+    "code": "US-TX-307",
+    "name": "McCulloch, Texas, US"
+  },
+  {
+    "code": "US-TX-309",
+    "name": "McLennan, Texas, US"
+  },
+  {
+    "code": "US-TX-311",
+    "name": "McMullen, Texas, US"
+  },
+  {
+    "code": "US-TX-325",
+    "name": "Medina, Texas, US"
+  },
+  {
+    "code": "US-TX-327",
+    "name": "Menard, Texas, US"
+  },
+  {
+    "code": "US-TX-329",
+    "name": "Midland, Texas, US"
+  },
+  {
+    "code": "US-TX-331",
+    "name": "Milam, Texas, US"
+  },
+  {
+    "code": "US-TX-333",
+    "name": "Mills, Texas, US"
+  },
+  {
+    "code": "US-TX-335",
+    "name": "Mitchell, Texas, US"
+  },
+  {
+    "code": "US-TX-337",
+    "name": "Montague, Texas, US"
+  },
+  {
+    "code": "US-TX-339",
+    "name": "Montgomery, Texas, US"
+  },
+  {
+    "code": "US-TX-341",
+    "name": "Moore, Texas, US"
+  },
+  {
+    "code": "US-TX-343",
+    "name": "Morris, Texas, US"
+  },
+  {
+    "code": "US-TX-345",
+    "name": "Motley, Texas, US"
+  },
+  {
+    "code": "US-TX-347",
+    "name": "Nacogdoches, Texas, US"
+  },
+  {
+    "code": "US-TX-349",
+    "name": "Navarro, Texas, US"
+  },
+  {
+    "code": "US-TX-351",
+    "name": "Newton, Texas, US"
+  },
+  {
+    "code": "US-TX-353",
+    "name": "Nolan, Texas, US"
+  },
+  {
+    "code": "US-TX-355",
+    "name": "Nueces, Texas, US"
+  },
+  {
+    "code": "US-TX-357",
+    "name": "Ochiltree, Texas, US"
+  },
+  {
+    "code": "US-TX-359",
+    "name": "Oldham, Texas, US"
+  },
+  {
+    "code": "US-TX-361",
+    "name": "Orange, Texas, US"
+  },
+  {
+    "code": "US-TX-363",
+    "name": "Palo Pinto, Texas, US"
+  },
+  {
+    "code": "US-TX-365",
+    "name": "Panola, Texas, US"
+  },
+  {
+    "code": "US-TX-367",
+    "name": "Parker, Texas, US"
+  },
+  {
+    "code": "US-TX-369",
+    "name": "Parmer, Texas, US"
+  },
+  {
+    "code": "US-TX-371",
+    "name": "Pecos, Texas, US"
+  },
+  {
+    "code": "US-TX-373",
+    "name": "Polk, Texas, US"
+  },
+  {
+    "code": "US-TX-375",
+    "name": "Potter, Texas, US"
+  },
+  {
+    "code": "US-TX-377",
+    "name": "Presidio, Texas, US"
+  },
+  {
+    "code": "US-TX-379",
+    "name": "Rains, Texas, US"
+  },
+  {
+    "code": "US-TX-381",
+    "name": "Randall, Texas, US"
+  },
+  {
+    "code": "US-TX-383",
+    "name": "Reagan, Texas, US"
+  },
+  {
+    "code": "US-TX-385",
+    "name": "Real, Texas, US"
+  },
+  {
+    "code": "US-TX-387",
+    "name": "Red River, Texas, US"
+  },
+  {
+    "code": "US-TX-389",
+    "name": "Reeves, Texas, US"
+  },
+  {
+    "code": "US-TX-391",
+    "name": "Refugio, Texas, US"
+  },
+  {
+    "code": "US-TX-393",
+    "name": "Roberts, Texas, US"
+  },
+  {
+    "code": "US-TX-395",
+    "name": "Robertson, Texas, US"
+  },
+  {
+    "code": "US-TX-397",
+    "name": "Rockwall, Texas, US"
+  },
+  {
+    "code": "US-TX-399",
+    "name": "Runnels, Texas, US"
+  },
+  {
+    "code": "US-TX-401",
+    "name": "Rusk, Texas, US"
+  },
+  {
+    "code": "US-TX-403",
+    "name": "Sabine, Texas, US"
+  },
+  {
+    "code": "US-TX-405",
+    "name": "San Augustine, Texas, US"
+  },
+  {
+    "code": "US-TX-407",
+    "name": "San Jacinto, Texas, US"
+  },
+  {
+    "code": "US-TX-409",
+    "name": "San Patricio, Texas, US"
+  },
+  {
+    "code": "US-TX-411",
+    "name": "San Saba, Texas, US"
+  },
+  {
+    "code": "US-TX-413",
+    "name": "Schleicher, Texas, US"
+  },
+  {
+    "code": "US-TX-415",
+    "name": "Scurry, Texas, US"
+  },
+  {
+    "code": "US-TX-417",
+    "name": "Shackelford, Texas, US"
+  },
+  {
+    "code": "US-TX-419",
+    "name": "Shelby, Texas, US"
+  },
+  {
+    "code": "US-TX-421",
+    "name": "Sherman, Texas, US"
+  },
+  {
+    "code": "US-TX-423",
+    "name": "Smith, Texas, US"
+  },
+  {
+    "code": "US-TX-425",
+    "name": "Somervell, Texas, US"
+  },
+  {
+    "code": "US-TX-427",
+    "name": "Starr, Texas, US"
+  },
+  {
+    "code": "US-TX-429",
+    "name": "Stephens, Texas, US"
+  },
+  {
+    "code": "US-TX-431",
+    "name": "Sterling, Texas, US"
+  },
+  {
+    "code": "US-TX-433",
+    "name": "Stonewall, Texas, US"
+  },
+  {
+    "code": "US-TX-435",
+    "name": "Sutton, Texas, US"
+  },
+  {
+    "code": "US-TX-437",
+    "name": "Swisher, Texas, US"
+  },
+  {
+    "code": "US-TX-439",
+    "name": "Tarrant, Texas, US"
+  },
+  {
+    "code": "US-TX-441",
+    "name": "Taylor, Texas, US"
+  },
+  {
+    "code": "US-TX-443",
+    "name": "Terrell, Texas, US"
+  },
+  {
+    "code": "US-TX-445",
+    "name": "Terry, Texas, US"
+  },
+  {
+    "code": "US-TX-447",
+    "name": "Throckmorton, Texas, US"
+  },
+  {
+    "code": "US-TX-449",
+    "name": "Titus, Texas, US"
+  },
+  {
+    "code": "US-TX-451",
+    "name": "Tom Green, Texas, US"
+  },
+  {
+    "code": "US-TX-453",
+    "name": "Travis, Texas, US"
+  },
+  {
+    "code": "US-TX-455",
+    "name": "Trinity, Texas, US"
+  },
+  {
+    "code": "US-TX-457",
+    "name": "Tyler, Texas, US"
+  },
+  {
+    "code": "US-TX-459",
+    "name": "Upshur, Texas, US"
+  },
+  {
+    "code": "US-TX-461",
+    "name": "Upton, Texas, US"
+  },
+  {
+    "code": "US-TX-463",
+    "name": "Uvalde, Texas, US"
+  },
+  {
+    "code": "US-TX-465",
+    "name": "Val Verde, Texas, US"
+  },
+  {
+    "code": "US-TX-467",
+    "name": "Van Zandt, Texas, US"
+  },
+  {
+    "code": "US-TX-469",
+    "name": "Victoria, Texas, US"
+  },
+  {
+    "code": "US-TX-471",
+    "name": "Walker, Texas, US"
+  },
+  {
+    "code": "US-TX-473",
+    "name": "Waller, Texas, US"
+  },
+  {
+    "code": "US-TX-475",
+    "name": "Ward, Texas, US"
+  },
+  {
+    "code": "US-TX-477",
+    "name": "Washington, Texas, US"
+  },
+  {
+    "code": "US-TX-479",
+    "name": "Webb, Texas, US"
+  },
+  {
+    "code": "US-TX-481",
+    "name": "Wharton, Texas, US"
+  },
+  {
+    "code": "US-TX-483",
+    "name": "Wheeler, Texas, US"
+  },
+  {
+    "code": "US-TX-485",
+    "name": "Wichita, Texas, US"
+  },
+  {
+    "code": "US-TX-487",
+    "name": "Wilbarger, Texas, US"
+  },
+  {
+    "code": "US-TX-489",
+    "name": "Willacy, Texas, US"
+  },
+  {
+    "code": "US-TX-491",
+    "name": "Williamson, Texas, US"
+  },
+  {
+    "code": "US-TX-493",
+    "name": "Wilson, Texas, US"
+  },
+  {
+    "code": "US-TX-495",
+    "name": "Winkler, Texas, US"
+  },
+  {
+    "code": "US-TX-497",
+    "name": "Wise, Texas, US"
+  },
+  {
+    "code": "US-TX-499",
+    "name": "Wood, Texas, US"
+  },
+  {
+    "code": "US-TX-501",
+    "name": "Yoakum, Texas, US"
+  },
+  {
+    "code": "US-TX-503",
+    "name": "Young, Texas, US"
+  },
+  {
+    "code": "US-TX-505",
+    "name": "Zapata, Texas, US"
+  },
+  {
+    "code": "US-TX-507",
+    "name": "Zavala, Texas, US"
+  },
+  {
+    "code": "US-VT",
+    "name": "Vermont, US"
+  },
+  {
+    "code": "US-VT-001",
+    "name": "Addison, Vermont, US"
+  },
+  {
+    "code": "US-VT-003",
+    "name": "Bennington, Vermont, US"
+  },
+  {
+    "code": "US-VT-005",
+    "name": "Caledonia, Vermont, US"
+  },
+  {
+    "code": "US-VT-007",
+    "name": "Chittenden, Vermont, US"
+  },
+  {
+    "code": "US-VT-009",
+    "name": "Essex, Vermont, US"
+  },
+  {
+    "code": "US-VT-011",
+    "name": "Franklin, Vermont, US"
+  },
+  {
+    "code": "US-VT-013",
+    "name": "Grand Isle, Vermont, US"
+  },
+  {
+    "code": "US-VT-015",
+    "name": "Lamoille, Vermont, US"
+  },
+  {
+    "code": "US-VT-017",
+    "name": "Orange, Vermont, US"
+  },
+  {
+    "code": "US-VT-019",
+    "name": "Orleans, Vermont, US"
+  },
+  {
+    "code": "US-VT-021",
+    "name": "Rutland, Vermont, US"
+  },
+  {
+    "code": "US-VT-023",
+    "name": "Washington, Vermont, US"
+  },
+  {
+    "code": "US-VT-025",
+    "name": "Windham, Vermont, US"
+  },
+  {
+    "code": "US-VT-027",
+    "name": "Windsor, Vermont, US"
+  },
+  {
+    "code": "US-VA",
+    "name": "Virginia, US"
+  },
+  {
+    "code": "US-VA-001",
+    "name": "Accomack, Virginia, US"
+  },
+  {
+    "code": "US-VA-003",
+    "name": "Albemarle, Virginia, US"
+  },
+  {
+    "code": "US-VA-510",
+    "name": "Alexandria, Virginia, US"
+  },
+  {
+    "code": "US-VA-005",
+    "name": "Alleghany, Virginia, US"
+  },
+  {
+    "code": "US-VA-007",
+    "name": "Amelia, Virginia, US"
+  },
+  {
+    "code": "US-VA-009",
+    "name": "Amherst, Virginia, US"
+  },
+  {
+    "code": "US-VA-011",
+    "name": "Appomattox, Virginia, US"
+  },
+  {
+    "code": "US-VA-013",
+    "name": "Arlington, Virginia, US"
+  },
+  {
+    "code": "US-VA-015",
+    "name": "Augusta, Virginia, US"
+  },
+  {
+    "code": "US-VA-017",
+    "name": "Bath, Virginia, US"
+  },
+  {
+    "code": "US-VA-019",
+    "name": "Bedford, Virginia, US"
+  },
+  {
+    "code": "US-VA-021",
+    "name": "Bland, Virginia, US"
+  },
+  {
+    "code": "US-VA-023",
+    "name": "Botetourt, Virginia, US"
+  },
+  {
+    "code": "US-VA-520",
+    "name": "Bristol, Virginia, US"
+  },
+  {
+    "code": "US-VA-025",
+    "name": "Brunswick, Virginia, US"
+  },
+  {
+    "code": "US-VA-027",
+    "name": "Buchanan, Virginia, US"
+  },
+  {
+    "code": "US-VA-029",
+    "name": "Buckingham, Virginia, US"
+  },
+  {
+    "code": "US-VA-530",
+    "name": "Buena Vista, Virginia, US"
+  },
+  {
+    "code": "US-VA-031",
+    "name": "Campbell, Virginia, US"
+  },
+  {
+    "code": "US-VA-033",
+    "name": "Caroline, Virginia, US"
+  },
+  {
+    "code": "US-VA-035",
+    "name": "Carroll, Virginia, US"
+  },
+  {
+    "code": "US-VA-036",
+    "name": "Charles City, Virginia, US"
+  },
+  {
+    "code": "US-VA-037",
+    "name": "Charlotte, Virginia, US"
+  },
+  {
+    "code": "US-VA-540",
+    "name": "Charlottesville, Virginia, US"
+  },
+  {
+    "code": "US-VA-550",
+    "name": "Chesapeake, Virginia, US"
+  },
+  {
+    "code": "US-VA-041",
+    "name": "Chesterfield, Virginia, US"
+  },
+  {
+    "code": "US-VA-043",
+    "name": "Clarke, Virginia, US"
+  },
+  {
+    "code": "US-VA-570",
+    "name": "Colonial Heights, Virginia, US"
+  },
+  {
+    "code": "US-VA-580",
+    "name": "Covington, Virginia, US"
+  },
+  {
+    "code": "US-VA-045",
+    "name": "Craig, Virginia, US"
+  },
+  {
+    "code": "US-VA-047",
+    "name": "Culpeper, Virginia, US"
+  },
+  {
+    "code": "US-VA-049",
+    "name": "Cumberland, Virginia, US"
+  },
+  {
+    "code": "US-VA-590",
+    "name": "Danville, Virginia, US"
+  },
+  {
+    "code": "US-VA-051",
+    "name": "Dickenson, Virginia, US"
+  },
+  {
+    "code": "US-VA-053",
+    "name": "Dinwiddie, Virginia, US"
+  },
+  {
+    "code": "US-VA-595",
+    "name": "Emporia, Virginia, US"
+  },
+  {
+    "code": "US-VA-057",
+    "name": "Essex, Virginia, US"
+  },
+  {
+    "code": "US-VA-059",
+    "name": "Fairfax, Virginia, US"
+  },
+  {
+    "code": "US-VA-600",
+    "name": "Fairfax City, Virginia, US"
+  },
+  {
+    "code": "US-VA-610",
+    "name": "Falls Church, Virginia, US"
+  },
+  {
+    "code": "US-VA-061",
+    "name": "Fauquier, Virginia, US"
+  },
+  {
+    "code": "US-VA-063",
+    "name": "Floyd, Virginia, US"
+  },
+  {
+    "code": "US-VA-065",
+    "name": "Fluvanna, Virginia, US"
+  },
+  {
+    "code": "US-VA-067",
+    "name": "Franklin, Virginia, US"
+  },
+  {
+    "code": "US-VA-620",
+    "name": "Franklin City, Virginia, US"
+  },
+  {
+    "code": "US-VA-069",
+    "name": "Frederick, Virginia, US"
+  },
+  {
+    "code": "US-VA-630",
+    "name": "Fredericksburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-640",
+    "name": "Galax, Virginia, US"
+  },
+  {
+    "code": "US-VA-071",
+    "name": "Giles, Virginia, US"
+  },
+  {
+    "code": "US-VA-073",
+    "name": "Gloucester, Virginia, US"
+  },
+  {
+    "code": "US-VA-075",
+    "name": "Goochland, Virginia, US"
+  },
+  {
+    "code": "US-VA-077",
+    "name": "Grayson, Virginia, US"
+  },
+  {
+    "code": "US-VA-079",
+    "name": "Greene, Virginia, US"
+  },
+  {
+    "code": "US-VA-081",
+    "name": "Greensville, Virginia, US"
+  },
+  {
+    "code": "US-VA-083",
+    "name": "Halifax, Virginia, US"
+  },
+  {
+    "code": "US-VA-650",
+    "name": "Hampton, Virginia, US"
+  },
+  {
+    "code": "US-VA-085",
+    "name": "Hanover, Virginia, US"
+  },
+  {
+    "code": "US-VA-660",
+    "name": "Harrisonburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-087",
+    "name": "Henrico, Virginia, US"
+  },
+  {
+    "code": "US-VA-089",
+    "name": "Henry, Virginia, US"
+  },
+  {
+    "code": "US-VA-091",
+    "name": "Highland, Virginia, US"
+  },
+  {
+    "code": "US-VA-670",
+    "name": "Hopewell, Virginia, US"
+  },
+  {
+    "code": "US-VA-093",
+    "name": "Isle of Wight, Virginia, US"
+  },
+  {
+    "code": "US-VA-095",
+    "name": "James City, Virginia, US"
+  },
+  {
+    "code": "US-VA-099",
+    "name": "King George, Virginia, US"
+  },
+  {
+    "code": "US-VA-101",
+    "name": "King William, Virginia, US"
+  },
+  {
+    "code": "US-VA-097",
+    "name": "King and Queen, Virginia, US"
+  },
+  {
+    "code": "US-VA-103",
+    "name": "Lancaster, Virginia, US"
+  },
+  {
+    "code": "US-VA-105",
+    "name": "Lee, Virginia, US"
+  },
+  {
+    "code": "US-VA-678",
+    "name": "Lexington, Virginia, US"
+  },
+  {
+    "code": "US-VA-107",
+    "name": "Loudoun, Virginia, US"
+  },
+  {
+    "code": "US-VA-109",
+    "name": "Louisa, Virginia, US"
+  },
+  {
+    "code": "US-VA-111",
+    "name": "Lunenburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-680",
+    "name": "Lynchburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-113",
+    "name": "Madison, Virginia, US"
+  },
+  {
+    "code": "US-VA-683",
+    "name": "Manassas, Virginia, US"
+  },
+  {
+    "code": "US-VA-685",
+    "name": "Manassas Park, Virginia, US"
+  },
+  {
+    "code": "US-VA-690",
+    "name": "Martinsville, Virginia, US"
+  },
+  {
+    "code": "US-VA-115",
+    "name": "Mathews, Virginia, US"
+  },
+  {
+    "code": "US-VA-117",
+    "name": "Mecklenburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-119",
+    "name": "Middlesex, Virginia, US"
+  },
+  {
+    "code": "US-VA-121",
+    "name": "Montgomery, Virginia, US"
+  },
+  {
+    "code": "US-VA-125",
+    "name": "Nelson, Virginia, US"
+  },
+  {
+    "code": "US-VA-127",
+    "name": "New Kent, Virginia, US"
+  },
+  {
+    "code": "US-VA-700",
+    "name": "Newport News, Virginia, US"
+  },
+  {
+    "code": "US-VA-710",
+    "name": "Norfolk, Virginia, US"
+  },
+  {
+    "code": "US-VA-131",
+    "name": "Northampton, Virginia, US"
+  },
+  {
+    "code": "US-VA-133",
+    "name": "Northumberland, Virginia, US"
+  },
+  {
+    "code": "US-VA-720",
+    "name": "Norton, Virginia, US"
+  },
+  {
+    "code": "US-VA-135",
+    "name": "Nottoway, Virginia, US"
+  },
+  {
+    "code": "US-VA-137",
+    "name": "Orange, Virginia, US"
+  },
+  {
+    "code": "US-VA-139",
+    "name": "Page, Virginia, US"
+  },
+  {
+    "code": "US-VA-141",
+    "name": "Patrick, Virginia, US"
+  },
+  {
+    "code": "US-VA-730",
+    "name": "Petersburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-143",
+    "name": "Pittsylvania, Virginia, US"
+  },
+  {
+    "code": "US-VA-735",
+    "name": "Poquoson, Virginia, US"
+  },
+  {
+    "code": "US-VA-740",
+    "name": "Portsmouth, Virginia, US"
+  },
+  {
+    "code": "US-VA-145",
+    "name": "Powhatan, Virginia, US"
+  },
+  {
+    "code": "US-VA-147",
+    "name": "Prince Edward, Virginia, US"
+  },
+  {
+    "code": "US-VA-149",
+    "name": "Prince George, Virginia, US"
+  },
+  {
+    "code": "US-VA-153",
+    "name": "Prince William, Virginia, US"
+  },
+  {
+    "code": "US-VA-155",
+    "name": "Pulaski, Virginia, US"
+  },
+  {
+    "code": "US-VA-750",
+    "name": "Radford, Virginia, US"
+  },
+  {
+    "code": "US-VA-157",
+    "name": "Rappahannock, Virginia, US"
+  },
+  {
+    "code": "US-VA-159",
+    "name": "Richmond, Virginia, US"
+  },
+  {
+    "code": "US-VA-760",
+    "name": "Richmond City, Virginia, US"
+  },
+  {
+    "code": "US-VA-161",
+    "name": "Roanoke, Virginia, US"
+  },
+  {
+    "code": "US-VA-770",
+    "name": "Roanoke City, Virginia, US"
+  },
+  {
+    "code": "US-VA-163",
+    "name": "Rockbridge, Virginia, US"
+  },
+  {
+    "code": "US-VA-165",
+    "name": "Rockingham, Virginia, US"
+  },
+  {
+    "code": "US-VA-167",
+    "name": "Russell, Virginia, US"
+  },
+  {
+    "code": "US-VA-775",
+    "name": "Salem, Virginia, US"
+  },
+  {
+    "code": "US-VA-169",
+    "name": "Scott, Virginia, US"
+  },
+  {
+    "code": "US-VA-171",
+    "name": "Shenandoah, Virginia, US"
+  },
+  {
+    "code": "US-VA-173",
+    "name": "Smyth, Virginia, US"
+  },
+  {
+    "code": "US-VA-175",
+    "name": "Southampton, Virginia, US"
+  },
+  {
+    "code": "US-VA-177",
+    "name": "Spotsylvania, Virginia, US"
+  },
+  {
+    "code": "US-VA-179",
+    "name": "Stafford, Virginia, US"
+  },
+  {
+    "code": "US-VA-790",
+    "name": "Staunton, Virginia, US"
+  },
+  {
+    "code": "US-VA-800",
+    "name": "Suffolk, Virginia, US"
+  },
+  {
+    "code": "US-VA-181",
+    "name": "Surry, Virginia, US"
+  },
+  {
+    "code": "US-VA-183",
+    "name": "Sussex, Virginia, US"
+  },
+  {
+    "code": "US-VA-185",
+    "name": "Tazewell, Virginia, US"
+  },
+  {
+    "code": "US-VA-810",
+    "name": "Virginia Beach, Virginia, US"
+  },
+  {
+    "code": "US-VA-187",
+    "name": "Warren, Virginia, US"
+  },
+  {
+    "code": "US-VA-191",
+    "name": "Washington, Virginia, US"
+  },
+  {
+    "code": "US-VA-820",
+    "name": "Waynesboro, Virginia, US"
+  },
+  {
+    "code": "US-VA-193",
+    "name": "Westmoreland, Virginia, US"
+  },
+  {
+    "code": "US-VA-830",
+    "name": "Williamsburg, Virginia, US"
+  },
+  {
+    "code": "US-VA-840",
+    "name": "Winchester, Virginia, US"
+  },
+  {
+    "code": "US-VA-195",
+    "name": "Wise, Virginia, US"
+  },
+  {
+    "code": "US-VA-197",
+    "name": "Wythe, Virginia, US"
+  },
+  {
+    "code": "US-VA-199",
+    "name": "York, Virginia, US"
+  },
+  {
+    "code": "CA",
+    "name": "Canada"
+  },
+  {
+    "code": "CA-ON",
+    "name": "Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-AL",
+    "name": "Algoma, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-BN",
+    "name": "Brant, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-BC",
+    "name": "Bruce, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-KT",
+    "name": "Chatham-Kent, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-CO",
+    "name": "Cochrane, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-DF",
+    "name": "Dufferin, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-DR",
+    "name": "Durham, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-EL",
+    "name": "Elgin, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-ES",
+    "name": "Essex, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-FR",
+    "name": "Frontenac, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-SU",
+    "name": "Greater Sudbury, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-GR",
+    "name": "Grey, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-HD",
+    "name": "Haldimand, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-HB",
+    "name": "Haliburton, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-HT",
+    "name": "Halton, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-HA",
+    "name": "Hamilton, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-HS",
+    "name": "Hastings, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-HU",
+    "name": "Huron, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-VI",
+    "name": "Kawartha Lakes, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-KR",
+    "name": "Kenora, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-LM",
+    "name": "Lambton, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-LN",
+    "name": "Lanark, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-LG",
+    "name": "Leeds and Grenville, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-LA",
+    "name": "Lennox and Addington, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-MA",
+    "name": "Manitoulin, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-MI",
+    "name": "Middlesex, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-MU",
+    "name": "Muskoka, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-NG",
+    "name": "Niagara, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-NP",
+    "name": "Nipissing, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-NF",
+    "name": "Norfolk, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-NU",
+    "name": "Northumberland, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-OT",
+    "name": "Ottawa, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-OX",
+    "name": "Oxford, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-PS",
+    "name": "Parry Sound, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-PL",
+    "name": "Peel, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-PT",
+    "name": "Perth, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-PB",
+    "name": "Peterborough, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-PR",
+    "name": "Prescott and Russell, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-PE",
+    "name": "Prince Edward, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-RR",
+    "name": "Rainy River, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-RE",
+    "name": "Renfrew, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-SC",
+    "name": "Simcoe, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-SD",
+    "name": "Stormont, Dundas and Glengarry, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-SB",
+    "name": "Sudbury, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-TB",
+    "name": "Thunder Bay, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-TI",
+    "name": "Timiskaming, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-TO",
+    "name": "Toronto, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-WT",
+    "name": "Waterloo, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-WL",
+    "name": "Wellington, Ontario, Canada"
+  },
+  {
+    "code": "CA-ON-YO",
+    "name": "York, Ontario, Canada"
+  },
+  {
+    "code": "NA",
+    "name": "Namibia"
+  },
+  {
+    "code": "NA-CA",
+    "name": "Caprivi, Namibia"
+  },
+  {
+    "code": "NA-ER",
+    "name": "Erongo, Namibia"
+  },
+  {
+    "code": "NA-HA",
+    "name": "Hardap, Namibia"
+  },
+  {
+    "code": "NA-KA",
+    "name": "Karas, Namibia"
+  },
+  {
+    "code": "NA-KH",
+    "name": "Khomas, Namibia"
+  },
+  {
+    "code": "NA-KU",
+    "name": "Kunene, Namibia"
+  },
+  {
+    "code": "NA-OW",
+    "name": "Ohangwena, Namibia"
+  },
+  {
+    "code": "NA-OK",
+    "name": "Okavango, Namibia"
+  },
+  {
+    "code": "NA-OH",
+    "name": "Omaheke, Namibia"
+  },
+  {
+    "code": "NA-OS",
+    "name": "Omusati, Namibia"
+  },
+  {
+    "code": "NA-ON",
+    "name": "Oshana, Namibia"
+  },
+  {
+    "code": "NA-OT",
+    "name": "Oshikoto, Namibia"
+  },
+  {
+    "code": "NA-OD",
+    "name": "Otjozondjupa, Namibia"
+  }
+]
