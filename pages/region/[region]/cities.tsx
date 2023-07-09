@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
-import { getRegion, getCities } from "lib/localData";
+import { getRegionCities } from "lib/mongo";
+import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { City, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
@@ -40,9 +41,9 @@ export default function Cities({ region, cities }: Props) {
 
       <div className="columns-2 sm:columns-5 mb-12">
         <ul>
-          {filtered.map(({ name, slug }) => (
+          {filtered.map(({ name, locationId }) => (
             <li key={name}>
-              <Link href={`/region/${region.code}/cities/${slug}`}>{name}</Link>
+              <Link href={`/city/${locationId}`}>{name}</Link>
             </li>
           ))}
         </ul>
@@ -57,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const isState = regionCode.split("-").length === 2;
   if (!region || !isState) return { notFound: true };
 
-  const cities = getCities(region.code).sort((a, b) => a.name.localeCompare(b.name));
+  const cities = await getRegionCities(regionCode);
 
   return {
     props: { region, cities },

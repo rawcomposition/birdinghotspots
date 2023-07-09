@@ -58,20 +58,15 @@ export default function ImportantBirdAreas({ region, name, slug, about, webpage,
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  region: string;
-  iba: string;
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { region: regionCode, iba } = query as Params;
+  const slug = query.slug as string;
+  const regionCode = "US-OH";
   const region = getRegion(regionCode);
-  if (!region) return { notFound: true };
 
-  const hotspots = (await getIBAHotspots(iba)) || [];
-  const hotspotsByCounty = await restructureHotspotsByCounty(hotspots as any, region.code);
+  const hotspots = (await getIBAHotspots(slug)) || [];
+  const hotspotsByCounty = await restructureHotspotsByCounty(hotspots as any, regionCode);
 
-  const data = OhioIBA.find((item) => item.slug === iba);
+  const data = OhioIBA.find((item) => item.slug === slug);
   if (!data) return { notFound: true };
 
   const locationIds = data?.code ? [] : hotspots.map((item) => item.locationId);

@@ -1,11 +1,10 @@
 import * as React from "react";
-import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import Input from "components/Input";
-import { getArticleById } from "lib/mongo";
+import { getArticleByArticleId } from "lib/mongo";
 import AdminPage from "components/AdminPage";
 import { Article, ArticleInputs, Region } from "lib/types";
 import Field from "components/Field";
@@ -70,7 +69,7 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
       },
     });
     if (response.success) {
-      router.push(`/region/${region.code}/articles/${newSlug}`);
+      router.push(`/article/${response.articleId}`);
     }
   };
 
@@ -111,16 +110,12 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  id: string;
-  region: string;
-}
-
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
-  const { id, region: regionCode } = query as Params;
-  const data: Article = id !== "new" ? await getArticleById(id) : null;
+  const articleId = query.articleId as string;
+  const regionCode = query.region as string;
+  const data: Article = articleId !== "new" ? await getArticleByArticleId(articleId) : null;
 
-  const region = getRegion(regionCode);
+  const region = getRegion(data ? data.stateCode || data.countryCode : regionCode);
   if (!region || !region.subregions?.length) return { notFound: true };
 
   if (!canEdit(token, region.code)) {

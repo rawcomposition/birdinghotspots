@@ -3,8 +3,8 @@ import Link from "next/link";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { getHotspotsInRadius } from "lib/mongo";
-import { getRegion, getCityBySlug } from "lib/localData";
+import { getHotspotsInRadius, getCityByLocationId } from "lib/mongo";
+import { getRegion } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
@@ -21,7 +21,7 @@ type Props = {
 
 export default function County({ region, city, hotspots }: Props) {
   const [expand, setExpand] = React.useState<boolean>(false);
-  const { name, slug } = city;
+  const { name, locationId } = city;
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
   const visibleHotspots = expand ? hotspots : hotspots.slice(0, 12);
@@ -54,7 +54,9 @@ export default function County({ region, city, hotspots }: Props) {
         </div>
       </section>
       <section>
-        {markers.length > 0 && <MapBox key={slug} markers={markers as Marker[]} zoom={8} landscape disableScroll />}
+        {markers.length > 0 && (
+          <MapBox key={locationId} markers={markers as Marker[]} zoom={8} landscape disableScroll />
+        )}
       </section>
       <p className="mb-16 text-[13px] mt-2 text-gray-600">
         Showing <strong>{hotspots.length}</strong> hotspots within a 5 mile radius of city center.
@@ -95,13 +97,13 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { region: regionCode, citySlug } = context.query as Params;
-  const region = getRegion(regionCode);
-  const isState = regionCode.split("-").length === 2;
-  if (!region || !isState) return { notFound: true };
+  const locationId = context.params?.locationId as string;
 
-  const city = getCityBySlug(region.code, citySlug);
-  if (!city?.name) return { notFound: true };
+  const city = await getCityByLocationId(locationId);
+  console.log(city);
+  if (!city) return { notFound: true };
+
+  const region = getRegion(city.countryCode || city.stateCode);
 
   const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];
 

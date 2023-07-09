@@ -1,8 +1,7 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
-import { getArticleBySlug } from "lib/mongo";
+import { getArticleByArticleId } from "lib/mongo";
 import { HotspotsByCounty, Article as ArticleType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
@@ -18,13 +17,13 @@ interface Props extends ArticleType {
   hotspotsByCounty: HotspotsByCounty;
 }
 
-export default function Article({ region, name, content, hotspotsByCounty, images, _id }: Props) {
+export default function Article({ region, name, content, hotspotsByCounty, images, _id, articleId }: Props) {
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${region.detailedName}`}</Title>
       <PageHeading region={region}>{name}</PageHeading>
       <EditorActions className="-mt-12" requireRegion={region.code}>
-        <Link href={`/region/${region.code}/articles/edit/${_id}`}>Edit Article</Link>
+        <Link href={`/article/${articleId}/edit`}>Edit Article</Link>
         <DeleteBtn url={`/api/article/delete?id=${_id}`} entity="article" className="ml-auto">
           Delete Article
         </DeleteBtn>
@@ -44,19 +43,16 @@ export default function Article({ region, name, content, hotspotsByCounty, image
   );
 }
 
-type Params = ParsedUrlQuery & {
-  region: string;
-  slug: string;
-};
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { slug, region: regionCode } = query as Params;
-  const region = getRegion(regionCode);
+  const articleId = query.articleId as string;
+
+  const data = await getArticleByArticleId(articleId);
+  if (!data) return { notFound: true };
+
+  const region = getRegion(data.stateCode || data.countryCode);
   if (!region) return { notFound: true };
 
-  const data = await getArticleBySlug(region.code, slug);
-  if (!data) return { notFound: true };
-  const hotspotsByCounty = !!data.hotspots?.length ? await restructureHotspotsByCounty(data.hotspots, regionCode) : [];
+  const hotspotsByCounty = !!data.hotspots?.length ? await restructureHotspotsByCounty(data.hotspots, region.code) : [];
 
   return {
     props: {

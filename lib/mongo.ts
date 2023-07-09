@@ -7,9 +7,16 @@ import Upload from "models/Upload";
 import Revision from "models/Revision";
 import Group from "models/Group";
 import Profile from "models/Profile";
+import City from "models/City";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
-import { RegionInfo as RegionInfoType, Revision as RevisionType, Hotspot as HotspotType } from "lib/types";
+import Regions from "data/regions.json";
+import {
+  RegionInfo as RegionInfoType,
+  Revision as RevisionType,
+  Hotspot as HotspotType,
+  City as CityType,
+} from "lib/types";
 
 declare global {
   var mongoose: any;
@@ -184,13 +191,6 @@ export async function getDriveByLocationId(locationId: string) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getDriveById(_id: string) {
-  await connect();
-  const result = await Drive.findOne({ _id }).populate("entries.hotspot", ["url", "name", "address"]).lean().exec();
-
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
-
 export async function getArticlesByRegion(regionCode: string) {
   await connect();
 
@@ -202,35 +202,15 @@ export async function getArticlesByRegion(regionCode: string) {
     query = { countryCode: regionCode };
   }
 
-  const result = await Article.find(query, ["-_id", "name", "slug", "countryCode", "stateCode"])
-    .sort({ name: 1 })
-    .lean()
-    .exec();
+  const result = await Article.find(query, ["-_id", "name", "articleId"]).sort({ name: 1 }).lean().exec();
 
   return result;
 }
 
-export async function getArticleBySlug(region: string, slug: string) {
+export async function getArticleByArticleId(articleId: string) {
   await connect();
 
-  let query: any = {};
-
-  if (region.split("-").length === 3) {
-    query = { slug, countyCode: region };
-  } else if (region.split("-").length === 2) {
-    query = { slug, stateCode: region };
-  } else {
-    query = { slug, countryCode: region };
-  }
-
-  const result = await Article.findOne(query).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
-
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
-
-export async function getArticleById(_id: string) {
-  await connect();
-  const result = await Article.findOne({ _id }).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
+  const result = await Article.findOne({ articleId }).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
@@ -407,6 +387,47 @@ export async function getDeletedHotspots(states: string[] | null): Promise<Hotsp
   })
     .sort({ species: -1 })
     .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function searchCities(query: string): Promise<CityType[] | null> {
+  const usStateCodes = Regions.find((it) => it.code === "US")?.subregions?.map((it) => it.code) || [];
+  const caStateCodes = Regions.find((it) => it.code === "CA")?.subregions?.map((it) => it.code) || [];
+  const activeStateCodes = [...usStateCodes, ...caStateCodes];
+
+  await connect();
+  const result = await City.find(
+    {
+      name: { $regex: new RegExp(query), $options: "i" },
+      stateCode: { $in: activeStateCodes },
+    },
+    ["name", "locationId"]
+  ).lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getCityByLocationId(locationId: string): Promise<CityType | null> {
+  await connect();
+  const result = await City.findOne({ locationId }).lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getRegionCities(region: string): Promise<CityType[] | null> {
+  await connect();
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  const result = await City.find(query).sort({ name: 1 }).lean();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

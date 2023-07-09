@@ -15,12 +15,12 @@ export default secureApi(async (req, res, token) => {
   try {
     await connect();
     if (isNew === "true") {
-      await Article.create({ ...data, _id: id });
+      const article = await Article.create(data);
+      res.status(200).json({ success: true, articleId: article.articleId });
     } else {
       await Article.updateOne({ _id: id }, data);
+      res.status(200).json({ success: true, articleId: data.articleId });
     }
-
-    res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }

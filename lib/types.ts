@@ -171,6 +171,8 @@ export type DriveInputs = {
 
 export type Article = {
   _id?: string;
+  articleId: string;
+  int: number;
   name: string;
   countryCode: string;
   stateCode?: string;
@@ -417,14 +419,16 @@ export type Token = {
 
 export type City = {
   name: string;
-  state: string;
-  county: string;
+  locationId: string;
+  countryCode: string;
+  stateCode: string;
+  countyName: string;
+  slug: string;
   lat: number;
   lng: number;
   pop: number;
   density: number;
   tz: string;
-  slug: string;
 };
 
 export type Region = {

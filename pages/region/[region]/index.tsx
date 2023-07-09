@@ -267,7 +267,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
               <PencilSquareIcon className="h-4 w-4" />
               Edit Links
             </Link>
-            <Link href={`/region/${region.code}/articles/edit/new`} className="flex gap-1">
+            <Link href={`/article/new/edit?region=${region.code}`} className="flex gap-1">
               <DocumentPlusIcon className="h-4 w-4" />
               Add Article
             </Link>
@@ -275,9 +275,9 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
 
           <div className="md:columns-2 gap-16">
             <StateLinkSection
-              links={articles.map(({ stateCode, countryCode, name, slug: articleSlug }) => ({
+              links={articles.map(({ articleId, name }) => ({
                 label: name,
-                url: `/region/${stateCode || countryCode}/articles/${articleSlug}`,
+                url: `/article/${articleId}`,
               }))}
               heading="Articles"
             />

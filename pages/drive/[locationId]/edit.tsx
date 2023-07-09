@@ -54,7 +54,7 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
       },
     });
     if (response.success) {
-      router.push(`/region/${region.code}/drives/${newSlug}`);
+      router.push(`/drive/${response.locationId}`);
     }
   };
 
@@ -99,11 +99,6 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
       </div>
     </AdminPage>
   );
-}
-
-interface Params extends ParsedUrlQuery {
-  id: string;
-  region: string;
 }
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {

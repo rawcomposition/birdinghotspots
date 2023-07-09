@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import connect from "lib/mongo";
+import connect, { searchCities } from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import { getRegion } from "lib/localData";
-import { getAllCities } from "lib/localData";
 import { Hotspot as HotspotType, City } from "lib/types";
 import FlatRegions from "data/flat-regions.json";
 
@@ -15,8 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     name: { $regex: new RegExp(q), $options: "i" },
   };
 
-  const allCities = getAllCities();
-
   const filteredRegions = FlatRegions.filter(({ name }) => name.toLowerCase().startsWith(q.toLowerCase())).map(
     ({ code, name }) => ({
       label: name,
@@ -24,24 +21,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     })
   );
 
-  const filteredCities = allCities
-    .filter((city: City) => {
-      return regionCodes.includes(city.state) && city.name.toLowerCase().startsWith(q.toLowerCase());
-    })
-    .map((city: City) => {
-      const region = getRegion(city.state);
-      return {
-        label: `${city.name}, ${region?.detailedName || city.state}`,
-        value: `/region/${city.state}/cities/${city.slug}`,
-      };
-    });
-
   try {
     await connect();
     const results = (await Hotspot.find(query, ["name", "url", "countryCode", "stateCode"])
       .limit(50)
       .lean()
       .exec()) as HotspotType[];
+
+    const cities = await searchCities(q);
+
+    const formattedCities = cities?.map((city: City) => {
+      const region = getRegion(city.stateCode || city.countryCode);
+      return {
+        label: `${city.name}, ${region?.detailedName || city.stateCode}`,
+        value: `/city/${city.locationId}`,
+      };
+    });
+
     const formatted = results?.map((result) => {
       const region = getRegion(result.stateCode || result.countryCode);
       const label = `${result.name}, ${region?.detailedName || result.stateCode || result.countryCode}`;
@@ -52,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       results: [
         {
           label: "Cities/Towns",
-          options: filteredCities,
+          options: formattedCities,
         },
         {
           label: "Regions",

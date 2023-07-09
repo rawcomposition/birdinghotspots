@@ -78,8 +78,10 @@ export function scrollToAnchor(e: React.MouseEvent<HTMLAnchorElement>) {
   }
 }
 
-export const generateRandomId = () => {
-  return Math.random().toString().slice(2, 8);
+export const generateRandomId = (length: number = 6) => {
+  return Math.random()
+    .toString()
+    .slice(2, length + 2);
 };
 
 //Adapted from https://www.geodatasource.com/developers/javascript
