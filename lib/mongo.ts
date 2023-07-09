@@ -391,7 +391,7 @@ export async function getDeletedHotspots(states: string[] | null): Promise<Hotsp
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function searchCities(query: string): Promise<CityType[] | null> {
+export async function getActiveCities(): Promise<CityType[] | null> {
   const usStateCodes = Regions.find((it) => it.code === "US")?.subregions?.map((it) => it.code) || [];
   const caStateCodes = Regions.find((it) => it.code === "CA")?.subregions?.map((it) => it.code) || [];
   const activeStateCodes = [...usStateCodes, ...caStateCodes];
@@ -399,11 +399,12 @@ export async function searchCities(query: string): Promise<CityType[] | null> {
   await connect();
   const result = await City.find(
     {
-      name: { $regex: new RegExp(query), $options: "i" },
       stateCode: { $in: activeStateCodes },
     },
-    ["name", "locationId"]
-  ).lean();
+    ["name", "locationId", "stateCode", "countryCode"]
+  )
+    .sort({ name: 1 })
+    .lean();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

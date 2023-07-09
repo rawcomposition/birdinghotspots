@@ -100,10 +100,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const locationId = context.params?.locationId as string;
 
   const city = await getCityByLocationId(locationId);
-  console.log(city);
   if (!city) return { notFound: true };
 
-  const region = getRegion(city.countryCode || city.stateCode);
+  const region = getRegion(city.stateCode || city.countryCode);
 
   const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];
 
