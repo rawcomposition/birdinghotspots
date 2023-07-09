@@ -22,7 +22,7 @@ export default function middleware(request: NextRequest) {
     });
   } catch (error) {
     console.log(error);
-    return NextResponse.redirect("/", {
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_DOMAIN}/`, {
       status: 307,
     });
   }
