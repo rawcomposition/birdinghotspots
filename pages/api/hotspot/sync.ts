@@ -118,7 +118,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         });
         dates.push({
           date: result?.createdAt,
-          region: state.code,
+          region: code,
         });
       })
     );
