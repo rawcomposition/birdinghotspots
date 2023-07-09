@@ -18,6 +18,7 @@ const formatRegion = (region: Omit<Region, "detailedName">): Region => {
 };
 
 export function getRegion(code: string): Region | null {
+  if (!code) return null;
   const regions = Regions as Region[];
   const pieces = code.split("-");
 

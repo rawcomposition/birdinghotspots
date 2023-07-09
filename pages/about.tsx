@@ -78,7 +78,7 @@ export async function getStaticProps() {
 
   const formattedEditors = editors.map(({ displayName, regions }) => ({
     name: displayName,
-    regions: regions.map((code: string) => (code ? getRegion(code)?.detailedName : "Unknown"))?.filter(Boolean),
+    regions: regions.map((code: string) => getRegion(code)?.detailedName || "Unknown"),
   }));
 
   return {
