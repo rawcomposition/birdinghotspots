@@ -11,16 +11,15 @@
     "flatten-regions": "node scripts/generateFlatRegions.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.367.0",
     "@dnd-kit/sortable": "^7.0.1",
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
     "@hookform/error-message": "^2.0.0",
     "@tinymce/tinymce-react": "^4.1.0",
-    "@types/aws-sdk": "^2.7.0",
     "@uppy/react": "^2.2.2",
     "@uppy/thumbnail-generator": "^2.2.0",
     "@uppy/transloadit": "^2.3.1",
-    "aws-sdk": "^2.1181.0",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.3",
     "firebase": "^9.8.2",
