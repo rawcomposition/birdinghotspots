@@ -26,6 +26,7 @@ import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
 import useLogPageview from "hooks/useLogPageview";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import MoreRegionLinks from "components/MoreRegionLinks";
 
 type Props = {
   region: Region;
@@ -293,6 +294,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
         </>
       )}
       {code !== "US" && <RareBirds region={code} className="mt-12" />}
+      <MoreRegionLinks region={region} />
     </div>
   );
 }

@@ -28,6 +28,7 @@ import ExternalLinkButton from "components/ExternalLinkButton";
 import useLogPageview from "hooks/useLogPageview";
 import { useModal } from "providers/modals";
 import { useReloadProps } from "hooks/useReloadProps";
+import dayjs from "dayjs";
 
 interface Props extends HotspotType {
   region: Region;
@@ -65,6 +66,7 @@ export default function Hotspot({
   groups,
   noContent,
   featuredImg,
+  updatedAt,
 }: Props) {
   const { user } = useUser();
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot" });
@@ -224,6 +226,8 @@ export default function Hotspot({
             </div>
           )}
           <Citations citations={citations} links={links} />
+
+          {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
           {lat && lng && marker && <MapBox key={_id} markers={[marker]} zoom={zoom} lgMarkers />}

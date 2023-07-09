@@ -19,6 +19,7 @@ import HotspotGrid from "components/HotspotGrid";
 import Citations from "components/Citations";
 import Features from "components/Features";
 import useLogPageview from "hooks/useLogPageview";
+import dayjs from "dayjs";
 
 interface Props extends GroupType {
   region: Region;
@@ -45,6 +46,7 @@ export default function Group({
   images,
   markers,
   hotspots,
+  updatedAt,
 }: Props) {
   const stateCode = (stateCodes || []).length === 1 ? stateCodes[0] : undefined;
   const countyCode = (countyCodes || []).length === 1 ? countyCodes[0] : undefined;
@@ -112,6 +114,8 @@ export default function Group({
           <Features {...{ restrooms }} />
 
           <Citations citations={citations} links={links} />
+
+          {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
           {markers.length > 0 && <MapBox key={_id} markers={markers} zoom={12} />}
