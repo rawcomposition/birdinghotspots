@@ -47,7 +47,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   const stateCode = regionPieces.length >= 2 ? regionPieces.slice(0, 2).join("-") : undefined;
   const countyCode = regionPieces.length === 3 ? code : undefined;
 
-  useLogPageview({ stateCode, countyCode, countryCode, entity: "hotspot" });
+  useLogPageview({ stateCode, countyCode, countryCode, entity: "region" });
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
 
