@@ -16,7 +16,10 @@ type Props = {
 type Inputs = {
   email: string;
   name: string;
-  regions: string[];
+  regions: {
+    label: string;
+    value: string;
+  }[];
   subscriptions?: {
     label: string;
     value: string;
@@ -36,7 +39,12 @@ export default function InviteEditor({ onSuccess }: Props) {
     const response = await send({
       url: "/api/admin/user/invite",
       method: "POST",
-      data: { name, email, regions, subscriptions: subscriptions?.map((it) => it.value) || [] },
+      data: {
+        name,
+        email,
+        subscriptions: subscriptions?.map((it) => it.value) || [],
+        regions: regions?.map((it) => it.value) || [],
+      },
     });
     if (response.success) {
       onSuccess();
