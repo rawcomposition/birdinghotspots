@@ -1,15 +1,5 @@
 import { Hotspot, Token } from "lib/types";
 
-export function slugify(title?: string) {
-  if (!title) return null;
-  const slug = title
-    .toLowerCase()
-    .replace("’s", "s")
-    .replace("'s", "s")
-    .replace(/[^a-z0-9]+/g, "-");
-  return slug.endsWith("-") ? slug.slice(0, -1) : slug;
-}
-
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
   const words = str.split(" ");

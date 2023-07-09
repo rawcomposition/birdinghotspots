@@ -23,10 +23,6 @@ const DriveSchema = new Schema({
     type: String,
     required: true,
   },
-  slug: {
-    type: String,
-    required: true,
-  },
   description: String,
   mapId: String,
   counties: Array,

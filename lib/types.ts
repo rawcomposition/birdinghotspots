@@ -47,8 +47,6 @@ export type Hotspot = {
   name: string;
   _id?: string;
   url: string;
-  slug: string;
-  oldSlug?: string;
   lat: number;
   lng: number;
   zoom: number;
@@ -73,7 +71,7 @@ export type Hotspot = {
   };
   drives?: [
     {
-      slug: string;
+      locationId: string;
       name: string;
       driveId: string;
     }
@@ -135,7 +133,6 @@ export type Drive = {
   name: string;
   countryCode: string;
   stateCode: string;
-  slug: string;
   description: string;
   mapId: string;
   counties: string[];
@@ -153,7 +150,6 @@ export type DriveInputs = {
   name: string;
   countryCode: string;
   stateCode: string;
-  slug: string;
   description: string;
   mapId: string;
   counties: string[];
@@ -176,7 +172,6 @@ export type Article = {
   name: string;
   countryCode: string;
   stateCode?: string;
-  slug: string;
   content: string;
   images?: Image[];
   hotspots: [Hotspot];
@@ -187,7 +182,6 @@ export type ArticleInputs = {
   name: string;
   countryCode: string;
   stateCode: string;
-  slug: string;
   content: string;
   images?: Image[];
   hotspotSelect: {
@@ -237,7 +231,7 @@ export type NotableReport = {
 
 export type HotspotDrive = {
   name: string;
-  slug: string;
+  locationId: string;
   driveId: string;
 };
 
@@ -423,7 +417,6 @@ export type City = {
   countryCode: string;
   stateCode: string;
   countyName: string;
-  slug: string;
   lat: number;
   lng: number;
   pop: number;

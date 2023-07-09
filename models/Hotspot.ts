@@ -55,8 +55,6 @@ const HotspotSchema = new Schema({
     required: true,
     unique: true,
   },
-  slug: String,
-  oldSlug: String,
   about: String,
   tips: String,
   birds: String,
@@ -90,7 +88,7 @@ const HotspotSchema = new Schema({
   },
   drives: [
     {
-      slug: String,
+      locationId: String,
       name: String,
       driveId: {
         type: Schema.Types.ObjectId,

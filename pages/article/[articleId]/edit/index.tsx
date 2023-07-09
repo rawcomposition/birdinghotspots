@@ -11,7 +11,7 @@ import Field from "components/Field";
 import useToast from "hooks/useToast";
 import FormError from "components/FormError";
 import { getRegion } from "lib/localData";
-import { slugify, canEdit } from "lib/helpers";
+import { canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
 import HotspotSelect from "components/HotspotSelect";
@@ -52,7 +52,6 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
   const handleSubmit: SubmitHandler<ArticleInputs> = async (data) => {
     // @ts-ignore
     if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
-    const newSlug = slugify(data.name);
 
     const response = await send({
       url: `/api/article/set?isNew=${isNew}`,
@@ -63,7 +62,6 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
           ...data,
           stateCode,
           countryCode,
-          slug: newSlug,
           hotspots: data.hotspotSelect.map(({ value }) => value),
         },
       },

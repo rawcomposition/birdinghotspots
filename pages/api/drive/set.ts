@@ -31,7 +31,7 @@ export default secureApi(async (req, res, token) => {
     await Hotspot.updateMany(
       { "drives.driveId": { $ne: driveId }, _id: { $in: hotspotIds } },
       // @ts-ignore
-      { $push: { drives: { slug: data.slug, name: data.name, driveId } } }
+      { $push: { drives: { locationId, name: data.name, driveId } } }
     );
 
     await Hotspot.updateMany(

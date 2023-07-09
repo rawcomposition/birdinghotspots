@@ -77,13 +77,13 @@ export default function Hotspot({
   if (iba) {
     extraLinks.push({
       label: `${iba.label} Important Bird Area`,
-      url: `/region/${stateCode}/important-bird-areas/${iba.value}`,
+      url: `/iba/${iba.value}`,
     });
   }
   drives?.forEach((drive) => {
     extraLinks.push({
       label: drive.name,
-      url: `/region/${stateCode || countryCode}/drives/${drive.slug}`,
+      url: `/drive/${drive.locationId}`,
     });
   });
 

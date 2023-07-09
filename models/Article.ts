@@ -20,10 +20,6 @@ const ArticleSchema = new Schema({
     required: true,
   },
   stateCode: String,
-  slug: {
-    type: String,
-    required: true,
-  },
   content: String,
   hotspots: [
     {

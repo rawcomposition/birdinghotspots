@@ -71,7 +71,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   const uniqueDrives = drives.filter(
     (elem, index, self) =>
       self.findIndex((t) => {
-        return t?.slug === elem?.slug && t?.name === elem?.name;
+        return t?.locationId === elem?.locationId && t?.name === elem?.name;
       }) === index
   );
 
@@ -239,9 +239,9 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
                   Birding Drives
                 </h3>
                 <ul>
-                  {sortedDrives?.map(({ name, slug }: any) => (
-                    <li key={slug}>
-                      <Link href={`/region/${region.code}/drives/${slug}`}>{name}</Link>
+                  {sortedDrives?.map(({ name, locationId }: any) => (
+                    <li key={locationId}>
+                      <Link href={`/drive/${locationId}`}>{name}</Link>
                     </li>
                   ))}
                 </ul>

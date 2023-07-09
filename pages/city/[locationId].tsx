@@ -91,11 +91,6 @@ export default function County({ region, city, hotspots }: Props) {
   );
 }
 
-interface Params extends ParsedUrlQuery {
-  region: string;
-  citySlug: string;
-}
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const locationId = context.params?.locationId as string;
 

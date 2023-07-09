@@ -19,7 +19,6 @@ const CitySchema = new Schema({
     type: String,
     required: true,
   },
-  slug: String,
   countyName: String,
   pop: Number,
   density: Number,
