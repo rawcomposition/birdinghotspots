@@ -11,12 +11,19 @@ type KeyValue = {
 };
 
 export default function middleware(request: NextRequest) {
-  const url = new URL(request.url);
-  const path = url.pathname;
+  try {
+    const url = new URL(request.url);
+    const path = url.pathname;
 
-  const region = (LegacyRegionSlugs as KeyValue)[path];
+    const region = (LegacyRegionSlugs as KeyValue)[path];
 
-  return NextResponse.redirect(region ? `${process.env.NEXT_PUBLIC_DOMAIN}${region}` : "/", {
-    status: 301,
-  });
+    return NextResponse.redirect(region ? `${process.env.NEXT_PUBLIC_DOMAIN}${region}` : "/", {
+      status: 301,
+    });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.redirect("/", {
+      status: 307,
+    });
+  }
 }
