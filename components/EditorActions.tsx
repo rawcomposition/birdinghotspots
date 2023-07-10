@@ -11,8 +11,8 @@ type PropTypes = {
 
 export default function EditorActions({ children, className, allowPublic, requireAdmin, requireRegion }: PropTypes) {
   const { user } = useUser();
-  if (!user && !allowPublic) return <></>;
-  if (requireAdmin && user?.role !== "admin") return <></>;
+  if (!user && !allowPublic) return null;
+  if (requireAdmin && user?.role !== "admin") return null;
   if (requireRegion && user?.role !== "admin" && !user?.regions?.some((it: string) => requireRegion.startsWith(it)))
     return null;
   return (

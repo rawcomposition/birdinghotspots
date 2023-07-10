@@ -15,7 +15,6 @@ export default secureApi(async (req, res, token) => {
   });
 
   const uploadUrlToS3 = async (url: string, key: string) => {
-    console.log(url);
     const uploadParams = {
       Bucket: "birdinghotspots",
       Key: key,

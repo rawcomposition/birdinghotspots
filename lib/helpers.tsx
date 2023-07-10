@@ -191,5 +191,5 @@ export const canEdit = (token: Token, region: string | string[]) => {
     return !!token.regions?.some((it: string) => region.startsWith(it));
   }
 
-  return region?.filter((it: string) => !!token.regions?.some((region: string) => region.startsWith(it))).length > 0;
+  return region?.some((it: string) => !!token.regions?.some((myRegion: string) => it.startsWith(myRegion)));
 };

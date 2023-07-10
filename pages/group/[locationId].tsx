@@ -55,7 +55,7 @@ export default function Group({
   const { user } = useUser();
   const canEditGroup =
     user?.role === "admin" ||
-    stateCodes?.filter((it: string) => !!user?.regions?.some((region: string) => region.startsWith(it))).length > 0;
+    stateCodes?.some((it: string) => !!user.regions?.some((myRegion: string) => it.startsWith(myRegion)));
 
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
@@ -67,14 +67,14 @@ export default function Group({
     <div className="container pb-16">
       <Title>{name}</Title>
       <PageHeading region={region}>{name}</PageHeading>
-      <EditorActions className="font-medium -mt-10">
-        {canEditGroup && <Link href={`/edit/group/${locationId}`}>Edit Group</Link>}
-        {canEditGroup && (
+      {canEditGroup && (
+        <EditorActions className="font-medium -mt-10">
+          <Link href={`/edit/group/${locationId}`}>Edit Group</Link>
           <DeleteBtn url={`/api/group/delete?id=${_id}`} entity="group" className="ml-auto">
             Delete Group
           </DeleteBtn>
-        )}
-      </EditorActions>
+        </EditorActions>
+      )}
       <div className="mb-12">
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <HotspotGrid hotspots={filteredHotspots} loading={false} />

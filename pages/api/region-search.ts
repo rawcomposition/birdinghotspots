@@ -34,8 +34,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       value: code,
     }));
 
-  console.log(syncRegionsOnly);
-
   res.status(200).json({
     success: true,
     results: filteredRegions,
