@@ -432,3 +432,47 @@ export async function getRegionCities(region: string): Promise<CityType[] | null
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
+
+type ImgStats = {
+  _id: {
+    featuredImg: boolean;
+    countryCode?: string;
+    stateCode?: string;
+  };
+  count: number;
+};
+
+export async function getImgStats(regions: string[]): Promise<ImgStats[]> {
+  await connect();
+  const countryCodes = regions.filter((it) => it.split("-").length === 1);
+  const stateCodes = regions.filter((it) => it.split("-").length === 2);
+
+  const countryResults = await Hotspot.aggregate([
+    {
+      $match: {
+        countryCode: { $in: countryCodes },
+      },
+    },
+    {
+      $group: {
+        _id: { featuredImg: { $gt: ["$featuredImg", null] }, countryCode: "$countryCode" },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  const stateResults = await Hotspot.aggregate([
+    {
+      $match: {
+        stateCode: { $in: stateCodes },
+      },
+    },
+    {
+      $group: {
+        _id: { featuredImg: { $gt: ["$featuredImg", null] }, stateCode: "$stateCode" },
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+  return [...countryResults, ...stateResults];
+}

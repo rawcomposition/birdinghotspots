@@ -1,14 +1,23 @@
 import DashboardPage from "components/DashboardPage";
 import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import { getDeletedHotspots } from "lib/mongo";
-import { Hotspot } from "lib/types";
+import { getImgStats, getDeletedHotspots } from "lib/mongo";
+import SyncRegions from "data/sync-regions.json";
+import { Hotspot, Region } from "lib/types";
+import { getRegion } from "lib/localData";
 
 type Props = {
   deletedHotspots: Hotspot[];
+  data: {
+    code: string;
+    name: string;
+    url: string;
+    total: number;
+    withImg: number;
+  }[];
 };
 
-export default function Dashboard({ deletedHotspots }: Props) {
+export default function Dashboard({ data, deletedHotspots }: Props) {
   return (
     <DashboardPage title="Dashboard">
       {!!deletedHotspots?.length && (
@@ -38,14 +47,84 @@ export default function Dashboard({ deletedHotspots }: Props) {
           </Link>
         </div>
       </section>
+      <div className="overflow-hidden shadow md:rounded-lg mb-12">
+        <table className="min-w-full divide-y divide-gray-300">
+          <thead className="bg-gray-50">
+            <tr>
+              <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                Region
+              </th>
+              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem]">
+                Hotspots
+              </th>
+              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem]">
+                With Photos
+              </th>
+              <th />
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 bg-white">
+            {data.map(({ code, name, url, total, withImg }) => (
+              <tr key={code}>
+                <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                  <Link href={url}>{name}</Link>
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{total.toLocaleString()}</td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-2">
+                    {withImg.toLocaleString()}
+                    <span className="text-xs">({total > 0 ? Math.round((withImg / total) * 100) : 0}%)</span>
+                  </div>
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
+                  <Link
+                    href={`${url}/alphabetical-index`}
+                    className="font-medium text-orange-700 hover:text-orange-900"
+                  >
+                    View List
+                  </Link>
+                  <Link
+                    href={`/hotspots/${code}`}
+                    className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2"
+                  >
+                    Explore
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </DashboardPage>
   );
 }
 
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
-  const { role } = token;
+  const filteredRegionCodes = SyncRegions.filter((code) => {
+    return token.role === "admin" || token.regions.includes(code);
+  });
 
-  const deletedHotspots = await getDeletedHotspots(role === "admin" ? null : token.regions);
+  const imgResult = await getImgStats(filteredRegionCodes);
 
-  return { props: { deletedHotspots } };
+  const imgCount = imgResult.map(({ _id, count }) => ({
+    regionCode: _id.stateCode || _id.countryCode,
+    featuredImg: _id.featuredImg,
+    count,
+  }));
+
+  const regions = filteredRegionCodes.map((code) => getRegion(code)).filter(Boolean) as Region[];
+
+  const data = regions.map(({ name, code }) => {
+    const url = `/region/${code}`;
+    const withImg = imgCount.find((it) => it.regionCode === code && it.featuredImg)?.count || 0;
+    const withoutImg = imgCount.find((it) => it.regionCode === code && !it.featuredImg)?.count || 0;
+    const total = withImg + withoutImg;
+    return { code, name, url, withImg, total };
+  });
+
+  const sorted = data.sort((a, b) => b.total - a.total);
+
+  const deletedHotspots = await getDeletedHotspots(token.role === "admin" ? null : token.regions);
+
+  return { props: { data: sorted, deletedHotspots } };
 });
