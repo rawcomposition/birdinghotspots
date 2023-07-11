@@ -43,9 +43,7 @@ export default function Hotspot({
   lng,
   zoom,
   address,
-  links: additionalLinks,
-  webpage,
-  citeWebpage,
+  links,
   citations,
   about,
   tips,
@@ -74,10 +72,6 @@ export default function Hotspot({
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot" });
   const { open } = useModal();
   const reload = useReloadProps();
-
-  const links = webpage
-    ? [{ url: webpage, label: "Official Website", cite: citeWebpage }, ...(additionalLinks || [])]
-    : additionalLinks || [];
 
   let extraLinks = [];
 
@@ -265,6 +259,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getHotspotByLocationId(locationId, true);
   if (!data) return { notFound: true };
 
+  const links = data.webpage
+    ? [{ url: data.webpage, label: "Official Website", cite: data.citeWebpage }, ...(data.additionalLinks || [])]
+    : data.additionalLinks || [];
+
   const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
   if (!region) return { notFound: true };
 
@@ -273,7 +271,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const groupLinks: LinkType[] = [];
   const groupCitations: Citation[] = [];
 
-  data?.groups?.forEach(({ name, links, webpage, citeWebpage }: Group) => {
+  data?.groups?.forEach(({ name, links, webpage, citeWebpage, citations }: Group) => {
     if (webpage)
       groupLinks?.push({
         url: webpage,
@@ -281,9 +279,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         cite: citeWebpage,
       });
     if (links) groupLinks.push(...links);
-  });
-
-  data?.groups?.forEach(({ citations }: Group) => {
     if (citations) groupCitations.push(...citations);
   });
 
@@ -293,7 +288,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       marker,
       ...data,
       citations: [...(data.citations || []), ...groupCitations],
-      links: [...(data.links || []), ...groupLinks],
+      links: [...(links || []), ...groupLinks],
     },
   };
 };
