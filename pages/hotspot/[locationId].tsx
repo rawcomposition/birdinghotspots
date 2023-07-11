@@ -76,7 +76,7 @@ export default function Hotspot({
   const reload = useReloadProps();
 
   const links = webpage
-    ? [{ url: webpage, label: `${name} webpage`, cite: citeWebpage }, ...(additionalLinks || [])]
+    ? [{ url: webpage, label: "Official Website", cite: citeWebpage }, ...(additionalLinks || [])]
     : additionalLinks || [];
 
   let extraLinks = [];

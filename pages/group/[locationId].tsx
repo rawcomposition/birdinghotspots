@@ -66,7 +66,7 @@ export default function Group({
   const moreCount = hotspots.length - 12;
 
   const links = webpage
-    ? [{ url: webpage, label: `${name} webpage`, cite: citeWebpage }, ...(additionalLinks || [])]
+    ? [{ url: webpage, label: "Official Website", cite: citeWebpage }, ...(additionalLinks || [])]
     : additionalLinks || [];
 
   return (
