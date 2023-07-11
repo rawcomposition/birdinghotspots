@@ -58,6 +58,8 @@ export type Hotspot = {
   tips?: string;
   birds?: string;
   hikes?: string;
+  webpage?: string;
+  citeWebpage?: boolean;
   address?: string;
   links?: Link[];
   citations?: Citation[];
@@ -258,6 +260,8 @@ export type Group = {
   hikes?: string;
   address?: string;
   links?: Link[];
+  webpage?: string;
+  citeWebpage?: boolean;
   citations?: Citation[];
   restrooms?: string;
   images?: Image[];

@@ -61,6 +61,8 @@ const HotspotSchema = new Schema({
   hikes: String,
   address: String,
   links: [LinkSchema],
+  webpage: String,
+  citeWebpage: Boolean,
   citations: [CitationSchema],
   roadside: {
     type: String,

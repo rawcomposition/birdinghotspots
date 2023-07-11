@@ -43,7 +43,9 @@ export default function Hotspot({
   lng,
   zoom,
   address,
-  links,
+  links: additionalLinks,
+  webpage,
+  citeWebpage,
   citations,
   about,
   tips,
@@ -72,6 +74,11 @@ export default function Hotspot({
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot" });
   const { open } = useModal();
   const reload = useReloadProps();
+
+  const links = webpage
+    ? [{ url: webpage, label: `${name} webpage`, cite: citeWebpage }, ...(additionalLinks || [])]
+    : additionalLinks || [];
+
   let extraLinks = [];
 
   if (iba) {

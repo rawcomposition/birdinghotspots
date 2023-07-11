@@ -35,7 +35,9 @@ export default function Group({
   name,
   _id,
   address,
-  links,
+  links: additionalLinks,
+  webpage,
+  citeWebpage,
   citations,
   about,
   tips,
@@ -62,6 +64,10 @@ export default function Group({
 
   const filteredHotspots = showMore ? hotspots : hotspots.slice(0, 12);
   const moreCount = hotspots.length - 12;
+
+  const links = webpage
+    ? [{ url: webpage, label: `${name} webpage`, cite: citeWebpage }, ...(additionalLinks || [])]
+    : additionalLinks || [];
 
   return (
     <div className="container pb-16">

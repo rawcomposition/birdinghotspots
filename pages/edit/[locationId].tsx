@@ -23,6 +23,8 @@ import MapZoomInput from "components/MapZoomInput";
 import LicenseNotice from "components/LicenseNotice";
 import MapGrid from "components/MapGrid";
 import ExpandableHtml from "components/ExpandableHtml";
+import Input from "components/Input";
+import Checkbox from "components/Checkbox";
 
 type GroupAbout = {
   title: string;
@@ -121,7 +123,14 @@ export default function Edit({
                 )}
               </Field>
 
-              <InputHotspotLinks groupLinks={groupLinks} />
+              <div className="space-y-1">
+                <Field label="Official Webpage URL">
+                  <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
+                </Field>
+                <Checkbox name="citeWebpage" label="Include as citation" />
+              </div>
+
+              <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />

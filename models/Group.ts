@@ -45,6 +45,8 @@ const GroupSchema = new Schema({
   hikes: String,
   address: String,
   links: [LinkSchema],
+  webpage: String,
+  citeWebpage: Boolean,
   citations: [CitationSchema],
   restrooms: {
     type: String,
