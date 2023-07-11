@@ -274,7 +274,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const groupCitations: Citation[] = [];
 
   data?.groups?.forEach(({ name, links, webpage, citeWebpage }: Group) => {
-    if (webpage) groupLinks?.push({ url: webpage, label: `${name} Official Website`, cite: citeWebpage });
+    if (webpage)
+      groupLinks?.push({
+        url: webpage,
+        label: data.webpage ? `${name} Official Website` : "Official Website",
+        cite: citeWebpage,
+      });
     if (links) groupLinks.push(...links);
   });
 
