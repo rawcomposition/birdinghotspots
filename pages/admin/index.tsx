@@ -11,7 +11,6 @@ type Props = {
   data: {
     code: string;
     name: string;
-    url: string;
     total: number;
     withImg: number;
   }[];
@@ -64,10 +63,10 @@ export default function Dashboard({ data, deletedHotspots }: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {data.map(({ code, name, url, total, withImg }) => (
+            {data.map(({ code, name, total, withImg }) => (
               <tr key={code}>
                 <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                  <Link href={url}>{name}</Link>
+                  <Link href={`/region/${code}`}>{name}</Link>
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{total.toLocaleString()}</td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -78,13 +77,13 @@ export default function Dashboard({ data, deletedHotspots }: Props) {
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
                   <Link
-                    href={`${url}/alphabetical-index`}
+                    href={`/region/${code}/hotspot-index`}
                     className="font-medium text-orange-700 hover:text-orange-900"
                   >
                     View List
                   </Link>
                   <Link
-                    href={`/hotspots/${code}`}
+                    href={`/region/${code}/hotspots`}
                     className="font-medium text-orange-700 hover:text-orange-900 ml-4 mr-2"
                   >
                     Explore
@@ -115,11 +114,10 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
   const regions = filteredRegionCodes.map((code) => getRegion(code)).filter(Boolean) as Region[];
 
   const data = regions.map(({ name, code }) => {
-    const url = `/region/${code}`;
     const withImg = imgCount.find((it) => it.regionCode === code && it.featuredImg)?.count || 0;
     const withoutImg = imgCount.find((it) => it.regionCode === code && !it.featuredImg)?.count || 0;
     const total = withImg + withoutImg;
-    return { code, name, url, withImg, total };
+    return { code, name, withImg, total };
   });
 
   const sorted = data.sort((a, b) => b.total - a.total);
