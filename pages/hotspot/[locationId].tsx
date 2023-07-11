@@ -271,11 +271,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const marker = formatMarker(data);
 
   const groupLinks: LinkType[] = [];
-  data?.groups?.forEach(({ links }: Group) => {
+  const groupCitations: Citation[] = [];
+
+  data?.groups?.forEach(({ name, links, webpage, citeWebpage }: Group) => {
+    if (webpage) groupLinks?.push({ url: webpage, label: `${name} Official Website`, cite: citeWebpage });
     if (links) groupLinks.push(...links);
   });
 
-  const groupCitations: Citation[] = [];
   data?.groups?.forEach(({ citations }: Group) => {
     if (citations) groupCitations.push(...citations);
   });

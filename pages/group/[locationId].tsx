@@ -57,7 +57,7 @@ export default function Group({
   const { user } = useUser();
   const canEditGroup =
     user?.role === "admin" ||
-    stateCodes?.some((it: string) => !!user.regions?.some((myRegion: string) => it.startsWith(myRegion)));
+    stateCodes?.some((it: string) => !!user?.regions?.some((myRegion: string) => it.startsWith(myRegion)));
 
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
