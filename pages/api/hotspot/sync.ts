@@ -4,6 +4,9 @@ import Hotspot from "models/Hotspot";
 import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
 
+// Mostly stakeouts that don't follow the naming convention
+const blockedLocationIds = ["L3934548", "L7929720", "L10823928"];
+
 const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
   const response = await fetch(`https://api.ebird.org/v2/ref/hotspot/${region}?fmt=json`);
@@ -23,7 +26,10 @@ const getHotspotsForRegion = async (region: string) => {
       subnational1Code: hotspot.subnational1Code,
       subnational2Code: hotspot.subnational2Code,
     }))
-    .filter((hotspot: any) => !hotspot.name.startsWith("stakeout"));
+    .filter(
+      (hotspot: any) =>
+        !hotspot.name.toLowerCase().startsWith("stakeout") && !blockedLocationIds.includes(hotspot.locationId)
+    );
 };
 
 const updateHotspot = (dbHotspot: any, ebird: any) => {
