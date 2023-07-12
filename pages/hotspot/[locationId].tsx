@@ -275,7 +275,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     if (webpage)
       groupLinks?.push({
         url: webpage,
-        label: data.webpage ? `${name} Official Website` : "Official Website",
+        label: `${name} Official Website`,
         cite: citeWebpage,
       });
     if (links) groupLinks.push(...links);
