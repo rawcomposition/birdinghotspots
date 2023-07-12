@@ -130,7 +130,7 @@ const HotspotSchema = new Schema({
   groupIds: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   createdAt: {
     type: "string",
-    default: () => dayjs().format("YYYY-MM-DD"),
+    default: () => dayjs().format(),
     required: true,
   },
   updatedAt: String,
