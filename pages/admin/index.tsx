@@ -6,7 +6,7 @@ import { getImgStats, getContentStats, getDeletedHotspots, getRecentHotspots } f
 import SyncRegions from "data/sync-regions.json";
 import { Hotspot } from "lib/types";
 import { getRegion } from "lib/localData";
-import { CheckCircleIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
+import { CameraIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import Tooltip from "components/Tooltip";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -68,7 +68,7 @@ export default function Dashboard({ data, deletedHotspots, recentHotspots }: Pro
                 </time>
                 {withImg && (
                   <Tooltip text="Has photos" xSmall>
-                    <CheckCircleIcon className="w-4 h-4 ml-2 text-green-600 inline-block" />
+                    <CameraIcon className="w-4 h-4 ml-2 text-green-600 inline-block" />
                   </Tooltip>
                 )}
                 {withContent && (
