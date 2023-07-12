@@ -433,6 +433,21 @@ export async function getRegionCities(region: string): Promise<CityType[] | null
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
+export async function getRecentHotspots(regionCodes: string[]): Promise<HotspotType[] | null> {
+  await connect();
+  const countryCodes = regionCodes.filter((it) => it.split("-").length === 1);
+  const stateCodes = regionCodes.filter((it) => it.split("-").length === 2);
+
+  const results = await Hotspot.find({
+    $or: [{ countryCode: { $in: countryCodes } }, { stateCode: { $in: stateCodes } }],
+  })
+    .sort({ createdAt: -1 })
+    .limit(25)
+    .lean();
+
+  return results ? JSON.parse(JSON.stringify(results)) : null;
+}
+
 type ImgStat = {
   code: string;
   withImg: number;
