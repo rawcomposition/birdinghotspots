@@ -5,7 +5,7 @@ import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
 
 // Mostly stakeouts that don't follow the naming convention
-const blockedLocationIds = ["L3934548", "L7929720", "L10823928"];
+const blockedLocationIds = ["L3934548", "L7929720", "L10823928", "L7820108"];
 
 const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
