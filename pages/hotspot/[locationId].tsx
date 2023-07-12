@@ -260,8 +260,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!data) return { notFound: true };
 
   const links = data.webpage
-    ? [{ url: data.webpage, label: "Official Website", cite: data.citeWebpage }, ...(data.additionalLinks || [])]
-    : data.additionalLinks || [];
+    ? [{ url: data.webpage, label: "Official Website", cite: data.citeWebpage }, ...(data.links || [])]
+    : data.links || [];
 
   const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
   if (!region) return { notFound: true };
