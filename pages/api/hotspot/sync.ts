@@ -129,17 +129,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       })
     );
 
-    let nextState = state;
+    let nextRegion = state;
 
     if (!state) {
       const sortedDates = dates.sort((a, b) => a.date.localeCompare(b.date));
-      nextState = sortedDates[0]?.region;
+      nextRegion = sortedDates[0]?.region;
     }
 
-    console.log(`Syncing ${nextState}`);
-    const hotspots = await getHotspotsForRegion(nextState);
+    console.log(`Syncing ${nextRegion}`);
+    const hotspots = await getHotspotsForRegion(nextRegion);
     const fields = ["locationId", "name", "lat", "lng", "species"];
-    const dbHotspots = await Hotspot.find({ stateCode: nextState }, fields);
+    const dbHotspots = await Hotspot.find({ $or: [{ stateCode: nextRegion }, { countryCode: nextRegion }] }, fields);
     const dbHotspotIds: string[] = dbHotspots.map((hotspot) => hotspot.locationId);
     const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
 
@@ -171,7 +171,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Logs.create({
       user: "BirdBot",
       type: "sync",
-      message: `synced ${nextState}. Found ${insertCount || 0} new ${insertCount === 1 ? "hotspot" : "hotspots"}.`,
+      message: `synced ${nextRegion}. Found ${insertCount || 0} new ${insertCount === 1 ? "hotspot" : "hotspots"}.`,
     });
     res.status(200).json({ success: true });
   } catch (error: any) {
