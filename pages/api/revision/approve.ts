@@ -15,6 +15,8 @@ export default secureApi(async (req, res, token) => {
       return;
     }
 
+    const shouldCite = !revision.tips && !revision.birds && !revision.about && !revision.hikes;
+
     const hotspot = await Hotspot.findOne({ locationId: revision.locationId });
     if (!hotspot) {
       res.status(500).json({ error: "Hotspot not found" });
@@ -52,7 +54,10 @@ export default secureApi(async (req, res, token) => {
     );
     await Revision.updateOne({ _id: id }, { status: "approved" });
 
-    if (!hotspot.citations.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())) {
+    if (
+      shouldCite &&
+      !hotspot.citations.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())
+    ) {
       hotspot.citations.push({ label: revision.by });
       await hotspot.save();
     }
