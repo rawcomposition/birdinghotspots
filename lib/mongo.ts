@@ -433,46 +433,143 @@ export async function getRegionCities(region: string): Promise<CityType[] | null
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-type ImgStats = {
-  _id: {
-    featuredImg: boolean;
-    countryCode?: string;
-    stateCode?: string;
-  };
-  count: number;
+type ImgStat = {
+  code: string;
+  withImg: number;
+  total: number;
 };
 
-export async function getImgStats(regions: string[]): Promise<ImgStats[]> {
+export async function getImgStats(regionCodes: string[]): Promise<ImgStat[]> {
   await connect();
-  const countryCodes = regions.filter((it) => it.split("-").length === 1);
-  const stateCodes = regions.filter((it) => it.split("-").length === 2);
+  const countryCodes = regionCodes.filter((it) => it.split("-").length === 1);
+  const stateCodes = regionCodes.filter((it) => it.split("-").length === 2);
 
-  const countryResults = await Hotspot.aggregate([
-    {
-      $match: {
-        countryCode: { $in: countryCodes },
+  const [countryResults, stateResults] = await Promise.all([
+    Hotspot.aggregate([
+      {
+        $match: {
+          countryCode: { $in: countryCodes },
+        },
       },
-    },
-    {
-      $group: {
-        _id: { featuredImg: { $gt: ["$featuredImg", null] }, countryCode: "$countryCode" },
-        count: { $sum: 1 },
+      {
+        $group: {
+          _id: { featuredImg: { $gt: ["$featuredImg", null] }, regionCode: "$countryCode" },
+          count: { $sum: 1 },
+        },
       },
-    },
+    ]),
+    Hotspot.aggregate([
+      {
+        $match: {
+          stateCode: { $in: stateCodes },
+        },
+      },
+      {
+        $group: {
+          _id: { featuredImg: { $gt: ["$featuredImg", null] }, regionCode: "$stateCode" },
+          count: { $sum: 1 },
+        },
+      },
+    ]),
   ]);
 
-  const stateResults = await Hotspot.aggregate([
-    {
-      $match: {
-        stateCode: { $in: stateCodes },
+  const allRegionStats = [...countryResults, ...stateResults];
+
+  const byRegion: ImgStat[] = regionCodes.map((code) => {
+    const withImg =
+      allRegionStats.find((stat) => stat._id.regionCode === code && stat._id.featuredImg === true)?.count || 0;
+    const withoutImg =
+      allRegionStats.find((stat) => stat._id.regionCode === code && stat._id.featuredImg === false)?.count || 0;
+    const total = withImg + withoutImg;
+    return { code, withImg, total };
+  });
+
+  return byRegion;
+}
+
+type ContentStat = {
+  code: string;
+  withContent: number;
+  total: number;
+};
+
+export async function getContentStats(regionCodes: string[]): Promise<ContentStat[]> {
+  await connect();
+  const countryCodes = regionCodes.filter((it) => it.split("-").length === 1);
+  const stateCodes = regionCodes.filter((it) => it.split("-").length === 2);
+
+  const [countryResults, stateResults] = await Promise.all([
+    Hotspot.aggregate([
+      {
+        $match: {
+          countryCode: { $in: countryCodes },
+        },
       },
-    },
-    {
-      $group: {
-        _id: { featuredImg: { $gt: ["$featuredImg", null] }, stateCode: "$stateCode" },
-        count: { $sum: 1 },
+      {
+        $group: {
+          _id: {
+            noContent: "$noContent",
+            groupIds: {
+              $cond: {
+                if: { $isArray: "$groupIds" },
+                then: { $gt: [{ $size: "$groupIds" }, 0] },
+                else: false,
+              },
+            },
+            regionCode: "$countryCode",
+          },
+          count: { $sum: 1 },
+        },
       },
-    },
+    ]),
+    Hotspot.aggregate([
+      {
+        $match: {
+          stateCode: { $in: stateCodes },
+        },
+      },
+      {
+        $group: {
+          _id: {
+            noContent: "$noContent",
+            groupIds: {
+              $cond: {
+                if: { $isArray: "$groupIds" },
+                then: { $gt: [{ $size: "$groupIds" }, 0] },
+                else: false,
+              },
+            },
+            regionCode: "$stateCode",
+          },
+          count: { $sum: 1 },
+        },
+      },
+    ]),
   ]);
-  return [...countryResults, ...stateResults];
+
+  const allRegionStats = [...countryResults, ...stateResults];
+  const byRegion: ContentStat[] = regionCodes.map((code) => {
+    const withContentWithGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === false && stat._id.groupIds === true
+      )?.count || 0;
+    const withContentWithoutGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === false && stat._id.groupIds === false
+      )?.count || 0;
+    const withoutContentWithouotGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === true && stat._id.groupIds === false
+      )?.count || 0;
+    const withoutContentWithGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === true && stat._id.groupIds === true
+      )?.count || 0;
+
+    const total =
+      withContentWithGroups + withContentWithoutGroups + withoutContentWithouotGroups + withoutContentWithGroups;
+    const withContent = withContentWithGroups + withContentWithoutGroups + withoutContentWithGroups;
+    return { code, withContent, total };
+  });
+  return byRegion;
 }

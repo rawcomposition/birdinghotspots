@@ -1,7 +1,7 @@
 import DashboardPage from "components/DashboardPage";
 import Link from "next/link";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
-import { getImgStats, getDeletedHotspots } from "lib/mongo";
+import { getImgStats, getContentStats, getDeletedHotspots } from "lib/mongo";
 import SyncRegions from "data/sync-regions.json";
 import { Hotspot, Region } from "lib/types";
 import { getRegion } from "lib/localData";
@@ -13,6 +13,7 @@ type Props = {
     name: string;
     total: number;
     withImg: number;
+    withContent: number;
   }[];
 };
 
@@ -59,11 +60,14 @@ export default function Dashboard({ data, deletedHotspots }: Props) {
               <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem]">
                 With Photos
               </th>
+              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem]">
+                With Content
+              </th>
               <th />
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {data.map(({ code, name, total, withImg }) => (
+            {data.map(({ code, name, total, withImg, withContent }) => (
               <tr key={code}>
                 <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                   <Link href={`/region/${code}`}>{name}</Link>
@@ -73,6 +77,12 @@ export default function Dashboard({ data, deletedHotspots }: Props) {
                   <div className="flex items-center gap-2">
                     {withImg.toLocaleString()}
                     <span className="text-xs">({total > 0 ? Math.round((withImg / total) * 100) : 0}%)</span>
+                  </div>
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-2">
+                    {withContent.toLocaleString()}
+                    <span className="text-xs">({total > 0 ? Math.round((withContent / total) * 100) : 0}%)</span>
                   </div>
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
@@ -103,21 +113,20 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
     return token.role === "admin" || token.regions.includes(code);
   });
 
-  const imgResult = await getImgStats(filteredRegionCodes);
+  const allImgStats = await getImgStats(filteredRegionCodes);
+  const allContentStats = await getContentStats(filteredRegionCodes);
 
-  const imgCount = imgResult.map(({ _id, count }) => ({
-    regionCode: _id.stateCode || _id.countryCode,
-    featuredImg: _id.featuredImg,
-    count,
-  }));
-
-  const regions = filteredRegionCodes.map((code) => getRegion(code)).filter(Boolean) as Region[];
-
-  const data = regions.map(({ name, code }) => {
-    const withImg = imgCount.find((it) => it.regionCode === code && it.featuredImg)?.count || 0;
-    const withoutImg = imgCount.find((it) => it.regionCode === code && !it.featuredImg)?.count || 0;
-    const total = withImg + withoutImg;
-    return { code, name, withImg, total };
+  const data = filteredRegionCodes.map((code) => {
+    const region = getRegion(code);
+    const imgStats = allImgStats.find((s) => s.code === code);
+    const contentStats = allContentStats.find((s) => s.code === code);
+    return {
+      code,
+      name: region?.name || code,
+      ...contentStats,
+      ...imgStats,
+      total: imgStats?.total || 0,
+    };
   });
 
   const sorted = data.sort((a, b) => b.total - a.total);
