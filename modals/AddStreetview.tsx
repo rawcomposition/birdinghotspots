@@ -12,7 +12,7 @@ type Props = {
 
 export default function AddStreetView({ locationId, onSuccess }: Props) {
   const [url, setUrl] = React.useState("");
-  const [fov, setFov] = React.useState(80);
+  const [fov, setFov] = React.useState(70);
   const { send, loading } = useToast();
   const { close } = useModal();
 
