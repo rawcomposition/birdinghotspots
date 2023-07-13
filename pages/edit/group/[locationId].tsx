@@ -22,6 +22,7 @@ import Error from "next/error";
 import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
 import InputCitations from "components/InputCitations";
+import Checkbox from "components/Checkbox";
 
 type Props = {
   id?: string;
@@ -86,7 +87,14 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
                 />
               </Field>
 
-              <InputHotspotLinks />
+              <div className="space-y-1">
+                <Field label="Official Webpage URL">
+                  <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
+                </Field>
+                <Checkbox name="citeWebpage" label="Include as citation" />
+              </div>
+
+              <InputHotspotLinks label="Additional Links" />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />
