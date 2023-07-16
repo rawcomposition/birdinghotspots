@@ -10,7 +10,8 @@ type Props = {
 export default function MoreRegionLinks({ region }: Props) {
   const { code, features } = region;
   const isState = code.split("-").length === 2;
-  const hasCities = ["US", "CA"].includes(code.split("-")[0]) && isState;
+  const isCountry = code.split("-").length === 1;
+  const hasCities = ["US", "CA"].includes(code.split("-")[0]) && (isState || isCountry);
   return (
     <div className="mt-8 md:mt-16">
       <h3 className="text-lg mb-2 font-bold">More ways to explore</h3>
