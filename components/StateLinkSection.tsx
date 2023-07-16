@@ -31,7 +31,7 @@ export const StateLinkSection = ({ heading, links, external }: Props) => {
             <br />
           </React.Fragment>
         ))}
-        {links.length > 5 && !viewMore && (
+        {links.length > limit && !viewMore && (
           <button
             type="button"
             className="mt-1 flex gap-1 items-center font-medium text-sm text-gray-600"
