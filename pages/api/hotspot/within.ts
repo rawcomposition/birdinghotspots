@@ -18,14 +18,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     query.countyCode = region;
   } else if (region.split("-").length === 2) {
     query.stateCode = region;
-  } else {
+  } else if (region) {
     query.countryCode = region;
   }
 
   try {
     await connect();
     const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "locationId", "lat", "lng", "species"])
-      .limit(1201) // 1201 to check if there are more than 1500 results
+      .limit(1201) // 1201 to check if there are more than 1200 results
       .lean()
       .exec();
 
