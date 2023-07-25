@@ -38,7 +38,7 @@ export default function ImageReview({ items: allItems }: Props) {
     setItems((prev) => prev.map((item) => ({ ...item, uploads: item.uploads.filter((upload) => upload._id !== id) })));
     await send({
       url: `/api/upload/approve?id=${id}`,
-      method: "GET",
+      method: "POST",
     });
   };
 
