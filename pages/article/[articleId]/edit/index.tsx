@@ -111,7 +111,7 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const articleId = query.articleId as string;
   const regionCode = query.region as string;
-  const data: Article = articleId !== "new" ? await getArticleByArticleId(articleId) : null;
+  const data: Article | null = articleId !== "new" ? await getArticleByArticleId(articleId) : null;
 
   const region = getRegion(data ? data.stateCode || data.countryCode : regionCode);
   if (!region || !region.subregions?.length) return { notFound: true };
