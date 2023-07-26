@@ -20,6 +20,7 @@ import Error from "next/error";
 
 const tinyConfig = {
   menubar: false,
+  browser_spellcheck: true,
   plugins: "link autoresize code lists",
   toolbar: "h3 bold italic underline bullist | alignleft aligncenter | removeformat link code",
   content_style:
