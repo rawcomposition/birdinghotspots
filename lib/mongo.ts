@@ -16,6 +16,7 @@ import {
   Revision as RevisionType,
   Hotspot as HotspotType,
   City as CityType,
+  Article as ArticleT,
 } from "lib/types";
 
 declare global {
@@ -207,10 +208,13 @@ export async function getArticlesByRegion(regionCode: string) {
   return result;
 }
 
-export async function getArticleByArticleId(articleId: string) {
+export async function getArticleByArticleId(articleId: string): Promise<ArticleT | null> {
   await connect();
 
-  const result = await Article.findOne({ articleId }).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
+  const result = await Article.findOne({ articleId })
+    .populate("hotspots", ["url", "name", "countyCode", "stateCode", "featuredImg"])
+    .lean()
+    .exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }

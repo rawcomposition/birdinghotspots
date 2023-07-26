@@ -2,22 +2,22 @@ import * as React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { getArticleByArticleId } from "lib/mongo";
-import { HotspotsByCounty, Article as ArticleType, Region } from "lib/types";
+import { Hotspot, Article as ArticleType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import EditorActions from "components/EditorActions";
 import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 import parse from "html-react-parser";
-import ListHotspotsByCounty from "components/ListHotspotsByCounty";
-import { restructureHotspotsByCounty, getRegion } from "lib/localData";
+import HotspotGrid from "components/HotspotGrid";
+import { getRegion } from "lib/localData";
 
 interface Props extends ArticleType {
   region: Region;
-  hotspotsByCounty: HotspotsByCounty;
+  formattedHotspots: Hotspot[];
 }
 
-export default function Article({ region, name, content, hotspotsByCounty, images, _id, articleId }: Props) {
+export default function Article({ region, name, content, formattedHotspots, images, _id, articleId }: Props) {
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${region.detailedName}`}</Title>
@@ -35,8 +35,8 @@ export default function Article({ region, name, content, hotspotsByCounty, image
           </div>
           {parse(content || "")}
         </div>
-        <div className="mt-8">
-          {hotspotsByCounty.length > 0 && <ListHotspotsByCounty hotspots={hotspotsByCounty} />}
+        <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
+          {formattedHotspots?.length > 0 && <HotspotGrid hotspots={formattedHotspots} loading={false} />}
         </div>
       </div>
     </div>
@@ -52,13 +52,22 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const region = getRegion(data.stateCode || data.countryCode);
   if (!region) return { notFound: true };
 
-  const hotspotsByCounty = !!data.hotspots?.length ? await restructureHotspotsByCounty(data.hotspots, region.code) : [];
+  const formattedHotspots = data.hotspots?.map((hotspot) => {
+    const regionCode = hotspot.countyCode || hotspot.stateCode;
+    const region = getRegion(regionCode);
+    const locationLine = region ? `${region.detailedName}` : regionCode;
+    return {
+      ...hotspot,
+      _id: hotspot._id?.toString(),
+      locationLine,
+    };
+  });
 
   return {
     props: {
-      region,
-      hotspotsByCounty,
       ...data,
+      region,
+      formattedHotspots,
     },
   };
 };
