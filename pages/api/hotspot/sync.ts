@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
+import Settings from "models/Settings";
 import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
 
@@ -101,11 +102,6 @@ const insertHotspot = ({ lat, lng, locationId, name, total, ...data }: any) => {
   };
 };
 
-type DateType = {
-  date: string;
-  region: string;
-};
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { key, state }: any = req.query;
   if (process.env.CRON_KEY && key !== process.env.CRON_KEY) {
@@ -114,32 +110,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
   await connect();
   try {
-    const dates: DateType[] = [];
-    await Promise.all(
-      SyncRegions.map(async (code: any) => {
-        const result = await Logs.findOne({
-          message: { $regex: new RegExp(`^synced ${code}`), $options: "i" },
-        }).sort({
-          createdAt: -1,
-        });
-        dates.push({
-          date: result?.createdAt,
-          region: code,
-        });
-      })
-    );
+    const settings = await Settings.findOne({}, "lastSyncRegion");
+    const lastSyncRegion = settings?.lastSyncRegion;
 
-    let nextRegion = state;
-
-    if (!state) {
-      const sortedDates = dates.sort((a, b) => a.date.localeCompare(b.date));
-      nextRegion = sortedDates[0]?.region;
-    }
+    const lastSyncRegionIndex = SyncRegions.indexOf(lastSyncRegion);
+    const nextRegion = state || SyncRegions[lastSyncRegionIndex + 1] || SyncRegions[0];
 
     console.log(`Syncing ${nextRegion}`);
-    const hotspots = await getHotspotsForRegion(nextRegion);
     const fields = ["locationId", "name", "lat", "lng", "species"];
-    const dbHotspots = await Hotspot.find({ $or: [{ stateCode: nextRegion }, { countryCode: nextRegion }] }, fields);
+    const [hotspots, dbHotspots] = await Promise.all([
+      getHotspotsForRegion(nextRegion),
+      Hotspot.find({ $or: [{ stateCode: nextRegion }, { countryCode: nextRegion }] }, fields),
+    ]);
     const dbHotspotIds: string[] = dbHotspots.map((hotspot) => hotspot.locationId);
     const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
 
@@ -161,18 +143,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     });
 
-    dbHotspots.forEach(async (dbHotspot: any) => {
+    dbHotspots.forEach((dbHotspot: any) => {
       if (dbHotspot.isGroup || ebirdIds.includes(dbHotspot.locationId)) return;
       bulkWrites.push(deleteHotspot(dbHotspot._id));
     });
 
     await Hotspot.bulkWrite(bulkWrites);
 
-    await Logs.create({
-      user: "BirdBot",
-      type: "sync",
-      message: `synced ${nextRegion}. Found ${insertCount || 0} new ${insertCount === 1 ? "hotspot" : "hotspots"}.`,
-    });
+    await Promise.all([
+      Logs.create({
+        user: "BirdBot",
+        type: "sync",
+        message: `synced ${nextRegion}. Found ${insertCount || 0} new ${insertCount === 1 ? "hotspot" : "hotspots"}.`,
+      }),
+      Settings.updateOne({}, { lastSyncRegion: nextRegion }),
+    ]);
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
