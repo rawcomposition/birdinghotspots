@@ -8,5 +8,11 @@ jobs:
     steps:
       - name: Sync Hotspots
         run: |
-          curl --request POST \
-          --url 'https://birdinghotspots.org/api/hotspot/sync?key=${{ secrets.CRON_KEY }}' \
+          response=$(curl --write-out %{http_code} --silent --output /dev/null --request POST \
+          --url 'https://birdinghotspots.org/api/hotspot/sync?key=${{ secrets.CRON_KEY }}')
+          if [ $response -eq 200 ]; then
+            echo "Request was successful (Status Code: $response)"
+          else
+            echo "Request failed with Status Code: $response"
+            exit 1
+          fi
