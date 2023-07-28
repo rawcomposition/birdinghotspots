@@ -1,4 +1,4 @@
-import { Region, Drive, Hotspot, City } from "lib/types";
+import { Region, Drive, Hotspot } from "lib/types";
 import Regions from "data/regions.json";
 
 const formatRegion = (region: Omit<Region, "detailedName">): Region => {

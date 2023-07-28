@@ -384,7 +384,7 @@ export type Pageview = {
   stateCode?: string;
   countyCode?: string;
   countryCode?: string;
-  entity: "hotspot" | "group" | "county" | "state" | "country";
+  entity: "hotspot" | "group" | "region";
   year: number;
   month: number;
 };
