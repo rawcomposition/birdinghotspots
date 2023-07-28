@@ -21,8 +21,8 @@ export default function BarChart({ data, className }: Props) {
       {
         label: "Views",
         data: data.map((it) => it.count),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: "rgb(230, 200, 85)",
+        backgroundColor: "rgba(230, 200, 85, 0.5)",
       },
     ],
   };
