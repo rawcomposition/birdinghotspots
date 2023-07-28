@@ -11,6 +11,7 @@ import City from "models/City";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
 import Regions from "data/regions.json";
+import SyncRegions from "data/sync-regions.json";
 import {
   RegionInfo as RegionInfoType,
   Revision as RevisionType,
@@ -429,7 +430,11 @@ export async function getRegionCities(region: string): Promise<CityType[] | null
   } else if (region.split("-").length === 2) {
     query = { stateCode: region };
   } else {
-    query = { countryCode: region };
+    const stateCodes =
+      region === "US"
+        ? SyncRegions.filter((it) => it.startsWith("US-"))
+        : SyncRegions.filter((it) => it.startsWith("CA-"));
+    query = { stateCode: { $in: stateCodes } };
   }
 
   const result = await City.find(query).sort({ name: 1 }).lean();

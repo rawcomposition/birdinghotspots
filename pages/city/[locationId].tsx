@@ -99,6 +99,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const region = getRegion(city.stateCode || city.countryCode);
 
+  if (!region) return { notFound: true };
+
   const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];
 
   const formatted = hotspots.map((it: any) => ({
