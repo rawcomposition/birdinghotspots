@@ -177,6 +177,7 @@ export type Article = {
   content: string;
   images?: Image[];
   hotspots: [Hotspot];
+  sortHotspotsBy: "region" | "species" | "none";
 };
 
 export type ArticleInputs = {
@@ -186,6 +187,7 @@ export type ArticleInputs = {
   stateCode: string;
   content: string;
   images?: Image[];
+  sortHotspotsBy: "region" | "species" | "none";
   hotspotSelect: {
     label: string;
     value: string;

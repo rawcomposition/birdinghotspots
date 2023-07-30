@@ -21,6 +21,11 @@ const ArticleSchema = new Schema({
   },
   stateCode: String,
   content: String,
+  sortHotspotsBy: {
+    type: String,
+    enum: ["region", "species", "none"],
+    default: "name",
+  },
   hotspots: [
     {
       type: Schema.Types.ObjectId,

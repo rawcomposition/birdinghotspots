@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import Input from "components/Input";
+import RadioGroup from "components/RadioGroup";
 import { getArticleByArticleId } from "lib/mongo";
 import AdminPage from "components/AdminPage";
 import { Article, ArticleInputs, Region } from "lib/types";
@@ -31,6 +32,12 @@ const tinyConfig = {
   convert_urls: false,
 };
 
+const sortOptions = [
+  { label: "Region/Hotspot Name", value: "region" },
+  { label: "Species Count", value: "species" },
+  { label: "As Entered", value: "none" },
+];
+
 type Props = {
   id?: string;
   region: Region;
@@ -44,7 +51,12 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
   const { send, loading } = useToast();
 
   const router = useRouter();
-  const form = useForm<ArticleInputs>({ defaultValues: data });
+  const form = useForm<ArticleInputs>({
+    defaultValues: {
+      ...data,
+      sortHotspotsBy: data.sortHotspotsBy || "region",
+    },
+  });
 
   const isState = region.code.split("-").length === 2;
   const stateCode = isState ? region.code : undefined;
@@ -93,9 +105,10 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
                 <label className="text-gray-500 font-bold">Images</label>
                 <ImagesInput hideExtraFields />
               </div>
-              <Field label="Attached Hotspots">
+              <Field label="Attach Hotspots">
                 <HotspotSelect name="hotspotSelect" regionCode={region.code} className="mt-1 w-full" isMulti />
               </Field>
+              <RadioGroup label="Sort Hotspots By" name="sortHotspotsBy" options={sortOptions} />
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
               <Submit disabled={loading} color="green" className="font-medium">

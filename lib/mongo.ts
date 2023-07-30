@@ -213,7 +213,7 @@ export async function getArticleByArticleId(articleId: string): Promise<ArticleT
   await connect();
 
   const result = await Article.findOne({ articleId })
-    .populate("hotspots", ["url", "name", "countyCode", "stateCode", "featuredImg"])
+    .populate("hotspots", ["url", "name", "countyCode", "stateCode", "featuredImg", "species"])
     .lean()
     .exec();
 

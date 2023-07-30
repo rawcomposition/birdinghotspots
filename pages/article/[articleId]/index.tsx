@@ -63,11 +63,20 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     };
   });
 
+  const sortBy = data.sortHotspotsBy || "none";
+  const sortedHotspots = formattedHotspots?.sort((a, b) =>
+    sortBy === "region"
+      ? `${a.locationLine} ${a.name}`.localeCompare(`${b.locationLine} ${b.name}`)
+      : sortBy === "species" && a.species && b.species
+      ? b.species - a.species
+      : 0
+  );
+
   return {
     props: {
       ...data,
       region,
-      formattedHotspots,
+      formattedHotspots: sortedHotspots,
     },
   };
 };
