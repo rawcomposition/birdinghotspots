@@ -31,6 +31,10 @@ const AsyncSelectStyled = (props: any) => {
           zIndex: 100,
         }),
         menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+        multiValueLabel: (base) => ({
+          ...base,
+          maxWidth: "200px",
+        }),
       }}
       {...props}
     />

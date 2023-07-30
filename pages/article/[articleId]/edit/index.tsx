@@ -14,7 +14,7 @@ import { getRegion } from "lib/localData";
 import { canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
-import HotspotSelect from "components/HotspotSelect";
+import HotspotSelectSortable from "components/HotspotSelectSortable";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Error from "next/error";
 
@@ -94,7 +94,7 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
                 <ImagesInput hideExtraFields />
               </div>
               <Field label="Attached Hotspots">
-                <HotspotSelect name="hotspotSelect" regionCode={region.code} className="mt-1 w-full" isMulti />
+                <HotspotSelectSortable name="hotspotSelect" regionCode={region.code} className="mt-1 w-full" isMulti />
               </Field>
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
