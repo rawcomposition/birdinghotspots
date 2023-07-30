@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
 const SettingsSchema = new Schema({
-  featuredIds: [String],
   lastSyncRegion: String,
 });
 

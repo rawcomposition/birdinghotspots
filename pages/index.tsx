@@ -6,9 +6,7 @@ import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
 import Heading from "components/Heading";
-import EditorActions from "components/EditorActions";
 import Hotspot from "models/Hotspot";
-import Settings from "models/Settings";
 import { getRegion } from "lib/localData";
 import connect from "lib/mongo";
 import { Hotspot as HotspotType, Region } from "lib/types";
@@ -64,9 +62,6 @@ export default function Home({ featured, northAmericaRegions }: Props) {
         </div>
 
         <Heading className="mb-16 mt-24">Featured Hotspots</Heading>
-        <EditorActions className="-mt-10" requireAdmin>
-          <Link href="/featured">Edit Featured Hotspots</Link>
-        </EditorActions>
         <div className="mt-12 grid xs:grid-cols-2 md:grid-cols-4 gap-6">
           <HotspotGrid hotspots={featured} loading={false} />
         </div>
@@ -172,19 +167,26 @@ export default function Home({ featured, northAmericaRegions }: Props) {
 
 export const getStaticProps = async () => {
   await connect();
-  const settings = await Settings.findOne({ key: "global" }).exec();
-  const featuredIds = settings.featuredIds;
-  const results = await Hotspot.find({ _id: { $in: featuredIds } }, [
-    "stateCode",
-    "countyCode",
-    "name",
-    "url",
-    "featuredImg",
-    "species",
-  ])
-    .sort({ name: 1 })
-    .lean()
-    .exec();
+
+  const results = await Hotspot.aggregate([
+    {
+      $match: {
+        "featuredImg.smUrl": { $exists: true },
+        noContent: { $ne: true },
+      },
+    },
+    { $sample: { size: 8 } },
+    {
+      $project: {
+        stateCode: 1,
+        countyCode: 1,
+        name: 1,
+        featuredImg: 1,
+        url: 1,
+        species: 1,
+      },
+    },
+  ]);
 
   const formatted = results.map((hotspot) => {
     const regionCode = hotspot.countyCode || hotspot.stateCode;
@@ -201,5 +203,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { featured: formatted, northAmericaRegions },
+    revalidate: 3600, // 1 hour
   };
 };
