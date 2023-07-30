@@ -15,7 +15,7 @@ const PageviewSchema = new Schema({
   countryCode: String,
   entity: {
     type: String,
-    enum: ["hotspot", "group", "region"],
+    enum: ["hotspot", "group", "region", "city"],
     required: true,
   },
   year: {

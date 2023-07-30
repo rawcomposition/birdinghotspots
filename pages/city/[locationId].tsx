@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import { getHotspotsInRadius, getCityByLocationId } from "lib/mongo";
 import { getRegion } from "lib/localData";
 import PageHeading from "components/PageHeading";
@@ -12,16 +11,20 @@ import MapBox from "components/MapBox";
 import HotspotGrid from "components/HotspotGrid";
 import MapIconAlt from "icons/Map";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
+import useLogPageview from "hooks/useLogPageview";
 
 type Props = {
   region: Region;
   city: CityType;
+  stateCode?: string;
+  countryCode?: string;
   hotspots: Hotspot[];
 };
 
-export default function County({ region, city, hotspots }: Props) {
+export default function City({ region, city, hotspots, stateCode, countryCode }: Props) {
   const [expand, setExpand] = React.useState<boolean>(false);
   const { name, locationId } = city;
+  useLogPageview({ locationId, stateCode, countryCode, entity: "city" });
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
   const visibleHotspots = expand ? hotspots : hotspots.slice(0, 12);
@@ -109,6 +112,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }));
 
   return {
-    props: { region, city, hotspots: formatted },
+    props: { region, city, stateCode: city.stateCode, countryCode: city.countryCode, hotspots: formatted },
   };
 };
