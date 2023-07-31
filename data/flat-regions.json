@@ -4620,166 +4620,6 @@
     "name": "Valencia, New Mexico, US"
   },
   {
-    "code": "US-WA",
-    "name": "Washington, US"
-  },
-  {
-    "code": "US-WA-001",
-    "name": "Adams, Washington, US"
-  },
-  {
-    "code": "US-WA-003",
-    "name": "Asotin, Washington, US"
-  },
-  {
-    "code": "US-WA-005",
-    "name": "Benton, Washington, US"
-  },
-  {
-    "code": "US-WA-007",
-    "name": "Chelan, Washington, US"
-  },
-  {
-    "code": "US-WA-009",
-    "name": "Clallam, Washington, US"
-  },
-  {
-    "code": "US-WA-011",
-    "name": "Clark, Washington, US"
-  },
-  {
-    "code": "US-WA-013",
-    "name": "Columbia, Washington, US"
-  },
-  {
-    "code": "US-WA-015",
-    "name": "Cowlitz, Washington, US"
-  },
-  {
-    "code": "US-WA-017",
-    "name": "Douglas, Washington, US"
-  },
-  {
-    "code": "US-WA-019",
-    "name": "Ferry, Washington, US"
-  },
-  {
-    "code": "US-WA-021",
-    "name": "Franklin, Washington, US"
-  },
-  {
-    "code": "US-WA-023",
-    "name": "Garfield, Washington, US"
-  },
-  {
-    "code": "US-WA-025",
-    "name": "Grant, Washington, US"
-  },
-  {
-    "code": "US-WA-027",
-    "name": "Grays Harbor, Washington, US"
-  },
-  {
-    "code": "US-WA-029",
-    "name": "Island, Washington, US"
-  },
-  {
-    "code": "US-WA-031",
-    "name": "Jefferson, Washington, US"
-  },
-  {
-    "code": "US-WA-033",
-    "name": "King, Washington, US"
-  },
-  {
-    "code": "US-WA-035",
-    "name": "Kitsap, Washington, US"
-  },
-  {
-    "code": "US-WA-037",
-    "name": "Kittitas, Washington, US"
-  },
-  {
-    "code": "US-WA-039",
-    "name": "Klickitat, Washington, US"
-  },
-  {
-    "code": "US-WA-041",
-    "name": "Lewis, Washington, US"
-  },
-  {
-    "code": "US-WA-043",
-    "name": "Lincoln, Washington, US"
-  },
-  {
-    "code": "US-WA-045",
-    "name": "Mason, Washington, US"
-  },
-  {
-    "code": "US-WA-047",
-    "name": "Okanogan, Washington, US"
-  },
-  {
-    "code": "US-WA-049",
-    "name": "Pacific, Washington, US"
-  },
-  {
-    "code": "US-WA-051",
-    "name": "Pend Oreille, Washington, US"
-  },
-  {
-    "code": "US-WA-053",
-    "name": "Pierce, Washington, US"
-  },
-  {
-    "code": "US-WA-055",
-    "name": "San Juan, Washington, US"
-  },
-  {
-    "code": "US-WA-057",
-    "name": "Skagit, Washington, US"
-  },
-  {
-    "code": "US-WA-059",
-    "name": "Skamania, Washington, US"
-  },
-  {
-    "code": "US-WA-061",
-    "name": "Snohomish, Washington, US"
-  },
-  {
-    "code": "US-WA-063",
-    "name": "Spokane, Washington, US"
-  },
-  {
-    "code": "US-WA-065",
-    "name": "Stevens, Washington, US"
-  },
-  {
-    "code": "US-WA-067",
-    "name": "Thurston, Washington, US"
-  },
-  {
-    "code": "US-WA-069",
-    "name": "Wahkiakum, Washington, US"
-  },
-  {
-    "code": "US-WA-071",
-    "name": "Walla Walla, Washington, US"
-  },
-  {
-    "code": "US-WA-073",
-    "name": "Whatcom, Washington, US"
-  },
-  {
-    "code": "US-WA-075",
-    "name": "Whitman, Washington, US"
-  },
-  {
-    "code": "US-WA-077",
-    "name": "Yakima, Washington, US"
-  },
-  {
     "code": "US-OH",
     "name": "Ohio, US"
   },
@@ -7042,6 +6882,166 @@
   {
     "code": "US-VA-199",
     "name": "York, Virginia, US"
+  },
+  {
+    "code": "US-WA",
+    "name": "Washington, US"
+  },
+  {
+    "code": "US-WA-001",
+    "name": "Adams, Washington, US"
+  },
+  {
+    "code": "US-WA-003",
+    "name": "Asotin, Washington, US"
+  },
+  {
+    "code": "US-WA-005",
+    "name": "Benton, Washington, US"
+  },
+  {
+    "code": "US-WA-007",
+    "name": "Chelan, Washington, US"
+  },
+  {
+    "code": "US-WA-009",
+    "name": "Clallam, Washington, US"
+  },
+  {
+    "code": "US-WA-011",
+    "name": "Clark, Washington, US"
+  },
+  {
+    "code": "US-WA-013",
+    "name": "Columbia, Washington, US"
+  },
+  {
+    "code": "US-WA-015",
+    "name": "Cowlitz, Washington, US"
+  },
+  {
+    "code": "US-WA-017",
+    "name": "Douglas, Washington, US"
+  },
+  {
+    "code": "US-WA-019",
+    "name": "Ferry, Washington, US"
+  },
+  {
+    "code": "US-WA-021",
+    "name": "Franklin, Washington, US"
+  },
+  {
+    "code": "US-WA-023",
+    "name": "Garfield, Washington, US"
+  },
+  {
+    "code": "US-WA-025",
+    "name": "Grant, Washington, US"
+  },
+  {
+    "code": "US-WA-027",
+    "name": "Grays Harbor, Washington, US"
+  },
+  {
+    "code": "US-WA-029",
+    "name": "Island, Washington, US"
+  },
+  {
+    "code": "US-WA-031",
+    "name": "Jefferson, Washington, US"
+  },
+  {
+    "code": "US-WA-033",
+    "name": "King, Washington, US"
+  },
+  {
+    "code": "US-WA-035",
+    "name": "Kitsap, Washington, US"
+  },
+  {
+    "code": "US-WA-037",
+    "name": "Kittitas, Washington, US"
+  },
+  {
+    "code": "US-WA-039",
+    "name": "Klickitat, Washington, US"
+  },
+  {
+    "code": "US-WA-041",
+    "name": "Lewis, Washington, US"
+  },
+  {
+    "code": "US-WA-043",
+    "name": "Lincoln, Washington, US"
+  },
+  {
+    "code": "US-WA-045",
+    "name": "Mason, Washington, US"
+  },
+  {
+    "code": "US-WA-047",
+    "name": "Okanogan, Washington, US"
+  },
+  {
+    "code": "US-WA-049",
+    "name": "Pacific, Washington, US"
+  },
+  {
+    "code": "US-WA-051",
+    "name": "Pend Oreille, Washington, US"
+  },
+  {
+    "code": "US-WA-053",
+    "name": "Pierce, Washington, US"
+  },
+  {
+    "code": "US-WA-055",
+    "name": "San Juan, Washington, US"
+  },
+  {
+    "code": "US-WA-057",
+    "name": "Skagit, Washington, US"
+  },
+  {
+    "code": "US-WA-059",
+    "name": "Skamania, Washington, US"
+  },
+  {
+    "code": "US-WA-061",
+    "name": "Snohomish, Washington, US"
+  },
+  {
+    "code": "US-WA-063",
+    "name": "Spokane, Washington, US"
+  },
+  {
+    "code": "US-WA-065",
+    "name": "Stevens, Washington, US"
+  },
+  {
+    "code": "US-WA-067",
+    "name": "Thurston, Washington, US"
+  },
+  {
+    "code": "US-WA-069",
+    "name": "Wahkiakum, Washington, US"
+  },
+  {
+    "code": "US-WA-071",
+    "name": "Walla Walla, Washington, US"
+  },
+  {
+    "code": "US-WA-073",
+    "name": "Whatcom, Washington, US"
+  },
+  {
+    "code": "US-WA-075",
+    "name": "Whitman, Washington, US"
+  },
+  {
+    "code": "US-WA-077",
+    "name": "Yakima, Washington, US"
   },
   {
     "code": "CA",
