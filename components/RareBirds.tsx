@@ -71,50 +71,48 @@ export default function RareBirds({ region, className }: Props) {
           },
         }
       );
+
       let reports: EbirdReport[] = await response.json();
 
-      if (!reports?.length) {
-        return;
-      }
+      if (reports?.length) {
+        reports = reports
+          //Remove duplicates. For unknown reasons, eBird sometimes returns duplicates
+          .filter((value, index, array) => array.findIndex((searchItem) => searchItem.obsId === value.obsId) === index)
+          .filter(({ comName }) => !comName.includes("(hybrid)"));
 
-      reports = reports
-        //Remove duplicates. For unknown reasons, eBird sometimes returns duplicates
-        .filter((value, index, array) => array.findIndex((searchItem) => searchItem.obsId === value.obsId) === index)
-        .filter(({ comName }) => !comName.includes("(hybrid)"));
+        const reportsBySpecies: any = {};
 
-      const reportsBySpecies: any = {};
-
-      reports.forEach((item) => {
-        if (!reportsBySpecies[item.speciesCode]) {
-          reportsBySpecies[item.speciesCode] = {
-            name: item.comName,
-            code: item.speciesCode,
-            reports: [],
-          };
-        }
-        reportsBySpecies[item.speciesCode].reports.push({
-          id: item.obsId,
-          location: item.locName,
-          date: item.obsDt,
-          checklistId: item.subId,
-          lat: item.lat,
-          lng: item.lng,
-          hasRichMedia: item.hasRichMedia,
-          countyName: item.subnational2Name,
-          userDisplayName: item.userDisplayName,
-          approved: item.obsValid,
+        reports.forEach((item) => {
+          if (!reportsBySpecies[item.speciesCode]) {
+            reportsBySpecies[item.speciesCode] = {
+              name: item.comName,
+              code: item.speciesCode,
+              reports: [],
+            };
+          }
+          reportsBySpecies[item.speciesCode].reports.push({
+            id: item.obsId,
+            location: item.locName,
+            date: item.obsDt,
+            checklistId: item.subId,
+            lat: item.lat,
+            lng: item.lng,
+            hasRichMedia: item.hasRichMedia,
+            countyName: item.subnational2Name,
+            userDisplayName: item.userDisplayName,
+            approved: item.obsValid,
+          });
         });
-      });
 
-      const species = Object.entries(reportsBySpecies).map(([key, value]) => value);
+        const species = Object.entries(reportsBySpecies).map(([key, value]) => value);
 
-      setNotable(species as Report[]);
-      setLastUpdate(dayjs());
-      setLoading(false);
+        setNotable(species as Report[]);
+        setLastUpdate(dayjs());
+      }
     } catch (error) {
       console.error(error);
-      setLoading(false);
     }
+    setLoading(false);
   }, [region]);
 
   React.useEffect(() => {
