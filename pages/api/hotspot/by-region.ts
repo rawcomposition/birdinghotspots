@@ -16,9 +16,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   if (images === "Yes") {
-    query.featuredImg = { $exists: true };
+    query["featuredImg.smUrl"] = { $exists: true };
   } else if (images === "No") {
-    query.featuredImg = { $exists: false };
+    query["featuredImg.smUrl"] = { $exists: false };
   }
 
   if (content === "Yes") {
