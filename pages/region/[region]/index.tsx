@@ -27,6 +27,7 @@ import RegionLinksBtn from "components/RegionLinksBtn";
 import useLogPageview from "hooks/useLogPageview";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import MoreRegionLinks from "components/MoreRegionLinks";
+import ArticleGrid from "components/ArticleGrid";
 
 type Props = {
   region: Region;
@@ -274,14 +275,8 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             </Link>
           </EditorActions>
 
+          {articles.length > 0 && <ArticleGrid articles={articles} className="mb-10" />}
           <div className="md:columns-2 gap-16">
-            <StateLinkSection
-              links={articles.map(({ articleId, name }) => ({
-                label: name,
-                url: `/article/${articleId}`,
-              }))}
-              heading="Articles"
-            />
             <StateLinkSection links={info?.websiteLinks || []} heading={info?.websitesHeading} external />
             <StateLinkSection links={info?.socialLinks || []} heading={info?.socialHeading} external />
             <StateLinkSection links={info?.clubLinks || []} heading={info?.clubsHeading} external />

@@ -204,9 +204,12 @@ export async function getArticlesByRegion(regionCode: string) {
     query = { countryCode: regionCode };
   }
 
-  const result = await Article.find(query, ["-_id", "name", "articleId"]).sort({ name: 1 }).lean().exec();
+  const result = await Article.find(query, ["-_id", "name", "articleId", "images"])
+    .sort({ createdAt: -1 })
+    .lean()
+    .exec();
 
-  return result;
+  return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
 export async function getArticleByArticleId(articleId: string): Promise<ArticleT | null> {
