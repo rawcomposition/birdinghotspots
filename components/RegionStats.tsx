@@ -35,10 +35,7 @@ export default function RegionStats({ regionCode }: Props) {
         <span className="text-2xl font-bold text-secondary">{stats?.withImg?.toLocaleString() || "--"}</span>
         <span className="text-xs text-gray-700">With images</span>
       </Link>
-      <Link
-        href={`/region/${regionCode}/hotspots?filter=content=Yes`}
-        className="flex flex-col rounded bg-gray-100 px-4 py-3"
-      >
+      <Link href={`/region/${regionCode}/hotspots?content=Yes`} className="flex flex-col rounded bg-gray-100 px-4 py-3">
         <span className="text-2xl font-bold text-secondary">{stats?.withContent?.toLocaleString() || "--"}</span>
         <span className="text-xs text-gray-700">With content</span>
       </Link>
