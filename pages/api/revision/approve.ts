@@ -15,7 +15,7 @@ export default secureApi(async (req, res, token) => {
       return;
     }
 
-    const shouldCite = !!revision.tips?.new && !!revision.birds?.new && !!revision.about?.new && !!revision.hikes?.new;
+    const shouldCite = !!revision.tips?.new || !!revision.birds?.new || !!revision.about?.new || !!revision.hikes?.new;
 
     const hotspot = await Hotspot.findOne({ locationId: revision.locationId });
     if (!hotspot) {
