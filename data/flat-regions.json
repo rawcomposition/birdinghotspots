@@ -4976,6 +4976,278 @@
     "name": "Wyandot, Ohio, US"
   },
   {
+    "code": "US-PA",
+    "name": "Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-001",
+    "name": "Adams, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-003",
+    "name": "Allegheny, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-005",
+    "name": "Armstrong, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-007",
+    "name": "Beaver, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-009",
+    "name": "Bedford, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-011",
+    "name": "Berks, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-013",
+    "name": "Blair, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-015",
+    "name": "Bradford, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-017",
+    "name": "Bucks, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-019",
+    "name": "Butler, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-021",
+    "name": "Cambria, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-023",
+    "name": "Cameron, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-025",
+    "name": "Carbon, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-027",
+    "name": "Centre, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-029",
+    "name": "Chester, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-031",
+    "name": "Clarion, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-033",
+    "name": "Clearfield, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-035",
+    "name": "Clinton, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-037",
+    "name": "Columbia, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-039",
+    "name": "Crawford, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-041",
+    "name": "Cumberland, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-043",
+    "name": "Dauphin, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-045",
+    "name": "Delaware, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-047",
+    "name": "Elk, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-049",
+    "name": "Erie, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-051",
+    "name": "Fayette, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-053",
+    "name": "Forest, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-055",
+    "name": "Franklin, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-057",
+    "name": "Fulton, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-059",
+    "name": "Greene, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-061",
+    "name": "Huntingdon, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-063",
+    "name": "Indiana, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-065",
+    "name": "Jefferson, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-067",
+    "name": "Juniata, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-069",
+    "name": "Lackawanna, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-071",
+    "name": "Lancaster, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-073",
+    "name": "Lawrence, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-075",
+    "name": "Lebanon, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-077",
+    "name": "Lehigh, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-079",
+    "name": "Luzerne, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-081",
+    "name": "Lycoming, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-083",
+    "name": "McKean, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-085",
+    "name": "Mercer, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-087",
+    "name": "Mifflin, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-089",
+    "name": "Monroe, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-091",
+    "name": "Montgomery, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-093",
+    "name": "Montour, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-095",
+    "name": "Northampton, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-097",
+    "name": "Northumberland, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-099",
+    "name": "Perry, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-101",
+    "name": "Philadelphia, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-103",
+    "name": "Pike, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-105",
+    "name": "Potter, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-107",
+    "name": "Schuylkill, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-109",
+    "name": "Snyder, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-111",
+    "name": "Somerset, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-113",
+    "name": "Sullivan, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-115",
+    "name": "Susquehanna, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-117",
+    "name": "Tioga, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-119",
+    "name": "Union, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-121",
+    "name": "Venango, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-123",
+    "name": "Warren, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-125",
+    "name": "Washington, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-127",
+    "name": "Wayne, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-129",
+    "name": "Westmoreland, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-131",
+    "name": "Wyoming, Pennsylvania, US"
+  },
+  {
+    "code": "US-PA-133",
+    "name": "York, Pennsylvania, US"
+  },
+  {
     "code": "US-RI",
     "name": "Rhode Island, US"
   },
