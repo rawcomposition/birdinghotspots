@@ -103,7 +103,7 @@ export default function WashingtonMap() {
           />
           <text>Franklin</text>
         </Link>
-        <Link href="/region/US-WA-043" {...linkProps}>
+        <Link href="/region/US-WA-045" {...linkProps}>
           <path
             {...pathProps}
             d="m194.35 234.417 45.017-.252-8.825 12.823 23.865-.025-.33 28.748-4.88 10 3.244 9.659-7.536 5.482-4.707-4.715-1.897 3.638-4.585 2.43-1.46 4.42-5.258 1.75-.138 3.168-41.611.316-.187-25.962-1.43-.048-.09-51.432Z"
