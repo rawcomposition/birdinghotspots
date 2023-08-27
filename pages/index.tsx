@@ -173,6 +173,7 @@ export const getStaticProps = async () => {
       $match: {
         "featuredImg.smUrl": { $exists: true },
         noContent: { $ne: true },
+        species: { $gt: 150 },
       },
     },
     { $sample: { size: 8 } },
