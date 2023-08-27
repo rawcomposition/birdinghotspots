@@ -4,13 +4,13 @@ import Link from "next/link";
 import Head from "next/head";
 import { getRegion } from "lib/localData";
 import RareBirds from "components/RareBirds";
-import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive } from "lib/types";
+import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive, RegionStatsT } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
 import Title from "components/Title";
 import RegionMap from "components/RegionMap";
-import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon } from "@heroicons/react/24/outline";
+import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
@@ -39,6 +39,7 @@ type Props = {
 
 export default function RegionPage({ region, info, articles, hotspots, hasSubregions }: Props) {
   const [view, setView] = React.useState<string>("map");
+  const [stats, setStats] = React.useState<RegionStatsT>();
   const { open } = useModal();
   const { code, name, longName, portal, subregions, subheading } = region;
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
@@ -82,6 +83,17 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   //@ts-ignore
   const sortedDrives = uniqueDrives.sort((a, b) => a.name.localeCompare(b.name));
 
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/region-stats/${code}`);
+        const json = await response.json();
+        setStats(json);
+      } catch (error) {}
+    };
+    if (code) fetchData();
+  }, [code]);
+
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Birding in ${longName}`}</Title>
@@ -121,7 +133,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
               Discover where to go birding in {name} by browsing our tips, descriptions, maps, and images for many eBird
               hotspots.
             </p>
-            <RegionStats regionCode={code} />
+            <RegionStats regionCode={code} data={stats} />
             <div className="mt-8">
               <Link
                 href={`/region/${code}/hotspots?view=map`}
@@ -288,6 +300,44 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
           <hr className="my-8 opacity-70" />
         </>
       )}
+      <Heading id="contribute" color="darkGray" className="mt-12 mb-8">
+        Contribute
+      </Heading>
+      <p className="text-gray-600 mb-8 text-[15px]">
+        <strong>Are you familiar with some of the hotspots in {name}?</strong>
+        <br />
+        Contribute tips, descriptions, and images to help birders in your area.
+      </p>
+      <div className="flex gap-8 flex-wrap flex-col sm:flex-row">
+        <Link
+          href={`/region/${code}/hotspots?images=No`}
+          className="border-2 rounded-lg py-3 px-6 text-gray-600 flex flex-col gap-4 min-w-[230px] hover:border-gray-300"
+        >
+          <h3 className="font-bold inline-flex gap-2 items-center">
+            <PhotoIcon className="inline-block w-5 h-5" />
+            Without Images
+          </h3>
+          <span className="text-4xl">{stats?.withoutImg?.toLocaleString() || "--"}</span>
+          <span className="text-primary font-bold">
+            View Hotspots
+            <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+          </span>
+        </Link>
+        <Link
+          href={`/region/${code}/hotspots?content=No`}
+          className="border-2 rounded-lg py-3 px-6 text-gray-600 flex flex-col gap-4 min-w-[230px] hover:border-gray-300"
+        >
+          <h3 className="font-bold inline-flex gap-2 items-center">
+            <PencilSquareIcon className="inline-block w-5 h-5" />
+            Without Content
+          </h3>
+          <span className="text-4xl">{stats?.withoutContent?.toLocaleString() || "--"}</span>
+          <span className="text-primary font-bold">
+            View Hotspots
+            <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+          </span>
+        </Link>
+      </div>
       {code !== "US" && <RareBirds region={code} className="mt-12" />}
       <MoreRegionLinks region={region} />
     </div>

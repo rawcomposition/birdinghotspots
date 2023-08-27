@@ -445,3 +445,11 @@ export type Region = {
   portal?: string;
   subheading?: string;
 };
+
+export type RegionStatsT = {
+  total: number;
+  withImg: number;
+  withContent: number;
+  withoutContent: number;
+  withoutImg: number;
+};
