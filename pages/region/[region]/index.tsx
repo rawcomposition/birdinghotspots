@@ -204,7 +204,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
                 </div>
               </div>
             </div>
-            <RegionStats regionCode={code} />
+            <RegionStats regionCode={code} data={stats} />
           </section>
           <section className="mb-16">
             {markers.length > 0 && <MapBox key={code} markers={markers as Marker[]} zoom={8} landscape disableScroll />}
