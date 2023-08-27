@@ -308,7 +308,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
         <br />
         Contribute tips, descriptions, and images to help birders in your area.
       </p>
-      <div className="flex gap-8 flex-wrap flex-col sm:flex-row">
+      <div className="flex gap-8 flex-wrap flex-col sm:flex-row mb-16">
         <Link
           href={`/region/${code}/hotspots?images=No`}
           className="border-2 rounded-lg py-3 px-6 text-gray-600 flex flex-col gap-4 min-w-[230px] hover:border-gray-300"
