@@ -32,11 +32,6 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, s
         const isMetric = !countryCode || !["US", "UK", "LR", "MM"].includes(countryCode);
         let distance = distanceBetween(lat || 0, lng || 0, hsLat, hsLng, isMetric);
         distance = distance < 10 ? parseFloat(distance.toFixed(1)) : parseFloat(distance.toFixed(0));
-        const namePieces = name.split("--");
-        if (!locationLine && namePieces.length === 2) {
-          locationLine = namePieces[0];
-          name = namePieces[1];
-        }
         const showMeta = (lat && lng) || Number.isInteger(species);
         return (
           <article key={_id} className="flex flex-col gap-3">
