@@ -5,15 +5,16 @@ import Title from "components/Title";
 import EbirdDescription from "components/EbirdDescription";
 import admin from "lib/firebaseAdmin";
 import { getRegion } from "lib/localData";
+import SyncRegions from "data/sync-regions.json";
 
 type Props = {
-  editors: {
+  regions: {
     name: string;
-    regions: string[];
+    editors: string[];
   }[];
 };
 
-export default function About({ editors }: Props) {
+export default function About({ regions }: Props) {
   return (
     <div className="container pb-16 mt-12">
       <Title>About</Title>
@@ -50,12 +51,12 @@ export default function About({ editors }: Props) {
         <div>
           <h3 className="text-lg font-bold mb-4">Regional Editors</h3>
           <div className="columns-2">
-            {editors?.map(({ name, regions }) => (
+            {regions?.map(({ name, editors }) => (
               <div key={name} className="mb-4 break-inside-avoid-column">
                 <h4 className="text-sm font-bold">{name}</h4>
                 <ul className="text-xs">
-                  {regions.map((region) => (
-                    <li key={region}>{region}</li>
+                  {editors.map((name) => (
+                    <li key={name}>{name}</li>
                   ))}
                 </ul>
               </div>
@@ -76,14 +77,17 @@ export async function getStaticProps() {
       regions: customClaims?.regions,
     }));
 
-  const formattedEditors = editors.map(({ displayName, regions }) => ({
-    name: displayName,
-    regions: regions.map((code: string) => getRegion(code)?.detailedName || "Unknown"),
-  }));
+  const regions = SyncRegions.map((code) => {
+    const region = getRegion(code);
+    return {
+      name: region?.detailedName,
+      editors: editors.filter(({ regions }) => regions?.includes(code)).map(({ displayName }) => displayName),
+    };
+  });
 
   return {
     props: {
-      editors: formattedEditors,
+      regions,
     },
   };
 }
