@@ -60,7 +60,7 @@ export default function Dashboard({ data, deletedHotspots, recentHotspots }: Pro
               <Link href={url} className="text-sm" target="_blank">
                 {name}
               </Link>
-              <p className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500">
                 {regionName}
                 {" • "}
                 <time dateTime={date} className="font-semibold">
@@ -76,7 +76,7 @@ export default function Dashboard({ data, deletedHotspots, recentHotspots }: Pro
                     <ChatBubbleBottomCenterTextIcon className="w-4 h-4 ml-2 text-green-600 inline-block" />
                   </Tooltip>
                 )}
-              </p>
+              </div>
             </div>
           ))}
           {recentHotspots.length > 5 && (
