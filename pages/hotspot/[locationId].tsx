@@ -283,12 +283,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   });
 
   return {
-    props: {
-      region,
-      marker,
-      ...data,
-      citations: [...(data.citations || []), ...groupCitations],
-      links: [...(links || []), ...groupLinks],
-    },
+    props: JSON.parse(
+      JSON.stringify({
+        region,
+        marker,
+        ...data,
+        citations: [...(data.citations || []), ...groupCitations],
+        links: [...(links || []), ...groupLinks],
+      })
+    ),
   };
 };
