@@ -4440,6 +4440,382 @@
     "name": "Wright, Missouri, US"
   },
   {
+    "code": "US-NE",
+    "name": "Nebraska, US"
+  },
+  {
+    "code": "US-NE-001",
+    "name": "Adams, Nebraska, US"
+  },
+  {
+    "code": "US-NE-003",
+    "name": "Antelope, Nebraska, US"
+  },
+  {
+    "code": "US-NE-005",
+    "name": "Arthur, Nebraska, US"
+  },
+  {
+    "code": "US-NE-007",
+    "name": "Banner, Nebraska, US"
+  },
+  {
+    "code": "US-NE-009",
+    "name": "Blaine, Nebraska, US"
+  },
+  {
+    "code": "US-NE-011",
+    "name": "Boone, Nebraska, US"
+  },
+  {
+    "code": "US-NE-013",
+    "name": "Box Butte, Nebraska, US"
+  },
+  {
+    "code": "US-NE-015",
+    "name": "Boyd, Nebraska, US"
+  },
+  {
+    "code": "US-NE-017",
+    "name": "Brown, Nebraska, US"
+  },
+  {
+    "code": "US-NE-019",
+    "name": "Buffalo, Nebraska, US"
+  },
+  {
+    "code": "US-NE-021",
+    "name": "Burt, Nebraska, US"
+  },
+  {
+    "code": "US-NE-023",
+    "name": "Butler, Nebraska, US"
+  },
+  {
+    "code": "US-NE-025",
+    "name": "Cass, Nebraska, US"
+  },
+  {
+    "code": "US-NE-027",
+    "name": "Cedar, Nebraska, US"
+  },
+  {
+    "code": "US-NE-029",
+    "name": "Chase, Nebraska, US"
+  },
+  {
+    "code": "US-NE-031",
+    "name": "Cherry, Nebraska, US"
+  },
+  {
+    "code": "US-NE-033",
+    "name": "Cheyenne, Nebraska, US"
+  },
+  {
+    "code": "US-NE-035",
+    "name": "Clay, Nebraska, US"
+  },
+  {
+    "code": "US-NE-037",
+    "name": "Colfax, Nebraska, US"
+  },
+  {
+    "code": "US-NE-039",
+    "name": "Cuming, Nebraska, US"
+  },
+  {
+    "code": "US-NE-041",
+    "name": "Custer, Nebraska, US"
+  },
+  {
+    "code": "US-NE-043",
+    "name": "Dakota, Nebraska, US"
+  },
+  {
+    "code": "US-NE-045",
+    "name": "Dawes, Nebraska, US"
+  },
+  {
+    "code": "US-NE-047",
+    "name": "Dawson, Nebraska, US"
+  },
+  {
+    "code": "US-NE-049",
+    "name": "Deuel, Nebraska, US"
+  },
+  {
+    "code": "US-NE-051",
+    "name": "Dixon, Nebraska, US"
+  },
+  {
+    "code": "US-NE-053",
+    "name": "Dodge, Nebraska, US"
+  },
+  {
+    "code": "US-NE-055",
+    "name": "Douglas, Nebraska, US"
+  },
+  {
+    "code": "US-NE-057",
+    "name": "Dundy, Nebraska, US"
+  },
+  {
+    "code": "US-NE-059",
+    "name": "Fillmore, Nebraska, US"
+  },
+  {
+    "code": "US-NE-061",
+    "name": "Franklin, Nebraska, US"
+  },
+  {
+    "code": "US-NE-063",
+    "name": "Frontier, Nebraska, US"
+  },
+  {
+    "code": "US-NE-065",
+    "name": "Furnas, Nebraska, US"
+  },
+  {
+    "code": "US-NE-067",
+    "name": "Gage, Nebraska, US"
+  },
+  {
+    "code": "US-NE-069",
+    "name": "Garden, Nebraska, US"
+  },
+  {
+    "code": "US-NE-071",
+    "name": "Garfield, Nebraska, US"
+  },
+  {
+    "code": "US-NE-073",
+    "name": "Gosper, Nebraska, US"
+  },
+  {
+    "code": "US-NE-075",
+    "name": "Grant, Nebraska, US"
+  },
+  {
+    "code": "US-NE-077",
+    "name": "Greeley, Nebraska, US"
+  },
+  {
+    "code": "US-NE-079",
+    "name": "Hall, Nebraska, US"
+  },
+  {
+    "code": "US-NE-081",
+    "name": "Hamilton, Nebraska, US"
+  },
+  {
+    "code": "US-NE-083",
+    "name": "Harlan, Nebraska, US"
+  },
+  {
+    "code": "US-NE-085",
+    "name": "Hayes, Nebraska, US"
+  },
+  {
+    "code": "US-NE-087",
+    "name": "Hitchcock, Nebraska, US"
+  },
+  {
+    "code": "US-NE-089",
+    "name": "Holt, Nebraska, US"
+  },
+  {
+    "code": "US-NE-091",
+    "name": "Hooker, Nebraska, US"
+  },
+  {
+    "code": "US-NE-093",
+    "name": "Howard, Nebraska, US"
+  },
+  {
+    "code": "US-NE-095",
+    "name": "Jefferson, Nebraska, US"
+  },
+  {
+    "code": "US-NE-097",
+    "name": "Johnson, Nebraska, US"
+  },
+  {
+    "code": "US-NE-099",
+    "name": "Kearney, Nebraska, US"
+  },
+  {
+    "code": "US-NE-101",
+    "name": "Keith, Nebraska, US"
+  },
+  {
+    "code": "US-NE-103",
+    "name": "Keya Paha, Nebraska, US"
+  },
+  {
+    "code": "US-NE-105",
+    "name": "Kimball, Nebraska, US"
+  },
+  {
+    "code": "US-NE-107",
+    "name": "Knox, Nebraska, US"
+  },
+  {
+    "code": "US-NE-109",
+    "name": "Lancaster, Nebraska, US"
+  },
+  {
+    "code": "US-NE-111",
+    "name": "Lincoln, Nebraska, US"
+  },
+  {
+    "code": "US-NE-113",
+    "name": "Logan, Nebraska, US"
+  },
+  {
+    "code": "US-NE-115",
+    "name": "Loup, Nebraska, US"
+  },
+  {
+    "code": "US-NE-119",
+    "name": "Madison, Nebraska, US"
+  },
+  {
+    "code": "US-NE-117",
+    "name": "McPherson, Nebraska, US"
+  },
+  {
+    "code": "US-NE-121",
+    "name": "Merrick, Nebraska, US"
+  },
+  {
+    "code": "US-NE-123",
+    "name": "Morrill, Nebraska, US"
+  },
+  {
+    "code": "US-NE-125",
+    "name": "Nance, Nebraska, US"
+  },
+  {
+    "code": "US-NE-127",
+    "name": "Nemaha, Nebraska, US"
+  },
+  {
+    "code": "US-NE-129",
+    "name": "Nuckolls, Nebraska, US"
+  },
+  {
+    "code": "US-NE-131",
+    "name": "Otoe, Nebraska, US"
+  },
+  {
+    "code": "US-NE-133",
+    "name": "Pawnee, Nebraska, US"
+  },
+  {
+    "code": "US-NE-135",
+    "name": "Perkins, Nebraska, US"
+  },
+  {
+    "code": "US-NE-137",
+    "name": "Phelps, Nebraska, US"
+  },
+  {
+    "code": "US-NE-139",
+    "name": "Pierce, Nebraska, US"
+  },
+  {
+    "code": "US-NE-141",
+    "name": "Platte, Nebraska, US"
+  },
+  {
+    "code": "US-NE-143",
+    "name": "Polk, Nebraska, US"
+  },
+  {
+    "code": "US-NE-145",
+    "name": "Red Willow, Nebraska, US"
+  },
+  {
+    "code": "US-NE-147",
+    "name": "Richardson, Nebraska, US"
+  },
+  {
+    "code": "US-NE-149",
+    "name": "Rock, Nebraska, US"
+  },
+  {
+    "code": "US-NE-151",
+    "name": "Saline, Nebraska, US"
+  },
+  {
+    "code": "US-NE-153",
+    "name": "Sarpy, Nebraska, US"
+  },
+  {
+    "code": "US-NE-155",
+    "name": "Saunders, Nebraska, US"
+  },
+  {
+    "code": "US-NE-157",
+    "name": "Scotts Bluff, Nebraska, US"
+  },
+  {
+    "code": "US-NE-159",
+    "name": "Seward, Nebraska, US"
+  },
+  {
+    "code": "US-NE-161",
+    "name": "Sheridan, Nebraska, US"
+  },
+  {
+    "code": "US-NE-163",
+    "name": "Sherman, Nebraska, US"
+  },
+  {
+    "code": "US-NE-165",
+    "name": "Sioux, Nebraska, US"
+  },
+  {
+    "code": "US-NE-167",
+    "name": "Stanton, Nebraska, US"
+  },
+  {
+    "code": "US-NE-169",
+    "name": "Thayer, Nebraska, US"
+  },
+  {
+    "code": "US-NE-171",
+    "name": "Thomas, Nebraska, US"
+  },
+  {
+    "code": "US-NE-173",
+    "name": "Thurston, Nebraska, US"
+  },
+  {
+    "code": "US-NE-175",
+    "name": "Valley, Nebraska, US"
+  },
+  {
+    "code": "US-NE-177",
+    "name": "Washington, Nebraska, US"
+  },
+  {
+    "code": "US-NE-179",
+    "name": "Wayne, Nebraska, US"
+  },
+  {
+    "code": "US-NE-181",
+    "name": "Webster, Nebraska, US"
+  },
+  {
+    "code": "US-NE-183",
+    "name": "Wheeler, Nebraska, US"
+  },
+  {
+    "code": "US-NE-185",
+    "name": "York, Nebraska, US"
+  },
+  {
     "code": "US-NH",
     "name": "New Hampshire, US"
   },
