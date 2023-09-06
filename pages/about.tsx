@@ -68,7 +68,7 @@ export default function About({ regions }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const request = await admin.listUsers();
   const editors = request.users
     .filter(({ customClaims }) => customClaims?.role === "editor")
