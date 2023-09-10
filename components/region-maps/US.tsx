@@ -117,7 +117,7 @@ export default function USMap() {
               />
               <text>Iowa</text>
             </Link>
-            <Link href="/region/US-KA" {...linkProps}>
+            <Link href="/region/US-KS" {...linkProps}>
               <path
                 {...pathProps}
                 d="m405.972 248.243 92.28 2.531 1.393 1.721 4.543 1.38-3.098 5.434 1.793 1.816 2.294 4.356 3.035.876.507 40.157-79.744-1.134-28.47-1.417 3.403-55.85Z"
