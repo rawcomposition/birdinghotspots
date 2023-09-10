@@ -3028,6 +3028,430 @@
     "name": "Wright, Iowa, US"
   },
   {
+    "code": "US-KS",
+    "name": "Kansas, US"
+  },
+  {
+    "code": "US-KS-001",
+    "name": "Allen, Kansas, US"
+  },
+  {
+    "code": "US-KS-003",
+    "name": "Anderson, Kansas, US"
+  },
+  {
+    "code": "US-KS-005",
+    "name": "Atchison, Kansas, US"
+  },
+  {
+    "code": "US-KS-007",
+    "name": "Barber, Kansas, US"
+  },
+  {
+    "code": "US-KS-009",
+    "name": "Barton, Kansas, US"
+  },
+  {
+    "code": "US-KS-011",
+    "name": "Bourbon, Kansas, US"
+  },
+  {
+    "code": "US-KS-013",
+    "name": "Brown, Kansas, US"
+  },
+  {
+    "code": "US-KS-015",
+    "name": "Butler, Kansas, US"
+  },
+  {
+    "code": "US-KS-017",
+    "name": "Chase, Kansas, US"
+  },
+  {
+    "code": "US-KS-019",
+    "name": "Chautauqua, Kansas, US"
+  },
+  {
+    "code": "US-KS-021",
+    "name": "Cherokee, Kansas, US"
+  },
+  {
+    "code": "US-KS-023",
+    "name": "Cheyenne, Kansas, US"
+  },
+  {
+    "code": "US-KS-025",
+    "name": "Clark, Kansas, US"
+  },
+  {
+    "code": "US-KS-027",
+    "name": "Clay, Kansas, US"
+  },
+  {
+    "code": "US-KS-029",
+    "name": "Cloud, Kansas, US"
+  },
+  {
+    "code": "US-KS-031",
+    "name": "Coffey, Kansas, US"
+  },
+  {
+    "code": "US-KS-033",
+    "name": "Comanche, Kansas, US"
+  },
+  {
+    "code": "US-KS-035",
+    "name": "Cowley, Kansas, US"
+  },
+  {
+    "code": "US-KS-037",
+    "name": "Crawford, Kansas, US"
+  },
+  {
+    "code": "US-KS-039",
+    "name": "Decatur, Kansas, US"
+  },
+  {
+    "code": "US-KS-041",
+    "name": "Dickinson, Kansas, US"
+  },
+  {
+    "code": "US-KS-043",
+    "name": "Doniphan, Kansas, US"
+  },
+  {
+    "code": "US-KS-045",
+    "name": "Douglas, Kansas, US"
+  },
+  {
+    "code": "US-KS-047",
+    "name": "Edwards, Kansas, US"
+  },
+  {
+    "code": "US-KS-049",
+    "name": "Elk, Kansas, US"
+  },
+  {
+    "code": "US-KS-051",
+    "name": "Ellis, Kansas, US"
+  },
+  {
+    "code": "US-KS-053",
+    "name": "Ellsworth, Kansas, US"
+  },
+  {
+    "code": "US-KS-055",
+    "name": "Finney, Kansas, US"
+  },
+  {
+    "code": "US-KS-057",
+    "name": "Ford, Kansas, US"
+  },
+  {
+    "code": "US-KS-059",
+    "name": "Franklin, Kansas, US"
+  },
+  {
+    "code": "US-KS-061",
+    "name": "Geary, Kansas, US"
+  },
+  {
+    "code": "US-KS-063",
+    "name": "Gove, Kansas, US"
+  },
+  {
+    "code": "US-KS-065",
+    "name": "Graham, Kansas, US"
+  },
+  {
+    "code": "US-KS-067",
+    "name": "Grant, Kansas, US"
+  },
+  {
+    "code": "US-KS-069",
+    "name": "Gray, Kansas, US"
+  },
+  {
+    "code": "US-KS-071",
+    "name": "Greeley, Kansas, US"
+  },
+  {
+    "code": "US-KS-073",
+    "name": "Greenwood, Kansas, US"
+  },
+  {
+    "code": "US-KS-075",
+    "name": "Hamilton, Kansas, US"
+  },
+  {
+    "code": "US-KS-077",
+    "name": "Harper, Kansas, US"
+  },
+  {
+    "code": "US-KS-079",
+    "name": "Harvey, Kansas, US"
+  },
+  {
+    "code": "US-KS-081",
+    "name": "Haskell, Kansas, US"
+  },
+  {
+    "code": "US-KS-083",
+    "name": "Hodgeman, Kansas, US"
+  },
+  {
+    "code": "US-KS-085",
+    "name": "Jackson, Kansas, US"
+  },
+  {
+    "code": "US-KS-087",
+    "name": "Jefferson, Kansas, US"
+  },
+  {
+    "code": "US-KS-089",
+    "name": "Jewell, Kansas, US"
+  },
+  {
+    "code": "US-KS-091",
+    "name": "Johnson, Kansas, US"
+  },
+  {
+    "code": "US-KS-093",
+    "name": "Kearny, Kansas, US"
+  },
+  {
+    "code": "US-KS-095",
+    "name": "Kingman, Kansas, US"
+  },
+  {
+    "code": "US-KS-097",
+    "name": "Kiowa, Kansas, US"
+  },
+  {
+    "code": "US-KS-099",
+    "name": "Labette, Kansas, US"
+  },
+  {
+    "code": "US-KS-101",
+    "name": "Lane, Kansas, US"
+  },
+  {
+    "code": "US-KS-103",
+    "name": "Leavenworth, Kansas, US"
+  },
+  {
+    "code": "US-KS-105",
+    "name": "Lincoln, Kansas, US"
+  },
+  {
+    "code": "US-KS-107",
+    "name": "Linn, Kansas, US"
+  },
+  {
+    "code": "US-KS-109",
+    "name": "Logan, Kansas, US"
+  },
+  {
+    "code": "US-KS-111",
+    "name": "Lyon, Kansas, US"
+  },
+  {
+    "code": "US-KS-115",
+    "name": "Marion, Kansas, US"
+  },
+  {
+    "code": "US-KS-117",
+    "name": "Marshall, Kansas, US"
+  },
+  {
+    "code": "US-KS-113",
+    "name": "McPherson, Kansas, US"
+  },
+  {
+    "code": "US-KS-119",
+    "name": "Meade, Kansas, US"
+  },
+  {
+    "code": "US-KS-121",
+    "name": "Miami, Kansas, US"
+  },
+  {
+    "code": "US-KS-123",
+    "name": "Mitchell, Kansas, US"
+  },
+  {
+    "code": "US-KS-125",
+    "name": "Montgomery, Kansas, US"
+  },
+  {
+    "code": "US-KS-127",
+    "name": "Morris, Kansas, US"
+  },
+  {
+    "code": "US-KS-129",
+    "name": "Morton, Kansas, US"
+  },
+  {
+    "code": "US-KS-131",
+    "name": "Nemaha, Kansas, US"
+  },
+  {
+    "code": "US-KS-133",
+    "name": "Neosho, Kansas, US"
+  },
+  {
+    "code": "US-KS-135",
+    "name": "Ness, Kansas, US"
+  },
+  {
+    "code": "US-KS-137",
+    "name": "Norton, Kansas, US"
+  },
+  {
+    "code": "US-KS-139",
+    "name": "Osage, Kansas, US"
+  },
+  {
+    "code": "US-KS-141",
+    "name": "Osborne, Kansas, US"
+  },
+  {
+    "code": "US-KS-143",
+    "name": "Ottawa, Kansas, US"
+  },
+  {
+    "code": "US-KS-145",
+    "name": "Pawnee, Kansas, US"
+  },
+  {
+    "code": "US-KS-147",
+    "name": "Phillips, Kansas, US"
+  },
+  {
+    "code": "US-KS-149",
+    "name": "Pottawatomie, Kansas, US"
+  },
+  {
+    "code": "US-KS-151",
+    "name": "Pratt, Kansas, US"
+  },
+  {
+    "code": "US-KS-153",
+    "name": "Rawlins, Kansas, US"
+  },
+  {
+    "code": "US-KS-155",
+    "name": "Reno, Kansas, US"
+  },
+  {
+    "code": "US-KS-157",
+    "name": "Republic, Kansas, US"
+  },
+  {
+    "code": "US-KS-159",
+    "name": "Rice, Kansas, US"
+  },
+  {
+    "code": "US-KS-161",
+    "name": "Riley, Kansas, US"
+  },
+  {
+    "code": "US-KS-163",
+    "name": "Rooks, Kansas, US"
+  },
+  {
+    "code": "US-KS-165",
+    "name": "Rush, Kansas, US"
+  },
+  {
+    "code": "US-KS-167",
+    "name": "Russell, Kansas, US"
+  },
+  {
+    "code": "US-KS-169",
+    "name": "Saline, Kansas, US"
+  },
+  {
+    "code": "US-KS-171",
+    "name": "Scott, Kansas, US"
+  },
+  {
+    "code": "US-KS-173",
+    "name": "Sedgwick, Kansas, US"
+  },
+  {
+    "code": "US-KS-175",
+    "name": "Seward, Kansas, US"
+  },
+  {
+    "code": "US-KS-177",
+    "name": "Shawnee, Kansas, US"
+  },
+  {
+    "code": "US-KS-179",
+    "name": "Sheridan, Kansas, US"
+  },
+  {
+    "code": "US-KS-181",
+    "name": "Sherman, Kansas, US"
+  },
+  {
+    "code": "US-KS-183",
+    "name": "Smith, Kansas, US"
+  },
+  {
+    "code": "US-KS-185",
+    "name": "Stafford, Kansas, US"
+  },
+  {
+    "code": "US-KS-187",
+    "name": "Stanton, Kansas, US"
+  },
+  {
+    "code": "US-KS-189",
+    "name": "Stevens, Kansas, US"
+  },
+  {
+    "code": "US-KS-191",
+    "name": "Sumner, Kansas, US"
+  },
+  {
+    "code": "US-KS-193",
+    "name": "Thomas, Kansas, US"
+  },
+  {
+    "code": "US-KS-195",
+    "name": "Trego, Kansas, US"
+  },
+  {
+    "code": "US-KS-197",
+    "name": "Wabaunsee, Kansas, US"
+  },
+  {
+    "code": "US-KS-199",
+    "name": "Wallace, Kansas, US"
+  },
+  {
+    "code": "US-KS-201",
+    "name": "Washington, Kansas, US"
+  },
+  {
+    "code": "US-KS-203",
+    "name": "Wichita, Kansas, US"
+  },
+  {
+    "code": "US-KS-205",
+    "name": "Wilson, Kansas, US"
+  },
+  {
+    "code": "US-KS-207",
+    "name": "Woodson, Kansas, US"
+  },
+  {
+    "code": "US-KS-209",
+    "name": "Wyandotte, Kansas, US"
+  },
+  {
     "code": "US-KY",
     "name": "Kentucky, US"
   },

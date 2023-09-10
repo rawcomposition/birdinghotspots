@@ -6,8 +6,7 @@ import { promises as fs } from "fs";
 export default secureApi(async (req, res, token) => {
   await connect();
 
-  const keyValues: any = {};
-
+  return res.status(200).json({ success: true });
   const cities = (await getActiveCities()) || [];
 
   const formatted = cities.map(({ name, stateCode, countryCode, locationId }) => {
