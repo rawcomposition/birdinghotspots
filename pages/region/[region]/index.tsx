@@ -28,6 +28,7 @@ import useLogPageview from "hooks/useLogPageview";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import MoreRegionLinks from "components/MoreRegionLinks";
 import ArticleGrid from "components/ArticleGrid";
+import RegionBranding from "components/RegionBranding";
 
 type Props = {
   region: Region;
@@ -133,6 +134,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
               Discover where to go birding in {name} by browsing our tips, descriptions, maps, and images for many eBird
               hotspots.
             </p>
+            <RegionBranding regionCode={code} className="mb-8" />
             <RegionStats regionCode={code} data={stats} />
             <div className="mt-8">
               <Link
