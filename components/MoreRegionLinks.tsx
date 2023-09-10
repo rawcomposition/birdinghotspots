@@ -20,6 +20,7 @@ export default function MoreRegionLinks({ region }: Props) {
         <Link href={`/region/${code}/hotspots?features=Roadside`}>Roadside Birding</Link>
         <Link href={`/region/${code}/hotspots?features=Accessible`}>Accessible Facilities</Link>
         {features?.includes("iba") && <Link href={`/region/${code}/important-bird-areas`}>Important Bird Areas</Link>}
+        <Link href={`/region/${code}/group-index`}>Group Locations</Link>
         {hasCities && <Link href={`/region/${code}/cities`}>Cities/Towns</Link>}
       </div>
     </div>
