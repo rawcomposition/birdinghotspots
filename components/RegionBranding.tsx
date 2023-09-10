@@ -60,6 +60,32 @@ const data = [
     ),
     imgUrl: "/sdou-logo.png",
   },
+  {
+    code: "US-NE",
+    html: (
+      <>
+        A project supported by the
+        <br />
+        <a href="https://www.noubirds.org" target="_blank">
+          Nebraska Ornithologists’ Union
+        </a>
+      </>
+    ),
+    imgUrl: "/NOUl.jpg",
+  },
+  {
+    code: "US-KS",
+    html: (
+      <>
+        A project supported by the
+        <br />
+        <a href="https://ksbirds.org/kos/KOSindex.html" target="_blank">
+          Kansas Ornithological Society
+        </a>
+      </>
+    ),
+    imgUrl: "/KOS.jpg",
+  },
 ];
 
 export default function RegionBranding({ regionCode, className }: Props) {
