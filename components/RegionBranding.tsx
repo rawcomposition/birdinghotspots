@@ -97,7 +97,7 @@ const data = [
         </a>
       </>
     ),
-    imgUrl: "/AASlogo.png",
+    imgUrl: "/AASLogo.png",
   },
 ];
 
