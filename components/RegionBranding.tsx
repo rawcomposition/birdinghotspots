@@ -86,6 +86,19 @@ const data = [
     ),
     imgUrl: "/KOS.jpg",
   },
+  {
+    code: "US-AR",
+    html: (
+      <>
+        A project supported by the
+        <br />
+        <a href="https://arbirds.org" target="_blank">
+          Arkansas Audubon Society
+        </a>
+      </>
+    ),
+    imgUrl: "/AASlogo.png",
+  },
 ];
 
 export default function RegionBranding({ regionCode, className }: Props) {
