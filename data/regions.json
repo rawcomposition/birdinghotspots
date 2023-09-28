@@ -2183,6 +2183,23 @@
     "name": "Canada",
     "subregions": [
       {
+        "name": "Newfoundland and Labrador",
+        "code": "CA-NL",
+        "subregions": [
+          { "code": "CA-NL-ON", "name": "Avalon Peninsula-St. John's" },
+          { "code": "CA-NL-SE", "name": "Bonavista/Trinity-Clarenville" },
+          { "code": "CA-NL-TW", "name": "Burin Peninsula-Marystown" },
+          { "code": "CA-NL-SI", "name": "Central Newfoundland-Grand Falls-Windsor" },
+          { "code": "CA-NL-FI", "name": "Humber District-Corner Brook" },
+          { "code": "CA-NL-TE", "name": "Labrador-Happy Valley-Goose Bay" },
+          { "code": "CA-NL-NI", "name": "Northern Peninsula-St. Anthony" },
+          { "code": "CA-NL-EI", "name": "Notre Dame Bay-Lewisporte" },
+          { "code": "CA-NL-EL", "name": "Nunatsiavut-Nain" },
+          { "code": "CA-NL-TR", "name": "South Coast-Channel-Port aux Basques" },
+          { "code": "CA-NL-FO", "name": "St. George's-Stephenville" }
+        ]
+      },
+      {
         "name": "Ontario",
         "code": "CA-ON",
         "subregions": [

@@ -29,6 +29,8 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import MoreRegionLinks from "components/MoreRegionLinks";
 import ArticleGrid from "components/ArticleGrid";
 import RegionBranding from "components/RegionBranding";
+import clsx from "clsx";
+import SubregionList from "components/SubregionList";
 
 type Props = {
   region: Region;
@@ -173,15 +175,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
                 <RegionMap regionCode={code} />
               </div>
             ) : (
-              <div className="columns-2 sm:columns-4 flex-grow bg-gradient-to-t from-slate-600 to-slate-600/95 px-4 py-2 rounded lg:ml-24">
-                {subregions?.map((it) => (
-                  <p key={it.code}>
-                    <Link href={`/region/${it.code}`} className="font-bold text-slate-300" title={it.name}>
-                      {it.name.length > 12 ? `${it.name.slice(0, 12)}...` : it.name}
-                    </Link>
-                  </p>
-                ))}
-              </div>
+              <SubregionList regionCode={code} subregions={subregions} />
             )}
             <div className="grid gap-8 grid-cols-2">
               <div className="flex gap-4 items-center">
