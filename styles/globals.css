@@ -433,6 +433,22 @@ img.marker-sm {
   fill: #ce0d03;
 }
 
+.lightblue path {
+  fill: lightskyblue;
+}
+
+.goldenrod path {
+  fill: goldenrod;
+}
+
+.navajo path {
+  fill: navajowhite;
+}
+
+.salmon path {
+  fill: salmon;
+}
+
 /*NProgress bar*/
 #nprogress {
   z-index: 100000;
