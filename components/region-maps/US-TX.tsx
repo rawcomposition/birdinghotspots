@@ -12,7 +12,7 @@ export default function TexasMap() {
         className="state-map hover-map"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
-        viewBox="212 44 528  495"
+        viewBox="212 36 528  495"
         ref={svgRef}
       >
         <g>
