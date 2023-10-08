@@ -99,6 +99,19 @@ const data = [
     ),
     imgUrl: "/AASLogo.png",
   },
+  {
+    code: "US-CO",
+    html: (
+      <div className="ml-2">
+        A project supported by the
+        <br />
+        <a href="https://dfobirds.org" target="_blank">
+          Denver Field Ornithologists
+        </a>
+      </div>
+    ),
+    imgUrl: "/dfo-logo.jpg",
+  },
 ];
 
 export default function RegionBranding({ regionCode, className }: Props) {
