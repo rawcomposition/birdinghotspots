@@ -25,6 +25,7 @@ import MapGrid from "components/MapGrid";
 import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
 import Checkbox from "components/Checkbox";
+import useConfirmNavigation from "hooks/useConfirmNavigation";
 
 type GroupAbout = {
   title: string;
@@ -60,6 +61,7 @@ export default function Edit({
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
+  useConfirmNavigation(form.formState.isDirty);
 
   //@ts-ignore
   const latValue = form.watch("lat");
