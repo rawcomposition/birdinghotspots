@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import AsyncSelect from "react-select/async";
 import { components, DropdownIndicatorProps } from "react-select";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";

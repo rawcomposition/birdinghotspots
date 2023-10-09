@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Info from "icons/Info";
 import Tooltip from "components/Tooltip";
 

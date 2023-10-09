@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Hotspot } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 

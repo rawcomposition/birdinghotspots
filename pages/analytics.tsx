@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import connect from "lib/mongo";
 import Pageview from "models/Pageview";
 import PageHeading from "components/PageHeading";

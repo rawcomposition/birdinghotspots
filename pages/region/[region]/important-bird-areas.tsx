@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";

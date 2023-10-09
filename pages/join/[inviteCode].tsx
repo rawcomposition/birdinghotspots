@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import Input from "components/Input";
 import Submit from "components/Submit";

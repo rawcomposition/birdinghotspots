@@ -1,5 +1,5 @@
 import Heading from "components/Heading";
-import * as React from "react";
+import React from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { NotableReport } from "lib/types";
 import Timeago from "components/Timeago";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";

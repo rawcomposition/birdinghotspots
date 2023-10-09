@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import DashboardPage from "components/DashboardPage";
 import Submit from "components/Submit";
 import Input from "components/Input";

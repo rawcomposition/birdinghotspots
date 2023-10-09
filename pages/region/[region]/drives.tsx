@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import { getDrivesByState } from "lib/mongo";
 import { getRegion, restructureDrivesByCounty } from "lib/localData";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import Title from "components/Title";
 import { Hotspot, LocationSearchValue } from "lib/types";

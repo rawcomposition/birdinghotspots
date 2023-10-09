@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
 import StreetView from "components/StreetView";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useFormContext } from "react-hook-form";
 import Help from "components/Help";
 

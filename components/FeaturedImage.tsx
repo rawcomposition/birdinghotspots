@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Image } from "lib/types";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";

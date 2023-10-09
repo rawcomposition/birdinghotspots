@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Marker } from "lib/types";
 import MapBox from "components/MapBox";
 import BtnSmall from "./BtnSmall";

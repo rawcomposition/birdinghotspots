@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";

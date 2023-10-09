@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ParsedUrlQuery } from "querystring";
 import admin from "lib/firebaseAdmin";
 import DashboardPage from "components/DashboardPage";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { getArticleByArticleId } from "lib/mongo";

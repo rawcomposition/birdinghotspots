@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";

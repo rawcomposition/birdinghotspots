@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ArrowSmallUpIcon } from "@heroicons/react/20/solid";
 import useEventListener from "hooks/useEventListener";
 

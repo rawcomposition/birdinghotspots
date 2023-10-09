@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { onAuthStateChanged, onIdTokenChanged } from "firebase/auth";
 import { auth } from "lib/firebaseAuth";
 import useSecureFetch from "hooks/useSecureFetch";

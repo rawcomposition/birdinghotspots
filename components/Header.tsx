@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import SearchModal from "components/SearchModal";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";

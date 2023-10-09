@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import PageHeading from "components/PageHeading";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "components/Input";
