@@ -57,11 +57,12 @@ export default function Edit({
 }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
-  useConfirmNavigation(form.formState.isDirty);
+  useConfirmNavigation(form.formState.isDirty && !isSubmitting);
 
   //@ts-ignore
   const latValue = form.watch("lat");
@@ -71,6 +72,7 @@ export default function Edit({
   const handleSubmit: SubmitHandler<Hotspot> = async (data) => {
     // @ts-ignore
     if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
+    setIsSubmitting(true);
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",
