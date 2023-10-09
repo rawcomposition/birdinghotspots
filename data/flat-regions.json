@@ -5420,6 +5420,222 @@
     "name": "Valencia, New Mexico, US"
   },
   {
+    "code": "US-ND",
+    "name": "North Dakota, US"
+  },
+  {
+    "code": "US-ND-001",
+    "name": "Adams, North Dakota, US"
+  },
+  {
+    "code": "US-ND-003",
+    "name": "Barnes, North Dakota, US"
+  },
+  {
+    "code": "US-ND-005",
+    "name": "Benson, North Dakota, US"
+  },
+  {
+    "code": "US-ND-007",
+    "name": "Billings, North Dakota, US"
+  },
+  {
+    "code": "US-ND-009",
+    "name": "Bottineau, North Dakota, US"
+  },
+  {
+    "code": "US-ND-011",
+    "name": "Bowman, North Dakota, US"
+  },
+  {
+    "code": "US-ND-013",
+    "name": "Burke, North Dakota, US"
+  },
+  {
+    "code": "US-ND-015",
+    "name": "Burleigh, North Dakota, US"
+  },
+  {
+    "code": "US-ND-017",
+    "name": "Cass, North Dakota, US"
+  },
+  {
+    "code": "US-ND-019",
+    "name": "Cavalier, North Dakota, US"
+  },
+  {
+    "code": "US-ND-021",
+    "name": "Dickey, North Dakota, US"
+  },
+  {
+    "code": "US-ND-023",
+    "name": "Divide, North Dakota, US"
+  },
+  {
+    "code": "US-ND-025",
+    "name": "Dunn, North Dakota, US"
+  },
+  {
+    "code": "US-ND-027",
+    "name": "Eddy, North Dakota, US"
+  },
+  {
+    "code": "US-ND-029",
+    "name": "Emmons, North Dakota, US"
+  },
+  {
+    "code": "US-ND-031",
+    "name": "Foster, North Dakota, US"
+  },
+  {
+    "code": "US-ND-033",
+    "name": "Golden Valley, North Dakota, US"
+  },
+  {
+    "code": "US-ND-035",
+    "name": "Grand Forks, North Dakota, US"
+  },
+  {
+    "code": "US-ND-037",
+    "name": "Grant, North Dakota, US"
+  },
+  {
+    "code": "US-ND-039",
+    "name": "Griggs, North Dakota, US"
+  },
+  {
+    "code": "US-ND-041",
+    "name": "Hettinger, North Dakota, US"
+  },
+  {
+    "code": "US-ND-043",
+    "name": "Kidder, North Dakota, US"
+  },
+  {
+    "code": "US-ND-045",
+    "name": "LaMoure, North Dakota, US"
+  },
+  {
+    "code": "US-ND-047",
+    "name": "Logan, North Dakota, US"
+  },
+  {
+    "code": "US-ND-049",
+    "name": "McHenry, North Dakota, US"
+  },
+  {
+    "code": "US-ND-051",
+    "name": "McIntosh, North Dakota, US"
+  },
+  {
+    "code": "US-ND-053",
+    "name": "McKenzie, North Dakota, US"
+  },
+  {
+    "code": "US-ND-055",
+    "name": "McLean, North Dakota, US"
+  },
+  {
+    "code": "US-ND-057",
+    "name": "Mercer, North Dakota, US"
+  },
+  {
+    "code": "US-ND-059",
+    "name": "Morton, North Dakota, US"
+  },
+  {
+    "code": "US-ND-061",
+    "name": "Mountrail, North Dakota, US"
+  },
+  {
+    "code": "US-ND-063",
+    "name": "Nelson, North Dakota, US"
+  },
+  {
+    "code": "US-ND-065",
+    "name": "Oliver, North Dakota, US"
+  },
+  {
+    "code": "US-ND-067",
+    "name": "Pembina, North Dakota, US"
+  },
+  {
+    "code": "US-ND-069",
+    "name": "Pierce, North Dakota, US"
+  },
+  {
+    "code": "US-ND-071",
+    "name": "Ramsey, North Dakota, US"
+  },
+  {
+    "code": "US-ND-073",
+    "name": "Ransom, North Dakota, US"
+  },
+  {
+    "code": "US-ND-075",
+    "name": "Renville, North Dakota, US"
+  },
+  {
+    "code": "US-ND-077",
+    "name": "Richland, North Dakota, US"
+  },
+  {
+    "code": "US-ND-079",
+    "name": "Rolette, North Dakota, US"
+  },
+  {
+    "code": "US-ND-081",
+    "name": "Sargent, North Dakota, US"
+  },
+  {
+    "code": "US-ND-083",
+    "name": "Sheridan, North Dakota, US"
+  },
+  {
+    "code": "US-ND-085",
+    "name": "Sioux, North Dakota, US"
+  },
+  {
+    "code": "US-ND-087",
+    "name": "Slope, North Dakota, US"
+  },
+  {
+    "code": "US-ND-089",
+    "name": "Stark, North Dakota, US"
+  },
+  {
+    "code": "US-ND-091",
+    "name": "Steele, North Dakota, US"
+  },
+  {
+    "code": "US-ND-093",
+    "name": "Stutsman, North Dakota, US"
+  },
+  {
+    "code": "US-ND-095",
+    "name": "Towner, North Dakota, US"
+  },
+  {
+    "code": "US-ND-097",
+    "name": "Traill, North Dakota, US"
+  },
+  {
+    "code": "US-ND-099",
+    "name": "Walsh, North Dakota, US"
+  },
+  {
+    "code": "US-ND-101",
+    "name": "Ward, North Dakota, US"
+  },
+  {
+    "code": "US-ND-103",
+    "name": "Wells, North Dakota, US"
+  },
+  {
+    "code": "US-ND-105",
+    "name": "Williams, North Dakota, US"
+  },
+  {
     "code": "US-OH",
     "name": "Ohio, US"
   },
