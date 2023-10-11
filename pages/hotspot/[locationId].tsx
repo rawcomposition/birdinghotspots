@@ -198,6 +198,17 @@ export default function Hotspot({
 
           {tips && <AboutSection heading="Tips for Birding" text={tips} />}
 
+          {noContent && (
+            <div className="mb-6 formatted">
+              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
+              <div className="p-4 bg-gray-100 rounded-lg mb-6">
+                If you are familiar with birding this location, please help other birders with a description, tips for
+                birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
+                <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
+              </div>
+            </div>
+          )}
+
           {birds && <AboutSection heading="Birds of Interest" text={birds} />}
 
           {about && <AboutSection heading="About this Location" text={about} />}
@@ -216,16 +227,6 @@ export default function Hotspot({
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 
-          {noContent && (
-            <div className="mb-6 formatted">
-              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
-              <div className="p-4 bg-gray-100 rounded-lg mb-6">
-                If you are familiar with birding this location, please help other birders with a description, tips for
-                birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
-                <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
-              </div>
-            </div>
-          )}
           <Citations citations={citations} links={links} />
 
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
