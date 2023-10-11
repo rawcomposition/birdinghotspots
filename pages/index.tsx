@@ -11,6 +11,7 @@ import { getRegion } from "lib/localData";
 import connect from "lib/mongo";
 import { Hotspot as HotspotType, Region } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
+import clsx from "clsx";
 
 type Props = {
   northAmericaRegions: Region[];
@@ -34,7 +35,7 @@ export default function Home({ featured, northAmericaRegions }: Props) {
                   <h3 className="text-lg mb-4 font-bold">{country.name}</h3>
                 </Link>
                 {!!country.subregions?.length && (
-                  <div className="columns-2 lg:columns-3 mb-12">
+                  <div className={clsx("columns-2 mb-12", country.name !== "Canada" && "lg:columns-3")}>
                     {country.subregions.map(({ name, code }) => (
                       <Link key={code} href={`/region/${code}`} className="font-bold px-2 py-1 text-base mb-1 block">
                         {name}
@@ -200,7 +201,7 @@ export const getStaticProps = async () => {
     };
   });
 
-  const northAmericaRegions = Regions.filter(({ code }) => ["US", "CA"].includes(code));
+  const northAmericaRegions = Regions.filter(({ code }) => ["US", "CA", "MX"].includes(code));
 
   return {
     props: { featured: formatted, northAmericaRegions },

@@ -12,7 +12,7 @@ export default function CAMap() {
         className="state-map hover-map"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
-        viewBox="70 70 822  470"
+        viewBox="70 70 822 470"
         ref={svgRef}
       >
         <g>
