@@ -99,22 +99,39 @@ const data = [
     ),
     imgUrl: "/AASLogo.png",
   },
-  {
-    code: "US-CO",
-    html: (
-      <div className="ml-2">
-        A project supported by the
-        <br />
-        <a href="https://dfobirds.org" target="_blank">
-          Denver Field Ornithologists
-        </a>
-      </div>
-    ),
-    imgUrl: "/dfo-logo.jpg",
-  },
 ];
 
 export default function RegionBranding({ regionCode, className }: Props) {
+  if (regionCode === "US-CO") {
+    return (
+      <>
+        <div className="flex gap-4 items-center mb-5">
+          <img src="/cfo.png" className="w-20" />
+          <p className="font-bold text-secondary">
+            <div className="ml-2">
+              A project supported by the
+              <br />
+              <a href="https://cobirds.org" target="_blank">
+                Colorado Field Ornithologists
+              </a>
+            </div>
+          </p>
+        </div>
+        <div className={clsx("flex gap-4 items-center", className)}>
+          <img src="/dfo-logo.jpg" className="w-20" />
+          <p className="font-bold text-secondary">
+            <div className="ml-2">
+              A project supported by the
+              <br />
+              <a href="https://dfobirds.org" target="_blank">
+                Denver Field Ornithologists
+              </a>
+            </div>
+          </p>
+        </div>
+      </>
+    );
+  }
   const branding = data.find((d) => d.code === regionCode || regionCode.startsWith(d.code));
   if (!branding) return null;
   return (
