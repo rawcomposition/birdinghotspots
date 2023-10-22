@@ -359,7 +359,7 @@ export async function getSubscriptions(uid: string): Promise<string[]> {
 
 export async function getLogs() {
   await connect();
-  const result = await Log.find({}).sort({ createdAt: -1 }).limit(300).lean().exec();
+  const result = await Log.find({}).sort({ createdAt: -1 }).limit(1000).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
