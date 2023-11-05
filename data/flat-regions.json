@@ -8560,6 +8560,298 @@
     "name": "Yakima, Washington, US"
   },
   {
+    "code": "US-WI",
+    "name": "Wisconsin, US"
+  },
+  {
+    "code": "US-WI-001",
+    "name": "Adams, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-003",
+    "name": "Ashland, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-005",
+    "name": "Barron, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-007",
+    "name": "Bayfield, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-009",
+    "name": "Brown, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-011",
+    "name": "Buffalo, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-013",
+    "name": "Burnett, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-015",
+    "name": "Calumet, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-017",
+    "name": "Chippewa, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-019",
+    "name": "Clark, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-021",
+    "name": "Columbia, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-023",
+    "name": "Crawford, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-025",
+    "name": "Dane, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-027",
+    "name": "Dodge, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-029",
+    "name": "Door, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-031",
+    "name": "Douglas, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-033",
+    "name": "Dunn, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-035",
+    "name": "Eau Claire, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-037",
+    "name": "Florence, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-039",
+    "name": "Fond du Lac, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-041",
+    "name": "Forest, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-043",
+    "name": "Grant, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-045",
+    "name": "Green, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-047",
+    "name": "Green Lake, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-049",
+    "name": "Iowa, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-051",
+    "name": "Iron, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-053",
+    "name": "Jackson, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-055",
+    "name": "Jefferson, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-057",
+    "name": "Juneau, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-059",
+    "name": "Kenosha, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-061",
+    "name": "Kewaunee, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-063",
+    "name": "La Crosse, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-065",
+    "name": "Lafayette, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-067",
+    "name": "Langlade, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-069",
+    "name": "Lincoln, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-071",
+    "name": "Manitowoc, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-073",
+    "name": "Marathon, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-075",
+    "name": "Marinette, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-077",
+    "name": "Marquette, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-078",
+    "name": "Menominee, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-079",
+    "name": "Milwaukee, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-081",
+    "name": "Monroe, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-083",
+    "name": "Oconto, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-085",
+    "name": "Oneida, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-087",
+    "name": "Outagamie, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-089",
+    "name": "Ozaukee, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-091",
+    "name": "Pepin, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-093",
+    "name": "Pierce, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-095",
+    "name": "Polk, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-097",
+    "name": "Portage, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-099",
+    "name": "Price, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-101",
+    "name": "Racine, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-103",
+    "name": "Richland, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-105",
+    "name": "Rock, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-107",
+    "name": "Rusk, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-111",
+    "name": "Sauk, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-113",
+    "name": "Sawyer, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-115",
+    "name": "Shawano, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-117",
+    "name": "Sheboygan, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-109",
+    "name": "St. Croix, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-119",
+    "name": "Taylor, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-121",
+    "name": "Trempealeau, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-123",
+    "name": "Vernon, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-125",
+    "name": "Vilas, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-127",
+    "name": "Walworth, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-129",
+    "name": "Washburn, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-131",
+    "name": "Washington, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-133",
+    "name": "Waukesha, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-135",
+    "name": "Waupaca, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-137",
+    "name": "Waushara, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-139",
+    "name": "Winnebago, Wisconsin, US"
+  },
+  {
+    "code": "US-WI-141",
+    "name": "Wood, Wisconsin, US"
+  },
+  {
     "code": "CA",
     "name": "Canada"
   },
