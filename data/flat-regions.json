@@ -5648,6 +5648,410 @@
     "name": "Valencia, New Mexico, US"
   },
   {
+    "code": "US-NC",
+    "name": "North Carolina, US"
+  },
+  {
+    "code": "US-NC-001",
+    "name": "Alamance, North Carolina, US"
+  },
+  {
+    "code": "US-NC-003",
+    "name": "Alexander, North Carolina, US"
+  },
+  {
+    "code": "US-NC-005",
+    "name": "Alleghany, North Carolina, US"
+  },
+  {
+    "code": "US-NC-007",
+    "name": "Anson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-009",
+    "name": "Ashe, North Carolina, US"
+  },
+  {
+    "code": "US-NC-011",
+    "name": "Avery, North Carolina, US"
+  },
+  {
+    "code": "US-NC-013",
+    "name": "Beaufort, North Carolina, US"
+  },
+  {
+    "code": "US-NC-015",
+    "name": "Bertie, North Carolina, US"
+  },
+  {
+    "code": "US-NC-017",
+    "name": "Bladen, North Carolina, US"
+  },
+  {
+    "code": "US-NC-019",
+    "name": "Brunswick, North Carolina, US"
+  },
+  {
+    "code": "US-NC-021",
+    "name": "Buncombe, North Carolina, US"
+  },
+  {
+    "code": "US-NC-023",
+    "name": "Burke, North Carolina, US"
+  },
+  {
+    "code": "US-NC-025",
+    "name": "Cabarrus, North Carolina, US"
+  },
+  {
+    "code": "US-NC-027",
+    "name": "Caldwell, North Carolina, US"
+  },
+  {
+    "code": "US-NC-029",
+    "name": "Camden, North Carolina, US"
+  },
+  {
+    "code": "US-NC-031",
+    "name": "Carteret, North Carolina, US"
+  },
+  {
+    "code": "US-NC-033",
+    "name": "Caswell, North Carolina, US"
+  },
+  {
+    "code": "US-NC-035",
+    "name": "Catawba, North Carolina, US"
+  },
+  {
+    "code": "US-NC-037",
+    "name": "Chatham, North Carolina, US"
+  },
+  {
+    "code": "US-NC-039",
+    "name": "Cherokee, North Carolina, US"
+  },
+  {
+    "code": "US-NC-041",
+    "name": "Chowan, North Carolina, US"
+  },
+  {
+    "code": "US-NC-043",
+    "name": "Clay, North Carolina, US"
+  },
+  {
+    "code": "US-NC-045",
+    "name": "Cleveland, North Carolina, US"
+  },
+  {
+    "code": "US-NC-047",
+    "name": "Columbus, North Carolina, US"
+  },
+  {
+    "code": "US-NC-049",
+    "name": "Craven, North Carolina, US"
+  },
+  {
+    "code": "US-NC-051",
+    "name": "Cumberland, North Carolina, US"
+  },
+  {
+    "code": "US-NC-053",
+    "name": "Currituck, North Carolina, US"
+  },
+  {
+    "code": "US-NC-055",
+    "name": "Dare, North Carolina, US"
+  },
+  {
+    "code": "US-NC-057",
+    "name": "Davidson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-059",
+    "name": "Davie, North Carolina, US"
+  },
+  {
+    "code": "US-NC-061",
+    "name": "Duplin, North Carolina, US"
+  },
+  {
+    "code": "US-NC-063",
+    "name": "Durham, North Carolina, US"
+  },
+  {
+    "code": "US-NC-065",
+    "name": "Edgecombe, North Carolina, US"
+  },
+  {
+    "code": "US-NC-067",
+    "name": "Forsyth, North Carolina, US"
+  },
+  {
+    "code": "US-NC-069",
+    "name": "Franklin, North Carolina, US"
+  },
+  {
+    "code": "US-NC-071",
+    "name": "Gaston, North Carolina, US"
+  },
+  {
+    "code": "US-NC-073",
+    "name": "Gates, North Carolina, US"
+  },
+  {
+    "code": "US-NC-075",
+    "name": "Graham, North Carolina, US"
+  },
+  {
+    "code": "US-NC-077",
+    "name": "Granville, North Carolina, US"
+  },
+  {
+    "code": "US-NC-079",
+    "name": "Greene, North Carolina, US"
+  },
+  {
+    "code": "US-NC-081",
+    "name": "Guilford, North Carolina, US"
+  },
+  {
+    "code": "US-NC-083",
+    "name": "Halifax, North Carolina, US"
+  },
+  {
+    "code": "US-NC-085",
+    "name": "Harnett, North Carolina, US"
+  },
+  {
+    "code": "US-NC-087",
+    "name": "Haywood, North Carolina, US"
+  },
+  {
+    "code": "US-NC-089",
+    "name": "Henderson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-091",
+    "name": "Hertford, North Carolina, US"
+  },
+  {
+    "code": "US-NC-093",
+    "name": "Hoke, North Carolina, US"
+  },
+  {
+    "code": "US-NC-095",
+    "name": "Hyde, North Carolina, US"
+  },
+  {
+    "code": "US-NC-097",
+    "name": "Iredell, North Carolina, US"
+  },
+  {
+    "code": "US-NC-099",
+    "name": "Jackson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-101",
+    "name": "Johnston, North Carolina, US"
+  },
+  {
+    "code": "US-NC-103",
+    "name": "Jones, North Carolina, US"
+  },
+  {
+    "code": "US-NC-105",
+    "name": "Lee, North Carolina, US"
+  },
+  {
+    "code": "US-NC-107",
+    "name": "Lenoir, North Carolina, US"
+  },
+  {
+    "code": "US-NC-109",
+    "name": "Lincoln, North Carolina, US"
+  },
+  {
+    "code": "US-NC-113",
+    "name": "Macon, North Carolina, US"
+  },
+  {
+    "code": "US-NC-115",
+    "name": "Madison, North Carolina, US"
+  },
+  {
+    "code": "US-NC-117",
+    "name": "Martin, North Carolina, US"
+  },
+  {
+    "code": "US-NC-111",
+    "name": "McDowell, North Carolina, US"
+  },
+  {
+    "code": "US-NC-119",
+    "name": "Mecklenburg, North Carolina, US"
+  },
+  {
+    "code": "US-NC-121",
+    "name": "Mitchell, North Carolina, US"
+  },
+  {
+    "code": "US-NC-123",
+    "name": "Montgomery, North Carolina, US"
+  },
+  {
+    "code": "US-NC-125",
+    "name": "Moore, North Carolina, US"
+  },
+  {
+    "code": "US-NC-127",
+    "name": "Nash, North Carolina, US"
+  },
+  {
+    "code": "US-NC-129",
+    "name": "New Hanover, North Carolina, US"
+  },
+  {
+    "code": "US-NC-131",
+    "name": "Northampton, North Carolina, US"
+  },
+  {
+    "code": "US-NC-133",
+    "name": "Onslow, North Carolina, US"
+  },
+  {
+    "code": "US-NC-135",
+    "name": "Orange, North Carolina, US"
+  },
+  {
+    "code": "US-NC-137",
+    "name": "Pamlico, North Carolina, US"
+  },
+  {
+    "code": "US-NC-139",
+    "name": "Pasquotank, North Carolina, US"
+  },
+  {
+    "code": "US-NC-141",
+    "name": "Pender, North Carolina, US"
+  },
+  {
+    "code": "US-NC-143",
+    "name": "Perquimans, North Carolina, US"
+  },
+  {
+    "code": "US-NC-145",
+    "name": "Person, North Carolina, US"
+  },
+  {
+    "code": "US-NC-147",
+    "name": "Pitt, North Carolina, US"
+  },
+  {
+    "code": "US-NC-149",
+    "name": "Polk, North Carolina, US"
+  },
+  {
+    "code": "US-NC-151",
+    "name": "Randolph, North Carolina, US"
+  },
+  {
+    "code": "US-NC-153",
+    "name": "Richmond, North Carolina, US"
+  },
+  {
+    "code": "US-NC-155",
+    "name": "Robeson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-157",
+    "name": "Rockingham, North Carolina, US"
+  },
+  {
+    "code": "US-NC-159",
+    "name": "Rowan, North Carolina, US"
+  },
+  {
+    "code": "US-NC-161",
+    "name": "Rutherford, North Carolina, US"
+  },
+  {
+    "code": "US-NC-163",
+    "name": "Sampson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-165",
+    "name": "Scotland, North Carolina, US"
+  },
+  {
+    "code": "US-NC-167",
+    "name": "Stanly, North Carolina, US"
+  },
+  {
+    "code": "US-NC-169",
+    "name": "Stokes, North Carolina, US"
+  },
+  {
+    "code": "US-NC-171",
+    "name": "Surry, North Carolina, US"
+  },
+  {
+    "code": "US-NC-173",
+    "name": "Swain, North Carolina, US"
+  },
+  {
+    "code": "US-NC-175",
+    "name": "Transylvania, North Carolina, US"
+  },
+  {
+    "code": "US-NC-177",
+    "name": "Tyrrell, North Carolina, US"
+  },
+  {
+    "code": "US-NC-179",
+    "name": "Union, North Carolina, US"
+  },
+  {
+    "code": "US-NC-181",
+    "name": "Vance, North Carolina, US"
+  },
+  {
+    "code": "US-NC-183",
+    "name": "Wake, North Carolina, US"
+  },
+  {
+    "code": "US-NC-185",
+    "name": "Warren, North Carolina, US"
+  },
+  {
+    "code": "US-NC-187",
+    "name": "Washington, North Carolina, US"
+  },
+  {
+    "code": "US-NC-189",
+    "name": "Watauga, North Carolina, US"
+  },
+  {
+    "code": "US-NC-191",
+    "name": "Wayne, North Carolina, US"
+  },
+  {
+    "code": "US-NC-193",
+    "name": "Wilkes, North Carolina, US"
+  },
+  {
+    "code": "US-NC-195",
+    "name": "Wilson, North Carolina, US"
+  },
+  {
+    "code": "US-NC-197",
+    "name": "Yadkin, North Carolina, US"
+  },
+  {
+    "code": "US-NC-199",
+    "name": "Yancey, North Carolina, US"
+  },
+  {
     "code": "US-ND",
     "name": "North Dakota, US"
   },
@@ -6218,6 +6622,318 @@
   {
     "code": "US-OH-175",
     "name": "Wyandot, Ohio, US"
+  },
+  {
+    "code": "US-OK",
+    "name": "Oklahoma, US"
+  },
+  {
+    "code": "US-OK-001",
+    "name": "Adair, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-003",
+    "name": "Alfalfa, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-005",
+    "name": "Atoka, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-007",
+    "name": "Beaver, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-009",
+    "name": "Beckham, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-011",
+    "name": "Blaine, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-013",
+    "name": "Bryan, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-015",
+    "name": "Caddo, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-017",
+    "name": "Canadian, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-019",
+    "name": "Carter, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-021",
+    "name": "Cherokee, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-023",
+    "name": "Choctaw, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-025",
+    "name": "Cimarron, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-027",
+    "name": "Cleveland, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-029",
+    "name": "Coal, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-031",
+    "name": "Comanche, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-033",
+    "name": "Cotton, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-035",
+    "name": "Craig, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-037",
+    "name": "Creek, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-039",
+    "name": "Custer, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-041",
+    "name": "Delaware, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-043",
+    "name": "Dewey, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-045",
+    "name": "Ellis, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-047",
+    "name": "Garfield, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-049",
+    "name": "Garvin, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-051",
+    "name": "Grady, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-053",
+    "name": "Grant, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-055",
+    "name": "Greer, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-057",
+    "name": "Harmon, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-059",
+    "name": "Harper, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-061",
+    "name": "Haskell, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-063",
+    "name": "Hughes, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-065",
+    "name": "Jackson, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-067",
+    "name": "Jefferson, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-069",
+    "name": "Johnston, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-071",
+    "name": "Kay, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-073",
+    "name": "Kingfisher, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-075",
+    "name": "Kiowa, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-077",
+    "name": "Latimer, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-079",
+    "name": "Le Flore, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-081",
+    "name": "Lincoln, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-083",
+    "name": "Logan, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-085",
+    "name": "Love, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-093",
+    "name": "Major, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-095",
+    "name": "Marshall, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-097",
+    "name": "Mayes, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-087",
+    "name": "McClain, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-089",
+    "name": "McCurtain, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-091",
+    "name": "McIntosh, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-099",
+    "name": "Murray, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-101",
+    "name": "Muskogee, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-103",
+    "name": "Noble, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-105",
+    "name": "Nowata, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-107",
+    "name": "Okfuskee, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-109",
+    "name": "Oklahoma, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-111",
+    "name": "Okmulgee, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-113",
+    "name": "Osage, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-115",
+    "name": "Ottawa, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-117",
+    "name": "Pawnee, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-119",
+    "name": "Payne, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-121",
+    "name": "Pittsburg, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-123",
+    "name": "Pontotoc, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-125",
+    "name": "Pottawatomie, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-127",
+    "name": "Pushmataha, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-129",
+    "name": "Roger Mills, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-131",
+    "name": "Rogers, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-133",
+    "name": "Seminole, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-135",
+    "name": "Sequoyah, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-137",
+    "name": "Stephens, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-139",
+    "name": "Texas, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-141",
+    "name": "Tillman, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-143",
+    "name": "Tulsa, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-145",
+    "name": "Wagoner, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-147",
+    "name": "Washington, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-149",
+    "name": "Washita, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-151",
+    "name": "Woods, Oklahoma, US"
+  },
+  {
+    "code": "US-OK-153",
+    "name": "Woodward, Oklahoma, US"
   },
   {
     "code": "US-PA",
