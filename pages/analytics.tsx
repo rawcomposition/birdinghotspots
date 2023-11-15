@@ -1,113 +1,123 @@
-import * as React from "react";
-import Link from "next/link";
+import React from "react";
 import connect from "lib/mongo";
 import Pageview from "models/Pageview";
 import PageHeading from "components/PageHeading";
 import { GetServerSideProps } from "next";
-import { State } from "lib/types";
-import dayjs from "dayjs";
+import LineChart from "components/LineChart";
 import Title from "components/Title";
-import States from "data/states.json";
-import { useRouter } from "next/router";
-import Form from "components/Form";
-import Select from "components/Select";
-import { useForm } from "react-hook-form";
-
-interface StateViews extends State {
-  count: number;
-}
+import { getRegion } from "lib/localData";
+import { Region } from "lib/types";
+import Link from "next/link";
+import Regions from "data/regions.json";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 
 type Props = {
-  data: StateViews[];
-  year: number;
-  month: number;
+  regionName?: string;
+  subregions: Region[];
+  parents: Region[];
+  hasRegion: boolean;
+  data: {
+    label: string;
+    count: number;
+  }[];
 };
 
-export default function Analytics({ data, year, month }: Props) {
-  const router = useRouter();
-  const form = useForm({ defaultValues: { year: year.toString(), month: month.toString() } });
-  const startYear = 2023;
-
-  const yearOptions = Array.from({ length: dayjs().year() - startYear + 1 }, (_, i) => ({
-    value: (startYear + i).toString(),
-    label: (startYear + i).toString(),
-  }));
-
-  const isCurrentYear = year === dayjs().year();
-  const currentMonth = dayjs().month() + 1;
-  const months = Array.from({ length: 12 }, (_, i) => i + 1);
-  const filteredMonths = isCurrentYear ? months.filter((it) => it <= currentMonth) : months;
-
-  const monthOptions = filteredMonths.map((month) => ({
-    value: month.toString(),
-    label: dayjs()
-      .month(month - 1)
-      .format("MMMM"),
-  }));
-
-  const handleYearChange = (value: string) => {
-    router.push(`/analytics?year=${value}&month=${month}`);
-  };
-
-  const handleMonthChange = (value: string) => {
-    router.push(`/analytics?year=${year}&month=${value}`);
-  };
-
+export default function Analytics({ data, regionName, subregions, parents, hasRegion }: Props) {
   return (
     <div className="container pb-16 mt-12">
-      <Title>Pageview Analytics</Title>
-      <PageHeading breadcrumbs={false}>Pageview Analytics</PageHeading>
+      <Title>Analytics</Title>
+      <PageHeading>Analytics</PageHeading>
 
-      <Form form={form} className="grid gap-4 max-w-xs grid-cols-2 -mt-8 mb-8" onSubmit={() => {}}>
-        <Select name="year" label="Year" options={yearOptions} onChange={handleYearChange} />
-        <Select name="month" label="Month" options={monthOptions} onChange={handleMonthChange} />
-      </Form>
+      {hasRegion && (
+        <p className="text-sm text-gray-500 mb-8 -mt-10">
+          <Link href="/analytics">Site wide</Link> <ChevronRightIcon className="inline-block w-4 h-4" />{" "}
+          {parents.map((parent) => (
+            <React.Fragment key={parent.code}>
+              <Link key={parent.code} href={`/analytics?region=${parent.code}`}>
+                {parent.name}
+              </Link>
+              <ChevronRightIcon className="inline-block w-4 h-4" />
+            </React.Fragment>
+          ))}
+          <span>{regionName}</span>
+        </p>
+      )}
 
-      <div className="max-w-md">
-        <table className="table-auto w-full">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 text-left">Region</th>
-              <th className="px-4 py-2 text-left">Views</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(({ label, count, code }) => (
-              <tr key={code}>
-                <td className="border px-4 py-2">{label}</td>
-                <td className="border px-4 py-2">{count}</td>
-              </tr>
+      <h2 className="text-xl font-bold mb-4">{regionName} page views by month</h2>
+
+      <LineChart data={data} className="mb-12" />
+
+      {!!subregions?.length && (
+        <>
+          <h3 className="text-lg font-bold mb-2">Subregions</h3>
+          <ul className={clsx("ml-2", subregions.length > 10 && "columns-2 sm:columns-5")}>
+            {subregions.map((subregion) => (
+              <li key={subregion.code}>
+                <Link href={`/analytics?region=${subregion.code}`}>{subregion.name}</Link>
+              </li>
             ))}
-          </tbody>
-        </table>
-      </div>
-      <p className="text-sm text-gray-500 mt-8">
-        • The pageview count for states and counties only includes visits region&apos;s homepage.
+          </ul>
+        </>
+      )}
+
+      <p className="text-xs text-gray-500 mt-8">
+        • Only visits to hotspot, region, and city/town pages are counted. Editor and bots views are excluded.
       </p>
-      <p className="text-sm text-gray-500">• Editors and bots are not included in the pageview count.</p>
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const regionCode = query.region as string | undefined;
+  const region = regionCode ? getRegion(regionCode) : null;
+
+  const isCounty = regionCode?.split("-").length === 3;
+  const isState = regionCode?.split("-").length === 2;
+
   await connect();
-  const entity = "state";
-  const year = query.year ? Number(query.year as string) : dayjs().year();
-  const month = query.month ? Number(query.month as string) : dayjs().month() + 1;
 
-  const regionStats = await Pageview.find({ entity, year, month });
-  const data = States.filter(({ active }) => active).map((region) => {
-    const stats = regionStats.find((view) => view.stateCode === region.code);
-    return {
-      count: stats?.count || 0,
-      label: region.label,
-      code: region.code,
-    };
-  });
+  const results = await Pageview.aggregate([
+    {
+      $match: isCounty
+        ? { countyCode: regionCode }
+        : isState
+        ? { stateCode: regionCode }
+        : !!regionCode
+        ? { countryCode: regionCode }
+        : {},
+    },
+    {
+      $group: {
+        _id: {
+          year: "$year",
+          month: "$month",
+        },
+        totalPageviews: { $sum: "$count" },
+      },
+    },
+    {
+      $sort: {
+        "_id.year": 1,
+        "_id.month": 1,
+      },
+    },
+  ]);
 
-  const sortedData = data.sort((a, b) => b.count - a.count);
+  const data = results.map(({ _id: { year, month }, totalPageviews }) => ({
+    label: `${year}-${month.toString().padStart(2, "0")}`,
+    count: totalPageviews,
+  }));
+
+  const subregions = region ? region.subregions || [] : Regions.map(({ name, code }) => ({ name, code }));
 
   return {
-    props: { data: sortedData, year, month },
+    props: {
+      data,
+      regionName: region?.name || "Site wide",
+      subregions,
+      parents: region?.parents?.reverse() || [],
+      hasRegion: !!region,
+    },
   };
 };

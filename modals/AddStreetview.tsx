@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
 import StreetView from "components/StreetView";
@@ -12,9 +12,10 @@ type Props = {
 
 export default function AddStreetView({ locationId, onSuccess }: Props) {
   const [url, setUrl] = React.useState("");
-  const [fov, setFov] = React.useState(80);
+  const [fov, setFov] = React.useState(70);
   const { send, loading } = useToast();
   const { close } = useModal();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const pieces = url.split(",");
 
@@ -56,12 +57,22 @@ export default function AddStreetView({ locationId, onSuccess }: Props) {
     setFov(90);
   };
 
+  React.useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <>
       <div className="flex-1">
         <label className="text-gray-500 font-bold">
           Google Street View URL <br />
-          <input type="text" className="form-input" value={url} onChange={(e) => setUrl(e.target.value)} />
+          <input
+            type="text"
+            className="form-input"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            ref={inputRef}
+          />
         </label>
       </div>
       {!url && (

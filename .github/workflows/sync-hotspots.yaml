@@ -2,11 +2,35 @@ name: Sync Hotspots
 on:
   schedule:
     - cron: "0 */2 * * *"
+
 jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
       - name: Sync Hotspots
         run: |
-          curl --request POST \
-          --url 'https://birdinghotspots.org/api/hotspot/sync?key=${{ secrets.CRON_KEY }}' \
+          response=$(curl --write-out %{http_code} --silent --output /dev/null --request POST \
+          --url 'https://birdinghotspots.org/api/hotspot/sync?key=${{ secrets.CRON_KEY }}')
+          if [ $response -eq 200 ]; then
+            echo "Request was successful (Status Code: $response)"
+          else
+            echo "Request failed with Status Code: $response"
+            exit 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Send email on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp-relay.sendinblue.com
+          server_port: 587
+          username: noreply.birdinghotspots@gmail.com
+          password: ${{ secrets.EMAIL_PASS }}
+          subject: "GitHub Action Failed: Sync Hotspots"
+          to: adam@rawcomposition.com
+          body: |
+            The GitHub Action 'Sync Hotspots' failed. Please check the logs for more details.

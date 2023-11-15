@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import mapboxgl from "mapbox-gl";
 import { Marker } from "lib/types";
 import { getMarkerShade } from "lib/helpers";

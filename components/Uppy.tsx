@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Uppy from "@uppy/core";
 import { DragDrop, StatusBar, useUppy } from "@uppy/react";
 import Transloadit from "@uppy/transloadit";

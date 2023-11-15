@@ -1,31 +1,28 @@
-import aws from "aws-sdk";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { v4 as uuidv4 } from "uuid";
 import Hotspot from "models/Hotspot";
 import connect from "lib/mongo";
 import secureApi from "lib/secureApi";
 
 export default secureApi(async (req, res, token) => {
-  aws.config.update({
-    accessKeyId: process.env.WASABI_KEY,
-    secretAccessKey: process.env.WASABI_SECRET,
+  const s3 = new S3Client({
+    credentials: {
+      accessKeyId: process.env.WASABI_KEY || "",
+      secretAccessKey: process.env.WASABI_SECRET || "",
+    },
     region: "us-east-1",
-    signatureVersion: "v4",
+    endpoint: "https://s3.wasabisys.com",
   });
-  const endpoint = new aws.Endpoint("s3.wasabisys.com");
-  const s3 = new aws.S3({ endpoint });
 
   const uploadUrlToS3 = async (url: string, key: string) => {
-    const response = await s3
-      .putObject({
-        Bucket: "birdinghotspots",
-        Key: key,
-        ACL: "public-read",
-        //@ts-ignore
-        Body: await fetch(url).then((res) => res.buffer()),
-      })
-      .promise();
-
-    return response;
+    const uploadParams = {
+      Bucket: "birdinghotspots",
+      Key: key,
+      ACL: "public-read",
+      Body: await fetch(url).then((res) => res.arrayBuffer()),
+    };
+    // @ts-ignore
+    await s3.send(new PutObjectCommand(uploadParams));
   };
 
   const { lat, lng, heading, fov, pitch, locationId }: any = req.body;
@@ -63,6 +60,7 @@ export default secureApi(async (req, res, token) => {
 
     res.status(200).json({ success: true, imgObject });
   } catch (error: any) {
+    console.log(error);
     res.status(500).json({ error: error.message });
     return;
   }

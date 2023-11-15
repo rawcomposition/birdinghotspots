@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
 import Field from "components/Field";
@@ -7,7 +7,6 @@ import useToast from "hooks/useToast";
 import Input from "components/Input";
 import Form from "components/Form";
 import { useForm, SubmitHandler } from "react-hook-form";
-import StateSelect from "components/StateSelect";
 
 type Props = {
   onSuccess: () => void;
@@ -17,7 +16,10 @@ type Props = {
 type Inputs = {
   email: string;
   name: string;
-  regions: string[];
+  regions: {
+    label: string;
+    value: string;
+  }[];
   subscriptions?: {
     label: string;
     value: string;
@@ -37,7 +39,12 @@ export default function InviteEditor({ onSuccess }: Props) {
     const response = await send({
       url: "/api/admin/user/invite",
       method: "POST",
-      data: { name, email, regions, subscriptions: subscriptions?.map((it) => it.value) || [] },
+      data: {
+        name,
+        email,
+        subscriptions: subscriptions?.map((it) => it.value) || [],
+        regions: regions?.map((it) => it.value) || [],
+      },
     });
     if (response.success) {
       onSuccess();
@@ -60,7 +67,14 @@ export default function InviteEditor({ onSuccess }: Props) {
         <Input type="email" name="email" required />
       </Field>
       <Field label="Region Access">
-        <StateSelect name="regions" placeholder="Select regions..." menuPortalTarget={document.body} required isMulti />
+        <RegionSelect
+          name="regions"
+          placeholder="Select regions..."
+          menuPortalTarget={document.body}
+          required
+          isMulti
+          syncRegionsOnly
+        />
       </Field>
       <Field label="Region Subscription">
         <RegionSelect name="subscriptions" menuPortalTarget={document.body} isMulti required />

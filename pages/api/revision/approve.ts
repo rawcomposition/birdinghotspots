@@ -2,6 +2,7 @@ import connect from "lib/mongo";
 import Revision from "models/Revision";
 import Hotspot from "models/Hotspot";
 import secureApi from "lib/secureApi";
+import dayjs from "dayjs";
 
 export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
@@ -13,6 +14,8 @@ export default secureApi(async (req, res, token) => {
       res.status(500).json({ error: "suggestion not found" });
       return;
     }
+
+    const shouldCite = !!revision.tips?.new || !!revision.birds?.new || !!revision.about?.new || !!revision.hikes?.new;
 
     const hotspot = await Hotspot.findOne({ locationId: revision.locationId });
     if (!hotspot) {
@@ -31,6 +34,7 @@ export default secureApi(async (req, res, token) => {
 
     const noContent = !about && !tips && !birds && !hikes;
 
+    const updatedAt = dayjs().format();
     await Hotspot.updateOne(
       { locationId: revision.locationId },
       {
@@ -44,12 +48,16 @@ export default secureApi(async (req, res, token) => {
           restrooms,
           accessible,
           fee,
+          updatedAt,
         },
       }
     );
     await Revision.updateOne({ _id: id }, { status: "approved" });
 
-    if (!hotspot.citations.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())) {
+    if (
+      shouldCite &&
+      !hotspot.citations.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())
+    ) {
       hotspot.citations.push({ label: revision.by });
       await hotspot.save();
     }

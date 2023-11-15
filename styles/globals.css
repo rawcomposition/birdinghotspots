@@ -376,9 +376,19 @@ img.marker-sm {
 
 .state-map path {
   @apply fill-slate-200;
+  stroke-width: 1;
+  stroke: #fff;
 }
 
-.state-map a:hover path {
+.state-map .disabled path {
+  @apply fill-gray-100 cursor-default;
+}
+
+.state-map .disabled text {
+  @apply hidden;
+}
+
+.state-map a:not(.disabled):hover path {
   opacity: 0.8;
 }
 
@@ -421,6 +431,22 @@ img.marker-sm {
 
 .red path {
   fill: #ce0d03;
+}
+
+.lightblue path {
+  fill: lightskyblue;
+}
+
+.goldenrod path {
+  fill: goldenrod;
+}
+
+.navajo path {
+  fill: navajowhite;
+}
+
+.salmon path {
+  fill: salmon;
 }
 
 /*NProgress bar*/

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ParsedUrlQuery } from "querystring";
 import admin from "lib/firebaseAdmin";
 import DashboardPage from "components/DashboardPage";
@@ -9,7 +9,6 @@ import FormError from "components/FormError";
 import Form from "components/Form";
 import Field from "components/Field";
 import Select from "components/Select";
-import StateSelect from "components/StateSelect";
 import { useForm, SubmitHandler } from "react-hook-form";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { useRouter } from "next/router";
@@ -18,13 +17,16 @@ import { roles } from "lib/helpers";
 import DeleteBtn from "components/DeleteBtn";
 import RegionSelect from "components/RegionSelect";
 import { getProfile } from "lib/mongo";
-import { getRegionLabel } from "lib/localData";
+import { getRegion } from "lib/localData";
 
 type UserInput = {
   role: string;
   name: string;
   email: string;
-  regions: string[];
+  regions?: {
+    label: string;
+    value: string;
+  }[];
   subscriptions?: {
     label: string;
     value: string;
@@ -38,20 +40,24 @@ type Props = {
     label: string;
     value: string;
   }[];
+  regions: {
+    label: string;
+    value: string;
+  }[];
   emailFrequency: string;
 };
 
 const roleOptions = roles.map(({ id, name }) => ({ value: id, label: name }));
 
-export default function Edit({ user, subscriptions, emailFrequency }: Props) {
+export default function Edit({ user, subscriptions, regions, emailFrequency }: Props) {
   const router = useRouter();
   const form = useForm<UserInput>({
     defaultValues: {
       name: user.displayName,
       email: user.email,
       role: user.role,
-      regions: user.regions || [],
-      subscriptions: subscriptions,
+      regions,
+      subscriptions,
       emailFrequency,
     },
   });
@@ -66,6 +72,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
         data: {
           ...data,
           subscriptions: data?.subscriptions?.map((it) => it.value) || [],
+          regions: data?.regions?.map((it) => it.value) || [],
         },
       },
     });
@@ -100,7 +107,7 @@ export default function Edit({ user, subscriptions, emailFrequency }: Props) {
             </Field>
             {role === "editor" && (
               <Field label="Region Access">
-                <StateSelect name="regions" required isMulti />
+                <RegionSelect name="regions" required isMulti syncRegionsOnly />
                 <FormError name="marketIds" />
               </Field>
             )}
@@ -142,7 +149,13 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
     const subscriptions =
       profile?.subscriptions?.map((it: string) => ({
-        label: getRegionLabel(it),
+        label: getRegion(it)?.detailedName || it,
+        value: it,
+      })) || [];
+
+    const regions =
+      customClaims?.regions?.map((it: string) => ({
+        label: getRegion(it)?.detailedName || it,
         value: it,
       })) || [];
 
@@ -153,9 +166,9 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
           email,
           displayName: displayName || null,
           role: customClaims?.role || null,
-          regions: customClaims?.regions || [],
         },
         subscriptions,
+        regions,
         emailFrequency: profile?.emailFrequency || "daily",
       },
     };

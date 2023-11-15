@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
@@ -8,7 +8,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getGroupByLocationId } from "lib/mongo";
-import { formatMarker } from "lib/helpers";
+import { formatMarker, canEdit } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
@@ -22,6 +22,7 @@ import Error from "next/error";
 import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
 import InputCitations from "components/InputCitations";
+import Checkbox from "components/Checkbox";
 
 type Props = {
   id?: string;
@@ -86,7 +87,14 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
                 />
               </Field>
 
-              <InputHotspotLinks />
+              <div className="space-y-1">
+                <Field label="Official Webpage URL">
+                  <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
+                </Field>
+                <Checkbox name="citeWebpage" label="Include as citation" />
+              </div>
+
+              <InputHotspotLinks label="Additional Links" />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />
@@ -151,11 +159,11 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
 
   const countryCode = data?.countryCode || (countryParam as string)?.toUpperCase();
 
-  const { role, regions } = token;
-  const canEdit =
-    isNew || role === "admin" || data?.stateCodes?.filter((it: string) => regions?.includes(it)).length > 0;
+  const { role } = token;
+  const canEditGroup =
+    isNew || role === "admin" || canEdit(token, !!data?.stateCodes?.length ? data.stateCodes[0] : countryCode);
 
-  if (!canEdit) {
+  if (!canEditGroup) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }

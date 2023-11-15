@@ -44,7 +44,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
     if (!hideReject && !confirm("Are you sure you want to accept?")) return;
     await send({
       url: `/api/revision/approve?id=${id}`,
-      method: "GET",
+      method: "POST",
     });
     onApprove();
     toast.success(hideReject ? "Note acknowledged" : "Suggestion approved");

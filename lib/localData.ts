@@ -1,146 +1,154 @@
-import States from "data/states.json";
-import OhioRegions from "data/oh-regions.json";
-import ArizonaCounties from "data/az-counties.json";
-import OhioCounties from "data/oh-counties.json";
-import VermontCounties from "data/vt-counties.json";
-import RhodeIslandCounties from "data/ri-counties.json";
-import NewMexicoCounties from "data/nm-counties.json";
-import MichiganCounties from "data/mi-counties.json";
-import MassachusettsCounties from "data/ma-counties.json";
-import KentuckyCounties from "data/ky-counties.json";
-import GeorgiaCounties from "data/ga-counties.json";
-import NewHampshireCounties from "data/nh-counties.json";
-import TexasCounties from "data/tx-counties.json";
-import CaliforniaCounties from "data/ca-counties.json";
-import ArkansasCounties from "data/ar-counties.json";
-import OntarioCounties from "data/on-counties.json";
-import ConnecticutCounties from "data/ct-counties.json";
-import IowaCounties from "data/ia-counties.json";
-import MaineCounties from "data/me-counties.json";
-import HawaiiCounties from "data/hi-counties.json";
-import { capitalize } from "./helpers";
-import { County } from "lib/types";
+import { Region, Drive, Hotspot } from "lib/types";
+import Regions from "data/regions.json";
 
-const countyArrays: any = {
-  "US-OH": OhioCounties,
-  "US-AZ": ArizonaCounties,
-  "US-VT": VermontCounties,
-  "US-RI": RhodeIslandCounties,
-  "US-NM": NewMexicoCounties,
-  "US-MI": MichiganCounties,
-  "US-MA": MassachusettsCounties,
-  "US-KY": KentuckyCounties,
-  "US-GA": GeorgiaCounties,
-  "US-NH": NewHampshireCounties,
-  "US-TX": TexasCounties,
-  "US-CA": CaliforniaCounties,
-  "US-AR": ArkansasCounties,
-  "US-CT": ConnecticutCounties,
-  "CA-ON": OntarioCounties,
-  "US-IA": IowaCounties,
-  "US-ME": MaineCounties,
-  "US-HI": HawaiiCounties,
+const formatRegion = (region: Omit<Region, "detailedName">): Region => {
+  let detailedName = region.name;
+  if (region.parents?.length === 2) {
+    detailedName = `${region.name}, ${region.parents[0].name}, ${region.parents[1].name.replace(
+      "United States",
+      "US"
+    )}`;
+  } else if (region.parents?.length === 1) {
+    detailedName = `${region.name}, ${region.parents[0].name.replace("United States", "US")}`;
+  }
+  return {
+    ...region,
+    detailedName,
+  };
 };
 
-export function getState(param: string) {
-  const data = States.find((state) => state.slug === param);
-  return data;
-}
-
-export function getStateByCode(code: string) {
-  const data = States.find((state) => state.code === code);
-  return data;
-}
-
-export function getCountyByCode(code: string) {
+export function getRegion(code: string): Region | null {
   if (!code) return null;
+  const regions = Regions as Region[];
   const pieces = code.split("-");
-  const stateCode = `${pieces[0]}-${pieces[1]}`;
-  const array = countyArrays[stateCode];
-  if (!array) return null;
-  const county = array.find((county: County) => county.code === code);
-  if (!county) return null;
 
-  return formatCounty(stateCode, county);
-}
+  if (pieces.length === 3) {
+    // County
+    const countryCode = pieces[0];
+    const stateCode = `${pieces[0]}-${pieces[1]}`;
+    const countyCode = code;
 
-export function getLocationText(countyCode: string, hideState?: boolean, hideCountry?: boolean) {
-  if (!countyCode) return null;
-  const pieces = countyCode.split("-");
-  const stateCode = `${pieces[0]}-${pieces[1]}`;
-  const array = countyArrays[stateCode];
-  if (!array) return null;
-  const county = array.find((county: County) => county.code === countyCode);
-  const state = getStateByCode(stateCode);
-  if (!county || !state) return null;
-  const formattedCounty = formatCounty(stateCode, county);
-  let result = formattedCounty.name;
-  if (!hideState) {
-    result = `${result}, ${state?.label}`;
+    const country = regions.find((it) => it.code === countryCode);
+    if (!country) return null;
+    const state = country.subregions?.find((it) => it.code === stateCode);
+    if (!state) return null;
+    const county = state.subregions?.find((it) => it.code === countyCode);
+    if (!county) return null;
+
+    return formatRegion({
+      ...county,
+      features: state.features || [],
+      ...(state.portal ? { portal: state.portal } : {}),
+      longName: county.longName || `${county.name} County`,
+      parents: [
+        {
+          code: state.code,
+          name: state.name,
+        },
+        {
+          code: country.code,
+          name: country.name,
+        },
+      ],
+    });
+  } else if (pieces.length === 2) {
+    // State
+    const countryCode = pieces[0];
+    const stateCode = code;
+
+    const country = Regions.find((it) => it.code === countryCode);
+    if (!country) return null;
+    const state = country.subregions?.find((it) => it.code === stateCode);
+    if (!state) return null;
+
+    return formatRegion({
+      ...state,
+      longName: state.name,
+      parents: [
+        {
+          code: country.code,
+          name: country.name,
+        },
+      ],
+    });
+  } else if (pieces.length === 1) {
+    // Country
+    const countryCode = code;
+
+    const country = Regions.find((it) => it.code === countryCode) as Region;
+    if (!country) return null;
+
+    return formatRegion({
+      ...country,
+      longName: country.name,
+      subregions: country.subregions?.map(({ subregions, ...rest }) => rest),
+    });
   }
-  if (!hideCountry) {
-    result = `${result}, ${state?.country}`;
-  }
-  return result;
+  return null;
 }
 
-export function getCountyBySlug(stateCode: string, countySlug: string) {
-  const slug = countySlug.replace("-county", "");
-  const array = countyArrays[stateCode];
-  if (!array) return null;
-  const county = array.find((county: County) => county.slug === slug);
-  if (!county) return null;
+type DriveMap = {
+  [x: string]: {
+    name: string;
+    url: string;
+  }[];
+};
 
-  return formatCounty(stateCode, county);
-}
-
-function formatCounty(stateCode: string, county: County) {
-  const { region: regionCode, code, slug, name, longName } = county;
-  const region = regionCode && stateCode === "US-OH" ? (OhioRegions as any)[regionCode] : {};
-  const deSlugged = capitalize(slug.replaceAll("-", " "));
-  return {
-    slug,
-    name: name || deSlugged,
-    longName: longName || `${deSlugged} County`,
-    region: region || null,
-    code: code,
-    regionLabel: region?.label || null,
-    color: region?.color || "#4a84b2",
-  };
-}
-
-export function getCounties(stateCode: string) {
-  const counties: County[] = countyArrays[stateCode];
-  if (!counties) return null;
-  return counties.map((county: County) => formatCounty(stateCode, county));
-}
-
-export function getAllCounties(limitStates?: string[] | null) {
-  const counties: any = [];
-  Object.entries(countyArrays).forEach(([stateCode, array]: any) => {
-    if (limitStates && !limitStates.includes(stateCode)) return;
-    const state = getStateByCode(stateCode);
-    array.forEach((county: County) => {
-      counties.push({
-        ...formatCounty(stateCode, county),
-        stateSlug: state?.slug,
-        stateLabel: state?.label,
-        country: state?.country,
-      });
+export async function restructureDrivesByCounty(drives: Drive[], regionCode: string) {
+  let drivesByCounty: DriveMap = {};
+  drives.forEach(({ counties, locationId, name }) => {
+    counties.forEach((countyCode) => {
+      if (!countyCode) return;
+      if (!drivesByCounty[countyCode]) {
+        drivesByCounty[countyCode] = [];
+      }
+      drivesByCounty[countyCode].push({ name, url: `/drive/${locationId}` });
     });
   });
-  return counties;
+
+  const stateRegion = getRegion(regionCode);
+  const counties = stateRegion?.subregions || [];
+
+  const unsorted =
+    Object.entries(drivesByCounty).map(([key, drives]) => {
+      const county = counties.find((it) => it.code === key);
+      return {
+        countyCode: county?.code || "",
+        countyName: county?.name || "",
+        drives,
+      };
+    }) || [];
+  return unsorted.sort((a, b) => (a.countyName > b.countyName ? 1 : -1));
 }
 
-export function getRegionLabel(region: string) {
-  if (!region) return null;
-  if (!region.includes("-")) return region;
-  const pieces = region.split("-");
-  const isCounty = pieces.length === 3;
-  if (isCounty) {
-    const county = getCountyByCode(region);
-    return `${county?.name}, ${pieces[1]}, ${pieces[0]}`;
-  }
-  const state = getStateByCode(region);
-  return `${state?.label}, ${state?.country}`;
+type HotspotMap = {
+  [x: string]: {
+    name: string;
+    url: string;
+  }[];
+};
+
+export async function restructureHotspotsByCounty(hotspots: Hotspot[], regionCode: string) {
+  let counties: HotspotMap = {};
+  hotspots.forEach(({ countyCode, url, name }) => {
+    if (!countyCode) return;
+    if (!counties[countyCode]) {
+      counties[countyCode] = [];
+    }
+    counties[countyCode].push({ name, url });
+  });
+
+  const stateRegion = getRegion(regionCode);
+  const stateCounties = stateRegion?.subregions || [];
+
+  const unsorted =
+    Object.entries(counties).map(([key, hotspots]) => {
+      const county = stateCounties.find((it) => it.code === key);
+      return {
+        countyCode: county?.code || "",
+        countyName: county?.name || "",
+        hotspots,
+      };
+    }) || [];
+  return unsorted.sort((a, b) => (a.countyName > b.countyName ? 1 : -1));
 }

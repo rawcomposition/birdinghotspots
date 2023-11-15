@@ -1,15 +1,4 @@
-import { Hotspot, Drive, Token } from "lib/types";
-import { getCountyByCode } from "lib/localData";
-
-export function slugify(title?: string) {
-  if (!title) return null;
-  const slug = title
-    .toLowerCase()
-    .replace("’s", "s")
-    .replace("'s", "s")
-    .replace(/[^a-z0-9]+/g, "-");
-  return slug.endsWith("-") ? slug.slice(0, -1) : slug;
-}
+import { Hotspot, Token } from "lib/types";
 
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
@@ -19,66 +8,6 @@ export function capitalize(str: string) {
   }
 
   return words.join(" ");
-}
-
-type HotspotMap = {
-  [x: string]: {
-    name: string;
-    url: string;
-  }[];
-};
-
-export function restructureHotspotsByCounty(hotspots: Hotspot[]) {
-  let counties: HotspotMap = {};
-  hotspots.forEach(({ countyCode, url, name }) => {
-    if (!countyCode) return;
-    if (!counties[countyCode]) {
-      counties[countyCode] = [];
-    }
-    counties[countyCode].push({ name, url });
-  });
-
-  const unsorted =
-    Object.entries(counties).map(([key, hotspots]) => {
-      const county = getCountyByCode(key);
-      return {
-        countySlug: county?.slug || "",
-        countyName: county?.longName || "",
-        hotspots,
-      };
-    }) || [];
-  return unsorted.sort((a, b) => (a.countyName > b.countyName ? 1 : -1));
-}
-
-type DriveMap = {
-  [x: string]: {
-    name: string;
-    url: string;
-  }[];
-};
-
-export function restructureDrivesByCounty(drives: Drive[], countrySlug: string, stateSlug: string) {
-  let drivesByCounty: DriveMap = {};
-  drives.forEach(({ counties, slug, name }) => {
-    counties.forEach((countyCode) => {
-      if (!countyCode) return;
-      if (!drivesByCounty[countyCode]) {
-        drivesByCounty[countyCode] = [];
-      }
-      drivesByCounty[countyCode].push({ name, url: `/${countrySlug}/${stateSlug}/drive/${slug}` });
-    });
-  });
-
-  const unsorted =
-    Object.entries(drivesByCounty).map(([key, drives]) => {
-      const county = getCountyByCode(key);
-      return {
-        countySlug: county?.slug || "",
-        countyName: county?.longName || "",
-        drives,
-      };
-    }) || [];
-  return unsorted.sort((a, b) => (a.countyName > b.countyName ? 1 : -1));
 }
 
 export async function geocode(lat: number, lng: number) {
@@ -139,8 +68,10 @@ export function scrollToAnchor(e: React.MouseEvent<HTMLAnchorElement>) {
   }
 }
 
-export const generateRandomId = () => {
-  return Math.random().toString().slice(2, 8);
+export const generateRandomId = (length: number = 6) => {
+  return Math.random()
+    .toString()
+    .slice(2, length + 2);
 };
 
 //Adapted from https://www.geodatasource.com/developers/javascript
@@ -216,7 +147,7 @@ export const getMarkerShade = (count: number) => {
   if (count <= 300) return 8;
   if (count <= 400) return 9;
   if (count <= 500) return 10;
-  return "#bcbcbc";
+  return 1;
 };
 
 export function truncate(string: string, length: number) {
@@ -257,8 +188,8 @@ export const canEdit = (token: Token, region: string | string[]) => {
   if (!region || token?.role !== "editor") return false;
 
   if (typeof region === "string") {
-    return !!token.regions?.includes(region);
+    return !!token.regions?.some((it: string) => region.startsWith(it));
   }
 
-  return region?.filter((it: string) => token.regions?.includes(it)).length > 0;
+  return region?.some((it: string) => !!token.regions?.some((myRegion: string) => it.startsWith(myRegion)));
 };

@@ -11,15 +11,18 @@ type Props = {
   required?: boolean;
   isMulti?: boolean;
   restrict?: boolean;
+  syncRegionsOnly?: boolean;
   [x: string]: any;
 };
 
-export default function Select({ name, required, isMulti, options, restrict, ...props }: Props) {
+export default function RegionSelect({ name, required, isMulti, options, restrict, syncRegionsOnly, ...props }: Props) {
   const { control } = useFormContext();
 
   const loadOptions = (inputValue: string, callback: (options: Option[]) => void) => {
     (async () => {
-      const response = await fetch(`/api/region-search?q=${inputValue}&restrict=${restrict ? "true" : "false"}`);
+      const response = await fetch(
+        `/api/region-search?q=${inputValue}&restrict=${restrict ? "true" : "false"}&syncRegionsOnly=${syncRegionsOnly}`
+      );
       const json = await response.json();
       callback(json.results || []);
     })();
@@ -37,9 +40,9 @@ export default function Select({ name, required, isMulti, options, restrict, ...
             onChange={onChange}
             value={value}
             cacheOptions
-            defaultOptions
+            defaultOptions={!!syncRegionsOnly}
             isMulti={isMulti}
-            noOptionsMessage={({ inputValue }: any) => (inputValue.length ? "No Results" : "Select...")}
+            noOptionsMessage={({ inputValue }: any) => (inputValue.length ? "No Results" : "Search for a region...")}
             {...field}
             {...props}
           />

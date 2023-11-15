@@ -4,9 +4,6 @@ import Hotspot from "models/Hotspot";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { neLat, neLng, swLat, swLng, region }: any = req.query;
-
-  const isCounty = region?.split("-").length === 3;
-
   const query: any = {
     location: {
       $geoWithin: {
@@ -17,17 +14,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       },
     },
   };
-
-  if (region && isCounty) {
+  if (region.split("-").length === 3) {
     query.countyCode = region;
-  } else if (region) {
+  } else if (region.split("-").length === 2) {
     query.stateCode = region;
+  } else if (region) {
+    query.countryCode = region;
   }
 
   try {
     await connect();
     const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "locationId", "lat", "lng", "species"])
-      .limit(1201) // 1201 to check if there are more than 1500 results
+      .limit(1201) // 1201 to check if there are more than 1200 results
       .lean()
       .exec();
 

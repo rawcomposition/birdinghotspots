@@ -45,6 +45,8 @@ const GroupSchema = new Schema({
   hikes: String,
   address: String,
   links: [LinkSchema],
+  webpage: String,
+  citeWebpage: Boolean,
   citations: [CitationSchema],
   restrooms: {
     type: String,
@@ -71,9 +73,10 @@ const GroupSchema = new Schema({
   ],
   createdAt: {
     type: "string",
-    default: () => dayjs().format("YYYY-MM-DD"),
+    default: () => dayjs().format(),
     required: true,
   },
+  updatedAt: String,
 });
 
 GroupSchema.index({ hotspots: 1 });

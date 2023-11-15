@@ -1,6 +1,6 @@
 type Props = {
   children: React.ReactNode;
-  color?: "red" | "blue" | "green" | "yellow" | "orange" | "purple" | "turquoise";
+  color?: "red" | "blue" | "green" | "yellow" | "orange" | "purple" | "darkGray" | "turquoise";
   colorCode?: string;
   className?: string;
   [x: string]: any;
@@ -12,8 +12,9 @@ const colors = {
   green: "#92ad39",
   yellow: "#efd75e",
   orange: "#e57700",
-  purple: "#8c4cb5",
+  purple: "#56669d",
   turquoise: "#46a695",
+  darkGray: "#455d72",
 };
 
 export default function Heading({ children, color, colorCode, className, ...props }: Props) {

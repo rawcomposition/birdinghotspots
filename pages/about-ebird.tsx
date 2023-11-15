@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
@@ -8,11 +8,11 @@ export default function AboutEbird() {
   return (
     <div className="container pb-16 mt-12">
       <Title>About eBird</Title>
-      <PageHeading breadcrumbs={false}>About eBird</PageHeading>
+      <PageHeading>About eBird</PageHeading>
       <div className="md:grid grid-cols-2 gap-8">
         <div>
           <EbirdDescription />
-          <p className="mb-4 font-bold">This website provides descriptions and maps of eBird Hotspots in Ohio.</p>
+          <p className="mb-4 font-bold">This website provides descriptions and maps of eBird Hotspots.</p>
           <p className="mb-4">
             In eBird, Hotspots are shared locations where birders may report their bird sightings to eBird. Hotspots
             provide birders with information about birding locations where birds are being seen.

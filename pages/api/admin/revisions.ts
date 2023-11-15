@@ -1,7 +1,7 @@
 import connect from "lib/mongo";
 import Revision from "models/Revision";
 import { Revision as RevisionType } from "lib/types";
-import { getStateByCode, getCountyByCode } from "lib/localData";
+import { getRegion } from "lib/localData";
 import diff from "node-htmldiff";
 import { getSubscriptions } from "lib/mongo";
 import secureApi from "lib/secureApi";
@@ -17,14 +17,17 @@ export default secureApi(async (req, res, token) => {
     let query: any = { status };
 
     if (token.role !== "admin") {
-      let states = subscriptions.filter((it) => it.split("-").length === 2);
+      const regions = subscriptions.length === 0 ? token.regions || [] : subscriptions;
+      const countries = regions.filter((it) => it.split("-").length === 1);
+      const states = regions.filter((it) => it.split("-").length === 2);
       const counties = subscriptions.filter((it) => it.split("-").length === 3);
-      if (subscriptions.length === 0) {
-        states = token.regions;
-      }
       query = {
         ...query,
-        $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
+        $or: [
+          { countryCode: { $in: countries || [] } },
+          { stateCode: { $in: states || [] } },
+          { countyCode: { $in: counties || [] } },
+        ],
       };
     }
 
@@ -51,15 +54,13 @@ export default secureApi(async (req, res, token) => {
       };
     };
 
-    const results = revisions.map((it: RevisionType) => {
-      const state = getStateByCode(it?.stateCode);
-      const county = getCountyByCode(it.countyCode);
+    const results = revisions.map((it) => {
+      const regionCode = it.countyCode || it.stateCode;
+      const region = getRegion(regionCode);
       const formatted = {
         ...it,
         hasMultiple: revisions.filter((rev: RevisionType) => rev.locationId === it.locationId).length > 1,
-        stateLabel: state?.label || "",
-        countyLabel: county?.name || "",
-        countryCode: it.countryCode,
+        locationName: region?.detailedName || regionCode,
         about: formatDiff(it.about?.old, it.about?.new),
         tips: formatDiff(it.tips?.old, it.tips?.new),
         birds: formatDiff(it.birds?.old, it.birds?.new),

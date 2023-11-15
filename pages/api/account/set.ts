@@ -22,4 +22,4 @@ export default secureApi(async (req, res, token) => {
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-}, "admin");
+});

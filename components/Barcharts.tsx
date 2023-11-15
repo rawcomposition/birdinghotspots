@@ -43,7 +43,7 @@ export default function Barcharts({ locationId }: Props) {
           href={`https://ebird.org/barchart?yr=all&bmo=12&emo=2&r=${locationId}`}
           target="_blank"
           rel="noreferrer"
-          className="bg-[#4a84b2] text-white py-2.5"
+          className="bg-primary text-white py-2.5"
         >
           Winter (Dec – Feb)
         </a>

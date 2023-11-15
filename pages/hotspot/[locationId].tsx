@@ -1,12 +1,12 @@
-import * as React from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import Head from "next/head";
 import { getHotspotByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
-import { getCountyByCode, getStateByCode } from "lib/localData";
-import { County, State, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group, Citation } from "lib/types";
+import { getRegion } from "lib/localData";
+import { Region, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group, Citation } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
@@ -28,16 +28,15 @@ import ExternalLinkButton from "components/ExternalLinkButton";
 import useLogPageview from "hooks/useLogPageview";
 import { useModal } from "providers/modals";
 import { useReloadProps } from "hooks/useReloadProps";
+import dayjs from "dayjs";
 
 interface Props extends HotspotType {
-  county: County;
-  state: State;
+  region: Region;
   marker: Marker;
 }
 
 export default function Hotspot({
-  state,
-  county,
+  region,
   name,
   _id,
   lat,
@@ -60,35 +59,32 @@ export default function Hotspot({
   images,
   marker,
   countryCode,
+  stateCode,
+  countyCode,
   needsDeleting,
   species,
   groups,
   noContent,
   featuredImg,
+  updatedAt,
 }: Props) {
   const { user } = useUser();
-  useLogPageview({ locationId, stateCode: state.code, countyCode: county.code, countryCode, entity: "hotspot" });
+  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot" });
   const { open } = useModal();
   const reload = useReloadProps();
-  const countrySlug = countryCode?.toLowerCase();
+
   let extraLinks = [];
-  if (roadside === "Yes") {
-    extraLinks.push({
-      label: "Roadside Birding",
-      url: `/${countrySlug}/${state.slug}/roadside-birding`,
-    });
-  }
 
   if (iba) {
     extraLinks.push({
       label: `${iba.label} Important Bird Area`,
-      url: `/${countrySlug}/${state.slug}/important-bird-areas/${iba.value}`,
+      url: `/iba/${iba.value}`,
     });
   }
   drives?.forEach((drive) => {
     extraLinks.push({
       label: drive.name,
-      url: `/${countrySlug}/${state.slug}/drive/${drive.slug}`,
+      url: `/drive/${drive.locationId}`,
     });
   });
 
@@ -102,21 +98,21 @@ export default function Hotspot({
 
   const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];
 
-  const canEdit = user?.role === "admin" || user?.regions?.includes(state.code);
+  const canEdit =
+    user?.role === "admin" ||
+    !!user?.regions?.some((it: string) => countyCode?.startsWith(it) || stateCode?.startsWith(it));
 
-  const base = state?.portal ? `https://ebird.org/${state.portal}` : "https://ebird.org";
+  const base = region?.portal ? `https://ebird.org/${region?.portal}` : "https://ebird.org";
 
   return (
     <div className="container pb-16">
-      <Title>{`${name} - ${state.label}, ${state.country}`}</Title>
+      <Title>{`${name} - ${region.detailedName}`}</Title>
       {featuredImg && (
         <Head>
           <meta property="og:image" content={featuredImg.smUrl} />
         </Head>
       )}
-      <PageHeading countrySlug={countryCode.toLowerCase()} state={state} county={county}>
-        {name}
-      </PageHeading>
+      <PageHeading region={region}>{name}</PageHeading>
       {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
       <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
@@ -137,7 +133,7 @@ export default function Hotspot({
           <button
             type="button"
             onClick={() => open("addStreetView", { locationId, onSuccess: reload })}
-            className="flex gap-1 text-[#4a84b2]"
+            className="flex gap-1 text-primary"
           >
             <MapIcon className="h-4 w-4" />
             Add Google Street View
@@ -172,9 +168,9 @@ export default function Hotspot({
               <div className="inline-flex gap-2">
                 {/*Grouped to prevent the last button from wrapping on its own*/}
                 <ExternalLinkButton href={`${base}/hotspot/${locationId}/media?yr=all&m=`}>
-                  <ImageIcon className="mr-1 -mt-[3px] text-[#4a84b2]" /> Illustrated Checklist
+                  <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
                 </ExternalLinkButton>
-                <EbirdHotspotBtn {...{ state, locationId }} />
+                <EbirdHotspotBtn portal={region?.portal} locationId={locationId} />
               </div>
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
@@ -202,6 +198,17 @@ export default function Hotspot({
 
           {tips && <AboutSection heading="Tips for Birding" text={tips} />}
 
+          {noContent && (
+            <div className="mb-6 formatted">
+              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
+              <div className="p-4 bg-gray-100 rounded-lg mb-6">
+                If you are familiar with birding this location, please help other birders with a description, tips for
+                birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
+                <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
+              </div>
+            </div>
+          )}
+
           {birds && <AboutSection heading="Birds of Interest" text={birds} />}
 
           {about && <AboutSection heading="About this Location" text={about} />}
@@ -220,17 +227,9 @@ export default function Hotspot({
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 
-          {noContent && !groups?.length && (
-            <div className="mb-6 formatted">
-              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
-              <div className="p-4 bg-gray-100 rounded-lg mb-6">
-                If you are familiar with birding this location, please help other birders with a description, tips for
-                birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
-                <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
-              </div>
-            </div>
-          )}
           <Citations citations={citations} links={links} />
+
+          {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
           {lat && lng && marker && <MapBox key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
@@ -261,30 +260,39 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getHotspotByLocationId(locationId, true);
   if (!data) return { notFound: true };
 
-  const state = getStateByCode(data.stateCode);
-  if (!state) return { notFound: true };
+  const links = data.webpage
+    ? [{ url: data.webpage, label: "Official Website", cite: data.citeWebpage }, ...(data.links || [])]
+    : data.links || [];
 
-  const county = getCountyByCode(data.countyCode);
+  const region =
+    getRegion(data.countyCode || data.stateCode || data.countryCode) || getRegion(data.stateCode || data.countryCode);
+  if (!region) return { notFound: true };
+
   const marker = formatMarker(data);
 
   const groupLinks: LinkType[] = [];
-  data?.groups?.forEach(({ links }: Group) => {
-    if (links) groupLinks.push(...links);
-  });
-
   const groupCitations: Citation[] = [];
-  data?.groups?.forEach(({ citations }: Group) => {
+
+  data?.groups?.forEach(({ name, links, webpage, citeWebpage, citations }: Group) => {
+    if (webpage)
+      groupLinks?.push({
+        url: webpage,
+        label: `${name} Official Website`,
+        cite: citeWebpage,
+      });
+    if (links) groupLinks.push(...links);
     if (citations) groupCitations.push(...citations);
   });
 
   return {
-    props: {
-      state,
-      county,
-      marker,
-      ...data,
-      citations: [...(data.citations || []), ...groupCitations],
-      links: [...(data.links || []), ...groupLinks],
-    },
+    props: JSON.parse(
+      JSON.stringify({
+        region,
+        marker,
+        ...data,
+        citations: [...(data.citations || []), ...groupCitations],
+        links: [...(links || []), ...groupLinks],
+      })
+    ),
   };
 };

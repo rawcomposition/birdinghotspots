@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 export default function LicenseNotice() {
   const [show, setShow] = React.useState(false);

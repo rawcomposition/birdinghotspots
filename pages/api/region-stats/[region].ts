@@ -10,25 +10,45 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     if (region.split("-").length === 3) {
       // county
-      const total = await Hotspot.countDocuments({ countyCode: region });
-      const withImg = await Hotspot.countDocuments({ countyCode: region, featuredImg: { $ne: null } });
-      const withContent = await Hotspot.countDocuments({
-        countyCode: region,
-        $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
-      });
+      const total = (await Hotspot.countDocuments({ countyCode: region })) || 0;
+      const withImg = (await Hotspot.countDocuments({ countyCode: region, featuredImg: { $ne: null } })) || 0;
+      const withContent =
+        (await Hotspot.countDocuments({
+          countyCode: region,
+          $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
+        })) || 0;
+      const withoutContent = total - withContent;
+      const withoutImg = total - withImg;
 
-      res.status(200).json({ total, withImg, withContent });
-    } else {
+      res.status(200).json({ total, withImg, withContent, withoutContent, withoutImg });
+    } else if (region.split("-").length === 2) {
       // state
-      const total = await Hotspot.countDocuments({ stateCode: region });
-      const withImg = await Hotspot.countDocuments({ stateCode: region, featuredImg: { $ne: null } });
-      const withContent = await Hotspot.countDocuments({
-        stateCode: region,
-        $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
-      });
+      const total = (await Hotspot.countDocuments({ stateCode: region })) || 0;
+      const withImg = (await Hotspot.countDocuments({ stateCode: region, featuredImg: { $ne: null } })) || 0;
+      const withContent =
+        (await Hotspot.countDocuments({
+          stateCode: region,
+          $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
+        })) || 0;
+      const withoutContent = total - withContent;
+      const withoutImg = total - withImg;
 
       res.setHeader("Cache-Control", "max-age=0, s-maxage=21600"); //Cache for 6 hours
-      res.status(200).json({ total, withImg, withContent });
+      res.status(200).json({ total, withImg, withContent, withoutContent, withoutImg });
+    } else {
+      // country
+      const total = (await Hotspot.countDocuments({ countryCode: region })) || 0;
+      const withImg = (await Hotspot.countDocuments({ countryCode: region, featuredImg: { $ne: null } })) || 0;
+      const withContent =
+        (await Hotspot.countDocuments({
+          countryCode: region,
+          $or: [{ noContent: false }, { "groupIds.0": { $exists: true } }],
+        })) || 0;
+      const withoutContent = total - withContent;
+      const withoutImg = total - withImg;
+
+      res.setHeader("Cache-Control", "max-age=0, s-maxage=21600"); //Cache for 6 hours
+      res.status(200).json({ total, withImg, withContent, withoutContent, withoutImg });
     }
   } catch (error: any) {
     res.status(500).json({ error: error.message });

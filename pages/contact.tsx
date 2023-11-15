@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import PageHeading from "components/PageHeading";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "components/Input";
@@ -57,7 +57,7 @@ export default function Contact() {
   return (
     <div className="container pb-16 mt-12">
       <Title>Contact Us</Title>
-      <PageHeading breadcrumbs={false}>Contact Us</PageHeading>
+      <PageHeading>Contact Us</PageHeading>
 
       <Form form={form} onSubmit={handleSubmit}>
         <div className="max-w-2xl mx-auto">

@@ -10,11 +10,11 @@ export default function Footer() {
   const { logout } = useFirebaseLogout();
   const { user } = useUser();
   const router = useRouter();
-  const { stateSlug } = router.query;
+  const region = router.query.region as string;
   return (
     <footer id="footer">
-      {stateSlug === "ohio" ? <OhioFooter /> : <GeneralFooter />}
-      <div className="bg-[#325a79] py-3 text-xs text-gray-300 text-center">
+      {region?.startsWith("US-OH") ? <OhioFooter /> : <GeneralFooter />}
+      <div className="bg-secondary py-3 text-xs text-gray-300 text-center">
         Most content is released into the public domain&nbsp;
         <a
           href="https://creativecommons.org/share-your-work/public-domain/cc0/"

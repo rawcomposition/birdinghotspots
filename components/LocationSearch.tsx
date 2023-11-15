@@ -1,6 +1,8 @@
-import * as React from "react";
+import React from "react";
 import { LocationSearchValue } from "lib/types";
-import Countries from "data/countries.json";
+import Regions from "data/regions.json";
+
+const countries = Regions.map((it) => it.code.toLowerCase());
 
 type Props = {
   className?: string;
@@ -34,7 +36,7 @@ export default function LocationSearch({ className, value, onChange, ...props }:
     };
 
     const options = {
-      componentRestrictions: { country: Countries.map((it) => it.code.toLowerCase()) },
+      componentRestrictions: { country: countries },
       fields: ["formatted_address", "geometry"],
     };
 

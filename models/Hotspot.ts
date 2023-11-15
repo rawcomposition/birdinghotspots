@@ -55,14 +55,14 @@ const HotspotSchema = new Schema({
     required: true,
     unique: true,
   },
-  slug: String,
-  oldSlug: String,
   about: String,
   tips: String,
   birds: String,
   hikes: String,
   address: String,
   links: [LinkSchema],
+  webpage: String,
+  citeWebpage: Boolean,
   citations: [CitationSchema],
   roadside: {
     type: String,
@@ -90,7 +90,7 @@ const HotspotSchema = new Schema({
   },
   drives: [
     {
-      slug: String,
+      locationId: String,
       name: String,
       driveId: {
         type: Schema.Types.ObjectId,
@@ -130,9 +130,10 @@ const HotspotSchema = new Schema({
   groupIds: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   createdAt: {
     type: "string",
-    default: () => dayjs().format("YYYY-MM-DD"),
+    default: () => dayjs().format(),
     required: true,
   },
+  updatedAt: String,
   species: Number,
   noContent: Boolean,
   needsDeleting: Boolean,

@@ -81,6 +81,9 @@ export const config = {
   autoresize_bottom_margin: 0,
   convert_urls: false,
   browser_spellcheck: true,
+  formats: {
+    underline: { inline: "u", exact: true },
+  },
   contextmenu: false,
   setup: (editor: any) => {
     editor.ui.registry.addIcon(

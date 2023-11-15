@@ -1,25 +1,19 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import { HotspotsByCounty } from "lib/types";
 
 type Props = {
-  stateSlug?: string;
-  countrySlug?: string;
   hotspots: HotspotsByCounty;
 };
 
-export default function ListHotspotsByCounty({ stateSlug, countrySlug, hotspots }: Props) {
+export default function ListHotspotsByCounty({ hotspots }: Props) {
   return (
     <>
-      {hotspots.map(({ countySlug, countyName, hotspots }) => (
-        <p key={countySlug} className="mb-4 break-inside-avoid">
-          {stateSlug && countrySlug ? (
-            <Link href={`/${countrySlug}/${stateSlug}/${countySlug}-county`} className="font-bold">
-              {countyName}
-            </Link>
-          ) : (
-            <span>{countyName}</span>
-          )}
+      {hotspots.map(({ countyCode, countyName, hotspots }) => (
+        <p key={countyCode} className="mb-4 break-inside-avoid">
+          <Link href={`/region/${countyCode}`} className="font-bold">
+            {countyName}
+          </Link>
           <br />
           {hotspots.map(({ name, url }) => (
             <React.Fragment key={url}>

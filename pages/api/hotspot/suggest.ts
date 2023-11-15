@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     const score = await verifyRecaptcha(recaptchaToken);
     console.log("Score:", score);
-    if (score > 0.5) {
+    if (score > 0.4) {
       await Revision.create({
         locationId,
         name: hotspot.name,

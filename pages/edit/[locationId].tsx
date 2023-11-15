@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
@@ -23,6 +23,9 @@ import MapZoomInput from "components/MapZoomInput";
 import LicenseNotice from "components/LicenseNotice";
 import MapGrid from "components/MapGrid";
 import ExpandableHtml from "components/ExpandableHtml";
+import Input from "components/Input";
+import Checkbox from "components/Checkbox";
+import useConfirmNavigation from "hooks/useConfirmNavigation";
 
 type GroupAbout = {
   title: string;
@@ -54,10 +57,12 @@ export default function Edit({
 }: Props) {
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
+  useConfirmNavigation(form.formState.isDirty && !isSubmitting);
 
   //@ts-ignore
   const latValue = form.watch("lat");
@@ -67,6 +72,7 @@ export default function Edit({
   const handleSubmit: SubmitHandler<Hotspot> = async (data) => {
     // @ts-ignore
     if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
+    setIsSubmitting(true);
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",
@@ -121,7 +127,14 @@ export default function Edit({
                 )}
               </Field>
 
-              <InputHotspotLinks groupLinks={groupLinks} />
+              <div className="space-y-1">
+                <Field label="Official Webpage URL">
+                  <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
+                </Field>
+                <Checkbox name="citeWebpage" label="Include as citation" />
+              </div>
+
+              <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
 
               <Field label="Tips for Birding">
                 <TinyMCE name="tips" defaultValue={data?.tips} />
@@ -270,8 +283,8 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         lng: ebirdData?.longitude || data?.lng,
         zoom: data?.zoom || 14,
         countryCode: ebirdData?.subnational1Code?.split("-")?.[0] || data?.countryCode,
-        stateCode,
-        countyCode,
+        ...(stateCode && { stateCode }),
+        ...(countyCode && { countyCode }),
         locationId: locationId,
         roadside: data?.roadside || "Unknown",
         restrooms: data?.restrooms || "Unknown",

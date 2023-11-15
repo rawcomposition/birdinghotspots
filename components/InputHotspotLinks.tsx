@@ -4,11 +4,12 @@ import { Link } from "lib/types";
 
 type Props = {
   name?: string;
+  label?: string;
   groupLinks?: Link[];
   hideLabel?: boolean;
 };
 
-const InputHotspotLinks = ({ name = "links", groupLinks, hideLabel }: Props) => {
+const InputHotspotLinks = ({ name = "links", groupLinks, label = "Links", hideLabel }: Props) => {
   const {
     register,
     control,
@@ -31,7 +32,7 @@ const InputHotspotLinks = ({ name = "links", groupLinks, hideLabel }: Props) => 
         </div>
       )}
       <div className="flex-1">
-        {!hideLabel && <label className="text-gray-500 font-bold">Links</label>}
+        {!hideLabel && <label className="text-gray-500 font-bold">{label}</label>}
         <div>
           {fields.map((field, index) => {
             //@ts-ignore

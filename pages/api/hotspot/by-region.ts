@@ -3,19 +3,38 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const { region, limit, offset, filter }: any = req.query;
-  const isCounty = region.split("-").length === 3;
+  const { region, limit, offset, images, content, features }: any = req.query;
 
-  let query: any = isCounty ? { countyCode: region } : { stateCode: region };
+  let query: any = {};
 
-  if (filter === "with-images") {
-    query.featuredImg = { $exists: true };
-  } else if (filter === "without-images") {
-    query.featuredImg = { $exists: false };
-  } else if (filter === "with-content") {
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  if (images === "Yes") {
+    query["featuredImg.smUrl"] = { $exists: true };
+  } else if (images === "No") {
+    query["featuredImg.smUrl"] = { $exists: false };
+  }
+
+  if (content === "Yes") {
     query.$or = [{ noContent: false }, { "groupIds.0": { $exists: true } }];
-  } else if (filter === "without-content") {
+  } else if (content === "No") {
     query.$and = [{ noContent: true }, { "groupIds.0": { $exists: false } }];
+  }
+
+  if (features === "Restrooms") {
+    query.restrooms = "Yes";
+  } else if (features === "Accessible") {
+    query.accessible = "Yes";
+  } else if (features === "Roadside") {
+    query.roadside = "Yes";
+  } else if (features === "Free") {
+    query.fee = "No";
   }
 
   try {

@@ -7,19 +7,25 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
+  articleId: {
+    type: String,
+    unique: true,
+  },
+  int: {
+    type: Number,
+    unique: true,
+  },
   countryCode: {
     type: String,
     required: true,
   },
-  stateCode: {
-    type: String,
-    required: true,
-  },
-  slug: {
-    type: String,
-    required: true,
-  },
+  stateCode: String,
   content: String,
+  sortHotspotsBy: {
+    type: String,
+    enum: ["region", "species", "none"],
+    default: "name",
+  },
   hotspots: [
     {
       type: Schema.Types.ObjectId,
@@ -45,6 +51,26 @@ const ArticleSchema = new Schema({
 });
 
 ArticleSchema.index({ stateCode: 1 });
+
+ArticleSchema.pre("save", function (next) {
+  if (!this.isNew) {
+    next();
+    return;
+  }
+
+  Article.findOne({})
+    .sort({ int: -1 })
+    .then((last) => {
+      const lastInt = last?.int || 1001;
+      const newInt = lastInt + 1;
+      this.articleId = `A${newInt}`;
+      this.int = newInt;
+      next();
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 const Article = models.Article || model("Article", ArticleSchema);
 

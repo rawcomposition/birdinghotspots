@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import States from "data/states.json";
-import { getAllCounties, getStateByCode } from "lib/localData";
-import { Hotspot as HotspotType } from "lib/types";
+import { getRegion } from "lib/localData";
+import FlatRegions from "data/flat-regions.json";
+import FlatCities from "data/flat-cities.json";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { q }: any = req.query;
@@ -12,42 +12,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     name: { $regex: new RegExp(q), $options: "i" },
   };
 
-  const allCounties = getAllCounties();
-
-  const filteredCounties = allCounties
-    .filter((county: any) => {
-      return county.name.toLowerCase().startsWith(q.toLowerCase());
+  const filteredRegions = FlatRegions.filter(({ name }) => name.toLowerCase().startsWith(q.toLowerCase())).map(
+    ({ code, name }) => ({
+      label: name,
+      value: `/region/${code}`,
     })
-    .map(({ name, slug, stateSlug, stateLabel, country }: any) => ({
-      label: `${name}, ${stateLabel}, ${country}`,
-      value: `/${country.toLowerCase()}/${stateSlug}/${slug}`,
-    }));
+  );
 
-  const filteredStates = States.filter(
-    (state) => state.active && state.label.toLowerCase().startsWith(q.toLowerCase())
-  ).map((state) => ({
-    label: `${state.label}, ${state.country}`,
-    value: `/${state.country.toLowerCase()}/${state.slug}`,
-  }));
+  const filteredCities = FlatCities.filter(({ name }) => name.toLowerCase().startsWith(q.toLowerCase())).map(
+    ({ code, name }) => ({
+      label: name,
+      value: `/city/${code}`,
+    })
+  );
 
   try {
     await connect();
-    const results = (await Hotspot.find(query, ["name", "url", "countryCode", "stateCode"])
-      .limit(50)
-      .lean()
-      .exec()) as HotspotType[];
-    const formatted = results?.map((result) => {
-      const country = result.countryCode.toUpperCase();
-      const state = getStateByCode(result.stateCode);
-      const label = `${result.name}, ${state?.label}, ${country}`;
+    const hotspots = await Hotspot.find(query, ["name", "url", "countryCode", "stateCode"]).limit(50).lean();
+
+    const formatted = hotspots?.map((result) => {
+      const region = getRegion(result.stateCode || result.countryCode);
+      const label = `${result.name}, ${region?.detailedName || result.stateCode || result.countryCode}`;
       return { label, value: result.url };
     });
+
     res.status(200).json({
       success: true,
       results: [
         {
+          label: "Cities/Towns",
+          options: filteredCities,
+        },
+        {
           label: "Regions",
-          options: [...filteredStates, ...filteredCounties],
+          options: filteredRegions,
         },
         {
           label: "Hotspots",

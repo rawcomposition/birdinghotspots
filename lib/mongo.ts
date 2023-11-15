@@ -7,9 +7,18 @@ import Upload from "models/Upload";
 import Revision from "models/Revision";
 import Group from "models/Group";
 import Profile from "models/Profile";
+import City from "models/City";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
-import { RegionInfo as RegionInfoType, Revision as RevisionType } from "lib/types";
+import Regions from "data/regions.json";
+import SyncRegions from "data/sync-regions.json";
+import {
+  RegionInfo as RegionInfoType,
+  Revision as RevisionType,
+  Hotspot as HotspotType,
+  City as CityType,
+  Article as ArticleT,
+} from "lib/types";
 
 declare global {
   var mongoose: any;
@@ -59,23 +68,24 @@ export default async function connect() {
   return cached.conn;
 }
 
-export async function getHotspotsByState(stateCode: string) {
+export async function getHotspotsByRegion(region: string) {
   await connect();
-  const result = await Hotspot.find({ stateCode }, ["name", "url", "iba", "noContent", "needsDeleting", "groupIds"])
-    .sort({ name: 1 })
-    .lean()
-    .exec();
 
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
+  let query: any = {};
 
-export async function getHotspotsByCounty(countyCode: string) {
-  await connect();
-  const result = await Hotspot.find({ countyCode }, [
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  const result = await Hotspot.find(query, [
     "name",
+    "drives",
     "url",
     "iba",
-    "drives",
     "noContent",
     "needsDeleting",
     "lat",
@@ -164,7 +174,7 @@ export async function getDrivesByState(stateCode: string) {
     {
       stateCode,
     },
-    ["-_id", "name", "slug", "counties"]
+    ["-_id", "locationId", "name", "slug", "counties"]
   )
     .sort({ name: 1 })
     .lean()
@@ -173,9 +183,9 @@ export async function getDrivesByState(stateCode: string) {
   return result;
 }
 
-export async function getDriveBySlug(stateCode: string, slug: string) {
+export async function getDriveByLocationId(locationId: string) {
   await connect();
-  const result = await Drive.findOne({ stateCode, slug })
+  const result = await Drive.findOne({ locationId })
     .populate("entries.hotspot", ["url", "name", "address"])
     .lean()
     .exec();
@@ -183,41 +193,32 @@ export async function getDriveBySlug(stateCode: string, slug: string) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getDriveById(_id: string) {
+export async function getArticlesByRegion(regionCode: string) {
   await connect();
-  const result = await Drive.findOne({ _id }).populate("entries.hotspot", ["url", "name", "address"]).lean().exec();
 
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
+  let query: any = {};
 
-export async function getArticlesByState(stateCode: string) {
-  await connect();
-  const result = await Article.find(
-    {
-      stateCode,
-    },
-    ["-_id", "name", "slug"]
-  )
-    .sort({ name: 1 })
-    .lean()
-    .exec();
+  if (regionCode.split("-").length === 2) {
+    query = { stateCode: regionCode };
+  } else {
+    query = { countryCode: regionCode };
+  }
 
-  return result;
-}
-
-export async function getArticleBySlug(stateCode: string, slug: string) {
-  await connect();
-  const result = await Article.findOne({ stateCode, slug })
-    .populate("hotspots", ["url", "name", "countyCode"])
+  const result = await Article.find(query, ["-_id", "name", "articleId", "images"])
+    .sort({ createdAt: -1 })
     .lean()
     .exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getArticleById(_id: string) {
+export async function getArticleByArticleId(articleId: string): Promise<ArticleT | null> {
   await connect();
-  const result = await Article.findOne({ _id }).populate("hotspots", ["url", "name", "countyCode"]).lean().exec();
+
+  const result = await Article.findOne({ articleId })
+    .populate("hotspots", ["url", "name", "countyCode", "stateCode", "featuredImg", "species"])
+    .lean()
+    .exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
@@ -229,11 +230,15 @@ export async function getSettings() {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
-export async function getUploads(states: string[], counties: string[]) {
+export async function getUploads(countries: string[], states: string[], counties: string[]) {
   await connect();
   const result = await Upload.find({
     status: "pending",
-    $or: [{ stateCode: { $in: states || [] } }, { countyCode: { $in: counties || [] } }],
+    $or: [
+      { countryCode: { $in: countries || [] } },
+      { stateCode: { $in: states || [] } },
+      { countyCode: { $in: counties || [] } },
+    ],
   })
     .sort({ createdAt: -1 })
     .lean()
@@ -288,19 +293,6 @@ export async function getAllRevisions({ limit, skip, status }: AllRevisionProps)
   return result || [];
 }
 
-export async function getImgStats() {
-  await connect();
-  const result = await Hotspot.aggregate([
-    {
-      $group: {
-        _id: { featuredImg: { $gt: ["$featuredImg", null] }, stateCode: "$stateCode" },
-        count: { $sum: 1 },
-      },
-    },
-  ]);
-  return result;
-}
-
 export async function getGroupByLocationId(locationId: string) {
   await connect();
   const result = await Group.findOne({ locationId })
@@ -327,9 +319,21 @@ export async function getGroupsByState(stateCode: string) {
   return result;
 }
 
-export async function getGroupsByCounty(countyCode: string) {
+export async function getGroupsByRegion(region: string) {
   await connect();
-  const result = await Group.find({ countyCodes: countyCode }, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCodes: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCodes: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  console.log(query);
+
+  const result = await Group.find(query, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
   return result;
 }
 
@@ -355,7 +359,7 @@ export async function getSubscriptions(uid: string): Promise<string[]> {
 
 export async function getLogs() {
   await connect();
-  const result = await Log.find({}).sort({ createdAt: -1 }).limit(300).lean().exec();
+  const result = await Log.find({}).sort({ createdAt: -1 }).limit(1000).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
@@ -364,4 +368,235 @@ export async function getRegionInfo(code: string): Promise<RegionInfoType[] | nu
   await connect();
   const result = await RegionInfo.findOne({ code });
   return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getHotspotsInRadius(lat: number, lng: number, radius: number): Promise<HotspotType[] | null> {
+  //Convert radius from miles to radians
+  const radians = radius / 3963.2;
+  await connect();
+  const result = await Hotspot.find({
+    location: {
+      $geoWithin: {
+        $centerSphere: [[lng, lat], radians],
+      },
+    },
+  })
+    .sort({ species: -1 })
+    .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getDeletedHotspots(states: string[] | null): Promise<HotspotType[] | null> {
+  await connect();
+  const result = await Hotspot.find({
+    stateCode: states ? { $in: states } : { $exists: true },
+    needsDeleting: true,
+  })
+    .sort({ species: -1 })
+    .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getActiveCities(): Promise<CityType[] | null> {
+  const usStateCodes = Regions.find((it) => it.code === "US")?.subregions?.map((it) => it.code) || [];
+  const caStateCodes = Regions.find((it) => it.code === "CA")?.subregions?.map((it) => it.code) || [];
+  const activeStateCodes = [...usStateCodes, ...caStateCodes];
+
+  await connect();
+  const result = await City.find(
+    {
+      stateCode: { $in: activeStateCodes },
+    },
+    ["name", "locationId", "stateCode", "countryCode"]
+  )
+    .sort({ name: 1 })
+    .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getCityByLocationId(locationId: string): Promise<CityType | null> {
+  await connect();
+  const result = await City.findOne({ locationId }).lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getRegionCities(region: string): Promise<CityType[] | null> {
+  await connect();
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCode: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCode: region };
+  } else {
+    const stateCodes =
+      region === "US"
+        ? SyncRegions.filter((it) => it.startsWith("US-"))
+        : SyncRegions.filter((it) => it.startsWith("CA-"));
+    query = { stateCode: { $in: stateCodes } };
+  }
+
+  const result = await City.find(query).sort({ name: 1 }).lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getRecentHotspots(regionCodes: string[]): Promise<HotspotType[] | null> {
+  await connect();
+  const countryCodes = regionCodes.filter((it) => it.split("-").length === 1);
+  const stateCodes = regionCodes.filter((it) => it.split("-").length === 2);
+
+  const results = await Hotspot.find({
+    $or: [{ countryCode: { $in: countryCodes } }, { stateCode: { $in: stateCodes } }],
+  })
+    .sort({ createdAt: -1 })
+    .limit(25)
+    .lean();
+
+  return results ? JSON.parse(JSON.stringify(results)) : null;
+}
+
+type ImgStat = {
+  code: string;
+  withImg: number;
+  total: number;
+};
+
+export async function getImgStats(regionCodes: string[]): Promise<ImgStat[]> {
+  await connect();
+  const countryCodes = regionCodes.filter((it) => it.split("-").length === 1);
+  const stateCodes = regionCodes.filter((it) => it.split("-").length === 2);
+
+  const [countryResults, stateResults] = await Promise.all([
+    Hotspot.aggregate([
+      {
+        $match: {
+          countryCode: { $in: countryCodes },
+        },
+      },
+      {
+        $group: {
+          _id: { featuredImg: { $gt: ["$featuredImg", null] }, regionCode: "$countryCode" },
+          count: { $sum: 1 },
+        },
+      },
+    ]),
+    Hotspot.aggregate([
+      {
+        $match: {
+          stateCode: { $in: stateCodes },
+        },
+      },
+      {
+        $group: {
+          _id: { featuredImg: { $gt: ["$featuredImg", null] }, regionCode: "$stateCode" },
+          count: { $sum: 1 },
+        },
+      },
+    ]),
+  ]);
+
+  const allRegionStats = [...countryResults, ...stateResults];
+
+  const byRegion: ImgStat[] = regionCodes.map((code) => {
+    const withImg =
+      allRegionStats.find((stat) => stat._id.regionCode === code && stat._id.featuredImg === true)?.count || 0;
+    const withoutImg =
+      allRegionStats.find((stat) => stat._id.regionCode === code && stat._id.featuredImg === false)?.count || 0;
+    const total = withImg + withoutImg;
+    return { code, withImg, total };
+  });
+
+  return byRegion;
+}
+
+type ContentStat = {
+  code: string;
+  withContent: number;
+  total: number;
+};
+
+export async function getContentStats(regionCodes: string[]): Promise<ContentStat[]> {
+  await connect();
+  const countryCodes = regionCodes.filter((it) => it.split("-").length === 1);
+  const stateCodes = regionCodes.filter((it) => it.split("-").length === 2);
+
+  const [countryResults, stateResults] = await Promise.all([
+    Hotspot.aggregate([
+      {
+        $match: {
+          countryCode: { $in: countryCodes },
+        },
+      },
+      {
+        $group: {
+          _id: {
+            noContent: "$noContent",
+            groupIds: {
+              $cond: {
+                if: { $isArray: "$groupIds" },
+                then: { $gt: [{ $size: "$groupIds" }, 0] },
+                else: false,
+              },
+            },
+            regionCode: "$countryCode",
+          },
+          count: { $sum: 1 },
+        },
+      },
+    ]),
+    Hotspot.aggregate([
+      {
+        $match: {
+          stateCode: { $in: stateCodes },
+        },
+      },
+      {
+        $group: {
+          _id: {
+            noContent: "$noContent",
+            groupIds: {
+              $cond: {
+                if: { $isArray: "$groupIds" },
+                then: { $gt: [{ $size: "$groupIds" }, 0] },
+                else: false,
+              },
+            },
+            regionCode: "$stateCode",
+          },
+          count: { $sum: 1 },
+        },
+      },
+    ]),
+  ]);
+
+  const allRegionStats = [...countryResults, ...stateResults];
+  const byRegion: ContentStat[] = regionCodes.map((code) => {
+    const withContentWithGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === false && stat._id.groupIds === true
+      )?.count || 0;
+    const withContentWithoutGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === false && stat._id.groupIds === false
+      )?.count || 0;
+    const withoutContentWithouotGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === true && stat._id.groupIds === false
+      )?.count || 0;
+    const withoutContentWithGroups =
+      allRegionStats.find(
+        (stat) => stat._id.regionCode === code && stat._id.noContent === true && stat._id.groupIds === true
+      )?.count || 0;
+
+    const total =
+      withContentWithGroups + withContentWithoutGroups + withoutContentWithouotGroups + withoutContentWithGroups;
+    const withContent = withContentWithGroups + withContentWithoutGroups + withoutContentWithGroups;
+    return { code, withContent, total };
+  });
+  return byRegion;
 }

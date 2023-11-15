@@ -25,7 +25,7 @@ export default function BtnSmall({
     orange: "bg-orange-700 py-1 px-2 text-sm rounded text-white",
     green: "bg-lime-600/90 py-1 px-2 text-sm rounded text-white",
     blue: "bg-[#233e60] py-1 px-2 text-sm rounded text-gray-200",
-    lightblue: "bg-[#4a84b2] py-1 px-2 text-sm rounded text-white",
+    lightblue: "bg-primary py-1 px-2 text-sm rounded text-white",
   };
   const colorClasses = colors[color];
   return (

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function OhioFooter() {
   return (
-    <div className="bg-[#4a84b2] py-16 text-white">
+    <div className="bg-primary py-16 text-white">
       <div className="container grid md:grid-cols-4 gap-8">
         <div className="flex gap-2 flex-col">
           <Link href="/" className="flex gap-4 px-2 py-2 rounded bg-white items-center">

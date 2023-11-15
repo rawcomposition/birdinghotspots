@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import Title from "components/Title";
 import DashboardPage from "components/DashboardPage";
@@ -172,9 +172,7 @@ export default function RevisionReview() {
                           </Badge>
                         )}
                       </div>
-                      <div className="text-gray-500">
-                        {item.countyLabel}, {item.stateLabel}, {item.countryCode}
-                      </div>
+                      <div className="text-gray-500">{item.locationName}</div>
                     </div>
                   </td>
                   <td className="px-3 py-4 text-sm text-gray-500 hidden sm:table-cell">
@@ -222,7 +220,7 @@ export default function RevisionReview() {
           <button
             type="button"
             onClick={loadMore}
-            className="bg-[#4a84b2] hover:bg-[#325a79] text-white font-bold py-2 px-4 rounded-full w-[220px] mx-auto block mt-8"
+            className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full w-[220px] mx-auto block mt-8"
           >
             {loading ? "Loading..." : "Load More"}
           </button>
