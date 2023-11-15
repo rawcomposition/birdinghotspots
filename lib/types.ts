@@ -453,3 +453,18 @@ export type RegionStatsT = {
   withoutContent: number;
   withoutImg: number;
 };
+
+export type TripReportT = {
+  _id?: string;
+  locationId: string;
+  checklistId: string;
+  content: string;
+  distance?: string;
+  duration?: string;
+  species?: string;
+  profileId: string;
+  date: Date;
+  images: Image[];
+  createdAt: string;
+  updatedAt: string;
+};
