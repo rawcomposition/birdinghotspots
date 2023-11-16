@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Species as SpeciesType } from "lib/types";
+import { SpeciesT } from "lib/types";
 const { Schema, model, models } = mongoose;
 
 const SpeciesSchema = new Schema({
@@ -31,8 +31,12 @@ const SpeciesSchema = new Schema({
       caption: String,
     },
   ],
+  active: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Species = models.Species || model("Species", SpeciesSchema);
 
-export default Species as mongoose.Model<SpeciesType>;
+export default Species as mongoose.Model<SpeciesT>;

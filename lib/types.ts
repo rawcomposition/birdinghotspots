@@ -391,7 +391,7 @@ export type Pageview = {
   month: number;
 };
 
-export type Species = {
+export type SpeciesT = {
   _id: string;
   name: string;
   sciName: string;
