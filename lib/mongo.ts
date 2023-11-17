@@ -11,6 +11,7 @@ import City from "models/City";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
 import Regions from "data/regions.json";
+import Species from "models/Species";
 import SyncRegions from "data/sync-regions.json";
 import {
   RegionInfo as RegionInfoType,
@@ -18,6 +19,7 @@ import {
   Hotspot as HotspotType,
   City as CityType,
   Article as ArticleT,
+  SpeciesT,
 } from "lib/types";
 
 declare global {
@@ -600,3 +602,15 @@ export async function getContentStats(regionCodes: string[]): Promise<ContentSta
   });
   return byRegion;
 }
+
+export const getSpeciesByCode = async (code: string): Promise<SpeciesT | null> => {
+  await connect();
+  const result = await Species.findOne({ _id: code }).lean().exec();
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+};
+
+export const getAllSpecies = async (): Promise<SpeciesT[]> => {
+  await connect();
+  const result = await Species.find({}, ["_id", "name", "sciName", "images", "active"]).lean().exec();
+  return JSON.parse(JSON.stringify(result));
+};
