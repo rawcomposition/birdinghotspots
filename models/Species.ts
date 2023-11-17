@@ -6,7 +6,6 @@ const SpeciesSchema = new Schema({
   _id: {
     type: String,
     required: true,
-    unique: true,
   },
   name: {
     type: String,
@@ -22,13 +21,9 @@ const SpeciesSchema = new Schema({
   },
   images: [
     {
-      smUrl: String,
-      lgUrl: String,
-      originalUrl: String,
-      by: String,
-      width: Number,
-      height: Number,
-      caption: String,
+      sm: String,
+      md: String,
+      lg: String,
     },
   ],
   active: {

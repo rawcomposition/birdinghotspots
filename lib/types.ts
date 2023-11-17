@@ -398,13 +398,9 @@ export type SpeciesT = {
   order: number;
   images: [
     {
-      smUrl: string;
-      lgUrl: string;
-      originalUrl: string;
-      by: string;
-      width: number;
-      height: number;
-      caption: string;
+      sm: string;
+      md: string;
+      lg: string;
     }
   ];
 };

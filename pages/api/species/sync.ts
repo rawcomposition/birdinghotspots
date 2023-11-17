@@ -2,9 +2,30 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Species from "models/Species";
 
+const mockData = {
+  "Centropus melanops": {
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/The_Black-Faced_Coucal_high_up_in_a_forest_in_the_Philippines_%28cropped%29.jpg/220px-The_Black-Faced_Coucal_high_up_in_a_forest_in_the_Philippines_%28cropped%29.jpg",
+  },
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    if (process.env.NODE_ENV !== "development") throw new Error("Not in development mode");
+    await connect();
+
+    const species = await Species.find({ "images.0.sm": { $exists: false } }).lean();
+
+    for (const s of species) {
+      // @ts-ignore
+      let bird = mockData[s.sciName];
+      if (!bird?.img) continue;
+
+      let sm = bird.img.replace("220px", "320px");
+      let md = bird.img.replace("220px", "480px");
+      let lg = bird.img.replace("220px", "640px");
+      await Species.updateOne({ _id: s._id }, { images: [{ sm, md, lg }] });
+    }
+
+    /*if (process.env.NODE_ENV !== "development") throw new Error("Not in development mode");
 
     const taxonomyReq = await fetch("https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json&cat=species");
     const taxonomy = await taxonomyReq.json();
@@ -46,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       });
     }
 
-    await Species.bulkWrite(bulkWrites);
+    await Species.bulkWrite(bulkWrites);*/
 
     res.status(200).json({ success: true });
   } catch (error: any) {

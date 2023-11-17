@@ -76,7 +76,7 @@ export default function SpeciesIndex({ species }: Props) {
       {filtered.map(({ code, name, sciName, active, hasImg }) => {
         return (
           <React.Fragment key={code}>
-            <Link href={`/edit/species/${code}`} className={hasImg ? "font-bold" : ""}>
+            <Link href={`https://ebird.org/species/${code}`} className={hasImg ? "font-bold" : ""} target="_blank">
               {name}
             </Link>
             <span className="text-gray-400 ml-4 italic">{sciName}</span>
