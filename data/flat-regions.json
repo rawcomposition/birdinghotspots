@@ -4004,6 +4004,102 @@
     "name": "York, Maine, US"
   },
   {
+    "code": "US-MD",
+    "name": "Maryland, US"
+  },
+  {
+    "code": "US-MD-001",
+    "name": "Allegany, Maryland, US"
+  },
+  {
+    "code": "US-MD-003",
+    "name": "Anne Arundel, Maryland, US"
+  },
+  {
+    "code": "US-MD-005",
+    "name": "Baltimore, Maryland, US"
+  },
+  {
+    "code": "US-MD-009",
+    "name": "Calvert, Maryland, US"
+  },
+  {
+    "code": "US-MD-011",
+    "name": "Caroline, Maryland, US"
+  },
+  {
+    "code": "US-MD-013",
+    "name": "Carroll, Maryland, US"
+  },
+  {
+    "code": "US-MD-015",
+    "name": "Cecil, Maryland, US"
+  },
+  {
+    "code": "US-MD-017",
+    "name": "Charles, Maryland, US"
+  },
+  {
+    "code": "US-MD-019",
+    "name": "Dorchester, Maryland, US"
+  },
+  {
+    "code": "US-MD-021",
+    "name": "Frederick, Maryland, US"
+  },
+  {
+    "code": "US-MD-023",
+    "name": "Garrett, Maryland, US"
+  },
+  {
+    "code": "US-MD-025",
+    "name": "Harford, Maryland, US"
+  },
+  {
+    "code": "US-MD-027",
+    "name": "Howard, Maryland, US"
+  },
+  {
+    "code": "US-MD-029",
+    "name": "Kent, Maryland, US"
+  },
+  {
+    "code": "US-MD-031",
+    "name": "Montgomery, Maryland, US"
+  },
+  {
+    "code": "US-MD-033",
+    "name": "Prince George's, Maryland, US"
+  },
+  {
+    "code": "US-MD-035",
+    "name": "Queen Anne's, Maryland, US"
+  },
+  {
+    "code": "US-MD-039",
+    "name": "Somerset, Maryland, US"
+  },
+  {
+    "code": "US-MD-037",
+    "name": "St. Mary's, Maryland, US"
+  },
+  {
+    "code": "US-MD-041",
+    "name": "Talbot, Maryland, US"
+  },
+  {
+    "code": "US-MD-043",
+    "name": "Washington, Maryland, US"
+  },
+  {
+    "code": "US-MD-045",
+    "name": "Wicomico, Maryland, US"
+  },
+  {
+    "code": "US-MD-047",
+    "name": "Worcester, Maryland, US"
+  },
+  {
     "code": "US-MA",
     "name": "Massachusetts, US"
   },

@@ -1074,6 +1074,35 @@
         ]
       },
       {
+        "name": "Maryland",
+        "code": "US-MD",
+        "subregions": [
+          { "code": "US-MD-001", "name": "Allegany" },
+          { "code": "US-MD-003", "name": "Anne Arundel" },
+          { "code": "US-MD-005", "name": "Baltimore" },
+          { "code": "US-MD-009", "name": "Calvert" },
+          { "code": "US-MD-011", "name": "Caroline" },
+          { "code": "US-MD-013", "name": "Carroll" },
+          { "code": "US-MD-015", "name": "Cecil" },
+          { "code": "US-MD-017", "name": "Charles" },
+          { "code": "US-MD-019", "name": "Dorchester" },
+          { "code": "US-MD-021", "name": "Frederick" },
+          { "code": "US-MD-023", "name": "Garrett" },
+          { "code": "US-MD-025", "name": "Harford" },
+          { "code": "US-MD-027", "name": "Howard" },
+          { "code": "US-MD-029", "name": "Kent" },
+          { "code": "US-MD-031", "name": "Montgomery" },
+          { "code": "US-MD-033", "name": "Prince George's" },
+          { "code": "US-MD-035", "name": "Queen Anne's" },
+          { "code": "US-MD-039", "name": "Somerset" },
+          { "code": "US-MD-037", "name": "St. Mary's" },
+          { "code": "US-MD-041", "name": "Talbot" },
+          { "code": "US-MD-043", "name": "Washington" },
+          { "code": "US-MD-045", "name": "Wicomico" },
+          { "code": "US-MD-047", "name": "Worcester" }
+        ]
+      },
+      {
         "name": "Massachusetts",
         "code": "US-MA",
         "portal": "massaudubon",
