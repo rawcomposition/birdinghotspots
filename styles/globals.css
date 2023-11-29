@@ -463,4 +463,6 @@ img.marker-sm {
 
 .tox:not(svg):not(rect) .tox-notifications-container {
   display: none !important;
+  height: 0 !important;
+  overflow: hidden;
 }
