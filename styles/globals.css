@@ -461,6 +461,6 @@ img.marker-sm {
   @apply !block sm:!hidden;
 }
 
-.tox .tox-notifications-container {
+.tox:not(svg):not(rect) .tox-notifications-container {
   display: none !important;
 }
