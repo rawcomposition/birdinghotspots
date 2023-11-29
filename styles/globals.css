@@ -460,3 +460,7 @@ img.marker-sm {
   right: 5px !important;
   @apply !block sm:!hidden;
 }
+
+.tox .tox-notifications-container {
+  display: none !important;
+}
