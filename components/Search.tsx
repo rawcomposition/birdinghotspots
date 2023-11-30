@@ -77,7 +77,6 @@ export default function Search({ onChange, pill, ...props }: Props) {
       loadOptions={loadOptions}
       cacheOptions
       autoFocus
-      // @ts-expect-error
       components={{ DropdownIndicator }}
       formatOptionLabel={formatOptionLabel}
       noOptionsMessage={() => null}

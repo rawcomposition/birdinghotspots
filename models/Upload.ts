@@ -11,6 +11,7 @@ const UploadSchema = new Schema({
     type: String,
     required: true,
   },
+  xsUrl: String,
   smUrl: {
     type: String,
     required: true,
@@ -19,10 +20,7 @@ const UploadSchema = new Schema({
     type: String,
     required: true,
   },
-  originalUrl: {
-    type: String,
-    required: true,
-  },
+  originalUrl: String,
   by: {
     type: String,
     required: true,

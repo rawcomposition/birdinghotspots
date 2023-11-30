@@ -19,8 +19,8 @@ export default function SortableImage({
   width,
   height,
   preview,
+  xsUrl,
   smUrl,
-  isNew,
   isStreetview,
   hideExtraFields,
   hideMapCheckbox,
@@ -44,7 +44,7 @@ export default function SortableImage({
       className={`flex flex-col gap-2 rounded bg-gray-50 relative group ${isDragging ? "z-10" : ""}`}
     >
       <img
-        src={preview || smUrl}
+        src={preview || xsUrl || smUrl}
         className={`w-full aspect-[1.55] bg-zinc-700 ${
           isVertical ? "object-contain" : "object-cover"
         } rounded cursor-move touch-none`}

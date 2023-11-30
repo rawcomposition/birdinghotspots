@@ -3,9 +3,10 @@ export type KeyValue = {
 };
 
 export type Image = {
+  xsUrl?: string;
   smUrl: string;
   lgUrl: string;
-  originalUrl: string;
+  originalUrl?: string;
   by?: string;
   email?: string;
   uid?: string;
@@ -206,6 +207,7 @@ export type Upload = {
   countryCode: string;
   stateCode: string;
   countyCode: string;
+  xsUrl?: string;
   smUrl: string;
   lgUrl: string;
   originalUrl: string;

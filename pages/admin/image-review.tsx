@@ -59,7 +59,7 @@ export default function ImageReview({ items: allItems }: Props) {
               className={`grid ${item.uploads.length > 0 ? "xs:grid-cols-2 md:grid-cols-3" : ""} gap-x-4 gap-y-8 mt-4`}
             >
               <Gallery withCaption>
-                {item.uploads.map(({ width, height, _id, smUrl, lgUrl, caption, by, email }) => {
+                {item.uploads.map(({ width, height, _id, xsUrl, smUrl, lgUrl, caption, by, email }) => {
                   const isVertical = width && height && height > width;
                   return (
                     <article className="flex flex-col gap-2" key={_id}>
@@ -70,7 +70,7 @@ export default function ImageReview({ items: allItems }: Props) {
                             <img
                               ref={imgRef}
                               onClick={open}
-                              src={smUrl}
+                              src={xsUrl || smUrl}
                               className={`cursor-pointer w-full h-[180px] bg-zinc-700 ${
                                 isVertical ? "object-contain" : "object-cover"
                               } rounded`}

@@ -9,16 +9,19 @@ import "@uppy/status-bar/dist/style.css";
 import "@uppy/core/dist/style.css";
 import "@uppy/drag-drop/dist/style.css";
 import toast from "react-hot-toast";
+import Compressor from "@uppy/compressor";
 
 type Props = {
   onSuccess: (response: any) => void;
 };
 
-export default function ImageInput({ onSuccess }: Props) {
-  const [previews, setPreviews] = React.useState<any>({});
-  const previewsRef = React.useRef<any>(null);
-  previewsRef.current = previews;
+declare global {
+  interface Window {
+    isUploading: boolean;
+  }
+}
 
+export default function ImageInput({ onSuccess }: Props) {
   const uppy = useUppy(() => {
     const instance = new Uppy({
       autoProceed: true,
@@ -27,11 +30,12 @@ export default function ImageInput({ onSuccess }: Props) {
         maxFileSize: 1024 * 1024 * 10, //10MB
       },
       onBeforeFileAdded: (file) => {
-        const name = `${uuidv4()}.${file.extension}`;
+        const id = uuidv4();
+        const name = `${id}.${file.extension}`;
         return {
           ...file,
           name,
-          meta: { ...file.meta, name },
+          meta: { ...file.meta, name, id },
         };
       },
     });
@@ -46,30 +50,35 @@ export default function ImageInput({ onSuccess }: Props) {
 
     instance.use(ThumbnailGenerator, {
       id: "ThumbnailGenerator",
-      thumbnailWidth: 300,
-      thumbnailHeight: 300,
+      thumbnailWidth: 600,
+      thumbnailHeight: 600,
       thumbnailType: "image/jpeg",
       waitForThumbnailsBeforeUpload: false,
     });
 
+    instance.use(Compressor, {
+      quality: 0.6,
+      // @ts-ignore
+      maxWidth: 2400,
+      maxHeight: 2400,
+      mimeType: "image/jpeg",
+      convertType: ["image/png"],
+      convertSize: 0,
+    });
+
     instance.on("complete", (result) => {
-      //@ts-ignore
       window.isUploading = false;
       const images = result.successful.map((file: any) => {
-        const preview = previewsRef.current ? previewsRef.current[file.id] : null;
-        const baseName = file.name.split(".")[0];
-        const ext = file.extension?.toLowerCase();
         return {
-          //Transloadit converts .jpeg to jpg for small and large images. .jpeg will be retained for originals
-          smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_small.${ext === "jpeg" ? "jpg" : ext}`,
-          lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_large.${ext === "jpeg" ? "jpg" : ext}`,
-          originalUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_original.${ext}`,
-          preview: preview,
+          xsUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${file.meta.id}_xsmall.jpg`,
+          smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${file.meta.id}_small.jpg`,
+          lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${file.meta.id}_large.jpg`,
+          preview: file.preview,
           by: null,
           width: file.meta.width || null,
           height: file.meta.height || null,
           isMap: false,
-          isNew: true, //Because isNew isn't in the Mongoose schema it gets filtered out on save
+          isNew: true,
         };
       });
       onSuccess(images || []);
@@ -80,16 +89,10 @@ export default function ImageInput({ onSuccess }: Props) {
     });
 
     instance.on("upload", () => {
-      //@ts-ignore
       window.isUploading = true;
     });
     instance.on("file-removed", () => {
-      //@ts-ignore
       window.isUploading = false;
-    });
-
-    instance.on("thumbnail:generated", (file, preview) => {
-      setPreviews((current: any) => ({ ...current, [file.id]: preview }));
     });
 
     instance.on("file-added", (file) => {
@@ -98,7 +101,10 @@ export default function ImageInput({ onSuccess }: Props) {
       const image = new Image();
       image.src = url;
       image.onload = () => {
-        uppy.setFileMeta(file.id, { width: image.width, height: image.height });
+        uppy.setFileMeta(file.id, {
+          width: image.width,
+          height: image.height,
+        });
         URL.revokeObjectURL(url);
       };
     });
