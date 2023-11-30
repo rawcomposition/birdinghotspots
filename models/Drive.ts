@@ -37,6 +37,7 @@ const DriveSchema = new Schema({
   ],
   images: [
     {
+      xsUrl: String,
       smUrl: String,
       lgUrl: String,
       originalUrl: String,

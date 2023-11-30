@@ -9,6 +9,7 @@ import "@uppy/status-bar/dist/style.css";
 import "@uppy/core/dist/style.css";
 import "@uppy/drag-drop/dist/style.css";
 import toast from "react-hot-toast";
+import Compressor from "@uppy/compressor";
 
 type Props = {
   onSuccess: (response: any) => void;
@@ -52,6 +53,15 @@ export default function ImageInput({ onSuccess }: Props) {
       waitForThumbnailsBeforeUpload: false,
     });
 
+    instance.use(Compressor, {
+      quality: 0.8,
+      // @ts-ignore
+      width: 2400,
+      height: 2400,
+      mimeType: "image/jpeg",
+      convertSize: 0,
+    });
+
     instance.on("complete", (result) => {
       //@ts-ignore
       window.isUploading = false;
@@ -61,9 +71,11 @@ export default function ImageInput({ onSuccess }: Props) {
         const ext = file.extension?.toLowerCase();
         return {
           //Transloadit converts .jpeg to jpg for small and large images. .jpeg will be retained for originals
+          xsUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_xsmall.${
+            ext === "jpeg" ? "jpg" : ext
+          }`,
           smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_small.${ext === "jpeg" ? "jpg" : ext}`,
           lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_large.${ext === "jpeg" ? "jpg" : ext}`,
-          originalUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${baseName}_original.${ext}`,
           preview: preview,
           by: null,
           width: file.meta.width || null,

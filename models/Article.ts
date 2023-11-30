@@ -34,6 +34,7 @@ const ArticleSchema = new Schema({
   ],
   images: [
     {
+      xsUrl: String,
       smUrl: String,
       lgUrl: String,
       originalUrl: String,
