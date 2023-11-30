@@ -37,7 +37,7 @@ export default function HotspotGrid({ lat, lng, hotspots, loading, smallTitle, s
           <article key={_id} className="flex flex-col gap-3">
             <Link href={url}>
               <img
-                src={featuredImg?.smUrl || "/placeholder.png"}
+                src={featuredImg?.xsUrl || featuredImg?.smUrl || "/placeholder.png"}
                 alt={featuredImg?.caption || ""}
                 className="object-cover rounded-md bg-gray-100 w-full aspect-[1.55]"
               />

@@ -11,10 +11,7 @@ const UploadSchema = new Schema({
     type: String,
     required: true,
   },
-  xsUrl: {
-    type: String,
-    required: true,
-  },
+  xsUrl: String,
   smUrl: {
     type: String,
     required: true,

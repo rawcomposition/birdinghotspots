@@ -207,6 +207,7 @@ export type Upload = {
   countryCode: string;
   stateCode: string;
   countyCode: string;
+  xsUrl?: string;
   smUrl: string;
   lgUrl: string;
   originalUrl: string;
