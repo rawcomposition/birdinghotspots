@@ -36,6 +36,7 @@ export default function MapList({ images }: Props) {
                     className="w-full cursor-pointer"
                     width={item.width}
                     height={item.height}
+                    loading="lazy"
                   />
                 );
               }}

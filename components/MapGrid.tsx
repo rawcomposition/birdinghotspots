@@ -38,6 +38,7 @@ export default function MapGrid({ images }: Props) {
                       className="w-full aspect-square bg-zinc-700 object-cover"
                       width={item.width}
                       height={item.height}
+                      loading="lazy"
                     />
                   );
                 }}

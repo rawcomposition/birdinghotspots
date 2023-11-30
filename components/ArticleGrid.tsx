@@ -29,6 +29,7 @@ export default function ArticleGrid({ articles, className }: Props) {
                   src={featuredImg?.xsUrl || featuredImg?.smUrl || "/placeholder.png"}
                   alt={featuredImg?.caption || ""}
                   className="object-cover rounded-md bg-gray-100 w-full aspect-[1.55]"
+                  loading="lazy"
                 />
               </Link>
               <div className="flex-1">

@@ -71,6 +71,7 @@ export default function ImageReview({ items: allItems }: Props) {
                               ref={imgRef}
                               onClick={open}
                               src={xsUrl || smUrl}
+                              loading="lazy"
                               className={`cursor-pointer w-full h-[180px] bg-zinc-700 ${
                                 isVertical ? "object-contain" : "object-cover"
                               } rounded`}
