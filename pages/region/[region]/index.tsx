@@ -29,8 +29,8 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import MoreRegionLinks from "components/MoreRegionLinks";
 import ArticleGrid from "components/ArticleGrid";
 import RegionBranding from "components/RegionBranding";
-import clsx from "clsx";
 import SubregionList from "components/SubregionList";
+import isbot from "isbot";
 
 type Props = {
   region: Region;
@@ -38,9 +38,10 @@ type Props = {
   articles: Article[];
   hotspots: Hotspot[];
   hasSubregions: boolean;
+  isBot: boolean;
 };
 
-export default function RegionPage({ region, info, articles, hotspots, hasSubregions }: Props) {
+export default function RegionPage({ region, info, articles, hotspots, hasSubregions, isBot }: Props) {
   const [view, setView] = React.useState<string>("map");
   const [stats, setStats] = React.useState<RegionStatsT>();
   const { open } = useModal();
@@ -52,7 +53,7 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
   const stateCode = regionPieces.length >= 2 ? regionPieces.slice(0, 2).join("-") : undefined;
   const countyCode = regionPieces.length === 3 ? code : undefined;
 
-  useLogPageview({ stateCode, countyCode, countryCode, entity: "region" });
+  useLogPageview({ stateCode, countyCode, countryCode, entity: "region", isBot });
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
 
@@ -203,7 +204,9 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
             <RegionStats regionCode={code} data={stats} />
           </section>
           <section className="mb-16">
-            {markers.length > 0 && <MapBox key={code} markers={markers as Marker[]} zoom={8} landscape disableScroll />}
+            {markers.length > 0 && !isBot && (
+              <MapBox key={code} markers={markers as Marker[]} zoom={8} landscape disableScroll />
+            )}
           </section>
         </>
       )}
@@ -356,7 +359,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     noContent: (it.noContent && !it.groupIds?.length) || false,
   }));
 
+  const isBot = isbot(context.req.headers["user-agent"] || "");
+
   return {
-    props: { key: region.code, region, info, articles, hasSubregions, hotspots: formattedHotspots },
+    props: { key: region.code, region, info, articles, hasSubregions, hotspots: formattedHotspots, isBot },
   };
 };

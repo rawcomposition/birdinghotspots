@@ -12,6 +12,7 @@ import HotspotGrid from "components/HotspotGrid";
 import MapIconAlt from "icons/Map";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import useLogPageview from "hooks/useLogPageview";
+import isbot from "isbot";
 
 type Props = {
   region: Region;
@@ -19,12 +20,13 @@ type Props = {
   stateCode?: string;
   countryCode?: string;
   hotspots: Hotspot[];
+  isBot: boolean;
 };
 
-export default function City({ region, city, hotspots, stateCode, countryCode }: Props) {
+export default function City({ region, city, hotspots, stateCode, countryCode, isBot }: Props) {
   const [expand, setExpand] = React.useState<boolean>(false);
   const { name, locationId } = city;
-  useLogPageview({ locationId, stateCode, countryCode, entity: "city" });
+  useLogPageview({ locationId, stateCode, countryCode, entity: "city", isBot });
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
   const visibleHotspots = expand ? hotspots : hotspots.slice(0, 12);
@@ -57,7 +59,7 @@ export default function City({ region, city, hotspots, stateCode, countryCode }:
         </div>
       </section>
       <section>
-        {markers.length > 0 && (
+        {markers.length > 0 && !isBot && (
           <MapBox key={locationId} markers={markers as Marker[]} zoom={8} landscape disableScroll />
         )}
       </section>
@@ -111,7 +113,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     noContent: (it.noContent && !it.groupIds?.length) || false,
   }));
 
+  const isBot = isbot(context.req.headers["user-agent"] || "");
+
   return {
-    props: { region, city, stateCode: city.stateCode, countryCode: city.countryCode, hotspots: formatted },
+    props: { region, city, stateCode: city.stateCode, countryCode: city.countryCode, hotspots: formatted, isBot },
   };
 };

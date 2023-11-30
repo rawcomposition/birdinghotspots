@@ -7,9 +7,10 @@ type Props = {
   countyCode?: string;
   countryCode?: string;
   entity: string;
+  isBot?: boolean;
 };
 
-export default function useLogPageview(props: Props) {
+export default function useLogPageview({ isBot, ...props }: Props) {
   const propsRef = React.useRef(props);
   propsRef.current = props;
 
@@ -19,7 +20,7 @@ export default function useLogPageview(props: Props) {
 
       const isDev = process.env.NODE_ENV === "development";
       const loggedIn = auth.currentUser;
-      if (isDev || loggedIn) return;
+      if (isDev || loggedIn || isBot) return;
 
       try {
         const res = await fetch("/api/log-pageview", {

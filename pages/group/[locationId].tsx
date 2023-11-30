@@ -11,7 +11,7 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { formatMarker, getShortName, canEdit } from "lib/helpers";
+import { formatMarker, getShortName } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
@@ -20,12 +20,14 @@ import Citations from "components/Citations";
 import Features from "components/Features";
 import useLogPageview from "hooks/useLogPageview";
 import dayjs from "dayjs";
+import isbot from "isbot";
 
-interface Props extends GroupType {
+type Props = GroupType & {
   region: Region;
   locationIds: string[];
   markers: Marker[];
-}
+  isBot: boolean;
+};
 
 export default function Group({
   region,
@@ -49,10 +51,11 @@ export default function Group({
   markers,
   hotspots,
   updatedAt,
+  isBot,
 }: Props) {
   const stateCode = (stateCodes || []).length === 1 ? stateCodes[0] : undefined;
   const countyCode = (countyCodes || []).length === 1 ? countyCodes[0] : undefined;
-  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "group" });
+  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "group", isBot });
   const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
   const canEditGroup =
@@ -124,7 +127,7 @@ export default function Group({
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
-          {markers.length > 0 && <MapBox key={_id} markers={markers} zoom={12} />}
+          {markers.length > 0 && !isBot && <MapBox key={_id} markers={markers} zoom={12} />}
           {!!images?.length && <MapList images={images} />}
         </div>
       </div>
@@ -136,7 +139,7 @@ interface Params extends ParsedUrlQuery {
   locationId: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   const { locationId } = query as Params;
 
   const data = (await getGroupByLocationId(locationId)) as GroupType;
@@ -158,12 +161,15 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     name: getShortName(it.name),
   }));
 
+  const isBot = isbot(req.headers["user-agent"] || "");
+
   return {
     props: {
       region,
       markers,
       ...data,
       hotspots,
+      isBot,
     },
   };
 };

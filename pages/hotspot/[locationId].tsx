@@ -29,11 +29,13 @@ import useLogPageview from "hooks/useLogPageview";
 import { useModal } from "providers/modals";
 import { useReloadProps } from "hooks/useReloadProps";
 import dayjs from "dayjs";
+import isbot from "isbot";
 
-interface Props extends HotspotType {
+type Props = HotspotType & {
   region: Region;
   marker: Marker;
-}
+  isBot: boolean;
+};
 
 export default function Hotspot({
   region,
@@ -67,9 +69,10 @@ export default function Hotspot({
   noContent,
   featuredImg,
   updatedAt,
+  isBot,
 }: Props) {
   const { user } = useUser();
-  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot" });
+  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot", isBot });
   const { open } = useModal();
   const reload = useReloadProps();
 
@@ -232,7 +235,7 @@ export default function Hotspot({
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
-          {lat && lng && marker && <MapBox key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
+          {lat && lng && marker && !isBot && <MapBox key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
           {!!mapImages?.length && <MapList images={mapImages} />}
           {lat && lng && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
         </div>
@@ -245,7 +248,7 @@ interface Params extends ParsedUrlQuery {
   locationId: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   const { locationId } = query as Params;
 
   if (locationId.startsWith("G")) {
@@ -284,6 +287,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     if (citations) groupCitations.push(...citations);
   });
 
+  const isBot = isbot(req.headers["user-agent"] || "");
+
   return {
     props: JSON.parse(
       JSON.stringify({
@@ -292,6 +297,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         ...data,
         citations: [...(data.citations || []), ...groupCitations],
         links: [...(links || []), ...groupLinks],
+        isBot,
       })
     ),
   };
