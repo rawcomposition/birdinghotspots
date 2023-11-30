@@ -24,6 +24,7 @@ export default function ImageInput({ onSuccess }: Props) {
       autoProceed: true,
       restrictions: {
         allowedFileTypes: [".jpg", ".jpeg", ".png"],
+        maxFileSize: 1024 * 1024 * 10, //10MB
       },
       onBeforeFileAdded: (file) => {
         const name = `${uuidv4()}.${file.extension}`;
@@ -74,8 +75,8 @@ export default function ImageInput({ onSuccess }: Props) {
       onSuccess(images || []);
     });
 
-    instance.on("restriction-failed", () => {
-      toast.error("Only images are allowed");
+    instance.on("restriction-failed", (file, error) => {
+      toast.error(error.message);
     });
 
     instance.on("upload", () => {
