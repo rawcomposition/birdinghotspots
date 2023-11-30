@@ -87,10 +87,6 @@ export default function Home({ featured, northAmericaRegions }: Props) {
             </p>
           </div>
           <div>
-            <p className="mb-4">
-              In eBird, Hotspots are shared locations where birders may report their bird sightings to eBird. Hotspots
-              provide birders with information about birding locations where birds are being seen.
-            </p>
             <h3 className="text-lg font-bold mb-1.5">Links to eBird website</h3>
             <p className="mb-4">
               <a href="https://ebird.org/about" target="_blank" rel="noreferrer">
