@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import Form from "components/Form";
 import { debounce } from "lib/helpers";
 import Badge from "components/Badge";
+import { useRouter } from "next/router";
 
 type Inputs = {
   search: string;
@@ -26,6 +27,8 @@ export default function RevisionReview() {
   const [total, setTotal] = React.useState(0);
   const { open } = useModal();
   const { send, loading } = useSecureFetch();
+  const router = useRouter();
+  const region = router.query.region as string;
 
   const form = useForm<Inputs>({
     defaultValues: {
@@ -50,7 +53,7 @@ export default function RevisionReview() {
     const data = await send({
       url: "/api/admin/revisions",
       method: "POST",
-      data: { skip: skip || 0, search: search || "", status: status || "" },
+      data: { skip: skip || 0, search: search || "", status: status || "", region },
     });
 
     if (data?.results) {

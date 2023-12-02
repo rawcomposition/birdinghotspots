@@ -5,9 +5,10 @@ import { getRegion } from "lib/localData";
 import diff from "node-htmldiff";
 import { getSubscriptions } from "lib/mongo";
 import secureApi from "lib/secureApi";
+import { canEdit } from "lib/helpers";
 
 export default secureApi(async (req, res, token) => {
-  const { search, status, skip }: any = req.body;
+  const { search, status, skip, region }: any = req.body;
   const limit = status === "pending" ? undefined : 20;
 
   try {
@@ -16,7 +17,15 @@ export default secureApi(async (req, res, token) => {
 
     let query: any = { status };
 
-    if (token.role !== "admin") {
+    if (region && canEdit(token, region)) {
+      if (region.split("-").length === 1) {
+        query.countryCode = region;
+      } else if (region.split("-").length === 2) {
+        query.stateCode = region;
+      } else if (region.split("-").length === 3) {
+        query.countyCode = region;
+      }
+    } else if (token.role !== "admin") {
       const regions = subscriptions.length === 0 ? token.regions || [] : subscriptions;
       const countries = regions.filter((it) => it.split("-").length === 1);
       const states = regions.filter((it) => it.split("-").length === 2);
