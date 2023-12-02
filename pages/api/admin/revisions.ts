@@ -59,7 +59,10 @@ export default secureApi(async (req, res, token) => {
       const region = getRegion(regionCode);
       const formatted = {
         ...it,
-        hasMultiple: revisions.filter((rev: RevisionType) => rev.locationId === it.locationId).length > 1,
+        hasMultiple:
+          status === "pending"
+            ? revisions.filter((rev: RevisionType) => rev.locationId === it.locationId).length > 1
+            : false,
         locationName: region?.detailedName || regionCode,
         about: formatDiff(it.about?.old, it.about?.new),
         tips: formatDiff(it.tips?.old, it.tips?.new),
