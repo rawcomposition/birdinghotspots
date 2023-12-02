@@ -209,7 +209,7 @@ export default function RevisionReview() {
                   </td>
                 </tr>
               ))}
-              {items.length === 0 && (
+              {items.length === 0 && !loading && (
                 <tr>
                   <td colSpan={5} className="py-4 text-center text-gray-500 text-base">
                     No suggestions to review
