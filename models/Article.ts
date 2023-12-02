@@ -41,6 +41,7 @@ const ArticleSchema = new Schema({
       by: String,
       width: Number,
       height: Number,
+      size: Number,
       caption: String,
     },
   ],

@@ -15,6 +15,7 @@ export type Image = {
   isPublicDomain?: boolean;
   width?: number;
   height?: number;
+  size?: number;
   preview?: string;
   caption?: string;
   legacy?: boolean;
@@ -216,6 +217,7 @@ export type Upload = {
   uid?: string;
   width?: number;
   height?: number;
+  size?: number;
   caption?: string;
   createdAt: Date;
   status: string;

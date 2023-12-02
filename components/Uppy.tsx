@@ -46,6 +46,20 @@ export default function ImageInput({ onSuccess }: Props) {
         auth: { key: process.env.NEXT_PUBLIC_TRANSLOADIT_KEY || "" },
         template_id: process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID || "",
       },
+      // @ts-ignore
+      getAssemblyOptions: (file, options) => {
+        const isLarge = file.size > 1024 * 700; //700kb
+        return {
+          params: {
+            ...options.params,
+            template_id: isLarge
+              ? process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID_LARGE
+              : process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID,
+          },
+          signature: options.signature,
+          fields: options.fields,
+        };
+      },
     });
 
     instance.use(ThumbnailGenerator, {
@@ -79,6 +93,7 @@ export default function ImageInput({ onSuccess }: Props) {
           height: file.meta.height || null,
           isMap: false,
           isNew: true,
+          size: file.size,
         };
       });
       onSuccess(images || []);

@@ -45,6 +45,7 @@ const DriveSchema = new Schema({
       width: Number,
       height: Number,
       caption: String,
+      size: Number,
       legacy: Boolean,
     },
   ],

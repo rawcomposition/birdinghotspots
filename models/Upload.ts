@@ -29,6 +29,7 @@ const UploadSchema = new Schema({
   uid: String,
   width: Number,
   height: Number,
+  size: Number,
   caption: String,
   countryCode: {
     type: String,
