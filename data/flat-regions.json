@@ -1844,6 +1844,186 @@
     "name": "Northwestern Hawaiian Islands, Hawaii, US"
   },
   {
+    "code": "US-ID",
+    "name": "Idaho, US"
+  },
+  {
+    "code": "US-ID-001",
+    "name": "Ada, Idaho, US"
+  },
+  {
+    "code": "US-ID-003",
+    "name": "Adams, Idaho, US"
+  },
+  {
+    "code": "US-ID-005",
+    "name": "Bannock, Idaho, US"
+  },
+  {
+    "code": "US-ID-007",
+    "name": "Bear Lake, Idaho, US"
+  },
+  {
+    "code": "US-ID-009",
+    "name": "Benewah, Idaho, US"
+  },
+  {
+    "code": "US-ID-011",
+    "name": "Bingham, Idaho, US"
+  },
+  {
+    "code": "US-ID-013",
+    "name": "Blaine, Idaho, US"
+  },
+  {
+    "code": "US-ID-015",
+    "name": "Boise, Idaho, US"
+  },
+  {
+    "code": "US-ID-017",
+    "name": "Bonner, Idaho, US"
+  },
+  {
+    "code": "US-ID-019",
+    "name": "Bonneville, Idaho, US"
+  },
+  {
+    "code": "US-ID-021",
+    "name": "Boundary, Idaho, US"
+  },
+  {
+    "code": "US-ID-023",
+    "name": "Butte, Idaho, US"
+  },
+  {
+    "code": "US-ID-025",
+    "name": "Camas, Idaho, US"
+  },
+  {
+    "code": "US-ID-027",
+    "name": "Canyon, Idaho, US"
+  },
+  {
+    "code": "US-ID-029",
+    "name": "Caribou, Idaho, US"
+  },
+  {
+    "code": "US-ID-031",
+    "name": "Cassia, Idaho, US"
+  },
+  {
+    "code": "US-ID-033",
+    "name": "Clark, Idaho, US"
+  },
+  {
+    "code": "US-ID-035",
+    "name": "Clearwater, Idaho, US"
+  },
+  {
+    "code": "US-ID-037",
+    "name": "Custer, Idaho, US"
+  },
+  {
+    "code": "US-ID-039",
+    "name": "Elmore, Idaho, US"
+  },
+  {
+    "code": "US-ID-041",
+    "name": "Franklin, Idaho, US"
+  },
+  {
+    "code": "US-ID-043",
+    "name": "Fremont, Idaho, US"
+  },
+  {
+    "code": "US-ID-045",
+    "name": "Gem, Idaho, US"
+  },
+  {
+    "code": "US-ID-047",
+    "name": "Gooding, Idaho, US"
+  },
+  {
+    "code": "US-ID-049",
+    "name": "Idaho, Idaho, US"
+  },
+  {
+    "code": "US-ID-051",
+    "name": "Jefferson, Idaho, US"
+  },
+  {
+    "code": "US-ID-053",
+    "name": "Jerome, Idaho, US"
+  },
+  {
+    "code": "US-ID-055",
+    "name": "Kootenai, Idaho, US"
+  },
+  {
+    "code": "US-ID-057",
+    "name": "Latah, Idaho, US"
+  },
+  {
+    "code": "US-ID-059",
+    "name": "Lemhi, Idaho, US"
+  },
+  {
+    "code": "US-ID-061",
+    "name": "Lewis, Idaho, US"
+  },
+  {
+    "code": "US-ID-063",
+    "name": "Lincoln, Idaho, US"
+  },
+  {
+    "code": "US-ID-065",
+    "name": "Madison, Idaho, US"
+  },
+  {
+    "code": "US-ID-067",
+    "name": "Minidoka, Idaho, US"
+  },
+  {
+    "code": "US-ID-069",
+    "name": "Nez Perce, Idaho, US"
+  },
+  {
+    "code": "US-ID-071",
+    "name": "Oneida, Idaho, US"
+  },
+  {
+    "code": "US-ID-073",
+    "name": "Owyhee, Idaho, US"
+  },
+  {
+    "code": "US-ID-075",
+    "name": "Payette, Idaho, US"
+  },
+  {
+    "code": "US-ID-077",
+    "name": "Power, Idaho, US"
+  },
+  {
+    "code": "US-ID-079",
+    "name": "Shoshone, Idaho, US"
+  },
+  {
+    "code": "US-ID-081",
+    "name": "Teton, Idaho, US"
+  },
+  {
+    "code": "US-ID-083",
+    "name": "Twin Falls, Idaho, US"
+  },
+  {
+    "code": "US-ID-085",
+    "name": "Valley, Idaho, US"
+  },
+  {
+    "code": "US-ID-087",
+    "name": "Washington, Idaho, US"
+  },
+  {
     "code": "US-IL",
     "name": "Illinois, US"
   },
