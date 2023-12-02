@@ -57,7 +57,7 @@ export default function ImageInput({ onSuccess }: Props) {
     });
 
     instance.use(Compressor, {
-      quality: 0.6,
+      quality: 0.5,
       // @ts-ignore
       maxWidth: 2400,
       maxHeight: 2400,
