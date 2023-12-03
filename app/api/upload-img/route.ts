@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 import { v4 as uuidv4 } from "uuid";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { promises as fs } from "fs";
 
 const xs = 480;
 const sm = 1200;
@@ -52,13 +51,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
       endpoint: "https://s3.wasabisys.com",
     });
 
-    /*await Promise.all([
+    await Promise.all([
       s3.send(
         new PutObjectCommand({
           Bucket: "birdinghotspots",
           Key: xsName,
           ACL: "public-read",
           Body: xsBuffer,
+          ContentType: "image/jpeg",
         })
       ),
       s3.send(
@@ -67,6 +67,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
           Key: smName,
           ACL: "public-read",
           Body: smBuffer,
+          ContentType: "image/jpeg",
         })
       ),
       s3.send(
@@ -75,18 +76,10 @@ export async function POST(request: NextRequest, response: NextResponse) {
           Key: lgName,
           ACL: "public-read",
           Body: lgBuffer,
+          ContentType: "image/jpeg",
         })
       ),
-    ]);*/
-
-    // Save buffers to disk
-    const xsPath = `tmp/${xsName}`;
-    const smPath = `tmp/${smName}`;
-    const lgPath = `tmp/${lgName}`;
-
-    await fs.writeFile(xsPath, xsBuffer);
-    await fs.writeFile(smPath, smBuffer);
-    await fs.writeFile(lgPath, lgBuffer);
+    ]);
 
     return NextResponse.json({
       xsUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${xsName}`,
