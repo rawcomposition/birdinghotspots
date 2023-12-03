@@ -1,7 +1,6 @@
 import React from "react";
 import Uppy from "@uppy/core";
 import { DragDrop, StatusBar, useUppy } from "@uppy/react";
-import Transloadit from "@uppy/transloadit";
 import ThumbnailGenerator from "@uppy/thumbnail-generator";
 import { v4 as uuidv4 } from "uuid";
 import "@uppy/core/dist/style.css";
@@ -10,6 +9,7 @@ import "@uppy/core/dist/style.css";
 import "@uppy/drag-drop/dist/style.css";
 import toast from "react-hot-toast";
 import Compressor from "@uppy/compressor";
+import XHR from "@uppy/xhr-upload";
 
 type Props = {
   onSuccess: (response: any) => void;
@@ -27,7 +27,6 @@ export default function ImageInput({ onSuccess }: Props) {
       autoProceed: true,
       restrictions: {
         allowedFileTypes: [".jpg", ".jpeg", ".png"],
-        maxFileSize: 1024 * 1024 * 10, //10MB
       },
       onBeforeFileAdded: (file) => {
         const id = uuidv4();
@@ -40,27 +39,7 @@ export default function ImageInput({ onSuccess }: Props) {
       },
     });
 
-    instance.use(Transloadit, {
-      waitForEncoding: true,
-      params: {
-        auth: { key: process.env.NEXT_PUBLIC_TRANSLOADIT_KEY || "" },
-        template_id: process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID || "",
-      },
-      // @ts-ignore
-      getAssemblyOptions: (file, options) => {
-        const isLarge = file.size > 1024 * 700; //700kb
-        return {
-          params: {
-            ...options.params,
-            template_id: isLarge
-              ? process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID_LARGE
-              : process.env.NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID,
-          },
-          signature: options.signature,
-          fields: options.fields,
-        };
-      },
-    });
+    instance.use(XHR, { endpoint: "/api/upload-img" });
 
     instance.use(ThumbnailGenerator, {
       id: "ThumbnailGenerator",
@@ -71,29 +50,20 @@ export default function ImageInput({ onSuccess }: Props) {
     });
 
     instance.use(Compressor, {
-      quality: 0.5,
       // @ts-ignore
       maxWidth: 2400,
       maxHeight: 2400,
-      mimeType: "image/jpeg",
-      convertType: ["image/png"],
-      convertSize: 0,
     });
 
     instance.on("complete", (result) => {
+      //@ts-ignore
       window.isUploading = false;
-      const images = result.successful.map((file: any) => {
+      const images = result.successful.map(({ preview, response: { body } }: any) => {
+        console.log(body);
         return {
-          xsUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${file.meta.id}_xsmall.jpg`,
-          smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${file.meta.id}_small.jpg`,
-          lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${file.meta.id}_large.jpg`,
-          preview: file.preview,
-          by: null,
-          width: file.meta.width || null,
-          height: file.meta.height || null,
-          isMap: false,
-          isNew: true,
-          size: file.size,
+          ...body,
+          preview,
+          isNew: true, //Because isNew isn't in the Mongoose schema it gets filtered out on save
         };
       });
       onSuccess(images || []);
