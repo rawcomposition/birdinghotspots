@@ -11,6 +11,7 @@ const blockedLocationIds = ["L3934548", "L7929720", "L10823928", "L7820108", "L1
 const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
   const response = await fetch(`https://api.ebird.org/v2/ref/hotspot/${region}?fmt=json`);
+
   const json = await response.json();
 
   if ("errors" in json) {
