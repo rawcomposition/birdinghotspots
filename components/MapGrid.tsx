@@ -15,7 +15,7 @@ export default function MapGrid({ images }: Props) {
     height: image.height,
     by: image.by,
     caption: image.caption,
-    downloadUrl: image.originalUrl || image.lgUrl || image.smUrl,
+    downloadUrl: image.lgUrl || image.smUrl,
   }));
 
   if (items.length === 0) return null;

@@ -56,6 +56,6 @@ export const processImg = (image: Image) => {
     width: image.width,
     height: image.height,
     caption,
-    downloadUrl: image.originalUrl || image.lgUrl || image.smUrl,
+    downloadUrl: image.lgUrl || image.smUrl,
   };
 };
