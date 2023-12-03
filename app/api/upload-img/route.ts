@@ -36,8 +36,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
         .toBuffer(),
     ]);
 
-    console.log(xsBuffer.byteLength / 1024, smBuffer.byteLength / 1024, lgBuffer.byteLength / 1024);
-
     const xsName = `${id}_xsmall.jpg`;
     const smName = `${id}_small.jpg`;
     const lgName = `${id}_large.jpg`;
