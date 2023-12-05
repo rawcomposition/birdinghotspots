@@ -460,9 +460,3 @@ img.marker-sm {
   right: 5px !important;
   @apply !block sm:!hidden;
 }
-
-.tox:not(svg):not(rect) .tox-notifications-container {
-  display: none !important;
-  height: 0 !important;
-  overflow: hidden;
-}

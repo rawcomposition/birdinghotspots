@@ -19,6 +19,7 @@ const TinyMCE = ({ name, defaultValue, config, ...props }: InputProps) => {
         render={({ field: { onChange } }) => {
           return (
             <Editor
+              tinymceScriptSrc={process.env.NEXT_PUBLIC_DOMAIN + "/tinymce/tinymce.min.js"}
               id={name}
               initialValue={defaultValue || ""}
               init={config || defaultConfig}
