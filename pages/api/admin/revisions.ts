@@ -64,7 +64,7 @@ export default secureApi(async (req, res, token) => {
     };
 
     const results = revisions.map((it) => {
-      const regionCode = it.countyCode || it.stateCode;
+      const regionCode = it.countyCode || it.stateCode || it.countryCode;
       const region = getRegion(regionCode);
       const formatted = {
         ...it,

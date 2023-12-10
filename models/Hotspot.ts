@@ -38,10 +38,7 @@ const HotspotSchema = new Schema({
     type: String,
     required: true,
   },
-  stateCode: {
-    type: String,
-    required: true,
-  },
+  stateCode: String,
   countyCode: String,
   lat: Number,
   lng: Number,
