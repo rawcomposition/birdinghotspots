@@ -54,7 +54,7 @@ export type Hotspot = {
   zoom: number;
   locationId: string;
   countryCode: string;
-  stateCode: string;
+  stateCode?: string;
   countyCode?: string;
   about?: string;
   tips?: string;
@@ -206,8 +206,8 @@ export type Upload = {
   locationId: string;
   name: string;
   countryCode: string;
-  stateCode: string;
-  countyCode: string;
+  stateCode?: string;
+  countyCode?: string;
   xsUrl?: string;
   smUrl: string;
   lgUrl: string;
@@ -287,8 +287,8 @@ export type Revision = {
   name: string;
   locationId: string;
   countryCode: string;
-  stateCode: string;
-  countyCode: string;
+  stateCode?: string;
+  countyCode?: string;
   about?: {
     old: string;
     new: string;

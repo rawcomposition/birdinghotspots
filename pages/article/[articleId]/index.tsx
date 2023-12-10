@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (!region) return { notFound: true };
 
   const formattedHotspots = data.hotspots?.map((hotspot) => {
-    const regionCode = hotspot.countyCode || hotspot.stateCode;
+    const regionCode = hotspot.countyCode || hotspot.stateCode || hotspot.countryCode;
     const region = getRegion(regionCode);
     const locationLine = region ? `${region.detailedName}` : regionCode;
     return {

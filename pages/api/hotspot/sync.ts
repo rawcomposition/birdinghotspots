@@ -74,7 +74,7 @@ const deleteHotspot = (id: any) => {
 const insertHotspot = ({ lat, lng, locationId, name, total, ...data }: any) => {
   if (!lat || !lng || !locationId || !name) return;
   console.log(`Inserting hotspot ${locationId}`);
-  const hasValidStateCode = (data?.subnational1Code?.split("-")?.length || 0) > 1;
+  const hasValidStateCode = (data?.subnational1Code?.split("-")?.filter(Boolean)?.length || 0) > 1;
   const stateCode = hasValidStateCode ? data?.subnational1Code : null;
   const countyCode = data?.subnational2Code;
   let location = null;

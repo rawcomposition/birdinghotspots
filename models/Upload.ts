@@ -35,10 +35,7 @@ const UploadSchema = new Schema({
     type: String,
     required: true,
   },
-  stateCode: {
-    type: String,
-    required: true,
-  },
+  stateCode: String,
   countyCode: String,
   status: {
     type: String,

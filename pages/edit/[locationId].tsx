@@ -232,10 +232,13 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     };
   }
 
-  const stateCode = data?.stateCode || ebirdData?.subnational1Code;
+  const countryCode = ebirdData?.subnational1Code?.split("-")?.[0] || data?.countryCode;
+  const hasValidStateCode = (ebirdData?.subnational1Code?.split("-")?.filter(Boolean)?.length || 0) > 1;
+  const stateCode = hasValidStateCode ? ebirdData?.subnational1Code : null;
+
   const countyCode = data?.countyCode || ebirdData?.subnational2Code;
 
-  if (!canEdit(token, stateCode)) {
+  if (!canEdit(token, stateCode || countryCode)) {
     res.statusCode = 403;
     return { props: { error: "Access Deneid", errorCode: 403 } };
   }
@@ -282,7 +285,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         lat: ebirdData?.latitude || data?.lat,
         lng: ebirdData?.longitude || data?.lng,
         zoom: data?.zoom || 14,
-        countryCode: ebirdData?.subnational1Code?.split("-")?.[0] || data?.countryCode,
+        countryCode,
         ...(stateCode && { stateCode }),
         ...(countyCode && { countyCode }),
         locationId: locationId,

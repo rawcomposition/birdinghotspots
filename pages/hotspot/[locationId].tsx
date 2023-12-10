@@ -267,8 +267,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
     ? [{ url: data.webpage, label: "Official Website", cite: data.citeWebpage }, ...(data.links || [])]
     : data.links || [];
 
-  const region =
-    getRegion(data.countyCode || data.stateCode || data.countryCode) || getRegion(data.stateCode || data.countryCode);
+  const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
   if (!region) return { notFound: true };
 
   const marker = formatMarker(data);

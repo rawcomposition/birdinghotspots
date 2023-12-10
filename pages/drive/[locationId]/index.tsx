@@ -81,7 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getDriveByLocationId(locationId);
   if (!data) return { notFound: true };
 
-  const region = getRegion(data.stateCode || data.countyCode);
+  const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
 
   const filteredEntries = data.entries.filter((entry: any) => entry.hotspot);
 
