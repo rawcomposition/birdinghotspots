@@ -255,6 +255,7 @@ export type User = {
 export type Group = {
   name: string;
   _id?: string;
+  mapImgUrl?: string;
   url: string;
   locationId: string;
   countryCode: string;
