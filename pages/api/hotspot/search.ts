@@ -26,14 +26,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
   }
 
-  let select = ["name", "stateCode"];
+  let select = ["name", "stateCode", "countryCode"];
 
   try {
     await connect();
     const results = (await Hotspot.find(query, select).limit(50).sort({ name: 1 }).lean().exec()) as HotspotType[];
 
     const formatted = results?.map((result) => {
-      const state = getRegion(result.stateCode);
+      const state = getRegion(result.stateCode || result.countryCode);
       let label = `${result.name}, ${state?.detailedName || result.stateCode}`;
       return { label, value: result._id };
     });
