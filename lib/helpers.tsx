@@ -1,4 +1,4 @@
-import { Hotspot, Token } from "lib/types";
+import { Hotspot, Marker, Token } from "lib/types";
 
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
@@ -192,4 +192,42 @@ export const canEdit = (token: Token, region: string | string[]) => {
   }
 
   return region?.some((it: string) => !!token.regions?.some((myRegion: string) => it.startsWith(myRegion)));
+};
+
+export const getStaticMap = (markers: Marker[]) => {
+  const markersWithShade = markers.map((marker) => ({
+    ...marker,
+    shade: getMarkerShade(marker.species || 0),
+  }));
+
+  const shades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const filteredShades = shades.filter((shade) => markersWithShade.some((marker) => marker.shade === shade));
+
+  const geoJson = JSON.stringify({
+    type: "FeatureCollection",
+    features: filteredShades.map((shade) => {
+      const shadeMarkers = markersWithShade.filter((marker) => marker.shade === shade);
+      return {
+        type: "Feature",
+        properties: {
+          "marker-url": `https://birdinghotspots.org/markers/static/shade-${shade}.png`,
+        },
+        geometry: {
+          type: "MultiPoint",
+          coordinates: shadeMarkers.map((marker) => [
+            Math.round(marker.lng * 100000) / 100000,
+            Math.round(marker.lat * 100000) / 100000,
+          ]),
+        },
+      };
+    }),
+  });
+
+  console.log(geoJson);
+
+  const mapboxUrl = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/geojson(${encodeURIComponent(
+    geoJson
+  )})/auto/383x248@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_KEY}`;
+
+  return mapboxUrl;
 };
