@@ -204,10 +204,7 @@ export async function getArticlesByRegion(regionCode: string) {
     query = { countryCode: regionCode };
   }
 
-  const result = await Article.find(query, ["-_id", "name", "articleId", "images"])
-    .sort({ createdAt: -1 })
-    .lean()
-    .exec();
+  const result = await Article.find(query, ["-_id", "name", "articleId", "images"]).sort({ createdAt: -1 }).lean();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
@@ -319,7 +316,7 @@ export async function getGroupsByState(stateCode: string) {
   return result;
 }
 
-export async function getGroupsByRegion(region: string) {
+export async function getGroupsByRegion(region: string, limit?: number) {
   await connect();
   let query: any = {};
 
@@ -331,10 +328,12 @@ export async function getGroupsByRegion(region: string) {
     query = { countryCode: region };
   }
 
-  console.log(query);
+  const result = await Group.find(query, ["-_id", "name", "url", "mapImgUrl", "hotspots"])
+    .sort({ name: 1 })
+    .limit(limit || 10000)
+    .lean();
 
-  const result = await Group.find(query, ["-_id", "name", "url"]).sort({ name: 1 }).lean().exec();
-  return result;
+  return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
 export async function getProfile(uid: string) {

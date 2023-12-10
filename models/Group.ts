@@ -18,6 +18,7 @@ const GroupSchema = new Schema({
     type: String,
     required: true,
   },
+  mapImgUrl: String,
   url: {
     type: String,
     required: true,

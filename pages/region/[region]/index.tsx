@@ -4,7 +4,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { getRegion } from "lib/localData";
 import RareBirds from "components/RareBirds";
-import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive, RegionStatsT } from "lib/types";
+import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive, RegionStatsT, Group } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
 import EditorActions from "components/EditorActions";
@@ -20,7 +20,7 @@ import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
-import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion } from "lib/mongo";
+import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion, getGroupsByRegion } from "lib/mongo";
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
@@ -31,19 +31,23 @@ import ArticleGrid from "components/ArticleGrid";
 import RegionBranding from "components/RegionBranding";
 import SubregionList from "components/SubregionList";
 import isbot from "isbot";
+import GroupGrid from "components/GroupGrid";
+import clsx from "clsx";
 
 type Props = {
   region: Region;
   info: RegionInfo;
   articles: Article[];
+  groups: Group[];
   hotspots: Hotspot[];
   hasSubregions: boolean;
   isBot: boolean;
 };
 
-export default function RegionPage({ region, info, articles, hotspots, hasSubregions, isBot }: Props) {
+export default function RegionPage({ region, info, articles, groups, hotspots, hasSubregions, isBot }: Props) {
   const [view, setView] = React.useState<string>("map");
   const [stats, setStats] = React.useState<RegionStatsT>();
+  const [showAllHotspots, setShowAllHotspots] = React.useState<boolean>(false);
   const { open } = useModal();
   const { code, name, longName, portal, subregions, subheading } = region;
   const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
@@ -220,12 +224,41 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
 
       {!hasSubregions && (
         <>
-          <section className="mb-12">
+          <section className="mb-12 relative">
             <h3 className="text-lg mb-2 font-bold" id="hotspots">
               All Hotspots
               <span className="text-base text-gray-500"> ({hotspots.length})</span>
             </h3>
-            <HotspotList hotspots={hotspots} className="md:columns-3" />
+            <div className={clsx("mb-12", !showAllHotspots && "overflow-hidden max-h-[400px]")}>
+              <HotspotList hotspots={hotspots} className="md:columns-3" />
+            </div>
+            {showAllHotspots ? (
+              <button
+                className="bg-gray-100 border hover:bg-gray-200 text-gray-600 font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-10 text-center"
+                onClick={() => setShowAllHotspots(false)}
+              >
+                Collapse
+              </button>
+            ) : (
+              <div
+                className={clsx(
+                  "bg-gradient-to-t from-white to-transparent z-10 absolute bottom-0 left-0 right-0 h-12",
+                  hotspots.length > 15 && typeof window !== "undefined" && window.innerWidth < 768
+                    ? "block"
+                    : hotspots.length > 45
+                    ? "block"
+                    : "hidden"
+                )}
+              >
+                <button
+                  className="bg-gray-100 border hover:bg-gray-200 text-gray-600 font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-10 text-center"
+                  onClick={() => setShowAllHotspots(true)}
+                >
+                  Expand
+                </button>
+              </div>
+            )}
+
             {hotspots.length === 0 && (
               <p className="text-base text-gray-500">No data has been entered for this region yet</p>
             )}
@@ -299,6 +332,23 @@ export default function RegionPage({ region, info, articles, hotspots, hasSubreg
           <hr className="my-8 opacity-70" />
         </>
       )}
+      {region.code === "US-CA-083" && groups.length > 0 && (
+        <>
+          <Heading id="contribute" color="darkGray" className="mt-12 mb-8">
+            Groups
+          </Heading>
+          <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-4">
+            <GroupGrid groups={groups} />
+          </div>
+          <Link
+            href={`/region/${region.code}/groups`}
+            className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
+          >
+            View More
+            <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+          </Link>
+        </>
+      )}
       <Heading id="contribute" color="darkGray" className="mt-12 mb-8">
         Contribute
       </Heading>
@@ -349,10 +399,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!region) return { notFound: true };
   const hasSubregions = !!region.subregions?.length;
 
-  const info = hasSubregions ? await getRegionInfo(regionCode) : null;
-  const articles = hasSubregions ? (await getArticlesByRegion(regionCode)) || [] : [];
-
-  const hotspots = !hasSubregions ? (await getHotspotsByRegion(regionCode)) || [] : [];
+  const [info, articles, hotspots, groups] = await Promise.all([
+    hasSubregions ? getRegionInfo(regionCode) : null,
+    hasSubregions ? getArticlesByRegion(regionCode) : [],
+    !hasSubregions ? getHotspotsByRegion(regionCode) : [],
+    getGroupsByRegion(regionCode, 6),
+  ]);
 
   const formattedHotspots = hotspots.map((it: any) => ({
     ...it,
@@ -362,6 +414,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const isBot = isbot(context.req.headers["user-agent"] || "");
 
   return {
-    props: { key: region.code, region, info, articles, hasSubregions, hotspots: formattedHotspots, isBot },
+    props: { key: region.code, region, info, articles, groups, hasSubregions, hotspots: formattedHotspots, isBot },
   };
 };
