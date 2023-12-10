@@ -136,7 +136,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
 
   uploads.forEach((upload) => {
     if (!items.find((item) => item.locationId === upload.locationId)) {
-      const regionCode = upload.countyCode || upload.stateCode;
+      const regionCode = upload.countyCode || upload.stateCode || upload.countryCode;
       const region = getRegion(regionCode);
       items.push({
         name: upload.name,

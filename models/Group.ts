@@ -26,10 +26,7 @@ const GroupSchema = new Schema({
     type: String,
     required: true,
   },
-  stateCodes: {
-    type: [String],
-    required: true,
-  },
+  stateCodes: [String],
   countyCodes: {
     type: [String],
     required: true,
