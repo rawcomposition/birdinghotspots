@@ -225,7 +225,7 @@ export const getStaticMap = (markers: Marker[]) => {
 
   const mapboxUrl = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/geojson(${encodeURIComponent(
     geoJson
-  )})/auto/459x296@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_KEY}`;
+  )})/auto/459x296@2x?access_token=${process.env.MAPBOX_STATIC_KEY}`;
 
   return mapboxUrl;
 };
