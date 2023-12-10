@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
+import Group from "models/Group";
 import { getRegion } from "lib/localData";
 import FlatRegions from "data/flat-regions.json";
 import FlatCities from "data/flat-cities.json";
@@ -28,11 +29,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const hotspots = await Hotspot.find(query, ["name", "url", "countryCode", "stateCode"]).limit(50).lean();
+    const [hotspots, groups] = await Promise.all([
+      Hotspot.find(query, ["name", "url", "countryCode", "stateCode"]).limit(50).lean(),
+      Group.find(query, ["name", "url", "countryCode", "stateCodes"]).limit(10).lean(),
+    ]);
 
-    const formatted = hotspots?.map((result) => {
+    const formattedHotspots = hotspots?.map((result) => {
       const region = getRegion(result.stateCode || result.countryCode);
       const label = `${result.name}, ${region?.detailedName || result.stateCode || result.countryCode}`;
+      return { label, value: result.url };
+    });
+
+    const formattedGroups = groups?.map((result) => {
+      const hasMultipleStates = result.stateCodes?.length > 1;
+      const region = hasMultipleStates
+        ? getRegion(result.countryCode)
+        : getRegion(result.stateCode || result.countryCode);
+      const label = `${result.name}, ${region?.detailedName || result.countryCode}`;
       return { label, value: result.url };
     });
 
@@ -48,8 +61,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           options: filteredRegions,
         },
         {
+          label: "Groups",
+          options: formattedGroups,
+        },
+        {
           label: "Hotspots",
-          options: formatted,
+          options: formattedHotspots,
         },
       ],
     });
