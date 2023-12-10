@@ -83,7 +83,8 @@ export default function Home({ featured, northAmericaRegions }: Props) {
             <EbirdDescription />
             <h3 className="text-lg font-bold mb-1.5">eBird can help you</h3>
             <p className="mb-4">
-              + Record the birds you see+ Keep track of your bird lists
+              + Record the birds you see
+              <br />+ Keep track of your bird lists
               <br />+ Explore dynamic maps and graphs
               <br />+ Share your sightings and join the eBird community
               <br />+ Contribute to science and conservation
