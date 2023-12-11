@@ -17,16 +17,19 @@ export default function AddStreetView({ locationId, onSuccess }: Props) {
   const { close } = useModal();
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const pieces = url.split(",");
+  const urlParts = url.split("/");
+  const streetviewStr = urlParts.find((part) => part.startsWith("@")) || "";
+
+  const pieces = streetviewStr.split(",");
 
   const lat = parseFloat(pieces[0]?.split("@")?.[1]);
   const lng = parseFloat(pieces[1]);
-  const heading = parseInt(pieces[4]?.replace("h", ""));
-  const tilt = parseInt(pieces[5]?.replace("t", ""));
+  const heading = parseInt(pieces.find((part) => part.endsWith("h"))?.replace("h", "") || "0");
+  const tilt = parseInt(pieces.find((part) => part.endsWith("t"))?.replace("t", "") || "0");
   const pitch = tilt ? tilt - 90 : 0;
 
-  const invalid = !!url && (!lat || !lng || !fov || !heading || !tilt);
-  const isValid = !!lat && !!lng && !!fov && !!heading && !!tilt;
+  const invalid = !!streetviewStr && (!lat || !lng || !fov || !tilt);
+  const isValid = !!lat && !!lng && !!fov && !!tilt;
 
   const handleAdd = async () => {
     const response = await send({
