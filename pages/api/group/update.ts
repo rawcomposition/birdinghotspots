@@ -67,7 +67,10 @@ export default secureApi(async (req, res, token) => {
 
     const updatedAt = dayjs().format();
     await Promise.all([
-      await Group.updateOne({ _id: id }, { ...data, stateCodes, countyCodes, updatedAt, mapImgUrl }),
+      await Group.updateOne(
+        { _id: id },
+        { ...data, stateCodes, countyCodes, updatedAt, mapImgUrl, hotspotCount: data.hotspots.length }
+      ),
       await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: id } }),
       await Hotspot.updateMany({ _id: { $in: removedHotspots } }, { $pull: { groupIds: id } }),
     ]);

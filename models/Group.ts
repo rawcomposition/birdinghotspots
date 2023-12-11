@@ -71,6 +71,7 @@ const GroupSchema = new Schema({
       hideFromChildren: Boolean,
     },
   ],
+  hotspotCount: Number,
   createdAt: {
     type: "string",
     default: () => dayjs().format(),

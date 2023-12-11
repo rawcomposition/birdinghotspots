@@ -273,6 +273,7 @@ export type Group = {
   restrooms?: string;
   images?: Image[];
   hotspots: [Hotspot];
+  hotspotCount?: number;
   updatedAt?: string;
 };
 
