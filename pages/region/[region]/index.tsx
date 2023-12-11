@@ -217,9 +217,12 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
 
       <section>
         <Heading id="hotspots" color="green" className="mt-12 mb-8">
-          Top eBird Hotspots
+          Hotspots
         </Heading>
-        <TopHotspots region={code} className="mt-12" />
+        <h3 className="text-lg font-bold" id="hotspots">
+          Top Hotspots
+        </h3>
+        <TopHotspots region={code} className="mt-3" />
       </section>
 
       {!hasSubregions && (
@@ -332,9 +335,9 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
           <hr className="my-8 opacity-70" />
         </>
       )}
-      {region.code === "US-CA-083" && groups.length > 0 && (
+      {groups.length > 0 && (
         <>
-          <Heading id="contribute" color="darkGray" className="mt-12 mb-8">
+          <Heading id="groups" color="darkGray" className="mt-12 mb-8">
             Groups
           </Heading>
           <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-6 min-h-[300px] mt-4">
