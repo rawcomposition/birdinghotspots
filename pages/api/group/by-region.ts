@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const results = await Group.find(query, ["name", "url", "mapImgUrl", "countryCode", "hotspots"])
-      .sort({ species: -1, name: 1 })
+      .sort({ hotspotCount: -1, name: 1 })
       .limit(limit || 15)
       .skip(offset || 0)
       .lean()

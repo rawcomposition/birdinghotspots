@@ -20,7 +20,7 @@ import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import ImageIcon from "icons/Image";
-import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion, getGroupsByRegion } from "lib/mongo";
+import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion, getTopGroupsByRegion } from "lib/mongo";
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
@@ -406,7 +406,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     hasSubregions ? getRegionInfo(regionCode) : null,
     hasSubregions ? getArticlesByRegion(regionCode) : [],
     !hasSubregions ? getHotspotsByRegion(regionCode) : [],
-    getGroupsByRegion(regionCode, 6),
+    getTopGroupsByRegion(regionCode, 6),
   ]);
 
   const formattedHotspots = hotspots.map((it: any) => ({

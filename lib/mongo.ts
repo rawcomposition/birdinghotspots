@@ -328,9 +328,29 @@ export async function getGroupsByRegion(region: string, limit?: number) {
     query = { countryCode: region };
   }
 
-  const result = await Group.find(query, ["-_id", "name", "url", "mapImgUrl", "hotspots"])
+  const result = await Group.find(query, ["-_id", "name", "url"])
     .sort({ name: 1 })
     .limit(limit || 10000)
+    .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getTopGroupsByRegion(region: string, limit: number) {
+  await connect();
+  let query: any = {};
+
+  if (region.split("-").length === 3) {
+    query = { countyCodes: region };
+  } else if (region.split("-").length === 2) {
+    query = { stateCodes: region };
+  } else {
+    query = { countryCode: region };
+  }
+
+  const result = await Group.find(query, ["-_id", "name", "url", "mapImgUrl", "hotspots"])
+    .sort({ hotspotCount: -1 })
+    .limit(limit)
     .lean();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
