@@ -223,9 +223,11 @@ export const getStaticMap = (markers: Marker[]) => {
     }),
   });
 
+  const padding = markers.length > 10 ? 20 : markers.length > 5 ? 60 : markers.length > 2 ? 80 : 100;
+
   const mapboxUrl = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/geojson(${encodeURIComponent(
     geoJson
-  )})/auto/459x296@2x?access_token=${process.env.MAPBOX_STATIC_KEY}`;
+  )})/auto/459x296@2x?access_token=${process.env.MAPBOX_STATIC_KEY}&padding=${padding}&logo=false`;
 
   return mapboxUrl;
 };
