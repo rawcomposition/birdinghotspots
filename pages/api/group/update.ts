@@ -21,7 +21,7 @@ export default secureApi(async (req, res, token) => {
     "lng",
   ]).lean();
   const allStateCodes: string[] = hotspots.map((hotspot: any) => hotspot.stateCode);
-  const stateCodes = [...new Set(allStateCodes)];
+  const stateCodes = [...new Set(allStateCodes)].filter(Boolean);
   const countyCodes: string[] = [];
 
   hotspots.forEach((hotspot: any) => {

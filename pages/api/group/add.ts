@@ -11,7 +11,7 @@ export default secureApi(async (req, res, token) => {
 
   const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, ["-_id", "stateCode", "countyCode"]);
   const allStateCodes: string[] = hotspots.map((hotspot: any) => hotspot.stateCode);
-  const stateCodes = [...new Set(allStateCodes)];
+  const stateCodes = [...new Set(allStateCodes)].filter(Boolean);
   const countyCodes: string[] = [];
 
   hotspots.forEach((hotspot: any) => {

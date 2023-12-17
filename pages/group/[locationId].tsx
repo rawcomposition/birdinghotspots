@@ -11,7 +11,7 @@ import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { formatMarker, getShortName } from "lib/helpers";
+import { formatMarker, getShortName, canEdit as checkCanEdit } from "lib/helpers";
 import MapBox from "components/MapBox";
 import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
@@ -58,9 +58,11 @@ export default function Group({
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "group", isBot });
   const [showMore, setShowMore] = React.useState(false);
   const { user } = useUser();
-  const canEditGroup =
-    user?.role === "admin" ||
-    stateCodes?.some((it: string) => !!user?.regions?.some((myRegion: string) => it.startsWith(myRegion)));
+
+  const canEditGroup = checkCanEdit(
+    { uid: "", role: user?.role, regions: user?.regions },
+    stateCodes?.length ? stateCodes : countryCode
+  );
 
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();

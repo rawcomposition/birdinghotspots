@@ -15,7 +15,7 @@ import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
 import ImageIcon from "icons/Image";
-import { formatMarker } from "lib/helpers";
+import { formatMarker, canEdit as checkCanEdit } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
@@ -101,9 +101,8 @@ export default function Hotspot({
 
   const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];
 
-  const canEdit =
-    user?.role === "admin" ||
-    !!user?.regions?.some((it: string) => countyCode?.startsWith(it) || stateCode?.startsWith(it));
+  const canEdit = checkCanEdit({ uid: "", role: user?.role, regions: user?.regions }, region.code);
+  console.log(user?.regions);
 
   const base = region?.portal ? `https://ebird.org/${region?.portal}` : "https://ebird.org";
 
