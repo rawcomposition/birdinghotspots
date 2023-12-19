@@ -1,5 +1,4 @@
 import React from "react";
-import { auth } from "lib/firebaseAuth";
 import toast from "react-hot-toast";
 
 type Options = {
@@ -22,11 +21,9 @@ export default function useToast() {
 
   const send = async ({ url, method, data }: sendOptions) => {
     setLoading(true);
-    const token = await auth.currentUser?.getIdToken();
     const response = await fetch(url, {
       method: method || "POST",
       headers: {
-        Authorization: token || "",
         "Content-Type": "application/json",
       },
       body: data ? JSON.stringify(data) : null,
