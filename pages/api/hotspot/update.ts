@@ -26,7 +26,7 @@ export default secureApi(async (req, res, token) => {
     }
 
     const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
-    const noContent = !data?.about && !data?.tips && !data?.birds && !data?.hikes;
+    const noContent = !data?.about?.trim() && !data?.tips?.trim() && !data?.birds?.trim() && !data?.hikes?.trim();
     const updatedAt = dayjs().format();
     await Hotspot.updateOne({ _id: id }, { ...data, url, location, featuredImg, noContent, updatedAt });
 

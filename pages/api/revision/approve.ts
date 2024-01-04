@@ -32,7 +32,7 @@ export default secureApi(async (req, res, token) => {
     const accessible = revision.accessible?.new || hotspot.accessible;
     const fee = revision.fee?.new || hotspot.fee;
 
-    const noContent = !about && !tips && !birds && !hikes;
+    const noContent = !about?.trim() && !tips?.trim() && !birds?.trim() && !hikes?.trim();
 
     const updatedAt = dayjs().format();
     await Hotspot.updateOne(
