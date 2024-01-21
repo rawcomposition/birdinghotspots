@@ -10158,5 +10158,37 @@
   {
     "code": "NA-OD",
     "name": "Otjozondjupa, Namibia"
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates"
+  },
+  {
+    "code": "AE-AZ",
+    "name": "Abu Dhabi, United Arab Emirates"
+  },
+  {
+    "code": "AE-AJ",
+    "name": "Ajman, United Arab Emirates"
+  },
+  {
+    "code": "AE-FU",
+    "name": "Fujairah, United Arab Emirates"
+  },
+  {
+    "code": "AE-SH",
+    "name": "Sharjah, United Arab Emirates"
+  },
+  {
+    "code": "AE-DU",
+    "name": "Dubai, United Arab Emirates"
+  },
+  {
+    "code": "AE-RK",
+    "name": "Ras al-Khaimah, United Arab Emirates"
+  },
+  {
+    "code": "AE-UQ",
+    "name": "Umm al-Quwain, United Arab Emirates"
   }
 ]

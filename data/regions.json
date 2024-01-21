@@ -2751,5 +2751,18 @@
       { "code": "NA-OT", "name": "Oshikoto" },
       { "code": "NA-OD", "name": "Otjozondjupa" }
     ]
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "subregions": [
+      { "code": "AE-AZ", "name": "Abu Dhabi" },
+      { "code": "AE-AJ", "name": "Ajman" },
+      { "code": "AE-FU", "name": "Fujairah" },
+      { "code": "AE-SH", "name": "Sharjah" },
+      { "code": "AE-DU", "name": "Dubai" },
+      { "code": "AE-RK", "name": "Ras al-Khaimah" },
+      { "code": "AE-UQ", "name": "Umm al-Quwain" }
+    ]
   }
 ]

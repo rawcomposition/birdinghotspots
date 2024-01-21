@@ -47,11 +47,14 @@ export default function Home({ featured, northAmericaRegions }: Props) {
             ))}
             <h3 className="text-lg mb-4 font-bold">Worldwide</h3>
             <div className="columns-2 lg:columns-3 mb-12">
+              <Link href="/region/FO" className="font-bold px-2 py-1 text-base mb-1 block">
+                Faroe Islands
+              </Link>
               <Link href="/region/NA" className="font-bold px-2 py-1 text-base mb-1 block">
                 Namibia
               </Link>
-              <Link href="/region/FO" className="font-bold px-2 py-1 text-base mb-1 block">
-                Faroe Islands
+              <Link href="/region/AE" className="font-bold px-2 py-1 text-base mb-1 block">
+                United Arab Emirates
               </Link>
             </div>
           </section>
