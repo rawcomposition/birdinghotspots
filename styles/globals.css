@@ -449,6 +449,30 @@ img.marker-sm {
   fill: salmon;
 }
 
+.ar-lime path {
+  fill: #a4be26;
+}
+
+.ar-green path {
+  fill: #3fa15d;
+}
+
+.ar-orange path {
+  fill: #f37d1f;
+}
+
+.ar-red path {
+  fill: #f14f57;
+}
+
+.ar-blue path {
+  fill: #63b4cf;
+}
+
+.ar-purple path {
+  fill: #a87ac3;
+}
+
 /*NProgress bar*/
 #nprogress {
   z-index: 100000;
