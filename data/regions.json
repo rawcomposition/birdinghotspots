@@ -2764,5 +2764,15 @@
       { "code": "AE-RK", "name": "Ras al-Khaimah" },
       { "code": "AE-UQ", "name": "Umm al-Quwain" }
     ]
+  },
+  {
+    "code": "TJ",
+    "name": "Tajikistan",
+    "subregions": [
+      { "code": "TJ-DU", "name": "Dushanbe" },
+      { "code": "TJ-GB", "name": "Gorno-Badakhshan" },
+      { "code": "TJ-KT", "name": "Khatlon" },
+      { "code": "TJ-SU", "name": "Sughd" }
+    ]
   }
 ]

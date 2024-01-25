@@ -10190,5 +10190,25 @@
   {
     "code": "AE-UQ",
     "name": "Umm al-Quwain, United Arab Emirates"
+  },
+  {
+    "code": "TJ",
+    "name": "Tajikistan"
+  },
+  {
+    "code": "TJ-DU",
+    "name": "Dushanbe, Tajikistan"
+  },
+  {
+    "code": "TJ-GB",
+    "name": "Gorno-Badakhshan, Tajikistan"
+  },
+  {
+    "code": "TJ-KT",
+    "name": "Khatlon, Tajikistan"
+  },
+  {
+    "code": "TJ-SU",
+    "name": "Sughd, Tajikistan"
   }
 ]

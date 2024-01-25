@@ -2,7 +2,7 @@ import Link from "next/link";
 import MapTooltip from "components/MapTooltip";
 import useHoverMap from "hooks/useHoverMap";
 
-export default function CAMap() {
+export default function AEMap() {
   const { linkProps, pathProps, tooltipProps, svgRef } = useHoverMap();
 
   return (
@@ -12,7 +12,7 @@ export default function CAMap() {
         className="state-map hover-map max-w-[550px]"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
-        viewBox="176 25 665  500"
+        viewBox="165 25 685 500"
         ref={svgRef}
       >
         <Link href="/region/AE-FU" {...linkProps}>
