@@ -60,7 +60,6 @@ export default function Explore({ region }: Props) {
                 {region.name}
               </Link>
             </p>
-            <p className="text-xs text-gray-500">Sorted alphabetically</p>
           </div>
         )}
       </div>
