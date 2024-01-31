@@ -2774,5 +2774,10 @@
       { "code": "TJ-KT", "name": "Khatlon" },
       { "code": "TJ-SU", "name": "Sughd" }
     ]
+  },
+  {
+    "code": "MX",
+    "name": "Mexico",
+    "subregions": [{ "code": "MX-COL", "name": "Colima" }]
   }
 ]

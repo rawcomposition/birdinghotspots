@@ -10210,5 +10210,13 @@
   {
     "code": "TJ-SU",
     "name": "Sughd, Tajikistan"
+  },
+  {
+    "code": "MX",
+    "name": "Mexico"
+  },
+  {
+    "code": "MX-COL",
+    "name": "Colima, Mexico"
   }
 ]
