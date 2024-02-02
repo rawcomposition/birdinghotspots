@@ -17,10 +17,7 @@ const RevisionSchema = new Schema({
     required: true,
   },
   stateCode: String,
-  countyCode: {
-    type: String,
-    required: true,
-  },
+  countyCode: String,
   by: String,
   email: String,
   about: {
