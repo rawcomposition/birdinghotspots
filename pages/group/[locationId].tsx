@@ -157,10 +157,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
 
   const markers = data?.hotspots?.map((it) => formatMarker(it, true)) || [];
 
+  const hotspotPrefixes = data?.hotspots?.filter((it) => it.name.includes("--")).map((it) => it.name.split("--")[0]);
+  const uniqueHotspotPrefixes = [...new Set(hotspotPrefixes)];
+
   const hotspots = data?.hotspots?.map((it) => ({
     ...it,
     locationLine: getRegion(it.countyCode || it.stateCode || it.countryCode)?.detailedName || "",
-    name: getShortName(it.name),
+    name: uniqueHotspotPrefixes.length === 1 ? getShortName(it.name) : it.name,
   }));
 
   const isBot = isbot(req.headers["user-agent"] || "");
