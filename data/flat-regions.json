@@ -5924,6 +5924,258 @@
     "name": "Valencia, New Mexico, US"
   },
   {
+    "code": "US-NY",
+    "name": "New York, US"
+  },
+  {
+    "code": "US-NY-001",
+    "name": "Albany, New York, US"
+  },
+  {
+    "code": "US-NY-003",
+    "name": "Allegany, New York, US"
+  },
+  {
+    "code": "US-NY-005",
+    "name": "Bronx, New York, US"
+  },
+  {
+    "code": "US-NY-007",
+    "name": "Broome, New York, US"
+  },
+  {
+    "code": "US-NY-009",
+    "name": "Cattaraugus, New York, US"
+  },
+  {
+    "code": "US-NY-011",
+    "name": "Cayuga, New York, US"
+  },
+  {
+    "code": "US-NY-013",
+    "name": "Chautauqua, New York, US"
+  },
+  {
+    "code": "US-NY-015",
+    "name": "Chemung, New York, US"
+  },
+  {
+    "code": "US-NY-017",
+    "name": "Chenango, New York, US"
+  },
+  {
+    "code": "US-NY-019",
+    "name": "Clinton, New York, US"
+  },
+  {
+    "code": "US-NY-021",
+    "name": "Columbia, New York, US"
+  },
+  {
+    "code": "US-NY-023",
+    "name": "Cortland, New York, US"
+  },
+  {
+    "code": "US-NY-025",
+    "name": "Delaware, New York, US"
+  },
+  {
+    "code": "US-NY-027",
+    "name": "Dutchess, New York, US"
+  },
+  {
+    "code": "US-NY-029",
+    "name": "Erie, New York, US"
+  },
+  {
+    "code": "US-NY-031",
+    "name": "Essex, New York, US"
+  },
+  {
+    "code": "US-NY-033",
+    "name": "Franklin, New York, US"
+  },
+  {
+    "code": "US-NY-035",
+    "name": "Fulton, New York, US"
+  },
+  {
+    "code": "US-NY-037",
+    "name": "Genesee, New York, US"
+  },
+  {
+    "code": "US-NY-039",
+    "name": "Greene, New York, US"
+  },
+  {
+    "code": "US-NY-041",
+    "name": "Hamilton, New York, US"
+  },
+  {
+    "code": "US-NY-043",
+    "name": "Herkimer, New York, US"
+  },
+  {
+    "code": "US-NY-045",
+    "name": "Jefferson, New York, US"
+  },
+  {
+    "code": "US-NY-047",
+    "name": "Kings, New York, US"
+  },
+  {
+    "code": "US-NY-049",
+    "name": "Lewis, New York, US"
+  },
+  {
+    "code": "US-NY-051",
+    "name": "Livingston, New York, US"
+  },
+  {
+    "code": "US-NY-053",
+    "name": "Madison, New York, US"
+  },
+  {
+    "code": "US-NY-055",
+    "name": "Monroe, New York, US"
+  },
+  {
+    "code": "US-NY-057",
+    "name": "Montgomery, New York, US"
+  },
+  {
+    "code": "US-NY-059",
+    "name": "Nassau, New York, US"
+  },
+  {
+    "code": "US-NY-061",
+    "name": "New York, New York, US"
+  },
+  {
+    "code": "US-NY-063",
+    "name": "Niagara, New York, US"
+  },
+  {
+    "code": "US-NY-065",
+    "name": "Oneida, New York, US"
+  },
+  {
+    "code": "US-NY-067",
+    "name": "Onondaga, New York, US"
+  },
+  {
+    "code": "US-NY-069",
+    "name": "Ontario, New York, US"
+  },
+  {
+    "code": "US-NY-071",
+    "name": "Orange, New York, US"
+  },
+  {
+    "code": "US-NY-073",
+    "name": "Orleans, New York, US"
+  },
+  {
+    "code": "US-NY-075",
+    "name": "Oswego, New York, US"
+  },
+  {
+    "code": "US-NY-077",
+    "name": "Otsego, New York, US"
+  },
+  {
+    "code": "US-NY-079",
+    "name": "Putnam, New York, US"
+  },
+  {
+    "code": "US-NY-081",
+    "name": "Queens, New York, US"
+  },
+  {
+    "code": "US-NY-083",
+    "name": "Rensselaer, New York, US"
+  },
+  {
+    "code": "US-NY-085",
+    "name": "Richmond, New York, US"
+  },
+  {
+    "code": "US-NY-087",
+    "name": "Rockland, New York, US"
+  },
+  {
+    "code": "US-NY-091",
+    "name": "Saratoga, New York, US"
+  },
+  {
+    "code": "US-NY-093",
+    "name": "Schenectady, New York, US"
+  },
+  {
+    "code": "US-NY-095",
+    "name": "Schoharie, New York, US"
+  },
+  {
+    "code": "US-NY-097",
+    "name": "Schuyler, New York, US"
+  },
+  {
+    "code": "US-NY-099",
+    "name": "Seneca, New York, US"
+  },
+  {
+    "code": "US-NY-089",
+    "name": "St. Lawrence, New York, US"
+  },
+  {
+    "code": "US-NY-101",
+    "name": "Steuben, New York, US"
+  },
+  {
+    "code": "US-NY-103",
+    "name": "Suffolk, New York, US"
+  },
+  {
+    "code": "US-NY-105",
+    "name": "Sullivan, New York, US"
+  },
+  {
+    "code": "US-NY-107",
+    "name": "Tioga, New York, US"
+  },
+  {
+    "code": "US-NY-109",
+    "name": "Tompkins, New York, US"
+  },
+  {
+    "code": "US-NY-111",
+    "name": "Ulster, New York, US"
+  },
+  {
+    "code": "US-NY-113",
+    "name": "Warren, New York, US"
+  },
+  {
+    "code": "US-NY-115",
+    "name": "Washington, New York, US"
+  },
+  {
+    "code": "US-NY-117",
+    "name": "Wayne, New York, US"
+  },
+  {
+    "code": "US-NY-119",
+    "name": "Westchester, New York, US"
+  },
+  {
+    "code": "US-NY-121",
+    "name": "Wyoming, New York, US"
+  },
+  {
+    "code": "US-NY-123",
+    "name": "Yates, New York, US"
+  },
+  {
     "code": "US-NC",
     "name": "North Carolina, US"
   },
