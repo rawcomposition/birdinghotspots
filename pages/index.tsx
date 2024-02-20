@@ -46,12 +46,18 @@ export default function Home({ featured, northAmericaRegions }: Props) {
               </React.Fragment>
             ))}
             <h3 className="text-lg mb-4 font-bold">Worldwide</h3>
-            <div className="columns-2 lg:columns-3 mb-12">
+            <div className="columns-2 mb-12">
+              <Link href="/region/AQ" className="font-bold px-2 py-1 text-base mb-1 block">
+                Antarctica
+              </Link>
               <Link href="/region/FO" className="font-bold px-2 py-1 text-base mb-1 block">
                 Faroe Islands
               </Link>
               <Link href="/region/NA" className="font-bold px-2 py-1 text-base mb-1 block">
                 Namibia
+              </Link>
+              <Link href="/region/GS" className="font-bold px-2 py-1 text-base mb-1 block">
+                South Georgia and South Sandwich Islands
               </Link>
               <Link href="/region/TJ" className="font-bold px-2 py-1 text-base mb-1 block">
                 Tajikistan

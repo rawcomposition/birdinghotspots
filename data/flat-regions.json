@@ -10470,5 +10470,13 @@
   {
     "code": "MX-COL",
     "name": "Colima, Mexico"
+  },
+  {
+    "code": "GS",
+    "name": "South Georgia and South Sandwich Islands"
+  },
+  {
+    "code": "AQ",
+    "name": "Antarctica"
   }
 ]

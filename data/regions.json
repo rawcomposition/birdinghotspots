@@ -2847,5 +2847,15 @@
     "code": "MX",
     "name": "Mexico",
     "subregions": [{ "code": "MX-COL", "name": "Colima" }]
+  },
+  {
+    "code": "GS",
+    "name": "South Georgia and South Sandwich Islands",
+    "subregions": []
+  },
+  {
+    "code": "AQ",
+    "name": "Antarctica",
+    "subregions": []
   }
 ]
