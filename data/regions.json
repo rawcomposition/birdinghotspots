@@ -327,6 +327,11 @@
         ]
       },
       {
+        "name": "District of Columbia",
+        "code": "US-DC",
+        "subregions": []
+      },
+      {
         "name": "Georgia",
         "code": "US-GA",
         "subregions": [

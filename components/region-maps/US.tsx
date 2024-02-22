@@ -321,8 +321,9 @@ export default function USMap() {
               />
               <text>Maryland</text>
             </Link>
-            <Link href="/region/US-DC" {...linkProps} className="disabled">
-              <path d="m755.83 242.803 2.117 1.442-1.446 2.27-1.593-2.382Z" /> <text>District of Columbia</text>
+            <Link href="/region/US-DC" {...linkProps}>
+              <path {...pathProps} d="m755.83 242.803 2.117 1.442-1.446 2.27-1.593-2.382Z" />{" "}
+              <text>District of Columbia</text>
             </Link>
             <Link href="/region/US-WY" {...linkProps} className="disabled">
               <path d="m318.839 146.397 40.897 4.972 24.048 2.382-3.05 36.749-3.14 36.972-23.027-2.059-30.014-3.535-15.443-1.938-27.277-4.06 2.935-18.384 7.23-45.284 1.46-9.6Z" />
