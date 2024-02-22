@@ -185,7 +185,7 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
           <RadioGroup
             name="roadside"
             label="Roadside viewing"
-            help="Is this a location where birders may can watch from a vehicle?"
+            help="Is this a location where birders can watch from a vehicle?"
             options={["Yes", "No", "Unknown"]}
             inline
           />
