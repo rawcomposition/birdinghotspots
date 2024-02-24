@@ -99,6 +99,19 @@ const data = [
     ),
     imgUrl: "/AASLogo.png",
   },
+  {
+    code: "US-PA",
+    html: (
+      <>
+        A project supported by the
+        <br />
+        <a href="https://pabirds.org" target="_blank">
+          Pennsylvania Society for Ornithology
+        </a>
+      </>
+    ),
+    imgUrl: "/pso-logo.png",
+  },
 ];
 
 export default function RegionBranding({ regionCode, className }: Props) {
