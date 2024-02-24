@@ -159,7 +159,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
               By uploading you agree to release the photos into the public domain (CC0 license).
             </p>
             <Submit disabled={loading || value?.length < 1} color="green" className="font-medium">
-              Save Photos
+              Submit Photos
             </Submit>
           </div>
         </div>

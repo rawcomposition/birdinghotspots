@@ -3,7 +3,6 @@ import Hotspot from "models/Hotspot";
 import Drive from "models/Drive";
 import Article from "models/Article";
 import Settings from "models/Settings";
-import Upload from "models/Upload";
 import Revision from "models/Revision";
 import Group from "models/Group";
 import Profile from "models/Profile";
@@ -223,30 +222,6 @@ export async function getArticleByArticleId(articleId: string): Promise<ArticleT
 export async function getSettings() {
   await connect();
   const result = await Settings.findOne({ key: "global" }).lean().exec();
-
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
-
-export async function getUploads(countries: string[], states: string[], counties: string[]) {
-  await connect();
-  const result = await Upload.find({
-    status: "pending",
-    $or: [
-      { countryCode: { $in: countries || [] } },
-      { stateCode: { $in: states || [] } },
-      { countyCode: { $in: counties || [] } },
-    ],
-  })
-    .sort({ createdAt: -1 })
-    .lean()
-    .exec();
-
-  return result ? JSON.parse(JSON.stringify(result)) : null;
-}
-
-export async function getAllUploads() {
-  await connect();
-  const result = await Upload.find({ status: "pending" }).sort({ createdAt: -1 }).lean().exec();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
