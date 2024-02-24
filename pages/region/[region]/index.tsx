@@ -227,11 +227,12 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
 
       {!hasSubregions && (
         <>
-          <section className="mb-12 relative">
+          <section className="mb-12 relative mt-4">
             <h3 className="text-lg mb-2 font-bold" id="hotspots">
               All Hotspots
               <span className="text-base text-gray-500"> ({hotspots.length})</span>
             </h3>
+            {!hotspots.length && <p className="text-base text-gray-500 -mt-2">None</p>}
             <div className={clsx("mb-12", !showAllHotspots && "overflow-hidden max-h-[400px]")}>
               <HotspotList hotspots={hotspots} className="md:columns-3" />
             </div>

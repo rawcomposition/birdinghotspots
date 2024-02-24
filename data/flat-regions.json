@@ -1176,6 +1176,22 @@
     "name": "Windham, Connecticut, US"
   },
   {
+    "code": "US-DE",
+    "name": "Delaware, US"
+  },
+  {
+    "code": "US-DE-001",
+    "name": "Kent, Delaware, US"
+  },
+  {
+    "code": "US-DE-003",
+    "name": "New Castle, Delaware, US"
+  },
+  {
+    "code": "US-DE-005",
+    "name": "Sussex, Delaware, US"
+  },
+  {
     "code": "US-DC",
     "name": "District of Columbia, US"
   },

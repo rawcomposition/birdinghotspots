@@ -327,6 +327,15 @@
         ]
       },
       {
+        "name": "Delaware",
+        "code": "US-DE",
+        "subregions": [
+          { "code": "US-DE-001", "name": "Kent" },
+          { "code": "US-DE-003", "name": "New Castle" },
+          { "code": "US-DE-005", "name": "Sussex" }
+        ]
+      },
+      {
         "name": "District of Columbia",
         "code": "US-DC",
         "subregions": []

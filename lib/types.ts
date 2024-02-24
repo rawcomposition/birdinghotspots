@@ -202,29 +202,6 @@ export type LocationSearchValue = {
   lng: number;
 };
 
-export type Upload = {
-  locationId: string;
-  name: string;
-  locationName?: string;
-  countryCode: string;
-  stateCode?: string;
-  countyCode?: string;
-  xsUrl?: string;
-  smUrl: string;
-  lgUrl: string;
-  originalUrl: string;
-  by: string;
-  email: string;
-  uid?: string;
-  width?: number;
-  height?: number;
-  size?: number;
-  caption?: string;
-  createdAt: Date;
-  status: string;
-  _id?: string;
-};
-
 export type NotableReport = {
   location: string;
   date: string;
