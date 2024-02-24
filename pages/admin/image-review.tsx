@@ -101,7 +101,12 @@ export default function ImageReview() {
   const handleReject = async (id: string, imageId: string) => {
     if (!confirm("Are you sure you want to reject this photo?")) return;
     setItems((prev) =>
-      prev.map((item) => ({ ...item, images: item.images.map((upload) => ({ ...upload, status: "rejected" })) }))
+      prev.map((item) => ({
+        ...item,
+        images: item.images.map((image) =>
+          image._id?.toString() === imageId ? { ...image, status: "rejected" } : image
+        ),
+      }))
     );
     await send({
       url: `/api/upload/reject?id=${id}`,
@@ -114,7 +119,12 @@ export default function ImageReview() {
     if (status === "rejected" && !confirm("Are you sure you want to approve this image? It was previously rejected."))
       return;
     setItems((prev) =>
-      prev.map((item) => ({ ...item, images: item.images.map((upload) => ({ ...upload, status: "approved" })) }))
+      prev.map((item) => ({
+        ...item,
+        images: item.images.map((image) =>
+          image._id?.toString() === imageId ? { ...image, status: "approved" } : image
+        ),
+      }))
     );
     await send({
       url: `/api/upload/approve?id=${id}`,
