@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
-import Upload from "models/Upload";
+import PhotoBatch from "models/PhotoBatch";
 import Revision from "models/Revision";
 import Profile from "models/Profile";
 import Logs from "models/Log";
@@ -18,7 +18,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await connect();
 
     const date = dayjs().subtract(1, "day").format();
-    const uploads = await Upload.find({ createdAt: { $gte: date }, status: "pending" }, ["stateCode", "countyCode"]);
+    const photoBatches = await PhotoBatch.find({ createdAt: { $gte: date }, isReviewed: { $ne: true } }, [
+      "stateCode",
+      "countyCode",
+      "images",
+    ]);
     const revisions = await Revision.find({ createdAt: { $gte: date }, status: "pending" }, [
       "stateCode",
       "countyCode",
@@ -29,18 +33,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     await Promise.all(
       users.map(async ({ name, email, subscriptions }) => {
-        const userUploads = uploads.filter(
-          (upload) => subscriptions.includes(upload.stateCode) || subscriptions.includes(upload.countyCode)
+        const userPhotoBatches = photoBatches.filter(
+          (batch) => subscriptions.includes(batch.stateCode) || subscriptions.includes(batch.countyCode)
         );
         const userRevisions = revisions.filter(
           (revision) => subscriptions.includes(revision.stateCode) || subscriptions.includes(revision.countyCode)
         );
-        const hasUploads = userUploads.length > 0;
         const hasRevisions = userRevisions.length > 0;
+        const imageCount = userPhotoBatches.reduce((acc, batch) => acc + batch.images.length, 0);
+        const hasUploads = imageCount > 0;
 
         if (hasUploads || hasRevisions) {
           const countHtml = [
-            hasUploads && `${userUploads.length} pending ${userUploads.length === 1 ? "image" : "images"}`,
+            hasUploads && `${imageCount} pending ${imageCount === 1 ? "image" : "images"}`,
             hasRevisions && `${userRevisions.length} pending ${userRevisions.length === 1 ? "revision" : "revisions"}`,
           ]
             .filter(Boolean)

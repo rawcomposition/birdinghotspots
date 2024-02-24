@@ -205,6 +205,7 @@ export type LocationSearchValue = {
 export type Upload = {
   locationId: string;
   name: string;
+  locationName?: string;
   countryCode: string;
   stateCode?: string;
   countyCode?: string;
@@ -458,4 +459,31 @@ export type RegionStatsT = {
   withContent: number;
   withoutContent: number;
   withoutImg: number;
+};
+
+export type PhotoBatchT = {
+  _id?: string;
+  locationId: string;
+  name: string;
+  locationName?: string;
+  by: string;
+  email: string;
+  uid: string;
+  countryCode: string;
+  stateCode: string;
+  countyCode: string;
+  images: {
+    _id?: string;
+    xsUrl: string;
+    smUrl: string;
+    lgUrl: string;
+    originalUrl: string;
+    width: number;
+    height: number;
+    size: number;
+    caption: string;
+    status: string;
+  }[];
+  isReviewed?: boolean;
+  createdAt: string;
 };

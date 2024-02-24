@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import Upload from "models/Upload";
+import PhotoBatch from "models/PhotoBatch";
 import { Image } from "lib/types";
 import { verifyRecaptcha } from "lib/helpers";
 import { sendEmail } from "lib/email";
@@ -48,21 +48,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const score = await verifyRecaptcha(recaptchaToken);
       console.log("Score:", score);
       if (score > 0.4) {
-        await Promise.all(
-          images.map(async (image: Image) => {
-            await Upload.create({
-              ...image,
-              locationId,
-              name: hotspot.name,
-              by: name,
-              email,
-              uid: session?.uid,
-              countryCode: hotspot.countryCode,
-              stateCode: hotspot.stateCode,
-              countyCode: hotspot.countyCode,
-            });
-          })
-        );
+        await PhotoBatch.create({
+          locationId,
+          name: hotspot.name,
+          by: name,
+          email,
+          uid: session?.uid,
+          images,
+          countryCode: hotspot.countryCode,
+          stateCode: hotspot.stateCode,
+          countyCode: hotspot.countyCode,
+          isReviewed: false,
+        });
 
         const profiles = await Profile.find({
           $or: [{ subscriptions: hotspot.stateCode }, { subscriptions: hotspot.countyCode }],
