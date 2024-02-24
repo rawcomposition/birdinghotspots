@@ -1,5 +1,5 @@
 import { Menu } from "@headlessui/react";
-import VerticalDots from "icons/VerticalDots";
+import EbirdLogo from "components/EbirdLogo";
 
 type Props = {
   portal?: string;
@@ -16,10 +16,10 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
   return (
     <div className="relative inline-block">
       <Menu>
-        <Menu.Button className="text-[13px] rounded-md text-gray-600 bg-gray-100 px-1.5 py-[6px] inline-flex">
-          <VerticalDots />
+        <Menu.Button className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-flex items-center gap-1 font-medium whitespace-nowrap">
+          <EbirdLogo className="w-8" /> Links
         </Menu.Button>
-        <Menu.Items className="absolute right-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
+        <Menu.Items className="absolute sm:left-0 right-0 sm:right-[unset] top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1 z-10">
           <Menu.Item>
             <h4 className="font-bold">Explore in eBird</h4>
           </Menu.Item>

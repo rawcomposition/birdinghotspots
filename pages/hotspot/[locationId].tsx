@@ -167,13 +167,7 @@ export default function Hotspot({
                   <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
                 </ExternalLinkButton>
               )}
-              <div className="inline-flex gap-2">
-                {/*Grouped to prevent the last button from wrapping on its own*/}
-                <ExternalLinkButton href={`${base}/hotspot/${locationId}/media?yr=all&m=`}>
-                  <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
-                </ExternalLinkButton>
-                <EbirdHotspotBtn portal={region?.portal} locationId={locationId} />
-              </div>
+              <EbirdHotspotBtn portal={region?.portal} locationId={locationId} />
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
