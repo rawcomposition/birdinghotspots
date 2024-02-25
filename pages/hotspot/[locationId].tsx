@@ -220,6 +220,19 @@ export default function Hotspot({
           ))}
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
+          {locationId === "L619806" && (
+            <iframe
+              className="mb-6 border-none"
+              src="https://www.alltrails.com/widget/trail/us/ohio/cuyahoga-valley-ledges-trail?elevationDiagram=false&u=i&sh=zcakqe"
+              width="100%"
+              height="400"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight={0}
+              marginWidth={0}
+              title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"
+            />
+          )}
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 
