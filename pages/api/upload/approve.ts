@@ -12,7 +12,7 @@ export default secureApi(async (req, res, token) => {
     if (!id || !imageId) throw new Error("Invalid request");
     await connect();
 
-    const batch = await PhotoBatch.findById(id);
+    const batch = await PhotoBatch.findById(id).lean();
     if (!batch) throw new Error("Batch not found");
 
     const hotspot = await Hotspot.findOne({ locationId: batch.locationId });
@@ -23,11 +23,12 @@ export default secureApi(async (req, res, token) => {
 
     const isBatchReviewed = batch.images.every((img) => img.status !== "pending" || img._id?.toString() === imageId);
 
+    const formattedImage = { ...img, isPublicDomain: true, by: batch.by, email: batch.email, uid: batch.uid };
+
     let featuredImg = hotspot.featuredImg;
     if (!featuredImg?.smUrl) {
-      featuredImg = img;
+      featuredImg = formattedImage;
     }
-    const formattedImage = { ...img, isPublicDomain: true, by: batch.by, email: batch.email, uid: batch.uid };
 
     const urls = hotspot.images?.map((image: Image) => image.smUrl) || [];
     const hasImage = urls.includes(img.smUrl);

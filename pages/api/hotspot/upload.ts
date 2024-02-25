@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     await connect();
     const { locationId, name, email, images, token: recaptchaToken } = req.body;
+    if (!images.length) throw new Error("No images selected");
     const hotspot = await Hotspot.findOne({ locationId });
 
     if (!hotspot) throw new Error("Hotspot not found");
