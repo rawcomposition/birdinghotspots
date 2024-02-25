@@ -9,7 +9,7 @@ export default function DelawareMap() {
     <>
       <MapTooltip {...tooltipProps} />
       <svg
-        className="state-map hover-map max-w-[150px] !mr-[10%]"
+        className="state-map hover-map max-w-[150px] sm:!mr-[10%]"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
         viewBox="390 30 200 480"

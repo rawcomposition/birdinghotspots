@@ -5808,6 +5808,94 @@
     "name": "Sullivan, New Hampshire, US"
   },
   {
+    "code": "US-NJ",
+    "name": "New Jersey, US"
+  },
+  {
+    "code": "US-NJ-001",
+    "name": "Atlantic, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-003",
+    "name": "Bergen, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-005",
+    "name": "Burlington, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-007",
+    "name": "Camden, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-009",
+    "name": "Cape May, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-011",
+    "name": "Cumberland, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-013",
+    "name": "Essex, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-015",
+    "name": "Gloucester, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-017",
+    "name": "Hudson, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-019",
+    "name": "Hunterdon, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-021",
+    "name": "Mercer, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-023",
+    "name": "Middlesex, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-025",
+    "name": "Monmouth, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-027",
+    "name": "Morris, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-029",
+    "name": "Ocean, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-031",
+    "name": "Passaic, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-033",
+    "name": "Salem, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-035",
+    "name": "Somerset, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-037",
+    "name": "Sussex, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-039",
+    "name": "Union, New Jersey, US"
+  },
+  {
+    "code": "US-NJ-041",
+    "name": "Warren, New Jersey, US"
+  },
+  {
     "code": "US-NM",
     "name": "New Mexico, US"
   },

@@ -1576,6 +1576,33 @@
         ]
       },
       {
+        "name": "New Jersey",
+        "code": "US-NJ",
+        "subregions": [
+          { "code": "US-NJ-001", "name": "Atlantic" },
+          { "code": "US-NJ-003", "name": "Bergen" },
+          { "code": "US-NJ-005", "name": "Burlington" },
+          { "code": "US-NJ-007", "name": "Camden" },
+          { "code": "US-NJ-009", "name": "Cape May" },
+          { "code": "US-NJ-011", "name": "Cumberland" },
+          { "code": "US-NJ-013", "name": "Essex" },
+          { "code": "US-NJ-015", "name": "Gloucester" },
+          { "code": "US-NJ-017", "name": "Hudson" },
+          { "code": "US-NJ-019", "name": "Hunterdon" },
+          { "code": "US-NJ-021", "name": "Mercer" },
+          { "code": "US-NJ-023", "name": "Middlesex" },
+          { "code": "US-NJ-025", "name": "Monmouth" },
+          { "code": "US-NJ-027", "name": "Morris" },
+          { "code": "US-NJ-029", "name": "Ocean" },
+          { "code": "US-NJ-031", "name": "Passaic" },
+          { "code": "US-NJ-033", "name": "Salem" },
+          { "code": "US-NJ-035", "name": "Somerset" },
+          { "code": "US-NJ-037", "name": "Sussex" },
+          { "code": "US-NJ-039", "name": "Union" },
+          { "code": "US-NJ-041", "name": "Warren" }
+        ]
+      },
+      {
         "name": "New Mexico",
         "code": "US-NM",
         "subregions": [

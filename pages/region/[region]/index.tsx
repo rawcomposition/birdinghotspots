@@ -129,13 +129,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
             <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {longName}</h3>
             <div className="flex gap-2 mt-2 mb-4">
               <RegionLinksBtn region={region} />
-              <div className="inline-flex gap-2">
-                {/*Grouped to prevent the last button from wrapping on its own*/}
-                <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
-                  <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
-                </ExternalLinkButton>
-                <EbirdRegionBtn code={code} portal={portal} />
-              </div>
+              <EbirdRegionBtn code={code} portal={portal} />
             </div>
             <p className="text-gray-600 mb-8 text-[15px]">
               Discover where to go birding in {name} by browsing our tips, descriptions, maps, and images for many eBird
@@ -196,13 +190,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
               <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {name}</h3>
               <div className="flex gap-2 mt-2 mb-4">
                 <RegionLinksBtn region={region} />
-                <div className="inline-flex gap-2">
-                  {/*Grouped to prevent the last button from wrapping on its own*/}
-                  <ExternalLinkButton href={`${base}/region/${code}/media?yr=all&m=`}>
-                    <ImageIcon className="mr-1 -mt-[3px] text-primary" /> Illustrated Checklist
-                  </ExternalLinkButton>
-                  <EbirdRegionBtn code={code} portal={portal} />
-                </div>
+                <EbirdRegionBtn code={code} portal={portal} />
               </div>
             </div>
             <RegionStats regionCode={code} data={stats} />
