@@ -7868,6 +7868,194 @@
     "name": "Washington, Rhode Island, US"
   },
   {
+    "code": "US-SC",
+    "name": "South Carolina, US"
+  },
+  {
+    "code": "US-SC-001",
+    "name": "Abbeville, South Carolina, US"
+  },
+  {
+    "code": "US-SC-003",
+    "name": "Aiken, South Carolina, US"
+  },
+  {
+    "code": "US-SC-005",
+    "name": "Allendale, South Carolina, US"
+  },
+  {
+    "code": "US-SC-007",
+    "name": "Anderson, South Carolina, US"
+  },
+  {
+    "code": "US-SC-009",
+    "name": "Bamberg, South Carolina, US"
+  },
+  {
+    "code": "US-SC-011",
+    "name": "Barnwell, South Carolina, US"
+  },
+  {
+    "code": "US-SC-013",
+    "name": "Beaufort, South Carolina, US"
+  },
+  {
+    "code": "US-SC-015",
+    "name": "Berkeley, South Carolina, US"
+  },
+  {
+    "code": "US-SC-017",
+    "name": "Calhoun, South Carolina, US"
+  },
+  {
+    "code": "US-SC-019",
+    "name": "Charleston, South Carolina, US"
+  },
+  {
+    "code": "US-SC-021",
+    "name": "Cherokee, South Carolina, US"
+  },
+  {
+    "code": "US-SC-023",
+    "name": "Chester, South Carolina, US"
+  },
+  {
+    "code": "US-SC-025",
+    "name": "Chesterfield, South Carolina, US"
+  },
+  {
+    "code": "US-SC-027",
+    "name": "Clarendon, South Carolina, US"
+  },
+  {
+    "code": "US-SC-029",
+    "name": "Colleton, South Carolina, US"
+  },
+  {
+    "code": "US-SC-031",
+    "name": "Darlington, South Carolina, US"
+  },
+  {
+    "code": "US-SC-033",
+    "name": "Dillon, South Carolina, US"
+  },
+  {
+    "code": "US-SC-035",
+    "name": "Dorchester, South Carolina, US"
+  },
+  {
+    "code": "US-SC-037",
+    "name": "Edgefield, South Carolina, US"
+  },
+  {
+    "code": "US-SC-039",
+    "name": "Fairfield, South Carolina, US"
+  },
+  {
+    "code": "US-SC-041",
+    "name": "Florence, South Carolina, US"
+  },
+  {
+    "code": "US-SC-043",
+    "name": "Georgetown, South Carolina, US"
+  },
+  {
+    "code": "US-SC-045",
+    "name": "Greenville, South Carolina, US"
+  },
+  {
+    "code": "US-SC-047",
+    "name": "Greenwood, South Carolina, US"
+  },
+  {
+    "code": "US-SC-049",
+    "name": "Hampton, South Carolina, US"
+  },
+  {
+    "code": "US-SC-051",
+    "name": "Horry, South Carolina, US"
+  },
+  {
+    "code": "US-SC-053",
+    "name": "Jasper, South Carolina, US"
+  },
+  {
+    "code": "US-SC-055",
+    "name": "Kershaw, South Carolina, US"
+  },
+  {
+    "code": "US-SC-057",
+    "name": "Lancaster, South Carolina, US"
+  },
+  {
+    "code": "US-SC-059",
+    "name": "Laurens, South Carolina, US"
+  },
+  {
+    "code": "US-SC-061",
+    "name": "Lee, South Carolina, US"
+  },
+  {
+    "code": "US-SC-063",
+    "name": "Lexington, South Carolina, US"
+  },
+  {
+    "code": "US-SC-067",
+    "name": "Marion, South Carolina, US"
+  },
+  {
+    "code": "US-SC-069",
+    "name": "Marlboro, South Carolina, US"
+  },
+  {
+    "code": "US-SC-065",
+    "name": "McCormick, South Carolina, US"
+  },
+  {
+    "code": "US-SC-071",
+    "name": "Newberry, South Carolina, US"
+  },
+  {
+    "code": "US-SC-073",
+    "name": "Oconee, South Carolina, US"
+  },
+  {
+    "code": "US-SC-075",
+    "name": "Orangeburg, South Carolina, US"
+  },
+  {
+    "code": "US-SC-077",
+    "name": "Pickens, South Carolina, US"
+  },
+  {
+    "code": "US-SC-079",
+    "name": "Richland, South Carolina, US"
+  },
+  {
+    "code": "US-SC-081",
+    "name": "Saluda, South Carolina, US"
+  },
+  {
+    "code": "US-SC-083",
+    "name": "Spartanburg, South Carolina, US"
+  },
+  {
+    "code": "US-SC-085",
+    "name": "Sumter, South Carolina, US"
+  },
+  {
+    "code": "US-SC-087",
+    "name": "Union, South Carolina, US"
+  },
+  {
+    "code": "US-SC-089",
+    "name": "Williamsburg, South Carolina, US"
+  },
+  {
+    "code": "US-SC-091",
+    "name": "York, South Carolina, US"
+  },
+  {
     "code": "US-SD",
     "name": "South Dakota, US"
   },
