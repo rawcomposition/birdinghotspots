@@ -37,9 +37,13 @@ const getHotspotsForRegion = async (region: string) => {
 };
 
 const updateHotspot = (dbHotspot: any, ebird: any) => {
-  const { name, lat, lng, total } = ebird;
+  const { name, lat, lng, total, subnational2Code } = ebird;
   const hasChanged =
-    name !== dbHotspot.name || lat !== dbHotspot.lat || lng !== dbHotspot.lng || total !== dbHotspot.species;
+    name !== dbHotspot.name ||
+    lat !== dbHotspot.lat ||
+    lng !== dbHotspot.lng ||
+    total !== dbHotspot.species ||
+    subnational2Code !== dbHotspot.countyCode;
   if (!hasChanged) return;
   let location = null;
   if (lat && lng) {
@@ -58,6 +62,7 @@ const updateHotspot = (dbHotspot: any, ebird: any) => {
         lng,
         species: total,
         location,
+        countyCode: subnational2Code,
       },
     },
   };
@@ -121,7 +126,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const nextRegion = state || SyncRegions[lastSyncRegionIndex + 1] || SyncRegions[0];
 
     console.log(`Syncing ${nextRegion}`);
-    const fields = ["locationId", "name", "lat", "lng", "species"];
+    const fields = ["locationId", "name", "lat", "lng", "species", "countyCode"];
     const [hotspots, dbHotspots] = await Promise.all([
       getHotspotsForRegion(nextRegion),
       Hotspot.find({ $or: [{ stateCode: nextRegion }, { countryCode: nextRegion }] }, fields),
