@@ -7,12 +7,12 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, getEbirdHotspot, formatMarker, canEdit } from "lib/helpers";
+import { geocode, formatMarker, canEdit } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, EbirdHotspot, Link, Citation, Group, Image } from "lib/types";
+import { Hotspot, Link, Citation, Group, Image } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -224,19 +224,14 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { locationId } = query as Params;
   const data = await getHotspotByLocationId(locationId, true);
-  const ebirdData: EbirdHotspot = await getEbirdHotspot(locationId);
-  if (!ebirdData?.name) {
+  if (!data) {
     res.statusCode = 404;
-    return {
-      props: { error: `Hotspot "${locationId}" not found in eBird`, errorCode: 404 },
-    };
+    return { props: { error: "Not Found", errorCode: 404 } };
   }
 
-  const countryCode = ebirdData?.subnational1Code?.split("-")?.[0] || data?.countryCode;
-  const hasValidStateCode = (ebirdData?.subnational1Code?.split("-")?.filter(Boolean)?.length || 0) > 1;
-  const stateCode = hasValidStateCode ? ebirdData?.subnational1Code : null;
-
-  const countyCode = data?.countyCode || ebirdData?.subnational2Code;
+  const countryCode = data.countryCode;
+  const stateCode = data.stateCode || null;
+  const countyCode = data.countyCode;
 
   if (!canEdit(token, stateCode || countryCode)) {
     res.statusCode = 403;
@@ -244,24 +239,24 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   }
 
   const groupLinks: Link[] = [];
-  data?.groups?.forEach(({ links }: Group) => {
+  data.groups?.forEach(({ links }: Group) => {
     if (links) groupLinks.push(...links);
   });
 
   const groupCitations: Citation[] = [];
-  data?.groups?.forEach(({ citations }: Group) => {
+  data.groups?.forEach(({ citations }: Group) => {
     if (citations) groupCitations.push(...citations);
   });
 
   const groupImages: Image[] = [];
-  data?.groups?.forEach(({ images }: Group) => {
+  data.groups?.forEach(({ images }: Group) => {
     if (!images) return;
     const filtered = images.filter((it) => !it.hideFromChildren);
     groupImages.push(...filtered);
   });
 
   const groupAbout: GroupAbout[] = [];
-  data?.groups?.forEach(({ name, about }: Group) => {
+  data.groups?.forEach(({ name, about }: Group) => {
     if (about)
       groupAbout.push({
         title: `About ${name}`,
@@ -271,7 +266,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
 
   return {
     props: {
-      id: data?._id || null,
+      id: data._id || null,
       isNew: !data,
       groupLinks,
       groupCitations,
@@ -279,20 +274,20 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       groupAbout,
       data: {
         ...data,
-        iba: data?.iba || null,
-        links: data?.links || null,
-        name: ebirdData?.name || data?.name,
-        lat: ebirdData?.latitude || data?.lat,
-        lng: ebirdData?.longitude || data?.lng,
-        zoom: data?.zoom || 14,
+        iba: data.iba || null,
+        links: data.links || null,
+        name: data.name,
+        lat: data.lat,
+        lng: data.lng,
+        zoom: data.zoom || 14,
         countryCode,
         ...(stateCode && { stateCode }),
         ...(countyCode && { countyCode }),
         locationId: locationId,
-        roadside: data?.roadside || "Unknown",
-        restrooms: data?.restrooms || "Unknown",
-        accessible: data?.accessible || "Unknown",
-        fee: data?.fee || "Unknown",
+        roadside: data.roadside || "Unknown",
+        restrooms: data.restrooms || "Unknown",
+        accessible: data.accessible || "Unknown",
+        fee: data.fee || "Unknown",
       },
     },
   };
