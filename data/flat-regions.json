@@ -10396,6 +10396,122 @@
     "name": "Canada"
   },
   {
+    "code": "CA-BC",
+    "name": "British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-AC",
+    "name": "Alberni-Clayoquot, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-BN",
+    "name": "Bulkley-Nechako, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CP",
+    "name": "Capital, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CR",
+    "name": "Cariboo, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CC",
+    "name": "Central Coast, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CK",
+    "name": "Central Kootenay, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CO",
+    "name": "Central Okanagan, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CS",
+    "name": "Columbia-Shuswap, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CX",
+    "name": "Comox-Strathcona, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-CV",
+    "name": "Cowichan Valley, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-EK",
+    "name": "East Kootenay, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-FV",
+    "name": "Fraser Valley, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-FF",
+    "name": "Fraser-Fort George, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-KS",
+    "name": "Kitimat-Stikine, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-KB",
+    "name": "Kootenay Boundary, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-GV",
+    "name": "Metro Vancouver, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-MW",
+    "name": "Mount Waddington, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-NA",
+    "name": "Nanaimo, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-NO",
+    "name": "North Okanagan, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-NR",
+    "name": "Northern Rockies, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-OS",
+    "name": "Okanagan-Similkameen, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-PC",
+    "name": "Peace River, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-PW",
+    "name": "Powell River, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-SQ",
+    "name": "Skeena-Queen Charlotte, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-SL",
+    "name": "Squamish-Lillooet, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-ST",
+    "name": "Stikine, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-SC",
+    "name": "Sunshine Coast, British Columbia, Canada"
+  },
+  {
+    "code": "CA-BC-TN",
+    "name": "Thompson-Nicola, British Columbia, Canada"
+  },
+  {
     "code": "CA-NL",
     "name": "Newfoundland and Labrador, Canada"
   },

@@ -2811,20 +2811,37 @@
     "name": "Canada",
     "subregions": [
       {
-        "name": "Newfoundland and Labrador",
-        "code": "CA-NL",
+        "name": "British Columbia",
+        "code": "CA-BC",
         "subregions": [
-          { "code": "CA-NL-ON", "name": "Avalon Peninsula-St. John's" },
-          { "code": "CA-NL-SE", "name": "Bonavista/Trinity-Clarenville" },
-          { "code": "CA-NL-TW", "name": "Burin Peninsula-Marystown" },
-          { "code": "CA-NL-SI", "name": "Central Newfoundland-Grand Falls-Windsor" },
-          { "code": "CA-NL-FI", "name": "Humber District-Corner Brook" },
-          { "code": "CA-NL-TE", "name": "Labrador-Happy Valley-Goose Bay" },
-          { "code": "CA-NL-NI", "name": "Northern Peninsula-St. Anthony" },
-          { "code": "CA-NL-EI", "name": "Notre Dame Bay-Lewisporte" },
-          { "code": "CA-NL-EL", "name": "Nunatsiavut-Nain" },
-          { "code": "CA-NL-TR", "name": "South Coast-Channel-Port aux Basques" },
-          { "code": "CA-NL-FO", "name": "St. George's-Stephenville" }
+          { "code": "CA-BC-AC", "name": "Alberni-Clayoquot" },
+          { "code": "CA-BC-BN", "name": "Bulkley-Nechako" },
+          { "code": "CA-BC-CP", "name": "Capital" },
+          { "code": "CA-BC-CR", "name": "Cariboo" },
+          { "code": "CA-BC-CC", "name": "Central Coast" },
+          { "code": "CA-BC-CK", "name": "Central Kootenay" },
+          { "code": "CA-BC-CO", "name": "Central Okanagan" },
+          { "code": "CA-BC-CS", "name": "Columbia-Shuswap" },
+          { "code": "CA-BC-CX", "name": "Comox-Strathcona" },
+          { "code": "CA-BC-CV", "name": "Cowichan Valley" },
+          { "code": "CA-BC-EK", "name": "East Kootenay" },
+          { "code": "CA-BC-FV", "name": "Fraser Valley" },
+          { "code": "CA-BC-FF", "name": "Fraser-Fort George" },
+          { "code": "CA-BC-KS", "name": "Kitimat-Stikine" },
+          { "code": "CA-BC-KB", "name": "Kootenay Boundary" },
+          { "code": "CA-BC-GV", "name": "Metro Vancouver" },
+          { "code": "CA-BC-MW", "name": "Mount Waddington" },
+          { "code": "CA-BC-NA", "name": "Nanaimo" },
+          { "code": "CA-BC-NO", "name": "North Okanagan" },
+          { "code": "CA-BC-NR", "name": "Northern Rockies" },
+          { "code": "CA-BC-OS", "name": "Okanagan-Similkameen" },
+          { "code": "CA-BC-PC", "name": "Peace River" },
+          { "code": "CA-BC-PW", "name": "Powell River" },
+          { "code": "CA-BC-SQ", "name": "Skeena-Queen Charlotte" },
+          { "code": "CA-BC-SL", "name": "Squamish-Lillooet" },
+          { "code": "CA-BC-ST", "name": "Stikine" },
+          { "code": "CA-BC-SC", "name": "Sunshine Coast" },
+          { "code": "CA-BC-TN", "name": "Thompson-Nicola" }
         ]
       },
       {
@@ -2885,6 +2902,23 @@
           { "code": "CA-ON-WT", "name": "Waterloo", "longName": "Waterloo Regional Municipality" },
           { "code": "CA-ON-WL", "name": "Wellington" },
           { "code": "CA-ON-YO", "name": "York", "longName": "York Regional Municipality" }
+        ]
+      },
+      {
+        "name": "Newfoundland and Labrador",
+        "code": "CA-NL",
+        "subregions": [
+          { "code": "CA-NL-ON", "name": "Avalon Peninsula-St. John's" },
+          { "code": "CA-NL-SE", "name": "Bonavista/Trinity-Clarenville" },
+          { "code": "CA-NL-TW", "name": "Burin Peninsula-Marystown" },
+          { "code": "CA-NL-SI", "name": "Central Newfoundland-Grand Falls-Windsor" },
+          { "code": "CA-NL-FI", "name": "Humber District-Corner Brook" },
+          { "code": "CA-NL-TE", "name": "Labrador-Happy Valley-Goose Bay" },
+          { "code": "CA-NL-NI", "name": "Northern Peninsula-St. Anthony" },
+          { "code": "CA-NL-EI", "name": "Notre Dame Bay-Lewisporte" },
+          { "code": "CA-NL-EL", "name": "Nunatsiavut-Nain" },
+          { "code": "CA-NL-TR", "name": "South Coast-Channel-Port aux Basques" },
+          { "code": "CA-NL-FO", "name": "St. George's-Stephenville" }
         ]
       }
     ]
