@@ -10512,54 +10512,6 @@
     "name": "Thompson-Nicola, British Columbia, Canada"
   },
   {
-    "code": "CA-NL",
-    "name": "Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-ON",
-    "name": "Avalon Peninsula-St. John's, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-SE",
-    "name": "Bonavista/Trinity-Clarenville, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-TW",
-    "name": "Burin Peninsula-Marystown, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-SI",
-    "name": "Central Newfoundland-Grand Falls-Windsor, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-FI",
-    "name": "Humber District-Corner Brook, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-TE",
-    "name": "Labrador-Happy Valley-Goose Bay, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-NI",
-    "name": "Northern Peninsula-St. Anthony, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-EI",
-    "name": "Notre Dame Bay-Lewisporte, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-EL",
-    "name": "Nunatsiavut-Nain, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-TR",
-    "name": "South Coast-Channel-Port aux Basques, Newfoundland and Labrador, Canada"
-  },
-  {
-    "code": "CA-NL-FO",
-    "name": "St. George's-Stephenville, Newfoundland and Labrador, Canada"
-  },
-  {
     "code": "CA-ON",
     "name": "Ontario, Canada"
   },
@@ -10762,6 +10714,54 @@
   {
     "code": "CA-ON-YO",
     "name": "York, Ontario, Canada"
+  },
+  {
+    "code": "CA-NL",
+    "name": "Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-ON",
+    "name": "Avalon Peninsula-St. John's, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-SE",
+    "name": "Bonavista/Trinity-Clarenville, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-TW",
+    "name": "Burin Peninsula-Marystown, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-SI",
+    "name": "Central Newfoundland-Grand Falls-Windsor, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-FI",
+    "name": "Humber District-Corner Brook, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-TE",
+    "name": "Labrador-Happy Valley-Goose Bay, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-NI",
+    "name": "Northern Peninsula-St. Anthony, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-EI",
+    "name": "Notre Dame Bay-Lewisporte, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-EL",
+    "name": "Nunatsiavut-Nain, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-TR",
+    "name": "South Coast-Channel-Port aux Basques, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NL-FO",
+    "name": "St. George's-Stephenville, Newfoundland and Labrador, Canada"
   },
   {
     "code": "FO",

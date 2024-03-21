@@ -223,3 +223,11 @@ export const getStaticMap = (markers: Marker[]) => {
 
   return mapboxUrl;
 };
+
+export async function getEbirdHotspot(locationId: string) {
+  const key = process.env.NEXT_PUBLIC_EBIRD_API;
+  const response = await fetch(`https://api.ebird.org/v2/ref/hotspot/info/${locationId}?key=${key}`);
+  if (response.status === 200) {
+    return await response.json();
+  }
+}
