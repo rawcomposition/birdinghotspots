@@ -15,6 +15,10 @@ type Props = {
 };
 
 export default function About({ regions }: Props) {
+  const [search, setSearch] = React.useState<string>("");
+
+  const filteredRegions = regions.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
+
   return (
     <div className="container pb-16 mt-12">
       <Title>About</Title>
@@ -50,8 +54,15 @@ export default function About({ regions }: Props) {
         </div>
         <div>
           <h3 className="text-lg font-bold mb-4">Regional Editors</h3>
+          <input
+            className="form-input mb-4"
+            type="search"
+            placeholder="Search by region name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <div className="columns-2">
-            {regions?.map(({ name, editors }) => (
+            {filteredRegions?.map(({ name, editors }) => (
               <div key={name} className="mb-4 break-inside-avoid-column">
                 <h4 className="text-sm font-bold">{name}</h4>
                 <ul className="text-xs">
