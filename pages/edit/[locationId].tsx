@@ -7,7 +7,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, formatMarker, canEdit } from "lib/helpers";
+import { geocode, formatMarker, canEdit, getEbirdHotspot } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
@@ -223,7 +223,11 @@ interface Params extends ParsedUrlQuery {
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { locationId } = query as Params;
-  const data = await getHotspotByLocationId(locationId, true);
+  const [data, ebirdHotspot] = await Promise.all([
+    getHotspotByLocationId(locationId, true),
+    getEbirdHotspot(locationId),
+  ]);
+
   if (!data) {
     res.statusCode = 404;
     return { props: { error: "Not Found", errorCode: 404 } };
@@ -276,9 +280,9 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         ...data,
         iba: data.iba || null,
         links: data.links || null,
-        name: data.name,
-        lat: data.lat,
-        lng: data.lng,
+        name: ebirdHotspot?.name || data.name,
+        lat: ebirdHotspot?.lat || data.lat,
+        lng: ebirdHotspot?.lng || data.lng,
         zoom: data.zoom || 14,
         countryCode,
         ...(stateCode && { stateCode }),
