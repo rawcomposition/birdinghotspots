@@ -20,8 +20,6 @@ export default function MapZoomInput({ markers }: Props) {
   };
 
   const value = watch("zoom");
-  const lat = watch("lat");
-  const lng = watch("lng");
 
   return (
     <>
@@ -35,9 +33,6 @@ export default function MapZoomInput({ markers }: Props) {
       >
         <MagnifyingGlassPlusIcon className="h-5 w-5" /> Edit Map Zoom
       </button>
-      <p className="text-xs text-gray-600 mt-2">
-        If there are 5 or more markers on the map, the zoom will be adjusted to fit the markers.
-      </p>
 
       {open && (
         <div className="mt-8">
