@@ -40,7 +40,6 @@ const DriveSchema = new Schema({
       xsUrl: String,
       smUrl: String,
       lgUrl: String,
-      originalUrl: String,
       by: String,
       width: Number,
       height: Number,

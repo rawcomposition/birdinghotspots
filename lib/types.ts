@@ -6,7 +6,6 @@ export type Image = {
   xsUrl?: string;
   smUrl: string;
   lgUrl: string;
-  originalUrl?: string;
   by?: string;
   email?: string;
   uid?: string;
@@ -384,7 +383,6 @@ export type Species = {
     {
       smUrl: string;
       lgUrl: string;
-      originalUrl: string;
       by: string;
       width: number;
       height: number;
@@ -454,7 +452,6 @@ export type PhotoBatchT = {
     xsUrl: string;
     smUrl: string;
     lgUrl: string;
-    originalUrl: string;
     width: number;
     height: number;
     size: number;

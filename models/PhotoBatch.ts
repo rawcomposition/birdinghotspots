@@ -35,7 +35,6 @@ const PhotoBatchSchema = new Schema({
         type: String,
         required: true,
       },
-      originalUrl: String,
       width: Number,
       height: Number,
       size: Number,

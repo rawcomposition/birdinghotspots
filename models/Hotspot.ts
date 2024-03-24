@@ -100,7 +100,6 @@ const HotspotSchema = new Schema({
       xsUrl: String,
       smUrl: String,
       lgUrl: String,
-      originalUrl: String,
       by: String,
       email: String,
       uid: String,
