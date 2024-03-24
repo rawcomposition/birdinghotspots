@@ -3,6 +3,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { Image } from "lib/types";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { getFileUrl } from "lib/s3";
 
 interface Props extends Image {
   handleDelete: (i: number) => void;
@@ -44,7 +45,7 @@ export default function SortableImage({
       className={`flex flex-col gap-2 rounded bg-gray-50 relative group ${isDragging ? "z-10" : ""}`}
     >
       <img
-        src={preview || xsUrl || smUrl}
+        src={preview || getFileUrl(xsUrl || smUrl)}
         className={`w-full aspect-[1.55] bg-zinc-700 ${
           isVertical ? "object-contain" : "object-cover"
         } rounded cursor-move touch-none`}

@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { region, endpoint, bucket } from "lib/s3";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { url }: any = req.query;
@@ -10,12 +11,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       accessKeyId: process.env.S3_KEY || "",
       secretAccessKey: process.env.S3_SECRET || "",
     },
-    region: "us-east-005",
-    endpoint: "https://s3.us-east-005.backblazeb2.com",
+    region,
+    endpoint,
   });
 
   const params = {
-    Bucket: "birdinghotspots",
+    Bucket: bucket,
     Key: filename,
     ResponseContentDisposition: `attachment; filename=${filename}`,
   };

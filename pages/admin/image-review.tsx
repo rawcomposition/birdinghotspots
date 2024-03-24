@@ -19,6 +19,7 @@ import XMark from "icons/XMark";
 import CheckMark from "icons/CheckMark";
 import Tooltip from "components/Tooltip";
 import clsx from "clsx";
+import { getFileUrl } from "lib/s3";
 
 type Inputs = {
   search: string;
@@ -176,14 +177,14 @@ export default function ImageReview() {
                   const isVertical = width && height && height > width;
                   return (
                     <article className="relative flex flex-col gap-2" key={_id}>
-                      <Item caption={caption} original={lgUrl || smUrl} width={width} height={height}>
+                      <Item caption={caption} original={getFileUrl(lgUrl || smUrl)} width={width} height={height}>
                         {({ ref, open }) => {
                           const imgRef = ref as any;
                           return (
                             <img
                               ref={imgRef}
                               onClick={open}
-                              src={xsUrl || smUrl}
+                              src={getFileUrl(xsUrl || smUrl)}
                               loading="lazy"
                               className={`cursor-pointer w-full h-[180px] bg-zinc-700 ${
                                 isVertical ? "object-contain" : "object-cover"

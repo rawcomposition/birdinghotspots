@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Hotspot from "models/Hotspot";
 import connect from "lib/mongo";
 import secureApi from "lib/secureApi";
+import { region, endpoint, bucket } from "lib/s3";
 
 export default secureApi(async (req, res, token) => {
   const s3 = new S3Client({
@@ -10,13 +11,13 @@ export default secureApi(async (req, res, token) => {
       accessKeyId: process.env.S3_KEY || "",
       secretAccessKey: process.env.S3_SECRET || "",
     },
-    region: "us-east-005",
-    endpoint: "https://s3.us-east-005.backblazeb2.com",
+    region,
+    endpoint,
   });
 
   const uploadUrlToS3 = async (url: string, key: string) => {
     const uploadParams = {
-      Bucket: "birdinghotspots",
+      Bucket: bucket,
       Key: key,
       ACL: "public-read",
       Body: await fetch(url).then((res) => res.arrayBuffer()),
@@ -33,10 +34,9 @@ export default secureApi(async (req, res, token) => {
 
   try {
     await uploadUrlToS3(smGoogleUrl, smFilename);
-    const smUrl = `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${smFilename}`;
 
     const imgObject = {
-      smUrl,
+      smUrl: smFilename,
       by: "© Google Street View",
       caption: "",
       width: 640,

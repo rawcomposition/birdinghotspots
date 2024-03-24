@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 import { v4 as uuidv4 } from "uuid";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { region, endpoint, bucket } from "lib/s3";
 
 const xs = 480;
 const sm = 1200;
@@ -45,14 +46,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
         accessKeyId: process.env.S3_KEY || "",
         secretAccessKey: process.env.S3_SECRET || "",
       },
-      region: "us-east-005",
-      endpoint: "https://s3.us-east-005.backblazeb2.com",
+      region,
+      endpoint,
     });
 
     await Promise.all([
       s3.send(
         new PutObjectCommand({
-          Bucket: "birdinghotspots",
+          Bucket: bucket,
           Key: xsName,
           ACL: "public-read",
           Body: xsBuffer,
@@ -61,7 +62,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       ),
       s3.send(
         new PutObjectCommand({
-          Bucket: "birdinghotspots",
+          Bucket: bucket,
           Key: smName,
           ACL: "public-read",
           Body: smBuffer,
@@ -70,7 +71,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       ),
       s3.send(
         new PutObjectCommand({
-          Bucket: "birdinghotspots",
+          Bucket: bucket,
           Key: lgName,
           ACL: "public-read",
           Body: lgBuffer,
@@ -80,9 +81,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
     ]);
 
     return NextResponse.json({
-      xsUrl: `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${xsName}`,
-      smUrl: `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${smName}`,
-      lgUrl: `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${lgName}`,
+      xsUrl: xsName,
+      smUrl: smName,
+      lgUrl: lgName,
       by: null,
       width: Number(width) || null,
       height: Number(height) || null,

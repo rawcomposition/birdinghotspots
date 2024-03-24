@@ -1,6 +1,7 @@
 import { GalleryProps } from "react-photoswipe-gallery";
 import { Image } from "lib/types";
 import StreetView from "components/StreetView";
+import { getFileUrl } from "./s3";
 
 export const uiElements: GalleryProps["uiElements"] = [
   {
@@ -52,10 +53,10 @@ export const processImg = (image: Image) => {
     caption = image.caption ? `${image.caption}<br />Photo by ${image.by}` : `Photo by ${image.by}`;
   }
   return {
-    src: image.lgUrl || image.smUrl,
+    src: getFileUrl(image.lgUrl || image.smUrl),
     width: image.width,
     height: image.height,
     caption,
-    downloadUrl: image.lgUrl || image.smUrl,
+    downloadUrl: getFileUrl(image.lgUrl || image.smUrl),
   };
 };

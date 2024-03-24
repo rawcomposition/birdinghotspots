@@ -5,6 +5,7 @@ import "photoswipe/dist/photoswipe.css";
 import StreetView from "components/StreetView";
 import { processImg, uiElements } from "lib/photoswipe";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { getFileUrl } from "lib/s3";
 
 type Props = {
   photos: Image[];
@@ -53,7 +54,7 @@ export default function FeaturedImage({ photos }: Props) {
                   <img
                     ref={imgRef}
                     //Prevent loading images unless viewed
-                    src={index === i ? photos[i].lgUrl || photos[i].smUrl : ""}
+                    src={index === i ? getFileUrl(photos[i].lgUrl || photos[i].smUrl) : ""}
                     width={item.width}
                     height={item.height}
                     className="w-full h-[250px] sm:h-[350px] md:h-[450px] object-cover object-center rounded-lg mb-8 -mt-10 cursor-pointer"

@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import toast from "react-hot-toast";
 import useRegionBounds from "hooks/useRegionBounds";
 import { getMarkerShade } from "lib/helpers";
+import { getFileUrl } from "lib/s3";
 
 const keys = process.env.NEXT_PUBLIC_MAPBOX_KEY?.split(",") || [];
 const key = keys[Math.floor(Math.random() * keys.length)];
@@ -42,7 +43,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
       //Attach popups in roundabout way to avoid all featured images loading at once
       icon.addEventListener("click", (e) => {
         const photo = img
-          ? `<a href="/hotspot/${locationId}"><img src="https://s3.us-east-005.backblazeb2.com/birdinghotspots/${img}" class="popup-img" /></a>`
+          ? `<a href="/hotspot/${locationId}"><img src="${getFileUrl(img)}" class="popup-img" /></a>`
           : "";
         const viewLink = `<a href="/hotspot/${locationId}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;&nbsp;`;
         const html = `${photo}<span class="font-medium text-sm">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;

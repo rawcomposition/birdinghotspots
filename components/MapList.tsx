@@ -2,6 +2,7 @@ import { Image } from "lib/types";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 import { uiElements } from "lib/photoswipe";
+import { getFileUrl } from "lib/s3";
 
 type Props = {
   images: Image[];
@@ -9,13 +10,16 @@ type Props = {
 
 export default function MapList({ images }: Props) {
   const items = images.map((image) => ({
-    original: image.lgUrl || image.smUrl,
-    thumbnail: image.lgUrl && image.height && image.width && image.height > image.width ? image.lgUrl : image.smUrl,
+    original: getFileUrl(image.lgUrl || image.smUrl),
+    thumbnail:
+      image.lgUrl && image.height && image.width && image.height > image.width
+        ? getFileUrl(image.lgUrl)
+        : getFileUrl(image.smUrl),
     width: image.width,
     height: image.height,
     by: image.by,
     caption: image.caption,
-    downloadUrl: image.lgUrl || image.smUrl,
+    downloadUrl: getFileUrl(image.lgUrl || image.smUrl),
   }));
 
   if (items.length === 0) return null;

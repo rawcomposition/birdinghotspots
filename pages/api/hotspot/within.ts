@@ -31,9 +31,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const formattedResults = results.map((data) => {
       const hotspot = [data.name, data.locationId, [data.lng, data.lat], data.species];
-      if (data.featuredImg) {
-        hotspot.push(data.featuredImg?.smUrl?.replace("https://s3.us-east-005.backblazeb2.com/birdinghotspots/", ""));
-      }
       return hotspot;
     });
 

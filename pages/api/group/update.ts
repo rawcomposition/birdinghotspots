@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { getStaticMap } from "lib/helpers";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { v4 as uuidv4 } from "uuid";
+import { region, endpoint, bucket } from "lib/s3";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
@@ -44,13 +45,13 @@ export default secureApi(async (req, res, token) => {
         accessKeyId: process.env.S3_KEY || "",
         secretAccessKey: process.env.S3_SECRET || "",
       },
-      region: "us-east-005",
-      endpoint: "https://s3.us-east-005.backblazeb2.com",
+      region,
+      endpoint,
     });
 
     const uploadUrlToS3 = async (url: string, key: string) => {
       const uploadParams = {
-        Bucket: "birdinghotspots",
+        Bucket: bucket,
         Key: key,
         ACL: "public-read",
         Body: await fetch(url).then((res) => res.arrayBuffer()),
@@ -63,13 +64,12 @@ export default secureApi(async (req, res, token) => {
     const filename = `groupmap${uuidv4()}.jpg`;
 
     await uploadUrlToS3(url, filename);
-    const mapImgUrl = `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${filename}`;
 
     const updatedAt = dayjs().format();
     await Promise.all([
       await Group.updateOne(
         { _id: id },
-        { ...data, stateCodes, countyCodes, updatedAt, mapImgUrl, hotspotCount: data.hotspots.length }
+        { ...data, stateCodes, countyCodes, updatedAt, mapImgUrl: filename, hotspotCount: data.hotspots.length }
       ),
       await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: id } }),
       await Hotspot.updateMany({ _id: { $in: removedHotspots } }, { $pull: { groupIds: id } }),
