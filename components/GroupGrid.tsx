@@ -1,5 +1,6 @@
 import { Group } from "lib/types";
 import Link from "next/link";
+import { getFileUrl } from "lib/s3";
 
 type Props = {
   groups: Group[];
@@ -14,7 +15,7 @@ export default function GroupGrid({ groups, smallTitle }: Props) {
           <article key={_id} className="flex flex-col gap-3">
             <Link href={url}>
               <img
-                src={mapImgUrl || "/placeholder.png"}
+                src={getFileUrl(mapImgUrl) || "/placeholder.png"}
                 className="object-cover rounded-md bg-gray-100 w-full aspect-[1.55]"
                 loading="lazy"
               />
