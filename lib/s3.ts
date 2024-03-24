@@ -6,5 +6,5 @@ export const bucket = "birdinghotspots";
 export const getFileUrl = (key?: string) => {
   if (!key) return undefined;
   if (key.startsWith("http")) return key.replace(legacyEndpoint, endpoint);
-  return `https://${endpoint}/${bucket}/${key}`;
+  return `${endpoint}/${bucket}/${key}`;
 };
