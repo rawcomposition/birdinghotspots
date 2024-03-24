@@ -7,11 +7,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const filename = url.split("/").pop();
   const s3 = new S3Client({
     credentials: {
-      accessKeyId: process.env.WASABI_KEY || "",
-      secretAccessKey: process.env.WASABI_SECRET || "",
+      accessKeyId: process.env.S3_KEY || "",
+      secretAccessKey: process.env.S3_SECRET || "",
     },
-    region: "us-east-1",
-    endpoint: "https://s3.wasabisys.com",
+    region: "us-east-005",
+    endpoint: "https://s3.us-east-005.backblazeb2.com",
   });
 
   const params = {

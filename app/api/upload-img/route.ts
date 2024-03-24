@@ -42,11 +42,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     const s3 = new S3Client({
       credentials: {
-        accessKeyId: process.env.WASABI_KEY || "",
-        secretAccessKey: process.env.WASABI_SECRET || "",
+        accessKeyId: process.env.S3_KEY || "",
+        secretAccessKey: process.env.S3_SECRET || "",
       },
-      region: "us-east-1",
-      endpoint: "https://s3.wasabisys.com",
+      region: "us-east-005",
+      endpoint: "https://s3.us-east-005.backblazeb2.com",
     });
 
     await Promise.all([
@@ -80,9 +80,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
     ]);
 
     return NextResponse.json({
-      xsUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${xsName}`,
-      smUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${smName}`,
-      lgUrl: `https://s3.us-east-1.wasabisys.com/birdinghotspots/${lgName}`,
+      xsUrl: `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${xsName}`,
+      smUrl: `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${smName}`,
+      lgUrl: `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${lgName}`,
       by: null,
       width: Number(width) || null,
       height: Number(height) || null,

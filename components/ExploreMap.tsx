@@ -42,7 +42,7 @@ export default function ExploreMap({ lat, lng, region, mode }: Props) {
       //Attach popups in roundabout way to avoid all featured images loading at once
       icon.addEventListener("click", (e) => {
         const photo = img
-          ? `<a href="/hotspot/${locationId}"><img src="https://s3.us-east-1.wasabisys.com/birdinghotspots/${img}" class="popup-img" /></a>`
+          ? `<a href="/hotspot/${locationId}"><img src="https://s3.us-east-005.backblazeb2.com/birdinghotspots/${img}" class="popup-img" /></a>`
           : "";
         const viewLink = `<a href="/hotspot/${locationId}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;&nbsp;`;
         const html = `${photo}<span class="font-medium text-sm">${name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${location[1]},${location[0]}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;

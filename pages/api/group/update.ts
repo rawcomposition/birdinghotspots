@@ -41,11 +41,11 @@ export default secureApi(async (req, res, token) => {
 
     const s3 = new S3Client({
       credentials: {
-        accessKeyId: process.env.WASABI_KEY || "",
-        secretAccessKey: process.env.WASABI_SECRET || "",
+        accessKeyId: process.env.S3_KEY || "",
+        secretAccessKey: process.env.S3_SECRET || "",
       },
-      region: "us-east-1",
-      endpoint: "https://s3.wasabisys.com",
+      region: "us-east-005",
+      endpoint: "https://s3.us-east-005.backblazeb2.com",
     });
 
     const uploadUrlToS3 = async (url: string, key: string) => {
@@ -63,7 +63,7 @@ export default secureApi(async (req, res, token) => {
     const filename = `groupmap${uuidv4()}.jpg`;
 
     await uploadUrlToS3(url, filename);
-    const mapImgUrl = `https://s3.us-east-1.wasabisys.com/birdinghotspots/${filename}`;
+    const mapImgUrl = `https://s3.us-east-005.backblazeb2.com/birdinghotspots/${filename}`;
 
     const updatedAt = dayjs().format();
     await Promise.all([
