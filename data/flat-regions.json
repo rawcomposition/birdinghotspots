@@ -1196,6 +1196,278 @@
     "name": "District of Columbia, US"
   },
   {
+    "code": "US-FL",
+    "name": "Florida, US"
+  },
+  {
+    "code": "US-FL-001",
+    "name": "Alachua, Florida, US"
+  },
+  {
+    "code": "US-FL-003",
+    "name": "Baker, Florida, US"
+  },
+  {
+    "code": "US-FL-005",
+    "name": "Bay, Florida, US"
+  },
+  {
+    "code": "US-FL-007",
+    "name": "Bradford, Florida, US"
+  },
+  {
+    "code": "US-FL-009",
+    "name": "Brevard, Florida, US"
+  },
+  {
+    "code": "US-FL-011",
+    "name": "Broward, Florida, US"
+  },
+  {
+    "code": "US-FL-013",
+    "name": "Calhoun, Florida, US"
+  },
+  {
+    "code": "US-FL-015",
+    "name": "Charlotte, Florida, US"
+  },
+  {
+    "code": "US-FL-017",
+    "name": "Citrus, Florida, US"
+  },
+  {
+    "code": "US-FL-019",
+    "name": "Clay, Florida, US"
+  },
+  {
+    "code": "US-FL-021",
+    "name": "Collier, Florida, US"
+  },
+  {
+    "code": "US-FL-023",
+    "name": "Columbia, Florida, US"
+  },
+  {
+    "code": "US-FL-027",
+    "name": "DeSoto, Florida, US"
+  },
+  {
+    "code": "US-FL-029",
+    "name": "Dixie, Florida, US"
+  },
+  {
+    "code": "US-FL-031",
+    "name": "Duval, Florida, US"
+  },
+  {
+    "code": "US-FL-033",
+    "name": "Escambia, Florida, US"
+  },
+  {
+    "code": "US-FL-035",
+    "name": "Flagler, Florida, US"
+  },
+  {
+    "code": "US-FL-037",
+    "name": "Franklin, Florida, US"
+  },
+  {
+    "code": "US-FL-039",
+    "name": "Gadsden, Florida, US"
+  },
+  {
+    "code": "US-FL-041",
+    "name": "Gilchrist, Florida, US"
+  },
+  {
+    "code": "US-FL-043",
+    "name": "Glades, Florida, US"
+  },
+  {
+    "code": "US-FL-045",
+    "name": "Gulf, Florida, US"
+  },
+  {
+    "code": "US-FL-047",
+    "name": "Hamilton, Florida, US"
+  },
+  {
+    "code": "US-FL-049",
+    "name": "Hardee, Florida, US"
+  },
+  {
+    "code": "US-FL-051",
+    "name": "Hendry, Florida, US"
+  },
+  {
+    "code": "US-FL-053",
+    "name": "Hernando, Florida, US"
+  },
+  {
+    "code": "US-FL-055",
+    "name": "Highlands, Florida, US"
+  },
+  {
+    "code": "US-FL-057",
+    "name": "Hillsborough, Florida, US"
+  },
+  {
+    "code": "US-FL-059",
+    "name": "Holmes, Florida, US"
+  },
+  {
+    "code": "US-FL-061",
+    "name": "Indian River, Florida, US"
+  },
+  {
+    "code": "US-FL-063",
+    "name": "Jackson, Florida, US"
+  },
+  {
+    "code": "US-FL-065",
+    "name": "Jefferson, Florida, US"
+  },
+  {
+    "code": "US-FL-067",
+    "name": "Lafayette, Florida, US"
+  },
+  {
+    "code": "US-FL-069",
+    "name": "Lake, Florida, US"
+  },
+  {
+    "code": "US-FL-071",
+    "name": "Lee, Florida, US"
+  },
+  {
+    "code": "US-FL-073",
+    "name": "Leon, Florida, US"
+  },
+  {
+    "code": "US-FL-075",
+    "name": "Levy, Florida, US"
+  },
+  {
+    "code": "US-FL-077",
+    "name": "Liberty, Florida, US"
+  },
+  {
+    "code": "US-FL-079",
+    "name": "Madison, Florida, US"
+  },
+  {
+    "code": "US-FL-081",
+    "name": "Manatee, Florida, US"
+  },
+  {
+    "code": "US-FL-083",
+    "name": "Marion, Florida, US"
+  },
+  {
+    "code": "US-FL-085",
+    "name": "Martin, Florida, US"
+  },
+  {
+    "code": "US-FL-086",
+    "name": "Miami-Dade, Florida, US"
+  },
+  {
+    "code": "US-FL-087",
+    "name": "Monroe, Florida, US"
+  },
+  {
+    "code": "US-FL-089",
+    "name": "Nassau, Florida, US"
+  },
+  {
+    "code": "US-FL-091",
+    "name": "Okaloosa, Florida, US"
+  },
+  {
+    "code": "US-FL-093",
+    "name": "Okeechobee, Florida, US"
+  },
+  {
+    "code": "US-FL-095",
+    "name": "Orange, Florida, US"
+  },
+  {
+    "code": "US-FL-097",
+    "name": "Osceola, Florida, US"
+  },
+  {
+    "code": "US-FL-099",
+    "name": "Palm Beach, Florida, US"
+  },
+  {
+    "code": "US-FL-101",
+    "name": "Pasco, Florida, US"
+  },
+  {
+    "code": "US-FL-103",
+    "name": "Pinellas, Florida, US"
+  },
+  {
+    "code": "US-FL-105",
+    "name": "Polk, Florida, US"
+  },
+  {
+    "code": "US-FL-107",
+    "name": "Putnam, Florida, US"
+  },
+  {
+    "code": "US-FL-113",
+    "name": "Santa Rosa, Florida, US"
+  },
+  {
+    "code": "US-FL-115",
+    "name": "Sarasota, Florida, US"
+  },
+  {
+    "code": "US-FL-117",
+    "name": "Seminole, Florida, US"
+  },
+  {
+    "code": "US-FL-109",
+    "name": "St. Johns, Florida, US"
+  },
+  {
+    "code": "US-FL-111",
+    "name": "St. Lucie, Florida, US"
+  },
+  {
+    "code": "US-FL-119",
+    "name": "Sumter, Florida, US"
+  },
+  {
+    "code": "US-FL-121",
+    "name": "Suwannee, Florida, US"
+  },
+  {
+    "code": "US-FL-123",
+    "name": "Taylor, Florida, US"
+  },
+  {
+    "code": "US-FL-125",
+    "name": "Union, Florida, US"
+  },
+  {
+    "code": "US-FL-127",
+    "name": "Volusia, Florida, US"
+  },
+  {
+    "code": "US-FL-129",
+    "name": "Wakulla, Florida, US"
+  },
+  {
+    "code": "US-FL-131",
+    "name": "Walton, Florida, US"
+  },
+  {
+    "code": "US-FL-133",
+    "name": "Washington, Florida, US"
+  },
+  {
     "code": "US-GA",
     "name": "Georgia, US"
   },
