@@ -158,11 +158,17 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
             </div>
           </div>
 
-          <Field label="Tips for Birding">
+          <Field
+            label="Tips for Birding"
+            help="Where to park, good birding locations, best time of year to visit, whether a scope is helpful, safety concerns, and other information that will help birders know what to expect when they visit the location."
+          >
             <TinyMCE name="tips" defaultValue={data.tips} />
           </Field>
 
-          <Field label="Birds of Interest">
+          <Field
+            label="Birds of Interest"
+            help="List birds that are commonly found here but hard to find at other locations. You can list these by season if there is a variation of birds of interest at different seasons of the year."
+          >
             <TinyMCE name="birds" defaultValue={data.birds} />
           </Field>
 
@@ -170,7 +176,7 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
             <TinyMCE name="about" defaultValue={data.about} />
           </Field>
 
-          <Field label="Notable Trails">
+          <Field label="Notable Trails" help="Information on trails that are good for birding.">
             <TinyMCE name="hikes" defaultValue={data.hikes} />
           </Field>
 
