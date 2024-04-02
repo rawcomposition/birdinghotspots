@@ -28,7 +28,7 @@ jobs:
         with:
           server_address: smtp-relay.brevo.com
           server_port: 587
-          username: noreply.birdinghotspots@gmail.com
+          username: no-reply@birdinghotspots.org
           password: ${{ secrets.EMAIL_PASS }}
           subject: "GitHub Action Failed: Sync Hotspots"
           to: adam@rawcomposition.com

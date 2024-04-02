@@ -18,7 +18,7 @@ export const sendEmail = async ({ to, subject, html, replyTo }: Props) => {
   });
 
   await transporter.sendMail({
-    from: '"BirdingHotspots.org" <noreply.birdinghotspots@gmail.com>',
+    from: '"BirdingHotspots.org" <no-reply@birdinghotspots.org>',
     to,
     subject,
     html,
