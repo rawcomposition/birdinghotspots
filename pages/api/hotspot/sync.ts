@@ -6,7 +6,7 @@ import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
 
 // Mostly stakeouts that don't follow the naming convention, or are otherwise are obvious mistakes on eBird hotspot reviewers part.
-const blockedLocationIds = ["L3934548", "L7929720", "L10823928", "L7820108", "L109212", "L109221"];
+const blockedLocationIds = ["L3934548", "L7929720", "L10823928", "L7820108", "L109212", "L109221", "L30522405"];
 
 const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
