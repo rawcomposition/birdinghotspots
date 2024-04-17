@@ -1242,7 +1242,6 @@
       {
         "name": "Massachusetts",
         "code": "US-MA",
-        "portal": "massaudubon",
         "subregions": [
           { "code": "US-MA-001", "name": "Barnstable" },
           { "code": "US-MA-003", "name": "Berkshire" },
@@ -1634,7 +1633,6 @@
       {
         "name": "New Hampshire",
         "code": "US-NH",
-        "portal": "nh",
         "subregions": [
           { "code": "US-NH-001", "name": "Belknap" },
           { "code": "US-NH-003", "name": "Carroll" },
@@ -2596,7 +2594,6 @@
       {
         "name": "Vermont",
         "code": "US-VT",
-        "portal": "vt",
         "subregions": [
           { "code": "US-VT-001", "name": "Addison" },
           { "code": "US-VT-003", "name": "Bennington" },
@@ -2756,7 +2753,6 @@
       {
         "name": "Washington",
         "code": "US-WA",
-        "portal": "pnw",
         "subregions": [
           { "code": "US-WA-001", "name": "Adams" },
           { "code": "US-WA-003", "name": "Asotin" },

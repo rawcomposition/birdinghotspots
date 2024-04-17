@@ -2,16 +2,13 @@ import { Menu } from "@headlessui/react";
 import EbirdLogo from "components/EbirdLogo";
 
 type Props = {
-  portal?: string;
   code: string;
 };
 
-export default function EbirdRegionBtn({ portal, code }: Props) {
+export default function EbirdRegionBtn({ code }: Props) {
   const getUrl = (bMonth: number, eMonth: number) => {
-    return `${base}/barchart?yr=all&bmo=${bMonth}&emo=${eMonth}&r=${code}`;
+    return `https://ebird.org/barchart?yr=all&bmo=${bMonth}&emo=${eMonth}&r=${code}`;
   };
-
-  const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
 
   return (
     <div className="relative inline-block">
@@ -24,12 +21,12 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
             <h4 className="font-bold">Explore in eBird</h4>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${code}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/region/${code}/hotspots?yr=all&m=`} target="_blank" rel="noreferrer">
               Hotspots
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/region/${code}/activity?yr=all&m=`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/region/${code}/ebirders?yr=all`} target="_blank" rel="noreferrer">
               Recent Visits
             </a>
           </Menu.Item>
@@ -65,13 +62,13 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
             <h4 className="font-bold">Top eBirders</h4>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/top100?locInfo.regionCode=${code}&year=AAAA`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/top100?locInfo.regionCode=${code}&year=AAAA`} target="_blank" rel="noreferrer">
               All Time
             </a>
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/top100?year=${new Date().getFullYear()}&locInfo.regionCode=${code}`}
+              href={`https://ebird.org/top100?year=${new Date().getFullYear()}&locInfo.regionCode=${code}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -83,7 +80,7 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/MyEBird?cmd=lifeList&listType=${code}&listCategory=allCounties&time=life`}
+              href={`https://ebird.org/MyEBird?cmd=lifeList&listType=${code}&listCategory=allCounties&time=life`}
               target="_blank"
               rel="noreferrer"
             >
@@ -92,7 +89,7 @@ export default function EbirdRegionBtn({ portal, code }: Props) {
           </Menu.Item>
           <Menu.Item>
             <a
-              href={`${base}/MyEBird?cmd=lifeList&listType=${code}&listCategory=allCounties&time=year`}
+              href={`https://ebird.org/MyEBird?cmd=lifeList&listType=${code}&listCategory=allCounties&time=year`}
               target="_blank"
               rel="noreferrer"
             >

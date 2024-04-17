@@ -101,7 +101,7 @@ export default function Group({
           <div className="mb-6">
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4">
-              <BarChartBtn locationIds={locationIds} locationId={locationId} portal={region?.portal} />
+              <BarChartBtn locationIds={locationIds} locationId={locationId} />
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (

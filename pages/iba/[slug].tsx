@@ -38,7 +38,7 @@ export default function ImportantBirdAreas({ region, name, slug, about, webpage,
               View webpage
             </a>
           </p>
-          <EbirdBarcharts portal={region.portal} region={code || locationIds.join(",")} />
+          <EbirdBarcharts region={code || locationIds.join(",")} />
           <h3 className="font-bold mb-1.5 text-lg">Locations</h3>
           <ListHotspotsByCounty hotspots={hotspots} />
         </div>

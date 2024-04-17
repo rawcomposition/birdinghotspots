@@ -2,14 +2,12 @@ import { Menu } from "@headlessui/react";
 import BarChart from "icons/BarChart";
 
 type Props = {
-  portal?: string;
   locationId: string;
   locationIds?: string[];
 };
 
-export default function BarChartBtn({ portal, locationId, locationIds }: Props) {
+export default function BarChartBtn({ locationId, locationIds }: Props) {
   const region = locationIds?.length ? locationIds.join(",") : locationId;
-  const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
   return (
     <div className="relative inline-block">
       <Menu>
@@ -20,7 +18,7 @@ export default function BarChartBtn({ portal, locationId, locationIds }: Props) 
         <Menu.Items className="absolute left-0 top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1">
           <Menu.Item>
             <a
-              href={`${base}/barchart?yr=all&bmo=1&emo=12&r=${region}`}
+              href={`https://ebird.org/barchart?yr=all&bmo=1&emo=12&r=${region}`}
               target="_blank"
               rel="noreferrer"
               className="font-bold"
@@ -29,22 +27,22 @@ export default function BarChartBtn({ portal, locationId, locationIds }: Props) 
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?yr=all&bmo=3&emo=5&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/barchart?yr=all&bmo=3&emo=5&r=${region}`} target="_blank" rel="noreferrer">
               Spring
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?yr=all&bmo=6&emo=7&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/barchart?yr=all&bmo=6&emo=7&r=${region}`} target="_blank" rel="noreferrer">
               Summer
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?yr=all&bmo=8&emo=11&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/barchart?yr=all&bmo=8&emo=11&r=${region}`} target="_blank" rel="noreferrer">
               Fall
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`${base}/barchart?yr=all&bmo=12&emo=2&r=${region}`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/barchart?yr=all&bmo=12&emo=2&r=${region}`} target="_blank" rel="noreferrer">
               Winter
             </a>
           </Menu.Item>

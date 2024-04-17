@@ -37,7 +37,6 @@ export function getRegion(code: string): Region | null {
       region = formatRegion({
         ...county,
         features: state.features || [],
-        ...(state.portal ? { portal: state.portal } : {}),
         longName: county.longName || `${county.name} County`,
         parents: [
           {

@@ -49,8 +49,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
   const [stats, setStats] = React.useState<RegionStatsT>();
   const [showAllHotspots, setShowAllHotspots] = React.useState<boolean>(false);
   const { open } = useModal();
-  const { code, name, longName, portal, subregions, subheading } = region;
-  const base = portal ? `https://ebird.org/${portal}` : "https://ebird.org";
+  const { code, name, longName, subregions, subheading } = region;
 
   const regionPieces = code.split("-");
   const countryCode = regionPieces.length >= 1 ? regionPieces[0] : undefined;
@@ -129,7 +128,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
             <h3 className="text-lg mb-1.5 font-bold">Where to Go Birding in {longName}</h3>
             <div className="flex gap-2 mt-2 mb-4">
               <RegionLinksBtn region={region} />
-              <EbirdRegionBtn code={code} portal={portal} />
+              <EbirdRegionBtn code={code} />
             </div>
             <p className="text-gray-600 mb-8 text-[15px]">
               Discover where to go birding in {name} by browsing our tips, descriptions, maps, and images for many eBird
@@ -190,7 +189,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
               <h3 className="text-lg mb-2 font-bold">Where to Go Birding in {name}</h3>
               <div className="flex gap-2 mt-2 mb-4">
                 <RegionLinksBtn region={region} />
-                <EbirdRegionBtn code={code} portal={portal} />
+                <EbirdRegionBtn code={code} />
               </div>
             </div>
             <RegionStats regionCode={code} data={stats} />

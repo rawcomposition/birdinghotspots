@@ -102,9 +102,6 @@ export default function Hotspot({
   const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];
 
   const canEdit = checkCanEdit({ uid: "", role: user?.role, regions: user?.regions }, region.code);
-  console.log(user?.regions);
-
-  const base = region?.portal ? `https://ebird.org/${region?.portal}` : "https://ebird.org";
 
   return (
     <div className="container pb-16">
@@ -167,7 +164,7 @@ export default function Hotspot({
                   <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
                 </ExternalLinkButton>
               )}
-              <EbirdHotspotBtn portal={region?.portal} locationId={locationId} />
+              <EbirdHotspotBtn locationId={locationId} />
             </div>
             {address && <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: address }} />}
             {links?.map(({ url, label }, index) => (
@@ -220,19 +217,6 @@ export default function Hotspot({
           ))}
 
           {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
-          {locationId === "L619806" && (
-            <iframe
-              className="mb-6 border-none"
-              src="https://www.alltrails.com/widget/trail/us/ohio/cuyahoga-valley-ledges-trail?elevationDiagram=false&u=i&sh=zcakqe"
-              width="100%"
-              height="400"
-              frameBorder="0"
-              scrolling="no"
-              marginHeight={0}
-              marginWidth={0}
-              title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"
-            />
-          )}
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 

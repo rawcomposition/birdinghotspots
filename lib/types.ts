@@ -424,7 +424,6 @@ export type Region = {
     name: string;
   }[];
   features?: string[];
-  portal?: string;
   subheading?: string;
 };
 
