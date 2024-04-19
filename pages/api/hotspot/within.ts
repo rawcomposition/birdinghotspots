@@ -30,7 +30,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       .exec();
 
     const formattedResults = results.map((data) => {
-      const hotspot = [data.name, data.locationId, [data.lng, data.lat], data.species];
+      const hotspot = [
+        data.name,
+        data.locationId,
+        [data.lng, data.lat],
+        data.species,
+        data.featuredImg?.xsUrl || data.featuredImg?.smUrl,
+      ];
       return hotspot;
     });
 
