@@ -13,7 +13,7 @@ export default function GeorgiaMap() {
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
         ref={svgRef}
-        viewBox="130 38 665  490"
+        viewBox="130 38 665 490"
       >
         <g>
           <g id="states">
