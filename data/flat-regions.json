@@ -7844,6 +7844,154 @@
     "name": "Woodward, Oklahoma, US"
   },
   {
+    "code": "US-OR",
+    "name": "Oregon, US"
+  },
+  {
+    "code": "US-OR-001",
+    "name": "Baker, Oregon, US"
+  },
+  {
+    "code": "US-OR-003",
+    "name": "Benton, Oregon, US"
+  },
+  {
+    "code": "US-OR-005",
+    "name": "Clackamas, Oregon, US"
+  },
+  {
+    "code": "US-OR-007",
+    "name": "Clatsop, Oregon, US"
+  },
+  {
+    "code": "US-OR-009",
+    "name": "Columbia, Oregon, US"
+  },
+  {
+    "code": "US-OR-011",
+    "name": "Coos, Oregon, US"
+  },
+  {
+    "code": "US-OR-013",
+    "name": "Crook, Oregon, US"
+  },
+  {
+    "code": "US-OR-015",
+    "name": "Curry, Oregon, US"
+  },
+  {
+    "code": "US-OR-017",
+    "name": "Deschutes, Oregon, US"
+  },
+  {
+    "code": "US-OR-019",
+    "name": "Douglas, Oregon, US"
+  },
+  {
+    "code": "US-OR-021",
+    "name": "Gilliam, Oregon, US"
+  },
+  {
+    "code": "US-OR-023",
+    "name": "Grant, Oregon, US"
+  },
+  {
+    "code": "US-OR-025",
+    "name": "Harney, Oregon, US"
+  },
+  {
+    "code": "US-OR-027",
+    "name": "Hood River, Oregon, US"
+  },
+  {
+    "code": "US-OR-029",
+    "name": "Jackson, Oregon, US"
+  },
+  {
+    "code": "US-OR-031",
+    "name": "Jefferson, Oregon, US"
+  },
+  {
+    "code": "US-OR-033",
+    "name": "Josephine, Oregon, US"
+  },
+  {
+    "code": "US-OR-035",
+    "name": "Klamath, Oregon, US"
+  },
+  {
+    "code": "US-OR-037",
+    "name": "Lake, Oregon, US"
+  },
+  {
+    "code": "US-OR-039",
+    "name": "Lane, Oregon, US"
+  },
+  {
+    "code": "US-OR-041",
+    "name": "Lincoln, Oregon, US"
+  },
+  {
+    "code": "US-OR-043",
+    "name": "Linn, Oregon, US"
+  },
+  {
+    "code": "US-OR-045",
+    "name": "Malheur, Oregon, US"
+  },
+  {
+    "code": "US-OR-047",
+    "name": "Marion, Oregon, US"
+  },
+  {
+    "code": "US-OR-049",
+    "name": "Morrow, Oregon, US"
+  },
+  {
+    "code": "US-OR-051",
+    "name": "Multnomah, Oregon, US"
+  },
+  {
+    "code": "US-OR-053",
+    "name": "Polk, Oregon, US"
+  },
+  {
+    "code": "US-OR-055",
+    "name": "Sherman, Oregon, US"
+  },
+  {
+    "code": "US-OR-057",
+    "name": "Tillamook, Oregon, US"
+  },
+  {
+    "code": "US-OR-059",
+    "name": "Umatilla, Oregon, US"
+  },
+  {
+    "code": "US-OR-061",
+    "name": "Union, Oregon, US"
+  },
+  {
+    "code": "US-OR-063",
+    "name": "Wallowa, Oregon, US"
+  },
+  {
+    "code": "US-OR-065",
+    "name": "Wasco, Oregon, US"
+  },
+  {
+    "code": "US-OR-067",
+    "name": "Washington, Oregon, US"
+  },
+  {
+    "code": "US-OR-069",
+    "name": "Wheeler, Oregon, US"
+  },
+  {
+    "code": "US-OR-071",
+    "name": "Yamhill, Oregon, US"
+  },
+  {
     "code": "US-PA",
     "name": "Pennsylvania, US"
   },
