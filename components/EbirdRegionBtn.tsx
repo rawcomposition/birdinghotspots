@@ -26,7 +26,7 @@ export default function EbirdRegionBtn({ code }: Props) {
             </a>
           </Menu.Item>
           <Menu.Item>
-            <a href={`https://ebird.org/region/${code}/ebirders?yr=all`} target="_blank" rel="noreferrer">
+            <a href={`https://ebird.org/region/${code}/recent-checklists`} target="_blank" rel="noreferrer">
               Recent Visits
             </a>
           </Menu.Item>
