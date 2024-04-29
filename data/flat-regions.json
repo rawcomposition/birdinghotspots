@@ -8744,6 +8744,390 @@
     "name": "Ziebach, South Dakota, US"
   },
   {
+    "code": "US-TN",
+    "name": "Tennessee, US"
+  },
+  {
+    "code": "US-TN-001",
+    "name": "Anderson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-003",
+    "name": "Bedford, Tennessee, US"
+  },
+  {
+    "code": "US-TN-005",
+    "name": "Benton, Tennessee, US"
+  },
+  {
+    "code": "US-TN-007",
+    "name": "Bledsoe, Tennessee, US"
+  },
+  {
+    "code": "US-TN-009",
+    "name": "Blount, Tennessee, US"
+  },
+  {
+    "code": "US-TN-011",
+    "name": "Bradley, Tennessee, US"
+  },
+  {
+    "code": "US-TN-013",
+    "name": "Campbell, Tennessee, US"
+  },
+  {
+    "code": "US-TN-015",
+    "name": "Cannon, Tennessee, US"
+  },
+  {
+    "code": "US-TN-017",
+    "name": "Carroll, Tennessee, US"
+  },
+  {
+    "code": "US-TN-019",
+    "name": "Carter, Tennessee, US"
+  },
+  {
+    "code": "US-TN-021",
+    "name": "Cheatham, Tennessee, US"
+  },
+  {
+    "code": "US-TN-023",
+    "name": "Chester, Tennessee, US"
+  },
+  {
+    "code": "US-TN-025",
+    "name": "Claiborne, Tennessee, US"
+  },
+  {
+    "code": "US-TN-027",
+    "name": "Clay, Tennessee, US"
+  },
+  {
+    "code": "US-TN-029",
+    "name": "Cocke, Tennessee, US"
+  },
+  {
+    "code": "US-TN-031",
+    "name": "Coffee, Tennessee, US"
+  },
+  {
+    "code": "US-TN-033",
+    "name": "Crockett, Tennessee, US"
+  },
+  {
+    "code": "US-TN-035",
+    "name": "Cumberland, Tennessee, US"
+  },
+  {
+    "code": "US-TN-037",
+    "name": "Davidson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-041",
+    "name": "DeKalb, Tennessee, US"
+  },
+  {
+    "code": "US-TN-039",
+    "name": "Decatur, Tennessee, US"
+  },
+  {
+    "code": "US-TN-043",
+    "name": "Dickson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-045",
+    "name": "Dyer, Tennessee, US"
+  },
+  {
+    "code": "US-TN-047",
+    "name": "Fayette, Tennessee, US"
+  },
+  {
+    "code": "US-TN-049",
+    "name": "Fentress, Tennessee, US"
+  },
+  {
+    "code": "US-TN-051",
+    "name": "Franklin, Tennessee, US"
+  },
+  {
+    "code": "US-TN-053",
+    "name": "Gibson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-055",
+    "name": "Giles, Tennessee, US"
+  },
+  {
+    "code": "US-TN-057",
+    "name": "Grainger, Tennessee, US"
+  },
+  {
+    "code": "US-TN-059",
+    "name": "Greene, Tennessee, US"
+  },
+  {
+    "code": "US-TN-061",
+    "name": "Grundy, Tennessee, US"
+  },
+  {
+    "code": "US-TN-063",
+    "name": "Hamblen, Tennessee, US"
+  },
+  {
+    "code": "US-TN-065",
+    "name": "Hamilton, Tennessee, US"
+  },
+  {
+    "code": "US-TN-067",
+    "name": "Hancock, Tennessee, US"
+  },
+  {
+    "code": "US-TN-069",
+    "name": "Hardeman, Tennessee, US"
+  },
+  {
+    "code": "US-TN-071",
+    "name": "Hardin, Tennessee, US"
+  },
+  {
+    "code": "US-TN-073",
+    "name": "Hawkins, Tennessee, US"
+  },
+  {
+    "code": "US-TN-075",
+    "name": "Haywood, Tennessee, US"
+  },
+  {
+    "code": "US-TN-077",
+    "name": "Henderson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-079",
+    "name": "Henry, Tennessee, US"
+  },
+  {
+    "code": "US-TN-081",
+    "name": "Hickman, Tennessee, US"
+  },
+  {
+    "code": "US-TN-083",
+    "name": "Houston, Tennessee, US"
+  },
+  {
+    "code": "US-TN-085",
+    "name": "Humphreys, Tennessee, US"
+  },
+  {
+    "code": "US-TN-087",
+    "name": "Jackson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-089",
+    "name": "Jefferson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-091",
+    "name": "Johnson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-093",
+    "name": "Knox, Tennessee, US"
+  },
+  {
+    "code": "US-TN-095",
+    "name": "Lake, Tennessee, US"
+  },
+  {
+    "code": "US-TN-097",
+    "name": "Lauderdale, Tennessee, US"
+  },
+  {
+    "code": "US-TN-099",
+    "name": "Lawrence, Tennessee, US"
+  },
+  {
+    "code": "US-TN-101",
+    "name": "Lewis, Tennessee, US"
+  },
+  {
+    "code": "US-TN-103",
+    "name": "Lincoln, Tennessee, US"
+  },
+  {
+    "code": "US-TN-105",
+    "name": "Loudon, Tennessee, US"
+  },
+  {
+    "code": "US-TN-111",
+    "name": "Macon, Tennessee, US"
+  },
+  {
+    "code": "US-TN-113",
+    "name": "Madison, Tennessee, US"
+  },
+  {
+    "code": "US-TN-115",
+    "name": "Marion, Tennessee, US"
+  },
+  {
+    "code": "US-TN-117",
+    "name": "Marshall, Tennessee, US"
+  },
+  {
+    "code": "US-TN-119",
+    "name": "Maury, Tennessee, US"
+  },
+  {
+    "code": "US-TN-107",
+    "name": "McMinn, Tennessee, US"
+  },
+  {
+    "code": "US-TN-109",
+    "name": "McNairy, Tennessee, US"
+  },
+  {
+    "code": "US-TN-121",
+    "name": "Meigs, Tennessee, US"
+  },
+  {
+    "code": "US-TN-123",
+    "name": "Monroe, Tennessee, US"
+  },
+  {
+    "code": "US-TN-125",
+    "name": "Montgomery, Tennessee, US"
+  },
+  {
+    "code": "US-TN-127",
+    "name": "Moore, Tennessee, US"
+  },
+  {
+    "code": "US-TN-129",
+    "name": "Morgan, Tennessee, US"
+  },
+  {
+    "code": "US-TN-131",
+    "name": "Obion, Tennessee, US"
+  },
+  {
+    "code": "US-TN-133",
+    "name": "Overton, Tennessee, US"
+  },
+  {
+    "code": "US-TN-135",
+    "name": "Perry, Tennessee, US"
+  },
+  {
+    "code": "US-TN-137",
+    "name": "Pickett, Tennessee, US"
+  },
+  {
+    "code": "US-TN-139",
+    "name": "Polk, Tennessee, US"
+  },
+  {
+    "code": "US-TN-141",
+    "name": "Putnam, Tennessee, US"
+  },
+  {
+    "code": "US-TN-143",
+    "name": "Rhea, Tennessee, US"
+  },
+  {
+    "code": "US-TN-145",
+    "name": "Roane, Tennessee, US"
+  },
+  {
+    "code": "US-TN-147",
+    "name": "Robertson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-149",
+    "name": "Rutherford, Tennessee, US"
+  },
+  {
+    "code": "US-TN-151",
+    "name": "Scott, Tennessee, US"
+  },
+  {
+    "code": "US-TN-153",
+    "name": "Sequatchie, Tennessee, US"
+  },
+  {
+    "code": "US-TN-155",
+    "name": "Sevier, Tennessee, US"
+  },
+  {
+    "code": "US-TN-157",
+    "name": "Shelby, Tennessee, US"
+  },
+  {
+    "code": "US-TN-159",
+    "name": "Smith, Tennessee, US"
+  },
+  {
+    "code": "US-TN-161",
+    "name": "Stewart, Tennessee, US"
+  },
+  {
+    "code": "US-TN-163",
+    "name": "Sullivan, Tennessee, US"
+  },
+  {
+    "code": "US-TN-165",
+    "name": "Sumner, Tennessee, US"
+  },
+  {
+    "code": "US-TN-167",
+    "name": "Tipton, Tennessee, US"
+  },
+  {
+    "code": "US-TN-169",
+    "name": "Trousdale, Tennessee, US"
+  },
+  {
+    "code": "US-TN-171",
+    "name": "Unicoi, Tennessee, US"
+  },
+  {
+    "code": "US-TN-173",
+    "name": "Union, Tennessee, US"
+  },
+  {
+    "code": "US-TN-175",
+    "name": "Van Buren, Tennessee, US"
+  },
+  {
+    "code": "US-TN-177",
+    "name": "Warren, Tennessee, US"
+  },
+  {
+    "code": "US-TN-179",
+    "name": "Washington, Tennessee, US"
+  },
+  {
+    "code": "US-TN-181",
+    "name": "Wayne, Tennessee, US"
+  },
+  {
+    "code": "US-TN-183",
+    "name": "Weakley, Tennessee, US"
+  },
+  {
+    "code": "US-TN-185",
+    "name": "White, Tennessee, US"
+  },
+  {
+    "code": "US-TN-187",
+    "name": "Williamson, Tennessee, US"
+  },
+  {
+    "code": "US-TN-189",
+    "name": "Wilson, Tennessee, US"
+  },
+  {
     "code": "US-TX",
     "name": "Texas, US"
   },
