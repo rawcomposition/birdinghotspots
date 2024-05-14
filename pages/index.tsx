@@ -62,6 +62,9 @@ export default function Home({ featured, northAmericaRegions }: Props) {
               <Link href="/region/TJ" className="font-bold px-2 py-1 text-base mb-1 block">
                 Tajikistan
               </Link>
+              <Link href="/region/TR" className="font-bold px-2 py-1 text-base mb-1 block">
+                Türkiye
+              </Link>
               <Link href="/region/AE" className="font-bold px-2 py-1 text-base mb-1 block">
                 United Arab Emirates
               </Link>

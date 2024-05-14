@@ -11694,5 +11694,333 @@
   {
     "code": "AQ",
     "name": "Antarctica"
+  },
+  {
+    "code": "TR",
+    "name": "Türkiye"
+  },
+  {
+    "code": "TR-01",
+    "name": "Adana, Türkiye"
+  },
+  {
+    "code": "TR-02",
+    "name": "Adıyaman, Türkiye"
+  },
+  {
+    "code": "TR-03",
+    "name": "Afyon, Türkiye"
+  },
+  {
+    "code": "TR-68",
+    "name": "Aksaray, Türkiye"
+  },
+  {
+    "code": "TR-05",
+    "name": "Amasya, Türkiye"
+  },
+  {
+    "code": "TR-06",
+    "name": "Ankara, Türkiye"
+  },
+  {
+    "code": "TR-07",
+    "name": "Antalya, Türkiye"
+  },
+  {
+    "code": "TR-75",
+    "name": "Ardahan, Türkiye"
+  },
+  {
+    "code": "TR-08",
+    "name": "Artvin, Türkiye"
+  },
+  {
+    "code": "TR-09",
+    "name": "Aydın, Türkiye"
+  },
+  {
+    "code": "TR-04",
+    "name": "Ağrı, Türkiye"
+  },
+  {
+    "code": "TR-10",
+    "name": "Balıkesir, Türkiye"
+  },
+  {
+    "code": "TR-74",
+    "name": "Bartın, Türkiye"
+  },
+  {
+    "code": "TR-72",
+    "name": "Batman, Türkiye"
+  },
+  {
+    "code": "TR-69",
+    "name": "Bayburt, Türkiye"
+  },
+  {
+    "code": "TR-11",
+    "name": "Bilecik, Türkiye"
+  },
+  {
+    "code": "TR-12",
+    "name": "Bingöl, Türkiye"
+  },
+  {
+    "code": "TR-13",
+    "name": "Bitlis, Türkiye"
+  },
+  {
+    "code": "TR-14",
+    "name": "Bolu, Türkiye"
+  },
+  {
+    "code": "TR-15",
+    "name": "Burdur, Türkiye"
+  },
+  {
+    "code": "TR-16",
+    "name": "Bursa, Türkiye"
+  },
+  {
+    "code": "TR-20",
+    "name": "Denizli, Türkiye"
+  },
+  {
+    "code": "TR-21",
+    "name": "Diyarbakır, Türkiye"
+  },
+  {
+    "code": "TR-81",
+    "name": "Düzce, Türkiye"
+  },
+  {
+    "code": "TR-22",
+    "name": "Edirne, Türkiye"
+  },
+  {
+    "code": "TR-23",
+    "name": "Elazığ, Türkiye"
+  },
+  {
+    "code": "TR-24",
+    "name": "Erzincan, Türkiye"
+  },
+  {
+    "code": "TR-25",
+    "name": "Erzurum, Türkiye"
+  },
+  {
+    "code": "TR-26",
+    "name": "Eskişehir, Türkiye"
+  },
+  {
+    "code": "TR-27",
+    "name": "Gaziantep, Türkiye"
+  },
+  {
+    "code": "TR-28",
+    "name": "Giresun, Türkiye"
+  },
+  {
+    "code": "TR-29",
+    "name": "Gümüşhane, Türkiye"
+  },
+  {
+    "code": "TR-30",
+    "name": "Hakkari, Türkiye"
+  },
+  {
+    "code": "TR-31",
+    "name": "Hatay, Türkiye"
+  },
+  {
+    "code": "TR-32",
+    "name": "Isparta, Türkiye"
+  },
+  {
+    "code": "TR-76",
+    "name": "Iğdır, Türkiye"
+  },
+  {
+    "code": "TR-46",
+    "name": "K.Maraş, Türkiye"
+  },
+  {
+    "code": "TR-78",
+    "name": "Karabük, Türkiye"
+  },
+  {
+    "code": "TR-70",
+    "name": "Karaman, Türkiye"
+  },
+  {
+    "code": "TR-36",
+    "name": "Kars, Türkiye"
+  },
+  {
+    "code": "TR-37",
+    "name": "Kastamonu, Türkiye"
+  },
+  {
+    "code": "TR-38",
+    "name": "Kayseri, Türkiye"
+  },
+  {
+    "code": "TR-79",
+    "name": "Kilis, Türkiye"
+  },
+  {
+    "code": "TR-41",
+    "name": "Kocaeli, Türkiye"
+  },
+  {
+    "code": "TR-42",
+    "name": "Konya, Türkiye"
+  },
+  {
+    "code": "TR-43",
+    "name": "Kütahya, Türkiye"
+  },
+  {
+    "code": "TR-39",
+    "name": "Kırklareli, Türkiye"
+  },
+  {
+    "code": "TR-71",
+    "name": "Kırıkkale, Türkiye"
+  },
+  {
+    "code": "TR-40",
+    "name": "Kırşehir, Türkiye"
+  },
+  {
+    "code": "TR-44",
+    "name": "Malatya, Türkiye"
+  },
+  {
+    "code": "TR-45",
+    "name": "Manisa, Türkiye"
+  },
+  {
+    "code": "TR-47",
+    "name": "Mardin, Türkiye"
+  },
+  {
+    "code": "TR-33",
+    "name": "Mersin, Türkiye"
+  },
+  {
+    "code": "TR-48",
+    "name": "Muğla, Türkiye"
+  },
+  {
+    "code": "TR-49",
+    "name": "Muş, Türkiye"
+  },
+  {
+    "code": "TR-50",
+    "name": "Nevşehir, Türkiye"
+  },
+  {
+    "code": "TR-51",
+    "name": "Niğde, Türkiye"
+  },
+  {
+    "code": "TR-52",
+    "name": "Ordu, Türkiye"
+  },
+  {
+    "code": "TR-80",
+    "name": "Osmaniye, Türkiye"
+  },
+  {
+    "code": "TR-53",
+    "name": "Rize, Türkiye"
+  },
+  {
+    "code": "TR-54",
+    "name": "Sakarya, Türkiye"
+  },
+  {
+    "code": "TR-55",
+    "name": "Samsun, Türkiye"
+  },
+  {
+    "code": "TR-56",
+    "name": "Siirt, Türkiye"
+  },
+  {
+    "code": "TR-57",
+    "name": "Sinop, Türkiye"
+  },
+  {
+    "code": "TR-58",
+    "name": "Sivas, Türkiye"
+  },
+  {
+    "code": "TR-59",
+    "name": "Tekirdağ, Türkiye"
+  },
+  {
+    "code": "TR-60",
+    "name": "Tokat, Türkiye"
+  },
+  {
+    "code": "TR-61",
+    "name": "Trabzon, Türkiye"
+  },
+  {
+    "code": "TR-62",
+    "name": "Tunceli, Türkiye"
+  },
+  {
+    "code": "TR-64",
+    "name": "Uşak, Türkiye"
+  },
+  {
+    "code": "TR-65",
+    "name": "Van, Türkiye"
+  },
+  {
+    "code": "TR-77",
+    "name": "Yalova, Türkiye"
+  },
+  {
+    "code": "TR-66",
+    "name": "Yozgat, Türkiye"
+  },
+  {
+    "code": "TR-67",
+    "name": "Zonguldak, Türkiye"
+  },
+  {
+    "code": "TR-17",
+    "name": "Çanakkale, Türkiye"
+  },
+  {
+    "code": "TR-18",
+    "name": "Çankırı, Türkiye"
+  },
+  {
+    "code": "TR-19",
+    "name": "Çorum, Türkiye"
+  },
+  {
+    "code": "TR-34",
+    "name": "İstanbul, Türkiye"
+  },
+  {
+    "code": "TR-35",
+    "name": "İzmir, Türkiye"
+  },
+  {
+    "code": "TR-63",
+    "name": "Şanlıurfa, Türkiye"
+  },
+  {
+    "code": "TR-73",
+    "name": "Şırnak, Türkiye"
   }
 ]
