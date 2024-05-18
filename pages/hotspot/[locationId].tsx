@@ -155,7 +155,7 @@ export default function Hotspot({
             <h3 className="font-bold text-lg">{name}</h3>
             <div className="flex gap-2 mt-2 mb-4 flex-wrap">
               {!!species && (
-                <ExternalLinkButton href={`https://ebird.org/hotspot/${locationId}`}>
+                <ExternalLinkButton href={`https://ebird.org/hotspot/${locationId}/bird-list`}>
                   <Feather className="mr-1 -mt-[3px] text-[#92ad39]" /> {species} species
                 </ExternalLinkButton>
               )}
