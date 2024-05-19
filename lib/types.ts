@@ -225,7 +225,7 @@ export type User = {
   email?: string;
   displayName?: string;
   role?: string;
-  regions?: string[];
+  regions?: Region[];
   status?: string;
 };
 

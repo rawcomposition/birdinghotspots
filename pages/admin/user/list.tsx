@@ -10,6 +10,7 @@ import Badge from "components/Badge";
 import { useModal } from "providers/modals";
 
 export default function Users() {
+  const [query, setQuery] = React.useState("");
   const { send, loading } = useToast();
   const { open } = useModal();
   const [users, setUsers] = React.useState<User[]>([]);
@@ -19,6 +20,14 @@ export default function Users() {
     const json = await response.json();
     setUsers(json.users);
   }, []);
+
+  const filterUsers = query
+    ? users.filter(
+        ({ displayName, regions }) =>
+          displayName?.toLowerCase().includes(query.toLowerCase()) ||
+          regions?.some(({ name }) => name?.toLowerCase().includes(query.toLowerCase()))
+      )
+    : users;
 
   const handleResend = async (email: string) => {
     await send({
@@ -35,8 +44,19 @@ export default function Users() {
 
   return (
     <DashboardPage title="Users">
-      <div className="flex justify-end mb-4">
-        <Button onClick={() => open("inviteEditor", { onSuccess: fetchUsers })} color="green" className="font-medium">
+      <div className="flex flex-col sm:flex-row justify-between gap-4 mb-4">
+        <input
+          type="text"
+          placeholder="Search by name/region"
+          className="form-input w-full max-w-xs !mt-0 pl-4"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <Button
+          onClick={() => open("inviteEditor", { onSuccess: fetchUsers })}
+          color="green"
+          className="font-medium whitespace-nowrap"
+        >
           Invite Editor
         </Button>
       </div>
@@ -45,13 +65,7 @@ export default function Users() {
           <thead className="bg-gray-50">
             <tr>
               <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                Name
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem] hidden md:table-cell"
-              >
-                Email
+                User
               </th>
               <th
                 scope="col"
@@ -82,15 +96,24 @@ export default function Users() {
                 </td>
               </tr>
             )}
-            {users.map(({ displayName, email, uid, role, regions, status }) => (
+            {filterUsers.map(({ displayName, email, uid, role, regions, status }) => (
               <tr key={uid}>
-                <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{displayName}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">{email}</td>
+                <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                  {displayName} <br />
+                  <span className="text-gray-500">{email}</span>
+                </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
                   {roles.find(({ id }) => id === role)?.name || "User"}
                 </td>
                 <td className="px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
-                  {regions?.join(", ") || "None"}
+                  {regions?.map(({ name, code }, i) => (
+                    <>
+                      <Link key={code} href={`/region/${code}`} className="text-gray-500 hover:underline">
+                        {name}
+                      </Link>
+                      {i < regions.length - 1 && ", "}
+                    </>
+                  ))}
                 </td>
                 <td className="whitespace-nowrap px-3 py-2 text-sm text-gray-500">
                   <Badge color={status === "Invited" ? "default" : "green"}>{status}</Badge>
