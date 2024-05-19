@@ -46,7 +46,7 @@ export default function Users() {
     <DashboardPage title="Users">
       <div className="flex flex-col sm:flex-row justify-between gap-4 mb-4">
         <input
-          type="text"
+          type="search"
           placeholder="Search by name/region"
           className="form-input w-full max-w-xs !mt-0 pl-4"
           value={query}
