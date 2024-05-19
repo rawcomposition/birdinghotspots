@@ -32,6 +32,17 @@ export default function EbirdHotspotBtn({ locationId, locationIds, isGroup }: Pr
           )}
           {!isGroup && (
             <Menu.Item>
+              <a
+                href={`https://media.ebird.org/catalog?regionCode=${locationId}&mediaType=photo&sort=rating_rank_desc`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Photos
+              </a>
+            </Menu.Item>
+          )}
+          {!isGroup && (
+            <Menu.Item>
               <a href={`https://ebird.org/hotspot/${locationId}/recent-checklists`} target="_blank" rel="noreferrer">
                 Recent Visits
               </a>
