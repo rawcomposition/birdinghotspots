@@ -120,14 +120,18 @@ export default function Hotspot({
             Edit Hotspot
           </Link>
         )}
-        <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
-          <CameraIcon className="h-4 w-4" />
-          Upload Photos
-        </Link>
-        <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
-          <PencilSquareIcon className="h-4 w-4" />
-          Suggest Edit
-        </Link>
+        {!isBot && (
+          <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
+            <CameraIcon className="h-4 w-4" />
+            Upload Photos
+          </Link>
+        )}
+        {!isBot && (
+          <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
+            <PencilSquareIcon className="h-4 w-4" />
+            Suggest Edit
+          </Link>
+        )}
         {canEdit && !featuredImg && (
           <button
             type="button"
@@ -194,11 +198,18 @@ export default function Hotspot({
           {noContent && (
             <div className="mb-6 formatted">
               <h3 className="font-bold text-lg mb-1.5">About this location</h3>
-              <div className="p-4 bg-gray-100 rounded-lg mb-6">
-                If you are familiar with birding this location, please help other birders with a description, tips for
-                birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
-                <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
-              </div>
+              {isBot ? (
+                <div className="p-4 bg-gray-100 rounded-lg mb-6">
+                  This location has no content yet. If you are familiar with birding this location, please help other
+                  birders with a description, tips for birding, or photos.
+                </div>
+              ) : (
+                <div className="p-4 bg-gray-100 rounded-lg mb-6">
+                  If you are familiar with birding this location, please help other birders with a description, tips for
+                  birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
+                  <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
+                </div>
+              )}
             </div>
           )}
 
