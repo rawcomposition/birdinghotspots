@@ -1,4 +1,45 @@
 User-agent: *
+Disallow: /
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: Googlebot
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: Bingbot
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: Slurp
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: DuckDuckBot
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: Applebot
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: Facebot
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: LinkedInBot
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: Twitterbot
 Disallow: /api/auth/logout
 Disallow: /hotspot/upload/*
 Disallow: /hotspot/suggest/*
