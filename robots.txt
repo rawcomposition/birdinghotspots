@@ -1,8 +1,32 @@
-User-agent: AhrefsBot
+User-agent: *
 Disallow: /
 
-User-agent: PetalBot
-Disallow: /
+User-agent: Googlebot
+Disallow:
 
-User-agent: ImagesiftBot
-Disallow: /
+User-agent: Bingbot
+Disallow:
+
+User-agent: Slurp
+Disallow:
+
+User-agent: DuckDuckBot
+Disallow:
+
+User-agent: Baiduspider
+Disallow:
+
+User-agent: YandexBot
+Disallow:
+
+User-agent: Applebot
+Disallow:
+
+User-agent: Facebot
+Disallow:
+
+User-agent: LinkedInBot
+Disallow:
+
+User-agent: Twitterbot
+Disallow:
