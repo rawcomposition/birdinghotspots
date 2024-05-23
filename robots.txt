@@ -13,12 +13,6 @@ Disallow:
 User-agent: DuckDuckBot
 Disallow:
 
-User-agent: Baiduspider
-Disallow:
-
-User-agent: YandexBot
-Disallow:
-
 User-agent: Applebot
 Disallow:
 
