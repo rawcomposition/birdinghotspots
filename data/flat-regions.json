@@ -10148,6 +10148,126 @@
     "name": "Zavala, Texas, US"
   },
   {
+    "code": "US-UT",
+    "name": "Utah, US"
+  },
+  {
+    "code": "US-UT-001",
+    "name": "Beaver, Utah, US"
+  },
+  {
+    "code": "US-UT-003",
+    "name": "Box Elder, Utah, US"
+  },
+  {
+    "code": "US-UT-005",
+    "name": "Cache, Utah, US"
+  },
+  {
+    "code": "US-UT-007",
+    "name": "Carbon, Utah, US"
+  },
+  {
+    "code": "US-UT-009",
+    "name": "Daggett, Utah, US"
+  },
+  {
+    "code": "US-UT-011",
+    "name": "Davis, Utah, US"
+  },
+  {
+    "code": "US-UT-013",
+    "name": "Duchesne, Utah, US"
+  },
+  {
+    "code": "US-UT-015",
+    "name": "Emery, Utah, US"
+  },
+  {
+    "code": "US-UT-017",
+    "name": "Garfield, Utah, US"
+  },
+  {
+    "code": "US-UT-019",
+    "name": "Grand, Utah, US"
+  },
+  {
+    "code": "US-UT-021",
+    "name": "Iron, Utah, US"
+  },
+  {
+    "code": "US-UT-023",
+    "name": "Juab, Utah, US"
+  },
+  {
+    "code": "US-UT-025",
+    "name": "Kane, Utah, US"
+  },
+  {
+    "code": "US-UT-027",
+    "name": "Millard, Utah, US"
+  },
+  {
+    "code": "US-UT-029",
+    "name": "Morgan, Utah, US"
+  },
+  {
+    "code": "US-UT-031",
+    "name": "Piute, Utah, US"
+  },
+  {
+    "code": "US-UT-033",
+    "name": "Rich, Utah, US"
+  },
+  {
+    "code": "US-UT-035",
+    "name": "Salt Lake, Utah, US"
+  },
+  {
+    "code": "US-UT-037",
+    "name": "San Juan, Utah, US"
+  },
+  {
+    "code": "US-UT-039",
+    "name": "Sanpete, Utah, US"
+  },
+  {
+    "code": "US-UT-041",
+    "name": "Sevier, Utah, US"
+  },
+  {
+    "code": "US-UT-043",
+    "name": "Summit, Utah, US"
+  },
+  {
+    "code": "US-UT-045",
+    "name": "Tooele, Utah, US"
+  },
+  {
+    "code": "US-UT-047",
+    "name": "Uintah, Utah, US"
+  },
+  {
+    "code": "US-UT-049",
+    "name": "Utah, Utah, US"
+  },
+  {
+    "code": "US-UT-051",
+    "name": "Wasatch, Utah, US"
+  },
+  {
+    "code": "US-UT-053",
+    "name": "Washington, Utah, US"
+  },
+  {
+    "code": "US-UT-055",
+    "name": "Wayne, Utah, US"
+  },
+  {
+    "code": "US-UT-057",
+    "name": "Weber, Utah, US"
+  },
+  {
     "code": "US-VT",
     "name": "Vermont, US"
   },

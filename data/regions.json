@@ -2735,6 +2735,41 @@
         ]
       },
       {
+        "name": "Utah",
+        "code": "US-UT",
+        "subregions": [
+          { "code": "US-UT-001", "name": "Beaver" },
+          { "code": "US-UT-003", "name": "Box Elder" },
+          { "code": "US-UT-005", "name": "Cache" },
+          { "code": "US-UT-007", "name": "Carbon" },
+          { "code": "US-UT-009", "name": "Daggett" },
+          { "code": "US-UT-011", "name": "Davis" },
+          { "code": "US-UT-013", "name": "Duchesne" },
+          { "code": "US-UT-015", "name": "Emery" },
+          { "code": "US-UT-017", "name": "Garfield" },
+          { "code": "US-UT-019", "name": "Grand" },
+          { "code": "US-UT-021", "name": "Iron" },
+          { "code": "US-UT-023", "name": "Juab" },
+          { "code": "US-UT-025", "name": "Kane" },
+          { "code": "US-UT-027", "name": "Millard" },
+          { "code": "US-UT-029", "name": "Morgan" },
+          { "code": "US-UT-031", "name": "Piute" },
+          { "code": "US-UT-033", "name": "Rich" },
+          { "code": "US-UT-035", "name": "Salt Lake" },
+          { "code": "US-UT-037", "name": "San Juan" },
+          { "code": "US-UT-039", "name": "Sanpete" },
+          { "code": "US-UT-041", "name": "Sevier" },
+          { "code": "US-UT-043", "name": "Summit" },
+          { "code": "US-UT-045", "name": "Tooele" },
+          { "code": "US-UT-047", "name": "Uintah" },
+          { "code": "US-UT-049", "name": "Utah" },
+          { "code": "US-UT-051", "name": "Wasatch" },
+          { "code": "US-UT-053", "name": "Washington" },
+          { "code": "US-UT-055", "name": "Wayne" },
+          { "code": "US-UT-057", "name": "Weber" }
+        ]
+      },
+      {
         "name": "Vermont",
         "code": "US-VT",
         "subregions": [
