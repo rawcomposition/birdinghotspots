@@ -1918,6 +1918,29 @@
         ]
       },
       {
+        "name": "Nevada",
+        "code": "US-NV",
+        "subregions": [
+          { "code": "US-NV-510", "name": "Carson City" },
+          { "code": "US-NV-001", "name": "Churchill" },
+          { "code": "US-NV-003", "name": "Clark" },
+          { "code": "US-NV-005", "name": "Douglas" },
+          { "code": "US-NV-007", "name": "Elko" },
+          { "code": "US-NV-009", "name": "Esmeralda" },
+          { "code": "US-NV-011", "name": "Eureka" },
+          { "code": "US-NV-013", "name": "Humboldt" },
+          { "code": "US-NV-015", "name": "Lander" },
+          { "code": "US-NV-017", "name": "Lincoln" },
+          { "code": "US-NV-019", "name": "Lyon" },
+          { "code": "US-NV-021", "name": "Mineral" },
+          { "code": "US-NV-023", "name": "Nye" },
+          { "code": "US-NV-027", "name": "Pershing" },
+          { "code": "US-NV-029", "name": "Storey" },
+          { "code": "US-NV-031", "name": "Washoe" },
+          { "code": "US-NV-033", "name": "White Pine" }
+        ]
+      },
+      {
         "name": "New Hampshire",
         "code": "US-NH",
         "subregions": [
