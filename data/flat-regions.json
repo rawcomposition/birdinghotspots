@@ -276,6 +276,130 @@
     "name": "Winston, Alabama, US"
   },
   {
+    "code": "US-AK",
+    "name": "Alaska, US"
+  },
+  {
+    "code": "US-AK-013",
+    "name": "Aleutians East Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-016",
+    "name": "Aleutians West Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-020",
+    "name": "Anchorage Municipality, Alaska, US"
+  },
+  {
+    "code": "US-AK-050",
+    "name": "Bethel Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-060",
+    "name": "Bristol Bay Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-063",
+    "name": "Chugach Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-066",
+    "name": "Copper River Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-068",
+    "name": "Denali Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-070",
+    "name": "Dillingham Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-090",
+    "name": "Fairbanks North Star Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-100",
+    "name": "Haines Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-105",
+    "name": "Hoonah-Angoon Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-110",
+    "name": "Juneau City and Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-122",
+    "name": "Kenai Peninsula Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-130",
+    "name": "Ketchikan Gateway Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-150",
+    "name": "Kodiak Island Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-270",
+    "name": "Kusilvak Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-164",
+    "name": "Lake and Peninsula Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-170",
+    "name": "Matanuska-Susitna Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-180",
+    "name": "Nome Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-185",
+    "name": "North Slope Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-188",
+    "name": "Northwest Arctic Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-195",
+    "name": "Petersburg Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-198",
+    "name": "Prince of Wales-Hyder Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-220",
+    "name": "Sitka City and Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-230",
+    "name": "Skagway Municipality, Alaska, US"
+  },
+  {
+    "code": "US-AK-240",
+    "name": "Southeast Fairbanks Census Area, Alaska, US"
+  },
+  {
+    "code": "US-AK-275",
+    "name": "Wrangell City and Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-282",
+    "name": "Yakutat City and Borough, Alaska, US"
+  },
+  {
+    "code": "US-AK-290",
+    "name": "Yukon-Koyukuk Census Area, Alaska, US"
+  },
+  {
     "code": "US-AZ",
     "name": "Arizona, US"
   },
