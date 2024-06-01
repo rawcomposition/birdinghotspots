@@ -3421,6 +3421,35 @@
           { "code": "US-WI-139", "name": "Winnebago" },
           { "code": "US-WI-141", "name": "Wood" }
         ]
+      },
+      {
+        "name": "Wyoming",
+        "code": "US-WY",
+        "subregions": [
+          { "code": "US-WY-001", "name": "Albany" },
+          { "code": "US-WY-003", "name": "Big Horn" },
+          { "code": "US-WY-005", "name": "Campbell" },
+          { "code": "US-WY-007", "name": "Carbon" },
+          { "code": "US-WY-009", "name": "Converse" },
+          { "code": "US-WY-011", "name": "Crook" },
+          { "code": "US-WY-013", "name": "Fremont" },
+          { "code": "US-WY-015", "name": "Goshen" },
+          { "code": "US-WY-017", "name": "Hot Springs" },
+          { "code": "US-WY-019", "name": "Johnson" },
+          { "code": "US-WY-021", "name": "Laramie" },
+          { "code": "US-WY-023", "name": "Lincoln" },
+          { "code": "US-WY-025", "name": "Natrona" },
+          { "code": "US-WY-027", "name": "Niobrara" },
+          { "code": "US-WY-029", "name": "Park" },
+          { "code": "US-WY-031", "name": "Platte" },
+          { "code": "US-WY-033", "name": "Sheridan" },
+          { "code": "US-WY-035", "name": "Sublette" },
+          { "code": "US-WY-037", "name": "Sweetwater" },
+          { "code": "US-WY-039", "name": "Teton" },
+          { "code": "US-WY-041", "name": "Uinta" },
+          { "code": "US-WY-043", "name": "Washakie" },
+          { "code": "US-WY-045", "name": "Weston" }
+        ]
       }
     ]
   },

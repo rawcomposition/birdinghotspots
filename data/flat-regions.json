@@ -4532,6 +4532,266 @@
     "name": "Woodford, Kentucky, US"
   },
   {
+    "code": "US-LA",
+    "name": "Louisiana, US"
+  },
+  {
+    "code": "US-LA-001",
+    "name": "Acadia, Louisiana, US"
+  },
+  {
+    "code": "US-LA-003",
+    "name": "Allen, Louisiana, US"
+  },
+  {
+    "code": "US-LA-005",
+    "name": "Ascension, Louisiana, US"
+  },
+  {
+    "code": "US-LA-007",
+    "name": "Assumption, Louisiana, US"
+  },
+  {
+    "code": "US-LA-009",
+    "name": "Avoyelles, Louisiana, US"
+  },
+  {
+    "code": "US-LA-011",
+    "name": "Beauregard, Louisiana, US"
+  },
+  {
+    "code": "US-LA-013",
+    "name": "Bienville, Louisiana, US"
+  },
+  {
+    "code": "US-LA-015",
+    "name": "Bossier, Louisiana, US"
+  },
+  {
+    "code": "US-LA-017",
+    "name": "Caddo, Louisiana, US"
+  },
+  {
+    "code": "US-LA-019",
+    "name": "Calcasieu, Louisiana, US"
+  },
+  {
+    "code": "US-LA-021",
+    "name": "Caldwell, Louisiana, US"
+  },
+  {
+    "code": "US-LA-023",
+    "name": "Cameron, Louisiana, US"
+  },
+  {
+    "code": "US-LA-025",
+    "name": "Catahoula, Louisiana, US"
+  },
+  {
+    "code": "US-LA-027",
+    "name": "Claiborne, Louisiana, US"
+  },
+  {
+    "code": "US-LA-029",
+    "name": "Concordia, Louisiana, US"
+  },
+  {
+    "code": "US-LA-031",
+    "name": "De Soto, Louisiana, US"
+  },
+  {
+    "code": "US-LA-033",
+    "name": "East Baton Rouge, Louisiana, US"
+  },
+  {
+    "code": "US-LA-035",
+    "name": "East Carroll, Louisiana, US"
+  },
+  {
+    "code": "US-LA-037",
+    "name": "East Feliciana, Louisiana, US"
+  },
+  {
+    "code": "US-LA-039",
+    "name": "Evangeline, Louisiana, US"
+  },
+  {
+    "code": "US-LA-041",
+    "name": "Franklin, Louisiana, US"
+  },
+  {
+    "code": "US-LA-043",
+    "name": "Grant, Louisiana, US"
+  },
+  {
+    "code": "US-LA-045",
+    "name": "Iberia, Louisiana, US"
+  },
+  {
+    "code": "US-LA-047",
+    "name": "Iberville, Louisiana, US"
+  },
+  {
+    "code": "US-LA-049",
+    "name": "Jackson, Louisiana, US"
+  },
+  {
+    "code": "US-LA-051",
+    "name": "Jefferson, Louisiana, US"
+  },
+  {
+    "code": "US-LA-053",
+    "name": "Jefferson Davis, Louisiana, US"
+  },
+  {
+    "code": "US-LA-059",
+    "name": "La Salle, Louisiana, US"
+  },
+  {
+    "code": "US-LA-055",
+    "name": "Lafayette, Louisiana, US"
+  },
+  {
+    "code": "US-LA-057",
+    "name": "Lafourche, Louisiana, US"
+  },
+  {
+    "code": "US-LA-061",
+    "name": "Lincoln, Louisiana, US"
+  },
+  {
+    "code": "US-LA-063",
+    "name": "Livingston, Louisiana, US"
+  },
+  {
+    "code": "US-LA-065",
+    "name": "Madison, Louisiana, US"
+  },
+  {
+    "code": "US-LA-067",
+    "name": "Morehouse, Louisiana, US"
+  },
+  {
+    "code": "US-LA-069",
+    "name": "Natchitoches, Louisiana, US"
+  },
+  {
+    "code": "US-LA-071",
+    "name": "Orleans, Louisiana, US"
+  },
+  {
+    "code": "US-LA-073",
+    "name": "Ouachita, Louisiana, US"
+  },
+  {
+    "code": "US-LA-075",
+    "name": "Plaquemines, Louisiana, US"
+  },
+  {
+    "code": "US-LA-077",
+    "name": "Pointe Coupee, Louisiana, US"
+  },
+  {
+    "code": "US-LA-079",
+    "name": "Rapides, Louisiana, US"
+  },
+  {
+    "code": "US-LA-081",
+    "name": "Red River, Louisiana, US"
+  },
+  {
+    "code": "US-LA-083",
+    "name": "Richland, Louisiana, US"
+  },
+  {
+    "code": "US-LA-085",
+    "name": "Sabine, Louisiana, US"
+  },
+  {
+    "code": "US-LA-087",
+    "name": "St. Bernard, Louisiana, US"
+  },
+  {
+    "code": "US-LA-089",
+    "name": "St. Charles, Louisiana, US"
+  },
+  {
+    "code": "US-LA-091",
+    "name": "St. Helena, Louisiana, US"
+  },
+  {
+    "code": "US-LA-093",
+    "name": "St. James, Louisiana, US"
+  },
+  {
+    "code": "US-LA-095",
+    "name": "St. John the Baptist, Louisiana, US"
+  },
+  {
+    "code": "US-LA-097",
+    "name": "St. Landry, Louisiana, US"
+  },
+  {
+    "code": "US-LA-099",
+    "name": "St. Martin, Louisiana, US"
+  },
+  {
+    "code": "US-LA-101",
+    "name": "St. Mary, Louisiana, US"
+  },
+  {
+    "code": "US-LA-103",
+    "name": "St. Tammany, Louisiana, US"
+  },
+  {
+    "code": "US-LA-105",
+    "name": "Tangipahoa, Louisiana, US"
+  },
+  {
+    "code": "US-LA-107",
+    "name": "Tensas, Louisiana, US"
+  },
+  {
+    "code": "US-LA-109",
+    "name": "Terrebonne, Louisiana, US"
+  },
+  {
+    "code": "US-LA-111",
+    "name": "Union, Louisiana, US"
+  },
+  {
+    "code": "US-LA-113",
+    "name": "Vermilion, Louisiana, US"
+  },
+  {
+    "code": "US-LA-115",
+    "name": "Vernon, Louisiana, US"
+  },
+  {
+    "code": "US-LA-117",
+    "name": "Washington, Louisiana, US"
+  },
+  {
+    "code": "US-LA-119",
+    "name": "Webster, Louisiana, US"
+  },
+  {
+    "code": "US-LA-121",
+    "name": "West Baton Rouge, Louisiana, US"
+  },
+  {
+    "code": "US-LA-123",
+    "name": "West Carroll, Louisiana, US"
+  },
+  {
+    "code": "US-LA-125",
+    "name": "West Feliciana, Louisiana, US"
+  },
+  {
+    "code": "US-LA-127",
+    "name": "Winn, Louisiana, US"
+  },
+  {
     "code": "US-ME",
     "name": "Maine, US"
   },
@@ -5090,6 +5350,690 @@
   {
     "code": "US-MI-165",
     "name": "Wexford, Michigan, US"
+  },
+  {
+    "code": "US-MN",
+    "name": "Minnesota, US"
+  },
+  {
+    "code": "US-MN-001",
+    "name": "Aitkin, Minnesota, US"
+  },
+  {
+    "code": "US-MN-003",
+    "name": "Anoka, Minnesota, US"
+  },
+  {
+    "code": "US-MN-005",
+    "name": "Becker, Minnesota, US"
+  },
+  {
+    "code": "US-MN-007",
+    "name": "Beltrami, Minnesota, US"
+  },
+  {
+    "code": "US-MN-009",
+    "name": "Benton, Minnesota, US"
+  },
+  {
+    "code": "US-MN-011",
+    "name": "Big Stone, Minnesota, US"
+  },
+  {
+    "code": "US-MN-013",
+    "name": "Blue Earth, Minnesota, US"
+  },
+  {
+    "code": "US-MN-015",
+    "name": "Brown, Minnesota, US"
+  },
+  {
+    "code": "US-MN-017",
+    "name": "Carlton, Minnesota, US"
+  },
+  {
+    "code": "US-MN-019",
+    "name": "Carver, Minnesota, US"
+  },
+  {
+    "code": "US-MN-021",
+    "name": "Cass, Minnesota, US"
+  },
+  {
+    "code": "US-MN-023",
+    "name": "Chippewa, Minnesota, US"
+  },
+  {
+    "code": "US-MN-025",
+    "name": "Chisago, Minnesota, US"
+  },
+  {
+    "code": "US-MN-027",
+    "name": "Clay, Minnesota, US"
+  },
+  {
+    "code": "US-MN-029",
+    "name": "Clearwater, Minnesota, US"
+  },
+  {
+    "code": "US-MN-031",
+    "name": "Cook, Minnesota, US"
+  },
+  {
+    "code": "US-MN-033",
+    "name": "Cottonwood, Minnesota, US"
+  },
+  {
+    "code": "US-MN-035",
+    "name": "Crow Wing, Minnesota, US"
+  },
+  {
+    "code": "US-MN-037",
+    "name": "Dakota, Minnesota, US"
+  },
+  {
+    "code": "US-MN-039",
+    "name": "Dodge, Minnesota, US"
+  },
+  {
+    "code": "US-MN-041",
+    "name": "Douglas, Minnesota, US"
+  },
+  {
+    "code": "US-MN-043",
+    "name": "Faribault, Minnesota, US"
+  },
+  {
+    "code": "US-MN-045",
+    "name": "Fillmore, Minnesota, US"
+  },
+  {
+    "code": "US-MN-047",
+    "name": "Freeborn, Minnesota, US"
+  },
+  {
+    "code": "US-MN-049",
+    "name": "Goodhue, Minnesota, US"
+  },
+  {
+    "code": "US-MN-051",
+    "name": "Grant, Minnesota, US"
+  },
+  {
+    "code": "US-MN-053",
+    "name": "Hennepin, Minnesota, US"
+  },
+  {
+    "code": "US-MN-055",
+    "name": "Houston, Minnesota, US"
+  },
+  {
+    "code": "US-MN-057",
+    "name": "Hubbard, Minnesota, US"
+  },
+  {
+    "code": "US-MN-059",
+    "name": "Isanti, Minnesota, US"
+  },
+  {
+    "code": "US-MN-061",
+    "name": "Itasca, Minnesota, US"
+  },
+  {
+    "code": "US-MN-063",
+    "name": "Jackson, Minnesota, US"
+  },
+  {
+    "code": "US-MN-065",
+    "name": "Kanabec, Minnesota, US"
+  },
+  {
+    "code": "US-MN-067",
+    "name": "Kandiyohi, Minnesota, US"
+  },
+  {
+    "code": "US-MN-069",
+    "name": "Kittson, Minnesota, US"
+  },
+  {
+    "code": "US-MN-071",
+    "name": "Koochiching, Minnesota, US"
+  },
+  {
+    "code": "US-MN-073",
+    "name": "Lac qui Parle, Minnesota, US"
+  },
+  {
+    "code": "US-MN-075",
+    "name": "Lake, Minnesota, US"
+  },
+  {
+    "code": "US-MN-077",
+    "name": "Lake of the Woods, Minnesota, US"
+  },
+  {
+    "code": "US-MN-079",
+    "name": "Le Sueur, Minnesota, US"
+  },
+  {
+    "code": "US-MN-081",
+    "name": "Lincoln, Minnesota, US"
+  },
+  {
+    "code": "US-MN-083",
+    "name": "Lyon, Minnesota, US"
+  },
+  {
+    "code": "US-MN-087",
+    "name": "Mahnomen, Minnesota, US"
+  },
+  {
+    "code": "US-MN-089",
+    "name": "Marshall, Minnesota, US"
+  },
+  {
+    "code": "US-MN-091",
+    "name": "Martin, Minnesota, US"
+  },
+  {
+    "code": "US-MN-085",
+    "name": "McLeod, Minnesota, US"
+  },
+  {
+    "code": "US-MN-093",
+    "name": "Meeker, Minnesota, US"
+  },
+  {
+    "code": "US-MN-095",
+    "name": "Mille Lacs, Minnesota, US"
+  },
+  {
+    "code": "US-MN-097",
+    "name": "Morrison, Minnesota, US"
+  },
+  {
+    "code": "US-MN-099",
+    "name": "Mower, Minnesota, US"
+  },
+  {
+    "code": "US-MN-101",
+    "name": "Murray, Minnesota, US"
+  },
+  {
+    "code": "US-MN-103",
+    "name": "Nicollet, Minnesota, US"
+  },
+  {
+    "code": "US-MN-105",
+    "name": "Nobles, Minnesota, US"
+  },
+  {
+    "code": "US-MN-107",
+    "name": "Norman, Minnesota, US"
+  },
+  {
+    "code": "US-MN-109",
+    "name": "Olmsted, Minnesota, US"
+  },
+  {
+    "code": "US-MN-111",
+    "name": "Otter Tail, Minnesota, US"
+  },
+  {
+    "code": "US-MN-113",
+    "name": "Pennington, Minnesota, US"
+  },
+  {
+    "code": "US-MN-115",
+    "name": "Pine, Minnesota, US"
+  },
+  {
+    "code": "US-MN-117",
+    "name": "Pipestone, Minnesota, US"
+  },
+  {
+    "code": "US-MN-119",
+    "name": "Polk, Minnesota, US"
+  },
+  {
+    "code": "US-MN-121",
+    "name": "Pope, Minnesota, US"
+  },
+  {
+    "code": "US-MN-123",
+    "name": "Ramsey, Minnesota, US"
+  },
+  {
+    "code": "US-MN-125",
+    "name": "Red Lake, Minnesota, US"
+  },
+  {
+    "code": "US-MN-127",
+    "name": "Redwood, Minnesota, US"
+  },
+  {
+    "code": "US-MN-129",
+    "name": "Renville, Minnesota, US"
+  },
+  {
+    "code": "US-MN-131",
+    "name": "Rice, Minnesota, US"
+  },
+  {
+    "code": "US-MN-133",
+    "name": "Rock, Minnesota, US"
+  },
+  {
+    "code": "US-MN-135",
+    "name": "Roseau, Minnesota, US"
+  },
+  {
+    "code": "US-MN-139",
+    "name": "Scott, Minnesota, US"
+  },
+  {
+    "code": "US-MN-141",
+    "name": "Sherburne, Minnesota, US"
+  },
+  {
+    "code": "US-MN-143",
+    "name": "Sibley, Minnesota, US"
+  },
+  {
+    "code": "US-MN-137",
+    "name": "St. Louis, Minnesota, US"
+  },
+  {
+    "code": "US-MN-145",
+    "name": "Stearns, Minnesota, US"
+  },
+  {
+    "code": "US-MN-147",
+    "name": "Steele, Minnesota, US"
+  },
+  {
+    "code": "US-MN-149",
+    "name": "Stevens, Minnesota, US"
+  },
+  {
+    "code": "US-MN-151",
+    "name": "Swift, Minnesota, US"
+  },
+  {
+    "code": "US-MN-153",
+    "name": "Todd, Minnesota, US"
+  },
+  {
+    "code": "US-MN-155",
+    "name": "Traverse, Minnesota, US"
+  },
+  {
+    "code": "US-MN-157",
+    "name": "Wabasha, Minnesota, US"
+  },
+  {
+    "code": "US-MN-159",
+    "name": "Wadena, Minnesota, US"
+  },
+  {
+    "code": "US-MN-161",
+    "name": "Waseca, Minnesota, US"
+  },
+  {
+    "code": "US-MN-163",
+    "name": "Washington, Minnesota, US"
+  },
+  {
+    "code": "US-MN-165",
+    "name": "Watonwan, Minnesota, US"
+  },
+  {
+    "code": "US-MN-167",
+    "name": "Wilkin, Minnesota, US"
+  },
+  {
+    "code": "US-MN-169",
+    "name": "Winona, Minnesota, US"
+  },
+  {
+    "code": "US-MN-171",
+    "name": "Wright, Minnesota, US"
+  },
+  {
+    "code": "US-MN-173",
+    "name": "Yellow Medicine, Minnesota, US"
+  },
+  {
+    "code": "US-MS",
+    "name": "Mississippi, US"
+  },
+  {
+    "code": "US-MS-001",
+    "name": "Adams, Mississippi, US"
+  },
+  {
+    "code": "US-MS-003",
+    "name": "Alcorn, Mississippi, US"
+  },
+  {
+    "code": "US-MS-005",
+    "name": "Amite, Mississippi, US"
+  },
+  {
+    "code": "US-MS-007",
+    "name": "Attala, Mississippi, US"
+  },
+  {
+    "code": "US-MS-009",
+    "name": "Benton, Mississippi, US"
+  },
+  {
+    "code": "US-MS-011",
+    "name": "Bolivar, Mississippi, US"
+  },
+  {
+    "code": "US-MS-013",
+    "name": "Calhoun, Mississippi, US"
+  },
+  {
+    "code": "US-MS-015",
+    "name": "Carroll, Mississippi, US"
+  },
+  {
+    "code": "US-MS-017",
+    "name": "Chickasaw, Mississippi, US"
+  },
+  {
+    "code": "US-MS-019",
+    "name": "Choctaw, Mississippi, US"
+  },
+  {
+    "code": "US-MS-021",
+    "name": "Claiborne, Mississippi, US"
+  },
+  {
+    "code": "US-MS-023",
+    "name": "Clarke, Mississippi, US"
+  },
+  {
+    "code": "US-MS-025",
+    "name": "Clay, Mississippi, US"
+  },
+  {
+    "code": "US-MS-027",
+    "name": "Coahoma, Mississippi, US"
+  },
+  {
+    "code": "US-MS-029",
+    "name": "Copiah, Mississippi, US"
+  },
+  {
+    "code": "US-MS-031",
+    "name": "Covington, Mississippi, US"
+  },
+  {
+    "code": "US-MS-033",
+    "name": "DeSoto, Mississippi, US"
+  },
+  {
+    "code": "US-MS-035",
+    "name": "Forrest, Mississippi, US"
+  },
+  {
+    "code": "US-MS-037",
+    "name": "Franklin, Mississippi, US"
+  },
+  {
+    "code": "US-MS-039",
+    "name": "George, Mississippi, US"
+  },
+  {
+    "code": "US-MS-041",
+    "name": "Greene, Mississippi, US"
+  },
+  {
+    "code": "US-MS-043",
+    "name": "Grenada, Mississippi, US"
+  },
+  {
+    "code": "US-MS-045",
+    "name": "Hancock, Mississippi, US"
+  },
+  {
+    "code": "US-MS-047",
+    "name": "Harrison, Mississippi, US"
+  },
+  {
+    "code": "US-MS-049",
+    "name": "Hinds, Mississippi, US"
+  },
+  {
+    "code": "US-MS-051",
+    "name": "Holmes, Mississippi, US"
+  },
+  {
+    "code": "US-MS-053",
+    "name": "Humphreys, Mississippi, US"
+  },
+  {
+    "code": "US-MS-055",
+    "name": "Issaquena, Mississippi, US"
+  },
+  {
+    "code": "US-MS-057",
+    "name": "Itawamba, Mississippi, US"
+  },
+  {
+    "code": "US-MS-059",
+    "name": "Jackson, Mississippi, US"
+  },
+  {
+    "code": "US-MS-061",
+    "name": "Jasper, Mississippi, US"
+  },
+  {
+    "code": "US-MS-063",
+    "name": "Jefferson, Mississippi, US"
+  },
+  {
+    "code": "US-MS-065",
+    "name": "Jefferson Davis, Mississippi, US"
+  },
+  {
+    "code": "US-MS-067",
+    "name": "Jones, Mississippi, US"
+  },
+  {
+    "code": "US-MS-069",
+    "name": "Kemper, Mississippi, US"
+  },
+  {
+    "code": "US-MS-071",
+    "name": "Lafayette, Mississippi, US"
+  },
+  {
+    "code": "US-MS-073",
+    "name": "Lamar, Mississippi, US"
+  },
+  {
+    "code": "US-MS-075",
+    "name": "Lauderdale, Mississippi, US"
+  },
+  {
+    "code": "US-MS-077",
+    "name": "Lawrence, Mississippi, US"
+  },
+  {
+    "code": "US-MS-079",
+    "name": "Leake, Mississippi, US"
+  },
+  {
+    "code": "US-MS-081",
+    "name": "Lee, Mississippi, US"
+  },
+  {
+    "code": "US-MS-083",
+    "name": "Leflore, Mississippi, US"
+  },
+  {
+    "code": "US-MS-085",
+    "name": "Lincoln, Mississippi, US"
+  },
+  {
+    "code": "US-MS-087",
+    "name": "Lowndes, Mississippi, US"
+  },
+  {
+    "code": "US-MS-089",
+    "name": "Madison, Mississippi, US"
+  },
+  {
+    "code": "US-MS-091",
+    "name": "Marion, Mississippi, US"
+  },
+  {
+    "code": "US-MS-093",
+    "name": "Marshall, Mississippi, US"
+  },
+  {
+    "code": "US-MS-095",
+    "name": "Monroe, Mississippi, US"
+  },
+  {
+    "code": "US-MS-097",
+    "name": "Montgomery, Mississippi, US"
+  },
+  {
+    "code": "US-MS-099",
+    "name": "Neshoba, Mississippi, US"
+  },
+  {
+    "code": "US-MS-101",
+    "name": "Newton, Mississippi, US"
+  },
+  {
+    "code": "US-MS-103",
+    "name": "Noxubee, Mississippi, US"
+  },
+  {
+    "code": "US-MS-105",
+    "name": "Oktibbeha, Mississippi, US"
+  },
+  {
+    "code": "US-MS-107",
+    "name": "Panola, Mississippi, US"
+  },
+  {
+    "code": "US-MS-109",
+    "name": "Pearl River, Mississippi, US"
+  },
+  {
+    "code": "US-MS-111",
+    "name": "Perry, Mississippi, US"
+  },
+  {
+    "code": "US-MS-113",
+    "name": "Pike, Mississippi, US"
+  },
+  {
+    "code": "US-MS-115",
+    "name": "Pontotoc, Mississippi, US"
+  },
+  {
+    "code": "US-MS-117",
+    "name": "Prentiss, Mississippi, US"
+  },
+  {
+    "code": "US-MS-119",
+    "name": "Quitman, Mississippi, US"
+  },
+  {
+    "code": "US-MS-121",
+    "name": "Rankin, Mississippi, US"
+  },
+  {
+    "code": "US-MS-123",
+    "name": "Scott, Mississippi, US"
+  },
+  {
+    "code": "US-MS-125",
+    "name": "Sharkey, Mississippi, US"
+  },
+  {
+    "code": "US-MS-127",
+    "name": "Simpson, Mississippi, US"
+  },
+  {
+    "code": "US-MS-129",
+    "name": "Smith, Mississippi, US"
+  },
+  {
+    "code": "US-MS-131",
+    "name": "Stone, Mississippi, US"
+  },
+  {
+    "code": "US-MS-133",
+    "name": "Sunflower, Mississippi, US"
+  },
+  {
+    "code": "US-MS-135",
+    "name": "Tallahatchie, Mississippi, US"
+  },
+  {
+    "code": "US-MS-137",
+    "name": "Tate, Mississippi, US"
+  },
+  {
+    "code": "US-MS-139",
+    "name": "Tippah, Mississippi, US"
+  },
+  {
+    "code": "US-MS-141",
+    "name": "Tishomingo, Mississippi, US"
+  },
+  {
+    "code": "US-MS-143",
+    "name": "Tunica, Mississippi, US"
+  },
+  {
+    "code": "US-MS-145",
+    "name": "Union, Mississippi, US"
+  },
+  {
+    "code": "US-MS-147",
+    "name": "Walthall, Mississippi, US"
+  },
+  {
+    "code": "US-MS-149",
+    "name": "Warren, Mississippi, US"
+  },
+  {
+    "code": "US-MS-151",
+    "name": "Washington, Mississippi, US"
+  },
+  {
+    "code": "US-MS-153",
+    "name": "Wayne, Mississippi, US"
+  },
+  {
+    "code": "US-MS-155",
+    "name": "Webster, Mississippi, US"
+  },
+  {
+    "code": "US-MS-157",
+    "name": "Wilkinson, Mississippi, US"
+  },
+  {
+    "code": "US-MS-159",
+    "name": "Winston, Mississippi, US"
+  },
+  {
+    "code": "US-MS-161",
+    "name": "Yalobusha, Mississippi, US"
+  },
+  {
+    "code": "US-MS-163",
+    "name": "Yazoo, Mississippi, US"
   },
   {
     "code": "US-MO",
@@ -6158,6 +7102,78 @@
   {
     "code": "US-NE-185",
     "name": "York, Nebraska, US"
+  },
+  {
+    "code": "US-NV",
+    "name": "Nevada, US"
+  },
+  {
+    "code": "US-NV-510",
+    "name": "Carson City, Nevada, US"
+  },
+  {
+    "code": "US-NV-001",
+    "name": "Churchill, Nevada, US"
+  },
+  {
+    "code": "US-NV-003",
+    "name": "Clark, Nevada, US"
+  },
+  {
+    "code": "US-NV-005",
+    "name": "Douglas, Nevada, US"
+  },
+  {
+    "code": "US-NV-007",
+    "name": "Elko, Nevada, US"
+  },
+  {
+    "code": "US-NV-009",
+    "name": "Esmeralda, Nevada, US"
+  },
+  {
+    "code": "US-NV-011",
+    "name": "Eureka, Nevada, US"
+  },
+  {
+    "code": "US-NV-013",
+    "name": "Humboldt, Nevada, US"
+  },
+  {
+    "code": "US-NV-015",
+    "name": "Lander, Nevada, US"
+  },
+  {
+    "code": "US-NV-017",
+    "name": "Lincoln, Nevada, US"
+  },
+  {
+    "code": "US-NV-019",
+    "name": "Lyon, Nevada, US"
+  },
+  {
+    "code": "US-NV-021",
+    "name": "Mineral, Nevada, US"
+  },
+  {
+    "code": "US-NV-023",
+    "name": "Nye, Nevada, US"
+  },
+  {
+    "code": "US-NV-027",
+    "name": "Pershing, Nevada, US"
+  },
+  {
+    "code": "US-NV-029",
+    "name": "Storey, Nevada, US"
+  },
+  {
+    "code": "US-NV-031",
+    "name": "Washoe, Nevada, US"
+  },
+  {
+    "code": "US-NV-033",
+    "name": "White Pine, Nevada, US"
   },
   {
     "code": "US-NH",
@@ -11148,6 +12164,230 @@
     "name": "Yakima, Washington, US"
   },
   {
+    "code": "US-WV",
+    "name": "West Virginia, US"
+  },
+  {
+    "code": "US-WV-001",
+    "name": "Barbour, West Virginia, US"
+  },
+  {
+    "code": "US-WV-003",
+    "name": "Berkeley, West Virginia, US"
+  },
+  {
+    "code": "US-WV-005",
+    "name": "Boone, West Virginia, US"
+  },
+  {
+    "code": "US-WV-007",
+    "name": "Braxton, West Virginia, US"
+  },
+  {
+    "code": "US-WV-009",
+    "name": "Brooke, West Virginia, US"
+  },
+  {
+    "code": "US-WV-011",
+    "name": "Cabell, West Virginia, US"
+  },
+  {
+    "code": "US-WV-013",
+    "name": "Calhoun, West Virginia, US"
+  },
+  {
+    "code": "US-WV-015",
+    "name": "Clay, West Virginia, US"
+  },
+  {
+    "code": "US-WV-017",
+    "name": "Doddridge, West Virginia, US"
+  },
+  {
+    "code": "US-WV-019",
+    "name": "Fayette, West Virginia, US"
+  },
+  {
+    "code": "US-WV-021",
+    "name": "Gilmer, West Virginia, US"
+  },
+  {
+    "code": "US-WV-023",
+    "name": "Grant, West Virginia, US"
+  },
+  {
+    "code": "US-WV-025",
+    "name": "Greenbrier, West Virginia, US"
+  },
+  {
+    "code": "US-WV-027",
+    "name": "Hampshire, West Virginia, US"
+  },
+  {
+    "code": "US-WV-029",
+    "name": "Hancock, West Virginia, US"
+  },
+  {
+    "code": "US-WV-031",
+    "name": "Hardy, West Virginia, US"
+  },
+  {
+    "code": "US-WV-033",
+    "name": "Harrison, West Virginia, US"
+  },
+  {
+    "code": "US-WV-035",
+    "name": "Jackson, West Virginia, US"
+  },
+  {
+    "code": "US-WV-037",
+    "name": "Jefferson, West Virginia, US"
+  },
+  {
+    "code": "US-WV-039",
+    "name": "Kanawha, West Virginia, US"
+  },
+  {
+    "code": "US-WV-041",
+    "name": "Lewis, West Virginia, US"
+  },
+  {
+    "code": "US-WV-043",
+    "name": "Lincoln, West Virginia, US"
+  },
+  {
+    "code": "US-WV-045",
+    "name": "Logan, West Virginia, US"
+  },
+  {
+    "code": "US-WV-049",
+    "name": "Marion, West Virginia, US"
+  },
+  {
+    "code": "US-WV-051",
+    "name": "Marshall, West Virginia, US"
+  },
+  {
+    "code": "US-WV-053",
+    "name": "Mason, West Virginia, US"
+  },
+  {
+    "code": "US-WV-047",
+    "name": "McDowell, West Virginia, US"
+  },
+  {
+    "code": "US-WV-055",
+    "name": "Mercer, West Virginia, US"
+  },
+  {
+    "code": "US-WV-057",
+    "name": "Mineral, West Virginia, US"
+  },
+  {
+    "code": "US-WV-059",
+    "name": "Mingo, West Virginia, US"
+  },
+  {
+    "code": "US-WV-061",
+    "name": "Monongalia, West Virginia, US"
+  },
+  {
+    "code": "US-WV-063",
+    "name": "Monroe, West Virginia, US"
+  },
+  {
+    "code": "US-WV-065",
+    "name": "Morgan, West Virginia, US"
+  },
+  {
+    "code": "US-WV-067",
+    "name": "Nicholas, West Virginia, US"
+  },
+  {
+    "code": "US-WV-069",
+    "name": "Ohio, West Virginia, US"
+  },
+  {
+    "code": "US-WV-071",
+    "name": "Pendleton, West Virginia, US"
+  },
+  {
+    "code": "US-WV-073",
+    "name": "Pleasants, West Virginia, US"
+  },
+  {
+    "code": "US-WV-075",
+    "name": "Pocahontas, West Virginia, US"
+  },
+  {
+    "code": "US-WV-077",
+    "name": "Preston, West Virginia, US"
+  },
+  {
+    "code": "US-WV-079",
+    "name": "Putnam, West Virginia, US"
+  },
+  {
+    "code": "US-WV-081",
+    "name": "Raleigh, West Virginia, US"
+  },
+  {
+    "code": "US-WV-083",
+    "name": "Randolph, West Virginia, US"
+  },
+  {
+    "code": "US-WV-085",
+    "name": "Ritchie, West Virginia, US"
+  },
+  {
+    "code": "US-WV-087",
+    "name": "Roane, West Virginia, US"
+  },
+  {
+    "code": "US-WV-089",
+    "name": "Summers, West Virginia, US"
+  },
+  {
+    "code": "US-WV-091",
+    "name": "Taylor, West Virginia, US"
+  },
+  {
+    "code": "US-WV-093",
+    "name": "Tucker, West Virginia, US"
+  },
+  {
+    "code": "US-WV-095",
+    "name": "Tyler, West Virginia, US"
+  },
+  {
+    "code": "US-WV-097",
+    "name": "Upshur, West Virginia, US"
+  },
+  {
+    "code": "US-WV-099",
+    "name": "Wayne, West Virginia, US"
+  },
+  {
+    "code": "US-WV-101",
+    "name": "Webster, West Virginia, US"
+  },
+  {
+    "code": "US-WV-103",
+    "name": "Wetzel, West Virginia, US"
+  },
+  {
+    "code": "US-WV-105",
+    "name": "Wirt, West Virginia, US"
+  },
+  {
+    "code": "US-WV-107",
+    "name": "Wood, West Virginia, US"
+  },
+  {
+    "code": "US-WV-109",
+    "name": "Wyoming, West Virginia, US"
+  },
+  {
     "code": "US-WI",
     "name": "Wisconsin, US"
   },
@@ -11438,6 +12678,102 @@
   {
     "code": "US-WI-141",
     "name": "Wood, Wisconsin, US"
+  },
+  {
+    "code": "US-WY",
+    "name": "Wyoming, US"
+  },
+  {
+    "code": "US-WY-001",
+    "name": "Albany, Wyoming, US"
+  },
+  {
+    "code": "US-WY-003",
+    "name": "Big Horn, Wyoming, US"
+  },
+  {
+    "code": "US-WY-005",
+    "name": "Campbell, Wyoming, US"
+  },
+  {
+    "code": "US-WY-007",
+    "name": "Carbon, Wyoming, US"
+  },
+  {
+    "code": "US-WY-009",
+    "name": "Converse, Wyoming, US"
+  },
+  {
+    "code": "US-WY-011",
+    "name": "Crook, Wyoming, US"
+  },
+  {
+    "code": "US-WY-013",
+    "name": "Fremont, Wyoming, US"
+  },
+  {
+    "code": "US-WY-015",
+    "name": "Goshen, Wyoming, US"
+  },
+  {
+    "code": "US-WY-017",
+    "name": "Hot Springs, Wyoming, US"
+  },
+  {
+    "code": "US-WY-019",
+    "name": "Johnson, Wyoming, US"
+  },
+  {
+    "code": "US-WY-021",
+    "name": "Laramie, Wyoming, US"
+  },
+  {
+    "code": "US-WY-023",
+    "name": "Lincoln, Wyoming, US"
+  },
+  {
+    "code": "US-WY-025",
+    "name": "Natrona, Wyoming, US"
+  },
+  {
+    "code": "US-WY-027",
+    "name": "Niobrara, Wyoming, US"
+  },
+  {
+    "code": "US-WY-029",
+    "name": "Park, Wyoming, US"
+  },
+  {
+    "code": "US-WY-031",
+    "name": "Platte, Wyoming, US"
+  },
+  {
+    "code": "US-WY-033",
+    "name": "Sheridan, Wyoming, US"
+  },
+  {
+    "code": "US-WY-035",
+    "name": "Sublette, Wyoming, US"
+  },
+  {
+    "code": "US-WY-037",
+    "name": "Sweetwater, Wyoming, US"
+  },
+  {
+    "code": "US-WY-039",
+    "name": "Teton, Wyoming, US"
+  },
+  {
+    "code": "US-WY-041",
+    "name": "Uinta, Wyoming, US"
+  },
+  {
+    "code": "US-WY-043",
+    "name": "Washakie, Wyoming, US"
+  },
+  {
+    "code": "US-WY-045",
+    "name": "Weston, Wyoming, US"
   },
   {
     "code": "CA",
