@@ -74,6 +74,10 @@ export default function Home({ featured, northAmericaRegions }: Props) {
             <div className="bg-gray-100 p-4 mt-10">
               <h3 className="text-lg mb-4 font-bold">Want to see your state, province, or country on this site?</h3>
               <p className="mb-4">
+                Volunteer editors are needed for many of the regions we have open. We can also open new regions if we
+                have interested volunteers.
+              </p>
+              <p className="mb-4">
                 Get in touch using our <Link href="/contact">contact form</Link>.
               </p>
             </div>
