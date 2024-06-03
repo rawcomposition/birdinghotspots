@@ -33,7 +33,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const withoutContent = total - withContent;
       const withoutImg = total - withImg;
 
-      res.setHeader("Cache-Control", "max-age=0, s-maxage=21600"); //Cache for 6 hours
+      const sixHrs = 6 * 60 * 60;
+      res.setHeader("Cache-Control", `public, max-age=${sixHrs}, s-maxage=${sixHrs}`);
       res.status(200).json({ total, withImg, withContent, withoutContent, withoutImg });
     } else {
       // country
@@ -47,7 +48,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const withoutContent = total - withContent;
       const withoutImg = total - withImg;
 
-      res.setHeader("Cache-Control", "max-age=0, s-maxage=21600"); //Cache for 6 hours
+      const sixHrs = 6 * 60 * 60;
+      res.setHeader("Cache-Control", `public, max-age=${sixHrs}, s-maxage=${sixHrs}`);
       res.status(200).json({ total, withImg, withContent, withoutContent, withoutImg });
     }
   } catch (error: any) {
