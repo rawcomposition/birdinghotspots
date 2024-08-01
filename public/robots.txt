@@ -43,3 +43,15 @@ User-agent: Twitterbot
 Disallow: /api/auth/logout
 Disallow: /hotspot/upload/*
 Disallow: /hotspot/suggest/*
+
+User-agent: ChatGPT
+Allow: /
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/auth/logout
+Disallow: /hotspot/upload/*
+Disallow: /hotspot/suggest/*
