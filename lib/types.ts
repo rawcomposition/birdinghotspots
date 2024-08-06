@@ -457,6 +457,5 @@ export type PhotoBatchT = {
     caption: string;
     status: string;
   }[];
-  isReviewed?: boolean;
   createdAt: string;
 };

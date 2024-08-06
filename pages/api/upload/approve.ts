@@ -21,8 +21,6 @@ export default secureApi(async (req, res, token) => {
     const img = batch.images.find((img) => img._id?.toString() === imageId);
     if (!img) throw new Error("Image not found");
 
-    const isBatchReviewed = batch.images.every((img) => img.status !== "pending" || img._id?.toString() === imageId);
-
     const formattedImage = { ...img, isPublicDomain: true, by: batch.by, email: batch.email, uid: batch.uid };
 
     let featuredImg = hotspot.featuredImg;
@@ -35,10 +33,7 @@ export default secureApi(async (req, res, token) => {
 
     await Promise.all(
       [
-        PhotoBatch.updateOne(
-          { _id: id, "images._id": imageId },
-          { $set: { "images.$.status": "approved", isReviewed: isBatchReviewed } }
-        ),
+        PhotoBatch.updateOne({ _id: id, "images._id": imageId }, { $set: { "images.$.status": "approved" } }),
         hasImage
           ? null
           : await Hotspot.updateOne(

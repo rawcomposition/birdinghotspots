@@ -16,12 +16,7 @@ export default secureApi(async (req, res, token) => {
     const img = batch.images.find((img) => img._id?.toString() === imageId);
     if (!img) throw new Error("Image not found");
 
-    const isBatchReviewed = batch.images.every((img) => img.status !== "pending" || img._id?.toString() === imageId);
-
-    await PhotoBatch.updateOne(
-      { _id: id, "images._id": imageId },
-      { $set: { "images.$.status": "rejected", isReviewed: isBatchReviewed } }
-    );
+    await PhotoBatch.updateOne({ _id: id, "images._id": imageId }, { $set: { "images.$.status": "rejected" } });
     res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

@@ -13,7 +13,7 @@ export default secureApi(async (req, res, token) => {
     await connect();
     const subscriptions = await getSubscriptions(token.uid);
 
-    let query: any = { isReviewed: status === "pending" ? false : true };
+    let query: any = { "images.status": status === "pending" ? "pending" : { $ne: "pending" } };
 
     if (region && canEdit(token, region)) {
       if (region.split("-").length === 1) {

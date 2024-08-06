@@ -59,7 +59,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           countryCode: hotspot.countryCode,
           stateCode: hotspot.stateCode,
           countyCode: hotspot.countyCode,
-          isReviewed: false,
         });
 
         const profiles = await Profile.find({

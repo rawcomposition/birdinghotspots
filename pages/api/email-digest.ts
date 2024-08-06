@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await connect();
 
     const date = dayjs().subtract(1, "day").format();
-    const photoBatches = await PhotoBatch.find({ createdAt: { $gte: date }, isReviewed: { $ne: true } }, [
+    const photoBatches = await PhotoBatch.find({ createdAt: { $gte: date }, "images.status": "pending" }, [
       "stateCode",
       "countyCode",
       "images",
@@ -37,7 +37,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           (batch) => subscriptions.includes(batch.stateCode) || subscriptions.includes(batch.countyCode)
         );
         const userRevisions = revisions.filter(
-          (revision) => subscriptions.includes(revision.stateCode) || subscriptions.includes(revision.countyCode)
+          (revision) =>
+            subscriptions.includes(revision.stateCode || "") || subscriptions.includes(revision.countyCode || "")
         );
         const hasRevisions = userRevisions.length > 0;
         const imageCount = userPhotoBatches.reduce((acc, batch) => acc + batch.images.length, 0);

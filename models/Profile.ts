@@ -1,3 +1,4 @@
+import { Profile as ProfileT } from "lib/types";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
@@ -28,4 +29,4 @@ const ProfileSchema = new Schema({
 
 const Profile = models.Profile || model("Profile", ProfileSchema);
 
-export default Profile;
+export default Profile as mongoose.Model<ProfileT>;

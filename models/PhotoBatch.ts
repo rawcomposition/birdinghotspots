@@ -46,7 +46,6 @@ const PhotoBatchSchema = new Schema({
       },
     },
   ],
-  isReviewed: Boolean,
   createdAt: {
     type: Date,
     default: () => dayjs().format(),
