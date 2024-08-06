@@ -7,7 +7,7 @@ export default secureApi(async (req, res, token) => {
     const { email } = req.body;
 
     const profile = await Profile.findOne({ email }).lean();
-    const { name, inviteCode } = profile;
+    const { name, inviteCode } = profile || {};
 
     if (!inviteCode) {
       res.status(401).json({ message: "No invite code" });
@@ -15,7 +15,7 @@ export default secureApi(async (req, res, token) => {
     }
 
     try {
-      await sendInviteEmail(name, email, inviteCode);
+      await sendInviteEmail(name || "User", email, inviteCode);
     } catch (error) {}
 
     res.status(200).json({ message: "Email resent successfully", success: true });
