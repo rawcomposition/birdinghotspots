@@ -41,7 +41,7 @@ export type Link = {
 
 export type Citation = {
   label: string;
-  url: string;
+  url?: string;
 };
 
 export type Hotspot = {

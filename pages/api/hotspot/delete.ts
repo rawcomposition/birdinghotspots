@@ -12,6 +12,10 @@ export default secureApi(async (req, res, token) => {
   await connect();
   const hotspot = await Hotspot.findById(id);
 
+  if (!hotspot) {
+    return res.status(404).json({ error: "Hotspot not found" });
+  }
+
   if (!canEdit(token, hotspot?.stateCode || hotspot?.countryCode)) {
     return res.status(401).json({ error: "Unauthorized" });
   }

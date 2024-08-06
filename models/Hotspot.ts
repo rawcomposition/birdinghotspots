@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 const { Schema, model, models } = mongoose;
+import { Hotspot as HotspotT } from "lib/types";
 
 const LinkSchema = new Schema({
   label: String,
@@ -163,4 +164,4 @@ HotspotSchema.index({ countyCode: 1, noContent: 1, groupIds: 1 });
 
 const Hotspot = models.Hotspot || model("Hotspot", HotspotSchema);
 
-export default Hotspot;
+export default Hotspot as mongoose.Model<HotspotT>;

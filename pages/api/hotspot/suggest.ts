@@ -25,6 +25,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   } = req.body;
   const hotspot = await Hotspot.findOne({ locationId });
 
+  if (!hotspot) {
+    res.status(404).json({ error: "Hotspot not found" });
+    return;
+  }
+
   const profiles = await Profile.find({
     $or: [{ subscriptions: hotspot.stateCode }, { subscriptions: hotspot.countyCode }],
     emailFrequency: "instant",
@@ -53,15 +58,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         countryCode: hotspot.countryCode,
         stateCode: hotspot.stateCode,
         countyCode: hotspot.countyCode,
-        about: formatValue(hotspot.about, about),
-        tips: formatValue(hotspot.tips, tips),
-        birds: formatValue(hotspot.birds, birds),
-        hikes: formatValue(hotspot.hikes, hikes),
+        about: formatValue(hotspot.about || "", about),
+        tips: formatValue(hotspot.tips || "", tips),
+        birds: formatValue(hotspot.birds || "", birds),
+        hikes: formatValue(hotspot.hikes || "", hikes),
         notes,
-        roadside: formatValue(hotspot.roadside, roadside),
-        restrooms: formatValue(hotspot.restrooms, restrooms),
-        accessible: formatValue(hotspot.accessible, accessible),
-        fee: formatValue(hotspot.fee, fee),
+        roadside: formatValue(hotspot.roadside || "", roadside),
+        restrooms: formatValue(hotspot.restrooms || "", restrooms),
+        accessible: formatValue(hotspot.accessible || "", accessible),
+        fee: formatValue(hotspot.fee || "", fee),
       });
 
       const additionalNotes = notes ? `<br /><br /><strong>Additional notes to editor</strong><br />${notes}` : "";

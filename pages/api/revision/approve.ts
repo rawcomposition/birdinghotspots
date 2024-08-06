@@ -56,9 +56,9 @@ export default secureApi(async (req, res, token) => {
 
     if (
       shouldCite &&
-      !hotspot.citations.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())
+      !hotspot.citations?.find(({ label }: any) => label.trim().toLowerCase() === revision.by.trim().toLowerCase())
     ) {
-      hotspot.citations.push({ label: revision.by });
+      hotspot.citations?.push({ label: revision.by });
       await hotspot.save();
     }
 
