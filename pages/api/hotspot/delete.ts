@@ -1,12 +1,9 @@
 import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
-import Drive from "models/Drive";
-import Group from "models/Group";
-import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
-import Revision from "models/Revision";
-
+import { deleteHotspot } from "lib/mongo";
+import Logs from "models/Log";
 export default secureApi(async (req, res, token) => {
   const { id }: any = req.query;
 
@@ -22,13 +19,7 @@ export default secureApi(async (req, res, token) => {
   }
 
   try {
-    await Hotspot.deleteOne({ _id: id });
-
-    await Promise.all([
-      Drive.updateMany({ entries: { $elemMatch: { hotspot: id } } }, { $pull: { entries: { hotspot: id } } }),
-      Group.updateMany({ hotspots: id }, { $pull: { hotspots: id } }),
-      Revision.deleteMany({ locationId: hotspot.locationId, status: "pending" }),
-    ]);
+    await deleteHotspot(hotspot);
 
     try {
       await Logs.create({

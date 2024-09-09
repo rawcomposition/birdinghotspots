@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { key }: any = req.query;
-  if (process.env.CRON_KEY && key !== process.env.CRON_KEY) {
+  if (process.env.CRON_SECRET && key !== process.env.CRON_SECRET) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }

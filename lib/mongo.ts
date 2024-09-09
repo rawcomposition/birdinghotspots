@@ -594,3 +594,14 @@ export async function getContentStats(regionCodes: string[]): Promise<ContentSta
   });
   return byRegion;
 }
+
+export async function deleteHotspot(hotspot: HotspotType) {
+  const id = hotspot._id;
+  await Hotspot.deleteOne({ _id: id });
+
+  await Promise.all([
+    Drive.updateMany({ entries: { $elemMatch: { hotspot: id } } }, { $pull: { entries: { hotspot: id } } }),
+    Group.updateMany({ hotspots: id }, { $pull: { hotspots: id } }),
+    Revision.deleteMany({ locationId: hotspot.locationId, status: "pending" }),
+  ]);
+}

@@ -9,4 +9,4 @@ jobs:
       - name: Daily Email
         run: |
           curl --request POST \
-          --url 'https://birdinghotspots.org/api/email-digest?key=${{ secrets.CRON_KEY }}' \
+          --url 'https://birdinghotspots.org/api/email-digest?key=${{ secrets.CRON_SECRET }}' \

@@ -1,0 +1,12 @@
+name: Delete Hotspots
+on:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Hotspots
+        run: |
+          curl --request POST \
+          --url 'https://birdinghotspots.org/api/hotspot/delete-cron?key=${{ secrets.CRON_SECRET }}' \
