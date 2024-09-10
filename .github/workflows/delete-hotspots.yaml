@@ -1,7 +1,7 @@
 name: Delete Hotspots
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 */4 * * *"
 jobs:
   cron:
     runs-on: ubuntu-latest
