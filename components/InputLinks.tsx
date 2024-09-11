@@ -1,5 +1,7 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import SortableLinkItem from "components/SortableLinkItem";
 
 type Props = {
   name: string;
@@ -7,41 +9,35 @@ type Props = {
 };
 
 const InputLinks = ({ name, label }: Props) => {
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = useFormContext();
-  const { fields, append, remove } = useFieldArray({ name, control });
+  const { control } = useFormContext();
+  const { fields, append, remove, move } = useFieldArray({ name, control });
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const ids = fields.map(({ id }) => id);
+
+  function handleDragEnd(event: any) {
+    const { active, over } = event;
+    if (active.id === over.id) return;
+    const oldIndex = ids.indexOf(active.id);
+    const newIndex = ids.indexOf(over.id);
+    move(oldIndex, newIndex);
+  }
+
   return (
     <div className="flex-1">
       {label && <label className="text-gray-500 font-bold">{label}</label>}
       <div>
-        {fields.map((field, index) => {
-          //@ts-ignore
-          const error = errors?.[name]?.[index] as any;
-          return (
-            <div key={field.id} className="bg-gray-100 mb-2 rounded py-2 px-3">
-              <div className="flex gap-4">
-                <input
-                  type="text"
-                  placeholder="Label"
-                  {...register(`${name}.${index}.label` as const, { required: true })}
-                  className={`form-input ${error?.label ? "input-error" : ""}`}
-                />
-                <input
-                  type="text"
-                  placeholder="URL"
-                  {...register(`${name}.${index}.url` as const, { required: true })}
-                  className={`form-input ${error?.url ? "input-error" : ""}`}
-                />
-                <button type="button" onClick={() => remove(index)}>
-                  <TrashIcon className="h-5 w-5 mr-1 text-red-700 opacity-80" />
-                </button>
-              </div>
-            </div>
-          );
-        })}
+        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+          <SortableContext items={ids} strategy={verticalListSortingStrategy}>
+            {fields.map((field: any, i) => (
+              <SortableLinkItem key={field.id} baseName={name} handleDelete={remove} i={i} id={field.id} />
+            ))}
+          </SortableContext>
+        </DndContext>
       </div>
       <button
         type="button"
