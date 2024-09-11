@@ -374,21 +374,24 @@ export type Pageview = {
   month: number;
 };
 
-export type Species = {
+export type SpeciesT = {
   _id: string;
+  hasImg: boolean;
   name: string;
   sciName: string;
   order: number;
   images: [
     {
-      smUrl: string;
-      lgUrl: string;
-      by: string;
-      width: number;
-      height: number;
-      caption: string;
+      sm: string;
+      md: string;
+      lg: string;
     }
   ];
+  source: string;
+  sourceId: string;
+  author: string;
+  license: string;
+  active: boolean;
 };
 
 export type Token = {
