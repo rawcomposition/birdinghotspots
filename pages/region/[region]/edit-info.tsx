@@ -68,7 +68,6 @@ export default function EditLinks({ region, data, error, errorCode }: Props) {
           <div className="max-w-4xl mx-auto">
             <div className="px-4 py-5 bg-white sm:p-6">
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4 mb-4">Edit {region.name} Links</h2>
-              <p className="mb-8 text-gray-600">Links will be displayed alphabetically</p>
               <div className="space-y-4 mb-12">
                 <Input type="text" name="websitesHeading" required />
                 <FormError name="websitesHeading" />

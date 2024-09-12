@@ -12,8 +12,7 @@ const limit = 4;
 
 export const StateLinkSection = ({ heading, links, external }: Props) => {
   const [viewMore, setViewMore] = React.useState<boolean>(false);
-  const sortedLinks = links.sort((a, b) => a.label.localeCompare(b.label));
-  const visibleLinks = viewMore ? sortedLinks : sortedLinks.slice(0, limit);
+  const visibleLinks = viewMore ? links : links.slice(0, limit);
   if (!links?.length) return null;
   return (
     <div className="break-inside-avoid">
