@@ -23,13 +23,6 @@ const SpeciesSchema = new Schema({
     type: Number,
     required: true,
   },
-  images: [
-    {
-      sm: String,
-      md: String,
-      lg: String,
-    },
-  ],
   source: {
     type: String,
     required: true,
@@ -38,7 +31,8 @@ const SpeciesSchema = new Schema({
     type: String,
     required: true,
   },
-  isVerified: Boolean,
+  width: Number,
+  height: Number,
   author: String,
   license: String,
   active: {

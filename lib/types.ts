@@ -380,15 +380,10 @@ export type SpeciesT = {
   name: string;
   sciName: string;
   order: number;
-  images: [
-    {
-      sm: string;
-      md: string;
-      lg: string;
-    }
-  ];
   source: string;
   sourceId: string;
+  width: number;
+  height: number;
   author: string;
   license: string;
   active: boolean;
@@ -461,4 +456,10 @@ export type PhotoBatchT = {
     status: string;
   }[];
   createdAt: string;
+};
+
+export type SourceInfoT = {
+  author: string;
+  width: number;
+  height: number;
 };

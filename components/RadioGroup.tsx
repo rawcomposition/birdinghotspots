@@ -22,14 +22,14 @@ const RadioGroup = ({ name, label, options, inline, help }: InputProps) => {
         {options.map((option) =>
           typeof option === "string" ? (
             <React.Fragment key={option}>
-              <label className="whitespace-nowrap">
+              <label className="whitespace-nowrap inline-flex items-center gap-1.5">
                 <input {...register(name)} type="radio" name={name} value={option} /> {option}
               </label>
               <br />
             </React.Fragment>
           ) : (
             <React.Fragment key={option.value}>
-              <label className="whitespace-nowrap">
+              <label className="whitespace-nowrap inline-flex items-center gap-1.5">
                 <input {...register(name)} type="radio" name={name} value={option.value} /> {option.label}
               </label>
               <br />
