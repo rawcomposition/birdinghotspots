@@ -13,6 +13,8 @@ import FormError from "components/FormError";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Species from "models/Species";
 import { useQuery } from "@tanstack/react-query";
+import InputImageCrop from "components/InputImageCrop";
+import connect from "lib/mongo";
 
 const sourceOptions = [
   { label: "eBird", value: "ebird" },
@@ -85,11 +87,12 @@ export default function Import({ data, code }: Props) {
                 <FormError name="author" />
               </Field>
 
-              <img
-                src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${source}/2400`}
-                className="w-full"
-                alt=""
-              />
+              {source && (
+                <InputImageCrop
+                  name="crop"
+                  url={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${source}/2400`}
+                />
+              )}
             </div>
             <div className="flex justify-end mt-4">
               <Submit disabled={loading} color="green" className="font-medium">
@@ -118,6 +121,7 @@ export default function Import({ data, code }: Props) {
 
 export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
   const { code } = query;
+  await connect();
   const species = await Species.findById(code);
 
   if (!species) return { notFound: true };
