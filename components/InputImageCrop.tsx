@@ -64,30 +64,36 @@ export default function InputImageCrop({ className, name, url }: Props) {
       </div>
       <div className="flex gap-4 mt-4">
         <Preview {...value.crop.percent} url={url} />
+        <Preview {...value.crop.percent} url={url} square />
       </div>
     </div>
   );
 }
 
-const Preview = ({ x, y, width, url }: { x: number; y: number; width: number; url: string }) => {
+const Preview = ({
+  x,
+  y,
+  width,
+  url,
+  square,
+}: {
+  x: number;
+  y: number;
+  width: number;
+  url: string;
+  square?: boolean;
+}) => {
   const scale = 100 / width;
-  const transform = {
-    x: `${-x * scale}%`,
-    y: `${-y * scale}%`,
-    scale,
-    width: "calc(100% + 0.5px)",
-    height: "auto",
-  };
-
-  const imageStyle = {
-    transform: `translate3d(${transform.x}, ${transform.y}, 0) scale3d(${transform.scale},${transform.scale},1)`,
-    width: transform.width,
-    height: transform.height,
-  };
+  const transform = `translate3d(${-x * scale}%, ${-y * scale}%, 0) scale3d(${scale}, ${scale}, 1)`;
 
   return (
     <div className="h-[160px] aspect-[3/2] relative overflow-hidden">
-      <img src={url} alt="" style={imageStyle} className="absolute top-0 left-0 origin-top-left" />
+      <img
+        src={url}
+        alt=""
+        style={{ transform, width: "calc(100% + 0.5px)", height: "auto" }}
+        className="absolute top-0 left-0 origin-top-left"
+      />
     </div>
   );
 };
