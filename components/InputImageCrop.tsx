@@ -2,6 +2,7 @@
 import { useController } from "react-hook-form";
 import Cropper from "react-easy-crop";
 import React from "react";
+import { Crop } from "lib/types";
 
 type Props = {
   name: string;
@@ -9,29 +10,12 @@ type Props = {
   className?: string;
 };
 
-type Value = {
-  crop: {
-    percent: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-    };
-    pixel: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-    };
-  };
-};
-
 export default function InputImageCrop({ className, name, url }: Props) {
   const { field } = useController({ name });
   const [crop, setCrop] = React.useState({ x: 0, y: 0 });
   const [zoom, setZoom] = React.useState(2);
 
-  const value: Value = field.value;
+  const value: Crop = field.value;
 
   return (
     <div className={className}>
@@ -41,31 +25,30 @@ export default function InputImageCrop({ className, name, url }: Props) {
           crop={crop}
           zoom={zoom}
           aspect={3 / 2}
+          zoomSpeed={0.25}
           onCropChange={setCrop}
           onCropComplete={(croppedArea, croppedAreaPixels) => {
             field.onChange({
-              crop: {
-                percent: {
-                  x: croppedArea.x,
-                  y: croppedArea.y,
-                  width: croppedArea.width,
-                  height: croppedArea.height,
-                },
-                pixel: {
-                  x: croppedAreaPixels.x,
-                  y: croppedAreaPixels.y,
-                  width: croppedAreaPixels.width,
-                  height: croppedAreaPixels.height,
-                },
+              percent: {
+                x: croppedArea.x,
+                y: croppedArea.y,
+                width: croppedArea.width,
+                height: croppedArea.height,
               },
-            });
+              pixel: {
+                x: croppedAreaPixels.x,
+                y: croppedAreaPixels.y,
+                width: croppedAreaPixels.width,
+                height: croppedAreaPixels.height,
+              },
+            } as Crop);
           }}
           onZoomChange={setZoom}
         />
       </div>
       <div className="flex gap-4 mt-4">
-        <Preview {...value.crop.percent} url={url} />
-        <Preview {...value.crop.percent} url={url} square />
+        <Preview {...value?.percent} url={url} />
+        <Preview {...value?.percent} url={url} square />
       </div>
     </div>
   );
@@ -85,7 +68,7 @@ const Preview = ({ x, y, width, url, square }: PreviewProps) => {
   const containerStyle = square ? { aspectRatio: "1 / 1" } : { aspectRatio: "3 / 2" };
 
   return (
-    <div className="h-[160px] relative overflow-hidden" style={containerStyle}>
+    <div className="h-[110px] relative overflow-hidden" style={containerStyle}>
       <img
         src={url}
         alt=""

@@ -463,3 +463,43 @@ export type SourceInfoT = {
   width: number;
   height: number;
 };
+
+export type Crop = {
+  percent: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  pixel: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+};
+
+export type ImgSource = "ebird" | "inat" | "wikipedia";
+export const ImgSourceLabel: Record<ImgSource, string> = {
+  ebird: "eBird",
+  inat: "iNaturalist",
+  wikipedia: "Wikipedia",
+};
+
+export type License = "cc-by" | "cc-by-sa" | "cc-by-nd" | "cc-by-nc" | "cc-by-nc-sa" | "cc-by-nc-nd" | "cc0";
+export const LicenseLabel: Record<License, string> = {
+  "cc-by": "CC BY",
+  "cc-by-sa": "CC BY-SA",
+  "cc-by-nd": "CC BY-ND",
+  "cc-by-nc": "CC BY-NC",
+  "cc-by-nc-sa": "CC BY-NC-SA",
+  "cc-by-nc-nd": "CC BY-NC-ND",
+  cc0: "CC0",
+};
+export type SpeciesInput = {
+  source: ImgSource;
+  sourceId: string;
+  author: string;
+  crop: Crop;
+  license: License;
+};

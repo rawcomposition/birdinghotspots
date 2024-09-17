@@ -1,6 +1,19 @@
-import ReactSelect from "react-select";
+import ReactSelect, { GroupBase, Props } from "react-select";
 
-const ReactSelectStyled = (props: any) => {
+// Implemented per https://react-select.com/typescript
+type SelectBaseProps<
+  Option,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>
+> = Props<Option, IsMulti, Group> & {
+  noBorder?: boolean;
+};
+
+export default function SelectBase<
+  Option,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>({ noBorder, ...props }: SelectBaseProps<Option, IsMulti, Group>) {
   return (
     <ReactSelect
       styles={{
@@ -27,6 +40,4 @@ const ReactSelectStyled = (props: any) => {
       {...props}
     />
   );
-};
-
-export default ReactSelectStyled;
+}
