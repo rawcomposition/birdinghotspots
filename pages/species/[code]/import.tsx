@@ -29,7 +29,7 @@ type Props = {
 export default function Import({ data, code }: Props) {
   const form = useForm<SpeciesInput>({
     defaultValues: {
-      sourceId: "ebird",
+      source: "ebird",
     },
   });
 
@@ -68,7 +68,7 @@ export default function Import({ data, code }: Props) {
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data.name}</h2>
               <RadioGroup label="Source" name="source" options={sourceOptions} />
 
-              <Field label="Source URL">
+              <Field label="Source ID">
                 <Input type="text" name="sourceId" required />
                 <FormError name="sourceId" />
               </Field>
@@ -83,7 +83,7 @@ export default function Import({ data, code }: Props) {
                 <FormError name="license" />
               </Field>
 
-              {source && (
+              {sourceId && (
                 <InputImageCrop
                   name="crop"
                   url={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${source}/2400`}
@@ -94,6 +94,19 @@ export default function Import({ data, code }: Props) {
               <Submit disabled={mutation.isPending} color="green" className="font-medium">
                 Import
               </Submit>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-600 mb-2">Quick Links</h3>
+              <ul>
+                <li>
+                  <a
+                    href={`https://media.ebird.org/catalog?sort=upload_date_desc&userId=USER730325&taxonCode=${code}&view=grid`}
+                    target="_blank"
+                  >
+                    Adam&apos;s eBird Media
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </Form>
