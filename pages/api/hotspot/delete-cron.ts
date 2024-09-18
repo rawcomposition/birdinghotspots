@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     const hotspots = await Hotspot.find({
       needsDeleting: true,
-      noContent: { $ne: true },
+      noContent: { $ne: false },
       "images.0": { $exists: false },
     });
 
