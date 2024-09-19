@@ -13,7 +13,7 @@ type Props = {
 export default function InputImageCrop({ className, name, url }: Props) {
   const { field } = useController({ name });
   const [crop, setCrop] = React.useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = React.useState(2);
+  const [zoom, setZoom] = React.useState(1);
 
   const value: Crop = field.value;
 

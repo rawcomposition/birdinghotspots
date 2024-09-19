@@ -496,6 +496,7 @@ export const LicenseLabel: Record<License, string> = {
   "cc-by-nc-nd": "CC BY-NC-ND",
   cc0: "CC0",
 };
+
 export type SpeciesInput = {
   source: ImgSource;
   sourceId: string;

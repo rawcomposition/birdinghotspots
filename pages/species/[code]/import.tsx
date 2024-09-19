@@ -33,9 +33,9 @@ export default function Import({ data, code }: Props) {
     },
   });
 
-  const sourceValue = form.watch("source");
-  const source = sourceValue?.replace("ML", "").trim();
-  const sourceId = form.watch("sourceId");
+  const source = form.watch("source");
+  const sourceIdValue = form.watch("sourceId");
+  const sourceId = sourceIdValue?.replace("ML", "").trim();
 
   const { data: sourceInfo } = useQuery<{ info: SourceInfoT }>({
     refetchInterval: 60000,
@@ -56,7 +56,7 @@ export default function Import({ data, code }: Props) {
   });
 
   const handleSubmit: SubmitHandler<SpeciesInput> = async (data) => {
-    mutation.mutate(data);
+    mutation.mutate({ ...data, sourceId: data.sourceId.replace("ML", "").trim() });
   };
 
   return (
@@ -68,17 +68,17 @@ export default function Import({ data, code }: Props) {
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data.name}</h2>
               <RadioGroup label="Source" name="source" options={sourceOptions} />
 
-              <Field label="Source ID">
+              <Field label="Source ID" required>
                 <Input type="text" name="sourceId" required />
                 <FormError name="sourceId" />
               </Field>
 
-              <Field label="Author">
+              <Field label="Author" required>
                 <Input type="text" name="author" required />
                 <FormError name="author" />
               </Field>
 
-              <Field label="License">
+              <Field label="License" required>
                 <SelectLicense name="license" required />
                 <FormError name="license" />
               </Field>
@@ -86,7 +86,7 @@ export default function Import({ data, code }: Props) {
               {sourceId && (
                 <InputImageCrop
                   name="crop"
-                  url={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${source}/2400`}
+                  url={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${sourceId}/2400`}
                 />
               )}
             </div>

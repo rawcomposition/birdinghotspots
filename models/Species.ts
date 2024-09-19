@@ -35,6 +35,20 @@ const SpeciesSchema = new Schema({
   height: Number,
   author: String,
   license: String,
+  crop: {
+    percent: {
+      x: Number,
+      y: Number,
+      width: Number,
+      height: Number,
+    },
+    pixel: {
+      x: Number,
+      y: Number,
+      width: Number,
+      height: Number,
+    },
+  },
   active: {
     type: Boolean,
     default: true,

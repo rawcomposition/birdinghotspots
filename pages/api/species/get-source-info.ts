@@ -70,8 +70,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (!source) throw new Error("source is required");
     if (!sourceId) throw new Error("sourceId is required");
 
-    if (sourceId === "ebird") {
-      const url = `https://ebird.org/ml-search-api/asset-info?assetId=${source}&taxaLocale=en`;
+    if (source === "ebird") {
+      const url = `https://ebird.org/ml-search-api/asset-info?assetId=${sourceId}&taxaLocale=en`;
       const request = await fetch(url, {
         headers: {
           // This user agent seems to be allowed by eBird
