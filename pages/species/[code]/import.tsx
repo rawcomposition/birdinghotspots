@@ -100,7 +100,7 @@ export default function Import({ data, code }: Props) {
               <ul>
                 <li>
                   <a
-                    href={`https://media.ebird.org/catalog?sort=upload_date_desc&userId=USER730325&taxonCode=${code}&view=grid`}
+                    href={`https://media.ebird.org/catalog?sort=rating_rank_desc&userId=USER730325&taxonCode=${code}&view=grid`}
                     target="_blank"
                   >
                     Adam&apos;s eBird Media

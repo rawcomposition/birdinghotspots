@@ -374,21 +374,6 @@ export type Pageview = {
   month: number;
 };
 
-export type SpeciesT = {
-  _id: string;
-  hasImg: boolean;
-  name: string;
-  sciName: string;
-  order: number;
-  source: string;
-  sourceId: string;
-  width: number;
-  height: number;
-  author: string;
-  license: string;
-  active: boolean;
-};
-
 export type Token = {
   uid: string;
   role?: string;
@@ -488,13 +473,28 @@ export const ImgSourceLabel: Record<ImgSource, string> = {
 
 export type License = "cc-by" | "cc-by-sa" | "cc-by-nd" | "cc-by-nc" | "cc-by-nc-sa" | "cc-by-nc-nd" | "cc0";
 export const LicenseLabel: Record<License, string> = {
+  cc0: "CC0",
   "cc-by": "CC BY",
   "cc-by-sa": "CC BY-SA",
   "cc-by-nd": "CC BY-ND",
   "cc-by-nc": "CC BY-NC",
   "cc-by-nc-sa": "CC BY-NC-SA",
   "cc-by-nc-nd": "CC BY-NC-ND",
-  cc0: "CC0",
+};
+
+export type SpeciesT = {
+  _id: string;
+  hasImg: boolean;
+  name: string;
+  sciName: string;
+  order: number;
+  source: ImgSource;
+  sourceId: string;
+  width: number;
+  height: number;
+  author: string;
+  license: License;
+  active: boolean;
 };
 
 export type SpeciesInput = {
