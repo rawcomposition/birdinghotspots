@@ -33,7 +33,7 @@ export default function SpeciesList({ species, currentPage, totalPages, percent 
               <Link href={`/species/${species._id}/import`}>
                 {species.hasImg ? (
                   <img
-                    src={getSourceUrl(species, 320)}
+                    src={getSourceUrl({ source: species.source, sourceId: species.sourceId, size: 320 }) || ""}
                     alt={species.name}
                     className="aspect-square object-cover w-[120px] rounded-md"
                   />

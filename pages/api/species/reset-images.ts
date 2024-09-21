@@ -9,26 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
 
-  const unsetCodes: string[] = [
-    "mcclon",
-    "chbbun1",
-    "ortbun1",
-    "ccbfin",
-    "purspi",
-    "batoro1",
-    "resbla1",
-    "colwar",
-    "conwar",
-    "rehtan2",
-    "lestan",
-    "rabgro1",
-    "fustan1",
-    "whbdac1",
-    "whbdac1",
-    "grehon1",
-    "whcsee1",
-    "shbgrf3",
-  ];
+  const unsetCodes: string[] = [];
 
   await Species.updateMany({ _id: { $in: unsetCodes } }, { $unset: { source: "", sourceId: "", hasImg: "" } });
 

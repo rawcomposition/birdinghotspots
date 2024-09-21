@@ -10,6 +10,9 @@ type Props = {
   className?: string;
 };
 
+const previewHeight = 110;
+const previewWidth = previewHeight * (3 / 2);
+
 export default function InputImageCrop({ className, name, url }: Props) {
   const { field } = useController({ name });
   const [crop, setCrop] = React.useState({ x: 0, y: 0 });
@@ -48,7 +51,11 @@ export default function InputImageCrop({ className, name, url }: Props) {
       </div>
       <div className="flex gap-4 mt-4">
         <Preview {...value?.percent} url={url} />
-        <Preview {...value?.percent} url={url} square />
+        <div className="w-[110px]">
+          <div style={{ marginLeft: `-${(previewWidth - previewHeight) / 2}px` }}>
+            <Preview {...value?.percent} url={url} />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -59,16 +66,14 @@ type PreviewProps = {
   y: number;
   width: number;
   url: string;
-  square?: boolean;
 };
 
-const Preview = ({ x, y, width, url, square }: PreviewProps) => {
+const Preview = ({ x, y, width, url }: PreviewProps) => {
   const scale = 100 / width;
   const transform = `translate3d(${-x * scale}%, ${-y * scale}%, 0) scale(${scale})`;
-  const containerStyle = square ? { aspectRatio: "1 / 1" } : { aspectRatio: "3 / 2" };
 
   return (
-    <div className="h-[110px] relative overflow-hidden" style={containerStyle}>
+    <div className={`h-[${previewHeight}px] relative overflow-hidden aspect-[3/2]`}>
       <img
         src={url}
         alt=""

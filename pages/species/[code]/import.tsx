@@ -16,6 +16,7 @@ import InputImageCrop from "components/InputImageCrop";
 import connect from "lib/mongo";
 import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
+import { getSourceUrl } from "lib/species";
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
   value: key,
@@ -28,9 +29,17 @@ type Props = {
 
 export default function Import({ data, code }: Props) {
   const form = useForm<SpeciesInput>({
-    defaultValues: {
-      source: "ebird",
-    },
+    defaultValues: data.hasImg
+      ? {
+          source: data.source,
+          sourceId: data.sourceId,
+          author: data.author,
+          license: data.license,
+          crop: data.crop,
+        }
+      : {
+          source: "ebird",
+        },
   });
 
   const source = form.watch("source");
@@ -83,12 +92,7 @@ export default function Import({ data, code }: Props) {
                 <FormError name="license" />
               </Field>
 
-              {sourceId && (
-                <InputImageCrop
-                  name="crop"
-                  url={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${sourceId}/2400`}
-                />
-              )}
+              {sourceId && <InputImageCrop name="crop" url={getSourceUrl({ source, sourceId, size: 2400 }) || ""} />}
             </div>
             <div className="flex justify-end mt-4">
               <Submit disabled={mutation.isPending} color="green" className="font-medium">

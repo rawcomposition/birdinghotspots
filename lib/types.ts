@@ -495,6 +495,7 @@ export type SpeciesT = {
   author: string;
   license: License;
   active: boolean;
+  crop: Crop;
 };
 
 export type SpeciesInput = {
