@@ -109,6 +109,30 @@ export default function SpeciesList({
                     }
                     return null;
                   })}
+                  <div className="flex gap-2">
+                    <span>iNat:</span>
+                    <Link
+                      className="text-sky-600 hover:text-sky-700 font-semibold"
+                      href={`https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc0`}
+                      target="_blank"
+                    >
+                      CC0
+                    </Link>
+                    <Link
+                      className="text-sky-600 hover:text-sky-700 font-semibold"
+                      href={`https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by`}
+                      target="_blank"
+                    >
+                      CC-BY
+                    </Link>
+                    <Link
+                      className="text-sky-600 hover:text-sky-700 font-semibold"
+                      href={`https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc`}
+                      target="_blank"
+                    >
+                      CC-BY-NC
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

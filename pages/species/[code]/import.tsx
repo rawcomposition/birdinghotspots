@@ -18,6 +18,7 @@ import connect from "lib/mongo";
 import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
 import { getSourceUrl } from "lib/species";
+import toast from "react-hot-toast";
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
   value: key,
@@ -37,6 +38,7 @@ export default function Import({ data, code }: Props) {
           author: data.author,
           license: data.license,
           crop: data.crop,
+          iNatObsId: data.iNatObsId,
         }
       : {
           source: "ebird",
@@ -52,6 +54,7 @@ export default function Import({ data, code }: Props) {
     refetchInterval: 60000,
     queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
     enabled: !!source && (!!sourceId || !!iNatObsId),
+    retry: false,
   });
 
   React.useEffect(() => {
@@ -70,6 +73,10 @@ export default function Import({ data, code }: Props) {
   });
 
   const handleSubmit: SubmitHandler<SpeciesInput> = async (data) => {
+    if (!data.sourceId) {
+      toast.error("Please enter a source ID");
+      return;
+    }
     mutation.mutate({ ...data, sourceId: data.sourceId.replace("ML", "").trim() });
   };
 
@@ -108,7 +115,6 @@ export default function Import({ data, code }: Props) {
                 <Field label="iNaturalist Observation ID" required>
                   <SelectiNatSourceId
                     name="sourceId"
-                    required
                     sourceIds={sourceInfo?.info.sourceIds || []}
                     isLoading={isSourceInfoLoading}
                   />
