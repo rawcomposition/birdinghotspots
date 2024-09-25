@@ -8,9 +8,10 @@ type InputProps = {
   options: string[] | { label: string; value: string }[];
   inline?: boolean;
   help?: string;
+  onChange?: (value: string) => void;
 };
 
-const RadioGroup = ({ name, label, options, inline, help }: InputProps) => {
+const RadioGroup = ({ name, label, options, inline, help, onChange }: InputProps) => {
   const { register } = useFormContext();
   return (
     <div className={inline ? "flex gap-2 justify-between" : ""}>
@@ -23,14 +24,26 @@ const RadioGroup = ({ name, label, options, inline, help }: InputProps) => {
           typeof option === "string" ? (
             <React.Fragment key={option}>
               <label className="whitespace-nowrap inline-flex items-center gap-1.5">
-                <input {...register(name)} type="radio" name={name} value={option} /> {option}
+                <input
+                  {...register(name, { onChange: (e) => onChange?.(e.target.value) })}
+                  type="radio"
+                  name={name}
+                  value={option}
+                />
+                {option}
               </label>
               <br />
             </React.Fragment>
           ) : (
             <React.Fragment key={option.value}>
               <label className="whitespace-nowrap inline-flex items-center gap-1.5">
-                <input {...register(name)} type="radio" name={name} value={option.value} /> {option.label}
+                <input
+                  {...register(name, { onChange: (e) => onChange?.(e.target.value) })}
+                  type="radio"
+                  name={name}
+                  value={option.value}
+                />{" "}
+                {option.label}
               </label>
               <br />
             </React.Fragment>

@@ -10,7 +10,7 @@ export default secureApi(async (req, res, token) => {
   try {
     await connect();
 
-    await Species.updateOne({ _id: code }, { ...data, hasImg: true });
+    await Species.updateOne({ _id: code }, { ...data, hasImg: true, needsDownload: true });
 
     res.status(200).json({ success: true });
   } catch (error: any) {

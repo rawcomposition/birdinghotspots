@@ -496,6 +496,7 @@ export type SpeciesT = {
   license: License;
   active: boolean;
   crop: Crop;
+  needsDownload?: boolean;
 };
 
 export type SpeciesInput = {

@@ -53,6 +53,7 @@ const SpeciesSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  needsDownload: Boolean,
 });
 
 const Species = models.Species || model("Species", SpeciesSchema);

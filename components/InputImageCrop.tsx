@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useController } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 import Cropper from "react-easy-crop";
 import React from "react";
 import { Crop } from "lib/types";
@@ -14,6 +14,9 @@ const previewHeight = 110;
 const previewWidth = previewHeight * (3 / 2);
 
 export default function InputImageCrop({ className, name, url }: Props) {
+  const {
+    formState: { defaultValues },
+  } = useFormContext();
   const { field } = useController({ name });
   const [crop, setCrop] = React.useState({ x: 0, y: 0 });
   const [zoom, setZoom] = React.useState(1);
@@ -47,11 +50,12 @@ export default function InputImageCrop({ className, name, url }: Props) {
             } as Crop);
           }}
           onZoomChange={setZoom}
+          initialCroppedAreaPercentages={defaultValues?.[name]?.percent}
         />
       </div>
       <div className="flex gap-4 mt-4">
         <Preview {...value?.percent} url={url} />
-        <div className="w-[110px]">
+        <div className="w-[110px] overflow-hidden">
           <div style={{ marginLeft: `-${(previewWidth - previewHeight) / 2}px` }}>
             <Preview {...value?.percent} url={url} />
           </div>
@@ -73,7 +77,7 @@ const Preview = ({ x, y, width, url }: PreviewProps) => {
   const transform = `translate3d(${-x * scale}%, ${-y * scale}%, 0) scale(${scale})`;
 
   return (
-    <div className={`h-[${previewHeight}px] relative overflow-hidden aspect-[3/2]`}>
+    <div className={`relative overflow-hidden aspect-[3/2]`} style={{ height: `${previewHeight}px` }}>
       <img
         src={url}
         alt=""

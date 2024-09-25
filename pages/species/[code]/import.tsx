@@ -6,7 +6,7 @@ import Submit from "components/Submit";
 import Input from "components/Input";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
-import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel } from "lib/types";
+import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel, ImgSource } from "lib/types";
 import Field from "components/Field";
 import FormError from "components/FormError";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
@@ -75,7 +75,15 @@ export default function Import({ data, code }: Props) {
           <div className="max-w-2xl mx-auto">
             <div className=" bg-white space-y-6">
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data.name}</h2>
-              <RadioGroup label="Source" name="source" options={sourceOptions} />
+              <RadioGroup
+                label="Source"
+                name="source"
+                options={sourceOptions}
+                onChange={() => {
+                  form.setValue("sourceId", "");
+                  form.setFocus("sourceId");
+                }}
+              />
 
               <Field label="Source ID" required>
                 <Input type="text" name="sourceId" required />
@@ -98,19 +106,6 @@ export default function Import({ data, code }: Props) {
               <Submit disabled={mutation.isPending} color="green" className="font-medium">
                 Import
               </Submit>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-600 mb-2">Quick Links</h3>
-              <ul>
-                <li>
-                  <a
-                    href={`https://media.ebird.org/catalog?sort=rating_rank_desc&userId=USER730325&taxonCode=${code}&view=grid`}
-                    target="_blank"
-                  >
-                    Adam&apos;s eBird Media
-                  </a>
-                </li>
-              </ul>
             </div>
           </div>
         </Form>

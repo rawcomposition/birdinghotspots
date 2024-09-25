@@ -56,9 +56,19 @@ export default function SpeciesList({ species, currentPage, totalPages, percent 
                     License: <strong>{LicenseLabel[species.license] || "Unknown"}</strong>
                   </span>
                 </div>
-                <div className="flex gap-2">
-                  <Link className="text-sky-500 hover:text-sky-600 font-bold" href={`/species/${species._id}/import`}>
+                <div className="flex gap-4">
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`/species/${species._id}/import`}
+                  >
                     {species.hasImg ? "Replace Image" : "Add Image"}
+                  </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://media.ebird.org/catalog?sort=rating_rank_desc&userId=USER730325&taxonCode=${species._id}&view=grid`}
+                    target="_blank"
+                  >
+                    Adam&apos;s Media
                   </Link>
                 </div>
               </div>
@@ -96,17 +106,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const limit = 100;
   const skip = (page - 1) * limit;
 
-  const totalCount = await Species.countDocuments();
-  const withImgCount = await Species.countDocuments({ hasImg: true });
+  const filters = {
+    sciName: { $in: filterSciNames },
+  };
+
+  const totalCount = await Species.countDocuments(filters);
+  const withImgCount = await Species.countDocuments({ ...filters, hasImg: true });
   const totalPages = Math.ceil(totalCount / limit);
   const percent = ((withImgCount / totalCount) * 100).toFixed(1);
 
-  const speciesRes = await Species.find(
-    {
-      sciName: { $in: filterSciNames },
-    },
-    ["_id", "name", "source", "sourceId", "hasImg"]
-  )
+  const speciesRes = await Species.find(filters, ["_id", "name", "source", "sourceId", "hasImg"])
     .sort({ order: 1 })
     .skip(skip)
     .limit(limit);
