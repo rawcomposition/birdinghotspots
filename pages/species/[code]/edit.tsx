@@ -41,7 +41,7 @@ export default function Import({ data, code }: Props) {
           iNatObsId: data.iNatObsId,
         }
       : {
-          source: "ebird",
+          source: "inat",
         },
   });
 
@@ -65,6 +65,14 @@ export default function Import({ data, code }: Props) {
       }
     }
   }, [sourceInfo]);
+
+  React.useEffect(() => {
+    if (source === "inat") {
+      form.setFocus("iNatObsId");
+    } else {
+      form.setFocus("sourceId");
+    }
+  }, [source]);
 
   const mutation = useMutation({
     url: `/api/species/${code}/update`,
@@ -93,7 +101,6 @@ export default function Import({ data, code }: Props) {
                 options={sourceOptions}
                 onChange={() => {
                   form.setValue("sourceId", "");
-                  form.setFocus("sourceId");
                 }}
               />
 
