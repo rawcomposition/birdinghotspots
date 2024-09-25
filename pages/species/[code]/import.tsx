@@ -13,6 +13,7 @@ import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Species from "models/Species";
 import { useQuery } from "@tanstack/react-query";
 import InputImageCrop from "components/InputImageCrop";
+import SelectiNatSourceId from "components/SelectiNatSourceId";
 import connect from "lib/mongo";
 import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
@@ -45,16 +46,20 @@ export default function Import({ data, code }: Props) {
   const source = form.watch("source");
   const sourceIdValue = form.watch("sourceId");
   const sourceId = sourceIdValue?.replace("ML", "").trim();
+  const iNatObsId = form.watch("iNatObsId")?.trim();
 
-  const { data: sourceInfo } = useQuery<{ info: SourceInfoT }>({
+  const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
     refetchInterval: 60000,
-    queryKey: ["/api/species/get-source-info", { source, sourceId }],
-    enabled: !!source && !!sourceId,
+    queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
+    enabled: !!source && (!!sourceId || !!iNatObsId),
   });
 
   React.useEffect(() => {
     if (sourceInfo?.info) {
       form.setValue("author", sourceInfo.info.author);
+      if (sourceInfo.info.license) {
+        form.setValue("license", sourceInfo.info.license);
+      }
     }
   }, [sourceInfo]);
 
@@ -85,10 +90,31 @@ export default function Import({ data, code }: Props) {
                 }}
               />
 
-              <Field label="Source ID" required>
-                <Input type="text" name="sourceId" required />
-                <FormError name="sourceId" />
-              </Field>
+              {source === "inat" && (
+                <Field label="iNaturalist Observation ID" required>
+                  <Input type="text" name="iNatObsId" required />
+                  <FormError name="iNatObsId" />
+                </Field>
+              )}
+
+              {["ebird", "wikipedia"].includes(source) && (
+                <Field label={source === "ebird" ? "ML ID" : "Wikipedia Slug"} required>
+                  <Input type="text" name="sourceId" required />
+                  <FormError name="sourceId" />
+                </Field>
+              )}
+
+              {source === "inat" && (
+                <Field label="iNaturalist Observation ID" required>
+                  <SelectiNatSourceId
+                    name="sourceId"
+                    required
+                    sourceIds={sourceInfo?.info.sourceIds || []}
+                    isLoading={isSourceInfoLoading}
+                  />
+                  <FormError name="sourceId" />
+                </Field>
+              )}
 
               <Field label="Author" required>
                 <Input type="text" name="author" required />
@@ -96,7 +122,7 @@ export default function Import({ data, code }: Props) {
               </Field>
 
               <Field label="License" required>
-                <SelectLicense name="license" required />
+                <SelectLicense name="license" required instanceId="license" />
                 <FormError name="license" />
               </Field>
 

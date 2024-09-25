@@ -31,8 +31,7 @@ const SpeciesSchema = new Schema({
     type: String,
     required: true,
   },
-  width: Number,
-  height: Number,
+  iNatObsId: String,
   author: String,
   license: String,
   crop: {

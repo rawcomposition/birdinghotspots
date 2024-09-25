@@ -65,10 +65,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    const { source, sourceId } = req.query;
+    const { source, sourceId, iNatObsId } = req.query;
 
     if (!source) throw new Error("source is required");
-    if (!sourceId) throw new Error("sourceId is required");
+    if (!sourceId && !iNatObsId) throw new Error("sourceId or iNatObsId is required");
 
     if (source === "ebird") {
       const url = `https://ebird.org/ml-search-api/asset-info?assetId=${sourceId}&taxaLocale=en`;
@@ -83,14 +83,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       const info: SourceInfoT = {
         author: asset.userDisplayName,
-        width: asset.width,
-        height: asset.height,
+      };
+
+      res.status(200).json({ success: true, info });
+    } else if (source === "inat") {
+      const request = await fetch(`https://api.inaturalist.org/v1/observations/${iNatObsId}`);
+      const response = await request.json();
+      const obs = response.results[0];
+
+      const info: SourceInfoT = {
+        author: obs.user.name,
+        license: obs.license_code,
+        sourceIds: obs.photos.map((photo: any) => photo.id),
       };
 
       res.status(200).json({ success: true, info });
     }
-
-    res.status(200).json({ success: true });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }

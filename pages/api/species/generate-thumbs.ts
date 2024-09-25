@@ -35,14 +35,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Promise.all(
       IMG_SIZES.map(async (size) => {
         const outputPath = path.join(process.cwd(), "species-images", `${_id}-${size}.jpg`);
-        await sharp(buffer)
+        const image = sharp(buffer);
+
+        await image
           .extract({
             left: crop.pixel.x,
             top: crop.pixel.y,
             width: crop.pixel.width,
             height: crop.pixel.height,
           })
-          .resize(size)
+          .resize(size, size, { fit: sharp.fit.inside })
           .jpeg()
           .toFile(outputPath);
       })

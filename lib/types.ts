@@ -445,8 +445,8 @@ export type PhotoBatchT = {
 
 export type SourceInfoT = {
   author: string;
-  width: number;
-  height: number;
+  license?: License;
+  sourceIds?: string[];
 };
 
 export type Crop = {
@@ -490,12 +490,11 @@ export type SpeciesT = {
   order: number;
   source: ImgSource;
   sourceId: string;
-  width: number;
-  height: number;
   author: string;
   license: License;
   active: boolean;
   crop: Crop;
+  iNatObsId?: string;
   needsDownload?: boolean;
 };
 
@@ -505,4 +504,5 @@ export type SpeciesInput = {
   author: string;
   crop: Crop;
   license: License;
+  iNatObsId?: string;
 };
