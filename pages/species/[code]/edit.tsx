@@ -136,7 +136,7 @@ export default function Import({ data, code }: Props) {
             </div>
             <div className="flex justify-end mt-4">
               <Submit disabled={mutation.isPending} color="green" className="font-medium">
-                Import
+                Save
               </Submit>
             </div>
           </div>
