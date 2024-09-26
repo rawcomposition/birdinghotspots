@@ -93,8 +93,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       const info: SourceInfoT = {
         author: obs.user.name,
-        license: obs.license_code,
-        sourceIds: obs.photos.map((photo: any) => photo.id),
+        license: obs.observation_photos?.[0]?.photo?.license_code,
+        sourceIds: obs.photos?.map((photo: any) => photo.id),
       };
 
       res.status(200).json({ success: true, info });

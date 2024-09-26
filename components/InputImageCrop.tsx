@@ -3,15 +3,14 @@ import { useController, useFormContext } from "react-hook-form";
 import Cropper from "react-easy-crop";
 import React from "react";
 import { Crop } from "lib/types";
+import CropPreview from "components/CropPreview";
+import { useDebounce } from "hooks/useDebounce";
 
 type Props = {
   name: string;
   url: string;
   className?: string;
 };
-
-const previewHeight = 110;
-const previewWidth = previewHeight * (3 / 2);
 
 export default function InputImageCrop({ className, name, url }: Props) {
   const {
@@ -22,6 +21,7 @@ export default function InputImageCrop({ className, name, url }: Props) {
   const [zoom, setZoom] = React.useState(1);
 
   const value: Crop = field.value;
+  const debouncedCrop = useDebounce(value?.percent, 100);
 
   return (
     <div className={className}>
@@ -54,41 +54,9 @@ export default function InputImageCrop({ className, name, url }: Props) {
         />
       </div>
       <div className="flex gap-4 mt-4">
-        <Preview {...value?.percent} url={url} />
-        <div className="w-[110px] overflow-hidden">
-          <div style={{ marginLeft: `-${(previewWidth - previewHeight) / 2}px` }}>
-            <Preview {...value?.percent} url={url} />
-          </div>
-        </div>
+        <CropPreview {...debouncedCrop} imgUrl={url} />
+        <CropPreview {...debouncedCrop} imgUrl={url} square />
       </div>
     </div>
   );
 }
-
-type PreviewProps = {
-  x: number;
-  y: number;
-  width: number;
-  url: string;
-};
-
-const Preview = ({ x, y, width, url }: PreviewProps) => {
-  const scale = 100 / width;
-  const transform = `translate3d(${-x * scale}%, ${-y * scale}%, 0) scale(${scale})`;
-
-  return (
-    <div className={`relative overflow-hidden aspect-[3/2]`} style={{ height: `${previewHeight}px` }}>
-      <img
-        src={url}
-        alt=""
-        style={{
-          transform,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-        className="absolute top-0 left-0 origin-top-left"
-      />
-    </div>
-  );
-};

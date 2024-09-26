@@ -466,8 +466,8 @@ export type Crop = {
 
 export type ImgSource = "ebird" | "inat" | "wikipedia";
 export const ImgSourceLabel: Record<ImgSource, string> = {
-  ebird: "eBird",
   inat: "iNaturalist",
+  ebird: "eBird",
   wikipedia: "Wikipedia",
 };
 
