@@ -6,9 +6,10 @@ type GetSourceUrlParams = {
   source: ImgSource;
   sourceId: string;
   size: number;
+  ext?: string;
 };
 
-export const getSourceUrl = ({ source, sourceId, size }: GetSourceUrlParams) => {
+export const getSourceUrl = ({ source, sourceId, size, ext }: GetSourceUrlParams) => {
   if (source === "wikipedia") {
     return `https://upload.wikimedia.org/wikipedia/commons/thumb/${sourceId.replace("320", size.toString())}`;
   } else if (source === "ebird") {
@@ -24,7 +25,7 @@ export const getSourceUrl = ({ source, sourceId, size }: GetSourceUrlParams) => 
     };
     const sizeName = sizeMap[Math.min(size, 2048)];
     if (!sizeName) throw new Error(`Invalid iNaturalist size: ${size}`);
-    return `https://inaturalist-open-data.s3.amazonaws.com/photos/${sourceId}/${sizeName}.jpg`;
+    return `https://inaturalist-open-data.s3.amazonaws.com/photos/${sourceId}/${sizeName}.${ext || "jpg"}`;
   }
   return null;
 };

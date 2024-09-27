@@ -447,6 +447,7 @@ export type SourceInfoT = {
   author: string;
   license?: License;
   sourceIds?: string[];
+  iNatFileExt?: string;
 };
 
 export type Crop = {
@@ -495,6 +496,7 @@ export type SpeciesT = {
   active: boolean;
   crop: Crop;
   iNatObsId?: string;
+  iNatFileExt?: string;
   needsDownload?: boolean;
 };
 
@@ -505,4 +507,5 @@ export type SpeciesInput = {
   crop: Crop;
   license: License;
   iNatObsId?: string;
+  iNatFileExt?: string;
 };

@@ -19,6 +19,8 @@ import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
 import { getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
+import Select from "components/IbaSelect";
+
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
   value: key,
@@ -39,6 +41,7 @@ export default function Import({ data, code }: Props) {
           license: data.license,
           crop: data.crop,
           iNatObsId: data.iNatObsId,
+          iNatFileExt: data.iNatFileExt,
         }
       : {
           source: "inat",
@@ -49,6 +52,7 @@ export default function Import({ data, code }: Props) {
   const sourceIdValue = form.watch("sourceId");
   const sourceId = sourceIdValue?.replace("ML", "").trim();
   const iNatObsId = form.watch("iNatObsId")?.trim();
+  const iNatFileExt = form.watch("iNatFileExt");
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
     refetchInterval: 60000,
@@ -62,6 +66,9 @@ export default function Import({ data, code }: Props) {
       form.setValue("author", sourceInfo.info.author);
       if (sourceInfo.info.license) {
         form.setValue("license", sourceInfo.info.license);
+      }
+      if (sourceInfo.info.iNatFileExt) {
+        form.setValue("iNatFileExt", sourceInfo.info.iNatFileExt);
       }
     }
   }, [sourceInfo]);
@@ -85,6 +92,12 @@ export default function Import({ data, code }: Props) {
       toast.error("Please enter a source ID");
       return;
     }
+
+    if (data.source !== "inat") {
+      delete data.iNatFileExt;
+      delete data.iNatObsId;
+    }
+
     mutation.mutate({ ...data, sourceId: data.sourceId.replace("ML", "").trim() });
   };
 
@@ -124,6 +137,7 @@ export default function Import({ data, code }: Props) {
                     name="sourceId"
                     sourceIds={sourceInfo?.info.sourceIds || []}
                     isLoading={isSourceInfoLoading}
+                    iNatFileExt={iNatFileExt}
                   />
                   <FormError name="sourceId" />
                 </Field>
@@ -139,7 +153,12 @@ export default function Import({ data, code }: Props) {
                 <FormError name="license" />
               </Field>
 
-              {sourceId && <InputImageCrop name="crop" url={getSourceUrl({ source, sourceId, size: 2400 }) || ""} />}
+              {sourceId && (
+                <InputImageCrop
+                  name="crop"
+                  url={getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
+                />
+              )}
             </div>
             <div className="flex justify-end mt-4">
               <Submit disabled={mutation.isPending} color="green" className="font-medium">
