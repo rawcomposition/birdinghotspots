@@ -19,7 +19,6 @@ import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
 import { getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
-import Select from "components/IbaSelect";
 
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
@@ -70,6 +69,9 @@ export default function Import({ data, code }: Props) {
       if (sourceInfo.info.iNatFileExt) {
         form.setValue("iNatFileExt", sourceInfo.info.iNatFileExt);
       }
+      if (sourceInfo.info.sourceIds?.length) {
+        form.setValue("sourceId", sourceInfo.info.sourceIds[0]?.toString());
+      }
     }
   }, [sourceInfo]);
 
@@ -108,6 +110,13 @@ export default function Import({ data, code }: Props) {
           <div className="max-w-2xl mx-auto">
             <div className=" bg-white space-y-6">
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data.name}</h2>
+              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.name && (
+                <div className="bg-amber-50 p-4 rounded-md">
+                  <p className="text-sm text-amber-700">
+                    The iNaturalist species name is <strong>{sourceInfo?.info?.speciesName}</strong> does not match.
+                  </p>
+                </div>
+              )}
               <RadioGroup
                 label="Source"
                 name="source"
@@ -132,7 +141,7 @@ export default function Import({ data, code }: Props) {
               )}
 
               {source === "inat" && (
-                <Field label="iNaturalist Observation ID" required>
+                <Field label="iNaturalist Photo" required>
                   <SelectiNatSourceId
                     name="sourceId"
                     sourceIds={sourceInfo?.info.sourceIds || []}

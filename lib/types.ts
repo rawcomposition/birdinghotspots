@@ -448,6 +448,7 @@ export type SourceInfoT = {
   license?: License;
   sourceIds?: string[];
   iNatFileExt?: string;
+  speciesName?: string;
 };
 
 export type Crop = {

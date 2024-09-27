@@ -5,8 +5,8 @@ import { IMG_SIZES, getSourceUrl } from "lib/species";
 import sharp from "sharp";
 import path from "path";
 
-const SOURCE = "ebird";
-const LIMIT = 1;
+const SOURCE = "inat";
+const LIMIT = 10;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {

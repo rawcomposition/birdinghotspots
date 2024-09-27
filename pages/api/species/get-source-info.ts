@@ -93,10 +93,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const ext = obs.photos?.[0]?.url?.split(".").pop();
 
       const info: SourceInfoT = {
-        author: obs.user.name,
+        author: obs.user.name || obs.user.login,
         license: obs.observation_photos?.[0]?.photo?.license_code,
         sourceIds: obs.photos?.map((photo: any) => photo.id),
         iNatFileExt: ext,
+        speciesName: obs.taxon?.preferred_common_name,
       };
 
       res.status(200).json({ success: true, info });
