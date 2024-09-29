@@ -7,13 +7,11 @@ type CropPreviewProps = {
   width: number;
   height: number;
   imgUrl: string;
-  square?: boolean;
 };
 
-const PREVIEW_WIDTH = 150;
-const ASPECT_RATIO = 2 / 3;
+const PREVIEW_SIZE = 150;
 
-const CropPreview = React.memo(({ x, y, width, height, imgUrl, square }: CropPreviewProps) => {
+const CropPreview = React.memo(({ x, y, width, height, imgUrl }: CropPreviewProps) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [croppedImageUrl, setCroppedImageUrl] = React.useState<string | null>(null);
 
@@ -28,8 +26,8 @@ const CropPreview = React.memo(({ x, y, width, height, imgUrl, square }: CropPre
       if (canvas) {
         const ctx = canvas.getContext("2d");
         if (ctx) {
-          const previewWidth = PREVIEW_WIDTH * 2;
-          const previewHeight = PREVIEW_WIDTH * ASPECT_RATIO * 2;
+          const previewWidth = PREVIEW_SIZE * 2;
+          const previewHeight = PREVIEW_SIZE * 2;
           canvas.width = previewWidth;
           canvas.height = previewHeight;
 
@@ -57,17 +55,7 @@ const CropPreview = React.memo(({ x, y, width, height, imgUrl, square }: CropPre
     <div>
       <canvas ref={canvasRef} style={{ display: "none" }} />
       {croppedImageUrl && (
-        <img
-          src={croppedImageUrl}
-          alt="Cropped Preview"
-          width={PREVIEW_WIDTH}
-          height={PREVIEW_WIDTH * ASPECT_RATIO}
-          style={{
-            width: square ? PREVIEW_WIDTH * ASPECT_RATIO : PREVIEW_WIDTH,
-            height: PREVIEW_WIDTH * ASPECT_RATIO,
-          }}
-          className="object-cover"
-        />
+        <img src={croppedImageUrl} alt="Cropped Preview" width={PREVIEW_SIZE} height={PREVIEW_SIZE} />
       )}
     </div>
   );
@@ -80,5 +68,6 @@ export default CropPreview;
 const getProxyImgUrl = (url: string) => {
   return url
     .replace("https://inaturalist-open-data.s3.amazonaws.com/", "/api/image-proxy/inat/")
-    .replace("https://cdn.download.ams.birds.cornell.edu/", "/api/image-proxy/ebird/");
+    .replace("https://cdn.download.ams.birds.cornell.edu/", "/api/image-proxy/ebird/")
+    .replace("https://upload.wikimedia.org/", "/api/image-proxy/wikipedia/");
 };

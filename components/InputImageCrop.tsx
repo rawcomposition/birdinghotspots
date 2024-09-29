@@ -30,7 +30,7 @@ export default function InputImageCrop({ className, name, url }: Props) {
           image={url}
           crop={crop}
           zoom={zoom}
-          aspect={3 / 2}
+          aspect={1}
           zoomSpeed={0.25}
           onCropChange={setCrop}
           onCropComplete={(croppedArea, croppedAreaPixels) => {
@@ -55,7 +55,6 @@ export default function InputImageCrop({ className, name, url }: Props) {
       </div>
       <div className="flex gap-4 mt-4">
         <CropPreview {...debouncedCrop} imgUrl={url} />
-        <CropPreview {...debouncedCrop} imgUrl={url} square />
       </div>
     </div>
   );

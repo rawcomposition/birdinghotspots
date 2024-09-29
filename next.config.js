@@ -14,6 +14,10 @@ const nextConfig = {
         source: "/api/image-proxy/ebird/:path*",
         destination: "https://cdn.download.ams.birds.cornell.edu/:path*",
       },
+      {
+        source: "/api/image-proxy/wikipedia/:path*",
+        destination: "https://upload.wikimedia.org/:path*",
+      },
     ];
   },
 };

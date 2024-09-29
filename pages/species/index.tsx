@@ -61,7 +61,7 @@ export default function SpeciesList({
         <div className="flex flex-col gap-4">
           {species.map((species) => (
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
-              <Link href={`/species/${species._id}/edit`}>
+              <Link href={`/species/${species._id}/edit`} target="_blank">
                 {species.hasImg ? (
                   <img
                     src={
@@ -81,7 +81,7 @@ export default function SpeciesList({
                 )}
               </Link>
               <div>
-                <Link href={`/species/${species._id}/edit`} className="text-gray-600">
+                <Link href={`/species/${species._id}/edit`} className="text-gray-600" target="_blank">
                   <h2 className="text-lg font-bold mb-2">{species.name}</h2>
                 </Link>
                 <div className="flex gap-4 text-[13px] text-gray-500">
@@ -96,7 +96,11 @@ export default function SpeciesList({
                   </span>
                 </div>
                 <div className="flex gap-4">
-                  <Link className="text-sky-600 hover:text-sky-700 font-semibold" href={`/species/${species._id}/edit`}>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`/species/${species._id}/edit`}
+                    target="_blank"
+                  >
                     {species.hasImg ? "Replace Image" : "Add Image"}
                   </Link>
                   {ApprovedPhotographers.filter((p) => p.sciNames.includes(species.sciName)).map((p) => {
@@ -114,6 +118,13 @@ export default function SpeciesList({
                     }
                     return null;
                   })}
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://www.google.com/search?q=${species.name}`}
+                    target="_blank"
+                  >
+                    Google
+                  </Link>
                   <button
                     type="button"
                     className="text-sky-600 hover:text-sky-700 font-semibold"

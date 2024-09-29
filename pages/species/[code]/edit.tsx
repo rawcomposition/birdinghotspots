@@ -54,7 +54,6 @@ export default function Import({ data, code }: Props) {
   const iNatFileExt = form.watch("iNatFileExt");
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
-    refetchInterval: 60000,
     queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
     enabled: !!source && (!!sourceId || !!iNatObsId),
     retry: false,
@@ -62,14 +61,17 @@ export default function Import({ data, code }: Props) {
 
   React.useEffect(() => {
     if (sourceInfo?.info) {
-      form.setValue("author", sourceInfo.info.author);
-      if (sourceInfo.info.license) {
+      const values = form.getValues();
+      if (!values.author) {
+        form.setValue("author", sourceInfo.info.author);
+      }
+      if (sourceInfo.info.license && !values.license) {
         form.setValue("license", sourceInfo.info.license);
       }
-      if (sourceInfo.info.iNatFileExt) {
+      if (sourceInfo.info.iNatFileExt && !values.iNatFileExt) {
         form.setValue("iNatFileExt", sourceInfo.info.iNatFileExt);
       }
-      if (sourceInfo.info.sourceIds?.length) {
+      if (sourceInfo.info.sourceIds?.length && !values.sourceId) {
         form.setValue("sourceId", sourceInfo.info.sourceIds[0]?.toString());
       }
     }
