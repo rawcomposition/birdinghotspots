@@ -69,6 +69,7 @@ export default function SpeciesList({
                         source: species.source,
                         sourceId: species.sourceId,
                         size: species.source === "ebird" ? 320 : 240,
+                        ext: species.iNatFileExt,
                       }) || ""
                     }
                     alt={species.name}
@@ -188,7 +189,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const totalPages = Math.ceil(filteredCount / limit);
   const percent = ((withImgCount / totalCount) * 100).toFixed(1);
 
-  const speciesRes = await Species.find(query, ["_id", "name", "source", "sourceId", "hasImg", "sciName"])
+  const speciesRes = await Species.find(query, [
+    "_id",
+    "name",
+    "source",
+    "sourceId",
+    "hasImg",
+    "sciName",
+    "iNatFileExt",
+  ])
     .sort({ order: 1 })
     .skip(skip)
     .limit(limit);

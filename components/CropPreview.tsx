@@ -7,11 +7,12 @@ type CropPreviewProps = {
   width: number;
   height: number;
   imgUrl: string;
+  round?: boolean;
 };
 
-const PREVIEW_SIZE = 150;
+const PREVIEW_SIZE = 100;
 
-const CropPreview = React.memo(({ x, y, width, height, imgUrl }: CropPreviewProps) => {
+const CropPreview = React.memo(({ x, y, width, height, imgUrl, round }: CropPreviewProps) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [croppedImageUrl, setCroppedImageUrl] = React.useState<string | null>(null);
 
@@ -52,7 +53,7 @@ const CropPreview = React.memo(({ x, y, width, height, imgUrl }: CropPreviewProp
   }, [x, y, width, height, proxyImgUrl]);
 
   return (
-    <div>
+    <div className={round ? "rounded-full overflow-hidden" : ""}>
       <canvas ref={canvasRef} style={{ display: "none" }} />
       {croppedImageUrl && (
         <img src={croppedImageUrl} alt="Cropped Preview" width={PREVIEW_SIZE} height={PREVIEW_SIZE} />

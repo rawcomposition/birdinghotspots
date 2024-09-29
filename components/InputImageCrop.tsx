@@ -55,6 +55,7 @@ export default function InputImageCrop({ className, name, url }: Props) {
       </div>
       <div className="flex gap-4 mt-4">
         <CropPreview {...debouncedCrop} imgUrl={url} />
+        <CropPreview {...debouncedCrop} imgUrl={url} round />
       </div>
     </div>
   );
