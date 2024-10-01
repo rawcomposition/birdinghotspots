@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     await Promise.all(
       IMG_SIZES.map(async (size) => {
-        const outputPath = path.join(process.cwd(), "species-images", `${_id}-${size}.jpg`);
+        const outputPath = path.join(process.cwd(), "public", "species-images", `${_id}-${size}.jpg`);
         const image = sharp(buffer);
 
         await image
