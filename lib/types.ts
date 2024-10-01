@@ -498,7 +498,7 @@ export type SpeciesT = {
   crop: Crop;
   iNatObsId?: string;
   iNatFileExt?: string;
-  needsDownload?: boolean;
+  downloadedAt?: Date;
 };
 
 export type SpeciesInput = {

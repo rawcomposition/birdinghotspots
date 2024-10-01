@@ -82,9 +82,7 @@ export default function SpeciesList({
                 )}
               </Link>
               <div>
-                <Link href={`/species/${species._id}/edit`} className="text-gray-600" target="_blank">
-                  <h2 className="text-lg font-bold mb-2">{species.name}</h2>
-                </Link>
+                <h2 className="text-lg font-bold mb-2">{species.name}</h2>
                 <div className="flex gap-4 text-[13px] text-gray-500">
                   <span>
                     Source: <strong>{ImgSourceLabel[species.source] || "Unknown"}</strong>
@@ -130,6 +128,7 @@ export default function SpeciesList({
                     type="button"
                     className="text-sky-600 hover:text-sky-700 font-semibold"
                     onClick={() => {
+                      open(`/species/${species._id}/edit`, "_blank");
                       open(
                         `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc`,
                         "_blank"

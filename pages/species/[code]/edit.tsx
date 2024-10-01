@@ -111,14 +111,10 @@ export default function Import({ data, code }: Props) {
         <Form form={form} onSubmit={handleSubmit}>
           <div className="max-w-2xl mx-auto">
             <div className=" bg-white space-y-6">
-              <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data.name}</h2>
-              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.name && (
-                <div className="bg-amber-50 p-4 rounded-md">
-                  <p className="text-sm text-amber-700">
-                    The iNaturalist species name is <strong>{sourceInfo?.info?.speciesName}</strong> does not match.
-                  </p>
-                </div>
-              )}
+              <div>
+                <h2 className="text-xl font-bold text-gray-600 mb-1">{data.name}</h2>
+                <h3 className="text-md text-gray-500 border-b pb-3 italic">{data.sciName}</h3>
+              </div>
               <RadioGroup
                 label="Source"
                 name="source"
@@ -169,6 +165,13 @@ export default function Import({ data, code }: Props) {
                   name="crop"
                   url={getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
                 />
+              )}
+              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.name && (
+                <div className="bg-amber-50 p-4 rounded-md">
+                  <p className="text-sm text-amber-700">
+                    The iNaturalist species name is <strong>{sourceInfo?.info?.speciesName}</strong> does not match.
+                  </p>
+                </div>
               )}
             </div>
             <div className="flex justify-end mt-4">

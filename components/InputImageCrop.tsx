@@ -32,6 +32,7 @@ export default function InputImageCrop({ className, name, url }: Props) {
           zoom={zoom}
           aspect={1}
           zoomSpeed={0.25}
+          maxZoom={4}
           onCropChange={setCrop}
           onCropComplete={(croppedArea, croppedAreaPixels) => {
             field.onChange({

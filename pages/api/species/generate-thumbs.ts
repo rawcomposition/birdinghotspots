@@ -6,7 +6,7 @@ import sharp from "sharp";
 import path from "path";
 
 const SOURCE = "inat";
-const LIMIT = 10;
+const LIMIT = 100;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
@@ -15,10 +15,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
 
-  const species = await Species.find({ source: SOURCE }).limit(LIMIT);
+  const species = await Species.find({ source: SOURCE, downloadedAt: { $exists: false } }).limit(LIMIT);
 
-  for (const { source, sourceId, crop, _id } of species) {
-    let original = getSourceUrl({ source, sourceId, size: 2400 });
+  for (const { source, sourceId, crop, _id, iNatFileExt } of species) {
+    let original = getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt });
     if (!original) {
       console.log("No original for", sourceId);
       continue;
@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       })
     );
 
-    await Species.updateOne({ _id }, { needsDownload: false });
+    await Species.updateOne({ _id }, { downloadedAt: new Date() });
   }
 
   res.status(200).json({ success: true });
