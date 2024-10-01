@@ -7,12 +7,12 @@ type CropPreviewProps = {
   width: number;
   height: number;
   imgUrl: string;
-  round?: boolean;
 };
 
-const PREVIEW_SIZE = 100;
+const PREVIEW_WIDTH = 150;
+const ASPECT_RATIO = 3 / 4;
 
-const CropPreview = React.memo(({ x, y, width, height, imgUrl, round }: CropPreviewProps) => {
+const CropPreview = React.memo(({ x, y, width, height, imgUrl }: CropPreviewProps) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [croppedImageUrl, setCroppedImageUrl] = React.useState<string | null>(null);
 
@@ -27,8 +27,8 @@ const CropPreview = React.memo(({ x, y, width, height, imgUrl, round }: CropPrev
       if (canvas) {
         const ctx = canvas.getContext("2d");
         if (ctx) {
-          const previewWidth = PREVIEW_SIZE * 2;
-          const previewHeight = PREVIEW_SIZE * 2;
+          const previewWidth = PREVIEW_WIDTH * 2;
+          const previewHeight = PREVIEW_WIDTH * ASPECT_RATIO * 2;
           canvas.width = previewWidth;
           canvas.height = previewHeight;
 
@@ -53,10 +53,20 @@ const CropPreview = React.memo(({ x, y, width, height, imgUrl, round }: CropPrev
   }, [x, y, width, height, proxyImgUrl]);
 
   return (
-    <div className={round ? "rounded-full overflow-hidden" : ""}>
+    <div>
       <canvas ref={canvasRef} style={{ display: "none" }} />
       {croppedImageUrl && (
-        <img src={croppedImageUrl} alt="Cropped Preview" width={PREVIEW_SIZE} height={PREVIEW_SIZE} />
+        <img
+          src={croppedImageUrl}
+          alt="Cropped Preview"
+          width={PREVIEW_WIDTH}
+          height={PREVIEW_WIDTH * ASPECT_RATIO}
+          style={{
+            width: PREVIEW_WIDTH,
+            height: PREVIEW_WIDTH * ASPECT_RATIO,
+          }}
+          className="object-cover"
+        />
       )}
     </div>
   );

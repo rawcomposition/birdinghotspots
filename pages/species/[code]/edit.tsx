@@ -49,8 +49,8 @@ export default function Import({ data, code }: Props) {
 
   const source = form.watch("source");
   const sourceIdValue = form.watch("sourceId");
-  const sourceId = sourceIdValue?.replace("ML", "").trim();
-  const iNatObsId = form.watch("iNatObsId")?.trim();
+  const sourceId = sourceIdValue?.replace("ML", "")?.trim();
+  const iNatObsId = form.watch("iNatObsId")?.replace("https://www.inaturalist.org/observations/", "")?.trim();
   const iNatFileExt = form.watch("iNatFileExt");
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
@@ -102,7 +102,11 @@ export default function Import({ data, code }: Props) {
       delete data.iNatObsId;
     }
 
-    mutation.mutate({ ...data, sourceId: data.sourceId.replace("ML", "").trim() });
+    mutation.mutate({
+      ...data,
+      sourceId: data.sourceId.replace("ML", "").trim(),
+      iNatObsId: data.iNatObsId?.replace("https://www.inaturalist.org/observations/", "").trim(),
+    });
   };
 
   return (

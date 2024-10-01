@@ -73,10 +73,10 @@ export default function SpeciesList({
                       }) || ""
                     }
                     alt={species.name}
-                    className="aspect-square object-cover w-[120px] rounded-md"
+                    className="aspect-[4/3] object-cover w-[120px] rounded-md"
                   />
                 ) : (
-                  <div className="aspect-square flex items-center text-gray-500 text-sm justify-center w-[120px] rounded-md bg-gray-200">
+                  <div className="aspect-[4/3] flex items-center text-gray-500 text-sm justify-center w-[120px] rounded-md bg-gray-200">
                     No Image
                   </div>
                 )}
