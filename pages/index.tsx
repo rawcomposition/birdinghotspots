@@ -56,6 +56,9 @@ export default function Home({ featured, northAmericaRegions }: Props) {
               <Link href="/region/NA" className="font-bold px-2 py-1 text-base mb-1 block">
                 Namibia
               </Link>
+              <Link href="/region/ZA" className="font-bold px-2 py-1 text-base mb-1 block">
+                South Africa
+              </Link>
               <Link href="/region/GS" className="font-bold px-2 py-1 text-base mb-1 block">
                 South Georgia and South Sandwich Islands
               </Link>

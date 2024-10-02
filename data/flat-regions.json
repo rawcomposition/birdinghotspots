@@ -13602,5 +13602,45 @@
   {
     "code": "TR-73",
     "name": "Şırnak, Türkiye"
+  },
+  {
+    "code": "ZA",
+    "name": "South Africa"
+  },
+  {
+    "code": "ZA-EC",
+    "name": "Eastern Cape, South Africa"
+  },
+  {
+    "code": "ZA-FS",
+    "name": "Free State, South Africa"
+  },
+  {
+    "code": "ZA-GT",
+    "name": "Gauteng, South Africa"
+  },
+  {
+    "code": "ZA-NL",
+    "name": "Kwazulu-Natal, South Africa"
+  },
+  {
+    "code": "ZA-LP",
+    "name": "Limpopo, South Africa"
+  },
+  {
+    "code": "ZA-MP",
+    "name": "Mpumalanga, South Africa"
+  },
+  {
+    "code": "ZA-NW",
+    "name": "North-West, South Africa"
+  },
+  {
+    "code": "ZA-NC",
+    "name": "Northern Cape, South Africa"
+  },
+  {
+    "code": "ZA-WC",
+    "name": "Western Cape, South Africa"
   }
 ]
