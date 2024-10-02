@@ -19,6 +19,8 @@ import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
 import { getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
+import Button from "components/Button";
+import { useRouter } from "next/router";
 
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
@@ -31,6 +33,8 @@ type Props = {
 };
 
 export default function Import({ data, code }: Props) {
+  const router = useRouter();
+
   const form = useForm<SpeciesInput>({
     defaultValues: data.hasImg
       ? {
@@ -91,6 +95,15 @@ export default function Import({ data, code }: Props) {
     successMessage: "Image imported successfully",
   });
 
+  const removeMutation = useMutation({
+    url: `/api/species/${code}/reset`,
+    method: "DELETE",
+    successMessage: "Image removed successfully",
+    onSuccess: () => {
+      router.reload();
+    },
+  });
+
   const handleSubmit: SubmitHandler<SpeciesInput> = async (data) => {
     if (!data.sourceId) {
       toast.error("Please enter a source ID");
@@ -107,6 +120,11 @@ export default function Import({ data, code }: Props) {
       sourceId: data.sourceId.replace("ML", "").trim(),
       iNatObsId: data.iNatObsId?.replace("https://www.inaturalist.org/observations/", "").trim(),
     });
+  };
+
+  const handleRemove = () => {
+    if (!confirm("Are you sure you want to remove the image?")) return;
+    removeMutation.mutate({});
   };
 
   return (
@@ -178,7 +196,10 @@ export default function Import({ data, code }: Props) {
                 </div>
               )}
             </div>
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end gap-4 mt-4">
+              <Button onClick={handleRemove} color="gray" className="font-medium" disabled={mutation.isPending}>
+                Remove Image
+              </Button>
               <Submit disabled={mutation.isPending} color="green" className="font-medium">
                 Save
               </Submit>

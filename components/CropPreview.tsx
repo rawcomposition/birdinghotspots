@@ -9,7 +9,7 @@ type CropPreviewProps = {
   imgUrl: string;
 };
 
-const PREVIEW_WIDTH = 150;
+const PREVIEW_WIDTH = 120;
 const ASPECT_RATIO = 3 / 4;
 
 const CropPreview = React.memo(({ x, y, width, height, imgUrl }: CropPreviewProps) => {
@@ -65,7 +65,7 @@ const CropPreview = React.memo(({ x, y, width, height, imgUrl }: CropPreviewProp
             width: PREVIEW_WIDTH,
             height: PREVIEW_WIDTH * ASPECT_RATIO,
           }}
-          className="object-cover"
+          className="object-cover rounded"
         />
       )}
     </div>
