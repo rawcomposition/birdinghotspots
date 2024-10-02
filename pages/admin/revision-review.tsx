@@ -124,7 +124,6 @@ export default function RevisionReview() {
             onChange={handleStatusUpdate}
             options={statusOptions}
             name="status"
-            inline
             instanceId="status"
             className="max-w-[150px]"
           />

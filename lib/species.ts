@@ -1,7 +1,31 @@
-import { SpeciesT } from "lib/types";
+import { ImgSource } from "lib/types";
 
-export const getSourceUrl = ({ source, sourceId }: SpeciesT, size: number = 320) => {
+export const IMG_SIZES = [240, 320, 480, 900];
+
+type GetSourceUrlParams = {
+  source: ImgSource;
+  sourceId: string;
+  size: number;
+  ext?: string;
+};
+
+export const getSourceUrl = ({ source, sourceId, size, ext }: GetSourceUrlParams) => {
   if (source === "wikipedia") {
     return `https://upload.wikimedia.org/wikipedia/commons/thumb/${sourceId.replace("320", size.toString())}`;
+  } else if (source === "ebird") {
+    return `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${sourceId}/${Math.min(size, 2400)}`;
+  } else if (source === "inat") {
+    const sizeMap: { [key: number]: string } = {
+      2048: "original",
+      1024: "large",
+      500: "medium",
+      240: "small",
+      100: "thumb",
+      75: "square",
+    };
+    const sizeName = sizeMap[Math.min(size, 2048)];
+    if (!sizeName) throw new Error(`Invalid iNaturalist size: ${size}`);
+    return `https://inaturalist-open-data.s3.amazonaws.com/photos/${sourceId}/${sizeName}.${ext || "jpg"}`;
   }
+  return null;
 };

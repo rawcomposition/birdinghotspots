@@ -37,3 +37,4 @@ public/top10/*.json
 .sentryclirc
 notes.md
 /public/tinymce
+/public/species-images

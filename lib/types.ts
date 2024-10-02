@@ -374,26 +374,6 @@ export type Pageview = {
   month: number;
 };
 
-export type SpeciesT = {
-  _id: string;
-  hasImg: boolean;
-  name: string;
-  sciName: string;
-  order: number;
-  images: [
-    {
-      sm: string;
-      md: string;
-      lg: string;
-    }
-  ];
-  source: string;
-  sourceId: string;
-  author: string;
-  license: string;
-  active: boolean;
-};
-
 export type Token = {
   uid: string;
   role?: string;
@@ -461,4 +441,72 @@ export type PhotoBatchT = {
     status: string;
   }[];
   createdAt: string;
+};
+
+export type SourceInfoT = {
+  author: string;
+  license?: License;
+  sourceIds?: string[];
+  iNatFileExt?: string;
+  speciesName?: string;
+};
+
+export type Crop = {
+  percent: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  pixel: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+};
+
+export type ImgSource = "ebird" | "inat" | "wikipedia";
+export const ImgSourceLabel: Record<ImgSource, string> = {
+  inat: "iNaturalist",
+  ebird: "eBird",
+  wikipedia: "Wikipedia",
+};
+
+export type License = "cc-by" | "cc-by-sa" | "cc-by-nd" | "cc-by-nc" | "cc-by-nc-sa" | "cc-by-nc-nd" | "cc0";
+export const LicenseLabel: Record<License, string> = {
+  cc0: "CC0",
+  "cc-by": "CC BY",
+  "cc-by-sa": "CC BY-SA",
+  "cc-by-nd": "CC BY-ND",
+  "cc-by-nc": "CC BY-NC",
+  "cc-by-nc-sa": "CC BY-NC-SA",
+  "cc-by-nc-nd": "CC BY-NC-ND",
+};
+
+export type SpeciesT = {
+  _id: string;
+  hasImg: boolean;
+  name: string;
+  sciName: string;
+  order: number;
+  source: ImgSource;
+  sourceId: string;
+  author: string;
+  license: License;
+  active: boolean;
+  crop: Crop;
+  iNatObsId?: string;
+  iNatFileExt?: string;
+  downloadedAt?: Date;
+};
+
+export type SpeciesInput = {
+  source: ImgSource;
+  sourceId: string;
+  author: string;
+  crop: Crop;
+  license: License;
+  iNatObsId?: string;
+  iNatFileExt?: string;
 };
