@@ -61,7 +61,7 @@ export default function SpeciesList({
           {species.map((species) => (
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
               <Link href={`/species/${species._id}/edit`} target="_blank">
-                {species.hasImg ? (
+                {species.hasImg && (species.downloadedAt || species.source === "wikipedia") ? (
                   <img
                     src={
                       getSourceUrl({
@@ -76,7 +76,7 @@ export default function SpeciesList({
                   />
                 ) : (
                   <div className="aspect-[4/3] flex items-center text-gray-500 text-sm justify-center w-[120px] rounded-md bg-gray-200">
-                    No Image
+                    {!species.hasImg ? "No Image" : "Pending"}
                   </div>
                 )}
               </Link>

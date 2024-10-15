@@ -1,6 +1,6 @@
 import { ImgSource } from "lib/types";
 
-export const IMG_SIZES = [240, 320, 480, 900];
+export const IMG_SIZES = [240, 320, 480, 900, 1200];
 
 type GetSourceUrlParams = {
   source: ImgSource;

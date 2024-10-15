@@ -5,9 +5,6 @@ import { IMG_SIZES, getSourceUrl } from "lib/species";
 import sharp from "sharp";
 import path from "path";
 
-const SOURCE = "inat";
-const LIMIT = 100;
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
     return res.status(403).json({ success: false, error: "Not allowed" });
@@ -15,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
 
-  const species = await Species.find({ source: SOURCE, downloadedAt: { $exists: false } }).limit(LIMIT);
+  const species = await Species.find({ downloadedAt: { $exists: false } });
 
   for (const { source, sourceId, crop, _id, iNatFileExt } of species) {
     let original = getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt });

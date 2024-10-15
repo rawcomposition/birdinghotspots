@@ -9,9 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
 
-  const unsetCodes: string[] = [];
-
-  await Species.updateMany({ _id: { $in: unsetCodes } }, { $unset: { source: "", sourceId: "", hasImg: "" } });
+  await Species.updateMany({}, { $unset: { downloadedAt: "" } });
 
   res.status(200).json({ success: true });
 }
