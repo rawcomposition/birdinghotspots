@@ -6,7 +6,8 @@ import Submit from "components/Submit";
 import Input from "components/Input";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
-import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel, ImgSource } from "lib/types";
+import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel } from "lib/types";
+import { LicenseLabel } from "lib/types";
 import Field from "components/Field";
 import FormError from "components/FormError";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
@@ -115,6 +116,11 @@ export default function Import({ data, code }: Props) {
       delete data.iNatObsId;
     }
 
+    if (!Object.keys(LicenseLabel).includes(data.license)) {
+      toast.error("Please select a valid license");
+      return;
+    }
+
     mutation.mutate({
       ...data,
       sourceId: data.sourceId.replace("ML", "").trim(),
@@ -188,10 +194,11 @@ export default function Import({ data, code }: Props) {
                   url={getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
                 />
               )}
-              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.name && (
+              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
                 <div className="bg-amber-50 p-4 rounded-md">
                   <p className="text-sm text-amber-700">
-                    The iNaturalist species name is <strong>{sourceInfo?.info?.speciesName}</strong> does not match.
+                    The iNaturalist scientific name <strong>{sourceInfo?.info?.speciesName}</strong> does not match{" "}
+                    <strong>{data.sciName}</strong>.
                   </p>
                 </div>
               )}

@@ -6,7 +6,6 @@ import { ImgSourceLabel, LicenseLabel, SpeciesT } from "lib/types";
 import Species from "models/Species";
 import AdminPage from "components/AdminPage";
 import { getSourceUrl } from "lib/species";
-import ApprovedPhotographers from "data/approved-photographers.json";
 import clsx from "clsx";
 import connect from "lib/mongo";
 
@@ -102,21 +101,6 @@ export default function SpeciesList({
                   >
                     {species.hasImg ? "Replace Image" : "Add Image"}
                   </Link>
-                  {ApprovedPhotographers.filter((p) => p.sciNames.includes(species.sciName)).map((p) => {
-                    if (p.source === "ebird") {
-                      return (
-                        <Link
-                          key={p.userId}
-                          className="text-sky-600 hover:text-sky-700 font-semibold"
-                          href={`https://media.ebird.org/catalog?sort=rating_rank_desc&userId=${p.userId}&taxonCode=${species._id}&view=grid`}
-                          target="_blank"
-                        >
-                          {p.name}&apos;s Media
-                        </Link>
-                      );
-                    }
-                    return null;
-                  })}
                   <Link
                     className="text-sky-600 hover:text-sky-700 font-semibold"
                     href={`https://www.google.com/search?q=${species.name}`}
@@ -130,11 +114,7 @@ export default function SpeciesList({
                     onClick={() => {
                       open(`/species/${species._id}/edit`, "_blank");
                       open(
-                        `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc`,
-                        "_blank"
-                      );
-                      open(
-                        `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by`,
+                        `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc,cc-by`,
                         "_blank"
                       );
                       open(`https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc0`, "_blank");
