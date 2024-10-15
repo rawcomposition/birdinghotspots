@@ -8,6 +8,7 @@ import AdminPage from "components/AdminPage";
 import { getSourceUrl } from "lib/species";
 import clsx from "clsx";
 import connect from "lib/mongo";
+import XMark from "icons/XMark";
 
 const PER_PAGE = 200;
 
@@ -62,18 +63,25 @@ export default function SpeciesList({
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
               <Link href={`/species/${species._id}/edit`} target="_blank">
                 {species.hasImg && (species.downloadedAt || species.source === "wikipedia") ? (
-                  <img
-                    src={
-                      getSourceUrl({
-                        source: species.source,
-                        sourceId: species.sourceId,
-                        size: species.source === "ebird" ? 320 : 240,
-                        ext: species.iNatFileExt,
-                      }) || ""
-                    }
-                    alt={species.name}
-                    className="aspect-[4/3] object-cover w-[120px] rounded-md"
-                  />
+                  <div className="relative">
+                    <img
+                      src={
+                        getSourceUrl({
+                          source: species.source,
+                          sourceId: species.sourceId,
+                          size: species.source === "ebird" ? 320 : 240,
+                          ext: species.iNatFileExt,
+                        }) || ""
+                      }
+                      alt={species.name}
+                      className="aspect-[4/3] object-cover w-[120px] rounded-md"
+                    />
+                    {!species.crop && (
+                      <div className="absolute top-0 left-0 bg-white/50 w-5 h-5 flex justify-center items-center rounded-br">
+                        <XMark className="text-red-500" />
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <div className="aspect-[4/3] flex items-center text-gray-500 text-sm justify-center w-[120px] rounded-md bg-gray-200">
                     {!species.hasImg ? "No Image" : "Pending"}
