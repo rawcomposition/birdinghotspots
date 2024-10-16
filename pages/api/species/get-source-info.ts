@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { get } from "lib/helpers";
 import { SourceInfoT } from "lib/types";
 
 type Location = {
@@ -59,6 +58,30 @@ type Asset = {
   ebirdChecklistId: string;
 };
 
+function stripHtmlTags(text: string): string {
+  return text?.replace(/<[^>]*>/g, "") || "";
+}
+
+export async function fetchWikipediaMetadata(fileName: string) {
+  const url = `https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=extmetadata&format=json&origin=*&titles=File:${fileName}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  const pages = data.query.pages;
+
+  const page = Object.values(pages)[0] as any;
+  if (page && page.imageinfo && page.imageinfo[0].extmetadata) {
+    const metadata = page.imageinfo[0].extmetadata;
+    const rawAuthor = metadata.Artist?.value || null;
+    const author = stripHtmlTags(rawAuthor)?.trim() || null;
+    const license = metadata.License?.value?.trim() || null;
+
+    return { author, license };
+  } else {
+    throw new Error("Metadata not found for the specified media file.");
+  }
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
     return res.status(403).json({ success: false, error: "Not allowed" });
@@ -74,7 +97,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const url = `https://ebird.org/ml-search-api/asset-info?assetId=${sourceId}&taxaLocale=en`;
       const request = await fetch(url, {
         headers: {
-          // This user agent seems to be allowed by eBird
           "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
         },
       });
@@ -100,6 +122,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         sourceIds: obs.photos?.map((photo: any) => photo.id),
         iNatFileExt: ext,
         speciesName: speciesName,
+      };
+
+      res.status(200).json({ success: true, info });
+    } else if (source === "wikipedia") {
+      const fileName = (sourceId as string).split("px-").pop();
+      if (!fileName) throw new Error("Invalid sourceId");
+      const metadata = await fetchWikipediaMetadata(fileName);
+
+      const info: SourceInfoT = {
+        author: metadata.author || "",
+        license: metadata.license || "",
       };
 
       res.status(200).json({ success: true, info });

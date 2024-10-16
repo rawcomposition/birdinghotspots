@@ -186,7 +186,11 @@ export default function Import({ data, code }: Props) {
               </Field>
 
               <Field label="License" required>
-                <SelectLicense name="license" instanceId="license" />
+                {source === "inat" ? (
+                  <SelectLicense name="license" instanceId="license" />
+                ) : (
+                  <Input type="text" name="license" />
+                )}
                 <FormError name="license" />
               </Field>
 
@@ -197,8 +201,6 @@ export default function Import({ data, code }: Props) {
                 />
               )}
 
-              <Checkbox name="flip" label="Flip Image" />
-
               {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
                 <div className="bg-amber-50 p-4 rounded-md">
                   <p className="text-sm text-amber-700">
@@ -208,10 +210,16 @@ export default function Import({ data, code }: Props) {
                 </div>
               )}
             </div>
-            <div className="flex justify-end gap-4 mt-4">
-              <Button onClick={handleRemove} color="gray" className="font-medium" disabled={mutation.isPending}>
+            <div className="flex gap-4 mt-6 items-center">
+              <button
+                type="button"
+                onClick={handleRemove}
+                className="font-medium mr-auto text-red-700 rounded-md border border-red-700 px-3 py-1.5 opacity-70 hover:opacity-100"
+                disabled={mutation.isPending}
+              >
                 Remove Image
-              </Button>
+              </button>
+              <Checkbox name="flip" label="Flip Image" />
               <Submit disabled={mutation.isPending} color="green" className="font-medium">
                 Save
               </Submit>

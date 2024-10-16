@@ -25,6 +25,7 @@ type Props = {
   withoutImgCount: number;
   filter: string;
   family: string;
+  startCount: number;
 };
 
 export default function SpeciesList({
@@ -37,6 +38,7 @@ export default function SpeciesList({
   withoutImgCount,
   filter,
   family,
+  startCount,
 }: Props) {
   const router = useRouter();
   const selectedFamily = Families.find((f) => f.code === family);
@@ -90,7 +92,7 @@ export default function SpeciesList({
           Filtered count: <strong>{filteredCount.toLocaleString()}</strong>
         </p>
         <div className="flex flex-col gap-4">
-          {species.map((species) => (
+          {species.map((species, index) => (
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
               <Link href={`/species/${species._id}/edit`} target="_blank">
                 {species.hasImg && (species.downloadedAt || !species.crop) ? (
@@ -122,7 +124,10 @@ export default function SpeciesList({
                 )}
               </Link>
               <div>
-                <h2 className="text-lg font-bold mb-2">{species.name}</h2>
+                <h2 className="text-lg font-bold mb-2">
+                  <span className="font-medium text-gray-500 text-[17px]">{index + 1 + startCount}.</span>{" "}
+                  {species.name}
+                </h2>
                 <div className="flex gap-4 text-[13px] text-gray-500">
                   <span>
                     Source: <strong>{ImgSourceLabel[species.source] || "Unknown"}</strong>
@@ -215,6 +220,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const withImgCount = await Species.countDocuments({ hasImg: true });
   const totalPages = Math.ceil(filteredCount / limit);
   const percent = ((withImgCount / totalCount) * 100).toFixed(1);
+  const startCount = (page - 1) * limit;
 
   const speciesRes = await Species.find(query, [
     "_id",
@@ -226,6 +232,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     "iNatFileExt",
     "downloadedAt",
     "crop",
+    "license",
+    "author",
   ])
     .sort({ order: 1 })
     .skip(skip)
@@ -244,6 +252,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       withoutImgCount: totalCount - withImgCount,
       filter,
       family,
+      startCount,
     },
   };
 };
