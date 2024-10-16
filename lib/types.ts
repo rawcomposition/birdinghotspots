@@ -446,6 +446,7 @@ export type PhotoBatchT = {
 export type SourceInfoT = {
   author: string;
   license?: License;
+  licenseVer?: string;
   sourceIds?: string[];
   iNatFileExt?: string;
   speciesName?: string;
@@ -509,6 +510,7 @@ export type SpeciesInput = {
   author: string;
   crop: Crop;
   license: License;
+  licenseVer?: string;
   iNatObsId?: string;
   iNatFileExt?: string;
   flip?: boolean;

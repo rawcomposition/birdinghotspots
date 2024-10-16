@@ -18,7 +18,7 @@ import SelectiNatSourceId from "components/SelectiNatSourceId";
 import connect from "lib/mongo";
 import useMutation from "hooks/useMutation";
 import SelectLicense from "components/SelectLicense";
-import { getSourceUrl } from "lib/species";
+import { getSourceImgUrl, getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
 import Button from "components/Button";
 import { useRouter } from "next/router";
@@ -44,6 +44,7 @@ export default function Import({ data, code }: Props) {
           sourceId: data.sourceId,
           author: data.author,
           license: data.license,
+          licenseVer: data.licenseVer,
           crop: data.crop,
           iNatObsId: data.iNatObsId,
           iNatFileExt: data.iNatFileExt,
@@ -59,6 +60,7 @@ export default function Import({ data, code }: Props) {
   const sourceId = sourceIdValue?.replace("ML", "")?.trim();
   const iNatObsId = form.watch("iNatObsId")?.replace("https://www.inaturalist.org/observations/", "")?.trim();
   const iNatFileExt = form.watch("iNatFileExt");
+  const sourceUrl = getSourceUrl(source, sourceId);
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
     queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
@@ -74,6 +76,9 @@ export default function Import({ data, code }: Props) {
       }
       if (sourceInfo.info.license && !values.license) {
         form.setValue("license", sourceInfo.info.license);
+      }
+      if (sourceInfo.info.licenseVer && !values.licenseVer) {
+        form.setValue("licenseVer", sourceInfo.info.licenseVer);
       }
       if (sourceInfo.info.iNatFileExt && !values.iNatFileExt) {
         form.setValue("iNatFileExt", sourceInfo.info.iNatFileExt);
@@ -101,7 +106,6 @@ export default function Import({ data, code }: Props) {
   const removeMutation = useMutation({
     url: `/api/species/${code}/reset`,
     method: "DELETE",
-    successMessage: "Image removed successfully",
     onSuccess: () => {
       router.reload();
     },
@@ -113,7 +117,9 @@ export default function Import({ data, code }: Props) {
       return;
     }
 
-    if (data.source !== "inat") {
+    if (data.source === "inat") {
+      delete data.licenseVer;
+    } else {
       delete data.iNatFileExt;
       delete data.iNatObsId;
     }
@@ -165,6 +171,11 @@ export default function Import({ data, code }: Props) {
                 <Field label={source === "ebird" ? "ML ID" : "Wikipedia Slug"} required>
                   <Input type="text" name="sourceId" required />
                   <FormError name="sourceId" />
+                  {sourceUrl && (
+                    <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
+                      View on {source === "ebird" ? "eBird" : "Wikipedia"}
+                    </a>
+                  )}
                 </Field>
               )}
 
@@ -177,6 +188,11 @@ export default function Import({ data, code }: Props) {
                     iNatFileExt={iNatFileExt}
                   />
                   <FormError name="sourceId" />
+                  {sourceUrl && (
+                    <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
+                      View on iNaturalist
+                    </a>
+                  )}
                 </Field>
               )}
 
@@ -185,19 +201,28 @@ export default function Import({ data, code }: Props) {
                 <FormError name="author" />
               </Field>
 
-              <Field label="License" required>
-                {source === "inat" ? (
-                  <SelectLicense name="license" instanceId="license" />
-                ) : (
-                  <Input type="text" name="license" />
+              <div className={source !== "inat" ? "flex flex-col sm:flex-row items-center gap-2" : ""}>
+                <Field label="License" required>
+                  {source === "inat" ? (
+                    <SelectLicense name="license" instanceId="license" />
+                  ) : (
+                    <Input type="text" name="license" />
+                  )}
+                  <FormError name="license" />
+                </Field>
+
+                {source !== "inat" && (
+                  <Field label="License Version" required>
+                    <Input type="text" name="licenseVer" />
+                    <FormError name="licenseVer" />
+                  </Field>
                 )}
-                <FormError name="license" />
-              </Field>
+              </div>
 
               {sourceId && (
                 <InputImageCrop
                   name="crop"
-                  url={getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
+                  url={getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
                 />
               )}
 

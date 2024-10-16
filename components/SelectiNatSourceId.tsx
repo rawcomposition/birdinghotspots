@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Select, { SelectProps } from "components/Select";
-import { getSourceUrl } from "lib/species";
+import { getSourceImgUrl } from "lib/species";
 
 type Props = Omit<SelectProps, "options"> & {
   sourceIds: string[];
@@ -11,7 +11,7 @@ export default function SelectiNatSourceId({ sourceIds, iNatFileExt, ...props }:
   const options = sourceIds.map((id) => ({
     label: (
       <img
-        src={getSourceUrl({ source: "inat", sourceId: id, size: 75, ext: iNatFileExt }) || ""}
+        src={getSourceImgUrl({ source: "inat", sourceId: id, size: 75, ext: iNatFileExt }) || ""}
         width={60}
         height={60}
         alt={id}

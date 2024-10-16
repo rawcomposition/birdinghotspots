@@ -1,7 +1,7 @@
 import connect from "lib/mongo";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Species from "models/Species";
-import { IMG_SIZES, getSourceUrl } from "lib/species";
+import { IMG_SIZES, getSourceImgUrl } from "lib/species";
 import sharp from "sharp";
 import path from "path";
 
@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     .lean();
 
   for (const { source, sourceId, crop, _id, iNatFileExt, flip } of species) {
-    let original = getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt });
+    let original = getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt });
     if (!original) {
       console.log("No original for", sourceId);
       continue;

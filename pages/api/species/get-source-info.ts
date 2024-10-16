@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { SourceInfoT } from "lib/types";
+import { License, SourceInfoT } from "lib/types";
+import { formatLicense } from "lib/species";
 
 type Location = {
   locId: string;
@@ -130,9 +131,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       if (!fileName) throw new Error("Invalid sourceId");
       const metadata = await fetchWikipediaMetadata(fileName);
 
+      const { license, licenseVer } = formatLicense(metadata.license || "");
+
       const info: SourceInfoT = {
         author: metadata.author || "",
-        license: metadata.license || "",
+        license: (license as License) || "",
+        licenseVer: licenseVer || "",
       };
 
       res.status(200).json({ success: true, info });
