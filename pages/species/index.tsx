@@ -160,7 +160,7 @@ export default function SpeciesList({
                     onClick={() => {
                       open(`/species/${species._id}/edit`, "_blank");
                       open(
-                        `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc,cc-by`,
+                        `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by`,
                         "_blank"
                       );
                       open(`https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc0`, "_blank");

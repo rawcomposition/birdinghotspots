@@ -35,6 +35,7 @@ const SpeciesSchema = new Schema({
   iNatFileExt: String,
   author: String,
   license: String,
+  licenseVer: String,
   crop: {
     percent: {
       x: Number,
