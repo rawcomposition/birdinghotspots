@@ -495,6 +495,8 @@ export type SpeciesT = {
   iNatObsId?: string;
   iNatFileExt?: string;
   downloadedAt?: Date;
+  familyCode: string;
+  taxonVersions: string[];
 };
 
 export type SpeciesInput = {

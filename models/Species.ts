@@ -54,6 +54,8 @@ const SpeciesSchema = new Schema({
     default: true,
   },
   downloadedAt: Date,
+  familyCode: String,
+  taxonVersions: [String],
 });
 
 const Species = models.Species || model("Species", SpeciesSchema);
