@@ -3,8 +3,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import Species from "models/Species";
 import { fetchWikipediaMetadata } from "./get-source-info";
 
-const LIMIT = 1000;
-const DRY_RUN = true;
+const LIMIT = 200;
+const DRY_RUN = false;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
@@ -15,8 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const results = await Species.find({
     source: "wikipedia",
-    license: null,
-    author: null,
+    $or: [{ license: null }, { author: null }],
   })
     .limit(LIMIT)
     .lean();
@@ -28,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (!fileName) throw new Error("Invalid sourceId");
     try {
       const { author, license } = await fetchWikipediaMetadata(fileName);
-      if ((!author && license) !== "pd" || !license) {
+      if ((!author && license !== "pd") || !license) {
         throw new Error();
       }
       bulkWrites.push({
