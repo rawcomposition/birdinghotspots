@@ -13148,6 +13148,422 @@
     "name": "St. George's-Stephenville, Newfoundland and Labrador, Canada"
   },
   {
+    "code": "CA-QC",
+    "name": "Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AB",
+    "name": "Abitibi, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AO",
+    "name": "Abitibi-Ouest, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AC",
+    "name": "Acton, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AL",
+    "name": "Antoine-Labelle, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AG",
+    "name": "Argenteuil, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AT",
+    "name": "Arthabaska, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AV",
+    "name": "Avignon, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RC",
+    "name": "Beauce-Centre, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BS",
+    "name": "Beauce-Sartigan, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BH",
+    "name": "Beauharnois-Salaberry, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BL",
+    "name": "Bellechasse, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BO",
+    "name": "Bonaventure, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BM",
+    "name": "Brome-Missisquoi, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BC",
+    "name": "Bécancour, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CAN",
+    "name": "Caniapiscau, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CV",
+    "name": "Charlevoix, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CE",
+    "name": "Charlevoix-Est, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CT",
+    "name": "Coaticook, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-DA",
+    "name": "D'Autray, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-DM",
+    "name": "Deux-Montagnes, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-DU",
+    "name": "Drummond, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-OU",
+    "name": "Gatineau, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-JAM",
+    "name": "Jamésie, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-JO",
+    "name": "Joliette, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-KA",
+    "name": "Kamouraska, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-NQ",
+    "name": "Kativik, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AN",
+    "name": "L'Assomption, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-IS",
+    "name": "L'Islet, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-ER",
+    "name": "L'Érable, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-IO",
+    "name": "L'Île-d'Orléans, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CB",
+    "name": "La Côte-de-Beaupré, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CG",
+    "name": "La Côte-de-Gaspé, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-HC",
+    "name": "La Haute-Côte-Nord, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-DR",
+    "name": "La Haute-Gaspésie, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-HY",
+    "name": "La Haute-Yamaska, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-JC",
+    "name": "La Jacques-Cartier, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MT",
+    "name": "La Matanie, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MP",
+    "name": "La Matapédia, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MI",
+    "name": "La Mitis, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-NB",
+    "name": "La Nouvelle-Beauce, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RD",
+    "name": "La Rivière-du-Nord, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-HM",
+    "name": "La Tuque, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-VO",
+    "name": "La Vallée-de-l'Or, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-VG",
+    "name": "La Vallée-de-la-Gatineau, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-VR",
+    "name": "La Vallée-du-Richelieu, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-LS",
+    "name": "Lac-Saint-Jean-Est, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-LV",
+    "name": "Laval, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-DD",
+    "name": "Le Domaine-du-Roy, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-FS",
+    "name": "Le Fjord-du-Saguenay, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-GSL",
+    "name": "Le Golfe-du-Saint-Laurent, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-GR",
+    "name": "Le Granit, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-HR",
+    "name": "Le Haut-Richelieu, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-HF",
+    "name": "Le Haut-Saint-François, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-HL",
+    "name": "Le Haut-Saint-Laurent, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-PB",
+    "name": "Le Rocher-Percé, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-VF",
+    "name": "Le Val-Saint-François, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-APP",
+    "name": "Les Appalaches, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BA",
+    "name": "Les Basques, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-LCH",
+    "name": "Les Chenaux, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CO",
+    "name": "Les Collines-de-l'Outaouais, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-ET",
+    "name": "Les Etchemins, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-JN",
+    "name": "Les Jardins-de-Napierville, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-LL",
+    "name": "Les Laurentides, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MK",
+    "name": "Les Maskoutains, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MU",
+    "name": "Les Moulins, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-PH",
+    "name": "Les Pays-d'en-Haut, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-AS",
+    "name": "Les Sources, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-IM",
+    "name": "Les Îles-de-la-Madeleine, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CP",
+    "name": "Longueuil, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-LO",
+    "name": "Lotbinière, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-DE",
+    "name": "Lévis, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MN",
+    "name": "Manicouagan, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-LJ",
+    "name": "Marguerite-D'Youville, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MC",
+    "name": "Maria-Chapdelaine, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MS",
+    "name": "Maskinongé, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MW",
+    "name": "Matawinie, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MG",
+    "name": "Memphrémagog, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MB",
+    "name": "Minganie, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-ML",
+    "name": "Mirabel, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MO",
+    "name": "Montcalm, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MM",
+    "name": "Montmagny, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-MR",
+    "name": "Montréal, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-ME",
+    "name": "Mékinac, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-NY",
+    "name": "Nicolet-Yamaska, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-PP",
+    "name": "Papineau, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-BR",
+    "name": "Pierre-De Saurel, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-PN",
+    "name": "Pontiac, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-PR",
+    "name": "Portneuf, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-QU",
+    "name": "Québec, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RM",
+    "name": "Rimouski-Neigette, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RL",
+    "name": "Rivière-du-Loup, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RS",
+    "name": "Roussillon, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RV",
+    "name": "Rouville, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-RN",
+    "name": "Rouyn-Noranda, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-SAG",
+    "name": "Saguenay, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-SR",
+    "name": "Sept-Rivières, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-CM",
+    "name": "Shawinigan, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-SH",
+    "name": "Sherbrooke, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-TB",
+    "name": "Thérèse-De Blainville, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-FR",
+    "name": "Trois-Rivières, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-TM",
+    "name": "Témiscamingue, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-TT",
+    "name": "Témiscouata, Quebec, Canada"
+  },
+  {
+    "code": "CA-QC-VS",
+    "name": "Vaudreuil-Soulanges, Quebec, Canada"
+  },
+  {
     "code": "FO",
     "name": "Faroe Islands"
   },
