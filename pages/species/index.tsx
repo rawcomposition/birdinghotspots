@@ -72,6 +72,8 @@ export default function SpeciesList({
             onChange={(selectedOption) => {
               if (selectedOption) {
                 router.push(`/species?page=1&filter=${filter}&family=${selectedOption.value}`);
+              } else {
+                router.push(`/species?page=1&filter=${filter}`);
               }
             }}
             value={
@@ -81,6 +83,7 @@ export default function SpeciesList({
             }
             placeholder="Filter by family"
             className="w-[260px]"
+            isClearable
           />
         </div>
         <p className="mb-4 font-medium">
