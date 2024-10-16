@@ -9,6 +9,9 @@ import { getSourceUrl } from "lib/species";
 import clsx from "clsx";
 import connect from "lib/mongo";
 import XMark from "icons/XMark";
+import Families from "data/taxon-families.json";
+import SelectBasic from "components/ReactSelectStyled";
+import { useRouter } from "next/router";
 
 const PER_PAGE = 200;
 
@@ -18,8 +21,10 @@ type Props = {
   totalPages: number;
   percent: string;
   totalCount: number;
+  filteredCount: number;
   withoutImgCount: number;
   filter: string;
+  family: string;
 };
 
 export default function SpeciesList({
@@ -28,9 +33,14 @@ export default function SpeciesList({
   totalPages,
   percent,
   totalCount,
+  filteredCount,
   withoutImgCount,
   filter,
+  family,
 }: Props) {
+  const router = useRouter();
+  const selectedFamily = Families.find((f) => f.code === family);
+
   return (
     <AdminPage title="Species List">
       <div className="container py-8 mx-auto max-w-3xl">
@@ -38,9 +48,9 @@ export default function SpeciesList({
         <p className="mb-8 font-medium text-[17px]">
           Coverage: <span className="font-bold">{percent}%</span>
         </p>
-        <div className="flex gap-4 mb-4">
+        <div className="flex gap-4 mb-6 items-center">
           <Link
-            href={`/species?page=1&filter=all`}
+            href={`/species?page=1&filter=all&family=${family}`}
             className={clsx(
               "px-5 py-1 rounded-full font-medium",
               !filter || filter === "all" ? "bg-primary text-white" : "bg-gray-200 text-gray-600"
@@ -49,7 +59,7 @@ export default function SpeciesList({
             All ({totalCount.toLocaleString()})
           </Link>
           <Link
-            href={`/species?page=1&filter=withoutImg`}
+            href={`/species?page=1&filter=withoutImg&family=${family}`}
             className={clsx(
               "px-5 py-1 rounded-full font-medium",
               filter === "withoutImg" ? "bg-primary text-white" : "bg-gray-200 text-gray-600"
@@ -57,7 +67,25 @@ export default function SpeciesList({
           >
             Without Image ({withoutImgCount.toLocaleString()})
           </Link>
+          <SelectBasic
+            options={Families.map((family) => ({ label: `${family.name} (${family.count})`, value: family.code }))}
+            onChange={(selectedOption) => {
+              if (selectedOption) {
+                router.push(`/species?page=1&filter=${filter}&family=${selectedOption.value}`);
+              }
+            }}
+            value={
+              selectedFamily
+                ? { label: `${selectedFamily.name} (${selectedFamily.count})`, value: selectedFamily.code }
+                : undefined
+            }
+            placeholder="Filter by family"
+            className="w-[260px]"
+          />
         </div>
+        <p className="mb-4 font-medium">
+          Filtered count: <strong>{filteredCount.toLocaleString()}</strong>
+        </p>
         <div className="flex flex-col gap-4">
           {species.map((species) => (
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
@@ -166,13 +194,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const limit = PER_PAGE;
   const skip = (page - 1) * limit;
   const filter = context.query.filter || "all";
+  const family = context.query.family || "all";
 
-  const query = filter === "withoutImg" ? { hasImg: { $ne: true } } : {};
+  let query: any = {};
+  if (filter === "withoutImg") {
+    query = { hasImg: { $ne: true } };
+  }
+  if (family !== "all") {
+    query.familyCode = family;
+  }
 
   await connect();
   const totalCount = await Species.countDocuments({});
   const filteredCount = await Species.countDocuments(query);
-  const withImgCount = await Species.countDocuments({ ...query, hasImg: true });
+  const withImgCount = await Species.countDocuments({ hasImg: true });
   const totalPages = Math.ceil(filteredCount / limit);
   const percent = ((withImgCount / totalCount) * 100).toFixed(1);
 
@@ -198,8 +233,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       totalPages,
       percent,
       totalCount,
+      filteredCount,
       withoutImgCount: totalCount - withImgCount,
       filter,
+      family,
     },
   };
 };
