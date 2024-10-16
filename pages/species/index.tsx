@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { ImgSourceLabel, LicenseLabel, SpeciesT } from "lib/types";
 import Species from "models/Species";
 import AdminPage from "components/AdminPage";
-import { getSourceUrl } from "lib/species";
+import { getSourceImgUrl } from "lib/species";
 import clsx from "clsx";
 import connect from "lib/mongo";
 import XMark from "icons/XMark";
@@ -101,7 +101,7 @@ export default function SpeciesList({
                       src={
                         species.hasImg && species.downloadedAt
                           ? `/species-images/${species._id}-240.jpg`
-                          : getSourceUrl({
+                          : getSourceImgUrl({
                               source: species.source,
                               sourceId: species.sourceId,
                               size: species.source === "ebird" ? 320 : 240,

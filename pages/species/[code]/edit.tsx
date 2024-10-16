@@ -100,7 +100,6 @@ export default function Import({ data, code }: Props) {
   const mutation = useMutation({
     url: `/api/species/${code}/update`,
     method: "POST",
-    successMessage: "Image imported successfully",
   });
 
   const removeMutation = useMutation({
@@ -212,7 +211,7 @@ export default function Import({ data, code }: Props) {
                 </Field>
 
                 {source !== "inat" && (
-                  <Field label="License Version" required>
+                  <Field label="License Version">
                     <Input type="text" name="licenseVer" />
                     <FormError name="licenseVer" />
                   </Field>
