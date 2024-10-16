@@ -93,16 +93,18 @@ export default function SpeciesList({
           {species.map((species) => (
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
               <Link href={`/species/${species._id}/edit`} target="_blank">
-                {species.hasImg && (species.downloadedAt || species.source === "wikipedia") ? (
+                {species.hasImg && (species.downloadedAt || !species.crop) ? (
                   <div className="relative">
                     <img
                       src={
-                        getSourceUrl({
-                          source: species.source,
-                          sourceId: species.sourceId,
-                          size: species.source === "ebird" ? 320 : 240,
-                          ext: species.iNatFileExt,
-                        }) || ""
+                        species.hasImg && species.downloadedAt
+                          ? `/species-images/${species._id}-240.jpg`
+                          : getSourceUrl({
+                              source: species.source,
+                              sourceId: species.sourceId,
+                              size: species.source === "ebird" ? 320 : 240,
+                              ext: species.iNatFileExt,
+                            }) || ""
                       }
                       alt={species.name}
                       className="aspect-[4/3] object-cover w-[120px] rounded-md"
@@ -138,7 +140,7 @@ export default function SpeciesList({
                     href={`/species/${species._id}/edit`}
                     target="_blank"
                   >
-                    {species.hasImg ? "Replace Image" : "Add Image"}
+                    {species.hasImg ? "Edit Image" : "Add Image"}
                   </Link>
                   <Link
                     className="text-sky-600 hover:text-sky-700 font-semibold"
@@ -222,6 +224,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     "hasImg",
     "sciName",
     "iNatFileExt",
+    "downloadedAt",
+    "crop",
   ])
     .sort({ order: 1 })
     .skip(skip)

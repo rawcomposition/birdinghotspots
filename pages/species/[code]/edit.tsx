@@ -22,6 +22,7 @@ import { getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
 import Button from "components/Button";
 import { useRouter } from "next/router";
+import Checkbox from "components/Checkbox";
 
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
@@ -46,6 +47,7 @@ export default function Import({ data, code }: Props) {
           crop: data.crop,
           iNatObsId: data.iNatObsId,
           iNatFileExt: data.iNatFileExt,
+          flip: data.flip,
         }
       : {
           source: "inat",
@@ -116,7 +118,7 @@ export default function Import({ data, code }: Props) {
       delete data.iNatObsId;
     }
 
-    if (!Object.keys(LicenseLabel).includes(data.license)) {
+    if (!Object.keys(LicenseLabel).includes(data.license) && data.source === "inat") {
       toast.error("Please select a valid license");
       return;
     }
@@ -179,12 +181,12 @@ export default function Import({ data, code }: Props) {
               )}
 
               <Field label="Author" required>
-                <Input type="text" name="author" required />
+                <Input type="text" name="author" />
                 <FormError name="author" />
               </Field>
 
               <Field label="License" required>
-                <SelectLicense name="license" required instanceId="license" />
+                <SelectLicense name="license" instanceId="license" />
                 <FormError name="license" />
               </Field>
 
@@ -194,6 +196,9 @@ export default function Import({ data, code }: Props) {
                   url={getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
                 />
               )}
+
+              <Checkbox name="flip" label="Flip Image" />
+
               {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
                 <div className="bg-amber-50 p-4 rounded-md">
                   <p className="text-sm text-amber-700">

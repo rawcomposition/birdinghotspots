@@ -473,11 +473,12 @@ export const ImgSourceLabel: Record<ImgSource, string> = {
   wikipedia: "Wikipedia",
 };
 
-export type License = "cc-by" | "cc-by-nc" | "cc0";
+export type License = "cc-by" | "cc-by-nc" | "cc0" | "cc-by-sa";
 export const LicenseLabel: Record<License, string> = {
   cc0: "CC0",
   "cc-by": "CC BY",
   "cc-by-nc": "CC BY-NC",
+  "cc-by-sa": "CC BY-SA",
 };
 
 export type SpeciesT = {
@@ -497,6 +498,7 @@ export type SpeciesT = {
   downloadedAt?: Date;
   familyCode: string;
   taxonVersions: string[];
+  flip: boolean;
 };
 
 export type SpeciesInput = {
@@ -507,4 +509,5 @@ export type SpeciesInput = {
   license: License;
   iNatObsId?: string;
   iNatFileExt?: string;
+  flip?: boolean;
 };

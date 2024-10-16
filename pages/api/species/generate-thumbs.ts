@@ -5,6 +5,8 @@ import { IMG_SIZES, getSourceUrl } from "lib/species";
 import sharp from "sharp";
 import path from "path";
 
+const FAMILY_CODE = "nesosp1";
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
     return res.status(403).json({ success: false, error: "Not allowed" });
@@ -12,9 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
 
-  const species = await Species.find({ downloadedAt: { $exists: false } });
+  const species = await Species.find({
+    downloadedAt: { $exists: false },
+    crop: { $exists: true },
+    familyCode: FAMILY_CODE,
+  })
+    .sort({ order: 1 })
+    .lean();
 
-  for (const { source, sourceId, crop, _id, iNatFileExt } of species) {
+  for (const { source, sourceId, crop, _id, iNatFileExt, flip } of species) {
     let original = getSourceUrl({ source, sourceId, size: 2400, ext: iNatFileExt });
     if (!original) {
       console.log("No original for", sourceId);
@@ -42,6 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             height: crop.pixel.height,
           })
           .resize(size, size, { fit: sharp.fit.inside })
+          .flop(!!flip)
           .jpeg()
           .toFile(outputPath);
       })
