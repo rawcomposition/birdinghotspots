@@ -4,7 +4,7 @@ import Species from "models/Species";
 import { fetchWikipediaMetadata } from "./get-source-info";
 
 const LIMIT = 200;
-const DRY_RUN = false;
+const DRY_RUN = true;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {

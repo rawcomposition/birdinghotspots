@@ -6,7 +6,7 @@ import Submit from "components/Submit";
 import Input from "components/Input";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";
-import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel } from "lib/types";
+import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel, License } from "lib/types";
 import { LicenseLabel } from "lib/types";
 import Field from "components/Field";
 import FormError from "components/FormError";
@@ -17,10 +17,8 @@ import InputImageCrop from "components/InputImageCrop";
 import SelectiNatSourceId from "components/SelectiNatSourceId";
 import connect from "lib/mongo";
 import useMutation from "hooks/useMutation";
-import SelectLicense from "components/SelectLicense";
 import { getSourceImgUrl, getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
-import Button from "components/Button";
 import { useRouter } from "next/router";
 import Checkbox from "components/Checkbox";
 
@@ -156,6 +154,10 @@ export default function Import({ data, code }: Props) {
                 options={sourceOptions}
                 onChange={() => {
                   form.setValue("sourceId", "");
+                  form.setValue("iNatObsId", "");
+                  form.setValue("license", "" as License);
+                  form.setValue("licenseVer", "");
+                  form.setValue("author", "");
                 }}
               />
 
@@ -202,11 +204,8 @@ export default function Import({ data, code }: Props) {
 
               <div className={source !== "inat" ? "flex flex-col sm:flex-row items-center gap-2" : ""}>
                 <Field label="License" required>
-                  {source === "inat" ? (
-                    <SelectLicense name="license" instanceId="license" />
-                  ) : (
-                    <Input type="text" name="license" />
-                  )}
+                  <Input type="text" name="license" />
+
                   <FormError name="license" />
                 </Field>
 
