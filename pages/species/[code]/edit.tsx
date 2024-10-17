@@ -1,0 +1,272 @@
+/* eslint-disable @next/next/no-img-element */
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import Form from "components/Form";
+import Submit from "components/Submit";
+import Input from "components/Input";
+import RadioGroup from "components/RadioGroup";
+import AdminPage from "components/AdminPage";
+import { SourceInfoT, SpeciesT, SpeciesInput, ImgSourceLabel, License } from "lib/types";
+import { LicenseLabel } from "lib/types";
+import Field from "components/Field";
+import FormError from "components/FormError";
+import getSecureServerSideProps from "lib/getSecureServerSideProps";
+import Species from "models/Species";
+import { useQuery } from "@tanstack/react-query";
+import InputImageCrop from "components/InputImageCrop";
+import SelectiNatSourceId from "components/SelectiNatSourceId";
+import connect from "lib/mongo";
+import useMutation from "hooks/useMutation";
+import { getSourceImgUrl, getSourceUrl } from "lib/species";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
+import Checkbox from "components/Checkbox";
+
+const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
+  label,
+  value: key,
+}));
+
+type Props = {
+  code: string;
+  data: SpeciesT;
+};
+
+export default function Import({ data, code }: Props) {
+  const router = useRouter();
+
+  const form = useForm<SpeciesInput>({
+    defaultValues: data.hasImg
+      ? {
+          source: data.source,
+          sourceId: data.sourceId,
+          author: data.author,
+          license: data.license,
+          licenseVer: data.licenseVer,
+          crop: data.crop,
+          iNatObsId: data.iNatObsId,
+          iNatFileExt: data.iNatFileExt,
+          flip: data.flip,
+        }
+      : {
+          source: "inat",
+        },
+  });
+
+  const source = form.watch("source");
+  const sourceIdValue = form.watch("sourceId");
+  const sourceId = sourceIdValue?.replace("ML", "")?.trim();
+  const iNatObsId = form.watch("iNatObsId")?.replace("https://www.inaturalist.org/observations/", "")?.trim();
+  const iNatFileExt = form.watch("iNatFileExt");
+  const sourceUrl = getSourceUrl(source, sourceId);
+
+  const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
+    queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
+    enabled: !!source && (!!sourceId || !!iNatObsId),
+    retry: false,
+  });
+
+  React.useEffect(() => {
+    if (sourceInfo?.info) {
+      const values = form.getValues();
+      if (!values.author) {
+        form.setValue("author", sourceInfo.info.author);
+      }
+      if (sourceInfo.info.license && !values.license) {
+        form.setValue("license", sourceInfo.info.license);
+      }
+      if (sourceInfo.info.licenseVer && !values.licenseVer) {
+        form.setValue("licenseVer", sourceInfo.info.licenseVer);
+      }
+      if (sourceInfo.info.iNatFileExt && !values.iNatFileExt) {
+        form.setValue("iNatFileExt", sourceInfo.info.iNatFileExt);
+      }
+      if (sourceInfo.info.sourceIds?.length && !values.sourceId) {
+        form.setValue("sourceId", sourceInfo.info.sourceIds[0]?.toString());
+      }
+    }
+  }, [sourceInfo]);
+
+  React.useEffect(() => {
+    if (source === "inat") {
+      form.setFocus("iNatObsId");
+    } else {
+      form.setFocus("sourceId");
+    }
+  }, [source]);
+
+  const mutation = useMutation({
+    url: `/api/species/${code}/update`,
+    method: "POST",
+  });
+
+  const removeMutation = useMutation({
+    url: `/api/species/${code}/reset`,
+    method: "DELETE",
+    onSuccess: () => {
+      router.reload();
+    },
+  });
+
+  const handleSubmit: SubmitHandler<SpeciesInput> = async (data) => {
+    if (!data.sourceId) {
+      toast.error("Please enter a source ID");
+      return;
+    }
+
+    if (data.source === "inat") {
+      delete data.licenseVer;
+    } else {
+      delete data.iNatFileExt;
+      delete data.iNatObsId;
+    }
+
+    if (!Object.keys(LicenseLabel).includes(data.license) && data.source === "inat") {
+      toast.error("Please select a valid license");
+      return;
+    }
+
+    mutation.mutate({
+      ...data,
+      sourceId: data.sourceId.replace("ML", "").trim(),
+      iNatObsId: data.iNatObsId?.replace("https://www.inaturalist.org/observations/", "").trim(),
+    });
+  };
+
+  const handleRemove = () => {
+    if (!confirm("Are you sure you want to remove the image?")) return;
+    removeMutation.mutate({});
+  };
+
+  return (
+    <AdminPage title="Import Image">
+      <div className="container pb-16 my-12">
+        <Form form={form} onSubmit={handleSubmit}>
+          <div className="max-w-2xl mx-auto">
+            <div className=" bg-white space-y-6">
+              <div>
+                <h2 className="text-xl font-bold text-gray-600 mb-1">{data.name}</h2>
+                <h3 className="text-md text-gray-500 border-b pb-3 italic">{data.sciName}</h3>
+              </div>
+              <RadioGroup
+                label="Source"
+                name="source"
+                options={sourceOptions}
+                onChange={() => {
+                  form.setValue("sourceId", "");
+                  form.setValue("iNatObsId", "");
+                  form.setValue("license", "" as License);
+                  form.setValue("licenseVer", "");
+                  form.setValue("author", "");
+                }}
+              />
+
+              {source === "inat" && (
+                <Field label="iNaturalist Observation ID" required>
+                  <Input type="text" name="iNatObsId" required />
+                  <FormError name="iNatObsId" />
+                </Field>
+              )}
+
+              {["ebird", "wikipedia"].includes(source) && (
+                <Field label={source === "ebird" ? "ML ID" : "Wikipedia Slug"} required>
+                  <Input type="text" name="sourceId" required />
+                  <FormError name="sourceId" />
+                  {sourceUrl && (
+                    <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
+                      View on {source === "ebird" ? "eBird" : "Wikipedia"}
+                    </a>
+                  )}
+                </Field>
+              )}
+
+              {source === "inat" && (
+                <Field label="iNaturalist Photo" required>
+                  <SelectiNatSourceId
+                    name="sourceId"
+                    sourceIds={sourceInfo?.info.sourceIds || []}
+                    isLoading={isSourceInfoLoading}
+                    iNatFileExt={iNatFileExt}
+                  />
+                  <FormError name="sourceId" />
+                  {sourceUrl && (
+                    <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
+                      View on iNaturalist
+                    </a>
+                  )}
+                </Field>
+              )}
+
+              <Field label="Author" required>
+                <Input type="text" name="author" />
+                <FormError name="author" />
+              </Field>
+
+              <div className={source !== "inat" ? "flex flex-col sm:flex-row items-center gap-2" : ""}>
+                <Field label="License" required>
+                  <Input type="text" name="license" />
+
+                  <FormError name="license" />
+                </Field>
+
+                {source !== "inat" && (
+                  <Field label="License Version">
+                    <Input type="text" name="licenseVer" />
+                    <FormError name="licenseVer" />
+                  </Field>
+                )}
+              </div>
+
+              {sourceId && (
+                <InputImageCrop
+                  name="crop"
+                  url={getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
+                />
+              )}
+
+              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
+                <div className="bg-amber-50 p-4 rounded-md">
+                  <p className="text-sm text-amber-700">
+                    The iNaturalist scientific name <strong>{sourceInfo?.info?.speciesName}</strong> does not match{" "}
+                    <strong>{data.sciName}</strong>.
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="flex gap-4 mt-6 items-center">
+              <button
+                type="button"
+                onClick={handleRemove}
+                className="font-medium mr-auto text-red-700 rounded-md border border-red-700 px-3 py-1.5 opacity-70 hover:opacity-100"
+                disabled={mutation.isPending}
+              >
+                Remove Image
+              </button>
+              <Checkbox name="flip" label="Flip Image" />
+              <Submit disabled={mutation.isPending} color="green" className="font-medium">
+                Save
+              </Submit>
+            </div>
+          </div>
+        </Form>
+      </div>
+    </AdminPage>
+  );
+}
+
+export const getServerSideProps = getSecureServerSideProps(async ({ query, res }, token) => {
+  const { code } = query;
+  await connect();
+  const species = await Species.findById(code);
+
+  if (!species) return { notFound: true };
+
+  const cleanSpecies = JSON.parse(JSON.stringify(species));
+
+  return {
+    props: {
+      data: cleanSpecies,
+      code,
+    },
+  };
+});

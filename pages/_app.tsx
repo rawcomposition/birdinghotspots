@@ -7,19 +7,31 @@ import { ModalProvider } from "providers/modals";
 import { Toaster } from "react-hot-toast";
 import NextNProgress from "nextjs-progressbar";
 import { ScrollTop } from "components/ScrollTop";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { get } from "lib/helpers";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: async ({ queryKey }) => get(queryKey[0] as string, (queryKey[1] || {}) as any),
+    },
+  },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider>
-      <ModalProvider>
-        <Toaster containerStyle={{ zIndex: 10001 }} />
-        <Header />
-        <NextNProgress height={1} />
-        <Component {...pageProps} />
-        <Footer />
-        <ScrollTop />
-      </ModalProvider>
-    </UserProvider>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <ModalProvider>
+          <Toaster containerStyle={{ zIndex: 10001 }} />
+          <Header />
+          <NextNProgress height={1} />
+          <Component {...pageProps} />
+          <Footer />
+          <ScrollTop />
+        </ModalProvider>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }
 

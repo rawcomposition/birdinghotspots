@@ -23,13 +23,6 @@ const SpeciesSchema = new Schema({
     type: Number,
     required: true,
   },
-  images: [
-    {
-      sm: String,
-      md: String,
-      lg: String,
-    },
-  ],
   source: {
     type: String,
     required: true,
@@ -38,13 +31,33 @@ const SpeciesSchema = new Schema({
     type: String,
     required: true,
   },
-  isVerified: Boolean,
+  iNatObsId: String,
+  iNatFileExt: String,
   author: String,
   license: String,
+  licenseVer: String,
+  crop: {
+    percent: {
+      x: Number,
+      y: Number,
+      width: Number,
+      height: Number,
+    },
+    pixel: {
+      x: Number,
+      y: Number,
+      width: Number,
+      height: Number,
+    },
+  },
   active: {
     type: Boolean,
     default: true,
   },
+  downloadedAt: Date,
+  familyCode: String,
+  taxonVersions: [String],
+  flip: Boolean,
 });
 
 const Species = models.Species || model("Species", SpeciesSchema);

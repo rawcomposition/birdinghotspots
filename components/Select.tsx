@@ -1,18 +1,26 @@
 import { useFormContext, Controller } from "react-hook-form";
 import ReactSelectStyled from "components/ReactSelectStyled";
 
-type Props = {
+export type SelectProps = {
   name: string;
   required?: boolean;
   isMulti?: boolean;
+  label?: string | React.ReactNode;
+  isClearable?: boolean;
   options: {
     value: string;
     label: string;
   }[];
-  [x: string]: any;
+  onChange?: (value: any) => void;
+  isLoading?: boolean;
+  placeholder?: string;
+  className?: string;
+  instanceId?: string;
+  disabled?: boolean;
+  menuPortalTarget?: HTMLElement;
 };
 
-export default function Select({ name, required, isMulti, options, onChange: customOnChange, ...props }: Props) {
+export default function Select({ name, required, isMulti, options, onChange: customOnChange, ...props }: SelectProps) {
   const { control } = useFormContext();
 
   return (
@@ -41,8 +49,6 @@ export default function Select({ name, required, isMulti, options, onChange: cus
             options={options}
             onChange={onSelect}
             value={selected}
-            cacheOptions
-            defaultOptions
             isMulti={isMulti}
             noOptionsMessage={({ inputValue }: any) => (inputValue.length ? "No Results" : "Select...")}
             {...field}
