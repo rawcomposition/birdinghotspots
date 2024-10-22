@@ -21,6 +21,7 @@ import { getSourceImgUrl, getSourceUrl } from "lib/species";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Checkbox from "components/Checkbox";
+import Link from "next/link";
 
 const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
   label,
@@ -58,7 +59,7 @@ export default function Import({ data, code }: Props) {
   const sourceId = sourceIdValue?.replace("ML", "")?.trim();
   const iNatObsId = form.watch("iNatObsId")?.replace("https://www.inaturalist.org/observations/", "")?.trim();
   const iNatFileExt = form.watch("iNatFileExt");
-  const sourceUrl = getSourceUrl(source, sourceId);
+  const sourceUrl = sourceId ? getSourceUrl(source, sourceId) : null;
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
     queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
@@ -146,7 +147,40 @@ export default function Import({ data, code }: Props) {
             <div className=" bg-white space-y-6">
               <div>
                 <h2 className="text-xl font-bold text-gray-600 mb-1">{data.name}</h2>
-                <h3 className="text-md text-gray-500 border-b pb-3 italic">{data.sciName}</h3>
+                <h3 className="text-md text-gray-500 italic">{data.sciName}</h3>
+                <div className="flex gap-4 border-b pb-2.5 mt-1">
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://www.google.com/search?q=${data?.name}`}
+                    target="_blank"
+                  >
+                    Google
+                  </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://ebird.org/species/${data?._id}`}
+                    target="_blank"
+                  >
+                    eBird
+                  </Link>
+                  <button
+                    type="button"
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    onClick={() => {
+                      open(
+                        `https://www.inaturalist.org/observations?q=${data?.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by`,
+                        "_blank"
+                      );
+                      open(
+                        `https://www.inaturalist.org/observations?q=${data?.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by&order_by=votes`,
+                        "_blank"
+                      );
+                      open(`https://www.inaturalist.org/taxa/${data?.sciName}`, "_blank");
+                    }}
+                  >
+                    iNat CC
+                  </button>
+                </div>
               </div>
               <RadioGroup
                 label="Source"

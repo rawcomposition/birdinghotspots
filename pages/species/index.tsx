@@ -23,6 +23,7 @@ type Props = {
   totalCount: number;
   filteredCount: number;
   withoutImgCount: number;
+  withoutCropCount: number;
   filter: string;
   family: string;
   startCount: number;
@@ -36,6 +37,7 @@ export default function SpeciesList({
   totalCount,
   filteredCount,
   withoutImgCount,
+  withoutCropCount,
   filter,
   family,
   startCount,
@@ -69,32 +71,41 @@ export default function SpeciesList({
           >
             Without Image ({withoutImgCount.toLocaleString()})
           </Link>
-          <SelectBasic
-            options={Families.map((family) => ({ label: `${family.name} (${family.count})`, value: family.code }))}
-            onChange={(selectedOption) => {
-              if (selectedOption) {
-                router.push(`/species?page=1&filter=${filter}&family=${selectedOption.value}`);
-              } else {
-                router.push(`/species?page=1&filter=${filter}`);
-              }
-            }}
-            value={
-              selectedFamily
-                ? { label: `${selectedFamily.name} (${selectedFamily.count})`, value: selectedFamily.code }
-                : undefined
-            }
-            placeholder="Filter by family"
-            className="w-[260px]"
-            isClearable
-          />
+          <Link
+            href={`/species?page=1&filter=withoutCrop&family=${family}`}
+            className={clsx(
+              "px-5 py-1 rounded-full font-medium",
+              filter === "withoutCrop" ? "bg-primary text-white" : "bg-gray-200 text-gray-600"
+            )}
+          >
+            Without Crop ({withoutCropCount.toLocaleString()})
+          </Link>
         </div>
-        <p className="mb-4 font-medium">
+        <SelectBasic
+          options={Families.map((family) => ({ label: `${family.name} (${family.count})`, value: family.code }))}
+          onChange={(selectedOption) => {
+            if (selectedOption) {
+              router.push(`/species?page=1&filter=${filter}&family=${selectedOption.value}`);
+            } else {
+              router.push(`/species?page=1&filter=${filter}`);
+            }
+          }}
+          value={
+            selectedFamily
+              ? { label: `${selectedFamily.name} (${selectedFamily.count})`, value: selectedFamily.code }
+              : undefined
+          }
+          placeholder="Filter by family"
+          className="w-[260px]"
+          isClearable
+        />
+        <p className="mb-4 font-medium mt-6">
           Filtered count: <strong>{filteredCount.toLocaleString()}</strong>
         </p>
         <div className="flex flex-col gap-4">
           {species.map((species, index) => (
             <div key={species._id} className="flex items-center gap-4 bg-gray-100/80 p-4 rounded-md">
-              <Link href={`/species/${species._id}/edit`} target="_blank">
+              <Link href={`/species/${species._id}/edit`} target="_blank" className="flex-shrink-0">
                 {species.hasImg && (species.downloadedAt || !species.crop) ? (
                   <div className="relative">
                     <img
@@ -109,7 +120,7 @@ export default function SpeciesList({
                             }) || ""
                       }
                       alt={species.name}
-                      className="aspect-[4/3] object-cover w-[120px] rounded-md"
+                      className="aspect-[4/3] object-cover w-[100px] rounded-md"
                     />
                     {!species.crop && (
                       <div className="absolute top-0 left-0 bg-white/50 w-5 h-5 flex justify-center items-center rounded-br">
@@ -118,7 +129,7 @@ export default function SpeciesList({
                     )}
                   </div>
                 ) : (
-                  <div className="aspect-[4/3] flex items-center text-gray-500 text-sm justify-center w-[120px] rounded-md bg-gray-200">
+                  <div className="aspect-[4/3] flex items-center text-gray-500 text-sm justify-center w-[100px] rounded-md bg-gray-200">
                     {!species.hasImg ? "No Image" : "Pending"}
                   </div>
                 )}
@@ -147,27 +158,42 @@ export default function SpeciesList({
                   >
                     {species.hasImg ? "Edit Image" : "Add Image"}
                   </Link>
-                  <Link
-                    className="text-sky-600 hover:text-sky-700 font-semibold"
-                    href={`https://www.google.com/search?q=${species.name}`}
-                    target="_blank"
-                  >
-                    Google
-                  </Link>
-                  <button
-                    type="button"
-                    className="text-sky-600 hover:text-sky-700 font-semibold"
-                    onClick={() => {
-                      open(`/species/${species._id}/edit`, "_blank");
-                      open(
-                        `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by`,
-                        "_blank"
-                      );
-                      open(`https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc0`, "_blank");
-                    }}
-                  >
-                    iNat CC
-                  </button>
+                  {!species.crop && (
+                    <>
+                      <Link
+                        className="text-sky-600 hover:text-sky-700 font-semibold"
+                        href={`https://www.google.com/search?q=${species.name}`}
+                        target="_blank"
+                      >
+                        Google
+                      </Link>
+                      <Link
+                        className="text-sky-600 hover:text-sky-700 font-semibold"
+                        href={`https://ebird.org/species/${species._id}`}
+                        target="_blank"
+                      >
+                        eBird
+                      </Link>
+                      <button
+                        type="button"
+                        className="text-sky-600 hover:text-sky-700 font-semibold"
+                        onClick={() => {
+                          open(`/species/${species._id}/edit`, "_blank");
+                          open(
+                            `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by`,
+                            "_blank"
+                          );
+                          open(
+                            `https://www.inaturalist.org/observations?q=${species.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by&order_by=votes`,
+                            "_blank"
+                          );
+                          open(`https://www.inaturalist.org/taxa/${species.sciName}`, "_blank");
+                        }}
+                      >
+                        iNat CC
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -210,6 +236,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (filter === "withoutImg") {
     query = { hasImg: { $ne: true } };
   }
+  if (filter === "withoutCrop") {
+    query = { crop: { $exists: false } };
+  }
   if (family !== "all") {
     query.familyCode = family;
   }
@@ -218,6 +247,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const totalCount = await Species.countDocuments({});
   const filteredCount = await Species.countDocuments(query);
   const withImgCount = await Species.countDocuments({ hasImg: true });
+  const croppedCount = await Species.countDocuments({ crop: { $exists: true } });
   const totalPages = Math.ceil(filteredCount / limit);
   const percent = ((withImgCount / totalCount) * 100).toFixed(1);
   const startCount = (page - 1) * limit;
@@ -250,6 +280,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       totalCount,
       filteredCount,
       withoutImgCount: totalCount - withImgCount,
+      withoutCropCount: withImgCount - croppedCount,
       filter,
       family,
       startCount,
