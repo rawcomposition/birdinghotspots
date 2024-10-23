@@ -48,6 +48,7 @@ export default function Import({ data, code }: Props) {
           iNatObsId: data.iNatObsId,
           iNatFileExt: data.iNatFileExt,
           flip: data.flip,
+          rotation: data.rotation,
         }
       : {
           source: "inat",
@@ -59,7 +60,7 @@ export default function Import({ data, code }: Props) {
   const sourceId = sourceIdValue?.replace("ML", "")?.trim();
   const iNatObsId = form.watch("iNatObsId")?.replace("https://www.inaturalist.org/observations/", "")?.trim();
   const iNatFileExt = form.watch("iNatFileExt");
-  const sourceUrl = sourceId ? getSourceUrl(source, sourceId) : null;
+  const sourceUrl = sourceId ? getSourceUrl(source, sourceId, iNatObsId) : null;
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
     queryKey: ["/api/species/get-source-info", { source, sourceId, iNatObsId }],
@@ -140,7 +141,7 @@ export default function Import({ data, code }: Props) {
   };
 
   return (
-    <AdminPage title="Import Image">
+    <AdminPage title="Edit Image">
       <div className="container pb-16 my-12">
         <Form form={form} onSubmit={handleSubmit}>
           <div className="max-w-2xl mx-auto">

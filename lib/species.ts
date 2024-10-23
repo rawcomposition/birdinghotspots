@@ -30,7 +30,7 @@ export const getSourceImgUrl = ({ source, sourceId, size, ext }: GetSourceUrlPar
   return null;
 };
 
-export const getSourceUrl = (source: ImgSource, sourceId: string) => {
+export const getSourceUrl = (source: ImgSource, sourceId: string, iNatObsId?: string) => {
   if (source === "wikipedia") {
     const fileName = (sourceId as string).split("px-").pop();
     if (!fileName) return null;
@@ -38,7 +38,7 @@ export const getSourceUrl = (source: ImgSource, sourceId: string) => {
   } else if (source === "ebird") {
     return `https://macaulaylibrary.org/asset/${sourceId.replace("ML", "")}`;
   } else if (source === "inat") {
-    return `https://www.inaturalist.org/observations/${sourceId.replace(
+    return `https://www.inaturalist.org/observations/${iNatObsId?.replace(
       "https://www.inaturalist.org/observations/",
       ""
     )}`;
