@@ -48,7 +48,6 @@ export default function Import({ data, code }: Props) {
           iNatObsId: data.iNatObsId,
           iNatFileExt: data.iNatFileExt,
           flip: data.flip,
-          rotation: data.rotation,
         }
       : {
           source: "inat",
