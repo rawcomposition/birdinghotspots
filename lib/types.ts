@@ -467,11 +467,12 @@ export type Crop = {
   };
 };
 
-export type ImgSource = "ebird" | "inat" | "wikipedia";
+export type ImgSource = "ebird" | "inat" | "wikipedia" | "flickr";
 export const ImgSourceLabel: Record<ImgSource, string> = {
   inat: "iNaturalist",
   ebird: "eBird",
   wikipedia: "Wikipedia",
+  flickr: "Flickr",
 };
 
 export type License = "cc-by" | "cc-by-nc" | "cc0" | "cc-by-sa" | "cc-by-nc-sa";

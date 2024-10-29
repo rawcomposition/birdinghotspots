@@ -19,7 +19,8 @@ type Props = {
   species: SpeciesT[];
   currentPage: number;
   totalPages: number;
-  percent: string;
+  percentWithImg: string;
+  percentCropped: string;
   totalCount: number;
   filteredCount: number;
   withoutImgCount: number;
@@ -33,7 +34,8 @@ export default function SpeciesList({
   species,
   currentPage,
   totalPages,
-  percent,
+  percentWithImg,
+  percentCropped,
   totalCount,
   filteredCount,
   withoutImgCount,
@@ -49,9 +51,14 @@ export default function SpeciesList({
     <AdminPage title="Species List">
       <div className="container py-8 mx-auto max-w-3xl">
         <h1 className="text-2xl font-bold mb-4">Species List</h1>
-        <p className="mb-8 font-medium text-[17px]">
-          Coverage: <span className="font-bold">{percent}%</span>
-        </p>
+        <div className="flex items-center gap-4 mb-8">
+          <p className="font-medium text-sm">
+            Images: <span className="font-bold">{percentWithImg}%</span>
+          </p>
+          <p className="font-medium text-sm">
+            Cropped: <span className="font-bold">{percentCropped}%</span>
+          </p>
+        </div>
         <div className="flex gap-4 mb-6 items-center">
           <Link
             href={`/species?page=1&filter=all&family=${family}`}
@@ -202,7 +209,7 @@ export default function SpeciesList({
         <div className="mt-8 flex justify-center">
           {currentPage > 1 && (
             <Link
-              href={`/species?page=${currentPage - 1}&filter=${filter}`}
+              href={`/species?page=${currentPage - 1}&filter=${filter}&family=${family}`}
               className="mx-2 px-4 py-2 bg-primary hover:bg-secondary text-white rounded"
             >
               Previous
@@ -213,7 +220,7 @@ export default function SpeciesList({
           </span>
           {currentPage < totalPages && (
             <Link
-              href={`/species?page=${currentPage + 1}&filter=${filter}`}
+              href={`/species?page=${currentPage + 1}&filter=${filter}&family=${family}`}
               className="mx-2 px-4 py-2 bg-primary hover:bg-secondary text-white rounded"
             >
               Next
@@ -249,7 +256,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const withImgCount = await Species.countDocuments({ hasImg: true });
   const croppedCount = await Species.countDocuments({ crop: { $exists: true } });
   const totalPages = Math.ceil(filteredCount / limit);
-  const percent = ((withImgCount / totalCount) * 100).toFixed(1);
+  const percentWithImg = ((withImgCount / totalCount) * 100).toFixed(1);
+  const percentCropped = ((croppedCount / withImgCount) * 100).toFixed(1);
   const startCount = (page - 1) * limit;
 
   const speciesRes = await Species.find(query, [
@@ -276,7 +284,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       species,
       currentPage: page,
       totalPages,
-      percent,
+      percentWithImg,
+      percentCropped,
       totalCount,
       filteredCount,
       withoutImgCount: totalCount - withImgCount,

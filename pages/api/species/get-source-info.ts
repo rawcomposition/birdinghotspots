@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { License, SourceInfoT } from "lib/types";
-import { formatLicense } from "lib/species";
+import { formatLicense, getFlickrPhotoIdFromPath } from "lib/species";
 
 type Location = {
   locId: string;
@@ -137,6 +137,42 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         author: metadata.author || "",
         license: (license as License) || "",
         licenseVer: licenseVer || "",
+      };
+
+      res.status(200).json({ success: true, info });
+    } else if (source === "flickr") {
+      const photoId = getFlickrPhotoIdFromPath(sourceId as string);
+      if (!photoId) throw new Error("Invalid sourceId");
+
+      const url = `https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${process.env.FLICKR_API_KEY}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+      const request = await fetch(url);
+      const response = await request.json();
+
+      if (response.stat !== "ok") {
+        throw new Error("Failed to fetch Flickr photo info");
+      }
+
+      const photo = response.photo;
+      const license = photo.license;
+
+      const licenseMap = [
+        { code: "0", license: "", licenseVer: "" }, // All Rights Reserved
+        { code: "1", license: "cc-by-nc-sa", licenseVer: "2.0" },
+        { code: "2", license: "cc-by-nc", licenseVer: "2.0" },
+        { code: "3", license: "cc-by-nc-nd", licenseVer: "2.0" },
+        { code: "4", license: "cc-by", licenseVer: "2.0" },
+        { code: "5", license: "cc-by-sa", licenseVer: "2.0" },
+        { code: "6", license: "cc-by-nd", licenseVer: "2.0" },
+        { code: "7", license: "cc0", licenseVer: "" },
+        { code: "8", license: "cc0", licenseVer: "" },
+        { code: "9", license: "cc0", licenseVer: "" },
+        { code: "10", license: "cc0", licenseVer: "" },
+      ];
+
+      const info: SourceInfoT = {
+        author: photo.owner.realname || photo.owner.username,
+        license: licenseMap.find((it) => it.code === license)?.license as License,
+        licenseVer: licenseMap.find((it) => it.code === license)?.licenseVer,
       };
 
       res.status(200).json({ success: true, info });

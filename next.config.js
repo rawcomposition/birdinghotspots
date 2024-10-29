@@ -18,6 +18,10 @@ const nextConfig = {
         source: "/api/image-proxy/wikipedia/:path*",
         destination: "https://upload.wikimedia.org/:path*",
       },
+      {
+        source: "/api/image-proxy/flickr/:path*",
+        destination: "https://live.staticflickr.com/:path*",
+      },
     ];
   },
 };

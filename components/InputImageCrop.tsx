@@ -49,6 +49,7 @@ export default function InputImageCrop({ className, name, url }: Props) {
                 height: croppedAreaPixels.height,
               },
             } as Crop);
+            document.activeElement instanceof HTMLElement && document.activeElement.blur();
           }}
           onZoomChange={setZoom}
           initialCroppedAreaPercentages={defaultValues?.[name]?.percent}

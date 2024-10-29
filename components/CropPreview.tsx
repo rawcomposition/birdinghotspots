@@ -80,5 +80,6 @@ const getProxyImgUrl = (url: string) => {
   return url
     .replace("https://inaturalist-open-data.s3.amazonaws.com/", "/api/image-proxy/inat/")
     .replace("https://cdn.download.ams.birds.cornell.edu/", "/api/image-proxy/ebird/")
-    .replace("https://upload.wikimedia.org/", "/api/image-proxy/wikipedia/");
+    .replace("https://upload.wikimedia.org/", "/api/image-proxy/wikipedia/")
+    .replace("https://live.staticflickr.com/", "/api/image-proxy/flickr/");
 };

@@ -26,8 +26,16 @@ export const getSourceImgUrl = ({ source, sourceId, size, ext }: GetSourceUrlPar
     const sizeName = sizeMap[Math.min(size, 2048)];
     if (!sizeName) throw new Error(`Invalid iNaturalist size: ${size}`);
     return `https://inaturalist-open-data.s3.amazonaws.com/photos/${sourceId}/${sizeName}.${ext || "jpg"}`;
+  } else if (source === "flickr") {
+    return `https://live.staticflickr.com/${sourceId}`;
   }
   return null;
+};
+
+export const getFlickrPhotoIdFromPath = (path: string) => {
+  const filename = path.split("/").pop();
+  const photoId = filename?.split("_").shift();
+  return photoId;
 };
 
 export const getSourceUrl = (source: ImgSource, sourceId: string, iNatObsId?: string) => {
@@ -42,6 +50,10 @@ export const getSourceUrl = (source: ImgSource, sourceId: string, iNatObsId?: st
       "https://www.inaturalist.org/observations/",
       ""
     )}`;
+  } else if (source === "flickr") {
+    const photoId = getFlickrPhotoIdFromPath(sourceId);
+    if (!photoId) return null;
+    return `https://www.flickr.com/photos/${photoId}`;
   }
   return null;
 };

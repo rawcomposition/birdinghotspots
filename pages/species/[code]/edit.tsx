@@ -139,6 +139,33 @@ export default function Import({ data, code }: Props) {
     removeMutation.mutate({});
   };
 
+  React.useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "f" || event.key === "F") {
+        form.setValue("flip", !form.getValues("flip"));
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        form.handleSubmit(handleSubmit)();
+      } else if (event.key === "i" || event.key === "I") {
+        if (!(document.activeElement instanceof HTMLInputElement)) {
+          event.preventDefault();
+          form.setValue("source", "inat");
+          form.setValue("sourceId", "");
+          form.setValue("iNatObsId", "");
+          form.setValue("license", "" as License);
+          form.setValue("licenseVer", "");
+          form.setValue("author", "");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [form]);
+
   return (
     <AdminPage title="Edit Image">
       <div className="container pb-16 my-12">
@@ -202,13 +229,16 @@ export default function Import({ data, code }: Props) {
                 </Field>
               )}
 
-              {["ebird", "wikipedia"].includes(source) && (
-                <Field label={source === "ebird" ? "ML ID" : "Wikipedia Slug"} required>
+              {["ebird", "wikipedia", "flickr"].includes(source) && (
+                <Field
+                  label={source === "ebird" ? "ML ID" : source === "wikipedia" ? "Wikipedia Path" : "Flickr Path"}
+                  required
+                >
                   <Input type="text" name="sourceId" required />
                   <FormError name="sourceId" />
                   {sourceUrl && (
                     <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
-                      View on {source === "ebird" ? "eBird" : "Wikipedia"}
+                      View on {ImgSourceLabel[source]}
                     </a>
                   )}
                 </Field>
