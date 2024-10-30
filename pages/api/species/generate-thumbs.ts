@@ -5,7 +5,7 @@ import { IMG_SIZES, getSourceImgUrl } from "lib/species";
 import sharp from "sharp";
 import path from "path";
 
-const FAMILY_CODE = "alcida1";
+const FAMILY_CODE = "procel3";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
@@ -41,6 +41,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       IMG_SIZES.map(async (size) => {
         const outputPath = path.join(process.cwd(), "public", "species-images", `${_id}-${size}.jpg`);
         const image = sharp(buffer);
+        console.log({
+          left: crop.pixel.x,
+          top: crop.pixel.y,
+          width: crop.pixel.width,
+          height: crop.pixel.height,
+        });
 
         await image
           .extract({

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { License, SourceInfoT } from "lib/types";
-import { formatLicense, getFlickrPhotoIdFromPath } from "lib/species";
+import { formatLicense, getFlickrPhotoIdFromPath, getWikipediaFileName } from "lib/species";
 
 type Location = {
   locId: string;
@@ -127,7 +127,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       res.status(200).json({ success: true, info });
     } else if (source === "wikipedia") {
-      const fileName = (sourceId as string).split("px-").pop();
+      const fileName = getWikipediaFileName(sourceId as string);
+
       if (!fileName) throw new Error("Invalid sourceId");
       const metadata = await fetchWikipediaMetadata(fileName);
 

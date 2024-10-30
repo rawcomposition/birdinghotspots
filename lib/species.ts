@@ -11,7 +11,7 @@ type GetSourceUrlParams = {
 
 export const getSourceImgUrl = ({ source, sourceId, size, ext }: GetSourceUrlParams) => {
   if (source === "wikipedia") {
-    return `https://upload.wikimedia.org/wikipedia/commons/thumb/${sourceId.replace("320", size.toString())}`;
+    return `https://upload.wikimedia.org/wikipedia/commons/${sourceId}`;
   } else if (source === "ebird") {
     return `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${sourceId}/${Math.min(size, 2400)}`;
   } else if (source === "inat") {
@@ -38,9 +38,13 @@ export const getFlickrPhotoIdFromPath = (path: string) => {
   return photoId;
 };
 
+export const getWikipediaFileName = (sourceId: string) => {
+  return sourceId?.includes("px-") ? (sourceId as string).split("px-").pop() : (sourceId as string)?.split("/").pop();
+};
+
 export const getSourceUrl = (source: ImgSource, sourceId: string, iNatObsId?: string) => {
   if (source === "wikipedia") {
-    const fileName = (sourceId as string).split("px-").pop();
+    const fileName = getWikipediaFileName(sourceId);
     if (!fileName) return null;
     return `https://en.m.wikipedia.org/wiki/File:${fileName}`;
   } else if (source === "ebird") {

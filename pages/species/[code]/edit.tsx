@@ -190,6 +190,20 @@ export default function Import({ data, code }: Props) {
                   >
                     eBird
                   </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://www.flickr.com/search/?text=${data?.name}&license=2%2C3%2C4%2C5%2C6%2C9`}
+                    target="_blank"
+                  >
+                    Flickr
+                  </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://commons.wikimedia.org/w/index.php?search=${data?.sciName}&title=Special:MediaSearch&go=Go&type=image`}
+                    target="_blank"
+                  >
+                    Wikipedia
+                  </Link>
                   <button
                     type="button"
                     className="text-sky-600 hover:text-sky-700 font-semibold"
