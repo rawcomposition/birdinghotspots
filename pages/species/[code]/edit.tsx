@@ -58,7 +58,6 @@ export default function Import({ data, code }: Props) {
   const sourceIdValue = form.watch("sourceId");
   const sourceId = sourceIdValue?.replace("ML", "")?.trim();
   const iNatObsId = form.watch("iNatObsId")?.replace("https://www.inaturalist.org/observations/", "")?.trim();
-  const iNatFileExt = form.watch("iNatFileExt");
   const sourceUrl = sourceId ? getSourceUrl(source, sourceId, iNatObsId) : null;
 
   const { data: sourceInfo, isLoading: isSourceInfoLoading } = useQuery<{ info: SourceInfoT }>({
@@ -66,6 +65,10 @@ export default function Import({ data, code }: Props) {
     enabled: !!source && (!!sourceId || !!iNatObsId),
     retry: false,
   });
+
+  const iNatFileExts = sourceInfo?.info.iNatFileExts;
+  const iNatSourceIdIndex = sourceInfo?.info?.sourceIds?.findIndex((id) => id === sourceIdValue);
+  const iNatFileExt = iNatFileExts?.[iNatSourceIdIndex || 0];
 
   React.useEffect(() => {
     if (sourceInfo?.info) {
@@ -79,8 +82,8 @@ export default function Import({ data, code }: Props) {
       if (sourceInfo.info.licenseVer && !values.licenseVer) {
         form.setValue("licenseVer", sourceInfo.info.licenseVer);
       }
-      if (sourceInfo.info.iNatFileExt && !values.iNatFileExt) {
-        form.setValue("iNatFileExt", sourceInfo.info.iNatFileExt);
+      if (sourceInfo.info.iNatFileExts && !values.iNatFileExt) {
+        form.setValue("iNatFileExt", sourceInfo.info.iNatFileExts[0]);
       }
       if (sourceInfo.info.sourceIds?.length && !values.sourceId) {
         form.setValue("sourceId", sourceInfo.info.sourceIds[0]?.toString());
@@ -130,7 +133,11 @@ export default function Import({ data, code }: Props) {
     mutation.mutate({
       ...data,
       sourceId: data.sourceId.replace("ML", "").trim(),
-      iNatObsId: data.iNatObsId?.replace("https://www.inaturalist.org/observations/", "").trim(),
+      iNatObsId:
+        data.source === "inat"
+          ? data.iNatObsId?.replace("https://www.inaturalist.org/observations/", "").trim()
+          : undefined,
+      iNatFileExt: data.source === "inat" ? iNatFileExt : undefined,
     });
   };
 
@@ -164,7 +171,7 @@ export default function Import({ data, code }: Props) {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [form]);
+  }, [form, iNatFileExt]);
 
   return (
     <AdminPage title="Edit Image">
@@ -264,7 +271,7 @@ export default function Import({ data, code }: Props) {
                     name="sourceId"
                     sourceIds={sourceInfo?.info.sourceIds || []}
                     isLoading={isSourceInfoLoading}
-                    iNatFileExt={iNatFileExt}
+                    iNatFileExts={iNatFileExts}
                   />
                   <FormError name="sourceId" />
                   {sourceUrl && (
@@ -295,7 +302,7 @@ export default function Import({ data, code }: Props) {
                 )}
               </div>
 
-              {sourceId && (
+              {sourceId && (source === "inat" ? !!iNatFileExt : true) && (
                 <InputImageCrop
                   name="crop"
                   url={getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}

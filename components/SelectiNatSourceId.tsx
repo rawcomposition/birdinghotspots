@@ -4,14 +4,14 @@ import { getSourceImgUrl } from "lib/species";
 
 type Props = Omit<SelectProps, "options"> & {
   sourceIds: string[];
-  iNatFileExt?: string;
+  iNatFileExts?: string[];
 };
 
-export default function SelectiNatSourceId({ sourceIds, iNatFileExt, ...props }: Props) {
-  const options = sourceIds.map((id) => ({
+export default function SelectiNatSourceId({ sourceIds, iNatFileExts, ...props }: Props) {
+  const options = sourceIds.map((id, index) => ({
     label: (
       <img
-        src={getSourceImgUrl({ source: "inat", sourceId: id, size: 75, ext: iNatFileExt }) || ""}
+        src={getSourceImgUrl({ source: "inat", sourceId: id, size: 75, ext: iNatFileExts?.[index] }) || ""}
         width={60}
         height={60}
         alt={id}

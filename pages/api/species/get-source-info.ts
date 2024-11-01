@@ -113,15 +113,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const request = await fetch(`https://api.inaturalist.org/v1/observations/${iNatObsId}`);
       const response = await request.json();
       const obs = response.results[0];
-      const ext = obs.photos?.[0]?.url?.split(".").pop();
+      const iNatFileExts = obs.photos?.map((photo: any) => photo.url?.split(".").pop());
       const speciesNamePieces = obs.taxon?.name?.split(" ");
       const speciesName = `${speciesNamePieces?.[0]} ${speciesNamePieces?.[1]}`.trim();
 
       const info: SourceInfoT = {
         author: obs.user.name || obs.user.login,
         license: obs.observation_photos?.[0]?.photo?.license_code,
-        sourceIds: obs.photos?.map((photo: any) => photo.id),
-        iNatFileExt: ext,
+        sourceIds: obs.photos?.map((photo: any) => photo.id.toString()),
+        iNatFileExts,
         speciesName: speciesName,
       };
 

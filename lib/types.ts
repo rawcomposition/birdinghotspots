@@ -448,7 +448,7 @@ export type SourceInfoT = {
   license?: License;
   licenseVer?: string;
   sourceIds?: string[];
-  iNatFileExt?: string;
+  iNatFileExts?: string[];
   speciesName?: string;
 };
 
