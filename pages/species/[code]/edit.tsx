@@ -302,12 +302,14 @@ export default function Import({ data, code }: Props) {
                 )}
               </div>
 
-              {sourceId && (source === "inat" ? !!iNatFileExt : true) && (
-                <InputImageCrop
-                  name="crop"
-                  url={getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""}
-                />
-              )}
+              <InputImageCrop
+                name="crop"
+                url={
+                  sourceId && (source === "inat" ? !!iNatFileExt : true)
+                    ? getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""
+                    : ""
+                }
+              />
 
               {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
                 <div className="bg-amber-50 p-4 rounded-md">

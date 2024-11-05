@@ -127,6 +127,7 @@ export default function SpeciesList({
                             }) || ""
                       }
                       alt={species.name}
+                      loading="lazy"
                       className="aspect-[4/3] object-cover w-[100px] rounded-md"
                     />
                     {!species.crop && (
