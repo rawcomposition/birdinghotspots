@@ -5,12 +5,21 @@ import { generateRandomId, canEdit } from "lib/helpers";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import dayjs from "dayjs";
+import { uploadGroupMapImg } from "lib/s3";
 
 export default secureApi(async (req, res, token) => {
   const { data } = req.body;
 
-  const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, ["-_id", "stateCode", "countyCode"]);
-  const allStateCodes: string[] = hotspots.map((hotspot: any) => hotspot.stateCode);
+  await connect();
+  const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, [
+    "-_id",
+    "stateCode",
+    "countyCode",
+    "species",
+    "lat",
+    "lng",
+  ]).lean();
+  const allStateCodes = hotspots.map((hotspot) => hotspot.stateCode)?.filter(Boolean) as string[];
   const stateCodes = [...new Set(allStateCodes)].filter(Boolean);
   const countyCodes: string[] = [];
 
@@ -25,11 +34,22 @@ export default secureApi(async (req, res, token) => {
   }
 
   try {
-    await connect();
+    const mapImgUrl = await uploadGroupMapImg(hotspots);
+
     const locationId = data.locationId || `G${generateRandomId()}`;
     const url = `/group/${locationId}`;
     const updatedAt = dayjs().format();
-    const group = await Group.create({ ...data, locationId, url, stateCodes, countyCodes, updatedAt });
+
+    const group = await Group.create({
+      ...data,
+      locationId,
+      url,
+      stateCodes,
+      countyCodes,
+      updatedAt,
+      mapImgUrl,
+      hotspotCount: data.hotspots.length,
+    });
     await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: group._id } });
 
     try {

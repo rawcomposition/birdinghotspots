@@ -68,7 +68,7 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
-    <AdminPage title="Edit Group">
+    <AdminPage title={`${isNew ? "Add" : "Edit"} Group`}>
       <div className="container pb-16 my-12">
         <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Group</h2>
         <Form form={form} onSubmit={handleSubmit}>

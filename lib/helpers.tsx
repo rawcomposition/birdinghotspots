@@ -186,7 +186,7 @@ export const canEdit = (token: Token, region: string | string[]) => {
   return region?.some((it: string) => !!token.regions?.some((myRegion: string) => it.startsWith(myRegion)));
 };
 
-export const getStaticMap = (markers: Marker[]) => {
+export const getStaticMap = (markers: { species?: number; lat: number; lng: number }[]) => {
   const markersWithShade = markers.map((marker) => ({
     ...marker,
     shade: getMarkerShade(marker.species || 0),

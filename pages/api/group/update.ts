@@ -5,14 +5,12 @@ import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
 import dayjs from "dayjs";
-import { getStaticMap } from "lib/helpers";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { v4 as uuidv4 } from "uuid";
-import { region, endpoint, bucket } from "lib/s3";
+import { uploadGroupMapImg } from "lib/s3";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
 
+  await connect();
   const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, [
     "-_id",
     "stateCode",
@@ -36,40 +34,16 @@ export default secureApi(async (req, res, token) => {
   }
 
   try {
-    await connect();
     const group = await Group.findOne({ _id: id }, ["-_id", "hotspots"]);
     const removedHotspots = group.hotspots.filter((it: string) => !data.hotspots.includes(it.toString()));
 
-    const s3 = new S3Client({
-      credentials: {
-        accessKeyId: process.env.S3_KEY || "",
-        secretAccessKey: process.env.S3_SECRET || "",
-      },
-      region,
-      endpoint,
-    });
-
-    const uploadUrlToS3 = async (url: string, key: string) => {
-      const uploadParams = {
-        Bucket: bucket,
-        Key: key,
-        ACL: "public-read",
-        Body: await fetch(url).then((res) => res.arrayBuffer()),
-      };
-      // @ts-ignore
-      await s3.send(new PutObjectCommand(uploadParams));
-    };
-
-    const url = getStaticMap(hotspots as any);
-    const filename = `groupmap${uuidv4()}.jpg`;
-
-    await uploadUrlToS3(url, filename);
+    const mapImgUrl = await uploadGroupMapImg(hotspots);
 
     const updatedAt = dayjs().format();
     await Promise.all([
       await Group.updateOne(
         { _id: id },
-        { ...data, stateCodes, countyCodes, updatedAt, mapImgUrl: filename, hotspotCount: data.hotspots.length }
+        { ...data, stateCodes, countyCodes, updatedAt, mapImgUrl, hotspotCount: data.hotspots.length }
       ),
       await Hotspot.updateMany({ _id: { $in: data.hotspots } }, { $addToSet: { groupIds: id } }),
       await Hotspot.updateMany({ _id: { $in: removedHotspots } }, { $pull: { groupIds: id } }),
