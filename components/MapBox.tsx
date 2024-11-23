@@ -67,7 +67,7 @@ export default function MapBox({ markers, zoom, disabled, landscape, disableScro
     });
 
     if (markers.length > 1) {
-      const padding = markers.length > 15 ? 40 : markers.length > 10 ? 80 : markers.length > 2 ? 120 : 160;
+      const padding = markers.length > 15 ? 40 : markers.length > 10 ? 80 : markers.length > 2 ? 120 : 140;
       map.current.fitBounds(bounds, { padding, duration: 0 });
     }
   });
