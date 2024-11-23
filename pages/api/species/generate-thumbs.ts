@@ -5,7 +5,7 @@ import { IMG_SIZES, getSourceImgUrl } from "lib/species";
 import sharp from "sharp";
 import path from "path";
 
-const FAMILY_CODE = "oxyrun1";
+const FAMILY_CODE = "plocei1";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {

@@ -106,13 +106,22 @@ export default function Import({ data, code, nextCode, nextName, prevCode, prevN
   const mutation = useMutation({
     url: `/api/species/${code}/update`,
     method: "POST",
+    onSuccess: () => {
+      if (nextCode) {
+        window.location.href = `/species/${nextCode}/edit`;
+      }
+    },
   });
 
   const removeMutation = useMutation({
     url: `/api/species/${code}/reset`,
     method: "DELETE",
     onSuccess: () => {
-      router.reload();
+      if (nextCode) {
+        window.location.href = `/species/${nextCode}/edit`;
+      } else {
+        router.reload();
+      }
     },
   });
 
