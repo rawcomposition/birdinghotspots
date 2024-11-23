@@ -274,7 +274,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
   const marker = formatMarker(data);
 
   const groupLinks: LinkType[] = [];
-  const groupCitations: Citation[] = [];
+  const uniqueCitations: Citation[] = [...(data.citations || [])];
 
   data?.groups?.forEach(({ name, links, webpage, citeWebpage, citations }: Group) => {
     if (webpage)
@@ -284,7 +284,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
         cite: citeWebpage,
       });
     if (links) groupLinks.push(...links);
-    if (citations) groupCitations.push(...citations);
+    if (citations) {
+      citations.forEach((citation) => {
+        if (!uniqueCitations.some((uniqueCitation) => uniqueCitation.label === citation.label)) {
+          uniqueCitations.push(citation);
+        }
+      });
+    }
   });
 
   const isBot = isbot(req.headers["user-agent"] || "");
@@ -295,7 +301,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
         region,
         marker,
         ...data,
-        citations: [...(data.citations || []), ...groupCitations],
+        citations: uniqueCitations,
         links: [...(links || []), ...groupLinks],
         isBot,
       })
