@@ -65,7 +65,7 @@ export default function Group({
   );
 
   const locationIds = hotspots.map((it) => it.locationId);
-  hotspots.sort((a, b) => (a.species || 0) - (b.species || 0)).reverse();
+  hotspots.sort((a, b) => (b.species || 0) - (a.species || 0));
 
   const filteredHotspots = showMore ? hotspots : hotspots.slice(0, 12);
   const moreCount = hotspots.length - 12;
