@@ -31,13 +31,9 @@ const sourceOptions = Object.entries(ImgSourceLabel).map(([key, label]) => ({
 type Props = {
   code: string;
   data: SpeciesT;
-  nextCode: string | null;
-  nextName: string | null;
-  prevCode: string | null;
-  prevName: string | null;
 };
 
-export default function Import({ data, code, nextCode, nextName, prevCode, prevName }: Props) {
+export default function Import({ data, code }: Props) {
   const router = useRouter();
 
   const form = useForm<SpeciesInput>({
@@ -106,22 +102,13 @@ export default function Import({ data, code, nextCode, nextName, prevCode, prevN
   const mutation = useMutation({
     url: `/api/species/${code}/update`,
     method: "POST",
-    onSuccess: () => {
-      if (nextCode) {
-        window.location.href = `/species/${nextCode}/edit`;
-      }
-    },
   });
 
   const removeMutation = useMutation({
     url: `/api/species/${code}/reset`,
     method: "DELETE",
     onSuccess: () => {
-      if (nextCode) {
-        window.location.href = `/species/${nextCode}/edit`;
-      } else {
-        router.reload();
-      }
+      router.reload();
     },
   });
 
@@ -176,10 +163,6 @@ export default function Import({ data, code, nextCode, nextName, prevCode, prevN
           form.setValue("licenseVer", "");
           form.setValue("author", "");
         }
-      } else if (event.key === "ArrowRight" && nextCode) {
-        window.location.href = `/species/${nextCode}/edit`;
-      } else if (event.key === "ArrowLeft" && prevCode) {
-        window.location.href = `/species/${prevCode}/edit`;
       }
     };
 
@@ -188,189 +171,173 @@ export default function Import({ data, code, nextCode, nextName, prevCode, prevN
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [form, iNatFileExt, nextCode, prevCode]);
+  }, [form, iNatFileExt]);
 
   return (
-    <>
-      {nextCode && (
-        <div className="flex pb-16 mt-4 mx-4">
-          {prevCode && (
-            <a href={`/species/${prevCode}/edit`} className="text-sky-600 hover:text-sky-700 font-semibold mr-auto">
-              &larr; {prevName}
-            </a>
-          )}
-          {nextCode && (
-            <a href={`/species/${nextCode}/edit`} className="text-sky-600 hover:text-sky-700 font-semibold ml-auto">
-              {nextName} &rarr;
-            </a>
-          )}
-        </div>
-      )}
-      <AdminPage title="Edit Image">
-        <div className="container pb-16 my-12">
-          <Form form={form} onSubmit={handleSubmit}>
-            <div className="max-w-2xl mx-auto">
-              <div className=" bg-white space-y-6">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-600 mb-1">{data.name}</h2>
-                  <h3 className="text-md text-gray-500 italic">{data.sciName}</h3>
-                  <div className="flex gap-4 border-b pb-2.5 mt-1">
-                    <Link
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
-                      href={`https://www.google.com/search?q=${data?.name}`}
-                      target="_blank"
-                    >
-                      Google
-                    </Link>
-                    <Link
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
-                      href={`https://ebird.org/species/${data?._id}`}
-                      target="_blank"
-                    >
-                      eBird
-                    </Link>
-                    <Link
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
-                      href={`https://www.flickr.com/search/?text=${data?.name}&license=2%2C3%2C4%2C5%2C6%2C9`}
-                      target="_blank"
-                    >
-                      Flickr
-                    </Link>
-                    <Link
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
-                      href={`https://commons.wikimedia.org/w/index.php?search=${data?.sciName}&title=Special:MediaSearch&go=Go&type=image`}
-                      target="_blank"
-                    >
-                      Wikipedia
-                    </Link>
-                    <button
-                      type="button"
-                      className="text-sky-600 hover:text-sky-700 font-semibold"
-                      onClick={() => {
-                        open(
-                          `https://www.inaturalist.org/observations?q=${data?.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by`,
-                          "_blank"
-                        );
-                        open(
-                          `https://www.inaturalist.org/observations?q=${data?.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by&order_by=votes`,
-                          "_blank"
-                        );
-                        open(`https://www.inaturalist.org/taxa/${data?.sciName}`, "_blank");
-                      }}
-                    >
-                      iNat CC
-                    </button>
-                  </div>
-                </div>
-                <RadioGroup
-                  label="Source"
-                  name="source"
-                  options={sourceOptions}
-                  onChange={() => {
-                    form.setValue("sourceId", "");
-                    form.setValue("iNatObsId", "");
-                    form.setValue("license", "" as License);
-                    form.setValue("licenseVer", "");
-                    form.setValue("author", "");
-                  }}
-                />
-
-                {source === "inat" && (
-                  <Field label="iNaturalist Observation ID" required>
-                    <Input type="text" name="iNatObsId" required />
-                    <FormError name="iNatObsId" />
-                  </Field>
-                )}
-
-                {["ebird", "wikipedia", "flickr"].includes(source) && (
-                  <Field
-                    label={source === "ebird" ? "ML ID" : source === "wikipedia" ? "Wikipedia Path" : "Flickr Path"}
-                    required
+    <AdminPage title="Edit Image">
+      <div className="container pb-16 my-12">
+        <Form form={form} onSubmit={handleSubmit}>
+          <div className="max-w-2xl mx-auto">
+            <div className=" bg-white space-y-6">
+              <div>
+                <h2 className="text-xl font-bold text-gray-600 mb-1">{data.name}</h2>
+                <h3 className="text-md text-gray-500 italic">{data.sciName}</h3>
+                <div className="flex gap-4 border-b pb-2.5 mt-1">
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://www.google.com/search?q=${data?.name}`}
+                    target="_blank"
                   >
-                    <Input type="text" name="sourceId" required />
-                    <FormError name="sourceId" />
-                    {sourceUrl && (
-                      <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
-                        View on {ImgSourceLabel[source]}
-                      </a>
-                    )}
-                  </Field>
-                )}
+                    Google
+                  </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://ebird.org/species/${data?._id}`}
+                    target="_blank"
+                  >
+                    eBird
+                  </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://www.flickr.com/search/?text=${data?.name}&license=2%2C3%2C4%2C5%2C6%2C9`}
+                    target="_blank"
+                  >
+                    Flickr
+                  </Link>
+                  <Link
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    href={`https://commons.wikimedia.org/w/index.php?search=${data?.sciName}&title=Special:MediaSearch&go=Go&type=image`}
+                    target="_blank"
+                  >
+                    Wikipedia
+                  </Link>
+                  <button
+                    type="button"
+                    className="text-sky-600 hover:text-sky-700 font-semibold"
+                    onClick={() => {
+                      open(
+                        `https://www.inaturalist.org/observations?q=${data?.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by`,
+                        "_blank"
+                      );
+                      open(
+                        `https://www.inaturalist.org/observations?q=${data?.sciName}&photo_license=cc0,cc-by-nc-sa,cc-by-sa,cc-by-nc,cc-by&order_by=votes`,
+                        "_blank"
+                      );
+                      open(`https://www.inaturalist.org/taxa/${data?.sciName}`, "_blank");
+                    }}
+                  >
+                    iNat CC
+                  </button>
+                </div>
+              </div>
+              <RadioGroup
+                label="Source"
+                name="source"
+                options={sourceOptions}
+                onChange={() => {
+                  form.setValue("sourceId", "");
+                  form.setValue("iNatObsId", "");
+                  form.setValue("license", "" as License);
+                  form.setValue("licenseVer", "");
+                  form.setValue("author", "");
+                }}
+              />
 
-                {source === "inat" && (
-                  <Field label="iNaturalist Photo" required>
-                    <SelectiNatSourceId
-                      name="sourceId"
-                      sourceIds={sourceInfo?.info.sourceIds || []}
-                      isLoading={isSourceInfoLoading}
-                      iNatFileExts={iNatFileExts}
-                    />
-                    <FormError name="sourceId" />
-                    {sourceUrl && (
-                      <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
-                        View on iNaturalist
-                      </a>
-                    )}
-                  </Field>
-                )}
+              {source === "inat" && (
+                <Field label="iNaturalist Observation ID" required>
+                  <Input type="text" name="iNatObsId" required />
+                  <FormError name="iNatObsId" />
+                </Field>
+              )}
 
-                <Field label="Author" required>
-                  <Input type="text" name="author" />
-                  <FormError name="author" />
+              {["ebird", "wikipedia", "flickr"].includes(source) && (
+                <Field
+                  label={source === "ebird" ? "ML ID" : source === "wikipedia" ? "Wikipedia Path" : "Flickr Path"}
+                  required
+                >
+                  <Input type="text" name="sourceId" required />
+                  <FormError name="sourceId" />
+                  {sourceUrl && (
+                    <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
+                      View on {ImgSourceLabel[source]}
+                    </a>
+                  )}
+                </Field>
+              )}
+
+              {source === "inat" && (
+                <Field label="iNaturalist Photo" required>
+                  <SelectiNatSourceId
+                    name="sourceId"
+                    sourceIds={sourceInfo?.info.sourceIds || []}
+                    isLoading={isSourceInfoLoading}
+                    iNatFileExts={iNatFileExts}
+                  />
+                  <FormError name="sourceId" />
+                  {sourceUrl && (
+                    <a href={sourceUrl} target="_blank" className="text-xs text-blue-500 font-semibold">
+                      View on iNaturalist
+                    </a>
+                  )}
+                </Field>
+              )}
+
+              <Field label="Author" required>
+                <Input type="text" name="author" />
+                <FormError name="author" />
+              </Field>
+
+              <div className={source !== "inat" ? "flex flex-col sm:flex-row items-center gap-2" : ""}>
+                <Field label="License" required>
+                  <Input type="text" name="license" />
+
+                  <FormError name="license" />
                 </Field>
 
-                <div className={source !== "inat" ? "flex flex-col sm:flex-row items-center gap-2" : ""}>
-                  <Field label="License" required>
-                    <Input type="text" name="license" />
-
-                    <FormError name="license" />
+                {source !== "inat" && (
+                  <Field label="License Version">
+                    <Input type="text" name="licenseVer" />
+                    <FormError name="licenseVer" />
                   </Field>
-
-                  {source !== "inat" && (
-                    <Field label="License Version">
-                      <Input type="text" name="licenseVer" />
-                      <FormError name="licenseVer" />
-                    </Field>
-                  )}
-                </div>
-
-                <InputImageCrop
-                  name="crop"
-                  url={
-                    sourceId && (source === "inat" ? !!iNatFileExt : true)
-                      ? getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""
-                      : ""
-                  }
-                />
-
-                {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
-                  <div className="bg-amber-50 p-4 rounded-md">
-                    <p className="text-sm text-amber-700">
-                      The iNaturalist scientific name <strong>{sourceInfo?.info?.speciesName}</strong> does not match{" "}
-                      <strong>{data.sciName}</strong>.
-                    </p>
-                  </div>
                 )}
               </div>
-              <div className="flex gap-4 mt-6 items-center">
-                <button
-                  type="button"
-                  onClick={handleRemove}
-                  className="font-medium mr-auto text-red-700 rounded-md border border-red-700 px-3 py-1.5 opacity-70 hover:opacity-100"
-                  disabled={mutation.isPending}
-                >
-                  Remove Image
-                </button>
-                <Checkbox name="flip" label="Flip Image" />
-                <Submit disabled={mutation.isPending} color="green" className="font-medium">
-                  Save
-                </Submit>
-              </div>
+
+              <InputImageCrop
+                name="crop"
+                url={
+                  sourceId && (source === "inat" ? !!iNatFileExt : true)
+                    ? getSourceImgUrl({ source, sourceId, size: 2400, ext: iNatFileExt }) || ""
+                    : ""
+                }
+              />
+
+              {sourceInfo?.info?.speciesName && sourceInfo?.info?.speciesName !== data.sciName && (
+                <div className="bg-amber-50 p-4 rounded-md">
+                  <p className="text-sm text-amber-700">
+                    The iNaturalist scientific name <strong>{sourceInfo?.info?.speciesName}</strong> does not match{" "}
+                    <strong>{data.sciName}</strong>.
+                  </p>
+                </div>
+              )}
             </div>
-          </Form>
-        </div>
-      </AdminPage>
-    </>
+            <div className="flex gap-4 mt-6 items-center">
+              <button
+                type="button"
+                onClick={handleRemove}
+                className="font-medium mr-auto text-red-700 rounded-md border border-red-700 px-3 py-1.5 opacity-70 hover:opacity-100"
+                disabled={mutation.isPending}
+              >
+                Remove Image
+              </button>
+              <Checkbox name="flip" label="Flip Image" />
+              <Submit disabled={mutation.isPending} color="green" className="font-medium">
+                Save
+              </Submit>
+            </div>
+          </div>
+        </Form>
+      </div>
+    </AdminPage>
   );
 }
 
@@ -378,19 +345,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   const { code } = query;
   await connect();
   const species = await Species.findById(code);
-
-  const [nextSpecies, prevSpecies] = await Promise.all([
-    species?.order
-      ? await Species.findOne({ order: { $gt: species.order }, crop: { $exists: false }, hasImg: true }).sort({
-          order: 1,
-        })
-      : null,
-    species?.order
-      ? await Species.findOne({ order: { $lt: species.order }, crop: { $exists: false }, hasImg: true }).sort({
-          order: -1,
-        })
-      : null,
-  ]);
 
   if (!species) return { notFound: true };
 
@@ -400,10 +354,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     props: {
       data: cleanSpecies,
       code,
-      nextCode: nextSpecies?._id,
-      nextName: nextSpecies?.name,
-      prevCode: prevSpecies?._id,
-      prevName: prevSpecies?.name,
     },
   };
 });
