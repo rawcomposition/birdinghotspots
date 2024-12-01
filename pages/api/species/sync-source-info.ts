@@ -1,8 +1,9 @@
 import connect from "lib/mongo";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Species from "models/Species";
+import { getSourceInfo } from "lib/species";
 
-const DRY_RUN = false;
+const DRY_RUN = true;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (process.env.NODE_ENV !== "development") {
@@ -11,17 +12,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   await connect();
 
-  const results = await Species.find({
-    author: { $regex: "from" },
-  }).lean();
+  const results = await Species.find({}).sort({ order: 1 }).lean();
 
   const bulkWrites: any[] = [];
 
   for (const species of results) {
-    const author = species.author.split(" from ")[0]?.trim();
-    if (author) {
-      bulkWrites.push({ updateOne: { filter: { _id: species._id }, update: { $set: { author } } } });
-    }
+    const info = await getSourceInfo(species.source, species.sourceId, species.iNatObsId);
   }
 
   if (DRY_RUN) {

@@ -449,6 +449,7 @@ export type SourceInfoT = {
   licenseVer?: string;
   sourceIds?: string[];
   iNatFileExts?: string[];
+  iNatUserId?: string;
   speciesName?: string;
 };
 
@@ -499,6 +500,7 @@ export type SpeciesT = {
   crop: Crop;
   iNatObsId?: string;
   iNatFileExt?: string;
+  iNatUserId?: string;
   downloadedAt?: Date;
   familyCode: string;
   taxonVersions: string[];
@@ -514,5 +516,6 @@ export type SpeciesInput = {
   licenseVer?: string;
   iNatObsId?: string;
   iNatFileExt?: string;
+  iNatUserId?: string;
   flip?: boolean;
 };

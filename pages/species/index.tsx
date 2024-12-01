@@ -24,7 +24,6 @@ type Props = {
   totalCount: number;
   filteredCount: number;
   withoutImgCount: number;
-  withoutCropCount: number;
   filter: string;
   family: string;
   startCount: number;
@@ -39,7 +38,6 @@ export default function SpeciesList({
   totalCount,
   filteredCount,
   withoutImgCount,
-  withoutCropCount,
   filter,
   family,
   startCount,
@@ -77,15 +75,6 @@ export default function SpeciesList({
             )}
           >
             Without Image ({withoutImgCount.toLocaleString()})
-          </Link>
-          <Link
-            href={`/species?page=1&filter=withoutCrop&family=${family}`}
-            className={clsx(
-              "px-5 py-1 rounded-full font-medium",
-              filter === "withoutCrop" ? "bg-primary text-white" : "bg-gray-200 text-gray-600"
-            )}
-          >
-            Without Crop ({withoutCropCount.toLocaleString()})
           </Link>
         </div>
         <SelectBasic
@@ -240,7 +229,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const filter = context.query.filter || "all";
   const family = context.query.family || "all";
 
-  let query: any = {};
+  let query: any = { active: true };
   if (filter === "withoutImg") {
     query = { hasImg: { $ne: true } };
   }
@@ -290,7 +279,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       totalCount,
       filteredCount,
       withoutImgCount: totalCount - withImgCount,
-      withoutCropCount: withImgCount - croppedCount,
       filter,
       family,
       startCount,

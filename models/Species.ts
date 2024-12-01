@@ -23,15 +23,10 @@ const SpeciesSchema = new Schema({
     type: Number,
     required: true,
   },
-  source: {
-    type: String,
-    required: true,
-  },
-  sourceId: {
-    type: String,
-    required: true,
-  },
+  source: String,
+  sourceId: String,
   iNatObsId: String,
+  iNatUserId: String,
   iNatFileExt: String,
   author: String,
   license: String,

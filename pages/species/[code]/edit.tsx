@@ -47,6 +47,7 @@ export default function Import({ data, code }: Props) {
           crop: data.crop,
           iNatObsId: data.iNatObsId,
           iNatFileExt: data.iNatFileExt,
+          iNatUserId: data.iNatUserId,
           flip: data.flip,
         }
       : {
@@ -84,6 +85,9 @@ export default function Import({ data, code }: Props) {
       }
       if (sourceInfo.info.iNatFileExts && !values.iNatFileExt) {
         form.setValue("iNatFileExt", sourceInfo.info.iNatFileExts[0]);
+      }
+      if (sourceInfo.info.iNatUserId && !values.iNatUserId) {
+        form.setValue("iNatUserId", sourceInfo.info.iNatUserId);
       }
       if (sourceInfo.info.sourceIds?.length && !values.sourceId) {
         form.setValue("sourceId", sourceInfo.info.sourceIds[0]?.toString());
@@ -123,6 +127,7 @@ export default function Import({ data, code }: Props) {
     } else {
       delete data.iNatFileExt;
       delete data.iNatObsId;
+      delete data.iNatUserId;
     }
 
     if (!Object.keys(LicenseLabel).includes(data.license) && data.source === "inat") {
@@ -138,6 +143,7 @@ export default function Import({ data, code }: Props) {
           ? data.iNatObsId?.replace("https://www.inaturalist.org/observations/", "").trim()
           : undefined,
       iNatFileExt: data.source === "inat" ? iNatFileExt : undefined,
+      iNatUserId: data.source === "inat" ? data.iNatUserId : undefined,
     });
   };
 
@@ -162,6 +168,7 @@ export default function Import({ data, code }: Props) {
           form.setValue("license", "" as License);
           form.setValue("licenseVer", "");
           form.setValue("author", "");
+          form.setValue("iNatUserId", "");
         }
       }
     };
