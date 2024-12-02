@@ -205,9 +205,11 @@ export async function getSourceInfo(source: string, sourceId: string | undefined
       };
     }
     case "inat": {
+      if (!iNatObsId) throw new Error("iNatObsId is required");
       const request = await fetch(`https://api.inaturalist.org/v1/observations/${iNatObsId}`);
       const response = await request.json();
       const obs = response.results[0];
+      if (!obs) throw new Error(`No iNat observation found for ${iNatObsId}`);
       const iNatFileExts = obs.photos?.map((photo: any) => photo.url?.split(".").pop());
       const speciesNamePieces = obs.taxon?.name?.split(" ");
       const speciesName = `${speciesNamePieces?.[0]} ${speciesNamePieces?.[1]}`.trim();
