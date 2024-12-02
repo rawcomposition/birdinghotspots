@@ -1,0 +1,1272 @@
+[
+  {
+    "code": "struth1",
+    "name": "Ostriches",
+    "count": 2
+  },
+  {
+    "code": "casuar1",
+    "name": "Cassowaries and Emu",
+    "count": 4
+  },
+  {
+    "code": "aptery1",
+    "name": "Kiwis",
+    "count": 5
+  },
+  {
+    "code": "rheida1",
+    "name": "Rheas",
+    "count": 2
+  },
+  {
+    "code": "tinami1",
+    "name": "Tinamous",
+    "count": 46
+  },
+  {
+    "code": "anhimi1",
+    "name": "Screamers",
+    "count": 3
+  },
+  {
+    "code": "ansera1",
+    "name": "Magpie Goose",
+    "count": 1
+  },
+  {
+    "code": "anatid1",
+    "name": "Ducks, Geese, and Waterfowl",
+    "count": 174
+  },
+  {
+    "code": "megapo1",
+    "name": "Megapodes",
+    "count": 21
+  },
+  {
+    "code": "cracid2",
+    "name": "Guans, Chachalacas, and Curassows",
+    "count": 57
+  },
+  {
+    "code": "numidi1",
+    "name": "Guineafowl",
+    "count": 8
+  },
+  {
+    "code": "odonto1",
+    "name": "New World Quail",
+    "count": 34
+  },
+  {
+    "code": "phasia1",
+    "name": "Pheasants, Grouse, and Allies",
+    "count": 186
+  },
+  {
+    "code": "columb2",
+    "name": "Pigeons and Doves",
+    "count": 353
+  },
+  {
+    "code": "mesito1",
+    "name": "Mesites",
+    "count": 3
+  },
+  {
+    "code": "pteroc1",
+    "name": "Sandgrouse",
+    "count": 16
+  },
+  {
+    "code": "otidid1",
+    "name": "Bustards",
+    "count": 26
+  },
+  {
+    "code": "musoph1",
+    "name": "Turacos",
+    "count": 23
+  },
+  {
+    "code": "cuculi1",
+    "name": "Cuckoos",
+    "count": 155
+  },
+  {
+    "code": "caprim2",
+    "name": "Nightjars and Allies",
+    "count": 98
+  },
+  {
+    "code": "nyctib1",
+    "name": "Potoos",
+    "count": 7
+  },
+  {
+    "code": "steato1",
+    "name": "Oilbird",
+    "count": 1
+  },
+  {
+    "code": "podarg1",
+    "name": "Frogmouths",
+    "count": 16
+  },
+  {
+    "code": "aegoth1",
+    "name": "Owlet-nightjars",
+    "count": 10
+  },
+  {
+    "code": "apodid1",
+    "name": "Swifts",
+    "count": 109
+  },
+  {
+    "code": "hemipr1",
+    "name": "Treeswifts",
+    "count": 4
+  },
+  {
+    "code": "trochi1",
+    "name": "Hummingbirds",
+    "count": 363
+  },
+  {
+    "code": "saroth1",
+    "name": "Flufftails",
+    "count": 15
+  },
+  {
+    "code": "rallid1",
+    "name": "Rails, Gallinules, and Coots",
+    "count": 156
+  },
+  {
+    "code": "helior1",
+    "name": "Finfoots",
+    "count": 3
+  },
+  {
+    "code": "aramid1",
+    "name": "Limpkin",
+    "count": 1
+  },
+  {
+    "code": "psophi1",
+    "name": "Trumpeters",
+    "count": 3
+  },
+  {
+    "code": "gruida1",
+    "name": "Cranes",
+    "count": 15
+  },
+  {
+    "code": "pluvia2",
+    "name": "Magellanic Plover",
+    "count": 1
+  },
+  {
+    "code": "chioni1",
+    "name": "Sheathbills",
+    "count": 2
+  },
+  {
+    "code": "burhin2",
+    "name": "Thick-knees",
+    "count": 10
+  },
+  {
+    "code": "pluvia1",
+    "name": "Egyptian Plover",
+    "count": 1
+  },
+  {
+    "code": "recurv1",
+    "name": "Stilts and Avocets",
+    "count": 9
+  },
+  {
+    "code": "ibidor1",
+    "name": "Ibisbill",
+    "count": 1
+  },
+  {
+    "code": "haemat1",
+    "name": "Oystercatchers",
+    "count": 12
+  },
+  {
+    "code": "charad1",
+    "name": "Plovers and Lapwings",
+    "count": 69
+  },
+  {
+    "code": "pedion1",
+    "name": "Plains-wanderer",
+    "count": 1
+  },
+  {
+    "code": "thinoc1",
+    "name": "Seedsnipes",
+    "count": 4
+  },
+  {
+    "code": "rostra1",
+    "name": "Painted-Snipes",
+    "count": 3
+  },
+  {
+    "code": "jacani1",
+    "name": "Jacanas",
+    "count": 8
+  },
+  {
+    "code": "scolop2",
+    "name": "Sandpipers and Allies",
+    "count": 97
+  },
+  {
+    "code": "turnic1",
+    "name": "Buttonquail",
+    "count": 18
+  },
+  {
+    "code": "dromad1",
+    "name": "Crab-Plover",
+    "count": 1
+  },
+  {
+    "code": "glareo1",
+    "name": "Pratincoles and Coursers",
+    "count": 17
+  },
+  {
+    "code": "sterco1",
+    "name": "Skuas and Jaegers",
+    "count": 7
+  },
+  {
+    "code": "alcida1",
+    "name": "Auks, Murres, and Puffins",
+    "count": 25
+  },
+  {
+    "code": "larida1",
+    "name": "Gulls, Terns, and Skimmers",
+    "count": 103
+  },
+  {
+    "code": "phoeni1",
+    "name": "Flamingos",
+    "count": 6
+  },
+  {
+    "code": "podici1",
+    "name": "Grebes",
+    "count": 22
+  },
+  {
+    "code": "opisth1",
+    "name": "Hoatzin",
+    "count": 1
+  },
+  {
+    "code": "rhynoc1",
+    "name": "Kagu",
+    "count": 1
+  },
+  {
+    "code": "eurypy1",
+    "name": "Sunbittern",
+    "count": 1
+  },
+  {
+    "code": "phaeth1",
+    "name": "Tropicbirds",
+    "count": 3
+  },
+  {
+    "code": "gaviid1",
+    "name": "Loons",
+    "count": 5
+  },
+  {
+    "code": "spheni1",
+    "name": "Penguins",
+    "count": 18
+  },
+  {
+    "code": "diomed1",
+    "name": "Albatrosses",
+    "count": 20
+  },
+  {
+    "code": "oceani2",
+    "name": "Southern Storm-Petrels",
+    "count": 10
+  },
+  {
+    "code": "hydrob1",
+    "name": "Northern Storm-Petrels",
+    "count": 18
+  },
+  {
+    "code": "procel3",
+    "name": "Shearwaters and Petrels",
+    "count": 99
+  },
+  {
+    "code": "ciconi2",
+    "name": "Storks",
+    "count": 20
+  },
+  {
+    "code": "fregat1",
+    "name": "Frigatebirds",
+    "count": 5
+  },
+  {
+    "code": "sulida1",
+    "name": "Boobies and Gannets",
+    "count": 11
+  },
+  {
+    "code": "anhing3",
+    "name": "Anhingas",
+    "count": 4
+  },
+  {
+    "code": "phalac1",
+    "name": "Cormorants and Shags",
+    "count": 40
+  },
+  {
+    "code": "thresk1",
+    "name": "Ibises and Spoonbills",
+    "count": 36
+  },
+  {
+    "code": "ardeid1",
+    "name": "Herons, Egrets, and Bitterns",
+    "count": 72
+  },
+  {
+    "code": "scopid1",
+    "name": "Hamerkop",
+    "count": 1
+  },
+  {
+    "code": "balaen1",
+    "name": "Shoebill",
+    "count": 1
+  },
+  {
+    "code": "peleca1",
+    "name": "Pelicans",
+    "count": 8
+  },
+  {
+    "code": "cathar2",
+    "name": "New World Vultures",
+    "count": 7
+  },
+  {
+    "code": "sagitt1",
+    "name": "Secretarybird",
+    "count": 1
+  },
+  {
+    "code": "pandio1",
+    "name": "Osprey",
+    "count": 1
+  },
+  {
+    "code": "accipi1",
+    "name": "Hawks, Eagles, and Kites",
+    "count": 250
+  },
+  {
+    "code": "tytoni1",
+    "name": "Barn-Owls",
+    "count": 20
+  },
+  {
+    "code": "strigi1",
+    "name": "Owls",
+    "count": 229
+  },
+  {
+    "code": "coliid1",
+    "name": "Mousebirds",
+    "count": 6
+  },
+  {
+    "code": "leptos1",
+    "name": "Cuckoo-roller",
+    "count": 1
+  },
+  {
+    "code": "trogon1",
+    "name": "Trogons",
+    "count": 46
+  },
+  {
+    "code": "upupid1",
+    "name": "Hoopoes",
+    "count": 3
+  },
+  {
+    "code": "phoeni2",
+    "name": "Woodhoopoes and Scimitarbills",
+    "count": 8
+  },
+  {
+    "code": "bucorv1",
+    "name": "Ground-Hornbills",
+    "count": 2
+  },
+  {
+    "code": "bucero1",
+    "name": "Hornbills",
+    "count": 62
+  },
+  {
+    "code": "meropi1",
+    "name": "Bee-eaters",
+    "count": 31
+  },
+  {
+    "code": "todida1",
+    "name": "Todies",
+    "count": 5
+  },
+  {
+    "code": "momoti1",
+    "name": "Motmots",
+    "count": 14
+  },
+  {
+    "code": "alcedi1",
+    "name": "Kingfishers",
+    "count": 117
+  },
+  {
+    "code": "coraci1",
+    "name": "Rollers",
+    "count": 13
+  },
+  {
+    "code": "brachy2",
+    "name": "Ground-Rollers",
+    "count": 5
+  },
+  {
+    "code": "buccon2",
+    "name": "Puffbirds",
+    "count": 37
+  },
+  {
+    "code": "galbul2",
+    "name": "Jacamars",
+    "count": 18
+  },
+  {
+    "code": "lybiid1",
+    "name": "African Barbets",
+    "count": 43
+  },
+  {
+    "code": "megala2",
+    "name": "Asian Barbets",
+    "count": 35
+  },
+  {
+    "code": "capito2",
+    "name": "New World Barbets",
+    "count": 15
+  },
+  {
+    "code": "semnor1",
+    "name": "Toucan-Barbets",
+    "count": 2
+  },
+  {
+    "code": "rampha1",
+    "name": "Toucans",
+    "count": 36
+  },
+  {
+    "code": "indica1",
+    "name": "Honeyguides",
+    "count": 16
+  },
+  {
+    "code": "picida1",
+    "name": "Woodpeckers",
+    "count": 236
+  },
+  {
+    "code": "cariam1",
+    "name": "Seriemas",
+    "count": 2
+  },
+  {
+    "code": "falcon1",
+    "name": "Falcons and Caracaras",
+    "count": 65
+  },
+  {
+    "code": "strigo1",
+    "name": "New Zealand Parrots",
+    "count": 4
+  },
+  {
+    "code": "cacatu2",
+    "name": "Cockatoos",
+    "count": 22
+  },
+  {
+    "code": "psitta4",
+    "name": "Old World Parrots",
+    "count": 201
+  },
+  {
+    "code": "psitta3",
+    "name": "New World and African Parrots",
+    "count": 177
+  },
+  {
+    "code": "acanth1",
+    "name": "New Zealand Wrens",
+    "count": 4
+  },
+  {
+    "code": "calypt1",
+    "name": "African and Green Broadbills",
+    "count": 6
+  },
+  {
+    "code": "euryla1",
+    "name": "Asian and Grauer's Broadbills",
+    "count": 10
+  },
+  {
+    "code": "sapayo2",
+    "name": "Sapayoa",
+    "count": 1
+  },
+  {
+    "code": "philep1",
+    "name": "Asities",
+    "count": 4
+  },
+  {
+    "code": "pittid1",
+    "name": "Pittas",
+    "count": 46
+  },
+  {
+    "code": "thamno3",
+    "name": "Typical Antbirds",
+    "count": 237
+  },
+  {
+    "code": "melano2",
+    "name": "Crescentchests",
+    "count": 4
+  },
+  {
+    "code": "conopo1",
+    "name": "Gnateaters",
+    "count": 12
+  },
+  {
+    "code": "gralla2",
+    "name": "Antpittas",
+    "count": 70
+  },
+  {
+    "code": "rhinoc1",
+    "name": "Tapaculos",
+    "count": 65
+  },
+  {
+    "code": "formic2",
+    "name": "Antthrushes",
+    "count": 12
+  },
+  {
+    "code": "furnar2",
+    "name": "Ovenbirds and Woodcreepers",
+    "count": 318
+  },
+  {
+    "code": "piprid1",
+    "name": "Manakins",
+    "count": 55
+  },
+  {
+    "code": "coting1",
+    "name": "Cotingas",
+    "count": 65
+  },
+  {
+    "code": "tityri1",
+    "name": "Tityras and Allies",
+    "count": 36
+  },
+  {
+    "code": "oxyrun1",
+    "name": "Sharpbill",
+    "count": 1
+  },
+  {
+    "code": "rfaall1",
+    "name": "Royal Flycatchers and Allies",
+    "count": 7
+  },
+  {
+    "code": "tyrann2",
+    "name": "Tyrant Flycatchers",
+    "count": 440
+  },
+  {
+    "code": "menuri1",
+    "name": "Lyrebirds",
+    "count": 2
+  },
+  {
+    "code": "atrich1",
+    "name": "Scrub-birds",
+    "count": 2
+  },
+  {
+    "code": "ptilon1",
+    "name": "Bowerbirds",
+    "count": 27
+  },
+  {
+    "code": "climac1",
+    "name": "Australasian Treecreepers",
+    "count": 7
+  },
+  {
+    "code": "maluri1",
+    "name": "Fairywrens",
+    "count": 33
+  },
+  {
+    "code": "meliph3",
+    "name": "Honeyeaters",
+    "count": 195
+  },
+  {
+    "code": "dasyor1",
+    "name": "Bristlebirds",
+    "count": 3
+  },
+  {
+    "code": "pardal2",
+    "name": "Pardalotes",
+    "count": 4
+  },
+  {
+    "code": "acanth2",
+    "name": "Thornbills and Allies",
+    "count": 66
+  },
+  {
+    "code": "pomato2",
+    "name": "Pseudo-Babblers",
+    "count": 5
+  },
+  {
+    "code": "orthon1",
+    "name": "Logrunners",
+    "count": 3
+  },
+  {
+    "code": "cinclo2",
+    "name": "Quail-thrushes and Jewel-babblers",
+    "count": 12
+  },
+  {
+    "code": "campep2",
+    "name": "Cuckooshrikes",
+    "count": 109
+  },
+  {
+    "code": "mohoui1",
+    "name": "Whiteheads",
+    "count": 3
+  },
+  {
+    "code": "neosit1",
+    "name": "Sittellas",
+    "count": 3
+  },
+  {
+    "code": "psopho1",
+    "name": "Whipbirds and Wedgebills",
+    "count": 5
+  },
+  {
+    "code": "eulace1",
+    "name": "Ploughbill",
+    "count": 1
+  },
+  {
+    "code": "oreoic1",
+    "name": "Australo-Papuan Bellbirds",
+    "count": 3
+  },
+  {
+    "code": "falcun1",
+    "name": "Shrike-tits",
+    "count": 3
+  },
+  {
+    "code": "paramy1",
+    "name": "Tit Berrypecker and Crested Berrypecker",
+    "count": 3
+  },
+  {
+    "code": "vireon1",
+    "name": "Vireos, Shrike-Babblers, and Erpornis",
+    "count": 61
+  },
+  {
+    "code": "pachyc2",
+    "name": "Whistlers and Allies",
+    "count": 67
+  },
+  {
+    "code": "orioli1",
+    "name": "Old World Orioles",
+    "count": 41
+  },
+  {
+    "code": "machae1",
+    "name": "Boatbills",
+    "count": 2
+  },
+  {
+    "code": "artami1",
+    "name": "Woodswallows, Bellmagpies, and Allies",
+    "count": 24
+  },
+  {
+    "code": "rhagol1",
+    "name": "Mottled Berryhunter",
+    "count": 1
+  },
+  {
+    "code": "platys1",
+    "name": "Wattle-eyes and Batises",
+    "count": 32
+  },
+  {
+    "code": "vangid2",
+    "name": "Vangas, Helmetshrikes, and Allies",
+    "count": 40
+  },
+  {
+    "code": "pityri1",
+    "name": "Bristlehead",
+    "count": 1
+  },
+  {
+    "code": "aegith1",
+    "name": "Ioras",
+    "count": 4
+  },
+  {
+    "code": "malaco2",
+    "name": "Bushshrikes and Allies",
+    "count": 50
+  },
+  {
+    "code": "rhipid1",
+    "name": "Fantails",
+    "count": 64
+  },
+  {
+    "code": "dicrur1",
+    "name": "Drongos",
+    "count": 28
+  },
+  {
+    "code": "paradi7",
+    "name": "Birds-of-Paradise",
+    "count": 44
+  },
+  {
+    "code": "ifriti1",
+    "name": "Ifrita",
+    "count": 1
+  },
+  {
+    "code": "monarc2",
+    "name": "Monarch Flycatchers",
+    "count": 105
+  },
+  {
+    "code": "corcor1",
+    "name": "White-winged Chough and Apostlebird",
+    "count": 2
+  },
+  {
+    "code": "melamp1",
+    "name": "Melampittas",
+    "count": 2
+  },
+  {
+    "code": "platyl1",
+    "name": "Crested Jayshrike",
+    "count": 1
+  },
+  {
+    "code": "laniid1",
+    "name": "Shrikes",
+    "count": 34
+  },
+  {
+    "code": "corvid1",
+    "name": "Crows, Jays, and Magpies",
+    "count": 136
+  },
+  {
+    "code": "cnemop1",
+    "name": "Satinbirds",
+    "count": 3
+  },
+  {
+    "code": "melano1",
+    "name": "Berrypeckers and Longbills",
+    "count": 12
+  },
+  {
+    "code": "callae1",
+    "name": "Wattlebirds",
+    "count": 5
+  },
+  {
+    "code": "notiom1",
+    "name": "Stitchbird",
+    "count": 1
+  },
+  {
+    "code": "petroi2",
+    "name": "Australasian Robins",
+    "count": 51
+  },
+  {
+    "code": "picath1",
+    "name": "Rockfowl",
+    "count": 2
+  },
+  {
+    "code": "chaeto2",
+    "name": "Rockjumpers",
+    "count": 2
+  },
+  {
+    "code": "eupeti1",
+    "name": "Rail-babbler",
+    "count": 1
+  },
+  {
+    "code": "hyliot1",
+    "name": "Hyliotas",
+    "count": 4
+  },
+  {
+    "code": "stenos1",
+    "name": "Fairy Flycatchers",
+    "count": 9
+  },
+  {
+    "code": "parida1",
+    "name": "Tits, Chickadees, and Titmice",
+    "count": 62
+  },
+  {
+    "code": "remizi1",
+    "name": "Penduline-Tits",
+    "count": 11
+  },
+  {
+    "code": "alaudi1",
+    "name": "Larks",
+    "count": 98
+  },
+  {
+    "code": "panuri1",
+    "name": "Bearded Reedling",
+    "count": 1
+  },
+  {
+    "code": "nicato1",
+    "name": "Nicators",
+    "count": 3
+  },
+  {
+    "code": "macros1",
+    "name": "African Warblers",
+    "count": 18
+  },
+  {
+    "code": "cistic2",
+    "name": "Cisticolas and Allies",
+    "count": 164
+  },
+  {
+    "code": "acroce2",
+    "name": "Reed Warblers and Allies",
+    "count": 60
+  },
+  {
+    "code": "locust5",
+    "name": "Grassbirds and Allies",
+    "count": 67
+  },
+  {
+    "code": "donaco1",
+    "name": "Donacobius",
+    "count": 1
+  },
+  {
+    "code": "bernie1",
+    "name": "Malagasy Warblers",
+    "count": 11
+  },
+  {
+    "code": "pnoepy1",
+    "name": "Cupwings",
+    "count": 4
+  },
+  {
+    "code": "hirund2",
+    "name": "Swallows",
+    "count": 92
+  },
+  {
+    "code": "pycnon4",
+    "name": "Bulbuls",
+    "count": 161
+  },
+  {
+    "code": "phyllo4",
+    "name": "Leaf Warblers",
+    "count": 80
+  },
+  {
+    "code": "hylias1",
+    "name": "Hylias",
+    "count": 2
+  },
+  {
+    "code": "yelfly10",
+    "name": "Yellow Flycatchers",
+    "count": 3
+  },
+  {
+    "code": "scotoc1",
+    "name": "Bush Warblers and Allies",
+    "count": 32
+  },
+  {
+    "code": "aegith2",
+    "name": "Long-tailed Tits",
+    "count": 11
+  },
+  {
+    "code": "sylvii1",
+    "name": "Sylviid Warblers and Allies",
+    "count": 32
+  },
+  {
+    "code": "parado1",
+    "name": "Parrotbills",
+    "count": 38
+  },
+  {
+    "code": "zoster2",
+    "name": "White-eyes, Yuhinas, and Allies",
+    "count": 150
+  },
+  {
+    "code": "timali1",
+    "name": "Tree-Babblers, Scimitar-Babblers, and Allies",
+    "count": 58
+  },
+  {
+    "code": "pellor2",
+    "name": "Ground Babblers and Allies",
+    "count": 65
+  },
+  {
+    "code": "leioth1",
+    "name": "Laughingthrushes and Allies",
+    "count": 143
+  },
+  {
+    "code": "reguli1",
+    "name": "Kinglets",
+    "count": 6
+  },
+  {
+    "code": "tichod1",
+    "name": "Wallcreeper",
+    "count": 1
+  },
+  {
+    "code": "sittid1",
+    "name": "Nuthatches",
+    "count": 29
+  },
+  {
+    "code": "spocre4",
+    "name": "Spotted Creepers",
+    "count": 2
+  },
+  {
+    "code": "certhi2",
+    "name": "Treecreepers",
+    "count": 9
+  },
+  {
+    "code": "poliop1",
+    "name": "Gnatcatchers",
+    "count": 22
+  },
+  {
+    "code": "troglo1",
+    "name": "Wrens",
+    "count": 96
+  },
+  {
+    "code": "elachu1",
+    "name": "Spotted Elachura",
+    "count": 1
+  },
+  {
+    "code": "cincli1",
+    "name": "Dippers",
+    "count": 5
+  },
+  {
+    "code": "buphag1",
+    "name": "Oxpeckers",
+    "count": 2
+  },
+  {
+    "code": "sturni1",
+    "name": "Starlings",
+    "count": 125
+  },
+  {
+    "code": "mimida2",
+    "name": "Mockingbirds and Thrashers",
+    "count": 35
+  },
+  {
+    "code": "turdid1",
+    "name": "Thrushes and Allies",
+    "count": 192
+  },
+  {
+    "code": "muscic3",
+    "name": "Old World Flycatchers",
+    "count": 353
+  },
+  {
+    "code": "bombyc1",
+    "name": "Waxwings",
+    "count": 3
+  },
+  {
+    "code": "mohoid1",
+    "name": "Hawaiian Honeyeaters",
+    "count": 5
+  },
+  {
+    "code": "ptilio1",
+    "name": "Silky-flycatchers",
+    "count": 4
+  },
+  {
+    "code": "dulida1",
+    "name": "Palmchat",
+    "count": 1
+  },
+  {
+    "code": "hyloci3",
+    "name": "Hylocitrea",
+    "count": 1
+  },
+  {
+    "code": "hypoco2",
+    "name": "Hypocolius",
+    "count": 1
+  },
+  {
+    "code": "promer1",
+    "name": "Sugarbirds",
+    "count": 2
+  },
+  {
+    "code": "modula1",
+    "name": "Dapple-throat and Allies",
+    "count": 3
+  },
+  {
+    "code": "dicaei1",
+    "name": "Flowerpeckers",
+    "count": 56
+  },
+  {
+    "code": "nectar1",
+    "name": "Sunbirds and Spiderhunters",
+    "count": 151
+  },
+  {
+    "code": "irenid1",
+    "name": "Fairy-bluebirds",
+    "count": 3
+  },
+  {
+    "code": "chloro5",
+    "name": "Leafbirds",
+    "count": 12
+  },
+  {
+    "code": "peuced1",
+    "name": "Olive Warbler",
+    "count": 1
+  },
+  {
+    "code": "urocyn1",
+    "name": "Przevalski's Pinktail",
+    "count": 1
+  },
+  {
+    "code": "plocei1",
+    "name": "Weavers and Allies",
+    "count": 123
+  },
+  {
+    "code": "estril1",
+    "name": "Waxbills and Allies",
+    "count": 138
+  },
+  {
+    "code": "viduid1",
+    "name": "Indigobirds",
+    "count": 20
+  },
+  {
+    "code": "prunel1",
+    "name": "Accentors",
+    "count": 12
+  },
+  {
+    "code": "passer4",
+    "name": "Old World Sparrows",
+    "count": 43
+  },
+  {
+    "code": "motaci1",
+    "name": "Wagtails and Pipits",
+    "count": 70
+  },
+  {
+    "code": "fringi1",
+    "name": "Finches, Euphonias, and Allies",
+    "count": 236
+  },
+  {
+    "code": "calcar1",
+    "name": "Longspurs and Snow Buntings",
+    "count": 6
+  },
+  {
+    "code": "rhodin1",
+    "name": "Thrush-Tanager",
+    "count": 1
+  },
+  {
+    "code": "emberi2",
+    "name": "Old World Buntings",
+    "count": 44
+  },
+  {
+    "code": "passer3",
+    "name": "New World Sparrows",
+    "count": 135
+  },
+  {
+    "code": "calypt2",
+    "name": "Chat-Tanagers",
+    "count": 2
+  },
+  {
+    "code": "phaeni1",
+    "name": "Hispaniolan Tanagers",
+    "count": 4
+  },
+  {
+    "code": "nesosp1",
+    "name": "Puerto Rican Tanager",
+    "count": 1
+  },
+  {
+    "code": "spinda1",
+    "name": "Spindalises",
+    "count": 4
+  },
+  {
+    "code": "zeledo1",
+    "name": "Wrenthrush",
+    "count": 1
+  },
+  {
+    "code": "tereti1",
+    "name": "Cuban Warblers",
+    "count": 2
+  },
+  {
+    "code": "icteri2",
+    "name": "Yellow-breasted Chat",
+    "count": 1
+  },
+  {
+    "code": "icteri1",
+    "name": "Troupials and Allies",
+    "count": 106
+  },
+  {
+    "code": "paruli1",
+    "name": "New World Warblers",
+    "count": 115
+  },
+  {
+    "code": "mitros1",
+    "name": "Mitrospingid Tanagers",
+    "count": 4
+  },
+  {
+    "code": "cardin1",
+    "name": "Cardinals and Allies",
+    "count": 51
+  },
+  {
+    "code": "thraup2",
+    "name": "Tanagers and Allies",
+    "count": 384
+  }
+]
