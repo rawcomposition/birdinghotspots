@@ -37,7 +37,11 @@ export default function Home({ featured, northAmericaRegions }: Props) {
                 {!!country.subregions?.length && (
                   <div className={clsx("columns-2 mb-12", country.name !== "Canada" && "lg:columns-3")}>
                     {country.subregions.map(({ name, code }) => (
-                      <Link key={code} href={`/region/${code}`} className="font-bold px-2 py-1 text-base mb-1 block">
+                      <Link
+                        key={code}
+                        href={`/region/${code}`}
+                        className="font-bold px-2 py-1 text-base mb-1 block break-inside-avoid"
+                      >
                         {name}
                       </Link>
                     ))}

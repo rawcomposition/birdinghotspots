@@ -13100,6 +13100,70 @@
     "name": "York, Ontario, Canada"
   },
   {
+    "code": "CA-NB",
+    "name": "New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-AL",
+    "name": "Albert, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-CA",
+    "name": "Carleton, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-CH",
+    "name": "Charlotte, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-GL",
+    "name": "Gloucester, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-KE",
+    "name": "Kent, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-KI",
+    "name": "Kings, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-MA",
+    "name": "Madawaska, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-NO",
+    "name": "Northumberland, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-QU",
+    "name": "Queens, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-RE",
+    "name": "Restigouche, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-SJ",
+    "name": "Saint John, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-SU",
+    "name": "Sunbury, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-VI",
+    "name": "Victoria, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-WE",
+    "name": "Westmorland, New Brunswick, Canada"
+  },
+  {
+    "code": "CA-NB-YO",
+    "name": "York, New Brunswick, Canada"
+  },
+  {
     "code": "CA-NL",
     "name": "Newfoundland and Labrador, Canada"
   },
@@ -13146,6 +13210,98 @@
   {
     "code": "CA-NL-FO",
     "name": "St. George's-Stephenville, Newfoundland and Labrador, Canada"
+  },
+  {
+    "code": "CA-NS",
+    "name": "Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-AP",
+    "name": "Annapolis, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-AG",
+    "name": "Antigonish, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-CB",
+    "name": "Cape Breton, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-CO",
+    "name": "Colchester, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-CU",
+    "name": "Cumberland, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-DI",
+    "name": "Digby, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-GU",
+    "name": "Guysborough, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-HL",
+    "name": "Halifax, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-HN",
+    "name": "Hants, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-IN",
+    "name": "Inverness, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-KI",
+    "name": "Kings, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-LU",
+    "name": "Lunenburg, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-PI",
+    "name": "Pictou, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-QU",
+    "name": "Queens, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-RI",
+    "name": "Richmond, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-SH",
+    "name": "Shelburne, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-VI",
+    "name": "Victoria, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-NS-YA",
+    "name": "Yarmouth, Nova Scotia, Canada"
+  },
+  {
+    "code": "CA-PE",
+    "name": "Prince Edward Island, Canada"
+  },
+  {
+    "code": "CA-PE-KI",
+    "name": "Kings, Prince Edward Island, Canada"
+  },
+  {
+    "code": "CA-PE-PR",
+    "name": "Prince, Prince Edward Island, Canada"
+  },
+  {
+    "code": "CA-PE-QU",
+    "name": "Queens, Prince Edward Island, Canada"
   },
   {
     "code": "CA-QC",
