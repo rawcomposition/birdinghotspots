@@ -3552,6 +3552,27 @@
         ]
       },
       {
+        "name": "New Brunswick",
+        "code": "CA-NB",
+        "subregions": [
+          { "code": "CA-NB-AL", "name": "Albert" },
+          { "code": "CA-NB-CA", "name": "Carleton" },
+          { "code": "CA-NB-CH", "name": "Charlotte" },
+          { "code": "CA-NB-GL", "name": "Gloucester" },
+          { "code": "CA-NB-KE", "name": "Kent" },
+          { "code": "CA-NB-KI", "name": "Kings" },
+          { "code": "CA-NB-MA", "name": "Madawaska" },
+          { "code": "CA-NB-NO", "name": "Northumberland" },
+          { "code": "CA-NB-QU", "name": "Queens" },
+          { "code": "CA-NB-RE", "name": "Restigouche" },
+          { "code": "CA-NB-SJ", "name": "Saint John" },
+          { "code": "CA-NB-SU", "name": "Sunbury" },
+          { "code": "CA-NB-VI", "name": "Victoria" },
+          { "code": "CA-NB-WE", "name": "Westmorland" },
+          { "code": "CA-NB-YO", "name": "York" }
+        ]
+      },
+      {
         "name": "Newfoundland and Labrador",
         "code": "CA-NL",
         "subregions": [
@@ -3566,6 +3587,39 @@
           { "code": "CA-NL-EL", "name": "Nunatsiavut-Nain" },
           { "code": "CA-NL-TR", "name": "South Coast-Channel-Port aux Basques" },
           { "code": "CA-NL-FO", "name": "St. George's-Stephenville" }
+        ]
+      },
+      {
+        "name": "Nova Scotia",
+        "code": "CA-NS",
+        "subregions": [
+          { "code": "CA-NS-AP", "name": "Annapolis" },
+          { "code": "CA-NS-AG", "name": "Antigonish" },
+          { "code": "CA-NS-CB", "name": "Cape Breton" },
+          { "code": "CA-NS-CO", "name": "Colchester" },
+          { "code": "CA-NS-CU", "name": "Cumberland" },
+          { "code": "CA-NS-DI", "name": "Digby" },
+          { "code": "CA-NS-GU", "name": "Guysborough" },
+          { "code": "CA-NS-HL", "name": "Halifax" },
+          { "code": "CA-NS-HN", "name": "Hants" },
+          { "code": "CA-NS-IN", "name": "Inverness" },
+          { "code": "CA-NS-KI", "name": "Kings" },
+          { "code": "CA-NS-LU", "name": "Lunenburg" },
+          { "code": "CA-NS-PI", "name": "Pictou" },
+          { "code": "CA-NS-QU", "name": "Queens" },
+          { "code": "CA-NS-RI", "name": "Richmond" },
+          { "code": "CA-NS-SH", "name": "Shelburne" },
+          { "code": "CA-NS-VI", "name": "Victoria" },
+          { "code": "CA-NS-YA", "name": "Yarmouth" }
+        ]
+      },
+      {
+        "name": "Prince Edward Island",
+        "code": "CA-PE",
+        "subregions": [
+          { "code": "CA-PE-KI", "name": "Kings" },
+          { "code": "CA-PE-PR", "name": "Prince" },
+          { "code": "CA-PE-QU", "name": "Queens" }
         ]
       },
       {
