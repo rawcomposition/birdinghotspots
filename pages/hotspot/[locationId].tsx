@@ -30,6 +30,7 @@ import { useModal } from "providers/modals";
 import { useReloadProps } from "hooks/useReloadProps";
 import dayjs from "dayjs";
 import isbot from "isbot";
+import useHotspotImages from "hooks/useHotspotImages";
 
 type Props = HotspotType & {
   region: Region;
@@ -76,6 +77,9 @@ export default function Hotspot({
   const { open } = useModal();
   const reload = useReloadProps();
 
+  const photos = images?.filter((it) => !it.isMap && !it.hideFromChildren) || [];
+  const { images: combinedPhotos } = useHotspotImages({ locationId, featuredImg });
+
   let extraLinks = [];
 
   if (iba) {
@@ -91,7 +95,6 @@ export default function Hotspot({
     });
   });
 
-  const photos = images?.filter((it) => !it.isMap && !it.hideFromChildren) || [];
   const groupMaps: Image[] = [];
   groups?.forEach(({ images }) => {
     if (!images) return;
@@ -112,8 +115,8 @@ export default function Hotspot({
         </Head>
       )}
       <PageHeading region={region}>{name}</PageHeading>
-      {photos?.length > 0 && <FeaturedImage key={locationId} photos={photos} />}
-      <EditorActions className={`${photos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
+      {combinedPhotos?.length > 0 && <FeaturedImage key={locationId} photos={combinedPhotos} />}
+      <EditorActions className={`${combinedPhotos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
           <Link href={`/edit/${locationId}`} className="flex gap-1">
             <PencilSquareIcon className="h-4 w-4" />

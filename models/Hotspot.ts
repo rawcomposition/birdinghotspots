@@ -113,6 +113,8 @@ const HotspotSchema = new Schema({
       caption: String,
       legacy: Boolean,
       streetviewData: Object,
+      ebirdId: Number,
+      ebirdDateDisplay: String,
     },
   ],
   featuredImg: {
