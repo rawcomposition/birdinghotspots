@@ -77,7 +77,6 @@ export default function Hotspot({
   const { open } = useModal();
   const reload = useReloadProps();
 
-  const photos = images?.filter((it) => !it.isMap && !it.hideFromChildren) || [];
   const { images: combinedPhotos } = useHotspotImages({ locationId, featuredImg });
 
   let extraLinks = [];

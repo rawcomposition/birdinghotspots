@@ -16,9 +16,9 @@ export default function useHotspotImages({ locationId, featuredImg }: Props) {
     },
   });
 
-  const ebirdImages = data || [];
+  const latestImages = data || [];
 
-  const images: Image[] = [...ebirdImages, ...(legacyImages || [])];
+  const images: Image[] = latestImages.length > 0 ? latestImages : featuredImg ? [featuredImg] : [];
 
   return { images, isFetching };
 }

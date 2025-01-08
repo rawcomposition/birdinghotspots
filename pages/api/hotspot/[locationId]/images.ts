@@ -67,9 +67,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         const existingValue = hotspot.featuredImg?.[field as keyof typeof hotspot.featuredImg];
         return featuredValue === existingValue;
       });
+    const shouldAddFeaturedImg = !hotspot.featuredImg && featuredImg;
     const shouldRemoveFeaturedImg = !featuredImg && hotspot.featuredImg?.ebirdId;
 
-    if (shouldUpdateFeaturedImg) {
+    if (shouldUpdateFeaturedImg || shouldAddFeaturedImg) {
       await Hotspot.updateOne({ locationId }, { featuredImg });
     } else if (shouldRemoveFeaturedImg) {
       const legacyFeaturedImg = hotspot.images?.[0];
