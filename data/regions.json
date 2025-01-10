@@ -3883,6 +3883,31 @@
     ]
   },
   {
+    "code": "RS",
+    "name": "Serbia",
+    "subregions": [
+      { "code": "RS-00", "name": "Beograd" },
+      { "code": "RS-14", "name": "Bor" },
+      { "code": "RS-11", "name": "Branicevo" },
+      { "code": "RS-23", "name": "Jablanica" },
+      { "code": "RS-09", "name": "Kolubara" },
+      { "code": "RS-08", "name": "Macva" },
+      { "code": "RS-17", "name": "Moravica" },
+      { "code": "RS-20", "name": "Nišava" },
+      { "code": "RS-24", "name": "Pcinja" },
+      { "code": "RS-22", "name": "Pirot" },
+      { "code": "RS-10", "name": "Podunavlje" },
+      { "code": "RS-13", "name": "Pomoravlje" },
+      { "code": "RS-19", "name": "Rasina" },
+      { "code": "RS-18", "name": "Raška" },
+      { "code": "RS-21", "name": "Toplica" },
+      { "code": "RS-VO", "name": "Vojvodina" },
+      { "code": "RS-15", "name": "Zajecar" },
+      { "code": "RS-16", "name": "Zlatibor" },
+      { "code": "RS-12", "name": "Šumadija" }
+    ]
+  },
+  {
     "code": "ZA",
     "name": "South Africa",
     "subregions": [
