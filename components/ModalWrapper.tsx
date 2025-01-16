@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 type Props = {
-  title: string;
+  title: string | React.ReactNode;
   open: boolean;
   maxWidth?: string;
   onClose: () => void;
@@ -51,7 +51,10 @@ export default function ColModal({ title, open, onClose, maxWidth, children }: P
                   <span className="sr-only">Close</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
-                <Dialog.Title as="h3" className="px-4 sm:px-6 py-4 border-b flex bg-gray-50 text-lg font-medium">
+                <Dialog.Title
+                  as="h3"
+                  className="px-4 sm:px-6 py-4 border-b flex bg-gray-50 text-lg font-medium items-center gap-2"
+                >
                   {title}
                 </Dialog.Title>
                 <div className="px-4 sm:px-6 py-4">{children}</div>

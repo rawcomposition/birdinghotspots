@@ -14,7 +14,6 @@ import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
-import ImageIcon from "icons/Image";
 import { formatMarker, canEdit as checkCanEdit } from "lib/helpers";
 import MapBox from "components/MapBox";
 import NearbyHotspots from "components/NearbyHotspots";
@@ -125,10 +124,10 @@ export default function Hotspot({
           </Link>
         )}
         {!isBot && (
-          <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
+          <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2] flex gap-1">
             <CameraIcon className="h-4 w-4" />
             Upload Photos
-          </Link>
+          </button>
         )}
         {!isBot && (
           <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
@@ -211,7 +210,10 @@ export default function Hotspot({
                 <div className="p-4 bg-gray-100 rounded-lg mb-6">
                   If you are familiar with birding this location, please help other birders with a description, tips for
                   birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
-                  <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>.
+                  <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2]">
+                    upload photos
+                  </button>
+                  .
                 </div>
               )}
             </div>
