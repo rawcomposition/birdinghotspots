@@ -77,7 +77,7 @@ export default function Hotspot({
   const { open } = useModal();
   const reload = useReloadProps();
 
-  const { images: combinedPhotos } = useHotspotImages({ locationId, featuredImg });
+  const { images: combinedPhotos, isFetching: isLoadingImages } = useHotspotImages({ locationId, featuredImg });
 
   let extraLinks = [];
 
@@ -114,7 +114,9 @@ export default function Hotspot({
         </Head>
       )}
       <PageHeading region={region}>{name}</PageHeading>
-      {combinedPhotos?.length > 0 && <FeaturedImage key={locationId} photos={combinedPhotos} />}
+      {combinedPhotos?.length > 0 && (
+        <FeaturedImage key={locationId} photos={combinedPhotos} isLoading={isLoadingImages} />
+      )}
       <EditorActions className={`${combinedPhotos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
           <Link href={`/edit/${locationId}`} className="flex gap-1">
