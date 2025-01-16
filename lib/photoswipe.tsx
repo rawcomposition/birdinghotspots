@@ -65,11 +65,8 @@ export const processImg = (image: Image) => {
         ML${image.ebirdId}
       </a>`;
   } else if (image.by) {
-    console.log("TWO");
-    //console.log("TEST2", image);
-    //caption = image.caption ? `${image.caption}<br />Photo by ${image.by}` : `Photo by ${image.by}`;
+    caption = image.caption ? `${image.caption}<br />Photo by ${image.by}` : `Photo by ${image.by}`;
   }
-  console.log("CAPTION", caption);
   return {
     src: getFileUrl(image.lgUrl || image.smUrl),
     width: image.width,
