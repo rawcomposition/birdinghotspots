@@ -115,7 +115,7 @@ export default function Hotspot({
       )}
       <PageHeading region={region}>{name}</PageHeading>
       {combinedPhotos?.length > 0 && (
-        <FeaturedImage key={locationId} photos={combinedPhotos} isLoading={isLoadingImages} />
+        <FeaturedImage key={`${locationId}-${isLoadingImages}`} photos={combinedPhotos} isLoading={isLoadingImages} />
       )}
       <EditorActions className={`${combinedPhotos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
