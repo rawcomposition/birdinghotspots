@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const url = `${ebird_SEARCH_API_URL}?count=6&unconfirmed=incl&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
+    const url = `${ebird_SEARCH_API_URL}?count=6&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
     const [response, hotspot] = await Promise.all([
       axios.get<ebirdResponseImage[]>(url, {
         headers: {
