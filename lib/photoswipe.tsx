@@ -49,9 +49,27 @@ export const processImg = (image: Image) => {
   if (image.caption) {
     caption = image.caption;
   }
-  if (image.by) {
-    caption = image.caption ? `${image.caption}<br />Photo by ${image.by}` : `Photo by ${image.by}`;
+  if (image.ebirdId) {
+    caption = `
+      ${image.caption ? `${image.caption}<br />` : ""}
+      By ${image.by}
+      &nbsp;•&nbsp;
+      ${image.ebirdDateDisplay || "Unknown Date"}
+      &nbsp;•&nbsp;
+      <a
+        href={https://macaulaylibrary.org/asset/${image.ebirdId}}
+        class="font-medium"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ML${image.ebirdId}
+      </a>`;
+  } else if (image.by) {
+    console.log("TWO");
+    //console.log("TEST2", image);
+    //caption = image.caption ? `${image.caption}<br />Photo by ${image.by}` : `Photo by ${image.by}`;
   }
+  console.log("CAPTION", caption);
   return {
     src: getFileUrl(image.lgUrl || image.smUrl),
     width: image.width,

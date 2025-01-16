@@ -45,7 +45,7 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
           {({ ref, open }) => {
             const imgRef = ref as any;
             return (
-              <div className={`relative group ${index === i ? "block" : "hidden"}`} ref={imgRef}>
+              <figure className={`relative group ${index === i ? "block" : "hidden"}`} ref={imgRef}>
                 {photos[i].isStreetview ? (
                   <StreetView
                     className="w-full h-[250px] sm:h-[350px] md:h-[450px] rounded-lg mb-8 -mt-10"
@@ -99,7 +99,23 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
                     </button>
                   </>
                 )}
-              </div>
+                {photos[i].ebirdId && (
+                  <figcaption className="text-[13px] leading-4 text-gray-300 absolute bottom-0 left-0 right-0 py-2 px-4 bg-gray-900 rounded-b-lg flex items-center">
+                    {photos[i].by}
+                    <span className="rounded-full bg-gray-600 text-gray-300 w-[5px] h-[5px] mx-2.5" />
+                    <span className="text-gray-300">{photos[i].ebirdDateDisplay || "Unknown Date"}</span>
+                    <span className="rounded-full bg-gray-600 text-gray-300 w-[5px] h-[5px] mx-2.5" />
+                    <a
+                      href={`https://macaulaylibrary.org/asset/${photos[i].ebirdId}`}
+                      className="font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ML{photos[i].ebirdId}
+                    </a>
+                  </figcaption>
+                )}
+              </figure>
             );
           }}
         </Item>
