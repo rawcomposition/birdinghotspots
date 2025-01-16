@@ -6,12 +6,14 @@ import StreetView from "components/StreetView";
 import { processImg, uiElements } from "lib/photoswipe";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { getFileUrl } from "lib/s3";
+import Spinner from "icons/Spinner";
 
 type Props = {
   photos: Image[];
+  isLoading: boolean;
 };
 
-export default function FeaturedImage({ photos }: Props) {
+export default function FeaturedImage({ photos, isLoading }: Props) {
   const [index, setIndex] = React.useState(0);
   const items = photos.map((photo) => processImg(photo));
   const indexRef = React.useRef(index);
@@ -43,7 +45,7 @@ export default function FeaturedImage({ photos }: Props) {
           {({ ref, open }) => {
             const imgRef = ref as any;
             return (
-              <div className={`relative group ${index === i ? "block" : "hidden"}`} ref={imgRef}>
+              <figure className={`relative group ${index === i ? "block" : "hidden"}`} ref={imgRef}>
                 {photos[i].isStreetview ? (
                   <StreetView
                     className="w-full h-[250px] sm:h-[350px] md:h-[450px] rounded-lg mb-8 -mt-10"
@@ -61,8 +63,15 @@ export default function FeaturedImage({ photos }: Props) {
                     onClick={open}
                   />
                 )}
-                {items.length > 1 && (
-                  <>
+                {isLoading ? (
+                  <span
+                    className="absolute top-4 right-4 flex items-center gap-2 px-2 py-0.5 text-sm font-medium bg-white opacity-80 rounded-sm"
+                    onClick={open}
+                  >
+                    <Spinner className="animate-spin my-[2px]" />
+                  </span>
+                ) : (
+                  items.length > 1 && (
                     <button
                       type="button"
                       className="absolute top-4 right-4 flex items-center gap-2 px-3 py-0.5 text-sm font-medium bg-white  hover:opacity-100 opacity-80 rounded-sm transition-opacity"
@@ -70,6 +79,10 @@ export default function FeaturedImage({ photos }: Props) {
                     >
                       {items.length} photos
                     </button>
+                  )
+                )}
+                {items.length > 1 && (
+                  <>
                     <button
                       type="button"
                       className="absolute bg-white w-8 h-8 rounded-full pl-0.5 cursor-pointer top-1/2 right-[0.85rem] -translate-y-1/2 flex items-center justify-center opacity-50 group-hover:opacity-60 group-hover:right-4 transition-all hover:!opacity-80"
@@ -86,7 +99,23 @@ export default function FeaturedImage({ photos }: Props) {
                     </button>
                   </>
                 )}
-              </div>
+                {photos[i].ebirdId && (
+                  <figcaption className="text-[13px] leading-4 text-gray-300 absolute bottom-0 left-0 right-0 py-2 px-4 bg-gray-900 rounded-b-lg flex items-center">
+                    {photos[i].by}
+                    <span className="rounded-full bg-gray-600 text-gray-300 w-[5px] h-[5px] mx-2.5" />
+                    <span className="text-gray-300">{photos[i].ebirdDateDisplay || "Unknown Date"}</span>
+                    <span className="rounded-full bg-gray-600 text-gray-300 w-[5px] h-[5px] mx-2.5" />
+                    <a
+                      href={`https://macaulaylibrary.org/asset/${photos[i].ebirdId}`}
+                      className="font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ML{photos[i].ebirdId}
+                    </a>
+                  </figcaption>
+                )}
+              </figure>
             );
           }}
         </Item>

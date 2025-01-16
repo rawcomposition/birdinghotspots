@@ -22,6 +22,12 @@ export type Image = {
   id?: string; //temporarily added after uploaded
   streetviewData?: any;
   hideFromChildren?: boolean;
+  ebirdId?: number; // eBird ML images only
+  ebirdDateDisplay?: string; // eBird ML images only
+};
+
+export type eBirdImage = Image & {
+  isFeatured?: boolean;
 };
 
 export type Marker = {
@@ -461,4 +467,8 @@ export type PhotoBatchT = {
     status: string;
   }[];
   createdAt: string;
+};
+
+export type GetParams = {
+  [key: string]: string | number | boolean;
 };

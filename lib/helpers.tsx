@@ -1,4 +1,5 @@
-import { Hotspot, Marker, Token } from "lib/types";
+import axios from "axios";
+import { GetParams, Hotspot, Token } from "lib/types";
 
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
@@ -231,3 +232,87 @@ export async function getEbirdHotspot(locationId: string) {
     return await response.json();
   }
 }
+
+type ebirdResponseImage = {
+  assetId: number;
+  parentAssetId: number | null;
+  ageSex: any;
+  location: any;
+  licenseId: string;
+  mediaNotes: string | null;
+  obsDt: string;
+  obsDtDisplay: string;
+  obsYear: number;
+  obsMonth: number;
+  obsDay: number;
+  obsTime: number;
+  restricted: boolean;
+  ratingCount: number;
+  rating: number;
+  userId: string;
+  userDisplayName: string;
+  userHasProfile: boolean;
+  width: number;
+  height: number;
+  valid: boolean;
+  reviewed: boolean;
+  tags: string[];
+  taxonomy: any;
+  assetState: string;
+  mediaType: string;
+  source: string;
+  exoticCategory: string | null;
+  cursorMark: string | null;
+  ebirdChecklistId: string;
+};
+
+export async function getEbirdHotspotImages(locationId: string, throwError = true) {
+  const ebird_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
+  const url = `${ebird_SEARCH_API_URL}?count=6&unconfirmed=incl&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
+
+  try {
+    const response = await axios.get<ebirdResponseImage[]>(url, {
+      headers: {
+        // This user agent seems to be allowed by eBird
+        "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+      },
+      maxRedirects: 2,
+    });
+
+    const images = response.data;
+    if (!Array.isArray(images)) throw new Error("Invalid response from eBird");
+
+    return images;
+  } catch (error) {
+    if (throwError) {
+      throw error;
+    }
+    return [];
+  }
+}
+
+export const get = async (url: string, params: GetParams) => {
+  const cleanParams = Object.keys(params).reduce((accumulator: any, key) => {
+    if (params[key]) accumulator[key] = params[key];
+    return accumulator;
+  }, {});
+
+  const queryParams = new URLSearchParams(cleanParams).toString();
+
+  const res = await fetch(`${url}?${queryParams}`, {
+    method: "GET",
+  });
+
+  let json: any = {};
+
+  try {
+    json = await res.json();
+  } catch (error) {}
+  if (!res.ok) {
+    if (res.status === 404) throw new Error("Route not found");
+    if (res.status === 405) throw new Error("Method not allowed");
+    if (res.status === 504) throw new Error("Operation timed out. Please try again.");
+    throw new Error(json.message || "An error ocurred");
+  }
+  return json;
+};
