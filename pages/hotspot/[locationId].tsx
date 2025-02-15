@@ -165,7 +165,9 @@ export default function Hotspot({
               )}
               {lat && lng && (
                 <ExternalLinkButton href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>
-                  <Directions className="mr-1 -mt-[3px] text-[#c2410d]" /> Get Directions
+                  <Directions className="mr-1 -mt-[3px] text-[#c2410d]" />{" "}
+                  <span className="hidden sm:inline">Get Directions</span>
+                  <span className="inline sm:hidden">Directions</span>
                 </ExternalLinkButton>
               )}
               <EbirdHotspotBtn locationId={locationId} />

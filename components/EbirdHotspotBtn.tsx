@@ -13,7 +13,8 @@ export default function EbirdHotspotBtn({ locationId, locationIds, isGroup }: Pr
     <div className="relative inline-block">
       <Menu>
         <Menu.Button className="text-[13px] rounded text-gray-600 bg-gray-100 px-2 inline-flex items-center gap-1 font-medium whitespace-nowrap">
-          <EbirdLogo className="w-8" /> Links
+          <EbirdLogo className="w-8" />
+          <span className="w-0 overflow-hidden sm:w-auto"> Links</span>
         </Menu.Button>
         <Menu.Items className="absolute sm:left-0 right-0 sm:right-[unset] top-8 rounded bg-white shadow-lg px-4 py-2 w-[170px] ring-1 ring-black ring-opacity-5 flex flex-col gap-1">
           <Menu.Item>

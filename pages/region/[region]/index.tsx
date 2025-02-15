@@ -294,7 +294,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
             <button
               type="button"
               className="font-bold text-sm text-gray-100 hover:bg-neutral-800/40 rounded-full inline-flex items-center justify-center bg-neutral-800/30 w-5 h-5"
-              onClick={() => open("stateInfo")}
+              onClick={() => open("stateInfo", { label: name })}
             >
               ?
             </button>
