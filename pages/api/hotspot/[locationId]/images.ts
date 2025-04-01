@@ -14,6 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       Hotspot.findOne({ locationId }, ["featuredImg", "images", "featuredEbirdId"]).lean(),
     ]);
 
+    const legacyImages = hotspot?.images?.filter((it) => !it.isMap && !it.isMigrated) || [];
+
     if (!hotspot) throw new Error("Hotspot not found");
 
     const bestEbirdImg = ebirdImages.find((it) => it.isFeatured);
@@ -24,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
       const combinedImages: Image[] = [
         hotspot.featuredImg,
+        ...legacyImages,
         ...ebirdImages.filter((it) => it.ebirdId !== hotspot.featuredImg?.ebirdId),
       ];
 
@@ -46,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (shouldUpdateFeaturedImg || shouldAddFeaturedImg) {
       await Hotspot.updateOne({ locationId }, { featuredImg: bestEbirdImg });
     } else if (shouldRemoveFeaturedImg) {
-      const legacyFeaturedImg = hotspot.images?.[0];
+      const legacyFeaturedImg = legacyImages[0];
       await Hotspot.updateOne(
         { locationId },
         legacyFeaturedImg ? { featuredImg: legacyFeaturedImg } : { $unset: { featuredImg: "" } }
@@ -54,9 +57,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     const combinedImages: Image[] =
-      bestEbirdImg && !hotspot.images?.length
+      bestEbirdImg && !legacyImages.length
         ? [bestEbirdImg, ...ebirdImages.filter((it) => it.ebirdId !== bestEbirdImg.ebirdId)]
-        : [...(hotspot.images || []), ...ebirdImages];
+        : [...legacyImages, ...ebirdImages];
 
     res.status(200).json(combinedImages);
   } catch (error: any) {

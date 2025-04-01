@@ -3,6 +3,7 @@ export type KeyValue = {
 };
 
 export type Image = {
+  _id?: string;
   xsUrl?: string;
   smUrl: string;
   lgUrl: string;
@@ -24,6 +25,7 @@ export type Image = {
   hideFromChildren?: boolean;
   ebirdId?: number; // eBird ML images only
   ebirdDateDisplay?: string; // eBird ML images only
+  isMigrated?: boolean;
 };
 
 export type eBirdImage = Image & {

@@ -116,6 +116,7 @@ const HotspotSchema = new Schema({
       streetviewData: Object,
       ebirdId: Number,
       ebirdDateDisplay: String,
+      isMigrated: Boolean,
     },
   ],
   featuredImg: {
