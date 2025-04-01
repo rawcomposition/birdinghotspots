@@ -57,7 +57,7 @@ export const processImg = (image: Image) => {
       ${image.ebirdDateDisplay || "Unknown Date"}
       &nbsp;•&nbsp;
       <a
-        href={https://macaulaylibrary.org/asset/${image.ebirdId}}
+        href="https://macaulaylibrary.org/asset/${image.ebirdId}"
         class="font-medium"
         target="_blank"
         rel="noopener noreferrer"

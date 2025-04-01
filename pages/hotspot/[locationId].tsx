@@ -70,13 +70,18 @@ export default function Hotspot({
   featuredImg,
   updatedAt,
   isBot,
+  featuredEbirdId,
 }: Props) {
   const { user } = useUser();
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot", isBot });
   const { open } = useModal();
   const reload = useReloadProps();
 
-  const { images: combinedPhotos, isFetching: isLoadingImages } = useHotspotImages({ locationId, featuredImg });
+  const { images: combinedPhotos, isFetching: isLoadingImages } = useHotspotImages({
+    locationId,
+    featuredImg,
+    hasFeaturedEbirdId: !!featuredEbirdId,
+  });
 
   let extraLinks = [];
 

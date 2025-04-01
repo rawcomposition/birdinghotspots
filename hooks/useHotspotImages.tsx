@@ -1,14 +1,15 @@
-import { eBirdImage, Image } from "lib/types";
+import { Image } from "lib/types";
 import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   locationId: string;
   featuredImg?: Image;
+  hasFeaturedEbirdId: boolean;
 };
 
-export default function useHotspotImages({ locationId, featuredImg }: Props) {
-  const { data, isFetching } = useQuery<eBirdImage[]>({
-    queryKey: [`/api/hotspot/${locationId}/images`],
+export default function useHotspotImages({ locationId, featuredImg, hasFeaturedEbirdId }: Props) {
+  const { data, isFetching } = useQuery<Image[]>({
+    queryKey: [`/api/hotspot/${locationId}/images?getBest=${!!hasFeaturedEbirdId}`],
     enabled: !!locationId,
     refetchOnWindowFocus: true,
     meta: {

@@ -96,6 +96,7 @@ const HotspotSchema = new Schema({
       },
     },
   ],
+  featuredEbirdId: String,
   images: [
     {
       xsUrl: String,

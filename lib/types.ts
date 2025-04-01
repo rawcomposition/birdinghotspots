@@ -87,6 +87,7 @@ export type Hotspot = {
   ];
   groups?: Group[];
   images?: Image[];
+  featuredEbirdId?: string;
   featuredImg?: Image;
   species?: number;
   groupIds?: string[] | Group[];

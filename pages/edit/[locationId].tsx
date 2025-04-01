@@ -171,8 +171,17 @@ export default function Edit({
 
               {groupImages.length > 0 && <MapGrid images={groupImages} />}
 
+              <Field label="Featured Macaulay Library Image ID">
+                <Input
+                  type="text"
+                  placeholder="e.g. ML1234567"
+                  name="featuredEbirdId"
+                  defaultValue={data?.featuredEbirdId}
+                />
+              </Field>
+
               <div>
-                <label className="text-gray-500 font-bold">Images</label>
+                <label className="text-gray-500 font-bold">Other Images</label>
                 <ImagesInput enableStreetview />
                 <LicenseNotice />
               </div>
