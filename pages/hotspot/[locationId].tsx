@@ -30,6 +30,7 @@ import { useReloadProps } from "hooks/useReloadProps";
 import dayjs from "dayjs";
 import isbot from "isbot";
 import useHotspotImages from "hooks/useHotspotImages";
+import { ENABLE_LEGACY_UPLOADS } from "lib/config";
 
 type Props = HotspotType & {
   region: Region;
@@ -128,7 +129,13 @@ export default function Hotspot({
             Edit Hotspot
           </Link>
         )}
-        {!isBot && (
+        {!isBot && ENABLE_LEGACY_UPLOADS && (
+          <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
+            <CameraIcon className="h-4 w-4" />
+            Upload Photos
+          </Link>
+        )}
+        {!isBot && !ENABLE_LEGACY_UPLOADS && (
           <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2] flex gap-1">
             <CameraIcon className="h-4 w-4" />
             Upload Photos
@@ -215,9 +222,13 @@ export default function Hotspot({
                 <div className="p-4 bg-gray-100 rounded-lg mb-6">
                   If you are familiar with birding this location, please help other birders with a description, tips for
                   birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
-                  <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2]">
-                    upload photos
-                  </button>
+                  {ENABLE_LEGACY_UPLOADS ? (
+                    <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>
+                  ) : (
+                    <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2]">
+                      upload photos
+                    </button>
+                  )}
                   .
                 </div>
               )}
