@@ -19,15 +19,15 @@ export const getEbirdImages = async (locationId: string) => {
   if (images.length === 0) return [];
 
   const landscapeImages = images.filter((it) => it.width > it.height);
-  const featuredMlId = landscapeImages.length > 0 ? landscapeImages[0].assetId : images[0].assetId;
+  const bestMlId = landscapeImages.length > 0 ? landscapeImages[0].assetId : images[0].assetId;
 
-  const formattedImages: eBirdImage[] = images.map((it) => formatEbirdImage(it, it.assetId === featuredMlId));
+  const formattedImages: eBirdImage[] = images.map((it) => formatEbirdImage(it, it.assetId === bestMlId));
 
-  const featuredImg = formattedImages.find((it) => it.isFeatured);
+  const featuredImg = formattedImages.find((it) => it.isBest);
 
   const sortedImages = [
     ...(featuredImg ? [featuredImg] : []),
-    ...formattedImages.filter((it) => it.ebirdId !== featuredMlId),
+    ...formattedImages.filter((it) => it.ebirdId !== bestMlId),
   ];
 
   return sortedImages;
@@ -51,7 +51,7 @@ export const getEbirdImage = async (assetId: string) => {
   return formatEbirdImage(images[0], true);
 };
 
-export const formatEbirdImage = (it: ebirdResponseImage, isFeatured: boolean): eBirdImage => ({
+export const formatEbirdImage = (it: ebirdResponseImage, isBest: boolean): eBirdImage => ({
   width: it.width,
   height: it.height,
   ebirdId: it.assetId,
@@ -61,7 +61,7 @@ export const formatEbirdImage = (it: ebirdResponseImage, isFeatured: boolean): e
   xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/480`,
   smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/1200`,
   lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/2400`,
-  isFeatured,
+  isBest,
 });
 
 type ebirdResponseImage = {

@@ -34,7 +34,7 @@ export default secureApi(async (req, res, token) => {
     await Hotspot.updateOne({ locationId, "images._id": imageId }, { $set: { "images.$.isMigrated": true } });
 
     // Re-run logic to update featuredImg
-    await getHotspotImages(locationId as string);
+    await getHotspotImages(locationId);
 
     return res.status(200).json({ success: true });
   } catch (error: any) {

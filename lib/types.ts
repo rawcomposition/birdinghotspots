@@ -29,7 +29,7 @@ export type Image = {
 };
 
 export type eBirdImage = Image & {
-  isFeatured?: boolean;
+  isBest?: boolean;
 };
 
 export type Marker = {
