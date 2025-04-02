@@ -110,9 +110,67 @@ export default function MigrationAssistant() {
   const showLoadMore = hotspots.length < total;
 
   return (
-    <div className="container pb-16 mt-12">
+    <div className="container pb-16 mt-12 max-w-[900px]">
       <Title>Migration Assistant</Title>
       <PageHeading>Migration Assistant</PageHeading>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">Re-upload Your Images to eBird</h2>
+        <p className="text-gray-700 mb-3">
+          <span className="font-semibold">BirdingHotspots.org is transitioning to the Cornell Lab of Ornithology!</span>{" "}
+          As part of this exciting change, media uploaded to Birding Hotspots will be integrated into the Cornell
+          Lab&rsquo;s infrastructure. We encourage users to re-upload their photos to eBird checklists to take full
+          advantage of the new{" "}
+          <a
+            href="https://support.ebird.org/en/support/solutions/articles/48001269559"
+            className="font-bold"
+            target="_blank"
+          >
+            Checklist Media features
+          </a>
+          .
+        </p>
+        <ul className="pl-5 text-gray-700 space-y-1">
+          <li>✅ eBird Checklist Media includes rich context like date, time, species observed, and effort details.</li>
+          <li>📸 Your photos will be archived in full resolution and linked to your birding data.</li>
+          <li>
+            🌍 Images added to eBird can be featured on BirdingHotspots.org and support research and conservation.
+          </li>
+          <li>
+            ℹ️ Re-uploading is optional—your existing images will be transferred automatically, but without checklist
+            context or full resolution.
+          </li>
+        </ul>
+        <h2 className="text-lg font-semibold text-gray-800 mb-2 mt-4">Steps</h2>
+        <ol className="pl-3 text-gray-700 space-y-3">
+          <li className="flex items-start">
+            <span className="flex-shrink-0 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center mr-2 font-bold">
+              1
+            </span>
+            <span className="-mt-0.5">
+              Locate your <strong>original, full resolution images</strong> to re-upload, if available. Reference the
+              image capture date shown below (if available).
+            </span>
+          </li>
+          <li className="flex items-start">
+            <span className="flex-shrink-0 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center mr-2 font-bold">
+              2
+            </span>
+            <span className="-mt-0.5">
+              Click &quot;<strong>My Checklists</strong>&quot; to find the checklist you want to add images to.
+            </span>
+          </li>
+          <li className="flex items-start">
+            <span className="flex-shrink-0 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center mr-2 font-bold">
+              3
+            </span>
+            <span className="-mt-0.5">
+              Click &quot;<strong>Add Media</strong>&quot; and upload your images to either the Habitat or Experience
+              section.
+            </span>
+          </li>
+        </ol>
+      </div>
 
       <Form form={form} onSubmit={() => null} className="grid gap-8 sm:grid-cols-3">
         <Select
@@ -150,7 +208,7 @@ export default function MigrationAssistant() {
             </div>
             <div
               className={`grid ${
-                hotspot.images.length > 0 ? "xs:grid-cols-2 md:grid-cols-4" : ""
+                hotspot.images.length > 0 ? "xs:grid-cols-2 md:grid-cols-3" : ""
               } gap-x-4 gap-y-8 mt-6`}
             >
               <Gallery withCaption>
