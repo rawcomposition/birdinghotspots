@@ -31,6 +31,7 @@ type HotspotResult = Hotspot & {
 export default function MigrationAssistant() {
   const [hotspots, setHotspots] = React.useState<HotspotResult[]>([]);
   const [total, setTotal] = React.useState(0);
+  const [imageTotal, setImageTotal] = React.useState(0);
   const { send, loading } = useSecureFetch();
   const router = useRouter();
   const region = router.query.region as string;
@@ -66,6 +67,7 @@ export default function MigrationAssistant() {
         setHotspots(data.results);
       }
       setTotal(data.total);
+      setImageTotal(data.imageTotal);
     }
 
     if (loader) {
@@ -172,16 +174,24 @@ export default function MigrationAssistant() {
         </ol>
       </div>
 
-      <Form form={form} onSubmit={() => null} className="grid gap-8 sm:grid-cols-3">
-        <Select
-          onChange={handleStatusUpdate}
-          options={statusOptions}
-          name="status"
-          inline
-          instanceId="status"
-          className="max-w-[150px]"
-        />
-      </Form>
+      <div className="flex sm:justify-between items-center gap-4">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-800 mb-1">My Images</h2>
+          <p className="text-gray-600 mb-3">
+            Found <strong>{imageTotal}</strong> images across <strong>{hotspots.length}</strong> hotspots to migrate
+          </p>
+        </div>
+        <Form form={form} onSubmit={() => null}>
+          <Select
+            onChange={handleStatusUpdate}
+            options={statusOptions}
+            name="status"
+            inline
+            instanceId="status"
+            className="max-w-[150px]"
+          />
+        </Form>
+      </div>
 
       <div className="divide-y space-y-8">
         {hotspots.map((hotspot) => (
@@ -262,7 +272,8 @@ export default function MigrationAssistant() {
           </section>
         ))}
       </div>
-      {hotspots.length === 0 ? <p className="text-lg text-gray-500 mt-6">No results found</p> : null}
+      {hotspots.length === 0 && !loading ? <p className="text-lg text-gray-500 mt-6">No results found</p> : null}
+      {loading ? <p className="text-lg text-gray-500 mt-6">Loading...</p> : null}
       {showLoadMore && (
         <button
           type="button"

@@ -30,13 +30,50 @@ export default secureApi(async (req, res, token) => {
       }
     }
 
-    const [hotspots, total] = await Promise.all([
+    const [hotspots, total, imageTotalResult] = await Promise.all([
       Hotspot.find(query)
         .sort({ name: 1 })
         .limit(limit || 0)
         .skip(skip || 0)
         .lean(),
       Hotspot.countDocuments(query),
+      Hotspot.aggregate([
+        {
+          $addFields: {
+            matchingImages: {
+              $filter: {
+                input: "$images",
+                as: "image",
+                cond: {
+                  $and: [
+                    { $eq: ["$$image.email", profile?.email] },
+                    { $ne: ["$$image.isMap", true] },
+                    { $ne: ["$$image.isStreetview", true] },
+                    { $ne: ["$$image.isMigrated", true] },
+                  ],
+                },
+              },
+            },
+          },
+        },
+        {
+          $addFields: {
+            matchingImageCount: { $size: "$matchingImages" },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            totalMatchingImages: { $sum: "$matchingImageCount" },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            totalCount: "$totalMatchingImages",
+          },
+        },
+      ]),
     ]);
 
     const results = hotspots.map((it) => {
@@ -58,7 +95,7 @@ export default secureApi(async (req, res, token) => {
       };
     });
 
-    res.status(200).json({ success: true, results, total });
+    res.status(200).json({ success: true, results, total, imageTotal: imageTotalResult[0].totalCount });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
