@@ -18,8 +18,6 @@ import { getFileUrl } from "lib/s3";
 import ImageCaptureDate from "components/ImageCaptureDate";
 import PageHeading from "components/PageHeading";
 import dynamic from "next/dynamic";
-
-// Import the banner component with client-side rendering only
 const MigrationBanner = dynamic(() => import("components/MigrationBanner"), { ssr: false });
 
 type Inputs = {
