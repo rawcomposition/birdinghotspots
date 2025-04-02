@@ -87,6 +87,9 @@ export default function MigrationAssistant() {
   }, []);
 
   const handleStatusUpdate = (value: string) => {
+    setHotspots([]);
+    setTotal(0);
+    setImageTotal(0);
     get({ status: value || "" });
   };
 
@@ -95,7 +98,7 @@ export default function MigrationAssistant() {
     { label: "Uploaded", value: "migrated" },
   ];
 
-  const handleMigrate = async (id: string, imageId: string) => {
+  const handleMigrate = async (locationId: string, imageId: string) => {
     setHotspots((prev) =>
       prev.map((hotspot) => ({
         ...hotspot,
@@ -105,9 +108,9 @@ export default function MigrationAssistant() {
       }))
     );
     await send({
-      url: `/api/image/migrate?id=${id}`,
+      url: "/api/image/migrate",
       method: "POST",
-      data: { imageId },
+      data: { imageId, locationId },
     });
   };
 
@@ -116,12 +119,7 @@ export default function MigrationAssistant() {
   return (
     <div className="container pb-16 mt-12 max-w-[900px]">
       <Title>Migration Assistant</Title>
-      <PageHeading>
-        Migration Assistant
-        <span className="ml-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wide bg-green-500 text-white rounded-full">
-          New
-        </span>
-      </PageHeading>
+      <PageHeading>Migration Assistant</PageHeading>
 
       <MigrationBanner />
 
@@ -200,7 +198,7 @@ export default function MigrationAssistant() {
                         </span>
                         <button
                           type="button"
-                          onClick={() => handleMigrate(hotspot._id as string, _id as string)}
+                          onClick={() => handleMigrate(hotspot.locationId, _id as string)}
                           className={clsx(
                             isMigrated ? "opacity-30" : "opacity-70 hover:opacity-100",
                             "text-gray-700 text-sm font-bold py-1 px-2 flex-grow-0 transition-opacity border border-gray-300 rounded flex items-center gap-2"
