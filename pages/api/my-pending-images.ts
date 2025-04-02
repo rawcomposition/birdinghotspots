@@ -49,7 +49,9 @@ export default secureApi(async (req, res, token) => {
                     { $eq: ["$$image.email", profile?.email] },
                     { $ne: ["$$image.isMap", true] },
                     { $ne: ["$$image.isStreetview", true] },
-                    { $ne: ["$$image.isMigrated", true] },
+                    status === "pending"
+                      ? { $ne: ["$$image.isMigrated", true] }
+                      : { $eq: ["$$image.isMigrated", true] },
                   ],
                 },
               },

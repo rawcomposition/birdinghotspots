@@ -17,7 +17,9 @@ import {
   Hotspot as HotspotType,
   City as CityType,
   Article as ArticleT,
+  Image,
 } from "lib/types";
+import { getEbirdImages } from "lib/ml";
 
 declare global {
   var mongoose: any;
@@ -605,3 +607,61 @@ export async function deleteHotspot(hotspot: HotspotType) {
     Revision.deleteMany({ locationId: hotspot.locationId, status: "pending" }),
   ]);
 }
+
+export const getHotspotImages = async (locationId: string) => {
+  await connect();
+  const [ebirdImages, hotspot] = await Promise.all([
+    getEbirdImages(locationId as string),
+    Hotspot.findOne({ locationId }, ["featuredImg", "images", "featuredEbirdId"]).lean(),
+  ]);
+
+  const legacyImages = hotspot?.images?.filter((it) => !it.isMap && !it.isMigrated) || [];
+
+  if (!hotspot) throw new Error("Hotspot not found");
+
+  const hasFeaturedEbirdId = !!hotspot.featuredEbirdId;
+
+  if (hasFeaturedEbirdId && hotspot.featuredImg) {
+    // Has editor selected ML image
+
+    const combinedImages: Image[] = [
+      hotspot.featuredImg,
+      ...ebirdImages.filter((it) => it.ebirdId !== hotspot.featuredImg?.ebirdId),
+      ...legacyImages,
+    ];
+
+    return combinedImages;
+  }
+
+  const bestEbirdImg = ebirdImages.find((it) => it.isFeatured);
+
+  const combinedImages: Image[] = [
+    ...(bestEbirdImg ? [bestEbirdImg] : []),
+    ...ebirdImages.filter((it) => it.ebirdId !== bestEbirdImg?.ebirdId),
+    ...legacyImages,
+  ];
+
+  const newFeaturedImg = combinedImages[0] || null;
+
+  const compareFields = ["ebirdId", "by", "ebirdDateDisplay", "caption", "xsUrl", "smUrl", "lgUrl"];
+  const shouldUpdateFeaturedImg =
+    newFeaturedImg &&
+    !compareFields.every((field) => {
+      const featuredValue = newFeaturedImg[field as keyof Image];
+      const existingValue = hotspot.featuredImg?.[field as keyof typeof hotspot.featuredImg];
+      return featuredValue === existingValue;
+    });
+  const shouldAddFeaturedImg = !hotspot.featuredImg && newFeaturedImg;
+  const shouldRemoveFeaturedImg = !newFeaturedImg && hotspot.featuredImg;
+
+  if (shouldUpdateFeaturedImg || shouldAddFeaturedImg) {
+    await Hotspot.updateOne({ locationId }, { featuredImg: newFeaturedImg });
+  } else if (shouldRemoveFeaturedImg) {
+    const legacyFeaturedImg = legacyImages[0];
+    await Hotspot.updateOne(
+      { locationId },
+      legacyFeaturedImg ? { featuredImg: legacyFeaturedImg } : { $unset: { featuredImg: "" } }
+    );
+  }
+  return combinedImages;
+};

@@ -2,6 +2,7 @@ import connect from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import Profile from "models/Profile";
 import secureApi from "lib/secureApi";
+import { getHotspotImages } from "lib/mongo";
 
 export default secureApi(async (req, res, token) => {
   try {
@@ -31,6 +32,9 @@ export default secureApi(async (req, res, token) => {
     }
 
     await Hotspot.updateOne({ locationId, "images._id": imageId }, { $set: { "images.$.isMigrated": true } });
+
+    // Re-run logic to update featuredImg
+    await getHotspotImages(locationId as string);
 
     return res.status(200).json({ success: true });
   } catch (error: any) {

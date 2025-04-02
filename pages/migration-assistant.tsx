@@ -44,6 +44,8 @@ export default function MigrationAssistant() {
     },
   });
 
+  const status = form.watch("status");
+
   type GetProps = {
     skip?: number;
     loader?: boolean;
@@ -127,7 +129,8 @@ export default function MigrationAssistant() {
         <div>
           <h2 className="text-lg font-semibold text-gray-800 mb-1">My Images</h2>
           <p className="text-gray-600 mb-3">
-            Found <strong>{imageTotal}</strong> images across <strong>{total}</strong> hotspots to migrate
+            Found <strong>{imageTotal}</strong> {imageTotal === 1 ? "image" : "images"} across <strong>{total}</strong>{" "}
+            {total === 1 ? "hotspot" : "hotspots"} {status === "pending" ? "to migrate" : "already migrated"}
           </p>
         </div>
         <Form form={form} onSubmit={() => null}>
