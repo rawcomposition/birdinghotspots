@@ -36,6 +36,20 @@ export default function Dashboard({ data, deletedHotspots, recentHotspots }: Pro
   const filteredRecentHotspots = showMoreRecent ? recentHotspots : recentHotspots.slice(0, 5);
   return (
     <DashboardPage title="Dashboard">
+      <section className="p-6 pt-5 overflow-hidden shadow-md md:rounded-lg bg-white mb-4 border-2 border-blue-400">
+        <h3 className="text-lg font-bold mb-1 flex items-center">
+          Image Migration
+          <span className="ml-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wide bg-green-500 text-white rounded-full">
+            New
+          </span>
+        </h3>
+        <p className="text-sm text-gray-500 mb-4">
+          Try out eBird&rsquo;s new Checklist Media feature by migrating your BirdingHotspots.org images to eBird.
+        </p>
+        <Link href="/migration-assistant" className="font-bold text-sm">
+          Get Started
+        </Link>
+      </section>
       {!!deletedHotspots?.length && (
         <section className="p-6 pt-5 overflow-hidden shadow md:rounded-lg bg-white mb-4">
           <h3 className="text-lg font-bold mb-1">Hotspots Pending Deletion</h3>

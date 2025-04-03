@@ -1,4 +1,4 @@
-import connect from "lib/mongo";
+import connect, { getHotspotImages } from "lib/mongo";
 import PhotoBatch from "models/PhotoBatch";
 import Hotspot from "models/Hotspot";
 import { Image } from "lib/types";
@@ -23,11 +23,6 @@ export default secureApi(async (req, res, token) => {
 
     const formattedImage = { ...img, isPublicDomain: true, by: batch.by, email: batch.email, uid: batch.uid };
 
-    let featuredImg = hotspot.featuredImg;
-    if (!featuredImg?.smUrl) {
-      featuredImg = formattedImage;
-    }
-
     const urls = hotspot.images?.map((image: Image) => image.smUrl) || [];
     const hasImage = urls.includes(img.smUrl);
 
@@ -36,12 +31,12 @@ export default secureApi(async (req, res, token) => {
         PhotoBatch.updateOne({ _id: id, "images._id": imageId }, { $set: { "images.$.status": "approved" } }),
         hasImage
           ? null
-          : await Hotspot.updateOne(
-              { locationId: batch.locationId },
-              { featuredImg, $push: { images: formattedImage } }
-            ),
+          : await Hotspot.updateOne({ locationId: batch.locationId }, { $push: { images: formattedImage } }),
       ].filter(Boolean)
     );
+
+    // Re-run logic to update featuredImg
+    await getHotspotImages(batch.locationId);
 
     res.status(200).json({ success: true });
   } catch (error: any) {

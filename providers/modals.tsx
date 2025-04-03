@@ -11,6 +11,7 @@ import StateInfo from "modals/StateInfo";
 import AddStreetView from "modals/AddStreetview";
 import Revision from "modals/Revision";
 import InviteEditor from "modals/InviteEditor";
+import UploadMessage from "modals/UploadMessage";
 
 const modals = [
   {
@@ -36,6 +37,16 @@ const modals = [
     title: "Invite Editor",
     maxWidth: "500px",
     Component: InviteEditor,
+  },
+  {
+    id: "uploadMessage",
+    title: (
+      <>
+        <span className="bg-yellow-300 rounded-full px-2 py-1 text-xs font-bold">NEW</span> Upload directly to eBird
+      </>
+    ),
+    maxWidth: "700px",
+    Component: UploadMessage,
   },
 ];
 

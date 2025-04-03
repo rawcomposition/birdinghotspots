@@ -96,6 +96,7 @@ const HotspotSchema = new Schema({
       },
     },
   ],
+  featuredEbirdId: String,
   images: [
     {
       xsUrl: String,
@@ -113,6 +114,9 @@ const HotspotSchema = new Schema({
       caption: String,
       legacy: Boolean,
       streetviewData: Object,
+      ebirdId: Number,
+      ebirdDateDisplay: String,
+      isMigrated: Boolean,
     },
   ],
   featuredImg: {
@@ -127,6 +131,8 @@ const HotspotSchema = new Schema({
     legacy: Boolean,
     isStreetview: Boolean,
     streetviewData: Object,
+    ebirdId: Number,
+    ebirdDateDisplay: String,
   },
   groupIds: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   createdAt: {

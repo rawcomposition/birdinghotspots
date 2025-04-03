@@ -1,9 +1,10 @@
-import connect from "lib/mongo";
+import connect, { getHotspotImages } from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit, getEbirdHotspot } from "lib/helpers";
 import dayjs from "dayjs";
+import { getEbirdImage } from "lib/ml";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
@@ -21,7 +22,11 @@ export default secureApi(async (req, res, token) => {
 
     if (!ebirdHotspot) throw new Error("eBird hotspot not found");
 
-    const featuredImg = data?.images?.filter((it: any) => !it.isMap)?.[0] || null;
+    if (data?.featuredEbirdId) {
+      // Don't update the featuredImg, just verify it exists
+      await getEbirdImage(data.featuredEbirdId);
+    }
+
     const noContent = !data?.about?.trim() && !data?.tips?.trim() && !data?.birds?.trim() && !data?.hikes?.trim();
     const updatedAt = dayjs().format();
 
@@ -33,13 +38,14 @@ export default secureApi(async (req, res, token) => {
       };
     }
 
+    const { featuredImg, ...rest } = data;
+
     await Hotspot.updateOne(
       { _id: id },
       {
-        ...data,
+        ...rest,
         url,
         location,
-        featuredImg,
         noContent,
         updatedAt,
         name: ebirdHotspot.name,
@@ -49,6 +55,9 @@ export default secureApi(async (req, res, token) => {
         countyCode: ebirdHotspot.subnational2Code,
       }
     );
+
+    // Re-run logic to update featuredImg
+    await getHotspotImages(data.locationId);
 
     try {
       await Logs.create({
