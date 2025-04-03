@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
       if (query.meta?.errorMessage) {
-        toast.error(query.meta.errorMessage.toString() || "An error ocurred");
+        toast.error(query.meta.errorMessage.toString() || "An error occurred");
       }
     },
   }),
