@@ -58,11 +58,11 @@ export const processImg = (image: Image) => {
       &nbsp;•&nbsp;
       <a
         href="https://macaulaylibrary.org/asset/${image.ebirdId}"
-        class="font-medium"
+        class="font-medium text-white hover:underline"
         target="_blank"
         rel="noopener noreferrer"
       >
-        ML${image.ebirdId}
+        Macaulay Library ML${image.ebirdId}
       </a>`;
   } else if (image.by) {
     caption = image.caption ? `${image.caption}<br />Photo by ${image.by}` : `Photo by ${image.by}`;
