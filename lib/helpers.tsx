@@ -299,7 +299,14 @@ export const get = async (url: string, params: GetParams) => {
 
   const queryParams = new URLSearchParams(cleanParams).toString();
 
-  const res = await fetch(`${url}?${queryParams}`, {
+  let fullUrl = url;
+  if (url.includes("?") && queryParams) {
+    fullUrl = `${url}&${queryParams}`;
+  } else if (queryParams) {
+    fullUrl = `${url}?${queryParams}`;
+  }
+
+  const res = await fetch(fullUrl, {
     method: "GET",
   });
 

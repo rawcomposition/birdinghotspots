@@ -4,12 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 type Props = {
   locationId: string;
   featuredImg?: Image;
-  hasFeaturedEbirdId: boolean;
 };
 
-export default function useHotspotImages({ locationId, featuredImg, hasFeaturedEbirdId }: Props) {
+export default function useHotspotImages({ locationId, featuredImg }: Props) {
   const { data, isFetching } = useQuery<Image[]>({
-    queryKey: [`/api/hotspot/${locationId}/images?getBest=${!!hasFeaturedEbirdId}`],
+    queryKey: [`/api/hotspot/${locationId}/images`],
     enabled: !!locationId,
     refetchOnWindowFocus: true,
     meta: {

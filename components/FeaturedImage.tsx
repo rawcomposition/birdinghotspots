@@ -11,19 +11,28 @@ import Spinner from "icons/Spinner";
 type Props = {
   photos: Image[];
   isLoading: boolean;
+  locationId: string;
 };
 
-export default function FeaturedImage({ photos, isLoading }: Props) {
+export default function FeaturedImage({ photos, isLoading, locationId }: Props) {
   const [index, setIndex] = React.useState(0);
   const items = photos.map((photo) => processImg(photo));
   const indexRef = React.useRef(index);
   indexRef.current = index;
   if (photos.length === 0) return null;
 
+  const allItems = [
+    ...items,
+    {
+      content: <MacaulayLibraryBanner locationId={locationId} />,
+      caption: "",
+    },
+  ];
+
   const handlePrev = (e: React.MouseEvent) => {
     e.preventDefault();
     if (index === 0) {
-      setIndex(items.length - 1);
+      setIndex(allItems.length - 1);
       return;
     }
     setIndex(index - 1);
@@ -31,7 +40,7 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
 
   const handleNext = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (index === items.length - 1) {
+    if (index === allItems.length - 1) {
       setIndex(0);
       return;
     }
@@ -39,14 +48,18 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
   };
 
   return (
-    <Gallery options={{ dataSource: items }} uiElements={uiElements} withCaption>
-      {items.map((item, i) => (
+    <Gallery options={{ dataSource: allItems }} uiElements={uiElements} withCaption>
+      {allItems.map((item, i) => (
         <Item key={i} {...item}>
           {({ ref, open }) => {
             const imgRef = ref as any;
             return (
               <figure className={`relative group ${index === i ? "block" : "hidden"}`} ref={imgRef}>
-                {photos[i].isStreetview ? (
+                {item.content ? (
+                  <figure className="h-[250px] sm:h-[350px] md:h-[450px] relative group" ref={ref}>
+                    {item.content}
+                  </figure>
+                ) : photos[i].isStreetview ? (
                   <StreetView
                     className="w-full h-[250px] sm:h-[350px] md:h-[450px] rounded-lg mb-8 -mt-10"
                     {...photos[i].streetviewData}
@@ -71,17 +84,17 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
                     <Spinner className="animate-spin my-[2px]" />
                   </span>
                 ) : (
-                  items.length > 1 && (
+                  allItems.length > 1 && (
                     <button
                       type="button"
                       className="absolute top-4 right-4 flex items-center gap-2 px-3 py-0.5 text-sm font-medium bg-white  hover:opacity-100 opacity-80 rounded-sm transition-opacity"
                       onClick={open}
                     >
-                      {items.length} photos
+                      {photos.length} photos
                     </button>
                   )
                 )}
-                {items.length > 1 && (
+                {allItems.length > 1 && (
                   <>
                     <button
                       type="button"
@@ -99,7 +112,7 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
                     </button>
                   </>
                 )}
-                {photos[i].ebirdId && (
+                {photos[i]?.ebirdId && (
                   <figcaption className="text-[13px] leading-4 text-gray-300 absolute bottom-0 left-0 right-0 py-2 px-4 bg-gray-900 rounded-b-lg flex items-center">
                     {photos[i].by}
                     <span className="rounded-full bg-gray-600 text-gray-300 w-[5px] h-[5px] mx-2.5" />
@@ -123,3 +136,26 @@ export default function FeaturedImage({ photos, isLoading }: Props) {
     </Gallery>
   );
 }
+
+export const MacaulayLibraryBanner = ({ locationId }: { locationId: string }) => {
+  return (
+    <div className="w-full h-full rounded-lg mb-8 -mt-10 flex items-center justify-center">
+      <div className="w-72 h-72 bg-white rounded-full flex flex-col gap-6 items-center justify-center p-8 text-center">
+        <img
+          src="https://clo-brand-static-prod.s3.amazonaws.com/logos/clo/clo_primary_web.svg"
+          alt="Cornell Lab Logo"
+          className="w-32 h-12"
+        />
+        <p className="text-gray-700 text-sm font-medium">More photos available in the Macaulay Library</p>
+        <a
+          href={`https://media.ebird.org/catalog?regionCode=${locationId}&mediaType=photo&sort=rating_rank_desc&view=grid&tag=environmental`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full inline-flex items-center"
+        >
+          Browse Photos
+        </a>
+      </div>
+    </div>
+  );
+};

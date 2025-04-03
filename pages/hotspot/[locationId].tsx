@@ -81,7 +81,6 @@ export default function Hotspot({
   const { images: combinedPhotos, isFetching: isLoadingImages } = useHotspotImages({
     locationId,
     featuredImg,
-    hasFeaturedEbirdId: !!featuredEbirdId,
   });
 
   let extraLinks = [];
@@ -120,7 +119,12 @@ export default function Hotspot({
       )}
       <PageHeading region={region}>{name}</PageHeading>
       {combinedPhotos?.length > 0 && (
-        <FeaturedImage key={`${locationId}-${isLoadingImages}`} photos={combinedPhotos} isLoading={isLoadingImages} />
+        <FeaturedImage
+          key={`${locationId}-${isLoadingImages}`}
+          photos={combinedPhotos}
+          isLoading={isLoadingImages}
+          locationId={locationId}
+        />
       )}
       <EditorActions className={`${combinedPhotos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
