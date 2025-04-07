@@ -21,13 +21,17 @@ export default function FeaturedImage({ photos, isLoading, locationId }: Props) 
   indexRef.current = index;
   if (photos.length === 0) return null;
 
-  const allItems = [
-    ...items,
-    {
-      content: <MacaulayLibraryBanner locationId={locationId} />,
-      caption: "",
-    },
-  ];
+  const hasMlImages = photos.some((photo) => photo.ebirdId);
+
+  const allItems = hasMlImages
+    ? [
+        ...items,
+        {
+          content: <MacaulayLibraryBanner locationId={locationId} />,
+          caption: "",
+        },
+      ]
+    : items;
 
   const handlePrev = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -146,7 +150,7 @@ export const MacaulayLibraryBanner = ({ locationId }: { locationId: string }) =>
           alt="Cornell Lab Logo"
           className="w-32 h-12"
         />
-        <p className="text-gray-700 text-sm font-medium">More photos available in the Macaulay Library</p>
+        <p className="text-gray-700 text-sm font-medium">More may be available in the Macaulay Library</p>
         <a
           href={`https://media.ebird.org/catalog?regionCode=${locationId}&mediaType=photo&sort=rating_rank_desc&view=grid&tag=environmental`}
           target="_blank"
