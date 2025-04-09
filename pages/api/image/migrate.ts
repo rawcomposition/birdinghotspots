@@ -25,7 +25,12 @@ export default secureApi(async (req, res, token) => {
       return res.status(404).json({ error: "Hotspot not found" });
     }
 
-    const image = hotspot.images?.find((img) => img._id?.toString() === imageId && img.email === profile.email);
+    const image = hotspot.images?.find((img) => {
+      if (img._id?.toString() !== imageId) return false;
+      if (img.email === profile?.email) return true;
+      if (profile.name && new RegExp(profile.name, "i").test(img.by || "")) return true;
+      return false;
+    });
 
     if (!image) {
       throw new Error("Image not found or you don't have permission to migrate this image");
