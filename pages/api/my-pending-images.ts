@@ -14,7 +14,12 @@ export default secureApi(async (req, res, token) => {
     if (!profile) throw new Error("Profile not found");
     if (!profile.email) throw new Error("Email not found");
 
-    let query: any = { "images.email": profile?.email };
+    const includeNameSearch =
+      token.role && ["editor", "admin"].includes(token.role) && profile.name && profile.name.length > 5;
+
+    let query: any = includeNameSearch
+      ? { $or: [{ "images.email": profile?.email }, { "images.by": { $regex: new RegExp(profile.name, "i") } }] }
+      : { "images.email": profile?.email };
 
     if (status === "migrated") {
       query["images.isMigrated"] = true;
@@ -46,7 +51,14 @@ export default secureApi(async (req, res, token) => {
                 as: "image",
                 cond: {
                   $and: [
-                    { $eq: ["$$image.email", profile?.email] },
+                    includeNameSearch
+                      ? {
+                          $or: [
+                            { $eq: ["$$image.email", profile?.email] },
+                            { $regexMatch: { input: "$$image.by", regex: new RegExp(profile.name, "i") } },
+                          ],
+                        }
+                      : { $eq: ["$$image.email", profile?.email] },
                     { $ne: ["$$image.isMap", true] },
                     { $ne: ["$$image.isStreetview", true] },
                     status === "pending"
@@ -87,7 +99,9 @@ export default secureApi(async (req, res, token) => {
       };
       const filteredImages = it.images?.filter(
         (image) =>
-          image.email === profile?.email &&
+          (includeNameSearch
+            ? image.email === profile?.email || (profile.name && new RegExp(profile.name, "i").test(image.by || ""))
+            : image.email === profile?.email) &&
           !image.isMap &&
           (status === "migrated" ? image.isMigrated : !image.isMigrated)
       );
