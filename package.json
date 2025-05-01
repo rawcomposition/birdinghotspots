@@ -12,7 +12,10 @@
     "flatten-regions": "node scripts/generateFlatRegions.js",
     "create-admin": "tsx ./scripts/create-admin.ts",
     "migrate-maps": "tsx ./scripts/legacy-map-migrate.ts",
-    "guess-group-primary-hotspot": "tsx ./scripts/guess-group-primary-hotspot.ts"
+    "guess-group-primary-hotspot": "tsx ./scripts/guess-group-primary-hotspot.ts",
+    "export-groups": "tsx ./scripts/export-groups.ts",
+    "export-hotspots-aggregated": "tsx ./scripts/export-hotspots-aggregated.ts",
+    "export-hotspots-duplicated": "tsx ./scripts/export-hotspots-duplicated.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",

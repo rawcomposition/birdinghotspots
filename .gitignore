@@ -38,3 +38,5 @@ public/top10/*.json
 notes.md
 /public/tinymce
 /public/species-images
+
+exports/*

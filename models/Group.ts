@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 const { Schema, model, models } = mongoose;
+import { Group as GroupT } from "lib/types";
 
 const LinkSchema = new Schema({
   label: String,
@@ -92,4 +93,4 @@ GroupSchema.index({ hotspotCount: -1 });
 
 const Group = models.Group || model("Group", GroupSchema);
 
-export default Group;
+export default Group as mongoose.Model<GroupT>;
