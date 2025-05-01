@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const hasMultipleStates = result.stateCodes?.length > 1;
       const region = hasMultipleStates
         ? getRegion(result.countryCode)
-        : getRegion(result.stateCode || result.countryCode);
+        : getRegion(result.stateCodes[0] || result.countryCode);
       const label = `${result.name}, ${region?.detailedName || result.countryCode}`;
       return { label, value: result.url };
     });

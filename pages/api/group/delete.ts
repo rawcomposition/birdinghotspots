@@ -11,6 +11,11 @@ export default secureApi(async (req, res, token) => {
   await connect();
   const group = await Group.findById(id);
 
+  if (!group) {
+    res.status(404).json({ error: "Group not found" });
+    return;
+  }
+
   if (!token.isAdmin && !canEdit(token, group.stateCodes.length > 0 ? group.stateCodes : group.countryCode)) {
     res.status(401).json({ error: "Unauthorized" });
     return;

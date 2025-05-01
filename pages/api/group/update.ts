@@ -35,6 +35,13 @@ export default secureApi(async (req, res, token) => {
 
   try {
     const group = await Group.findOne({ _id: id }, ["-_id", "hotspots"]);
+
+    if (!group) {
+      res.status(404).json({ error: "Group not found" });
+      return;
+    }
+
+    // @ts-ignore
     const removedHotspots = group.hotspots.filter((it: string) => !data.hotspots.includes(it.toString()));
 
     const mapImgUrl = await uploadGroupMapImg(hotspots);
