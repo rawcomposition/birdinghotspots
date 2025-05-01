@@ -270,6 +270,7 @@ export async function getAllRevisions({ limit, skip, status }: AllRevisionProps)
 export async function getGroupByLocationId(locationId: string) {
   await connect();
   const result = await Group.findOne({ locationId })
+    .populate("primaryHotspot", ["name", "locationId"])
     .populate("hotspots", [
       "url",
       "name",

@@ -259,6 +259,7 @@ export type Group = {
   restrooms?: string;
   images?: Image[];
   hotspots: [Hotspot];
+  primaryHotspot: Hotspot;
   hotspotCount?: number;
   updatedAt?: string;
 };
@@ -268,6 +269,10 @@ export interface GroupInputs extends Group {
     label: string;
     value: string;
   }[];
+  primaryHotspotSelect: {
+    label: string;
+    value: string;
+  } | null;
 }
 
 export type Revision = {

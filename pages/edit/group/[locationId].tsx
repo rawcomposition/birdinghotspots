@@ -27,13 +27,12 @@ import Checkbox from "components/Checkbox";
 type Props = {
   id?: string;
   isNew: boolean;
-  markers: Marker[];
   data: Group;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ id, isNew, data, markers, error, errorCode }: Props) {
+export default function Edit({ id, isNew, data, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -46,6 +45,14 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
     if (data.hotspotSelect.length === 0) {
       return toast.error("Please select at least one hotspot");
     }
+
+    if (
+      data.primaryHotspotSelect &&
+      !data.hotspotSelect.some((hotspot) => hotspot.value === data.primaryHotspotSelect!.value)
+    ) {
+      return toast.error("Primary hotspot must also be included in the list of hotspots");
+    }
+
     // @ts-ignore
     if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const response = await send({
@@ -57,6 +64,7 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
           ...data,
           name: data.name.trim(),
           hotspots: data.hotspotSelect.map(({ value }) => value),
+          primaryHotspot: data.primaryHotspotSelect?.value || null,
         },
       },
     });
@@ -124,6 +132,13 @@ export default function Edit({ id, isNew, data, markers, error, errorCode }: Pro
                 <HotspotSelect name="hotspotSelect" className="mt-1 w-full" isMulti />
               </Field>
 
+              <Field
+                label="Primary Hotspot (optional)"
+                help="Is there an eBird hotspot that pertains to the entire area represented by this group?"
+              >
+                <HotspotSelect name="primaryHotspotSelect" className="mt-1 w-full" isClearable />
+              </Field>
+
               <div>
                 <label className="text-gray-500 font-bold">Maps</label>
                 <ImagesInput hideMapCheckbox showHideFromChildrenCheckbox />
@@ -175,14 +190,14 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   }
 
   const hotspotSelect = data?.hotspots?.map((hotspot: Hotspot) => ({ label: hotspot.name, value: hotspot._id })) || [];
-
-  const markers = data?.hotspots?.map((it: Hotspot) => formatMarker(it, true)) || [];
+  const primaryHotspotSelect = data?.primaryHotspot
+    ? { label: data?.primaryHotspot.name, value: data?.primaryHotspot._id }
+    : null;
 
   return {
     props: {
       id: data?._id || null,
       isNew: !data,
-      markers,
       data: {
         ...data,
         countryCode,
@@ -190,6 +205,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         stateCodes: data?.stateCodes || [],
         countyCodes: data?.countyCodes || [],
         hotspotSelect,
+        primaryHotspotSelect,
         restrooms: data?.restrooms || "Unknown",
       },
     },

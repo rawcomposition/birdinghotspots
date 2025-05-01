@@ -71,6 +71,10 @@ const GroupSchema = new Schema({
     },
   ],
   hotspotCount: Number,
+  primaryHotspot: {
+    type: Schema.Types.ObjectId,
+    ref: "Hotspot",
+  },
   createdAt: {
     type: "string",
     default: () => dayjs().format(),
