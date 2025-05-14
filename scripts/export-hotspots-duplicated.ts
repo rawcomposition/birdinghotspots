@@ -15,17 +15,20 @@ const exportHotspotsCsv = async () => {
   const groups = await Group.find({}, ["locationId", "name", "primaryHotspot"]).lean();
   const hotspots = await Hotspot.find(
     { $or: [{ noContent: { $ne: true } }, { "groupIds.0": { $exists: true } }, { "images.0": { $exists: true } }] },
-    ["locationId", "name", "countryCode", "stateCode", "countyCode", "lat", "lng", "groupIds"]
+    ["locationId", "name", "countryCode", "stateCode", "countyCode", "lat", "lng", "groupIds", "images", "noContent"]
   ).lean();
 
-  const csvHeader = "LocationId,Hotspot Name,Lat,Lng,Group ID,Group Name,Country,State,County,Groups";
+  const csvHeader =
+    "LocationId,Hotspot Name,Lat,Lng,Group ID,Group Name,Country,State,County,Groups Count,Has Content,Has Images";
 
   let csvRows: string[] = [];
 
   hotspots.forEach((hotspot) => {
     if (!hotspot.groupIds || hotspot.groupIds.length === 0) {
       csvRows.push(
-        `${hotspot.locationId},"${hotspot.name}",${hotspot.lat},${hotspot.lng},,,${hotspot.countryCode},${hotspot.stateCode},${hotspot.countyCode},0`
+        `${hotspot.locationId},"${hotspot.name}",${hotspot.lat},${hotspot.lng},,,${hotspot.countryCode},${
+          hotspot.stateCode
+        },${hotspot.countyCode},0,${hotspot.noContent ? 0 : 1},${!!hotspot.images?.length ? 1 : 0}`
       );
       return;
     }
@@ -36,7 +39,9 @@ const exportHotspotsCsv = async () => {
         csvRows.push(
           `${hotspot.locationId},"${hotspot.name}",${hotspot.lat},${hotspot.lng},${group.locationId},"${group.name}",${
             hotspot.countryCode
-          },${hotspot.stateCode},${hotspot.countyCode},${hotspot.groupIds?.length || 0}`
+          },${hotspot.stateCode},${hotspot.countyCode},${hotspot.groupIds?.length || 0},${hotspot.noContent ? 0 : 1},${
+            !!hotspot.images?.length ? 1 : 0
+          }`
         );
       }
     });
