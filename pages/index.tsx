@@ -66,6 +66,9 @@ export default function Home({ featured, northAmericaRegions }: Props) {
               <Link href="/region/GS" className="font-bold px-2 py-1 text-base mb-1 block">
                 South Georgia and South Sandwich Islands
               </Link>
+              <Link href="/region/SE" className="font-bold px-2 py-1 text-base mb-1 block">
+                Sweden
+              </Link>
               <Link href="/region/TJ" className="font-bold px-2 py-1 text-base mb-1 block">
                 Tajikistan
               </Link>

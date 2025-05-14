@@ -14256,6 +14256,94 @@
     "name": "Šumadija, Serbia"
   },
   {
+    "code": "SE",
+    "name": "Sweden"
+  },
+  {
+    "code": "SE-K",
+    "name": "Blekinge län [SE-10], Sweden"
+  },
+  {
+    "code": "SE-W",
+    "name": "Dalarnas län [SE-20], Sweden"
+  },
+  {
+    "code": "SE-I",
+    "name": "Gotlands län [SE-09], Sweden"
+  },
+  {
+    "code": "SE-X",
+    "name": "Gävleborgs län [SE-21], Sweden"
+  },
+  {
+    "code": "SE-N",
+    "name": "Hallands län [SE-13], Sweden"
+  },
+  {
+    "code": "SE-Z",
+    "name": "Jämtlands län [SE-23], Sweden"
+  },
+  {
+    "code": "SE-F",
+    "name": "Jönköpings län [SE-06], Sweden"
+  },
+  {
+    "code": "SE-H",
+    "name": "Kalmar län [SE-08], Sweden"
+  },
+  {
+    "code": "SE-G",
+    "name": "Kronobergs län [SE-07], Sweden"
+  },
+  {
+    "code": "SE-BD",
+    "name": "Norrbottens län [SE-25], Sweden"
+  },
+  {
+    "code": "SE-M",
+    "name": "Skåne län [SE-12], Sweden"
+  },
+  {
+    "code": "SE-AB",
+    "name": "Stockholms län [SE-01], Sweden"
+  },
+  {
+    "code": "SE-D",
+    "name": "Södermanlands län [SE-04], Sweden"
+  },
+  {
+    "code": "SE-C",
+    "name": "Uppsala län [SE-03], Sweden"
+  },
+  {
+    "code": "SE-S",
+    "name": "Värmlands län [SE-17], Sweden"
+  },
+  {
+    "code": "SE-AC",
+    "name": "Västerbottens län [SE-24], Sweden"
+  },
+  {
+    "code": "SE-Y",
+    "name": "Västernorrlands län [SE-22], Sweden"
+  },
+  {
+    "code": "SE-U",
+    "name": "Västmanlands län [SE-19], Sweden"
+  },
+  {
+    "code": "SE-O",
+    "name": "Västra Götalands län [SE-14], Sweden"
+  },
+  {
+    "code": "SE-T",
+    "name": "Örebro län [SE-18], Sweden"
+  },
+  {
+    "code": "SE-E",
+    "name": "Östergötlands län [SE-05], Sweden"
+  },
+  {
     "code": "ZA",
     "name": "South Africa"
   },

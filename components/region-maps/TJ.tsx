@@ -12,7 +12,7 @@ export default function TJMap() {
         className="state-map hover-map max-w-[550px]"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
-        viewBox="176 25 665  500"
+        viewBox="176 25 665 500"
         ref={svgRef}
       >
         <Link href="/region/TJ-GB" {...linkProps}>

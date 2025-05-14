@@ -3908,6 +3908,33 @@
     ]
   },
   {
+    "code": "SE",
+    "name": "Sweden",
+    "subregions": [
+      { "code": "SE-K", "name": "Blekinge län [SE-10]" },
+      { "code": "SE-W", "name": "Dalarnas län [SE-20]" },
+      { "code": "SE-I", "name": "Gotlands län [SE-09]" },
+      { "code": "SE-X", "name": "Gävleborgs län [SE-21]" },
+      { "code": "SE-N", "name": "Hallands län [SE-13]" },
+      { "code": "SE-Z", "name": "Jämtlands län [SE-23]" },
+      { "code": "SE-F", "name": "Jönköpings län [SE-06]" },
+      { "code": "SE-H", "name": "Kalmar län [SE-08]" },
+      { "code": "SE-G", "name": "Kronobergs län [SE-07]" },
+      { "code": "SE-BD", "name": "Norrbottens län [SE-25]" },
+      { "code": "SE-M", "name": "Skåne län [SE-12]" },
+      { "code": "SE-AB", "name": "Stockholms län [SE-01]" },
+      { "code": "SE-D", "name": "Södermanlands län [SE-04]" },
+      { "code": "SE-C", "name": "Uppsala län [SE-03]" },
+      { "code": "SE-S", "name": "Värmlands län [SE-17]" },
+      { "code": "SE-AC", "name": "Västerbottens län [SE-24]" },
+      { "code": "SE-Y", "name": "Västernorrlands län [SE-22]" },
+      { "code": "SE-U", "name": "Västmanlands län [SE-19]" },
+      { "code": "SE-O", "name": "Västra Götalands län [SE-14]" },
+      { "code": "SE-T", "name": "Örebro län [SE-18]" },
+      { "code": "SE-E", "name": "Östergötlands län [SE-05]" }
+    ]
+  },
+  {
     "code": "ZA",
     "name": "South Africa",
     "subregions": [
