@@ -39,6 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       featuredImage: hotspot.featuredImg ? formatImage(hotspot.featuredImg) : null,
       images: hotspot.images?.map(formatImage) || [],
       webpage: hotspot.webpage,
+      trailMap: hotspot.trailMap,
       about: hotspot.about,
       tips: hotspot.tips,
       birds: hotspot.birds,

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getGroupByLocationId } from "lib/mongo";
 import AboutSection from "components/AboutSection";
 import { getRegion } from "lib/localData";
-import { Region, Marker, Group as GroupType } from "lib/types";
+import { Region, Marker, Group as GroupType, Link as LinkType } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
@@ -40,6 +40,7 @@ export default function Group({
   links: additionalLinks,
   webpage,
   citeWebpage,
+  trailMap,
   citations,
   about,
   tips,
@@ -70,9 +71,11 @@ export default function Group({
   const filteredHotspots = showMore ? hotspots : hotspots.slice(0, 12);
   const moreCount = hotspots.length - 12;
 
-  const links = webpage
-    ? [{ url: webpage, label: "Official Website", cite: citeWebpage }, ...(additionalLinks || [])]
-    : additionalLinks || [];
+  const links: LinkType[] = [
+    { url: webpage || "", label: "Official Website", cite: citeWebpage },
+    { url: trailMap || "", label: "Trail Map", cite: false },
+    ...(additionalLinks || []),
+  ].filter((it) => it.url);
 
   return (
     <div className="container pb-16">

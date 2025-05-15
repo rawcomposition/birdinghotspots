@@ -134,6 +134,15 @@ export default function Edit({
                 <Checkbox name="citeWebpage" label="Include as citation" />
               </div>
 
+              <div className="space-y-1">
+                <Field
+                  label="Trail Map URL"
+                  help="Provide a link to a document, image, or webpage that contains a map of the trails at this location."
+                >
+                  <Input type="url" name="trailMap" defaultValue={data?.trailMap} placeholder="https://..." />
+                </Field>
+              </div>
+
               <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
 
               <Field

@@ -292,9 +292,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
   const data = await getHotspotByLocationId(locationId, true);
   if (!data) return { notFound: true };
 
-  const links = data.webpage
-    ? [{ url: data.webpage, label: "Official Website", cite: data.citeWebpage }, ...(data.links || [])]
-    : data.links || [];
+  const links: LinkType[] = [
+    { url: data.webpage || "", label: "Official Website", cite: data.citeWebpage },
+    { url: data.trailMap || "", label: "Trail Map", cite: false },
+    ...(data.links || []),
+  ].filter((it) => it.url);
 
   const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
   if (!region) return { notFound: true };
@@ -304,12 +306,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
   const groupLinks: LinkType[] = [];
   const uniqueCitations: Citation[] = [...(data.citations || [])];
 
-  data?.groups?.forEach(({ name, links, webpage, citeWebpage, citations }: Group) => {
+  data?.groups?.forEach(({ name, links, webpage, citeWebpage, trailMap, citations }: Group) => {
     if (webpage)
       groupLinks?.push({
         url: webpage,
         label: `${name} Official Website`,
         cite: citeWebpage,
+      });
+    if (trailMap)
+      groupLinks?.push({
+        url: trailMap,
+        label: `${name} Trail Map`,
+        cite: false,
       });
     if (links) groupLinks.push(...links);
     if (citations) {

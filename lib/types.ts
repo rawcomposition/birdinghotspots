@@ -69,6 +69,7 @@ export type Hotspot = {
   hikes?: string;
   webpage?: string;
   citeWebpage?: boolean;
+  trailMap?: string;
   address?: string;
   links?: Link[];
   citations?: Citation[];
@@ -255,6 +256,7 @@ export type Group = {
   links?: Link[];
   webpage?: string;
   citeWebpage?: boolean;
+  trailMap?: string;
   citations?: Citation[];
   restrooms?: string;
   images?: Image[];

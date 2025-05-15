@@ -46,6 +46,7 @@ const GroupSchema = new Schema({
   links: [LinkSchema],
   webpage: String,
   citeWebpage: Boolean,
+  trailMap: String,
   citations: [CitationSchema],
   restrooms: {
     type: String,
