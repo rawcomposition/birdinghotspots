@@ -11,13 +11,23 @@ import MapList from "components/MapList";
 import parse from "html-react-parser";
 import HotspotGrid from "components/HotspotGrid";
 import { getRegion } from "lib/localData";
+import dayjs from "dayjs";
 
 interface Props extends ArticleType {
   region: Region;
   formattedHotspots: Hotspot[];
 }
 
-export default function Article({ region, name, content, formattedHotspots, images, _id, articleId }: Props) {
+export default function Article({
+  region,
+  name,
+  content,
+  formattedHotspots,
+  images,
+  _id,
+  articleId,
+  createdAt,
+}: Props) {
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${region.detailedName}`}</Title>
@@ -38,6 +48,9 @@ export default function Article({ region, name, content, formattedHotspots, imag
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
           {formattedHotspots?.length > 0 && <HotspotGrid hotspots={formattedHotspots} loading={false} />}
         </div>
+      </div>
+      <div className="text-[13px] font-medium text-gray-600 mb-2 -mt-3">
+        Published {dayjs(createdAt).format("MMM D, YYYY")}
       </div>
     </div>
   );

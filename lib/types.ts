@@ -189,6 +189,7 @@ export type Article = {
   images?: Image[];
   hotspots: [Hotspot];
   sortHotspotsBy: "region" | "species" | "none";
+  createdAt: string;
 };
 
 export type ArticleInputs = {

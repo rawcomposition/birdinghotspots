@@ -18,8 +18,6 @@ import RegionStats from "components/RegionStats";
 import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
-import ExternalLinkButton from "components/ExternalLinkButton";
-import ImageIcon from "icons/Image";
 import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion, getTopGroupsByRegion } from "lib/mongo";
 import MapBox from "components/MapBox";
 import HotspotList from "components/HotspotList";

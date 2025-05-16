@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { Region } from "lib/types";
 
 type Props = {
   regionCode: string;
