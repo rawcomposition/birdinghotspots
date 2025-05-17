@@ -18,6 +18,8 @@ import { getFileUrl } from "lib/s3";
 import ImageCaptureDate from "components/ImageCaptureDate";
 import PageHeading from "components/PageHeading";
 import dynamic from "next/dynamic";
+import CopyIcon from "icons/CopyIcon";
+import Tooltip from "components/Tooltip";
 const MigrationBanner = dynamic(() => import("components/MigrationBanner"), { ssr: false });
 
 type Inputs = {
@@ -116,6 +118,11 @@ export default function MigrationAssistant() {
     });
   };
 
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Caption copied to clipboard");
+  };
+
   const showLoadMore = hotspots.length < total;
 
   return (
@@ -194,6 +201,20 @@ export default function MigrationAssistant() {
                           );
                         }}
                       </Item>
+                      {caption && (
+                        <div className="flex justify-between items-center bg-slate-100 rounded-md pl-2.5">
+                          <p className="text-sm text-gray-700 truncate max-w-[87%]">{caption}</p>
+                          <Tooltip text="Copy caption" small>
+                            <button
+                              type="button"
+                              onClick={() => copyToClipboard(caption)}
+                              className="w-8 h-8 flex items-center justify-center hover:bg-slate-300/80 rounded-lg transition-colors"
+                            >
+                              <CopyIcon className=" text-gray-500" />
+                            </button>
+                          </Tooltip>
+                        </div>
+                      )}
                       <div className="flex gap-4 items-center justify-between">
                         <span className="text-sm text-gray-700 font-medium flex flex-col leading-[18px]">
                           <span className="text-gray-500 text-[11px] uppercase">Captured</span>
