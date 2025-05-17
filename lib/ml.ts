@@ -55,7 +55,7 @@ export const formatEbirdImage = (it: ebirdResponseImage, isBest: boolean): eBird
   width: it.width,
   height: it.height,
   ebirdId: it.assetId,
-  caption: it.mediaNotes || "",
+  caption: it.caption || "",
   by: it.userDisplayName,
   ebirdDateDisplay: it.obsDtDisplay,
   xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/480`,
@@ -93,6 +93,7 @@ type ebirdResponseImage = {
   mediaType: string;
   source: string;
   exoticCategory: string | null;
+  caption: string | null;
   cursorMark: string | null;
   ebirdChecklistId: string;
 };
