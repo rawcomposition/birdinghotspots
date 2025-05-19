@@ -170,9 +170,13 @@ export default function MigrationAssistant() {
                 My Checklists
               </Link>
               <span className="bg-gray-500 w-[5px] h-[5px] rounded-full" />
-              <Link href={`https://ebird.org/submit/effort?locID=${hotspot.locationId}`} className="font-bold text-sm">
+              <a
+                target="_blank"
+                href={`https://ebird.org/submit/effort?locID=${hotspot.locationId}`}
+                className="font-bold text-sm"
+              >
                 New Checklist
-              </Link>
+              </a>
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-[13px] text-gray-600 flex items-center gap-2 leading-3">

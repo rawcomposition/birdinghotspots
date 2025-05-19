@@ -98,26 +98,28 @@ export default secureApi(async (req, res, token) => {
       ]),
     ]);
 
-    const results = hotspots.map((it) => {
-      const regionCode = it.countyCode || it.stateCode || it.countryCode;
-      const region = getRegion(regionCode);
-      const formatted = {
-        ...it,
-        locationName: region?.detailedName || regionCode,
-      };
-      const filteredImages = it.images?.filter(
-        (image) =>
-          (includeNameSearch
-            ? image.email === profile?.email || (profile.name && new RegExp(profile.name, "i").test(image.by || ""))
-            : image.email === profile?.email) &&
-          !image.isMap &&
-          (status === "migrated" ? image.isMigrated : !image.isMigrated)
-      );
-      return {
-        ...formatted,
-        images: filteredImages || [],
-      };
-    });
+    const results = hotspots
+      .map((it) => {
+        const regionCode = it.countyCode || it.stateCode || it.countryCode;
+        const region = getRegion(regionCode);
+        const formatted = {
+          ...it,
+          locationName: region?.detailedName || regionCode,
+        };
+        const filteredImages = it.images?.filter(
+          (image) =>
+            (includeNameSearch
+              ? image.email === profile?.email || (profile.name && new RegExp(profile.name, "i").test(image.by || ""))
+              : image.email === profile?.email) &&
+            !image.isMap &&
+            (status === "migrated" ? image.isMigrated : !image.isMigrated)
+        );
+        return {
+          ...formatted,
+          images: filteredImages || [],
+        };
+      })
+      .filter((it) => it.images.length > 0);
 
     res.status(200).json({ success: true, results, total, imageTotal: imageTotalResult[0].totalCount });
   } catch (error: any) {
