@@ -1,7 +1,5 @@
 import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
-import EbirdDescription from "components/EbirdDescription";
-import EbirdHelpLinks from "components/EbirdHelpLinks";
 import BtnSmall from "components/BtnSmall";
 import { useRouter } from "next/router";
 
@@ -14,8 +12,16 @@ export default function UploadMessage() {
     <>
       <div>
         <p className="mb-4 font-medium text-[15px]">
-          Any habitat or landscape photos uploaded to eBird will now be displayed on BirdingHotspots.org. Follow the
-          steps below to get started.
+          Habitat photos uploaded to eBird.org will now be displayed on BirdingHotspots.org. Follow the steps below to
+          get started.{" "}
+          <a
+            href="https://support.ebird.org/en/support/solutions/articles/48001269559-upload-checklist-media"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn more
+          </a>
+          .
         </p>
         <h3 className="text-[16px] font-bold">
           1. Find the appropriate checklist{" "}
@@ -27,9 +33,7 @@ export default function UploadMessage() {
             )
           </span>
         </h3>
-        <h3 className="text-[16px] font-bold mt-4 mb-2">
-          2. Click <span className="font-normal">Add Media</span>
-        </h3>
+        <h3 className="text-[16px] font-bold mt-4 mb-2">2. Click &quot;Add Media&quot;</h3>
         <img
           src="/upload-step-1.jpg"
           alt="Screenshot of eBird checklist page pointing to the Add Media button"
