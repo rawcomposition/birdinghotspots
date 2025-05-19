@@ -94,7 +94,7 @@ export default function FeaturedImage({ photos, isLoading, locationId }: Props) 
                       className="absolute top-4 right-4 flex items-center gap-2 px-3 py-0.5 text-sm font-medium bg-white  hover:opacity-100 opacity-80 rounded-sm transition-opacity"
                       onClick={open}
                     >
-                      {photos.length} photos
+                      {photos.length} {photos.length === 1 ? "photo" : "photos"}
                     </button>
                   )
                 )}
