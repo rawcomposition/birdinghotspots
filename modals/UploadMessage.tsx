@@ -38,6 +38,8 @@ export default function UploadMessage() {
           src="/upload-step-1.jpg"
           alt="Screenshot of eBird checklist page pointing to the Add Media button"
           className="w-full"
+          width={1200}
+          height={591}
         />
         <h3 className="text-[16px] font-bold mt-6 mb-2">
           3. Upload your photos to the &quot;Habitat or Soundscape&quot; section
@@ -46,6 +48,8 @@ export default function UploadMessage() {
           src="/upload-step-2.jpg"
           alt="Screenshot of the eBird manage media page highlighting the Habitat or Soundscape section"
           className="w-full"
+          width={1200}
+          height={672}
         />
       </div>
       <ModalFooter>
