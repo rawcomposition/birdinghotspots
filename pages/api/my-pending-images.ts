@@ -23,6 +23,8 @@ export default secureApi(async (req, res, token) => {
 
     if (status === "migrated") {
       query["images.isMigrated"] = true;
+    } else {
+      query["images.isMigrated"] = { $ne: true };
     }
 
     if (region) {
