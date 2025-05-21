@@ -28,6 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       pick: ["DateTimeOriginal", "CreateDate", "ModifyDate"],
       iptc: true,
       xmp: true,
+      reviveValues: false,
     });
 
     if (!exifData) {

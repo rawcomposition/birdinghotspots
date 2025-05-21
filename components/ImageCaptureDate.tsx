@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
 type ExifData = {
   captureDate: Date | null;
@@ -32,5 +36,5 @@ export default function ImageCaptureDate({
     return <span className={className}>{noDataText}</span>;
   }
 
-  return <span className={className}>{dayjs(captureDate).format(dateFormat)}</span>;
+  return <span className={className}>{dayjs.utc(captureDate, "YYYY:MM:DD HH:mm:ss").format(dateFormat)}</span>;
 }
