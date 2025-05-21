@@ -302,7 +302,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       groupAbout,
       data: {
         ...data,
-        images: data.images?.filter((it: Image) => !it.isMigrated),
         iba: data.iba || null,
         links: data.links || null,
         name: ebirdHotspot?.name || data.name,

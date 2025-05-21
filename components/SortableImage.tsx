@@ -26,6 +26,7 @@ export default function SortableImage({
   hideExtraFields,
   hideMapCheckbox,
   showHideFromChildrenCheckbox,
+  isMigrated,
 }: Props) {
   const { register } = useFormContext();
   const isVertical = width && height && height > width;
@@ -53,6 +54,11 @@ export default function SortableImage({
         {...listeners}
         tabIndex={-1}
       />
+      {isMigrated && (
+        <div className="absolute top-0 left-0 w-full h-6 bg-black/50 flex items-center justify-center">
+          <p className="text-white text-xs">Migrated to eBird</p>
+        </div>
+      )}
       <div className="px-3 pb-2 text-xs w-full">
         <label className={`text-gray-500 font-bold mb-2 relative flex ${isStreetview ? "opacity-50" : ""}`}>
           <span className="absolute top-[5px] left-[1px] bottom-[1px] px-[7px] bg-gray-200 flex items-center rounded-l-[5px]">
@@ -60,31 +66,31 @@ export default function SortableImage({
           </span>
           <input
             type="text"
-            disabled={isStreetview}
+            disabled={isStreetview || isMigrated}
             {...register(`images.${i}.caption` as const)}
-            className="form-input py-0.5 px-2 pl-[68px]"
+            className={`form-input py-0.5 px-2 pl-[68px] ${isMigrated ? "opacity-60" : ""}`}
             style={{ fontSize: "12px" }}
           />
         </label>
         {!hideExtraFields && (
-          <label className={`text-gray-500 font-bold mb-2 relative flex ${isStreetview ? "opacity-50" : ""}`}>
+          <label className={`text-gray-500 font-bold mb-2 relative flex ${isStreetview ? "opacity-60" : ""}`}>
             <span className="absolute top-[5px] left-[1px] bottom-[1px] px-[7px] bg-gray-200 flex items-center rounded-l-[5px]">
               By
             </span>
             <input
               type="text"
-              disabled={isStreetview}
+              disabled={isStreetview || isMigrated}
               {...register(`images.${i}.by` as const)}
-              className="form-input py-0.5 pr-2 pl-[35px] max-w-[50%]"
+              className={`form-input py-0.5 pr-2 pl-[35px] max-w-[50%] ${isMigrated ? "opacity-50" : ""}`}
               style={{ fontSize: "12px" }}
             />
           </label>
         )}
         {!hideMapCheckbox && !hideExtraFields && (
-          <label className={`text-gray-500 font-bold block mt-2 ${isStreetview ? "opacity-50" : ""}`}>
+          <label className={`text-gray-500 font-bold block mt-2 ${isStreetview || isMigrated ? "opacity-50" : ""}`}>
             <input
               type="checkbox"
-              disabled={isStreetview}
+              disabled={isStreetview || isMigrated}
               {...register(`images.${i}.isMap` as const)}
               className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
             />
@@ -92,9 +98,10 @@ export default function SortableImage({
           </label>
         )}
         {showHideFromChildrenCheckbox && !hideExtraFields && (
-          <label className={`text-gray-500 font-bold block mt-2 ${isStreetview ? "opacity-50" : ""}`}>
+          <label className={`text-gray-500 font-bold block mt-2 ${isStreetview || isMigrated ? "opacity-50" : ""}`}>
             <input
               type="checkbox"
+              disabled={isMigrated}
               {...register(`images.${i}.hideFromChildren` as const)}
               className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
             />
@@ -102,14 +109,16 @@ export default function SortableImage({
           </label>
         )}
       </div>
-      <button
-        type="button"
-        tabIndex={-1}
-        className="opacity-0 group-hover:opacity-100 transition-opacity bg-red-700/90 p-1.5 rounded-full flex items-center justify-center absolute -left-2 -top-2 shadow"
-        onClick={() => handleDelete(i)}
-      >
-        <TrashIcon className="h-4 w-4 text-white opacity-80" />
-      </button>
+      {!isMigrated && (
+        <button
+          type="button"
+          tabIndex={-1}
+          className="opacity-0 group-hover:opacity-100 transition-opacity bg-red-700/90 p-1.5 rounded-full flex items-center justify-center absolute -left-2 -top-2 shadow"
+          onClick={() => handleDelete(i)}
+        >
+          <TrashIcon className="h-4 w-4 text-white opacity-80" />
+        </button>
+      )}
     </article>
   );
 }
