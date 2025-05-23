@@ -26,6 +26,7 @@ import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
 import Checkbox from "components/Checkbox";
 import useConfirmNavigation from "hooks/useConfirmNavigation";
+import { useModal } from "providers/modals";
 
 type GroupAbout = {
   title: string;
@@ -58,7 +59,7 @@ export default function Edit({
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-
+  const { open } = useModal();
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
@@ -188,6 +189,10 @@ export default function Edit({
                   defaultValue={data?.featuredEbirdId}
                 />
               </Field>
+
+              <button type="button" onClick={() => open("featuredPhotoPicker", { locationId: data.locationId })}>
+                Select Featured Photo
+              </button>
 
               <div>
                 <label className="text-gray-500 font-bold">Other Images</label>
