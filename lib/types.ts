@@ -32,6 +32,15 @@ export type eBirdImage = Image & {
   isBest?: boolean;
 };
 
+export type FeaturedMlImg = {
+  id: string;
+  caption: string;
+  by: string;
+  date: string;
+  width: number;
+  height: number;
+};
+
 export type Marker = {
   name: string;
   lat: number;

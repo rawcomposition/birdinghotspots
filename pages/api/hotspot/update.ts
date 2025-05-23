@@ -4,7 +4,6 @@ import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit, getEbirdHotspot } from "lib/helpers";
 import dayjs from "dayjs";
-import { getEbirdImage } from "lib/ml";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
@@ -21,11 +20,6 @@ export default secureApi(async (req, res, token) => {
     const ebirdHotspot = await getEbirdHotspot(data.locationId);
 
     if (!ebirdHotspot) throw new Error("eBird hotspot not found");
-
-    if (data?.featuredEbirdId) {
-      // Don't update the featuredImg, just verify it exists
-      await getEbirdImage(data.featuredEbirdId);
-    }
 
     const noContent = !data?.about?.trim() && !data?.tips?.trim() && !data?.birds?.trim() && !data?.hikes?.trim();
     const updatedAt = dayjs().format();

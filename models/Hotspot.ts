@@ -14,6 +14,15 @@ const CitationSchema = new Schema({
   url: String,
 });
 
+const FeaturedMlImgSchema = new Schema({
+  id: String,
+  caption: String,
+  by: String,
+  date: String,
+  width: Number,
+  height: Number,
+});
+
 const PointSchema = new Schema({
   type: {
     type: String,
@@ -97,6 +106,10 @@ const HotspotSchema = new Schema({
       },
     },
   ],
+  featuredMlImg1: FeaturedMlImgSchema,
+  featuredMlImg2: FeaturedMlImgSchema,
+  featuredMlImg3: FeaturedMlImgSchema,
+  featuredMlImg4: FeaturedMlImgSchema,
   featuredEbirdId: String,
   images: [
     {
