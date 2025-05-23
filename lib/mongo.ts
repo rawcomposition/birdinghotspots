@@ -620,14 +620,14 @@ export const getHotspotImages = async (locationId: string) => {
 
   if (!hotspot) throw new Error("Hotspot not found");
 
-  const bestEbirdImg = hotspot.featuredEbirdId
+  const mlFeaturedImg1 = hotspot.featuredEbirdId
     ? ebirdImages.find((it) => it.ebirdId?.toString() === hotspot.featuredEbirdId?.replace("ML", ""))
-    : ebirdImages.find((it) => it.isBest);
+    : null;
 
   const combinedImages: Image[] = [
-    ...(bestEbirdImg ? [bestEbirdImg] : []),
-    ...ebirdImages.filter((it) => it.ebirdId !== bestEbirdImg?.ebirdId),
+    ...(mlFeaturedImg1 ? [mlFeaturedImg1] : []),
     ...legacyImages,
+    ...ebirdImages.filter((it) => it.ebirdId !== mlFeaturedImg1?.ebirdId).slice(0, 4),
   ];
 
   const newFeaturedImg = combinedImages[0] || null;

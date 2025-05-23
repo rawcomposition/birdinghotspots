@@ -3,7 +3,7 @@ import { eBirdImage } from "lib/types";
 const ebird_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
 
 export const getEbirdImages = async (locationId: string) => {
-  const url = `${ebird_SEARCH_API_URL}?count=3&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
+  const url = `${ebird_SEARCH_API_URL}?count=10&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
   const response = await axios.get<ebirdResponseImage[]>(url, {
     headers: {
       // This user agent seems to be allowed by eBird
