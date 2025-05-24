@@ -169,10 +169,21 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
             className="max-w-full max-h-full object-contain"
           />
           <div className="absolute bottom-2 left-0 right-0 flex justify-center">
-            <div className="bg-white/60 opacity-60 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-xs flex items-center justify-center gap-1">
-              <p className="font-medium text-gray-800">{fullSizePhoto.by}</p>
+            <div className="bg-white/60 opacity-60 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-sm flex items-center justify-center gap-1">
+              <span className="font-medium text-gray-800 truncate">{fullSizePhoto.by}</span>
               <span className="rounded-full bg-gray-500 w-[4px] h-[4px] mx-1.5" />
-              <p className="text-sm text-gray-600">{fullSizePhoto.date}</p>
+              <span className="text-sm text-gray-600 whitespace-nowrap">{fullSizePhoto.date}</span>
+              <span className="rounded-full bg-gray-500 w-[4px] h-[4px] mx-1.5" />
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(`https://media.ebird.org/asset/${fullSizePhoto.id.replace("ML", "")}`, "_blank");
+                }}
+                className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                title="View on eBird"
+              >
+                Details
+              </button>
             </div>
           </div>
         </div>
@@ -245,21 +256,11 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
                 )}
               </div>
 
-              <div className="p-2 bg-white border-t border-gray-100 flex items-center justify-between">
+              <div className="p-2 bg-white border-t border-gray-100">
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-medium text-gray-800 truncate">{photo.by}</p>
                   <p className="text-xs text-gray-500">{photo.date}</p>
                 </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(`https://media.ebird.org/asset/${photo.id.replace("ML", "")}`, "_blank");
-                  }}
-                  className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                  title="View on eBird"
-                >
-                  <ExternalIcon className="w-3 h-3" />
-                </button>
               </div>
             </div>
           );
