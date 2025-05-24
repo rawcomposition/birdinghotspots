@@ -2,7 +2,7 @@ import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
 import { FeaturedMlImg } from "lib/types";
-import { CheckIcon, ArrowPathIcon, XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import ExternalIcon from "icons/ExternalIcon";
 import { useQuery } from "@tanstack/react-query";
 
@@ -40,6 +40,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
 
       if (event.key === "Escape") {
         setFullSizePhoto(null);
+        event.stopPropagation();
       } else if (event.key === "ArrowLeft") {
         navigateToPreviousPhoto();
       } else if (event.key === "ArrowRight") {
@@ -105,7 +106,6 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <ArrowPathIcon className="h-8 w-8 animate-spin text-gray-400" />
         <span className="ml-2 text-gray-600">Loading photos...</span>
       </div>
     );
@@ -134,32 +134,32 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
 
     return (
       <>
-        <div className="relative bg-gray-900 flex items-center justify-center min-h-96 h-96">
+        <div className="relative bg-gray-900 flex items-center justify-center h-[480px] -mx-4 sm:-mx-6 -my-5">
           <button
             onClick={closeFullSizeView}
-            className="absolute top-4 right-4 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-2 text-white transition-all duration-200 z-10"
+            className="absolute top-4 right-4 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full h-10 w-10 flex items-center justify-center text-white transition-all duration-200 z-10"
             title="Close (Esc)"
           >
-            <XMarkIcon className="h-5 w-5" />
+            <XMarkIcon className="h-6 w-6" />
           </button>
 
           {canGoPrevious && (
             <button
               onClick={navigateToPreviousPhoto}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 text-white transition-all duration-200 z-10"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full w-10 h-10 flex items-center justify-center text-white transition-all duration-200 z-10"
               title="Previous photo (←)"
             >
-              <ChevronLeftIcon className="h-6 w-6" />
+              <ChevronLeftIcon className="h-6 w-6 mr-0.5" />
             </button>
           )}
 
           {canGoNext && (
             <button
               onClick={navigateToNextPhoto}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 text-white transition-all duration-200 z-10"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex h-10 w-10 items-center justify-center text-white transition-all duration-200 z-10"
               title="Next photo (→)"
             >
-              <ChevronRightIcon className="h-6 w-6" />
+              <ChevronRightIcon className="h-6 w-6 ml-0.5" />
             </button>
           )}
 
@@ -168,15 +168,14 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
             alt={fullSizePhoto.caption || `Photo by ${fullSizePhoto.by}`}
             className="max-w-full max-h-full object-contain"
           />
-        </div>
-
-        <div className="bg-white p-3 border-t">
-          <div className="text-center">
-            <p className="font-medium text-gray-800">{fullSizePhoto.by}</p>
-            <p className="text-sm text-gray-500">{fullSizePhoto.date}</p>
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center">
+            <div className="bg-white/60 opacity-60 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-xs flex items-center justify-center gap-1">
+              <p className="font-medium text-gray-800">{fullSizePhoto.by}</p>
+              <span className="rounded-full bg-gray-500 w-[4px] h-[4px] mx-1.5" />
+              <p className="text-sm text-gray-600">{fullSizePhoto.date}</p>
+            </div>
           </div>
         </div>
-
         <ModalFooter>
           <BtnSmall
             type="button"
@@ -211,7 +210,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-96 overflow-y-auto mb-4 p-1">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[450px] items-start overflow-y-auto mb-4 p-1">
         {photos.map((photo) => {
           const isSelected = selectedPhoto?.id === photo.id;
           const isDisabled = disabledIds.includes(photo.id);
