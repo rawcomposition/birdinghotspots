@@ -71,7 +71,6 @@ export default function Hotspot({
   featuredImg,
   updatedAt,
   isBot,
-  featuredEbirdId,
 }: Props) {
   const { user } = useUser();
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot", isBot });
