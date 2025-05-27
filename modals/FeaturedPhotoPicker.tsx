@@ -2,9 +2,9 @@ import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
 import { FeaturedMlImg } from "lib/types";
-import { CheckIcon, XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import ExternalIcon from "icons/ExternalIcon";
+import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, ArrowsPointingInIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
+import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 
 type Props = {
   locationId: string;
@@ -15,7 +15,7 @@ type Props = {
 
 export default function FeaturedPhotoPicker({ locationId, selectedId, disabledIds = [], onSelect }: Props) {
   const [selectedPhoto, setSelectedPhoto] = React.useState<FeaturedMlImg | null>(null);
-  const [fullSizePhoto, setFullSizePhoto] = React.useState<FeaturedMlImg | null>(null);
+  const [isFullScreen, setIsFullScreen] = React.useState(false);
   const { close } = useModal();
 
   const { data, isLoading, error, refetch } = useQuery<{ success: boolean; images: FeaturedMlImg[] }>({
@@ -36,10 +36,10 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!fullSizePhoto) return;
+      if (!isFullScreen) return;
 
       if (event.key === "Escape") {
-        setFullSizePhoto(null);
+        setIsFullScreen(false);
         event.stopPropagation();
       } else if (event.key === "ArrowLeft") {
         navigateToPreviousPhoto();
@@ -48,46 +48,40 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
       }
     };
 
-    if (fullSizePhoto) {
+    if (isFullScreen) {
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }
-  }, [fullSizePhoto, photos, disabledIds]);
+  }, [isFullScreen, photos, disabledIds]);
 
   const handlePhotoClick = (photo: FeaturedMlImg) => {
     if (disabledIds.includes(photo.id)) return;
-    setFullSizePhoto(photo);
-  };
-
-  const handleSelectFromFullSize = () => {
-    if (fullSizePhoto) {
-      setSelectedPhoto(fullSizePhoto);
-      setFullSizePhoto(null);
-    }
+    setIsFullScreen(true);
+    setSelectedPhoto(photo);
   };
 
   const closeFullSizeView = () => {
-    setFullSizePhoto(null);
+    setIsFullScreen(false);
   };
 
   const navigateToPreviousPhoto = () => {
-    if (!fullSizePhoto) return;
-    const currentIndex = photos.findIndex((photo) => photo.id === fullSizePhoto.id);
+    if (!isFullScreen) return;
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedPhoto?.id);
     if (currentIndex > 0) {
       const previousPhoto = photos[currentIndex - 1];
       if (!disabledIds.includes(previousPhoto.id)) {
-        setFullSizePhoto(previousPhoto);
+        setSelectedPhoto(previousPhoto);
       }
     }
   };
 
   const navigateToNextPhoto = () => {
-    if (!fullSizePhoto) return;
-    const currentIndex = photos.findIndex((photo) => photo.id === fullSizePhoto.id);
+    if (!isFullScreen) return;
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedPhoto?.id);
     if (currentIndex < photos.length - 1) {
       const nextPhoto = photos[currentIndex + 1];
       if (!disabledIds.includes(nextPhoto.id)) {
-        setFullSizePhoto(nextPhoto);
+        setSelectedPhoto(nextPhoto);
       }
     }
   };
@@ -124,8 +118,8 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
     );
   }
 
-  if (fullSizePhoto) {
-    const currentIndex = photos.findIndex((photo) => photo.id === fullSizePhoto.id);
+  if (isFullScreen && selectedPhoto) {
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedPhoto?.id);
     const canGoPrevious =
       currentIndex > 0 && photos.slice(0, currentIndex).some((photo) => !disabledIds.includes(photo.id));
     const canGoNext =
@@ -140,7 +134,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
             className="absolute top-4 right-4 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full h-10 w-10 flex items-center justify-center text-white transition-all duration-200 z-10"
             title="Close (Esc)"
           >
-            <XMarkIcon className="h-6 w-6" />
+            <ArrowsPointingInIcon className="h-6 w-6" />
           </button>
 
           {canGoPrevious && (
@@ -164,20 +158,20 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
           )}
 
           <img
-            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${fullSizePhoto.id.replace("ML", "")}/1800`}
-            alt={fullSizePhoto.caption || `Photo by ${fullSizePhoto.by}`}
+            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${selectedPhoto.id.replace("ML", "")}/1800`}
+            alt={selectedPhoto.caption || `Photo by ${selectedPhoto.by}`}
             className="max-w-full max-h-full object-contain"
           />
           <div className="absolute bottom-2 left-0 right-0 flex justify-center">
             <div className="bg-white/60 opacity-60 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-sm flex items-center justify-center gap-1">
-              <span className="font-medium text-gray-800 truncate">{fullSizePhoto.by}</span>
+              <span className="font-medium text-gray-800 truncate">{selectedPhoto.by}</span>
               <span className="rounded-full bg-gray-500 w-[4px] h-[4px] mx-1.5" />
-              <span className="text-sm text-gray-600 whitespace-nowrap">{fullSizePhoto.date}</span>
+              <span className="text-sm text-gray-600 whitespace-nowrap">{selectedPhoto.date}</span>
               <span className="rounded-full bg-gray-500 w-[4px] h-[4px] mx-1.5" />
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  window.open(`https://media.ebird.org/asset/${fullSizePhoto.id.replace("ML", "")}`, "_blank");
+                  window.open(`https://media.ebird.org/asset/${selectedPhoto.id.replace("ML", "")}`, "_blank");
                 }}
                 className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
                 title="View on eBird"
@@ -188,16 +182,11 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
           </div>
         </div>
         <ModalFooter>
-          <BtnSmall
-            type="button"
-            color="green"
-            onClick={handleSelectFromFullSize}
-            disabled={!fullSizePhoto}
-            className="px-4"
-          >
+          <BtnSmall type="button" color="green" onClick={handleConfirm} disabled={!selectedPhoto} className="px-4">
             Select Photo
           </BtnSmall>
-          <BtnSmall type="button" color="gray" onClick={closeFullSizeView} className="px-4 ml-2">
+          <BtnSmall type="button" color="gray" onClick={closeFullSizeView} className="px-4 ml-2 flex items-center">
+            <ArrowLeftIcon className="h-4 w-4 mr-1" />
             Back to Grid
           </BtnSmall>
         </ModalFooter>
@@ -209,7 +198,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
     <>
       <div className="mb-4">
         <p className="text-gray-600 font-medium">
-          Choose a photo from the Macaulay Library.{" "}
+          Choose a photo from the Macaulay Library, or{" "}
           <a
             href={`https://media.ebird.org/catalog?regionCode=${locationId}&mediaType=photo&sort=rating_rank_desc&view=grid&tag=environmental`}
             target="_blank"
@@ -239,6 +228,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
                   src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${photo.id.replace("ML", "")}/480`}
                   alt={photo.caption || `Photo by ${photo.by}`}
                   className="max-w-full max-h-full object-contain"
+                  key={photo.id}
                 />
 
                 {isSelected && (
