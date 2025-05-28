@@ -27,6 +27,7 @@ import Input from "components/Input";
 import Checkbox from "components/Checkbox";
 import useConfirmNavigation from "hooks/useConfirmNavigation";
 import { useModal } from "providers/modals";
+import InputFeaturedImg from "components/InputFeaturedImg";
 
 type GroupAbout = {
   title: string;
@@ -181,6 +182,16 @@ export default function Edit({
 
               {groupImages.length > 0 && <MapGrid images={groupImages} />}
 
+              <div>
+                <label className="text-gray-500 font-bold">Featured eBird Image</label>
+                <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-2">
+                  <InputFeaturedImg name="featuredEbirdId1" label="Featured Image #1" locationId={data.locationId} />
+                  <InputFeaturedImg name="featuredEbirdId2" label="Featured Image #2" locationId={data.locationId} />
+                  <InputFeaturedImg name="featuredEbirdId3" label="Featured Image #3" locationId={data.locationId} />
+                  <InputFeaturedImg name="featuredEbirdId4" label="Featured Image #4" locationId={data.locationId} />
+                </div>
+              </div>
+
               <Field label="Featured Macaulay Library Image ID">
                 <Input
                   type="text"
@@ -189,10 +200,6 @@ export default function Edit({
                   defaultValue={data?.featuredEbirdId}
                 />
               </Field>
-
-              <button type="button" onClick={() => open("featuredPhotoPicker", { locationId: data.locationId })}>
-                Select Featured Photo
-              </button>
 
               <div>
                 <label className="text-gray-500 font-bold">Other Images</label>

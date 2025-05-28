@@ -161,9 +161,10 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
             src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${selectedPhoto.id.replace("ML", "")}/1800`}
             alt={selectedPhoto.caption || `Photo by ${selectedPhoto.by}`}
             className="max-w-full max-h-full object-contain"
+            key={selectedPhoto.id}
           />
           <div className="absolute bottom-2 left-0 right-0 flex justify-center">
-            <div className="bg-white/60 opacity-60 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-sm flex items-center justify-center gap-1">
+            <div className="bg-white/60 opacity-80 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-sm flex items-center justify-center gap-1">
               <span className="font-medium text-gray-800 truncate">{selectedPhoto.by}</span>
               <span className="rounded-full bg-gray-500 w-[4px] h-[4px] mx-1.5" />
               <span className="text-sm text-gray-600 whitespace-nowrap">{selectedPhoto.date}</span>
@@ -173,7 +174,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
                   e.stopPropagation();
                   window.open(`https://media.ebird.org/asset/${selectedPhoto.id.replace("ML", "")}`, "_blank");
                 }}
-                className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                className="ml-2 text-gray-600 hover:underline transition-colors duration-200"
                 title="View on eBird"
               >
                 Details
@@ -228,7 +229,6 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
                   src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${photo.id.replace("ML", "")}/480`}
                   alt={photo.caption || `Photo by ${photo.by}`}
                   className="max-w-full max-h-full object-contain"
-                  key={photo.id}
                 />
 
                 {isSelected && (
