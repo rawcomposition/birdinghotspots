@@ -7,12 +7,12 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, formatMarker, canEdit, getEbirdHotspot } from "lib/helpers";
+import { geocode, formatMarker, canEdit, getEbirdHotspot, generateRandomId } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, Link, Citation, Group, Image } from "lib/types";
+import { Hotspot, Link, Citation, Group, Image, FeaturedMlImg } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -28,6 +28,7 @@ import Checkbox from "components/Checkbox";
 import useConfirmNavigation from "hooks/useConfirmNavigation";
 import { useModal } from "providers/modals";
 import InputFeaturedImg from "components/InputFeaturedImg";
+import InputFeaturedImages from "components/InputFeaturedImages";
 
 type GroupAbout = {
   title: string;
@@ -60,7 +61,6 @@ export default function Edit({
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const { open } = useModal();
   const router = useRouter();
   const form = useForm<Hotspot>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
@@ -184,12 +184,7 @@ export default function Edit({
 
               <div>
                 <label className="text-gray-500 font-bold">Featured eBird Image</label>
-                <div className="grid lg:grid-cols-2 gap-4 mb-4 mt-2">
-                  <InputFeaturedImg name="featuredEbirdId1" label="Featured Image #1" locationId={data.locationId} />
-                  <InputFeaturedImg name="featuredEbirdId2" label="Featured Image #2" locationId={data.locationId} />
-                  <InputFeaturedImg name="featuredEbirdId3" label="Featured Image #3" locationId={data.locationId} />
-                  <InputFeaturedImg name="featuredEbirdId4" label="Featured Image #4" locationId={data.locationId} />
-                </div>
+                <InputFeaturedImages locationId={data.locationId} />
               </div>
 
               <Field label="Featured Macaulay Library Image ID">
@@ -304,6 +299,13 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       });
   });
 
+  const featuredImages: (FeaturedMlImg | { id: string })[] = [
+    { id: generateRandomId(6) },
+    { id: generateRandomId(6) },
+    { id: generateRandomId(6) },
+    { id: generateRandomId(6) },
+  ];
+
   return {
     props: {
       id: data._id || null,
@@ -313,6 +315,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       groupImages,
       groupAbout,
       data: {
+        featuredImages,
         ...data,
         iba: data.iba || null,
         links: data.links || null,
