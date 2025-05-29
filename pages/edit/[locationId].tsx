@@ -299,11 +299,11 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       });
   });
 
-  const featuredImages: (FeaturedMlImg | { id: string })[] = [
-    { id: generateRandomId(6) },
-    { id: generateRandomId(6) },
-    { id: generateRandomId(6) },
-    { id: generateRandomId(6) },
+  const featuredImages: { id: string; data: FeaturedMlImg | null }[] = [
+    { id: generateRandomId(6), data: data.featuredMlImg1 || null },
+    { id: generateRandomId(6), data: data.featuredMlImg2 || null },
+    { id: generateRandomId(6), data: data.featuredMlImg3 || null },
+    { id: generateRandomId(6), data: data.featuredMlImg4 || null },
   ];
 
   return {

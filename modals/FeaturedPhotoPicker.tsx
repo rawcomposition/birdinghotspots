@@ -45,6 +45,8 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
         navigateToPreviousPhoto();
       } else if (event.key === "ArrowRight") {
         navigateToNextPhoto();
+      } else if (event.key === "Enter") {
+        handleConfirm();
       }
     };
 
