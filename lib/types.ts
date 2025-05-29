@@ -100,7 +100,11 @@ export type Hotspot = {
   groups?: Group[];
   images?: Image[];
   featuredEbirdId?: string;
-  featuredImg?: Image;
+  featuredImg?: Image; // legacy
+  featuredImg1?: Image | null;
+  featuredImg2?: Image | null;
+  featuredImg3?: Image | null;
+  featuredImg4?: Image | null;
   species?: number;
   groupIds?: string[] | Group[];
   noContent?: boolean;

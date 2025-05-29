@@ -35,6 +35,8 @@ type GroupAbout = {
   text: string;
 };
 
+type Input = Hotspot & { featuredImages: { id: string; data: FeaturedMlImg }[] };
+
 type Props = {
   id?: string;
   isNew: boolean;
@@ -42,7 +44,7 @@ type Props = {
   groupCitations: Citation[];
   groupImages: Image[];
   groupAbout: GroupAbout[];
-  data: Hotspot;
+  data: Input;
   error?: string;
   errorCode?: number;
 };
@@ -62,7 +64,7 @@ export default function Edit({
   const { send, loading } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
-  const form = useForm<Hotspot>({ defaultValues: data });
+  const form = useForm<Input>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
   useConfirmNavigation(form.formState.isDirty && !isSubmitting);
 
@@ -71,10 +73,11 @@ export default function Edit({
   const lngValue = form.watch("lng");
   const markers = [formatMarker({ ...data, lat: latValue, lng: lngValue })];
 
-  const handleSubmit: SubmitHandler<Hotspot> = async (data) => {
-    // @ts-ignore
-    if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
+  const handleSubmit: SubmitHandler<Input> = async ({ featuredImages, ...data }) => {
     setIsSubmitting(true);
+
+    const filteredFeaturedImages = featuredImages.filter((it) => it.data);
+
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",
@@ -82,6 +85,10 @@ export default function Edit({
         id,
         data: {
           ...data,
+          featuredImg1: filteredFeaturedImages[0]?.data || null,
+          featuredImg2: filteredFeaturedImages[1]?.data || null,
+          featuredImg3: filteredFeaturedImages[2]?.data || null,
+          featuredImg4: filteredFeaturedImages[3]?.data || null,
           about: data.about || "",
           tips: data.tips || "",
           birds: data.birds || "",
@@ -300,10 +307,10 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   });
 
   const featuredImages: { id: string; data: FeaturedMlImg | null }[] = [
-    { id: generateRandomId(6), data: data.featuredMlImg1 || null },
-    { id: generateRandomId(6), data: data.featuredMlImg2 || null },
-    { id: generateRandomId(6), data: data.featuredMlImg3 || null },
-    { id: generateRandomId(6), data: data.featuredMlImg4 || null },
+    { id: generateRandomId(6), data: data.featuredImg1 || null },
+    { id: generateRandomId(6), data: data.featuredImg2 || null },
+    { id: generateRandomId(6), data: data.featuredImg3 || null },
+    { id: generateRandomId(6), data: data.featuredImg4 || null },
   ];
 
   return {

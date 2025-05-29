@@ -34,7 +34,7 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
 
   const onDelete = () => {
     if (!confirm("Are you sure you want to remove this image?")) return;
-    field.onChange(undefined);
+    field.onChange(null);
   };
 
   const style = {

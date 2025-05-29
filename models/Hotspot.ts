@@ -106,10 +106,10 @@ const HotspotSchema = new Schema({
       },
     },
   ],
-  featuredMlImg1: FeaturedMlImgSchema,
-  featuredMlImg2: FeaturedMlImgSchema,
-  featuredMlImg3: FeaturedMlImgSchema,
-  featuredMlImg4: FeaturedMlImgSchema,
+  featuredImg1: FeaturedMlImgSchema,
+  featuredImg2: FeaturedMlImgSchema,
+  featuredImg3: FeaturedMlImgSchema,
+  featuredImg4: FeaturedMlImgSchema,
   featuredEbirdId: String,
   images: [
     {
