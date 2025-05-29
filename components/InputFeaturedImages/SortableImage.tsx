@@ -8,14 +8,13 @@ import { FeaturedMlImg } from "lib/types";
 import { ArrowPathRoundedSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 type Props = {
-  handleDelete: (i: number) => void;
   i: number;
   id: string;
   locationId: string;
   disabledIds?: string[];
 };
 
-export default function SortableImage({ handleDelete, id, i, locationId, disabledIds }: Props) {
+export default function SortableImage({ id, i, locationId, disabledIds }: Props) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: id || "",
   });
@@ -36,7 +35,7 @@ export default function SortableImage({ handleDelete, id, i, locationId, disable
 
   const onDelete = () => {
     if (!confirm("Are you sure you want to remove this image?")) return;
-    handleDelete(i);
+    field.onChange(undefined);
   };
 
   const style = {

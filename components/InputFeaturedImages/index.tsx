@@ -12,11 +12,6 @@ export default function InputFeaturedImages({ locationId }: Props) {
   const { control } = useFormContext();
   const { fields, remove, move } = useFieldArray({ name: "featuredImages", control });
 
-  const handleDelete = async (i: number) => {
-    if (!confirm("Are you sure you want to remove this image?")) return;
-    remove(i);
-  };
-
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -43,7 +38,7 @@ export default function InputFeaturedImages({ locationId }: Props) {
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={ids} strategy={rectSortingStrategy}>
               {fields.map((field: any, i) => (
-                <SortableImage key={field.id} id={field.id} i={i} handleDelete={handleDelete} locationId={locationId} />
+                <SortableImage key={field.id} id={field.id} i={i} locationId={locationId} />
               ))}
             </SortableContext>
           </DndContext>
