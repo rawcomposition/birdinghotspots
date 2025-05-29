@@ -1,11 +1,10 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import clsx from "clsx";
-import InputFeaturedImg from "components/InputFeaturedImg";
 import { useFormContext, useController } from "react-hook-form";
 import { useModal } from "providers/modals";
 import { FeaturedMlImg } from "lib/types";
-import { ArrowPathRoundedSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { ArrowPathRoundedSquareIcon, PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   i: number;
@@ -79,9 +78,10 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
       ) : (
         <button
           type="button"
-          className="absolute inset-0 flex items-center justify-center w-full"
+          className="absolute inset-0 flex flex-col gap-2 items-center justify-center w-full"
           onClick={() => open("featuredPhotoPicker", { locationId, disabledIds, selectedId: mlId, onSelect })}
         >
+          <PhotoIcon className="h-8 w-8 text-gray-600" />
           <span className="text-gray-700 text-[15px] font-medium">Select Featured Image #{i + 1}</span>
         </button>
       )}
