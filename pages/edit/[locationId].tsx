@@ -190,7 +190,7 @@ export default function Edit({
               {groupImages.length > 0 && <MapGrid images={groupImages} />}
 
               <div>
-                <label className="text-gray-500 font-bold">Featured eBird Image</label>
+                <label className="text-gray-500 font-bold">Featured eBird Images</label>
                 <InputFeaturedImages locationId={data.locationId} />
               </div>
 

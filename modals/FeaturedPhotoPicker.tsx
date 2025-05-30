@@ -5,6 +5,7 @@ import { FeaturedMlImg } from "lib/types";
 import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, ArrowsPointingInIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
+import { clsx } from "clsx";
 
 type Props = {
   locationId: string;
@@ -216,14 +217,20 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[450px] items-start overflow-y-auto mb-4 p-1">
         {photos.map((photo) => {
           const isSelected = selectedPhoto?.id === photo.id;
-          const isDisabled = disabledIds.includes(photo.id);
+          const isInUse = disabledIds.includes(photo.id);
 
           return (
             <div
               key={photo.id}
-              className={`group relative cursor-pointer rounded-lg overflow-hidden transition-all duration-200 ${
-                isSelected ? "ring-2 ring-blue-500" : isDisabled ? "opacity-50" : "hover:opacity-90"
-              } ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} bg-white border border-gray-200`}
+              className={clsx(
+                "group relativerounded-lg overflow-hidden transition-all duration-200",
+                isSelected
+                  ? "ring-2 ring-blue-500 cursor-pointer"
+                  : isInUse
+                  ? "cursor-default"
+                  : "hover:opacity-90 cursor-pointer",
+                "bg-white border border-gray-200"
+              )}
               onClick={() => handlePhotoClick(photo)}
             >
               <div className="aspect-square relative bg-gray-50 flex items-center justify-center p-2">
@@ -241,9 +248,9 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
                   </div>
                 )}
 
-                {isDisabled && (
-                  <div className="absolute inset-0 bg-gray-500/30 flex items-center justify-center">
-                    <div className="bg-gray-700 text-white px-2 py-1 rounded text-xs">In Use</div>
+                {isInUse && (
+                  <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
+                    <div className="bg-white shadow-sm text-gray-700 px-2 py-1 rounded text-xs">In Use</div>
                   </div>
                 )}
               </div>

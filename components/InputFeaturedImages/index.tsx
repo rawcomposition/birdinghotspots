@@ -1,16 +1,18 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
-import Uppy from "components/Uppy";
 import SortableImage from "./SortableImage";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from "@dnd-kit/sortable";
+import { FeaturedMlImg } from "lib/types";
 
 type Props = {
   locationId: string;
 };
 
 export default function InputFeaturedImages({ locationId }: Props) {
-  const { control } = useFormContext();
-  const { fields, remove, move } = useFieldArray({ name: "featuredImages", control });
+  const { control, watch } = useFormContext();
+  const { fields, move } = useFieldArray({ name: "featuredImages", control });
+  const featuredImages = watch("featuredImages");
+  const imageIds = featuredImages.map((it: { id: string; data: FeaturedMlImg | null }) => it.data?.id).filter(Boolean);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -38,7 +40,7 @@ export default function InputFeaturedImages({ locationId }: Props) {
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={ids} strategy={rectSortingStrategy}>
               {fields.map((field: any, i) => (
-                <SortableImage key={field.id} id={field.id} i={i} locationId={locationId} />
+                <SortableImage key={field.id} id={field.id} i={i} locationId={locationId} disabledIds={imageIds} />
               ))}
             </SortableContext>
           </DndContext>
