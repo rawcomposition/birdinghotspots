@@ -615,7 +615,14 @@ export const getHotspotImages = async (locationId: string) => {
 
   const [ebirdImages, hotspot] = await Promise.all([
     getEbirdImages(locationId as string),
-    Hotspot.findOne({ locationId }, ["featuredImg", "images", "featuredEbirdId"]).lean(),
+    Hotspot.findOne({ locationId }, [
+      "featuredImg",
+      "images",
+      "featuredImg1",
+      "featuredImg2",
+      "featuredImg3",
+      "featuredImg4",
+    ]).lean(),
   ]);
 
   if (!hotspot) throw new Error("Hotspot not found");

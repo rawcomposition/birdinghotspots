@@ -52,17 +52,20 @@ export const formatEbirdImage = (it: ebirdResponseImage): Image => ({
   lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/2400`,
 });
 
-export const formatFeaturedImg = (data: FeaturedMlImg): Image => ({
-  width: data.width,
-  height: data.height,
-  ebirdId: Number(data.id),
-  caption: data.caption || "",
-  by: data.by,
-  ebirdDateDisplay: data.date,
-  xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${data.id}/480`,
-  smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${data.id}/1200`,
-  lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${data.id}/2400`,
-});
+export const formatFeaturedImg = (data: FeaturedMlImg): Image => {
+  const ebirdId = Number(data.id.replace("ML", ""));
+  return {
+    width: data.width,
+    height: data.height,
+    ebirdId,
+    caption: data.caption || "",
+    by: data.by,
+    ebirdDateDisplay: data.date,
+    xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${ebirdId}/480`,
+    smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${ebirdId}/1200`,
+    lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${ebirdId}/2400`,
+  };
+};
 
 type ebirdResponseImage = {
   assetId: number;
