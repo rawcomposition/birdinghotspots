@@ -26,8 +26,6 @@ import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
 import Checkbox from "components/Checkbox";
 import useConfirmNavigation from "hooks/useConfirmNavigation";
-import { useModal } from "providers/modals";
-import InputFeaturedImg from "components/InputFeaturedImg";
 import InputFeaturedImages from "components/InputFeaturedImages";
 import useAvailableImgCount from "hooks/useAvailableImgCount";
 import Badge from "components/Badge";

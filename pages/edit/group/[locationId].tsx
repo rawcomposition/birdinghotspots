@@ -8,7 +8,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getGroupByLocationId } from "lib/mongo";
-import { formatMarker, canEdit } from "lib/helpers";
+import { canEdit } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import RadioGroup from "components/RadioGroup";
 import AdminPage from "components/AdminPage";

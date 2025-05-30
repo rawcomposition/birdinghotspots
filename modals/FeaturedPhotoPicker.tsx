@@ -6,6 +6,7 @@ import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, ArrowsPointingInIcon } fr
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import { clsx } from "clsx";
+import Error from "components/Error";
 
 type Props = {
   locationId: string;
@@ -14,8 +15,13 @@ type Props = {
   onSelect: (photo: FeaturedMlImg) => void;
 };
 
-export default function FeaturedPhotoPicker({ locationId, selectedId, disabledIds = [], onSelect }: Props) {
-  const [selectedPhoto, setSelectedPhoto] = React.useState<FeaturedMlImg | null>(null);
+export default function FeaturedPhotoPicker({
+  locationId,
+  selectedId: initialSelectedId,
+  disabledIds = [],
+  onSelect,
+}: Props) {
+  const [selectedId, setSelectedId] = React.useState<string | null>(initialSelectedId || null);
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const { close } = useModal();
 
@@ -25,15 +31,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
   });
 
   const photos = data?.images || [];
-
-  React.useEffect(() => {
-    if (photos.length > 0 && selectedId) {
-      const preSelected = photos.find((img: FeaturedMlImg) => img.id === selectedId);
-      if (preSelected) {
-        setSelectedPhoto(preSelected);
-      }
-    }
-  }, [photos, selectedId]);
+  const selectedPhoto = photos.find((photo) => photo.id === selectedId) || null;
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -55,12 +53,12 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }
-  }, [isFullScreen, photos, disabledIds]);
+  }, [isFullScreen, data]);
 
   const handlePhotoClick = (photo: FeaturedMlImg) => {
     if (disabledIds.includes(photo.id)) return;
     setIsFullScreen(true);
-    setSelectedPhoto(photo);
+    setSelectedId(photo.id);
   };
 
   const closeFullSizeView = () => {
@@ -69,29 +67,27 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
 
   const navigateToPreviousPhoto = () => {
     if (!isFullScreen) return;
-    const currentIndex = photos.findIndex((photo) => photo.id === selectedPhoto?.id);
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedId);
     if (currentIndex > 0) {
       const previousPhoto = photos[currentIndex - 1];
       if (!disabledIds.includes(previousPhoto.id)) {
-        setSelectedPhoto(previousPhoto);
+        setSelectedId(previousPhoto.id);
       }
     }
   };
 
   const navigateToNextPhoto = () => {
     if (!isFullScreen) return;
-    const currentIndex = photos.findIndex((photo) => photo.id === selectedPhoto?.id);
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedId);
     if (currentIndex < photos.length - 1) {
       const nextPhoto = photos[currentIndex + 1];
-      if (!disabledIds.includes(nextPhoto.id)) {
-        setSelectedPhoto(nextPhoto);
-      }
+      if (!disabledIds.includes(nextPhoto.id)) setSelectedId(nextPhoto.id);
     }
   };
 
   const handleConfirm = () => {
-    if (selectedPhoto) {
-      onSelect(selectedPhoto);
+    if (selectedId) {
+      if (selectedPhoto) onSelect(selectedPhoto);
       close();
     }
   };
@@ -111,18 +107,13 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-600 mb-4">{error.message || "Failed to load photos"}</p>
-        <ModalFooter>
-          <BtnSmall type="button" onClick={() => refetch()} className="px-4">
-            Try Again
-          </BtnSmall>
-        </ModalFooter>
+        <Error message="Failed to load eBird photos " onReload={refetch} />
       </div>
     );
   }
 
-  if (isFullScreen && selectedPhoto) {
-    const currentIndex = photos.findIndex((photo) => photo.id === selectedPhoto?.id);
+  if (isFullScreen && selectedId && selectedPhoto) {
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedId);
     const canGoPrevious =
       currentIndex > 0 && photos.slice(0, currentIndex).some((photo) => !disabledIds.includes(photo.id));
     const canGoNext =
@@ -161,10 +152,10 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
           )}
 
           <img
-            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${selectedPhoto.id.replace("ML", "")}/1800`}
-            alt={selectedPhoto.caption || `Photo by ${selectedPhoto.by}`}
+            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${selectedId.replace("ML", "")}/1800`}
+            alt={selectedPhoto?.caption || `Photo by ${selectedPhoto?.by}`}
             className="max-w-full max-h-full object-contain"
-            key={selectedPhoto.id}
+            key={selectedId}
           />
           <div className="absolute bottom-2 left-0 right-0 flex justify-center">
             <div className="bg-white/60 opacity-80 hover:opacity-100 transition-all duration-200 py-0.5 border-t rounded-full px-6 max-w-sm flex items-center justify-center gap-1">
@@ -175,7 +166,7 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  window.open(`https://media.ebird.org/asset/${selectedPhoto.id.replace("ML", "")}`, "_blank");
+                  window.open(`https://media.ebird.org/asset/${selectedId.replace("ML", "")}`, "_blank");
                 }}
                 className="ml-2 text-gray-600 hover:underline transition-colors duration-200"
                 title="View on eBird"
@@ -216,8 +207,8 @@ export default function FeaturedPhotoPicker({ locationId, selectedId, disabledId
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[450px] items-start overflow-y-auto mb-4 p-1">
         {photos.map((photo) => {
-          const isSelected = selectedPhoto?.id === photo.id;
-          const isInUse = disabledIds.includes(photo.id);
+          const isSelected = selectedId === photo.id;
+          const isInUse = disabledIds.includes(photo.id) && !isSelected;
 
           return (
             <div
