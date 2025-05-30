@@ -18,8 +18,9 @@ import {
   City as CityType,
   Article as ArticleT,
   Image,
+  FeaturedMlImg,
 } from "lib/types";
-import { getEbirdImages } from "lib/ml";
+import { formatFeaturedImg, getEbirdImages } from "lib/ml";
 
 declare global {
   var mongoose: any;
@@ -611,23 +612,25 @@ export async function deleteHotspot(hotspot: HotspotType) {
 
 export const getHotspotImages = async (locationId: string) => {
   await connect();
+
   const [ebirdImages, hotspot] = await Promise.all([
     getEbirdImages(locationId as string),
     Hotspot.findOne({ locationId }, ["featuredImg", "images", "featuredEbirdId"]).lean(),
   ]);
 
+  if (!hotspot) throw new Error("Hotspot not found");
   const legacyImages = hotspot?.images?.filter((it) => !it.isMap && !it.isMigrated) || [];
 
-  if (!hotspot) throw new Error("Hotspot not found");
+  const { featuredImg1, featuredImg2, featuredImg3, featuredImg4 } = hotspot;
 
-  const mlFeaturedImg1 = hotspot.featuredEbirdId
-    ? ebirdImages.find((it) => it.ebirdId?.toString() === hotspot.featuredEbirdId?.replace("ML", ""))
-    : null;
+  const featuredMlImages = [featuredImg1, featuredImg2, featuredImg3, featuredImg4]
+    .filter((it): it is FeaturedMlImg => !!it)
+    .map(formatFeaturedImg);
 
   const combinedImages: Image[] = [
-    ...(mlFeaturedImg1 ? [mlFeaturedImg1] : []),
+    ...featuredMlImages,
     ...legacyImages,
-    ...ebirdImages.filter((it) => it.ebirdId !== mlFeaturedImg1?.ebirdId).slice(0, 4),
+    ...ebirdImages.filter((it) => !featuredMlImages.some((mlImg) => mlImg.ebirdId === it.ebirdId)).slice(0, 4),
   ];
 
   const newFeaturedImg = combinedImages[0] || null;

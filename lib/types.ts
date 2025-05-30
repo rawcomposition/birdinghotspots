@@ -28,10 +28,6 @@ export type Image = {
   isMigrated?: boolean;
 };
 
-export type eBirdImage = Image & {
-  isBest?: boolean;
-};
-
 export type FeaturedMlImg = {
   id: string;
   caption: string;
@@ -101,10 +97,10 @@ export type Hotspot = {
   images?: Image[];
   featuredEbirdId?: string;
   featuredImg?: Image; // legacy
-  featuredImg1?: Image | null;
-  featuredImg2?: Image | null;
-  featuredImg3?: Image | null;
-  featuredImg4?: Image | null;
+  featuredImg1?: FeaturedMlImg | null;
+  featuredImg2?: FeaturedMlImg | null;
+  featuredImg3?: FeaturedMlImg | null;
+  featuredImg4?: FeaturedMlImg | null;
   species?: number;
   groupIds?: string[] | Group[];
   noContent?: boolean;

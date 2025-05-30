@@ -1,5 +1,5 @@
 import axios from "axios";
-import { eBirdImage } from "lib/types";
+import { FeaturedMlImg, Image } from "lib/types";
 const ebird_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
 
 export const getEbirdImages = async (locationId: string, count = 10) => {
@@ -18,19 +18,8 @@ export const getEbirdImages = async (locationId: string, count = 10) => {
 
   if (images.length === 0) return [];
 
-  const landscapeImages = images.filter((it) => it.width > it.height);
-  const bestMlId = landscapeImages.length > 0 ? landscapeImages[0].assetId : images[0].assetId;
-
-  const formattedImages: eBirdImage[] = images.map((it) => formatEbirdImage(it, it.assetId === bestMlId));
-
-  const featuredImg = formattedImages.find((it) => it.isBest);
-
-  const sortedImages = [
-    ...(featuredImg ? [featuredImg] : []),
-    ...formattedImages.filter((it) => it.ebirdId !== bestMlId),
-  ];
-
-  return sortedImages;
+  const formattedImages: Image[] = images.map((it) => formatEbirdImage(it));
+  return formattedImages;
 };
 
 export const getEbirdImage = async (assetId: string) => {
@@ -48,10 +37,10 @@ export const getEbirdImage = async (assetId: string) => {
   if (!Array.isArray(images)) throw new Error("Invalid response from eBird");
   if (images.length === 0) return null;
 
-  return formatEbirdImage(images[0], true);
+  return formatEbirdImage(images[0]);
 };
 
-export const formatEbirdImage = (it: ebirdResponseImage, isBest: boolean): eBirdImage => ({
+export const formatEbirdImage = (it: ebirdResponseImage): Image => ({
   width: it.width,
   height: it.height,
   ebirdId: it.assetId,
@@ -61,7 +50,18 @@ export const formatEbirdImage = (it: ebirdResponseImage, isBest: boolean): eBird
   xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/480`,
   smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/1200`,
   lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/2400`,
-  isBest,
+});
+
+export const formatFeaturedImg = (data: FeaturedMlImg): Image => ({
+  width: data.width,
+  height: data.height,
+  ebirdId: Number(data.id),
+  caption: data.caption || "",
+  by: data.by,
+  ebirdDateDisplay: data.date,
+  xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${data.id}/480`,
+  smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${data.id}/1200`,
+  lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${data.id}/2400`,
 });
 
 type ebirdResponseImage = {
