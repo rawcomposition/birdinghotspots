@@ -29,6 +29,8 @@ import useConfirmNavigation from "hooks/useConfirmNavigation";
 import { useModal } from "providers/modals";
 import InputFeaturedImg from "components/InputFeaturedImg";
 import InputFeaturedImages from "components/InputFeaturedImages";
+import useAvailableImgCount from "hooks/useAvailableImgCount";
+import Badge from "components/Badge";
 
 type GroupAbout = {
   title: string;
@@ -67,6 +69,7 @@ export default function Edit({
   const form = useForm<Input>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
   useConfirmNavigation(form.formState.isDirty && !isSubmitting);
+  const { count: availableImgCount } = useAvailableImgCount(data.locationId);
 
   //@ts-ignore
   const latValue = form.watch("lat");
@@ -190,7 +193,10 @@ export default function Edit({
               {groupImages.length > 0 && <MapGrid images={groupImages} />}
 
               <div>
-                <label className="text-gray-500 font-bold">Featured eBird Images</label>
+                <div className="flex items-center justify-between">
+                  <label className="text-gray-500 font-bold">Featured eBird Images</label>
+                  <Badge>Available: {availableImgCount}</Badge>
+                </div>
                 <InputFeaturedImages locationId={data.locationId} />
               </div>
 

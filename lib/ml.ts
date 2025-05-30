@@ -40,6 +40,17 @@ export const getEbirdImage = async (assetId: string) => {
   return formatEbirdImage(images[0]);
 };
 
+export const getEbirdImageCount = async (locationId: string) => {
+  try {
+    const images = await getEbirdImages(locationId, 100);
+
+    return images.length;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
+
 export const formatEbirdImage = (it: ebirdResponseImage): Image => ({
   width: it.width,
   height: it.height,
