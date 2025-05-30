@@ -4,9 +4,10 @@ import BtnSmall from "components/BtnSmall";
 import { FeaturedMlImg } from "lib/types";
 import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, ArrowsPointingInIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeftIcon } from "@heroicons/react/20/solid";
+import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/20/solid";
 import { clsx } from "clsx";
 import Error from "components/Error";
+import Button from "components/Button";
 
 type Props = {
   locationId: string;
@@ -25,7 +26,7 @@ export default function FeaturedPhotoPicker({
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const { close } = useModal();
 
-  const { data, isLoading, error, refetch } = useQuery<{ success: boolean; images: FeaturedMlImg[] }>({
+  const { data, isLoading, error, refetch, isRefetching } = useQuery<{ success: boolean; images: FeaturedMlImg[] }>({
     queryKey: ["/api/ml-photos", { locationId }],
     enabled: !!locationId,
   });
@@ -191,7 +192,7 @@ export default function FeaturedPhotoPicker({
 
   return (
     <>
-      <div className="mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <p className="text-gray-600 font-medium">
           Choose a photo from the Macaulay Library, or{" "}
           <a
@@ -203,6 +204,13 @@ export default function FeaturedPhotoPicker({
           </a>
           .
         </p>
+        <button
+          className="font-semibold rounded-lg text-[13px] py-px px-2.5 text-gray-700 border border-gray-300 hover:bg-gray-50 shadow-xs focus:ring-4 focus:ring-gray-100 flex items-center gap-1"
+          onClick={() => refetch()}
+        >
+          <ArrowPathIcon className={clsx("h-3.5 w-3.5", isRefetching && "animate-spin")} />
+          Refresh
+        </button>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[450px] items-start overflow-y-auto mb-4 p-1">
@@ -258,7 +266,7 @@ export default function FeaturedPhotoPicker({
       </div>
 
       {photos.length === 0 && (
-        <div className="text-center py-8 text-gray-500">No Macaulay Library photos found for this location.</div>
+        <div className="text-center py-8 text-gray-500">No eBird photos found for this location.</div>
       )}
 
       <ModalFooter>
