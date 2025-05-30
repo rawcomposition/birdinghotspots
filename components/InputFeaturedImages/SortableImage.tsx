@@ -4,7 +4,9 @@ import clsx from "clsx";
 import { useFormContext, useController } from "react-hook-form";
 import { useModal } from "providers/modals";
 import { FeaturedMlImg } from "lib/types";
-import { ArrowPathRoundedSquareIcon, PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { ArrowPathRoundedSquareIcon, ExclamationTriangleIcon, PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
+import Tooltip from "components/Tooltip";
 
 type Props = {
   i: number;
@@ -27,6 +29,13 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
   });
 
   const mlId = field.value?.id;
+
+  const { data: isMissingData } = useQuery<{ success: boolean; isMissing: boolean }>({
+    queryKey: ["/api/is-ml-photo-missing", { assetId: mlId }],
+    enabled: !!mlId,
+  });
+
+  const isMissing = isMissingData?.isMissing === true;
 
   const onSelect = (photo: FeaturedMlImg) => {
     field.onChange(photo);
@@ -73,6 +82,14 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
               <TrashIcon className="h-4 w-4" />
               Remove
             </button>
+            {isMissing && (
+              <Tooltip text="This image is missing from eBird and should be removed" wrapperClassName="ml-auto">
+                <div className="flex items-center gap-1 cursor-default">
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-600" />
+                  <span className="text-red-600">Missing</span>
+                </div>
+              </Tooltip>
+            )}
           </div>
         </>
       ) : (

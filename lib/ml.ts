@@ -40,6 +40,22 @@ export const getEbirdImage = async (assetId: string) => {
   return formatEbirdImage(images[0]);
 };
 
+export const isEbirdImageMissing = async (assetId: string) => {
+  const cleanAssetId = assetId.replace("ML", "");
+  const url = `${ebird_SEARCH_API_URL}?assetId=${cleanAssetId}`;
+  const response = await axios.get<ebirdResponseImage[]>(url, {
+    headers: {
+      // This user agent seems to be allowed by eBird
+      "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    },
+    maxRedirects: 2,
+  });
+
+  const images = response.data;
+  const noImage = !!Array.isArray(images) && images.length === 0;
+  return noImage && response.statusText === "OK";
+};
+
 export const getEbirdImageCount = async (locationId: string) => {
   try {
     const images = await getEbirdImages(locationId, 100);
