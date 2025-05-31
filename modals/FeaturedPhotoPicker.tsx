@@ -1,7 +1,7 @@
 import React from "react";
 import { useModal, ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
-import { FeaturedMlImg } from "lib/types";
+import { MlImage } from "lib/types";
 import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, ArrowsPointingInIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/20/solid";
@@ -12,7 +12,7 @@ type Props = {
   locationId: string;
   selectedId?: number;
   disabledIds?: number[];
-  onSelect: (photo: FeaturedMlImg) => void;
+  onSelect: (photo: MlImage) => void;
 };
 
 export default function FeaturedPhotoPicker({
@@ -25,7 +25,7 @@ export default function FeaturedPhotoPicker({
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const { close } = useModal();
 
-  const { data, isLoading, error, refetch, isRefetching } = useQuery<{ success: boolean; images: FeaturedMlImg[] }>({
+  const { data, isLoading, error, refetch, isRefetching } = useQuery<{ success: boolean; images: MlImage[] }>({
     queryKey: ["/api/ml-photos", { locationId }],
     enabled: !!locationId,
   });
@@ -55,7 +55,7 @@ export default function FeaturedPhotoPicker({
     }
   }, [isFullScreen, data]);
 
-  const handlePhotoClick = (photo: FeaturedMlImg) => {
+  const handlePhotoClick = (photo: MlImage) => {
     if (disabledIds.includes(photo.id)) return;
     setIsFullScreen(true);
     setSelectedId(photo.id);

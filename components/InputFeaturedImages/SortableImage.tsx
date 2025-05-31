@@ -3,7 +3,7 @@ import { CSS } from "@dnd-kit/utilities";
 import clsx from "clsx";
 import { useFormContext, useController } from "react-hook-form";
 import { useModal } from "providers/modals";
-import { FeaturedMlImg } from "lib/types";
+import { MlImage } from "lib/types";
 import { ArrowPathRoundedSquareIcon, ExclamationTriangleIcon, PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 type Props = {
@@ -27,10 +27,10 @@ export default function SortableImage({ id, i, locationId, disabledIds, missingI
     name: `featuredImages.${i}.data`,
   });
 
-  const mlId = (field.value as FeaturedMlImg | null)?.id;
+  const mlId = (field.value as MlImage | null)?.id;
   const isMissing = missingIds?.includes(mlId || 0);
 
-  const onSelect = (photo: FeaturedMlImg) => {
+  const onSelect = (photo: MlImage) => {
     field.onChange(photo);
   };
 

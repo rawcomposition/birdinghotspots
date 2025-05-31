@@ -18,9 +18,9 @@ import {
   City as CityType,
   Article as ArticleT,
   Image,
-  FeaturedMlImg,
+  MlImage,
 } from "lib/types";
-import { formatFeaturedImg, getBestImages } from "lib/ml";
+import { convertMlImageToImage, getBestImages } from "lib/ml";
 
 declare global {
   var mongoose: any;
@@ -631,13 +631,15 @@ export const getHotspotImages = async (locationId: string) => {
   const { featuredImg1, featuredImg2, featuredImg3, featuredImg4 } = hotspot;
 
   const featuredMlImages = [featuredImg1, featuredImg2, featuredImg3, featuredImg4]
-    .filter((it): it is FeaturedMlImg => !!it)
-    .map(formatFeaturedImg);
+    .filter((it): it is MlImage => !!it)
+    .map(convertMlImageToImage);
+
+  const formattedEbirdImages = ebirdImages.map(convertMlImageToImage);
 
   const combinedImages: Image[] = [
     ...featuredMlImages,
     ...legacyImages,
-    ...ebirdImages.filter((it) => !featuredMlImages.some((mlImg) => mlImg.ebirdId === it.ebirdId)).slice(0, 4),
+    ...formattedEbirdImages.filter((it) => !featuredMlImages.some((mlImg) => mlImg.ebirdId === it.ebirdId)).slice(0, 4),
   ];
 
   const newFeaturedImg = combinedImages[0] || null;

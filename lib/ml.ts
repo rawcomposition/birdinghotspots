@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FeaturedMlImg, Image } from "lib/types";
+import { MlImage, Image } from "lib/types";
 export const EBIRD_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
 
 export const getBestImages = async (locationId: string, count = 10) => {
@@ -18,7 +18,7 @@ export const getBestImages = async (locationId: string, count = 10) => {
 
   if (images.length === 0) return [];
 
-  const formattedImages: Image[] = images.map((it) => formatImage(it));
+  const formattedImages: MlImage[] = images.map((it) => formatImage(it));
   return formattedImages;
 };
 
@@ -56,19 +56,16 @@ export const getImageCount = async (locationId: string) => {
   }
 };
 
-export const formatImage = (it: ebirdResponseImage): Image => ({
+const formatImage = (it: ebirdResponseImage): MlImage => ({
   width: it.width,
   height: it.height,
-  ebirdId: it.assetId,
+  id: it.assetId,
   caption: it.caption || "",
   by: it.userDisplayName,
-  ebirdDateDisplay: it.obsDtDisplay,
-  xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/480`,
-  smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/1200`,
-  lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/2400`,
+  date: it.obsDtDisplay,
 });
 
-export const formatFeaturedImg = (data: FeaturedMlImg): Image => {
+export const convertMlImageToImage = (data: MlImage): Image => {
   const ebirdId = data.id;
   return {
     width: data.width,

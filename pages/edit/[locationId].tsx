@@ -12,7 +12,7 @@ import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, Link, Citation, Group, Image, FeaturedMlImg } from "lib/types";
+import { Hotspot, Link, Citation, Group, Image, MlImage } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -35,7 +35,7 @@ type GroupAbout = {
   text: string;
 };
 
-type Input = Hotspot & { featuredImages: { id: string; data: FeaturedMlImg }[] };
+type Input = Hotspot & { featuredImages: { id: string; data: MlImage }[] };
 
 type Props = {
   id?: string;
@@ -310,7 +310,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       });
   });
 
-  const featuredImages: { id: string; data: FeaturedMlImg | null }[] = [
+  const featuredImages: { id: string; data: MlImage | null }[] = [
     { id: generateRandomId(6), data: data.featuredImg1 || null },
     { id: generateRandomId(6), data: data.featuredImg2 || null },
     { id: generateRandomId(6), data: data.featuredImg3 || null },

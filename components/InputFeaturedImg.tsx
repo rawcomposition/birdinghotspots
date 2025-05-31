@@ -1,6 +1,6 @@
 import { useFormContext, useController } from "react-hook-form";
 import { useModal } from "providers/modals";
-import { FeaturedMlImg } from "lib/types";
+import { MlImage } from "lib/types";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 type Props = {
@@ -22,7 +22,7 @@ export default function InputFeaturedImg({ name, label, locationId, disabledIds,
 
   const mlId = field.value?.id;
 
-  const onSelect = (photo: FeaturedMlImg) => {
+  const onSelect = (photo: MlImage) => {
     field.onChange(photo);
   };
 

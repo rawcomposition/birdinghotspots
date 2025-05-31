@@ -2,7 +2,7 @@ import { useFormContext, useFieldArray } from "react-hook-form";
 import SortableImage from "./SortableImage";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from "@dnd-kit/sortable";
-import { FeaturedMlImg } from "lib/types";
+import { MlImage } from "lib/types";
 import { useQuery } from "@tanstack/react-query";
 
 type Props = {
@@ -13,7 +13,7 @@ export default function InputFeaturedImages({ locationId }: Props) {
   const { control, watch } = useFormContext();
   const { fields, move } = useFieldArray({ name: "featuredImages", control });
   const featuredImages = watch("featuredImages");
-  const imageIds = featuredImages.map((it: { id: string; data: FeaturedMlImg | null }) => it.data?.id).filter(Boolean);
+  const imageIds = featuredImages.map((it: { id: string; data: MlImage | null }) => it.data?.id).filter(Boolean);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -25,7 +25,7 @@ export default function InputFeaturedImages({ locationId }: Props) {
   );
 
   const ids = fields.map(({ id }) => id);
-  const mlIds = featuredImages.map((it: { data: FeaturedMlImg | null }) => it.data?.id).filter(Boolean);
+  const mlIds = featuredImages.map((it: { data: MlImage | null }) => it.data?.id).filter(Boolean);
 
   const { data: isMissingData } = useQuery<{ missingIds: number[] }>({
     queryKey: ["/api/check-ml-ids", { assetIds: mlIds.join(",") }],
