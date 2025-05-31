@@ -1,9 +1,9 @@
 import axios from "axios";
 import { FeaturedMlImg, Image } from "lib/types";
-const ebird_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
+export const EBIRD_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
 
-export const getEbirdImages = async (locationId: string, count = 10) => {
-  const url = `${ebird_SEARCH_API_URL}?count=${count}&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
+export const getBestImages = async (locationId: string, count = 10) => {
+  const url = `${EBIRD_SEARCH_API_URL}?count=${count}&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
   const response = await axios.get<ebirdResponseImage[]>(url, {
     headers: {
       // This user agent seems to be allowed by eBird
@@ -18,13 +18,13 @@ export const getEbirdImages = async (locationId: string, count = 10) => {
 
   if (images.length === 0) return [];
 
-  const formattedImages: Image[] = images.map((it) => formatEbirdImage(it));
+  const formattedImages: Image[] = images.map((it) => formatImage(it));
   return formattedImages;
 };
 
-export const getEbirdImage = async (assetId: string) => {
-  const cleanAssetId = assetId.replace("ML", "");
-  const url = `${ebird_SEARCH_API_URL}?assetId=${cleanAssetId}`;
+export const getImages = async (assetIds: string[]) => {
+  const cleanAssetIds = assetIds.map((id) => id.replace("ML", ""));
+  const url = `${EBIRD_SEARCH_API_URL}?assetId=${cleanAssetIds.join(",")}`;
   const response = await axios.get<ebirdResponseImage[]>(url, {
     headers: {
       // This user agent seems to be allowed by eBird
@@ -37,28 +37,17 @@ export const getEbirdImage = async (assetId: string) => {
   if (!Array.isArray(images)) throw new Error("Invalid response from eBird");
   if (images.length === 0) return null;
 
-  return formatEbirdImage(images[0]);
+  return images.map((it) => formatImage(it));
 };
 
-export const isEbirdImageMissing = async (assetId: string) => {
-  const cleanAssetId = assetId.replace("ML", "");
-  const url = `${ebird_SEARCH_API_URL}?assetId=${cleanAssetId}`;
-  const response = await axios.get<ebirdResponseImage[]>(url, {
-    headers: {
-      // This user agent seems to be allowed by eBird
-      "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-    },
-    maxRedirects: 2,
-  });
-
-  const images = response.data;
-  const noImage = !!Array.isArray(images) && images.length === 0;
-  return noImage && response.statusText === "OK";
+export const getImage = async (assetId: string) => {
+  const images = await getImages([assetId]);
+  return images?.[0];
 };
 
-export const getEbirdImageCount = async (locationId: string) => {
+export const getImageCount = async (locationId: string) => {
   try {
-    const images = await getEbirdImages(locationId, 100);
+    const images = await getBestImages(locationId, 100);
 
     return images.length;
   } catch (error) {
@@ -67,7 +56,7 @@ export const getEbirdImageCount = async (locationId: string) => {
   }
 };
 
-export const formatEbirdImage = (it: ebirdResponseImage): Image => ({
+export const formatImage = (it: ebirdResponseImage): Image => ({
   width: it.width,
   height: it.height,
   ebirdId: it.assetId,
@@ -80,7 +69,7 @@ export const formatEbirdImage = (it: ebirdResponseImage): Image => ({
 });
 
 export const formatFeaturedImg = (data: FeaturedMlImg): Image => {
-  const ebirdId = Number(data.id.replace("ML", ""));
+  const ebirdId = data.id;
   return {
     width: data.width,
     height: data.height,
@@ -94,7 +83,7 @@ export const formatFeaturedImg = (data: FeaturedMlImg): Image => {
   };
 };
 
-type ebirdResponseImage = {
+export type ebirdResponseImage = {
   assetId: number;
   parentAssetId: number | null;
   ageSex: any;

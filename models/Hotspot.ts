@@ -15,7 +15,7 @@ const CitationSchema = new Schema({
 });
 
 const FeaturedMlImgSchema = new Schema({
-  id: String,
+  id: BigInt,
   caption: String,
   by: String,
   date: String,

@@ -5,17 +5,16 @@ import { useFormContext, useController } from "react-hook-form";
 import { useModal } from "providers/modals";
 import { FeaturedMlImg } from "lib/types";
 import { ArrowPathRoundedSquareIcon, ExclamationTriangleIcon, PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useQuery } from "@tanstack/react-query";
-import Tooltip from "components/Tooltip";
 
 type Props = {
   i: number;
   id: string;
   locationId: string;
   disabledIds?: string[];
+  missingIds?: number[];
 };
 
-export default function SortableImage({ id, i, locationId, disabledIds }: Props) {
+export default function SortableImage({ id, i, locationId, disabledIds, missingIds }: Props) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: id || "",
   });
@@ -28,14 +27,8 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
     name: `featuredImages.${i}.data`,
   });
 
-  const mlId = field.value?.id;
-
-  const { data: isMissingData } = useQuery<{ success: boolean; isMissing: boolean }>({
-    queryKey: ["/api/is-ml-photo-missing", { assetId: mlId }],
-    enabled: !!mlId,
-  });
-
-  const isMissing = isMissingData?.isMissing === true;
+  const mlId = (field.value as FeaturedMlImg | null)?.id;
+  const isMissing = missingIds?.includes(mlId || 0);
 
   const onSelect = (photo: FeaturedMlImg) => {
     field.onChange(photo);
@@ -65,7 +58,7 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
       {mlId ? (
         <>
           <img
-            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${mlId.replace("ML", "")}/480`}
+            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${mlId}/480`}
             alt="Featured Photo"
             className="w-full h-0 flex-1 object-contain"
           />
@@ -83,12 +76,10 @@ export default function SortableImage({ id, i, locationId, disabledIds }: Props)
               Remove
             </button>
             {isMissing && (
-              <Tooltip text="This image is missing from eBird and should be removed" wrapperClassName="ml-auto">
-                <div className="flex items-center gap-1 cursor-default">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-600" />
-                  <span className="text-red-600">Missing</span>
-                </div>
-              </Tooltip>
+              <span className="flex items-center gap-1 cursor-default ml-auto">
+                <ExclamationTriangleIcon className="h-4 w-4 text-red-600" />
+                <span className="text-red-600">Missing</span>
+              </span>
             )}
           </div>
         </>

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getEbirdImageCount } from "lib/ml";
+import { getImageCount } from "lib/ml";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { locationId }: any = req.query;
@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    const count = await getEbirdImageCount(locationId);
+    const count = await getImageCount(locationId);
 
     res.status(200).json({ success: true, count });
   } catch (error: any) {

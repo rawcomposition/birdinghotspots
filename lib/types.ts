@@ -29,7 +29,7 @@ export type Image = {
 };
 
 export type FeaturedMlImg = {
-  id: string;
+  id: number;
   caption: string;
   by: string;
   date: string;

@@ -7,12 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/20/solid";
 import { clsx } from "clsx";
 import Error from "components/Error";
-import Button from "components/Button";
 
 type Props = {
   locationId: string;
-  selectedId?: string;
-  disabledIds?: string[];
+  selectedId?: number;
+  disabledIds?: number[];
   onSelect: (photo: FeaturedMlImg) => void;
 };
 
@@ -22,7 +21,7 @@ export default function FeaturedPhotoPicker({
   disabledIds = [],
   onSelect,
 }: Props) {
-  const [selectedId, setSelectedId] = React.useState<string | null>(initialSelectedId || null);
+  const [selectedId, setSelectedId] = React.useState<number | null>(initialSelectedId || null);
   const [isFullScreen, setIsFullScreen] = React.useState(false);
   const { close } = useModal();
 
@@ -153,7 +152,7 @@ export default function FeaturedPhotoPicker({
           )}
 
           <img
-            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${selectedId.replace("ML", "")}/1800`}
+            src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${selectedId}/1800`}
             alt={selectedPhoto?.caption || `Photo by ${selectedPhoto?.by}`}
             className="max-w-full max-h-full object-contain"
             key={selectedId}
@@ -167,7 +166,7 @@ export default function FeaturedPhotoPicker({
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  window.open(`https://media.ebird.org/asset/${selectedId.replace("ML", "")}`, "_blank");
+                  window.open(`https://media.ebird.org/asset/${selectedId}`, "_blank");
                 }}
                 className="ml-2 text-gray-600 hover:underline transition-colors duration-200"
                 title="View on eBird"
@@ -234,7 +233,7 @@ export default function FeaturedPhotoPicker({
             >
               <div className="aspect-square relative bg-gray-50 flex items-center justify-center p-2">
                 <img
-                  src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${photo.id.replace("ML", "")}/480`}
+                  src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${photo.id}/480`}
                   alt={photo.caption || `Photo by ${photo.by}`}
                   className="max-w-full max-h-full object-contain"
                 />

@@ -20,7 +20,7 @@ import {
   Image,
   FeaturedMlImg,
 } from "lib/types";
-import { formatFeaturedImg, getEbirdImages } from "lib/ml";
+import { formatFeaturedImg, getBestImages } from "lib/ml";
 
 declare global {
   var mongoose: any;
@@ -614,7 +614,7 @@ export const getHotspotImages = async (locationId: string) => {
   await connect();
 
   const [ebirdImages, hotspot] = await Promise.all([
-    getEbirdImages(locationId as string),
+    getBestImages(locationId as string),
     Hotspot.findOne({ locationId }, [
       "featuredImg",
       "images",

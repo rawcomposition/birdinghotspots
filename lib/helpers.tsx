@@ -267,8 +267,8 @@ type ebirdResponseImage = {
 };
 
 export async function getEbirdHotspotImages(locationId: string, throwError = true) {
-  const ebird_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
-  const url = `${ebird_SEARCH_API_URL}?count=6&unconfirmed=incl&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
+  const EBIRD_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
+  const url = `${EBIRD_SEARCH_API_URL}?count=6&unconfirmed=incl&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
 
   try {
     const response = await axios.get<ebirdResponseImage[]>(url, {

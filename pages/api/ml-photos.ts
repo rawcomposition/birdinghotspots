@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getEbirdImages } from "lib/ml";
+import { getBestImages } from "lib/ml";
 import { FeaturedMlImg } from "lib/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -10,10 +10,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
-    const ebirdImages = await getEbirdImages(locationId, 50);
+    const ebirdImages = await getBestImages(locationId, 50);
 
     const featuredImages: FeaturedMlImg[] = ebirdImages.map((img) => ({
-      id: `ML${img.ebirdId}`,
+      id: img.ebirdId!,
       caption: img.caption || "",
       by: img.by || "",
       date: img.ebirdDateDisplay || "",
