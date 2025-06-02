@@ -7,12 +7,12 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, formatMarker, canEdit, getEbirdHotspot } from "lib/helpers";
+import { geocode, formatMarker, canEdit, getEbirdHotspot, generateRandomId } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, Link, Citation, Group, Image } from "lib/types";
+import { Hotspot, Link, Citation, Group, Image, MlImage } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -26,11 +26,16 @@ import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
 import Checkbox from "components/Checkbox";
 import useConfirmNavigation from "hooks/useConfirmNavigation";
+import InputFeaturedImages from "components/InputFeaturedImages";
+import useAvailableImgCount from "hooks/useAvailableImgCount";
+import Badge from "components/Badge";
 
 type GroupAbout = {
   title: string;
   text: string;
 };
+
+type Input = Hotspot & { featuredImages: { id: string; data: MlImage }[] };
 
 type Props = {
   id?: string;
@@ -39,7 +44,7 @@ type Props = {
   groupCitations: Citation[];
   groupImages: Image[];
   groupAbout: GroupAbout[];
-  data: Hotspot;
+  data: Input;
   error?: string;
   errorCode?: number;
 };
@@ -58,21 +63,22 @@ export default function Edit({
   const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-
   const router = useRouter();
-  const form = useForm<Hotspot>({ defaultValues: data });
+  const form = useForm<Input>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
   useConfirmNavigation(form.formState.isDirty && !isSubmitting);
+  const { count: availableImgCount } = useAvailableImgCount(data.locationId);
 
   //@ts-ignore
   const latValue = form.watch("lat");
   const lngValue = form.watch("lng");
   const markers = [formatMarker({ ...data, lat: latValue, lng: lngValue })];
 
-  const handleSubmit: SubmitHandler<Hotspot> = async (data) => {
-    // @ts-ignore
-    if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
+  const handleSubmit: SubmitHandler<Input> = async ({ featuredImages, ...data }) => {
     setIsSubmitting(true);
+
+    const filteredFeaturedImages = featuredImages.filter((it) => it.data);
+
     const response = await send({
       url: `/api/hotspot/${isNew ? "add" : "update"}`,
       method: "POST",
@@ -80,6 +86,10 @@ export default function Edit({
         id,
         data: {
           ...data,
+          featuredImg1: filteredFeaturedImages[0]?.data || null,
+          featuredImg2: filteredFeaturedImages[1]?.data || null,
+          featuredImg3: filteredFeaturedImages[2]?.data || null,
+          featuredImg4: filteredFeaturedImages[3]?.data || null,
           about: data.about || "",
           tips: data.tips || "",
           birds: data.birds || "",
@@ -180,14 +190,13 @@ export default function Edit({
 
               {groupImages.length > 0 && <MapGrid images={groupImages} />}
 
-              <Field label="Featured Macaulay Library Image ID">
-                <Input
-                  type="text"
-                  placeholder="e.g. ML1234567"
-                  name="featuredEbirdId"
-                  defaultValue={data?.featuredEbirdId}
-                />
-              </Field>
+              <div>
+                <div className="flex items-center justify-between">
+                  <label className="text-gray-500 font-bold">Featured eBird Images</label>
+                  <Badge>Available: {availableImgCount}</Badge>
+                </div>
+                <InputFeaturedImages locationId={data.locationId} />
+              </div>
 
               <div>
                 <label className="text-gray-500 font-bold">Other Images</label>
@@ -292,6 +301,13 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       });
   });
 
+  const featuredImages: { id: string; data: MlImage | null }[] = [
+    { id: generateRandomId(6), data: data.featuredImg1 || null },
+    { id: generateRandomId(6), data: data.featuredImg2 || null },
+    { id: generateRandomId(6), data: data.featuredImg3 || null },
+    { id: generateRandomId(6), data: data.featuredImg4 || null },
+  ];
+
   return {
     props: {
       id: data._id || null,
@@ -301,6 +317,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       groupImages,
       groupAbout,
       data: {
+        featuredImages,
         ...data,
         iba: data.iba || null,
         links: data.links || null,

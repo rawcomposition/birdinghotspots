@@ -1,9 +1,9 @@
 import axios from "axios";
-import { eBirdImage } from "lib/types";
-const ebird_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
+import { MlImage, Image } from "lib/types";
+export const EBIRD_SEARCH_API_URL = "https://ebird.org/ml-search-api/v2/search";
 
-export const getEbirdImages = async (locationId: string) => {
-  const url = `${ebird_SEARCH_API_URL}?count=10&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
+export const getBestImages = async (locationId: string, count = 10) => {
+  const url = `${EBIRD_SEARCH_API_URL}?count=${count}&mediaType=photo&sort=rating_rank_desc&regionCode=${locationId}&tag=environmental`;
   const response = await axios.get<ebirdResponseImage[]>(url, {
     headers: {
       // This user agent seems to be allowed by eBird
@@ -18,24 +18,13 @@ export const getEbirdImages = async (locationId: string) => {
 
   if (images.length === 0) return [];
 
-  const landscapeImages = images.filter((it) => it.width > it.height);
-  const bestMlId = landscapeImages.length > 0 ? landscapeImages[0].assetId : images[0].assetId;
-
-  const formattedImages: eBirdImage[] = images.map((it) => formatEbirdImage(it, it.assetId === bestMlId));
-
-  const featuredImg = formattedImages.find((it) => it.isBest);
-
-  const sortedImages = [
-    ...(featuredImg ? [featuredImg] : []),
-    ...formattedImages.filter((it) => it.ebirdId !== bestMlId),
-  ];
-
-  return sortedImages;
+  const formattedImages: MlImage[] = images.map((it) => formatImage(it));
+  return formattedImages;
 };
 
-export const getEbirdImage = async (assetId: string) => {
-  const cleanAssetId = assetId.replace("ML", "");
-  const url = `${ebird_SEARCH_API_URL}?assetId=${cleanAssetId}`;
+export const getImages = async (assetIds: number[]) => {
+  const cleanAssetIds = assetIds.map((id) => id);
+  const url = `${EBIRD_SEARCH_API_URL}?assetId=${cleanAssetIds.join(",")}`;
   const response = await axios.get<ebirdResponseImage[]>(url, {
     headers: {
       // This user agent seems to be allowed by eBird
@@ -48,23 +37,50 @@ export const getEbirdImage = async (assetId: string) => {
   if (!Array.isArray(images)) throw new Error("Invalid response from eBird");
   if (images.length === 0) return null;
 
-  return formatEbirdImage(images[0], true);
+  return images.map((it) => formatImage(it));
 };
 
-export const formatEbirdImage = (it: ebirdResponseImage, isBest: boolean): eBirdImage => ({
+export const getImage = async (assetId: number) => {
+  const images = await getImages([assetId]);
+  return images?.[0];
+};
+
+export const getImageCount = async (locationId: string) => {
+  try {
+    const images = await getBestImages(locationId, 100);
+
+    return images.length;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
+
+const formatImage = (it: ebirdResponseImage): MlImage => ({
   width: it.width,
   height: it.height,
-  ebirdId: it.assetId,
+  id: it.assetId,
   caption: it.caption || "",
   by: it.userDisplayName,
-  ebirdDateDisplay: it.obsDtDisplay,
-  xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/480`,
-  smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/1200`,
-  lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${it.assetId}/2400`,
-  isBest,
+  date: it.obsDtDisplay,
 });
 
-type ebirdResponseImage = {
+export const convertMlImageToImage = (data: MlImage): Image => {
+  const ebirdId = data.id;
+  return {
+    width: data.width,
+    height: data.height,
+    ebirdId,
+    caption: data.caption || "",
+    by: data.by,
+    ebirdDateDisplay: data.date,
+    xsUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${ebirdId}/480`,
+    smUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${ebirdId}/1200`,
+    lgUrl: `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${ebirdId}/2400`,
+  };
+};
+
+export type ebirdResponseImage = {
   assetId: number;
   parentAssetId: number | null;
   ageSex: any;

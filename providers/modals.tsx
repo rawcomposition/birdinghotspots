@@ -12,6 +12,7 @@ import AddStreetView from "modals/AddStreetview";
 import Revision from "modals/Revision";
 import InviteEditor from "modals/InviteEditor";
 import UploadMessage from "modals/UploadMessage";
+import FeaturedPhotoPicker from "modals/FeaturedPhotoPicker";
 
 const modals = [
   {
@@ -47,6 +48,12 @@ const modals = [
     ),
     maxWidth: "700px",
     Component: UploadMessage,
+  },
+  {
+    id: "featuredPhotoPicker",
+    title: "Select Featured Photo",
+    maxWidth: "900px",
+    Component: FeaturedPhotoPicker,
   },
 ];
 

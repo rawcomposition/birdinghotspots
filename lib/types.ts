@@ -28,8 +28,13 @@ export type Image = {
   isMigrated?: boolean;
 };
 
-export type eBirdImage = Image & {
-  isBest?: boolean;
+export type MlImage = {
+  id: number;
+  caption: string;
+  by: string;
+  date: string;
+  width: number;
+  height: number;
 };
 
 export type Marker = {
@@ -90,8 +95,11 @@ export type Hotspot = {
   ];
   groups?: Group[];
   images?: Image[];
-  featuredEbirdId?: string;
   featuredImg?: Image;
+  featuredImg1?: MlImage | null;
+  featuredImg2?: MlImage | null;
+  featuredImg3?: MlImage | null;
+  featuredImg4?: MlImage | null;
   species?: number;
   groupIds?: string[] | Group[];
   noContent?: boolean;

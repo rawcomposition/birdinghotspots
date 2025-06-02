@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 type Props = {
@@ -5,11 +6,12 @@ type Props = {
   children: React.ReactNode;
   small?: boolean;
   xSmall?: boolean;
+  wrapperClassName?: string;
 };
 
-const Tooltip = ({ text, children, small, xSmall }: Props) => {
+const Tooltip = ({ text, children, small, xSmall, wrapperClassName }: Props) => {
   return (
-    <div className="inline-block group relative">
+    <div className={clsx("inline-block group relative", wrapperClassName)}>
       {children}
       <span
         className={`invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible absolute z-10 left-1/2 bottom-0 bg-gray-700 text-white text-sm rounded shadow-md -translate-x-1/2 ${
