@@ -53,7 +53,7 @@ export default function FeaturedPhotoPicker({
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }
-  }, [isFullScreen, data]);
+  }, [isFullScreen, data, selectedId]);
 
   const handlePhotoClick = (photo: MlImage) => {
     if (disabledIds.includes(photo.id)) return;
