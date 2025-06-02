@@ -35,7 +35,7 @@ export default function InputFeaturedImg({ name, label, locationId, disabledIds,
     <div className="bg-gray-200 rounded relative w-full max-w-sm aspect-[4/3] group">
       {mlId && (
         <img
-          src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${mlId.replace("ML", "")}/480`}
+          src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${mlId}/480`}
           alt="Featured Photo"
           className="w-full h-full object-cover"
           {...sortableAttributes}
