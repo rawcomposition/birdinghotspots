@@ -122,7 +122,7 @@ export default function FeaturedPhotoPicker({
 
     return (
       <>
-        <div className="relative bg-gray-900 flex items-center justify-center h-[480px] -mx-4 sm:-mx-6 -my-5">
+        <div className="relative bg-gray-900 flex items-center justify-center sm:h-[550px] -mx-4 sm:-mx-6 -my-5">
           <button
             onClick={closeFullSizeView}
             className="absolute top-4 right-4 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full h-10 w-10 flex items-center justify-center text-white transition-all duration-200 z-10"

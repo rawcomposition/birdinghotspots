@@ -629,12 +629,13 @@ export const getHotspotImages = async (locationId: string) => {
   const legacyImages = hotspot?.images?.filter((it) => !it.isMap && !it.isMigrated) || [];
 
   const { featuredImg1, featuredImg2, featuredImg3, featuredImg4 } = hotspot;
+  const shouldShowEbirdImages = !featuredImg1;
 
   const featuredMlImages = [featuredImg1, featuredImg2, featuredImg3, featuredImg4]
     .filter((it): it is MlImage => !!it)
     .map(convertMlImageToImage);
 
-  const formattedEbirdImages = ebirdImages.map(convertMlImageToImage);
+  const formattedEbirdImages = shouldShowEbirdImages ? ebirdImages.map(convertMlImageToImage) : [];
 
   const combinedImages: Image[] = [
     ...featuredMlImages,

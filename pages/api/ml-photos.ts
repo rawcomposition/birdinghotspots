@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getBestImages } from "lib/ml";
-import { MlImage } from "lib/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { locationId }: any = req.query;

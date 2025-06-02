@@ -95,8 +95,7 @@ export type Hotspot = {
   ];
   groups?: Group[];
   images?: Image[];
-  featuredEbirdId?: string;
-  featuredImg?: Image; // legacy
+  featuredImg?: Image;
   featuredImg1?: MlImage | null;
   featuredImg2?: MlImage | null;
   featuredImg3?: MlImage | null;

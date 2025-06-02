@@ -22,8 +22,8 @@ export const getBestImages = async (locationId: string, count = 10) => {
   return formattedImages;
 };
 
-export const getImages = async (assetIds: string[]) => {
-  const cleanAssetIds = assetIds.map((id) => id.replace("ML", ""));
+export const getImages = async (assetIds: number[]) => {
+  const cleanAssetIds = assetIds.map((id) => id);
   const url = `${EBIRD_SEARCH_API_URL}?assetId=${cleanAssetIds.join(",")}`;
   const response = await axios.get<ebirdResponseImage[]>(url, {
     headers: {
@@ -40,7 +40,7 @@ export const getImages = async (assetIds: string[]) => {
   return images.map((it) => formatImage(it));
 };
 
-export const getImage = async (assetId: string) => {
+export const getImage = async (assetId: number) => {
   const images = await getImages([assetId]);
   return images?.[0];
 };

@@ -4,6 +4,7 @@ import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { canEdit, getEbirdHotspot } from "lib/helpers";
 import dayjs from "dayjs";
+import { getImages } from "lib/ml";
 
 export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
@@ -17,7 +18,14 @@ export default secureApi(async (req, res, token) => {
     await connect();
     const url = `/hotspot/${data.locationId}`;
 
-    const ebirdHotspot = await getEbirdHotspot(data.locationId);
+    const assetIds = [
+      data.featuredImg1?.id,
+      data.featuredImg2?.id,
+      data.featuredImg3?.id,
+      data.featuredImg4?.id,
+    ].filter(Boolean);
+
+    const [ebirdHotspot, ebirdImages] = await Promise.all([getEbirdHotspot(data.locationId), getImages(assetIds)]);
 
     if (!ebirdHotspot) throw new Error("eBird hotspot not found");
 
@@ -33,11 +41,19 @@ export default secureApi(async (req, res, token) => {
     }
 
     const { featuredImg, ...rest } = data;
+    const newFeaturedImg1 = data.featuredImg1?.id ? ebirdImages?.find((it) => it.id === data.featuredImg1.id) : null;
+    const newFeaturedImg2 = data.featuredImg2?.id ? ebirdImages?.find((it) => it.id === data.featuredImg2.id) : null;
+    const newFeaturedImg3 = data.featuredImg3?.id ? ebirdImages?.find((it) => it.id === data.featuredImg3.id) : null;
+    const newFeaturedImg4 = data.featuredImg4?.id ? ebirdImages?.find((it) => it.id === data.featuredImg4.id) : null;
 
     await Hotspot.updateOne(
       { _id: id },
       {
         ...rest,
+        featuredImg1: data.featuredImg1?.id ? newFeaturedImg1 || data.featuredImg1 : null,
+        featuredImg2: data.featuredImg2?.id ? newFeaturedImg2 || data.featuredImg2 : null,
+        featuredImg3: data.featuredImg3?.id ? newFeaturedImg3 || data.featuredImg3 : null,
+        featuredImg4: data.featuredImg4?.id ? newFeaturedImg4 || data.featuredImg4 : null,
         url,
         location,
         noContent,
@@ -50,17 +66,17 @@ export default secureApi(async (req, res, token) => {
       }
     );
 
-    // Re-run logic to update featuredImg
-    await getHotspotImages(data.locationId);
-
     try {
-      await Logs.create({
-        user: token.name,
-        uid: token.uid,
-        type: "edit_hotspot",
-        message: `edited hotspot: ${data.name}`,
-        hotspotId: data.locationId,
-      });
+      await Promise.all([
+        Logs.create({
+          user: token.name,
+          uid: token.uid,
+          type: "edit_hotspot",
+          message: `edited hotspot: ${data.name}`,
+          hotspotId: data.locationId,
+        }),
+        getHotspotImages(data.locationId), // Re-run logic to update featuredImg
+      ]);
     } catch (error) {}
 
     res.status(200).json({ success: true, url });
