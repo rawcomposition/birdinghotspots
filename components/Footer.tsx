@@ -40,8 +40,8 @@ export default function Footer() {
               </button>
             </>
           ) : (
-            <Link href="/login" className="text-[#81b5e0]">
-              <PencilSquareIcon className="h-3 w-3 inline" />
+            <Link href="/login" className="text-[#81b5e0] inline-flex items-center gap-0.5">
+              <PencilSquareIcon className="h-3 w-3 inline-block" />
               Editor Login
             </Link>
           )}
