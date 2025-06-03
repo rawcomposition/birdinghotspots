@@ -52,8 +52,6 @@ export default function SortableImage({ id, i, locationId, disabledIds, missingI
       ref={setNodeRef}
       style={style}
       key={id}
-      {...attributes}
-      {...listeners}
     >
       {mlId ? (
         <>
@@ -61,6 +59,8 @@ export default function SortableImage({ id, i, locationId, disabledIds, missingI
             src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${mlId}/480`}
             alt="Featured Photo"
             className="w-full h-0 flex-1 object-contain"
+            {...attributes}
+            {...listeners}
           />
           <div className="flex items-center py-1.5 gap-4 shrink-0">
             <button

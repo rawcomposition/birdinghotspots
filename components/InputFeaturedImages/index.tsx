@@ -16,11 +16,7 @@ export default function InputFeaturedImages({ locationId }: Props) {
   const imageIds = featuredImages.map((it: { id: string; data: MlImage | null }) => it.data?.id).filter(Boolean);
 
   const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 10,
-      },
-    }),
+    useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
