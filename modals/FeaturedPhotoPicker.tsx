@@ -33,6 +33,21 @@ export default function FeaturedPhotoPicker({
   const photos = data?.images || [];
   const selectedPhoto = photos.find((photo) => photo.id === selectedId) || null;
 
+  const urlsToPreload = photos
+    .slice(0, 4)
+    .map((photo) => `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${photo.id}/1800`);
+
+  if (selectedId) {
+    const currentIndex = photos.findIndex((photo) => photo.id === selectedId);
+    if (currentIndex !== -1 && currentIndex < photos.length - 1) {
+      const nextPhoto = photos[currentIndex + 1];
+      const nextPhotoUrl = `https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${nextPhoto.id}/1800`;
+      if (!disabledIds.includes(nextPhoto.id) && !urlsToPreload.includes(nextPhotoUrl)) {
+        urlsToPreload.push(nextPhotoUrl);
+      }
+    }
+  }
+
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!isFullScreen) return;
@@ -122,6 +137,10 @@ export default function FeaturedPhotoPicker({
 
     return (
       <>
+        {urlsToPreload.map((url) => (
+          <link key={url} rel="preload" as="image" href={url} />
+        ))}
+
         <div className="relative bg-gray-900 flex items-center justify-center sm:h-[550px] -mx-4 sm:-mx-6 -my-5">
           <button
             onClick={closeFullSizeView}
@@ -191,6 +210,10 @@ export default function FeaturedPhotoPicker({
 
   return (
     <>
+      {urlsToPreload.map((url) => (
+        <link key={url} rel="preload" as="image" href={url} />
+      ))}
+
       <div className="mb-4 flex items-center justify-between">
         <p className="text-gray-600 font-medium">
           Choose a photo from the Macaulay Library, or{" "}
