@@ -46,7 +46,7 @@ export default function SortableImage({ id, i, locationId, disabledIds, missingI
   return (
     <div
       className={clsx(
-        "rounded h-full border bg-white border-gray-200 shadow-sm relative max-w-sm group aspect-[1.19] p-3 pb-0 cursor-move flex flex-col",
+        "rounded h-full border bg-white border-gray-200 shadow-sm relative max-w-sm group aspect-[1.19] p-3 pb-0 flex flex-col",
         isDragging && "z-10"
       )}
       ref={setNodeRef}
@@ -58,7 +58,7 @@ export default function SortableImage({ id, i, locationId, disabledIds, missingI
           <img
             src={`https://cdn.download.ams.birds.cornell.edu/api/v2/asset/${mlId}/480`}
             alt="Featured Photo"
-            className="w-full h-0 flex-1 object-contain"
+            className="w-full h-0 flex-1 object-contain cursor-move"
             {...attributes}
             {...listeners}
           />
