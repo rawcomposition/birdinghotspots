@@ -108,6 +108,8 @@ export type Hotspot = {
   updatedAt?: string;
 };
 
+export type HotspotInput = Hotspot & { featuredImages: { id: string; data: MlImage }[] };
+
 export type HotspotsByCounty = [
   {
     countyCode: string;

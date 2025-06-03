@@ -12,7 +12,7 @@ import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, Link, Citation, Group, Image, MlImage } from "lib/types";
+import { Hotspot, Link, Citation, Group, Image, MlImage, HotspotInput } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -35,8 +35,6 @@ type GroupAbout = {
   text: string;
 };
 
-type Input = Hotspot & { featuredImages: { id: string; data: MlImage }[] };
-
 type Props = {
   id?: string;
   isNew: boolean;
@@ -44,7 +42,7 @@ type Props = {
   groupCitations: Citation[];
   groupImages: Image[];
   groupAbout: GroupAbout[];
-  data: Input;
+  data: HotspotInput;
   error?: string;
   errorCode?: number;
 };
@@ -64,7 +62,7 @@ export default function Edit({
   const { send, loading } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
-  const form = useForm<Input>({ defaultValues: data });
+  const form = useForm<HotspotInput>({ defaultValues: data });
   const isOH = data?.stateCode === "US-OH";
   useConfirmNavigation(form.formState.isDirty && !isSubmitting);
   const { count: availableImgCount } = useAvailableImgCount(data.locationId);
@@ -74,7 +72,7 @@ export default function Edit({
   const lngValue = form.watch("lng");
   const markers = [formatMarker({ ...data, lat: latValue, lng: lngValue })];
 
-  const handleSubmit: SubmitHandler<Input> = async ({ featuredImages, ...data }) => {
+  const handleSubmit: SubmitHandler<HotspotInput> = async ({ featuredImages, ...data }) => {
     setIsSubmitting(true);
 
     const filteredFeaturedImages = featuredImages.filter((it) => it.data);
