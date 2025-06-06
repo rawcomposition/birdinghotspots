@@ -60,7 +60,7 @@ export default function Users() {
           Invite Editor
         </Button>
       </div>
-      <div className="overflow-hidden shadow md:rounded-lg mb-12">
+      <div className="overflow-hidden shadow md:rounded-lg mb-4">
         <table className="min-w-full divide-y divide-gray-300">
           <thead className="bg-gray-50">
             <tr>
@@ -135,6 +135,9 @@ export default function Users() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="text-sm text-gray-600">
+        Showing {filterUsers.length} of {users.length} results
       </div>
     </DashboardPage>
   );
