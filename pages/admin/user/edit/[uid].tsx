@@ -17,12 +17,12 @@ import { roles } from "lib/helpers";
 import RegionSelect from "components/RegionSelect";
 import { getProfile } from "lib/mongo";
 import { getRegion } from "lib/localData";
-import Button from "components/Button";
 
 type UserInput = {
   role: string;
   name: string;
   email: string;
+  ebirdId?: string;
   regions?: {
     label: string;
     value: string;
@@ -45,17 +45,19 @@ type Props = {
     value: string;
   }[];
   emailFrequency: string;
+  ebirdId?: string;
 };
 
 const roleOptions = roles.map(({ id, name }) => ({ value: id, label: name }));
 
-export default function Edit({ user, subscriptions, regions, emailFrequency }: Props) {
+export default function Edit({ user, subscriptions, regions, emailFrequency, ebirdId }: Props) {
   const router = useRouter();
   const form = useForm<UserInput>({
     defaultValues: {
       name: user.displayName,
       email: user.email,
       role: user.role,
+      ebirdId,
       regions,
       subscriptions,
       emailFrequency,
@@ -116,6 +118,10 @@ export default function Edit({ user, subscriptions, regions, emailFrequency }: P
             <Field label="Email">
               <Input type="email" name="email" required />
               <FormError name="email" />
+            </Field>
+            <Field label="eBird User ID">
+              <Input type="text" name="ebirdId" />
+              <FormError name="ebirdId" />
             </Field>
             <Field label="Role">
               <Select name="role" options={roleOptions} required />
@@ -191,6 +197,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
         subscriptions,
         regions,
         emailFrequency: profile?.emailFrequency || "daily",
+        ebirdId: profile?.ebirdId || null,
       },
     };
   } catch (error) {

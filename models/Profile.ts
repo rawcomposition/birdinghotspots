@@ -14,6 +14,7 @@ const ProfileSchema = new Schema({
     type: "string",
     required: true,
   },
+  ebirdId: String,
   subscriptions: [
     {
       type: String,

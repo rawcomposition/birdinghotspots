@@ -83,6 +83,12 @@ export default function Users() {
                 scope="col"
                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem] hidden md:table-cell"
               >
+                eBird ID
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 min-w-[8rem] hidden md:table-cell"
+              >
                 Status
               </th>
               <th />
@@ -91,12 +97,12 @@ export default function Users() {
           <tbody className="divide-y divide-gray-200 bg-white">
             {users.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-gray-700 p-4 text-center">
+                <td colSpan={6} className="text-gray-700 p-4 text-center">
                   Loading...
                 </td>
               </tr>
             )}
-            {filterUsers.map(({ displayName, email, uid, role, regions, status, disabled }) => (
+            {filterUsers.map(({ displayName, email, uid, role, regions, status, ebirdId }) => (
               <tr key={uid}>
                 <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                   {displayName}
@@ -116,7 +122,8 @@ export default function Users() {
                     </>
                   ))}
                 </td>
-                <td className="whitespace-nowrap px-3 py-2 text-sm text-gray-500">
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">{ebirdId}</td>
+                <td className="whitespace-nowrap px-3 py-2 text-sm text-gray-500 hidden md:table-cell">
                   <Badge color={status === "Deactivated" ? "default" : status === "Invited" ? "default" : "green"}>
                     {status}
                   </Badge>

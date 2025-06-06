@@ -249,6 +249,7 @@ export type User = {
   regions?: Region[];
   status?: string;
   disabled?: boolean;
+  ebirdId?: string;
 };
 
 export type Group = {
@@ -342,6 +343,7 @@ export type Profile = {
   inviteCode?: string;
   subscriptions: string[];
   emailFrequency: "daily" | "instant" | "none";
+  ebirdId?: string;
 };
 
 export type Log = {

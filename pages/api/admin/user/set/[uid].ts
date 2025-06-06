@@ -17,12 +17,12 @@ export default secureApi(async (req, res, token) => {
     });
 
     const profile = uid ? await Profile.findOne({ uid }) : null;
-    const { subscriptions, email, name, emailFrequency } = data;
+    const { subscriptions, email, name, emailFrequency, ebirdId } = data;
 
     if (!profile) {
-      await Profile.create({ uid, subscriptions, email, name, emailFrequency });
+      await Profile.create({ uid, subscriptions, email, name, emailFrequency, ebirdId });
     } else {
-      await Profile.updateOne({ uid }, { subscriptions, email, name, emailFrequency });
+      await Profile.updateOne({ uid }, { subscriptions, email, name, emailFrequency, ebirdId });
     }
 
     try {
