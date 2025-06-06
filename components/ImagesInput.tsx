@@ -4,6 +4,7 @@ import SortableImage from "./SortableImage";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from "@dnd-kit/sortable";
 import { useModal } from "providers/modals";
+import { ENABLE_LEGACY_UPLOADS } from "lib/config";
 
 type Props = {
   hideExtraFields?: boolean;
@@ -64,8 +65,21 @@ export default function ImagesInput({
         </div>
       )}
 
-      <Uppy onSuccess={(result) => append(result)} />
-      {enableStreetview && (
+      {!ENABLE_LEGACY_UPLOADS && (
+        <p className="text-sm text-gray-700">
+          Images can no longer be uploaded directly to Birding hotspots. Habitat photos should be uploaded to eBird.org
+          and maps can be linked using the &ldquo;Trail Map URL&rdquo; field near the top of this page.{" "}
+          <a
+            href="https://support.ebird.org/en/support/solutions/articles/48001269559"
+            className="font-bold"
+            target="_blank"
+          >
+            Learn More
+          </a>
+        </p>
+      )}
+      {ENABLE_LEGACY_UPLOADS && <Uppy onSuccess={(result) => append(result)} />}
+      {enableStreetview && ENABLE_LEGACY_UPLOADS && (
         <button
           type="button"
           className="text-[#2275d7] text-xs font-medium"

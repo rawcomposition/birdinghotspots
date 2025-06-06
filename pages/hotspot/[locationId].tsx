@@ -150,7 +150,7 @@ export default function Hotspot({
             Suggest Edit
           </Link>
         )}
-        {canEdit && !featuredImg && (
+        {canEdit && !featuredImg && ENABLE_LEGACY_UPLOADS && (
           <button
             type="button"
             onClick={() => open("addStreetView", { locationId, onSuccess: reload })}

@@ -197,9 +197,8 @@ export default function Edit({
               </div>
 
               <div>
-                <label className="text-gray-500 font-bold">Other Images</label>
+                <label className="text-gray-500 font-bold">Legacy Images</label>
                 <ImagesInput enableStreetview />
-                <LicenseNotice />
               </div>
 
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">

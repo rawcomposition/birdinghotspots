@@ -24,7 +24,6 @@ export default function DashboardPage({ title, children }: PropTypes) {
 
   const nav = [
     { name: "Dashboard", href: "/admin", icon: ChartBarIcon },
-    { name: "Image Review", href: "/admin/image-review", icon: PhotoIcon },
     { name: "Suggestion Review", href: "/admin/revision-review", icon: PencilSquareIcon },
   ];
 

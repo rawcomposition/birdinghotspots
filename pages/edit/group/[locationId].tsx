@@ -149,7 +149,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
               </Field>
 
               <div>
-                <label className="text-gray-500 font-bold">Maps</label>
+                <label className="text-gray-500 font-bold">Map Images</label>
                 <ImagesInput hideMapCheckbox showHideFromChildrenCheckbox />
               </div>
 
