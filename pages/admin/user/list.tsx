@@ -144,7 +144,9 @@ export default function Users() {
         </table>
       </div>
       <div className="text-sm text-gray-600">
-        Showing {filterUsers.length} of {users.length} results
+        {filterUsers.length === users.length
+          ? `Showing all ${users.length} results`
+          : `Showing ${filterUsers.length} of ${users.length} results`}
       </div>
     </DashboardPage>
   );
