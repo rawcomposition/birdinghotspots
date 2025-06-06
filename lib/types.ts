@@ -248,6 +248,7 @@ export type User = {
   role?: string;
   regions?: Region[];
   status?: string;
+  disabled?: boolean;
 };
 
 export type Group = {

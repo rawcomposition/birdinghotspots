@@ -14,10 +14,10 @@ import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import { useRouter } from "next/router";
 import useToast from "hooks/useToast";
 import { roles } from "lib/helpers";
-import DeleteBtn from "components/DeleteBtn";
 import RegionSelect from "components/RegionSelect";
 import { getProfile } from "lib/mongo";
 import { getRegion } from "lib/localData";
+import Button from "components/Button";
 
 type UserInput = {
   role: string;
@@ -81,6 +81,21 @@ export default function Edit({ user, subscriptions, regions, emailFrequency }: P
     }
   };
 
+  const handleToggleStatus = async () => {
+    const action = user.disabled ? "activate" : "deactivate";
+
+    if (!user.disabled && !confirm(`Are you sure you want to deactivate this user?`)) return;
+
+    const response = await send({
+      url: `/api/admin/user/toggle-status/${user.uid}`,
+      method: "POST",
+      success: `User ${action}d successfully!`,
+    });
+    if (response.success) {
+      router.push("/admin/user/list");
+    }
+  };
+
   const role = form.watch("role");
 
   const frequencyOptions = [
@@ -124,9 +139,14 @@ export default function Edit({ user, subscriptions, regions, emailFrequency }: P
             </Field>
           </div>
           <div className="px-4 py-3 bg-gray-50 flex justify-between sm:px-6 rounded-b-lg">
-            <DeleteBtn url={`/api/admin/user/delete/${user.uid}`} entity="user" redirect="/admin/user/list">
-              Delete User
-            </DeleteBtn>
+            <button
+              type="button"
+              onClick={handleToggleStatus}
+              disabled={loading}
+              className={`font-medium ${user.disabled ? "text-gray-600" : "text-red-600"}`}
+            >
+              {user.disabled ? "Activate User" : "Deactivate User"}
+            </button>
             <Submit disabled={loading} color="green" className="font-medium">
               Save User
             </Submit>
@@ -144,7 +164,7 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps = getSecureServerSideProps(async (context, token) => {
   const { uid } = context.query as Params;
   try {
-    const { email, displayName, customClaims } = await admin.getUser(uid);
+    const { email, displayName, customClaims, disabled } = await admin.getUser(uid);
     const profile = await getProfile(uid);
 
     const subscriptions =
@@ -166,6 +186,7 @@ export const getServerSideProps = getSecureServerSideProps(async (context, token
           email,
           displayName: displayName || null,
           role: customClaims?.role || null,
+          disabled: disabled || false,
         },
         subscriptions,
         regions,

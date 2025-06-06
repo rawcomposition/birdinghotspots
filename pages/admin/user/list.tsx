@@ -11,7 +11,7 @@ import { useModal } from "providers/modals";
 
 export default function Users() {
   const [query, setQuery] = React.useState("");
-  const { send, loading } = useToast();
+  const { send } = useToast();
   const { open } = useModal();
   const [users, setUsers] = React.useState<User[]>([]);
 
@@ -96,10 +96,11 @@ export default function Users() {
                 </td>
               </tr>
             )}
-            {filterUsers.map(({ displayName, email, uid, role, regions, status }) => (
+            {filterUsers.map(({ displayName, email, uid, role, regions, status, disabled }) => (
               <tr key={uid}>
                 <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                  {displayName} <br />
+                  {displayName}
+                  <br />
                   <span className="text-gray-500">{email}</span>
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
@@ -116,7 +117,9 @@ export default function Users() {
                   ))}
                 </td>
                 <td className="whitespace-nowrap px-3 py-2 text-sm text-gray-500">
-                  <Badge color={status === "Invited" ? "default" : "green"}>{status}</Badge>
+                  <Badge color={status === "Deactivated" ? "default" : status === "Invited" ? "default" : "green"}>
+                    {status}
+                  </Badge>
                 </td>
                 <td className="text-sm py-4 pl-3 pr-6 font-medium text-gray-500 flex gap-4 justify-end whitespace-nowrap">
                   {status === "Invited" && (

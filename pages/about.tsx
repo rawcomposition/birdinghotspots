@@ -82,7 +82,7 @@ export default function About({ regions }: Props) {
 export async function getServerSideProps() {
   const request = await admin.listUsers();
   const editors = request.users
-    .filter(({ customClaims }) => customClaims?.role === "editor")
+    .filter(({ customClaims, disabled }) => !disabled && customClaims?.role === "editor")
     .map(({ displayName, customClaims }) => ({
       displayName,
       regions: customClaims?.regions,
