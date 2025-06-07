@@ -143,7 +143,7 @@ export default function Users() {
           </tbody>
         </table>
       </div>
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-gray-600 mb-12">
         {filterUsers.length === users.length
           ? `Showing all ${users.length} results`
           : `Showing ${filterUsers.length} of ${users.length} results`}
