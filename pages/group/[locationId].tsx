@@ -20,7 +20,7 @@ import Citations from "components/Citations";
 import Features from "components/Features";
 import useLogPageview from "hooks/useLogPageview";
 import dayjs from "dayjs";
-import isbot from "isbot";
+import { isbot } from "isbot";
 
 type Props = GroupType & {
   region: Region;

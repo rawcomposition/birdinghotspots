@@ -12,7 +12,7 @@ import HotspotGrid from "components/HotspotGrid";
 import MapIconAlt from "icons/Map";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import useLogPageview from "hooks/useLogPageview";
-import isbot from "isbot";
+import { isbot } from "isbot";
 
 type Props = {
   region: Region;

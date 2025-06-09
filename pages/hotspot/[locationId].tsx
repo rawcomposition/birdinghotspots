@@ -28,7 +28,7 @@ import useLogPageview from "hooks/useLogPageview";
 import { useModal } from "providers/modals";
 import { useReloadProps } from "hooks/useReloadProps";
 import dayjs from "dayjs";
-import isbot from "isbot";
+import { isbot } from "isbot";
 import useHotspotImages from "hooks/useHotspotImages";
 import { ENABLE_LEGACY_UPLOADS } from "lib/config";
 

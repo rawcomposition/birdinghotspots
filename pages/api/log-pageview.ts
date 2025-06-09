@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect from "lib/mongo";
 import Pageview from "models/Pageview";
 import dayjs from "dayjs";
-import isbot from "isbot";
+import { isbot } from "isbot";
 import nookies from "nookies";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {

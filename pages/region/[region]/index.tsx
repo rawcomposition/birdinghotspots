@@ -28,7 +28,7 @@ import MoreRegionLinks from "components/MoreRegionLinks";
 import ArticleGrid from "components/ArticleGrid";
 import RegionBranding from "components/RegionBranding";
 import SubregionList from "components/SubregionList";
-import isbot from "isbot";
+import { isbot } from "isbot";
 import GroupGrid from "components/GroupGrid";
 import clsx from "clsx";
 
