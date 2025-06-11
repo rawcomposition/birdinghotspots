@@ -62,7 +62,7 @@ export default secureApi(async (req, res, token) => {
     ]);
 
     const formatDiff = (oldValue?: string, newValue?: string) => {
-      if (!newValue) return null; //No edit made for this field
+      if (newValue === undefined) return null; //No edit made for this field
       if (oldValue === undefined) return newValue; //Legacy revision with no old value saved
       return {
         old: oldValue,

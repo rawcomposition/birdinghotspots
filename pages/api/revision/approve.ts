@@ -23,10 +23,10 @@ export default secureApi(async (req, res, token) => {
       return;
     }
 
-    const about = revision.about?.new || hotspot.about;
-    const tips = revision.tips?.new || hotspot.tips;
-    const birds = revision.birds?.new || hotspot.birds;
-    const hikes = revision.hikes?.new || hotspot.hikes;
+    const about = typeof revision.about?.new === "string" ? revision.about?.new : hotspot.about;
+    const tips = typeof revision.tips?.new === "string" ? revision.tips?.new : hotspot.tips;
+    const birds = typeof revision.birds?.new === "string" ? revision.birds?.new : hotspot.birds;
+    const hikes = typeof revision.hikes?.new === "string" ? revision.hikes?.new : hotspot.hikes;
     const roadside = revision.roadside?.new || hotspot.roadside;
     const restrooms = revision.restrooms?.new || hotspot.restrooms;
     const accessible = revision.accessible?.new || hotspot.accessible;
