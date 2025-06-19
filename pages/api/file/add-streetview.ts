@@ -29,7 +29,7 @@ export default secureApi(async (req, res, token) => {
   const { lat, lng, heading, fov, pitch, locationId }: any = req.body;
   const adjustedFov = parseInt(fov) + 20; //The static API has a max of 120 versus 100 for the embed API
 
-  const smGoogleUrl = `https://maps.googleapis.com/maps/api/streetview?size=640x413&location=${lat},${lng}&fov=${adjustedFov}&heading=${heading}&pitch=${pitch}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}`;
+  const smGoogleUrl = `https://maps.googleapis.com/maps/api/streetview?size=640x413&location=${lat},${lng}&fov=${adjustedFov}&heading=${heading}&pitch=${pitch}&key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`;
   const smFilename = `streetview${uuidv4()}_small.jpg`;
 
   try {

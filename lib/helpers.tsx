@@ -15,7 +15,7 @@ export async function geocode(lat: number, lng: number) {
   console.log("Geocoding", lat, lng);
   try {
     const request = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`
     );
     const response = await request.json();
 
@@ -106,7 +106,7 @@ export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
 
 export async function verifyRecaptcha(token: string) {
   const projectId = "birding-262815";
-  const API_key = process.env.NEXT_PUBLIC_GOOGLE_KEY;
+  const API_key = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 
   const verifyResponse = await fetch(
     `https://recaptchaenterprise.googleapis.com/v1/projects/${projectId}/assessments?key=${API_key}`,

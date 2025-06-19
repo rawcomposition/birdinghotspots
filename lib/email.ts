@@ -8,6 +8,11 @@ type Props = {
 };
 
 export const sendEmail = async ({ to, subject, html, replyTo }: Props) => {
+  if (process.env.NODE_ENV === "development") {
+    console.log("Sending email to", to, "with subject", subject, "and html", html);
+    return;
+  }
+
   const transporter = nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
