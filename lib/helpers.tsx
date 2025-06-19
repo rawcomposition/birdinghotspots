@@ -15,7 +15,7 @@ export async function geocode(lat: number, lng: number) {
   console.log("Geocoding", lat, lng);
   try {
     const request = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GEOCODING_KEY}`
     );
     const response = await request.json();
 
