@@ -1,7 +1,7 @@
 name: Sync Hotspots
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/30 * * * *"
 
 jobs:
   cron:
