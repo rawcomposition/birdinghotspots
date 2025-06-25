@@ -8,6 +8,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const score = await verifyRecaptcha(token);
 
+    // Basic spam detection
+    if (message.toUpperCase().includes("SEO")) {
+      throw new Error("Please try again later");
+    }
+
     if (score > 0.5) {
       await sendEmail({
         to: process.env.ADMIN_EMAILS || "",
