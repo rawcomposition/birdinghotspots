@@ -105,8 +105,8 @@ export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
 }
 
 export async function verifyRecaptcha(token: string) {
-  const projectId = "birding-262815";
-  const API_key = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+  const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const API_key = process.env.FIREBASE_KEY_FOR_RECAPTCHA;
 
   const verifyResponse = await fetch(
     `https://recaptchaenterprise.googleapis.com/v1/projects/${projectId}/assessments?key=${API_key}`,
