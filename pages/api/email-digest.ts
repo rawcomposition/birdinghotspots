@@ -8,8 +8,10 @@ import { sendEmail } from "lib/email";
 import dayjs from "dayjs";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  const isVercelCron = req.headers["user-agent"]?.includes("vercel-cron");
   const { key }: any = req.query;
-  if (process.env.CRON_SECRET && key !== process.env.CRON_SECRET) {
+
+  if (!isVercelCron && process.env.CRON_SECRET && key !== process.env.CRON_SECRET) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }

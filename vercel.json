@@ -1,3 +1,17 @@
 {
-  "regions": ["pdx1"]
+  "regions": ["pdx1"],
+  "crons": [
+    {
+      "path": "/api/hotspot/sync",
+      "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/hotspot/delete-cron",
+      "schedule": "0 */4 * * *"
+    },
+    {
+      "path": "/api/email-digest",
+      "schedule": "0 21 * * *"
+    }
+  ]
 }
