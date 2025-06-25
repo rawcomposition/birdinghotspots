@@ -112,12 +112,10 @@ const insertHotspot = ({ lat, lng, locationId, name, total, ...data }: any) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  const isVercelCron = req.headers["user-agent"]?.includes("vercel-cron");
   const { key, state }: any = req.query;
 
-  if (!isVercelCron && process.env.CRON_SECRET && key !== process.env.CRON_SECRET) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
+  if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && key !== process.env.CRON_SECRET) {
+    return res.status(401).end("Unauthorized");
   }
   await connect();
   try {
