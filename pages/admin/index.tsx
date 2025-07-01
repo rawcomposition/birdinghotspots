@@ -109,9 +109,6 @@ export default function Dashboard({ data, deletedHotspots, recentHotspots }: Pro
           <Link href="/admin/revision-review" className="font-bold text-sm">
             Review Suggestions
           </Link>
-          <Link href="/admin/image-review" className="font-bold text-sm">
-            Review Images
-          </Link>
         </div>
       </section>
       <div className="overflow-hidden shadow md:rounded-lg mb-12">
