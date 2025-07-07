@@ -31,7 +31,7 @@ export default secureApi(async (req, res, token) => {
 
     if (!ebirdHotspot) throw new Error("eBird hotspot not found");
 
-    const noContent = !data?.about?.trim() && !data?.tips?.trim() && !data?.birds?.trim() && !data?.hikes?.trim();
+    const noContent = !data?.about?.trim() && !data?.plan?.trim() && !data?.birding?.trim();
     const updatedAt = dayjs().format();
 
     let location = null;

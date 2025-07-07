@@ -81,10 +81,9 @@ export default secureApi(async (req, res, token) => {
             ? revisions.filter((rev: RevisionType) => rev.locationId === it.locationId).length > 1
             : false,
         locationName: region?.detailedName || regionCode,
+        plan: formatDiff(it.plan?.old, it.plan?.new),
+        birding: formatDiff(it.birding?.old, it.birding?.new),
         about: formatDiff(it.about?.old, it.about?.new),
-        tips: formatDiff(it.tips?.old, it.tips?.new),
-        birds: formatDiff(it.birds?.old, it.birds?.new),
-        hikes: formatDiff(it.hikes?.old, it.hikes?.new),
       };
       return formatted;
     });

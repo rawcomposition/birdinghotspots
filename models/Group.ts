@@ -38,10 +38,12 @@ const GroupSchema = new Schema({
     required: true,
     unique: true,
   },
+  plan: String,
+  birding: String,
   about: String,
-  tips: String,
-  birds: String,
-  hikes: String,
+  tips: String, // Legacy
+  birds: String, // Legacy
+  hikes: String, // Legacy
   address: String,
   links: [LinkSchema],
   webpage: String,

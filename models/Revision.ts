@@ -20,19 +20,15 @@ const RevisionSchema = new Schema({
   countyCode: String,
   by: String,
   email: String,
+  plan: {
+    old: String,
+    new: String,
+  },
+  birding: {
+    old: String,
+    new: String,
+  },
   about: {
-    old: String,
-    new: String,
-  },
-  tips: {
-    old: String,
-    new: String,
-  },
-  birds: {
-    old: String,
-    new: String,
-  },
-  hikes: {
     old: String,
     new: String,
   },

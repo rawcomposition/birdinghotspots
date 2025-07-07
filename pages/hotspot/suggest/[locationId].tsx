@@ -21,10 +21,9 @@ import RadioGroup from "components/RadioGroup";
 type Inputs = {
   name: string;
   email: string;
-  birds: string;
-  hikes: string;
+  plan: string;
+  birding: string;
   about: string;
-  tips: string;
   roadside: string;
   restrooms: string;
   accessible: string;
@@ -35,10 +34,9 @@ type Props = {
   locationId: string;
   hotspotName: string;
   data: {
-    birds: string;
-    hikes: string;
+    plan: string;
+    birding: string;
     about: string;
-    tips: string;
     roadside: string;
     restrooms: string;
     accessible: string;
@@ -159,25 +157,24 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
           </div>
 
           <Field
-            label="Tips for Birding"
-            help="Where to park, good birding locations, best time of year to visit, whether a scope is helpful, safety concerns, and other information that will help birders know what to expect when they visit the location."
+            label="Plan Your Visit"
+            help="Everything you need to know before you go. This section provides logistical information to plan an informed visit, including entrance fees, permit requirements, operating hours, directions, parking details, amenities, and accessibility notes. Include key details visitors should be aware of ahead of time—such as special rules and seasonal closures—that could impact their visit."
           >
-            <TinyMCE name="tips" defaultValue={data.tips} />
+            <TinyMCE name="plan" defaultValue={data?.plan} />
           </Field>
 
           <Field
-            label="Birds of Interest"
-            help="List birds that are commonly found here but hard to find at other locations. You can list these by season if there is a variation of birds of interest at different seasons of the year."
+            label="How to Bird Here"
+            help="Tips and strategies to make the most of the birding experience. This section offers guidance for where to go within the site, including notable trails, key habitats, and important routes or stops. Share details about species of interest, where to find them, and the best times of day or year to visit. Offer advice for birders to optimize their time and enjoy the site to its fullest. "
           >
-            <TinyMCE name="birds" defaultValue={data.birds} />
+            <TinyMCE name="birding" defaultValue={data?.birding} />
           </Field>
 
-          <Field label="About this location">
-            <TinyMCE name="about" defaultValue={data.about} />
-          </Field>
-
-          <Field label="Notable Trails" help="Information on trails that are good for birding.">
-            <TinyMCE name="hikes" defaultValue={data.hikes} />
+          <Field
+            label="About this location"
+            help="Broader context and background information to deepen readers' understanding and appreciation of the Hotspot. Share details about the site’s history, ownership and management, conservation efforts, partnerships, and additional resources. Use this section to tell the Hotspot’s story, highlight its importance, and share insightful details that aren’t directly related to trip planning or birding."
+          >
+            <TinyMCE name="about" defaultValue={data?.about} />
           </Field>
 
           <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
@@ -228,10 +225,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       locationId,
       hotspotName: hotspot?.name,
       data: {
+        plan: hotspot?.plan || "",
+        birding: hotspot?.birding || "",
         about: hotspot?.about || "",
-        birds: hotspot?.birds || "",
-        hikes: hotspot?.hikes || "",
-        tips: hotspot?.tips || "",
         roadside: hotspot?.roadside || "Unknown",
         restrooms: hotspot?.restrooms || "Unknown",
         accessible: hotspot?.accessible || "Unknown",

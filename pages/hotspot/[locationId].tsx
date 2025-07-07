@@ -48,10 +48,9 @@ export default function Hotspot({
   address,
   links,
   citations,
+  plan,
+  birding,
   about,
-  tips,
-  birds,
-  hikes,
   restrooms,
   roadside,
   accessible,
@@ -213,7 +212,9 @@ export default function Hotspot({
             )}
           </div>
 
-          {tips && <AboutSection heading="Tips for Birding" text={tips} />}
+          {plan && <AboutSection heading="Plan Your Visit" text={plan} />}
+
+          {birding && <AboutSection heading="How to Bird Here" text={birding} />}
 
           {noContent && (
             <div className="mb-6 formatted">
@@ -240,8 +241,6 @@ export default function Hotspot({
             </div>
           )}
 
-          {birds && <AboutSection heading="Birds of Interest" text={birds} />}
-
           {about && <AboutSection heading="About this Location" text={about} />}
 
           {groups?.map(({ name, about, locationId }) => (
@@ -253,8 +252,6 @@ export default function Hotspot({
               <div dangerouslySetInnerHTML={{ __html: about || "" }} />
             </div>
           ))}
-
-          {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 
