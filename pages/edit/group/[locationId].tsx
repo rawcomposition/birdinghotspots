@@ -23,6 +23,7 @@ import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
 import InputCitations from "components/InputCitations";
 import Checkbox from "components/Checkbox";
+import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT } from "lib/config";
 
 type Props = {
   id?: string;
@@ -113,24 +114,15 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
               <InputHotspotLinks label="Additional Links" />
 
-              <Field
-                label="Plan Your Visit"
-                help="Everything you need to know before you go. This section provides logistical information to plan an informed visit, including entrance fees, permit requirements, operating hours, directions, parking details, amenities, and accessibility notes. Include key details visitors should be aware of ahead of time—such as special rules and seasonal closures—that could impact their visit."
-              >
+              <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
                 <TinyMCE name="plan" defaultValue={data?.plan} />
               </Field>
 
-              <Field
-                label="How to Bird Here"
-                help="Tips and strategies to make the most of the birding experience. This section offers guidance for where to go within the site, including notable trails, key habitats, and important routes or stops. Share details about species of interest, where to find them, and the best times of day or year to visit. Offer advice for birders to optimize their time and enjoy the site to its fullest. "
-              >
+              <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
                 <TinyMCE name="birding" defaultValue={data?.birding} />
               </Field>
 
-              <Field
-                label="About this location"
-                help="Broader context and background information to deepen readers' understanding and appreciation of the Hotspot. Share details about the site’s history, ownership and management, conservation efforts, partnerships, and additional resources. Use this section to tell the Hotspot’s story, highlight its importance, and share insightful details that aren’t directly related to trip planning or birding."
-              >
+              <Field label="About this location" help={ABOUT_SECTION_HELP_TEXT}>
                 <TinyMCE name="about" defaultValue={data?.about} />
               </Field>
 

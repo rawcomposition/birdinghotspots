@@ -7,9 +7,10 @@ type PropsT = {
   text: string | React.ReactNode;
   className?: string;
   as?: "button" | "span";
+  color?: string;
 };
 
-export default function HelpIcon({ heading, text, className, as = "button" }: PropsT) {
+export default function HelpIcon({ heading, text, className, as = "button", color = "text-slate-500" }: PropsT) {
   const { open } = useModal();
   const Component = as === "button" ? "button" : "span";
   return (
@@ -24,7 +25,7 @@ export default function HelpIcon({ heading, text, className, as = "button" }: Pr
         })
       }
     >
-      <Info className="text-[16px] text-slate-500 ml-1 -mt-px cursor-pointer" />
+      <Info className={clsx("text-[16px] -mt-px cursor-pointer", color)} />
     </Component>
   );
 }
