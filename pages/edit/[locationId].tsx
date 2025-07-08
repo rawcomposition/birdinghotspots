@@ -12,7 +12,7 @@ import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, Link, Citation, Group, Image, MlImage, HotspotInput } from "lib/types";
+import { Link, Citation, Group, Image, MlImage, HotspotInput } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -20,7 +20,6 @@ import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
-import LicenseNotice from "components/LicenseNotice";
 import MapGrid from "components/MapGrid";
 import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
@@ -29,6 +28,8 @@ import useConfirmNavigation from "hooks/useConfirmNavigation";
 import InputFeaturedImages from "components/InputFeaturedImages";
 import useAvailableImgCount from "hooks/useAvailableImgCount";
 import Badge from "components/Badge";
+import dynamic from "next/dynamic";
+const NewSectionsBanner = dynamic(() => import("components/NewSectionsBanner"), { ssr: false });
 
 type GroupAbout = {
   title: string;
@@ -151,6 +152,8 @@ export default function Edit({
               </div>
 
               <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
+
+              <NewSectionsBanner />
 
               <Field
                 label="Plan Your Visit"

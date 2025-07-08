@@ -13,6 +13,7 @@ import Revision from "modals/Revision";
 import InviteEditor from "modals/InviteEditor";
 import UploadMessage from "modals/UploadMessage";
 import FeaturedPhotoPicker from "modals/FeaturedPhotoPicker";
+import Popover from "modals/Popover";
 
 const modals = [
   {
@@ -54,6 +55,11 @@ const modals = [
     title: "Select Featured Photo",
     maxWidth: "900px",
     Component: FeaturedPhotoPicker,
+  },
+  {
+    id: "popover",
+    title: "",
+    Component: Popover,
   },
 ];
 
@@ -101,7 +107,7 @@ const ModalProvider = ({ children }: Props) => {
       {children}
       <ModalWrapper
         maxWidth={modal?.maxWidth}
-        title={modal?.title || ""}
+        title={modalProps?.title || modal?.title || ""}
         open={!!modal && !closing}
         onClose={handleDismiss}
       >
