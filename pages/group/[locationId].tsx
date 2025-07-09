@@ -120,7 +120,7 @@ export default function Group({
 
           {birding && <AboutSection heading="How to Bird Here" text={birding} />}
 
-          {about && <AboutSection heading="About this Location" text={about} />}
+          {about && <AboutSection heading="About this Place" text={about} />}
 
           <Features {...{ restrooms }} />
 

@@ -41,7 +41,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
   const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
     if (!data.about) {
-      return toast.error('"About this location" is required');
+      return toast.error('"About this Place" is required');
     }
     if (data.hotspotSelect.length === 0) {
       return toast.error("Please select at least one hotspot");
@@ -122,7 +122,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 <TinyMCE name="birding" defaultValue={data?.birding} />
               </Field>
 
-              <Field label="About this location" help={ABOUT_SECTION_HELP_TEXT}>
+              <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
                 <TinyMCE name="about" defaultValue={data?.about} />
               </Field>
 

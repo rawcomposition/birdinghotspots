@@ -71,7 +71,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
 
           {data.about && (
             <div>
-              <h4 className="font-bold">About this location</h4>
+              <h4 className="font-bold">About this Place</h4>
               <div dangerouslySetInnerHTML={{ __html: data.about.diff }} className="formatted" />
             </div>
           )}

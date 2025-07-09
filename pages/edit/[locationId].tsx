@@ -164,7 +164,7 @@ export default function Edit({
                 <TinyMCE name="birding" defaultValue={data?.birding} />
               </Field>
 
-              <Field label="About this location" help={ABOUT_SECTION_HELP_TEXT}>
+              <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
                 <TinyMCE name="about" defaultValue={data?.about} />
               </Field>
 

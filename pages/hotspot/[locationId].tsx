@@ -218,7 +218,7 @@ export default function Hotspot({
 
           {noContent && (
             <div className="mb-6 formatted">
-              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
+              <h3 className="font-bold text-lg mb-1.5">About this Place</h3>
               {isBot ? (
                 <div className="p-4 bg-gray-100 rounded-lg mb-6">
                   This location has no content yet. If you are familiar with birding this location, please help other
@@ -241,7 +241,7 @@ export default function Hotspot({
             </div>
           )}
 
-          {about && <AboutSection heading="About this Location" text={about} />}
+          {about && <AboutSection heading="About this Place" text={about} />}
 
           {groups?.map(({ name, about, locationId }) => (
             <div className="mb-6 formatted" key={locationId}>

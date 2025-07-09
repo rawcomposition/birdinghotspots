@@ -32,7 +32,7 @@ export default function NewSectionsBanner() {
 
       <div className="flex gap-4 mb-4 items-center">
         <h2 className="text-lg font-semibold text-gray-800">New Content Sections</h2>
-        <span className="text-gray-600 text-xs bg-blue-100 font-medium px-3 py-1 rounded-full">July 8, 2025</span>
+        <span className="text-gray-600 text-xs bg-blue-100 font-medium px-3 py-1 rounded-full">July 9, 2025</span>
       </div>
 
       <p className="text-gray-600 mb-4">
@@ -91,7 +91,7 @@ export default function NewSectionsBanner() {
           <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
             <div className="flex items-center justify-center">
               <div className="w-full bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium text-center">
-                About this location
+                About this Location
               </div>
             </div>
 
