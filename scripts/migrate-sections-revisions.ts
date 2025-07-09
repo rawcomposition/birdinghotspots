@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const LIMIT = 1;
-const LOG = true;
+const LIMIT = 10000;
+const LOG = false;
 
 const URI = process.env.MONGO_URI;
 const connect = async () => (URI ? mongoose.connect(URI) : null);

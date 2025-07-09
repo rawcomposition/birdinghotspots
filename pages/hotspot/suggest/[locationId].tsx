@@ -120,9 +120,9 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
 
   return (
     <div className="container pb-16 my-12 max-w-xl mx-auto">
-      <Title>{`Suggest Edit for ${hotspotName}`}</Title>
+      <Title>{`Suggest Content for ${hotspotName}`}</Title>
       <h2 className="text-xl font-bold text-gray-600 border-b pb-4 leading-6">
-        Suggest Edit
+        Suggest Content
         <br />
         <span className="text-sm text-gray-500 font-normal">{hotspotName}</span>
       </h2>

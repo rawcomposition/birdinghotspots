@@ -146,7 +146,7 @@ export default function Hotspot({
         {!isBot && (
           <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
             <PencilSquareIcon className="h-4 w-4" />
-            Suggest Edit
+            Suggest Content
           </Link>
         )}
         {canEdit && !featuredImg && ENABLE_LEGACY_UPLOADS && (

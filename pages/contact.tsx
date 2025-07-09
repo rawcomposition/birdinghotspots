@@ -67,7 +67,7 @@ export default function Contact() {
           </p>
           <p className="mb-4">
             To make a comment or correction about a specific hotspot, please go to that hotspot page and suggest the
-            information using the link “Suggest Edit.”
+            information using the link “Suggest Content.”
           </p>
           <p className="mb-4">
             The Birding Hotspot website collects information about hotspots from birders, published information, and the
