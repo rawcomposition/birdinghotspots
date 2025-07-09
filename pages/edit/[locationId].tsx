@@ -12,7 +12,7 @@ import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
 import AdminPage from "components/AdminPage";
-import { Hotspot, Link, Citation, Group, Image, MlImage, HotspotInput } from "lib/types";
+import { Link, Citation, Group, Image, MlImage, HotspotInput } from "lib/types";
 import RadioGroup from "components/RadioGroup";
 import Field from "components/Field";
 import useToast from "hooks/useToast";
@@ -20,7 +20,6 @@ import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
 import MapZoomInput from "components/MapZoomInput";
-import LicenseNotice from "components/LicenseNotice";
 import MapGrid from "components/MapGrid";
 import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
@@ -29,6 +28,9 @@ import useConfirmNavigation from "hooks/useConfirmNavigation";
 import InputFeaturedImages from "components/InputFeaturedImages";
 import useAvailableImgCount from "hooks/useAvailableImgCount";
 import Badge from "components/Badge";
+import dynamic from "next/dynamic";
+import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT } from "lib/config";
+const NewSectionsBanner = dynamic(() => import("components/NewSectionsBanner"), { ssr: false });
 
 type GroupAbout = {
   title: string;
@@ -88,10 +90,9 @@ export default function Edit({
           featuredImg2: filteredFeaturedImages[1]?.data || null,
           featuredImg3: filteredFeaturedImages[2]?.data || null,
           featuredImg4: filteredFeaturedImages[3]?.data || null,
+          plan: data.plan || "",
+          birding: data.birding || "",
           about: data.about || "",
-          tips: data.tips || "",
-          birds: data.birds || "",
-          hikes: data.hikes || "",
           iba: data.iba || null,
         },
       },
@@ -153,26 +154,18 @@ export default function Edit({
 
               <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
 
-              <Field
-                label="Tips for Birding"
-                help="Where to park, good birding locations, best time of year to visit, whether a scope is helpful, safety concerns, and other information that will help birders know what to expect when they visit the location."
-              >
-                <TinyMCE name="tips" defaultValue={data?.tips} />
+              <NewSectionsBanner />
+
+              <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
+                <TinyMCE name="plan" defaultValue={data?.plan} />
               </Field>
 
-              <Field
-                label="Birds of Interest"
-                help="List birds that are commonly found here but hard to find at other locations. You can list these by season if there is a variation of birds of interest at different seasons of the year."
-              >
-                <TinyMCE name="birds" defaultValue={data?.birds} />
+              <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
+                <TinyMCE name="birding" defaultValue={data?.birding} />
               </Field>
 
-              <Field label="About this location">
+              <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
                 <TinyMCE name="about" defaultValue={data?.about} />
-              </Field>
-
-              <Field label="Notable Trails" help="Information on trails that are good for birding.">
-                <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
               <InputCitations groupLinks={groupLinks} groupCitations={groupCitations} />

@@ -23,6 +23,7 @@ import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
 import InputCitations from "components/InputCitations";
 import Checkbox from "components/Checkbox";
+import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT } from "lib/config";
 
 type Props = {
   id?: string;
@@ -40,7 +41,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
   const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
     if (!data.about) {
-      return toast.error('"About this location" is required');
+      return toast.error('"About this Place" is required');
     }
     if (data.hotspotSelect.length === 0) {
       return toast.error("Please select at least one hotspot");
@@ -113,26 +114,16 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
               <InputHotspotLinks label="Additional Links" />
 
-              <Field
-                label="Tips for Birding"
-                help="Where to park, good birding locations, best time of year to visit, whether a scope is helpful, safety concerns, and other information that will help birders know what to expect when they visit the location."
-              >
-                <TinyMCE name="tips" defaultValue={data?.tips} />
+              <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
+                <TinyMCE name="plan" defaultValue={data?.plan} />
               </Field>
 
-              <Field
-                label="Birds of Interest"
-                help="List birds that are commonly found here but hard to find at other locations. You can list these by season if there is a variation of birds of interest at different seasons of the year."
-              >
-                <TinyMCE name="birds" defaultValue={data?.birds} />
+              <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
+                <TinyMCE name="birding" defaultValue={data?.birding} />
               </Field>
 
-              <Field label="About this location (required)" help="This will be displayed on all child hotspots">
+              <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
                 <TinyMCE name="about" defaultValue={data?.about} />
-              </Field>
-
-              <Field label="Notable Trails" help="Information on trails that are good for birding.">
-                <TinyMCE name="hikes" defaultValue={data?.hikes} />
               </Field>
 
               <InputCitations />

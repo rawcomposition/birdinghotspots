@@ -68,10 +68,9 @@ export type Hotspot = {
   countryCode: string;
   stateCode?: string;
   countyCode?: string;
+  plan?: string;
+  birding?: string;
   about?: string;
-  tips?: string;
-  birds?: string;
-  hikes?: string;
   webpage?: string;
   citeWebpage?: boolean;
   trailMap?: string;
@@ -261,10 +260,9 @@ export type Group = {
   countryCode: string;
   stateCodes: string[];
   countyCodes: string[];
+  plan?: string;
+  birding?: string;
   about?: string;
-  tips?: string;
-  birds?: string;
-  hikes?: string;
   address?: string;
   links?: Link[];
   webpage?: string;
@@ -297,19 +295,15 @@ export type Revision = {
   countryCode: string;
   stateCode?: string;
   countyCode?: string;
+  plan?: {
+    old: string;
+    new: string;
+  };
+  birding?: {
+    old: string;
+    new: string;
+  };
   about?: {
-    old: string;
-    new: string;
-  };
-  tips?: {
-    old: string;
-    new: string;
-  };
-  birds?: {
-    old: string;
-    new: string;
-  };
-  hikes?: {
     old: string;
     new: string;
   };
@@ -371,22 +365,17 @@ export type RegionInfo = {
 export interface FormattedSuggestion extends Revision {
   hasMultiple?: boolean;
   locationName: string;
+  plan?: {
+    old: string;
+    new: string;
+    diff: string;
+  };
+  birding?: {
+    old: string;
+    new: string;
+    diff: string;
+  };
   about?: {
-    old: string;
-    new: string;
-    diff: string;
-  };
-  tips?: {
-    old: string;
-    new: string;
-    diff: string;
-  };
-  birds?: {
-    old: string;
-    new: string;
-    diff: string;
-  };
-  hikes?: {
     old: string;
     new: string;
     diff: string;

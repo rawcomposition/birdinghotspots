@@ -1,17 +1,31 @@
-import React from "react";
+import { clsx } from "clsx";
 import Info from "icons/Info";
-import Tooltip from "components/Tooltip";
+import { useModal } from "providers/modals";
 
-type Props = {
-  text: string;
+type PropsT = {
+  heading: string;
+  text: string | React.ReactNode;
+  className?: string;
+  as?: "button" | "span";
+  color?: string;
 };
 
-const Help = ({ text }: Props) => {
+export default function HelpIcon({ heading, text, className, as = "button", color = "text-slate-500" }: PropsT) {
+  const { open } = useModal();
+  const Component = as === "button" ? "button" : "span";
   return (
-    <Tooltip text={text}>
-      <Info className="text-[16px] text-slate-500 ml-1 -mt-px cursor-pointer" />
-    </Tooltip>
+    <Component
+      type={as === "button" ? "button" : undefined}
+      aria-label="Help"
+      className={clsx("group cursor-pointer px-1.5", className)}
+      onClick={() =>
+        open("popover", {
+          title: heading,
+          text: <div className="flex flex-col gap-1">{text}</div>,
+        })
+      }
+    >
+      <Info className={clsx("text-[16px] -mt-px cursor-pointer", color)} />
+    </Component>
   );
-};
-
-export default Help;
+}

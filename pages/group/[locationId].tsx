@@ -42,10 +42,9 @@ export default function Group({
   citeWebpage,
   trailMap,
   citations,
+  plan,
+  birding,
   about,
-  tips,
-  birds,
-  hikes,
   restrooms,
   locationId,
   images,
@@ -117,13 +116,11 @@ export default function Group({
             ))}
           </div>
 
-          {tips && <AboutSection heading="Tips for Birding" text={tips} />}
+          {plan && <AboutSection heading="Plan Your Visit" text={plan} />}
 
-          {birds && <AboutSection heading="Birds of Interest" text={birds} />}
+          {birding && <AboutSection heading="How to Bird Here" text={birding} />}
 
-          {about && <AboutSection heading="About this Location" text={about} />}
-
-          {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
+          {about && <AboutSection heading="About this Place" text={about} />}
 
           <Features {...{ restrooms }} />
 

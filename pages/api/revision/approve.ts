@@ -15,7 +15,7 @@ export default secureApi(async (req, res, token) => {
       return;
     }
 
-    const shouldCite = !!revision.tips?.new || !!revision.birds?.new || !!revision.about?.new || !!revision.hikes?.new;
+    const shouldCite = !!revision.plan?.new || !!revision.birding?.new || !!revision.about?.new;
 
     const hotspot = await Hotspot.findOne({ locationId: revision.locationId });
     if (!hotspot) {
@@ -23,16 +23,15 @@ export default secureApi(async (req, res, token) => {
       return;
     }
 
+    const plan = typeof revision.plan?.new === "string" ? revision.plan?.new : hotspot.plan;
+    const birding = typeof revision.birding?.new === "string" ? revision.birding?.new : hotspot.birding;
     const about = typeof revision.about?.new === "string" ? revision.about?.new : hotspot.about;
-    const tips = typeof revision.tips?.new === "string" ? revision.tips?.new : hotspot.tips;
-    const birds = typeof revision.birds?.new === "string" ? revision.birds?.new : hotspot.birds;
-    const hikes = typeof revision.hikes?.new === "string" ? revision.hikes?.new : hotspot.hikes;
     const roadside = revision.roadside?.new || hotspot.roadside;
     const restrooms = revision.restrooms?.new || hotspot.restrooms;
     const accessible = revision.accessible?.new || hotspot.accessible;
     const fee = revision.fee?.new || hotspot.fee;
 
-    const noContent = !about?.trim() && !tips?.trim() && !birds?.trim() && !hikes?.trim();
+    const noContent = !about?.trim() && !plan?.trim() && !birding?.trim();
 
     const updatedAt = dayjs().format();
     await Hotspot.updateOne(
@@ -41,9 +40,8 @@ export default secureApi(async (req, res, token) => {
         $set: {
           noContent,
           about,
-          tips,
-          birds,
-          hikes,
+          plan,
+          birding,
           roadside,
           restrooms,
           accessible,

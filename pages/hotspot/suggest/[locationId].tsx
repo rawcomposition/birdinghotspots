@@ -17,14 +17,14 @@ import Link from "next/link";
 import Title from "components/Title";
 import useRecaptcha from "hooks/useRecaptcha";
 import RadioGroup from "components/RadioGroup";
+import { ABOUT_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, PLAN_SECTION_HELP_TEXT } from "lib/config";
 
 type Inputs = {
   name: string;
   email: string;
-  birds: string;
-  hikes: string;
+  plan: string;
+  birding: string;
   about: string;
-  tips: string;
   roadside: string;
   restrooms: string;
   accessible: string;
@@ -35,10 +35,9 @@ type Props = {
   locationId: string;
   hotspotName: string;
   data: {
-    birds: string;
-    hikes: string;
+    plan: string;
+    birding: string;
     about: string;
-    tips: string;
     roadside: string;
     restrooms: string;
     accessible: string;
@@ -121,9 +120,9 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
 
   return (
     <div className="container pb-16 my-12 max-w-xl mx-auto">
-      <Title>{`Suggest Edit for ${hotspotName}`}</Title>
+      <Title>{`Suggest Content for ${hotspotName}`}</Title>
       <h2 className="text-xl font-bold text-gray-600 border-b pb-4 leading-6">
-        Suggest Edit
+        Suggest Content
         <br />
         <span className="text-sm text-gray-500 font-normal">{hotspotName}</span>
       </h2>
@@ -158,26 +157,16 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
             </div>
           </div>
 
-          <Field
-            label="Tips for Birding"
-            help="Where to park, good birding locations, best time of year to visit, whether a scope is helpful, safety concerns, and other information that will help birders know what to expect when they visit the location."
-          >
-            <TinyMCE name="tips" defaultValue={data.tips} />
+          <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
+            <TinyMCE name="plan" defaultValue={data?.plan} />
           </Field>
 
-          <Field
-            label="Birds of Interest"
-            help="List birds that are commonly found here but hard to find at other locations. You can list these by season if there is a variation of birds of interest at different seasons of the year."
-          >
-            <TinyMCE name="birds" defaultValue={data.birds} />
+          <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
+            <TinyMCE name="birding" defaultValue={data?.birding} />
           </Field>
 
-          <Field label="About this location">
-            <TinyMCE name="about" defaultValue={data.about} />
-          </Field>
-
-          <Field label="Notable Trails" help="Information on trails that are good for birding.">
-            <TinyMCE name="hikes" defaultValue={data.hikes} />
+          <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
+            <TinyMCE name="about" defaultValue={data?.about} />
           </Field>
 
           <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
@@ -228,10 +217,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       locationId,
       hotspotName: hotspot?.name,
       data: {
+        plan: hotspot?.plan || "",
+        birding: hotspot?.birding || "",
         about: hotspot?.about || "",
-        birds: hotspot?.birds || "",
-        hikes: hotspot?.hikes || "",
-        tips: hotspot?.tips || "",
         roadside: hotspot?.roadside || "Unknown",
         restrooms: hotspot?.restrooms || "Unknown",
         accessible: hotspot?.accessible || "Unknown",

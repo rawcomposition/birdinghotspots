@@ -18,14 +18,7 @@ export default function Revision({ data, onApprove, onReject }: Props) {
   const { send } = useSecureFetch();
 
   const hideReject =
-    !data.tips &&
-    !data.birds &&
-    !data.about &&
-    !data.hikes &&
-    !data.restrooms &&
-    !data.accessible &&
-    !data.fee &&
-    !data.roadside;
+    !data.plan && !data.birding && !data.about && !data.restrooms && !data.accessible && !data.fee && !data.roadside;
 
   const approveLabel = hideReject ? "Acknowledge" : "Approve";
 
@@ -62,31 +55,24 @@ export default function Revision({ data, onApprove, onReject }: Props) {
             </Link>
           </h3>
 
-          {data.tips && (
+          {data.plan && (
             <div>
-              <h4 className="font-bold">Tips for Birding</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.tips.diff }} className="formatted" />
+              <h4 className="font-bold">Plan Your Visit</h4>
+              <div dangerouslySetInnerHTML={{ __html: data.plan.diff }} className="formatted" />
             </div>
           )}
 
-          {data.birds && (
+          {data.birding && (
             <div>
-              <h4 className="font-bold">Birds of Interest</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.birds.diff }} className="formatted" />
+              <h4 className="font-bold">How to Bird Here</h4>
+              <div dangerouslySetInnerHTML={{ __html: data.birding.diff }} className="formatted" />
             </div>
           )}
 
           {data.about && (
             <div>
-              <h4 className="font-bold">About this location</h4>
+              <h4 className="font-bold">About this Place</h4>
               <div dangerouslySetInnerHTML={{ __html: data.about.diff }} className="formatted" />
-            </div>
-          )}
-
-          {data.hikes && (
-            <div>
-              <h4 className="font-bold">Notable trails</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.hikes.diff }} className="formatted" />
             </div>
           )}
 

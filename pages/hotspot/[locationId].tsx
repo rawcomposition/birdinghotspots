@@ -48,10 +48,9 @@ export default function Hotspot({
   address,
   links,
   citations,
+  plan,
+  birding,
   about,
-  tips,
-  birds,
-  hikes,
   restrooms,
   roadside,
   accessible,
@@ -147,7 +146,7 @@ export default function Hotspot({
         {!isBot && (
           <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
             <PencilSquareIcon className="h-4 w-4" />
-            Suggest Edit
+            Suggest Content
           </Link>
         )}
         {canEdit && !featuredImg && ENABLE_LEGACY_UPLOADS && (
@@ -213,11 +212,13 @@ export default function Hotspot({
             )}
           </div>
 
-          {tips && <AboutSection heading="Tips for Birding" text={tips} />}
+          {plan && <AboutSection heading="Plan Your Visit" text={plan} />}
+
+          {birding && <AboutSection heading="How to Bird Here" text={birding} />}
 
           {noContent && (
             <div className="mb-6 formatted">
-              <h3 className="font-bold text-lg mb-1.5">About this location</h3>
+              <h3 className="font-bold text-lg mb-1.5">About this Place</h3>
               {isBot ? (
                 <div className="p-4 bg-gray-100 rounded-lg mb-6">
                   This location has no content yet. If you are familiar with birding this location, please help other
@@ -240,9 +241,7 @@ export default function Hotspot({
             </div>
           )}
 
-          {birds && <AboutSection heading="Birds of Interest" text={birds} />}
-
-          {about && <AboutSection heading="About this Location" text={about} />}
+          {about && <AboutSection heading="About this Place" text={about} />}
 
           {groups?.map(({ name, about, locationId }) => (
             <div className="mb-6 formatted" key={locationId}>
@@ -253,8 +252,6 @@ export default function Hotspot({
               <div dangerouslySetInnerHTML={{ __html: about || "" }} />
             </div>
           ))}
-
-          {hikes && <AboutSection heading="Notable Trails" text={hikes} />}
 
           <Features {...{ fee, accessible, roadside, restrooms }} />
 

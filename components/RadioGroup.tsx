@@ -16,7 +16,7 @@ const RadioGroup = ({ name, label, options, inline, help }: InputProps) => {
     <div className={inline ? "flex gap-2 justify-between" : ""}>
       <div>
         <label className="text-gray-500 font-bold">{label}</label>
-        {help && <Help text={help} />}
+        {help && <Help text={help} heading={label} />}
       </div>
       <div className="mt-1 flex gap-2">
         {options.map((option) =>
