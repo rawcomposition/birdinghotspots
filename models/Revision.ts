@@ -32,6 +32,21 @@ const RevisionSchema = new Schema({
     old: String,
     new: String,
   },
+  hikes: {
+    // Legacy
+    old: String,
+    new: String,
+  },
+  tips: {
+    // Legacy
+    old: String,
+    new: String,
+  },
+  birds: {
+    // Legacy
+    old: String,
+    new: String,
+  },
   notes: String,
   roadside: {
     old: String,
