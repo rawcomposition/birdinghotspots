@@ -65,9 +65,6 @@ const HotspotSchema = new Schema({
   plan: String,
   birding: String,
   about: String,
-  tips: String, // Legacy
-  birds: String, // Legacy
-  hikes: String, // Legacy
   address: String,
   links: [LinkSchema],
   webpage: String,
