@@ -54,6 +54,9 @@ export default function Home({ featured, northAmericaRegions }: Props) {
               <Link href="/region/AQ" className="font-bold px-2 py-1 text-base mb-1 block">
                 Antarctica
               </Link>
+              <Link href="/region/CR" className="font-bold px-2 py-1 text-base mb-1 block">
+                Costa Rica
+              </Link>
               <Link href="/region/FO" className="font-bold px-2 py-1 text-base mb-1 block">
                 Faroe Islands
               </Link>

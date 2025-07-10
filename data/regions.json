@@ -3734,6 +3734,19 @@
     ]
   },
   {
+    "code": "CR",
+    "name": "Costa Rica",
+    "subregions": [
+      { "code": "CR-A", "name": "Alajuela" },
+      { "code": "CR-C", "name": "Cartago" },
+      { "code": "CR-G", "name": "Guanacaste" },
+      { "code": "CR-H", "name": "Heredia" },
+      { "code": "CR-L", "name": "Limón" },
+      { "code": "CR-P", "name": "Puntarenas" },
+      { "code": "CR-SJ", "name": "San José" }
+    ]
+  },
+  {
     "code": "FO",
     "name": "Faroe Islands",
     "subregions": []

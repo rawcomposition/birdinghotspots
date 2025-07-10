@@ -13720,6 +13720,38 @@
     "name": "Vaudreuil-Soulanges, Quebec, Canada"
   },
   {
+    "code": "CR",
+    "name": "Costa Rica"
+  },
+  {
+    "code": "CR-A",
+    "name": "Alajuela, Costa Rica"
+  },
+  {
+    "code": "CR-C",
+    "name": "Cartago, Costa Rica"
+  },
+  {
+    "code": "CR-G",
+    "name": "Guanacaste, Costa Rica"
+  },
+  {
+    "code": "CR-H",
+    "name": "Heredia, Costa Rica"
+  },
+  {
+    "code": "CR-L",
+    "name": "Limón, Costa Rica"
+  },
+  {
+    "code": "CR-P",
+    "name": "Puntarenas, Costa Rica"
+  },
+  {
+    "code": "CR-SJ",
+    "name": "San José, Costa Rica"
+  },
+  {
     "code": "FO",
     "name": "Faroe Islands"
   },
