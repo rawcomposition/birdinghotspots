@@ -20,7 +20,7 @@ import {
   Image,
   MlImage,
 } from "lib/types";
-import { convertMlImageToImage, getBestImages } from "lib/ml";
+import { convertMlImageToImage, getBestImages, getImages } from "lib/ml";
 
 declare global {
   var mongoose: any;
@@ -631,9 +631,19 @@ export const getHotspotImages = async (locationId: string) => {
   const { featuredImg1, featuredImg2, featuredImg3, featuredImg4 } = hotspot;
   const shouldShowEbirdImages = !featuredImg1;
 
-  const featuredMlImages = [featuredImg1, featuredImg2, featuredImg3, featuredImg4]
-    .filter((it): it is MlImage => !!it)
-    .map(convertMlImageToImage);
+  const currentFeaturedMlImages = [featuredImg1, featuredImg2, featuredImg3, featuredImg4].filter(
+    (it): it is MlImage => !!it
+  );
+
+  const latestFeaturedImgData = currentFeaturedMlImages.length
+    ? (await getImages(currentFeaturedMlImages.map((it) => it.id))) || []
+    : [];
+
+  const featuredMlImages = latestFeaturedImgData.map((it) => {
+    const latestData = latestFeaturedImgData.find((latest) => latest.id === it.id);
+
+    return convertMlImageToImage(latestData || it);
+  });
 
   const formattedEbirdImages = shouldShowEbirdImages ? ebirdImages.map(convertMlImageToImage) : [];
 
