@@ -639,7 +639,7 @@ export const getHotspotImages = async (locationId: string) => {
     ? (await getImages(currentFeaturedMlImages.map((it) => it.id))) || []
     : [];
 
-  const featuredMlImages = latestFeaturedImgData.map((it) => {
+  const featuredMlImages = currentFeaturedMlImages.map((it) => {
     const latestData = latestFeaturedImgData.find((latest) => latest.id === it.id);
 
     return convertMlImageToImage(latestData || it);
