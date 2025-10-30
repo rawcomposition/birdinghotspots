@@ -60,6 +60,9 @@ export default function Home({ featured, northAmericaRegions }: Props) {
               <Link href="/region/FO" className="font-bold px-2 py-1 text-base mb-1 block">
                 Faroe Islands
               </Link>
+              <Link href="/region/IT" className="font-bold px-2 py-1 text-base mb-1 block">
+                Italy
+              </Link>
               <Link href="/region/NA" className="font-bold px-2 py-1 text-base mb-1 block">
                 Namibia
               </Link>
