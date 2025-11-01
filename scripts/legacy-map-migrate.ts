@@ -27,6 +27,7 @@ rl.question(`Enter region code: `, (regionCode: string) => {
   const mapFile = `components/region-maps/${regionCode}.tsx`;
   const mapFileContent = fs.readFileSync(mapFile, "utf8");
   let newMapFileContent = mapFileContent;
+  newMapFileContent = transformPathsToLinks(newMapFileContent);
   for (const subregion of subregions) {
     newMapFileContent = newMapFileContent.replace(`<text>${subregion.code}</text>`, `<text>${subregion.name}</text>`);
   }
@@ -34,3 +35,34 @@ rl.question(`Enter region code: `, (regionCode: string) => {
   console.log("Map migrated successfully");
   rl.close();
 });
+
+export function transformPathsToLinks(input: string): string {
+  // Match each <path ...>...</path> OR self-closing <path .../>
+  const pathElementRe = /<path\b[^>]*?(?:\/>|>[\s\S]*?<\/path>)/g;
+
+  return input.replace(pathElementRe, (full) => {
+    // Extract d="..." or d='...'
+    const dMatch = full.match(/\bd\s*=\s*(?:"([^"]+)"|'([^']+)')/);
+    const dValue = dMatch?.[1] ?? dMatch?.[2];
+    if (!dValue) return full; // no d -> skip
+
+    // Extract class="..." or class='...'
+    const classMatch = full.match(/\bclass\s*=\s*(?:"([^"]+)"|'([^']+)')/);
+    const classValue = classMatch?.[1] ?? classMatch?.[2];
+    if (!classValue) return full; // no class -> skip
+
+    // Find the token immediately after "datamaps-subunit"
+    // e.g. "datamaps-subunit GB-ENG more-classes" => VARIABLE2 = "GB-ENG"
+    const subunitMatch = classValue.match(/\bdatamaps-subunit\b(?:\s+([^\s"'>/]+))/);
+    const variable2 = subunitMatch?.[1];
+    if (!variable2) return full; // no VARIABLE2 right after subunit -> skip
+
+    // Build replacement
+    const replacement = `<Link href="/region/${variable2}" {...linkProps}>
+  <path {...pathProps} d="${dValue}" />
+  <text>${variable2}</text>
+</Link>`;
+
+    return replacement;
+  });
+}

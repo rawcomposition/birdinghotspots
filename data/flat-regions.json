@@ -14498,5 +14498,461 @@
   {
     "code": "IT-34",
     "name": "Veneto, Italy"
+  },
+  {
+    "code": "GB",
+    "name": "United Kingdom"
+  },
+  {
+    "code": "GB-ENG",
+    "name": "England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-BDF",
+    "name": "Bedfordshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-BRC",
+    "name": "Berkshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-BST",
+    "name": "Bristol, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-BKM",
+    "name": "Buckinghamshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-CAM",
+    "name": "Cambridgeshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-CHS",
+    "name": "Cheshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-CON",
+    "name": "Cornwall, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-CMA",
+    "name": "Cumbria, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-DBY",
+    "name": "Derbyshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-DEV",
+    "name": "Devon, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-DOR",
+    "name": "Dorset, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-DUR",
+    "name": "Durham, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-ERY",
+    "name": "East Riding of Yorkshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-ESX",
+    "name": "East Sussex, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-ESS",
+    "name": "Essex, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-GLS",
+    "name": "Gloucestershire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-HAL",
+    "name": "Halton, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-HAM",
+    "name": "Hampshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-HEF",
+    "name": "Herefordshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-HRT",
+    "name": "Hertfordshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-IOW",
+    "name": "Isle of Wight, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-KEN",
+    "name": "Kent, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-LAN",
+    "name": "Lancashire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-LEC",
+    "name": "Leicestershire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-LIN",
+    "name": "Lincolnshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-LND",
+    "name": "London, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-MAN",
+    "name": "Manchester, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-KWL",
+    "name": "Merseyside, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-NFK",
+    "name": "Norfolk, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-NYK",
+    "name": "North Yorkshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-NTH",
+    "name": "Northamptonshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-NBL",
+    "name": "Northumberland, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-NTT",
+    "name": "Nottinghamshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-OXF",
+    "name": "Oxfordshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-RUT",
+    "name": "Rutland, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-SHR",
+    "name": "Shropshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-SOM",
+    "name": "Somerset, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-BNS",
+    "name": "South Yorkshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-STS",
+    "name": "Staffordshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-STT",
+    "name": "Stockton-on-Tees, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-SFK",
+    "name": "Suffolk, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-SRY",
+    "name": "Surrey, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-GAT",
+    "name": "Tyne and Wear, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-WAR",
+    "name": "Warwickshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-SAW",
+    "name": "West Midlands, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-WSX",
+    "name": "West Sussex, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-WKF",
+    "name": "West Yorkshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-WIL",
+    "name": "Wiltshire, England, United Kingdom"
+  },
+  {
+    "code": "GB-ENG-WOR",
+    "name": "Worcestershire, England, United Kingdom"
+  },
+  {
+    "code": "GB-NIR",
+    "name": "Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-ANT",
+    "name": "Antrim, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-ARM",
+    "name": "Armagh, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-BFS",
+    "name": "Belfast, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-DRY",
+    "name": "Derry, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-DOW",
+    "name": "Down, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-FER",
+    "name": "Fermanagh, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-NYM",
+    "name": "Newry and Mourne, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-NIR-OMH",
+    "name": "Omagh, Northern Ireland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT",
+    "name": "Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ABE",
+    "name": "Aberdeen, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ABD",
+    "name": "Aberdeenshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ANS",
+    "name": "Angus, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-AGB",
+    "name": "Argyll and Bute, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-CLK",
+    "name": "Clackmannanshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-DGY",
+    "name": "Dumfries and Galloway, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-DND",
+    "name": "Dundee, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-EAY",
+    "name": "East Ayrshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-EDU",
+    "name": "East Dunbartonshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ELN",
+    "name": "East Lothian, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-EDH",
+    "name": "Edinburgh, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ELS",
+    "name": "Eilean Siar, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-FAL",
+    "name": "Falkirk, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-FIF",
+    "name": "Fife, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-GLG",
+    "name": "Glasgow, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-HLD",
+    "name": "Highland, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-MLN",
+    "name": "Midlothian, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-MRY",
+    "name": "Moray, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-NAY",
+    "name": "North Ayrshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-NLK",
+    "name": "North Lanarkshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ORK",
+    "name": "Orkney Islands, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-PKN",
+    "name": "Perthshire and Kinross, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-RFW",
+    "name": "Renfrewshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-SCB",
+    "name": "Scottish Borders, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-ZET",
+    "name": "Shetland Islands, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-SAY",
+    "name": "South Ayrshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-SLK",
+    "name": "South Lanarkshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-STG",
+    "name": "Stirling, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-WDU",
+    "name": "West Dunbartonshire, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-SCT-WLN",
+    "name": "West Lothian, Scotland, United Kingdom"
+  },
+  {
+    "code": "GB-WLS",
+    "name": "Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-AGY",
+    "name": "Anglesey, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-BGW",
+    "name": "Blaenau Gwent, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-BGE",
+    "name": "Bridgend, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-CAY",
+    "name": "Caerphilly, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-CRF",
+    "name": "Cardiff, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-CMN",
+    "name": "Carmarthenshire, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-CGN",
+    "name": "Ceredigion, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-CWY",
+    "name": "Conwy, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-DEN",
+    "name": "Denbighshire, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-FLN",
+    "name": "Flintshire, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-GWN",
+    "name": "Gwynedd, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-MTY",
+    "name": "Merthyr Tydfil, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-MON",
+    "name": "Monmouthshire, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-NTL",
+    "name": "Neath Port Talbot, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-NWP",
+    "name": "Newport, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-PEM",
+    "name": "Pembrokeshire, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-POW",
+    "name": "Powys, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-RCT",
+    "name": "Rhondda, Cynon, Taff, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-SWA",
+    "name": "Swansea, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-TOF",
+    "name": "Torfaen, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-VGL",
+    "name": "Vale of Glamorgan, Wales, United Kingdom"
+  },
+  {
+    "code": "GB-WLS-WRX",
+    "name": "Wrexham, Wales, United Kingdom"
   }
 ]

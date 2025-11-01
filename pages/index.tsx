@@ -14,11 +14,11 @@ import HotspotGrid from "components/HotspotGrid";
 import clsx from "clsx";
 
 type Props = {
-  northAmericaRegions: Region[];
+  expandedRegions: Region[];
   featured: HotspotType[];
 };
 
-export default function Home({ featured, northAmericaRegions }: Props) {
+export default function Home({ featured, expandedRegions }: Props) {
   return (
     <>
       <Title />
@@ -29,7 +29,7 @@ export default function Home({ featured, northAmericaRegions }: Props) {
       <div className="container pb-16 mt-12">
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
-            {northAmericaRegions.map((country) => (
+            {expandedRegions.map((country) => (
               <React.Fragment key={country.code}>
                 <Link href={`/region/${country.code}`} className="text-gray-700">
                   <h3 className="text-lg mb-4 font-bold">{country.name}</h3>
@@ -239,10 +239,10 @@ export const getStaticProps = async () => {
     };
   });
 
-  const northAmericaRegions = Regions.filter(({ code }) => ["US", "CA", "MX"].includes(code));
+  const expandedRegions = Regions.filter(({ code }) => ["US", "CA", "MX", "GB"].includes(code));
 
   return {
-    props: { featured: formatted, northAmericaRegions },
+    props: { featured: formatted, expandedRegions },
     revalidate: 3600, // 1 hour
   };
 };
