@@ -4126,5 +4126,66 @@
         ]
       }
     ]
+  },
+  {
+    "code": "IN",
+    "name": "India",
+    "subregions": [
+      {
+        "code": "IN-UL",
+        "name": "Uttarakhand",
+        "subregions": [
+          { "code": "IN-UL-AL", "name": "Almora" },
+          { "code": "IN-UL-BA", "name": "Bageshwar" },
+          { "code": "IN-UL-CL", "name": "Chamoli" },
+          { "code": "IN-UL-CP", "name": "Champawat" },
+          { "code": "IN-UL-DD", "name": "Dehradun" },
+          { "code": "IN-UL-HA", "name": "Haridwar" },
+          { "code": "IN-UL-NA", "name": "Nainital" },
+          { "code": "IN-UL-PG", "name": "Pauri Garhwal" },
+          { "code": "IN-UL-PI", "name": "Pithoragarh" },
+          { "code": "IN-UL-RP", "name": "Rudraprayag" },
+          { "code": "IN-UL-TG", "name": "Tehri Garhwal" },
+          { "code": "IN-UL-US", "name": "Udham Singh Nagar" },
+          { "code": "IN-UL-UT", "name": "Uttarkashi" }
+        ]
+      },
+      {
+        "code": "IN-KA",
+        "name": "Karnataka",
+        "subregions": [
+          { "code": "IN-KA-BK", "name": "Bagalkote" },
+          { "code": "IN-KA-BL", "name": "Ballari" },
+          { "code": "IN-KA-BG", "name": "Belagavi" },
+          { "code": "IN-KA-BR", "name": "Bengaluru Rural" },
+          { "code": "IN-KA-BN", "name": "Bengaluru Urban" },
+          { "code": "IN-KA-BD", "name": "Bidar" },
+          { "code": "IN-KA-CJ", "name": "Chamarajanagara" },
+          { "code": "IN-KA-CH", "name": "Chikkaballapura" },
+          { "code": "IN-KA-CK", "name": "Chikkamagaluru" },
+          { "code": "IN-KA-CT", "name": "Chitradurga" },
+          { "code": "IN-KA-DK", "name": "Dakshina Kannada" },
+          { "code": "IN-KA-DA", "name": "Davanagere" },
+          { "code": "IN-KA-DH", "name": "Dharwad" },
+          { "code": "IN-KA-GA", "name": "Gadag" },
+          { "code": "IN-KA-HS", "name": "Hassan" },
+          { "code": "IN-KA-HV", "name": "Haveri" },
+          { "code": "IN-KA-GU", "name": "Kalaburagi" },
+          { "code": "IN-KA-KD", "name": "Kodagu" },
+          { "code": "IN-KA-KL", "name": "Kolar" },
+          { "code": "IN-KA-KP", "name": "Koppal" },
+          { "code": "IN-KA-MA", "name": "Mandya" },
+          { "code": "IN-KA-MY", "name": "Mysuru" },
+          { "code": "IN-KA-RA", "name": "Raichur" },
+          { "code": "IN-KA-RM", "name": "Ramanagara" },
+          { "code": "IN-KA-SH", "name": "Shivamogga" },
+          { "code": "IN-KA-TU", "name": "Tumakuru" },
+          { "code": "IN-KA-UD", "name": "Udupi" },
+          { "code": "IN-KA-UK", "name": "Uttara Kannada" },
+          { "code": "IN-KA-BJ", "name": "Vijayapura" },
+          { "code": "IN-KA-YD", "name": "Yadgiri" }
+        ]
+      }
+    ]
   }
 ]

@@ -14954,5 +14954,189 @@
   {
     "code": "GB-WLS-WRX",
     "name": "Wrexham, Wales, United Kingdom"
+  },
+  {
+    "code": "IN",
+    "name": "India"
+  },
+  {
+    "code": "IN-UL",
+    "name": "Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-AL",
+    "name": "Almora, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-BA",
+    "name": "Bageshwar, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-CL",
+    "name": "Chamoli, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-CP",
+    "name": "Champawat, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-DD",
+    "name": "Dehradun, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-HA",
+    "name": "Haridwar, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-NA",
+    "name": "Nainital, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-PG",
+    "name": "Pauri Garhwal, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-PI",
+    "name": "Pithoragarh, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-RP",
+    "name": "Rudraprayag, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-TG",
+    "name": "Tehri Garhwal, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-US",
+    "name": "Udham Singh Nagar, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-UT",
+    "name": "Uttarkashi, Uttarakhand, India"
+  },
+  {
+    "code": "IN-KA",
+    "name": "Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BK",
+    "name": "Bagalkote, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BL",
+    "name": "Ballari, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BG",
+    "name": "Belagavi, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BR",
+    "name": "Bengaluru Rural, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BN",
+    "name": "Bengaluru Urban, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BD",
+    "name": "Bidar, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-CJ",
+    "name": "Chamarajanagara, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-CH",
+    "name": "Chikkaballapura, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-CK",
+    "name": "Chikkamagaluru, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-CT",
+    "name": "Chitradurga, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-DK",
+    "name": "Dakshina Kannada, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-DA",
+    "name": "Davanagere, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-DH",
+    "name": "Dharwad, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-GA",
+    "name": "Gadag, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-HS",
+    "name": "Hassan, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-HV",
+    "name": "Haveri, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-GU",
+    "name": "Kalaburagi, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-KD",
+    "name": "Kodagu, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-KL",
+    "name": "Kolar, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-KP",
+    "name": "Koppal, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-MA",
+    "name": "Mandya, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-MY",
+    "name": "Mysuru, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-RA",
+    "name": "Raichur, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-RM",
+    "name": "Ramanagara, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-SH",
+    "name": "Shivamogga, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-TU",
+    "name": "Tumakuru, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-UD",
+    "name": "Udupi, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-UK",
+    "name": "Uttara Kannada, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-BJ",
+    "name": "Vijayapura, Karnataka, India"
+  },
+  {
+    "code": "IN-KA-YD",
+    "name": "Yadgiri, Karnataka, India"
   }
 ]

@@ -239,7 +239,7 @@ export const getStaticProps = async () => {
     };
   });
 
-  const expandedRegions = Regions.filter(({ code }) => ["US", "CA", "MX", "GB"].includes(code));
+  const expandedRegions = Regions.filter(({ code }) => ["US", "CA", "MX", "GB", "IN"].includes(code));
 
   return {
     props: { featured: formatted, expandedRegions },
