@@ -15138,5 +15138,89 @@
   {
     "code": "IN-KA-YD",
     "name": "Yadgiri, Karnataka, India"
+  },
+  {
+    "code": "PT",
+    "name": "Portugal"
+  },
+  {
+    "code": "PT-01",
+    "name": "Aveiro, Portugal"
+  },
+  {
+    "code": "PT-02",
+    "name": "Beja, Portugal"
+  },
+  {
+    "code": "PT-03",
+    "name": "Braga, Portugal"
+  },
+  {
+    "code": "PT-04",
+    "name": "Bragança, Portugal"
+  },
+  {
+    "code": "PT-05",
+    "name": "Castelo Branco, Portugal"
+  },
+  {
+    "code": "PT-06",
+    "name": "Coimbra, Portugal"
+  },
+  {
+    "code": "PT-08",
+    "name": "Faro, Portugal"
+  },
+  {
+    "code": "PT-09",
+    "name": "Guarda, Portugal"
+  },
+  {
+    "code": "PT-10",
+    "name": "Leiria, Portugal"
+  },
+  {
+    "code": "PT-11",
+    "name": "Lisboa, Portugal"
+  },
+  {
+    "code": "PT-12",
+    "name": "Portalegre, Portugal"
+  },
+  {
+    "code": "PT-13",
+    "name": "Porto, Portugal"
+  },
+  {
+    "code": "PT-30",
+    "name": "Região Autónoma da Madeira, Portugal"
+  },
+  {
+    "code": "PT-20",
+    "name": "Região Autónoma dos Açores, Portugal"
+  },
+  {
+    "code": "PT-14",
+    "name": "Santarém, Portugal"
+  },
+  {
+    "code": "PT-15",
+    "name": "Setúbal, Portugal"
+  },
+  {
+    "code": "PT-16",
+    "name": "Viana do Castelo, Portugal"
+  },
+  {
+    "code": "PT-17",
+    "name": "Vila Real, Portugal"
+  },
+  {
+    "code": "PT-18",
+    "name": "Viseu, Portugal"
+  },
+  {
+    "code": "PT-07",
+    "name": "Évora, Portugal"
   }
 ]

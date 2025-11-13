@@ -66,6 +66,9 @@ export default function Home({ featured, expandedRegions }: Props) {
               <Link href="/region/NA" className="font-bold px-2 py-1 text-base mb-1 block">
                 Namibia
               </Link>
+              <Link href="/region/PT" className="font-bold px-2 py-1 text-base mb-1 block">
+                Portugal
+              </Link>
               <Link href="/region/ZA" className="font-bold px-2 py-1 text-base mb-1 block">
                 South Africa
               </Link>

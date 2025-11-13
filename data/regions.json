@@ -4187,5 +4187,31 @@
         ]
       }
     ]
+  },
+  {
+    "code": "PT",
+    "name": "Portugal",
+    "subregions": [
+      { "code": "PT-01", "name": "Aveiro" },
+      { "code": "PT-02", "name": "Beja" },
+      { "code": "PT-03", "name": "Braga" },
+      { "code": "PT-04", "name": "Bragança" },
+      { "code": "PT-05", "name": "Castelo Branco" },
+      { "code": "PT-06", "name": "Coimbra" },
+      { "code": "PT-08", "name": "Faro" },
+      { "code": "PT-09", "name": "Guarda" },
+      { "code": "PT-10", "name": "Leiria" },
+      { "code": "PT-11", "name": "Lisboa" },
+      { "code": "PT-12", "name": "Portalegre" },
+      { "code": "PT-13", "name": "Porto" },
+      { "code": "PT-30", "name": "Região Autónoma da Madeira" },
+      { "code": "PT-20", "name": "Região Autónoma dos Açores" },
+      { "code": "PT-14", "name": "Santarém" },
+      { "code": "PT-15", "name": "Setúbal" },
+      { "code": "PT-16", "name": "Viana do Castelo" },
+      { "code": "PT-17", "name": "Vila Real" },
+      { "code": "PT-18", "name": "Viseu" },
+      { "code": "PT-07", "name": "Évora" }
+    ]
   }
 ]
