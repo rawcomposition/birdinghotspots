@@ -82,11 +82,22 @@ export default function Explore({ params }: Props) {
     router.replace({ query: { ...router.query, lat, lng, label } });
   }, [lat, lng, label]);
 
+  React.useEffect(() => {
+    if (view === "map") {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+      };
+    }
+  }, [view]);
+
   return (
-    <div className={view === "grid" ? "container pb-16 mt-8 max-w-[975px]" : "flex flex-col h-full"}>
+    <div className={view === "grid" ? "container pb-16 mt-8 max-w-[975px]" : "flex flex-col h-[calc(100vh-60px)] overflow-hidden"}>
       <Title>Explore</Title>
       <div
-        className={`sm:flex justify-between items-center ${view === "map" ? "container my-2 max-w-[975px]" : "mb-6"}`}
+        className={`sm:flex justify-between items-center flex-shrink-0 ${view === "map" ? "container my-2 max-w-[975px]" : "mb-6"}`}
       >
         <div className="relative w-full sm:w-[500px] flex">
           <span className="bg-lime-600/90 py-2 pl-5 pr-4 text-sm rounded-l-full text-white font-bold shadow border-gray-200 border border-r-0 flex gap-1 items-center">

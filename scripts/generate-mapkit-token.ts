@@ -18,7 +18,7 @@ try {
 
   const token = jwt.sign({}, privateKey, {
     algorithm: "ES256",
-    expiresIn: "180d",
+    expiresIn: "365d",
     issuer: teamId,
     keyid: keyId,
   });

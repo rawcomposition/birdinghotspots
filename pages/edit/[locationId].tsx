@@ -19,7 +19,6 @@ import useToast from "hooks/useToast";
 import Error from "next/error";
 import ImagesInput from "components/ImagesInput";
 import TinyMCE from "components/TinyMCE";
-import MapZoomInput from "components/MapZoomInput";
 import MapGrid from "components/MapGrid";
 import ExpandableHtml from "components/ExpandableHtml";
 import Input from "components/Input";
@@ -220,13 +219,6 @@ export default function Edit({
                 options={["Yes", "No", "Unknown"]}
               />
               <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} />
-              {markers.length > 0 && (
-                <div className="flex-1">
-                  <label className="text-gray-500 font-bold mb-1 block">Hotspot Map</label>
-                  {/*@ts-ignore*/}
-                  <MapZoomInput markers={markers} />
-                </div>
-              )}
             </aside>
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
