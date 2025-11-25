@@ -24,8 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const results = await Hotspot.find(query, ["-_id", "featuredImg", "name", "locationId", "lat", "lng", "species"])
-      .limit(1201) // 1201 to check if there are more than 1200 results
+    const results = await Hotspot.find(query, ["-_id", "name", "locationId", "lat", "lng", "species"])
+      .limit(1201)
       .lean()
       .exec();
 
@@ -35,7 +35,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         data.locationId,
         [data.lng, data.lat],
         data.species,
-        data.featuredImg?.xsUrl || data.featuredImg?.smUrl,
       ];
       return hotspot;
     });

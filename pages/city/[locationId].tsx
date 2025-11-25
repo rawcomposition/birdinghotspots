@@ -7,7 +7,7 @@ import { getRegion } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
-import MapBox from "components/MapBox";
+import MapKit from "components/MapKit";
 import HotspotGrid from "components/HotspotGrid";
 import MapIconAlt from "icons/Map";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
@@ -59,9 +59,7 @@ export default function City({ region, city, hotspots, stateCode, countryCode, i
         </div>
       </section>
       <section>
-        {markers.length > 0 && !isBot && (
-          <MapBox key={locationId} markers={markers as Marker[]} zoom={8} landscape disableScroll />
-        )}
+        {markers.length > 0 && !isBot && <MapKit key={locationId} markers={markers as Marker[]} zoom={8} landscape />}
       </section>
       <p className="mb-16 text-[13px] mt-2 text-gray-600">
         Showing <strong>{hotspots.length}</strong> hotspots within a 5 mile radius of city center.

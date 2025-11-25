@@ -12,7 +12,7 @@ import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
 import { formatMarker, getShortName, canEdit as checkCanEdit } from "lib/helpers";
-import MapBox from "components/MapBox";
+import MapKit from "components/MapKit";
 import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
 import HotspotGrid from "components/HotspotGrid";
@@ -129,7 +129,7 @@ export default function Group({
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
-          {markers.length > 0 && !isBot && <MapBox key={_id} markers={markers} zoom={12} />}
+          {markers.length > 0 && !isBot && <MapKit key={_id} markers={markers} zoom={12} />}
           {!!images?.length && <MapList images={images} />}
         </div>
       </div>

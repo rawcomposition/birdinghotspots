@@ -13,7 +13,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap"
             rel="stylesheet"
           ></link>
-          <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet" />
           <link rel="icon" href="/favicon.png" sizes="192x192" />
           <script
             src={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}&sensor=false&libraries=places&region=US`}

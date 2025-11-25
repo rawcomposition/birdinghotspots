@@ -19,7 +19,7 @@ import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
 import { getArticlesByRegion, getRegionInfo, getHotspotsByRegion, getTopGroupsByRegion } from "lib/mongo";
-import MapBox from "components/MapBox";
+import MapKit from "components/MapKit";
 import HotspotList from "components/HotspotList";
 import RegionLinksBtn from "components/RegionLinksBtn";
 import useLogPageview from "hooks/useLogPageview";
@@ -193,9 +193,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
             <RegionStats regionCode={code} data={stats} />
           </section>
           <section className="mb-16">
-            {markers.length > 0 && !isBot && (
-              <MapBox key={code} markers={markers as Marker[]} zoom={8} landscape disableScroll />
-            )}
+            {markers.length > 0 && !isBot && <MapKit key={code} markers={markers as Marker[]} zoom={8} landscape />}
           </section>
         </>
       )}

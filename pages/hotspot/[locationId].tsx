@@ -15,7 +15,7 @@ import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
 import { formatMarker, canEdit as checkCanEdit } from "lib/helpers";
-import MapBox from "components/MapBox";
+import MapKit from "components/MapKit";
 import NearbyHotspots from "components/NearbyHotspots";
 import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
@@ -260,7 +260,7 @@ export default function Hotspot({
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
-          {lat && lng && marker && !isBot && <MapBox key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
+          {lat && lng && marker && !isBot && <MapKit key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
           {!!mapImages?.length && <MapList images={mapImages} />}
           {lat && lng && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
         </div>
