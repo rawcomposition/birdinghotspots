@@ -136,7 +136,8 @@ export default function MapKit({ markers, zoom, disabled, landscape, disableScro
 
     if (markers.length > 1) {
       const padding = markers.length > 15 ? 40 : markers.length > 10 ? 80 : markers.length > 2 ? 120 : 140;
-      map.current.showItems(annotationsRef.current, { animate: false, padding });
+      const pad = new window.mapkit.Padding(padding, padding, padding, padding);
+      map.current.showItems(annotationsRef.current, { animate: false, padding: pad });
     } else {
       const zoomLevel = Math.max(0, Math.min(20, zoom));
       const spanMultiplier = Math.pow(2, 15 - zoomLevel);
