@@ -106,7 +106,7 @@ export default function MapKit({ markers, zoom, disabled, landscape, disableScro
           : "";
         const container = document.createElement("div");
         container.className = "mapkit-popup bg-white p-3 rounded shadow-lg text-sm border border-gray-200";
-        container.innerHTML = `<span class="font-medium text-sm">${data.name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;
+        container.innerHTML = `<span class="font-medium text-sm text-gray-900">${data.name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;
         return container;
       },
     };
