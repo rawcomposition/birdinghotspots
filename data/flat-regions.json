@@ -14960,62 +14960,6 @@
     "name": "India"
   },
   {
-    "code": "IN-UL",
-    "name": "Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-AL",
-    "name": "Almora, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-BA",
-    "name": "Bageshwar, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-CL",
-    "name": "Chamoli, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-CP",
-    "name": "Champawat, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-DD",
-    "name": "Dehradun, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-HA",
-    "name": "Haridwar, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-NA",
-    "name": "Nainital, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-PG",
-    "name": "Pauri Garhwal, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-PI",
-    "name": "Pithoragarh, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-RP",
-    "name": "Rudraprayag, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-TG",
-    "name": "Tehri Garhwal, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-US",
-    "name": "Udham Singh Nagar, Uttarakhand, India"
-  },
-  {
-    "code": "IN-UL-UT",
-    "name": "Uttarkashi, Uttarakhand, India"
-  },
-  {
     "code": "IN-KA",
     "name": "Karnataka, India"
   },
@@ -15138,6 +15082,350 @@
   {
     "code": "IN-KA-YD",
     "name": "Yadgiri, Karnataka, India"
+  },
+  {
+    "code": "IN-TN",
+    "name": "Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-AR",
+    "name": "Ariyalur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-CP",
+    "name": "Chengalpattu, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-CH",
+    "name": "Chennai, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-CO",
+    "name": "Coimbatore, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-CU",
+    "name": "Cuddalore, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-DH",
+    "name": "Dharmapuri, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-DI",
+    "name": "Dindigul, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-ER",
+    "name": "Erode, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-KA",
+    "name": "Kallakurichi, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-KC",
+    "name": "Kancheepuram, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-KK",
+    "name": "Kanniyakumari, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-KR",
+    "name": "Karur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-KS",
+    "name": "Krishnagiri, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-MA",
+    "name": "Madurai, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-NG",
+    "name": "Nagapattinam, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-NM",
+    "name": "Namakkal, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-PE",
+    "name": "Perambalur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-PU",
+    "name": "Pudukkottai, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-RA",
+    "name": "Ramanathapuram, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-RN",
+    "name": "Ranipet, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-SA",
+    "name": "Salem, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-SI",
+    "name": "Sivagangai, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TE",
+    "name": "Tenkasi, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TJ",
+    "name": "Thanjavur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-NI",
+    "name": "The Nilgiris, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TH",
+    "name": "Theni, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TL",
+    "name": "Thiruvallur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TR",
+    "name": "Thiruvarur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TK",
+    "name": "Thoothukudi, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TC",
+    "name": "Tiruchirappalli, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TI",
+    "name": "Tirunelveli, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TU",
+    "name": "Tirupathur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TP",
+    "name": "Tiruppur, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-TV",
+    "name": "Tiruvannamalai, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-VE",
+    "name": "Vellore, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-VL",
+    "name": "Viluppuram, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-TN-VR",
+    "name": "Virudhunagar, Tamil Nadu, India"
+  },
+  {
+    "code": "IN-RJ",
+    "name": "Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-AJ",
+    "name": "Ajmer, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-AL",
+    "name": "Alwar, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BN",
+    "name": "Banswara, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BR",
+    "name": "Baran, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BM",
+    "name": "Barmer, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BP",
+    "name": "Bharatpur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BW",
+    "name": "Bhilwara, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BI",
+    "name": "Bikaner, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-BU",
+    "name": "Bundi, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-CT",
+    "name": "Chittorgarh, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-CR",
+    "name": "Churu, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-DA",
+    "name": "Dausa, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-DH",
+    "name": "Dholpur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-DU",
+    "name": "Dungarpur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-HA",
+    "name": "Hanumangarh, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-JP",
+    "name": "Jaipur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-JS",
+    "name": "Jaisalmer, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-JL",
+    "name": "Jalore, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-JW",
+    "name": "Jhalawar, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-JJ",
+    "name": "Jhunjhunu, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-JO",
+    "name": "Jodhpur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-KA",
+    "name": "Karauli, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-KO",
+    "name": "Kota, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-NA",
+    "name": "Nagaur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-PA",
+    "name": "Pali, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-PR",
+    "name": "Pratapgarh, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-RA",
+    "name": "Rajsamand, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-SM",
+    "name": "Sawai Madhopur, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-SK",
+    "name": "Sikar, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-SR",
+    "name": "Sirohi, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-GA",
+    "name": "Sri Ganganagar, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-TO",
+    "name": "Tonk, Rajasthan, India"
+  },
+  {
+    "code": "IN-RJ-UD",
+    "name": "Udaipur, Rajasthan, India"
+  },
+  {
+    "code": "IN-UL",
+    "name": "Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-AL",
+    "name": "Almora, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-BA",
+    "name": "Bageshwar, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-CL",
+    "name": "Chamoli, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-CP",
+    "name": "Champawat, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-DD",
+    "name": "Dehradun, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-HA",
+    "name": "Haridwar, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-NA",
+    "name": "Nainital, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-PG",
+    "name": "Pauri Garhwal, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-PI",
+    "name": "Pithoragarh, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-RP",
+    "name": "Rudraprayag, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-TG",
+    "name": "Tehri Garhwal, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-US",
+    "name": "Udham Singh Nagar, Uttarakhand, India"
+  },
+  {
+    "code": "IN-UL-UT",
+    "name": "Uttarkashi, Uttarakhand, India"
   },
   {
     "code": "PT",

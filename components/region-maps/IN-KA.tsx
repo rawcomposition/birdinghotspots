@@ -2,7 +2,7 @@ import Link from "next/link";
 import MapTooltip from "components/MapTooltip";
 import useHoverMap from "hooks/useHoverMap";
 
-export default function INMap() {
+export default function INKAMap() {
   const { linkProps, pathProps, tooltipProps, svgRef } = useHoverMap();
 
   return (
