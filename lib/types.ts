@@ -6,7 +6,7 @@ export type Image = {
   _id?: string;
   xsUrl?: string;
   smUrl: string;
-  lgUrl: string;
+  lgUrl?: string;
   by?: string;
   email?: string;
   uid?: string;

@@ -38,6 +38,8 @@ const LegacyImageSchema = new Schema(
   { timestamps: true }
 );
 
+LegacyImageSchema.index({ locationId: 1, type: 1, isMap: 1, isMigrated: 1, order: 1 });
+
 const LegacyImage = models.LegacyImage || model("LegacyImage", LegacyImageSchema);
 
 export default LegacyImage as mongoose.Model<LegacyImageT>;

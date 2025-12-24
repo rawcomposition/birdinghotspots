@@ -9,6 +9,7 @@ import Profile from "models/Profile";
 import City from "models/City";
 import Log from "models/Log";
 import RegionInfo from "models/RegionInfo";
+import LegacyImage from "models/LegacyImage";
 import Regions from "data/regions.json";
 import SyncRegions from "data/sync-regions.json";
 import {
@@ -613,20 +614,26 @@ export async function deleteHotspot(hotspot: HotspotType) {
 export const getHotspotImages = async (locationId: string) => {
   await connect();
 
-  const [ebirdImages, hotspot] = await Promise.all([
+  const [ebirdImages, hotspot, legacyImages] = await Promise.all([
     getBestImages(locationId as string),
     Hotspot.findOne({ locationId }, [
       "featuredImg",
-      "images",
       "featuredImg1",
       "featuredImg2",
       "featuredImg3",
       "featuredImg4",
     ]).lean(),
+    LegacyImage.find({
+      locationId,
+      type: "hotspot",
+      isMap: { $ne: true },
+      isMigrated: { $ne: true },
+    })
+      .sort({ order: 1, _id: 1 })
+      .lean(),
   ]);
 
   if (!hotspot) throw new Error("Hotspot not found");
-  const legacyImages = hotspot?.images?.filter((it) => !it.isMap && !it.isMigrated) || [];
 
   const { featuredImg1, featuredImg2, featuredImg3, featuredImg4 } = hotspot;
   const shouldShowEbirdImages = !featuredImg1;
