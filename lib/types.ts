@@ -28,6 +28,32 @@ export type Image = {
   isMigrated?: boolean;
 };
 
+export type LegacyImage = {
+  _id?: string;
+  locationId: string;
+  type: "hotspot" | "group" | "drive";
+  xsUrl?: string;
+  smUrl: string;
+  lgUrl?: string;
+  by?: string;
+  email?: string;
+  uid?: string;
+  isMap?: boolean;
+  isStreetview?: boolean;
+  isPublicDomain?: boolean;
+  width?: number;
+  height?: number;
+  size?: number;
+  caption?: string;
+  legacy?: boolean;
+  isNew?: boolean;
+  id?: string;
+  streetviewData?: any;
+  hideFromChildren?: boolean;
+  isMigrated?: boolean;
+  order?: number;
+};
+
 export type MlImage = {
   id: number;
   caption: string;

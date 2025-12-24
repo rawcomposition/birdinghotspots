@@ -17,7 +17,8 @@
     "export-hotspots-aggregated": "tsx ./scripts/export-hotspots-aggregated.ts",
     "export-hotspots-duplicated": "tsx ./scripts/export-hotspots-duplicated.ts",
     "export-sample-data": "tsx ./scripts/export-sample-data.ts",
-    "generate-mapkit-token": "tsx ./scripts/generate-mapkit-token.ts"
+    "generate-mapkit-token": "tsx ./scripts/generate-mapkit-token.ts",
+    "migrate-images": "tsx ./scripts/migrate-images.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",
