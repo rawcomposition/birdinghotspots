@@ -33,31 +33,6 @@ const loadMapkitScript = (key: string, onLoad: () => void): void => {
 
   mapkitScriptLoading = true;
 
-  if (document.querySelector('script[src*="mapkit.js"]')) {
-    const checkInterval = setInterval(() => {
-      if (window.mapkit && window.mapkit.Map) {
-        clearInterval(checkInterval);
-        mapkitScriptLoaded = true;
-        mapkitScriptLoading = false;
-        if (!mapkitInitialized && key) {
-          try {
-            window.mapkit.init({
-              authorizationCallback: (done: (token: string) => void) => {
-                done(key);
-              },
-            });
-            mapkitInitialized = true;
-          } catch (error) {
-            console.error("Error initializing MapKit:", error);
-          }
-        }
-        mapkitLoadCallbacks.forEach((callback) => callback());
-        mapkitLoadCallbacks.clear();
-      }
-    }, 50);
-    return;
-  }
-
   const script = document.createElement("script");
   script.src = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js";
   script.async = true;
@@ -96,8 +71,7 @@ export default function HotspotIssueMapKit({ markers, zoom, useTargetBlank }: Pr
   const annotationsRef = React.useRef<any[]>([]);
   const markerCount = markers.length;
 
-  const keys = process.env.NEXT_PUBLIC_MAPKIT_KEY?.split(",") || [];
-  const key = keys[Math.floor(Math.random() * keys.length)] || "";
+  const key = process.env.NEXT_PUBLIC_MAPKIT_KEY || "";
 
   React.useEffect(() => {
     if (typeof window === "undefined" || !mapContainer.current) return;

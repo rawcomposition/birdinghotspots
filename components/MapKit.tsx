@@ -24,8 +24,7 @@ export default function MapKit({ markers, zoom, disabled, landscape, disableScro
   const annotationsRef = React.useRef<any[]>([]);
   const markerCount = markers.length;
 
-  const keys = process.env.NEXT_PUBLIC_MAPKIT_KEY?.split(",") || [];
-  const key = keys[Math.floor(Math.random() * keys.length)] || "";
+  const key = process.env.NEXT_PUBLIC_MAPKIT_KEY || "";
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
