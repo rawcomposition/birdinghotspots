@@ -109,7 +109,7 @@ export default function HotspotIssueMapKit({ markers, zoom, disableScroll, useTa
           setIsVisible(entry.isIntersecting);
         });
       },
-      { rootMargin: "50px" }
+      { rootMargin: "200px" }
     );
 
     observer.observe(mapContainer.current);
@@ -232,9 +232,9 @@ export default function HotspotIssueMapKit({ markers, zoom, disableScroll, useTa
               : "";
           const container = document.createElement("div");
           container.className = "mapkit-popup bg-white p-3 rounded shadow-lg text-sm border border-gray-200";
-          container.innerHTML = `<span class="font-medium text-sm text-gray-900">${data.name}</span><br>${viewLink}${
-            customLink || directionsLink
-          }`;
+          container.innerHTML = `<span class="font-medium text-sm text-gray-900">${
+            data.name
+          }</span><br>${viewLink}&nbsp;&nbsp;${customLink || directionsLink}`;
           return container;
         },
       };
