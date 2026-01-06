@@ -37,8 +37,16 @@ export default function DuplicateHotspots({ regionCode, duplicateHotspots }: Pro
       <Title>{`Hotspot Issues - ${regionCode}`}</Title>
       <PageHeading>Hotspot Issues - {regionCode}</PageHeading>
 
-      <h3 className="text-lg mb-1 font-bold">Duplicate Hotspots</h3>
-      <p className="text-sm text-gray-600 mb-4">The following hotspots are within 50 meters of each other.</p>
+      <h3 className="text-lg mb-1 font-bold">
+        Close Proximity Hotspots{" "}
+        <span className="bg-yellow-300 rounded-full px-3 py-[3px] text-sm text-yellow-800 ml-2 font-semibold">
+          {duplicateHotspots.length} issues
+        </span>
+      </h3>
+      <p className="text-sm text-gray-600 mb-1">The following hotspots are within 50 meters of each other.</p>
+      <p className="text-sm text-gray-600 mb-4">
+        <strong>Note:</strong> Changes may take up to 24 hours to appear.
+      </p>
       {isClientReady && <HotspotIssueList duplicateHotspots={duplicateHotspots} />}
     </div>
   );
