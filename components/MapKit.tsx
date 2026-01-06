@@ -9,24 +9,15 @@ declare global {
 }
 
 type Props = {
-  markers: (Marker & { customLink?: { label: string; url: string } })[];
+  markers: Marker[];
   zoom: number;
   disabled?: boolean;
   landscape?: boolean;
   disableScroll?: boolean;
   lgMarkers?: boolean;
-  useTargetBlank?: boolean;
 };
 
-export default function MapKit({
-  markers,
-  zoom,
-  disabled,
-  landscape,
-  disableScroll,
-  lgMarkers,
-  useTargetBlank,
-}: Props) {
+export default function MapKit({ markers, zoom, disabled, landscape, disableScroll, lgMarkers }: Props) {
   const [mapkitLoaded, setMapkitLoaded] = React.useState<boolean>(false);
   const mapContainer = React.useRef<HTMLDivElement>(null);
   const map = React.useRef<any>(null);
@@ -103,7 +94,7 @@ export default function MapKit({
       annotationsRef.current = [];
     }
 
-    const annotationDataMap = new Map<any, Marker & { customLink?: { label: string; url: string } }>();
+    const annotationDataMap = new Map<any, Marker>();
 
     const calloutDelegate = {
       calloutElementForAnnotation(annotation: any) {
@@ -111,25 +102,11 @@ export default function MapKit({
         if (!data) return null;
 
         const viewLink = data.url
-          ? `<a href="${data.url}" class="marker-link"${
-              useTargetBlank ? " target='_blank'" : ""
-            }><b>View Hotspot</b></a>&nbsp;&nbsp;`
+          ? `<a href="${data.url}" class="marker-link"><b>View Hotspot</b></a>&nbsp;&nbsp;`
           : "";
-        const customLink = data.customLink
-          ? `<a href="${data.customLink.url}" class="marker-link"${useTargetBlank ? " target='_blank'" : ""}><b>${
-              data.customLink.label
-            }</b></a>&nbsp;&nbsp;`
-          : "";
-
-        const directionsLink =
-          data.lat && data.lng
-            ? `<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>&nbsp;&nbsp;`
-            : "";
         const container = document.createElement("div");
         container.className = "mapkit-popup bg-white p-3 rounded shadow-lg text-sm border border-gray-200";
-        container.innerHTML = `<span class="font-medium text-sm text-gray-900">${data.name}</span><br>${viewLink}${
-          customLink || directionsLink
-        }`;
+        container.innerHTML = `<span class="font-medium text-sm text-gray-900">${data.name}</span><br>${viewLink}<a href="https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}" target="_blank" class="marker-link"><b>Get Directions</b></a>`;
         return container;
       },
     };
