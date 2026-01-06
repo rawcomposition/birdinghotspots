@@ -11,7 +11,6 @@ declare global {
 type Props = {
   markers: (Marker & { customLink?: { label: string; url: string } })[];
   zoom: number;
-  disableScroll?: boolean;
   useTargetBlank?: boolean;
 };
 
@@ -89,7 +88,7 @@ const loadMapkitScript = (key: string, onLoad: () => void): void => {
   document.head.appendChild(script);
 };
 
-export default function HotspotIssueMapKit({ markers, zoom, disableScroll, useTargetBlank }: Props) {
+export default function HotspotIssueMapKit({ markers, zoom, useTargetBlank }: Props) {
   const [mapkitLoaded, setMapkitLoaded] = React.useState<boolean>(false);
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
   const mapContainer = React.useRef<HTMLDivElement>(null);
@@ -175,9 +174,9 @@ export default function HotspotIssueMapKit({ markers, zoom, disableScroll, useTa
           showsUserLocation: false,
           showsUserLocationControl: false,
           showsCompass: window.mapkit.FeatureVisibility.Hidden,
-          showsZoomControl: false,
-          isZoomEnabled: false,
-          isScrollEnabled: !disableScroll,
+          showsZoomControl: true,
+          isZoomEnabled: true,
+          isScrollEnabled: true,
           isRotationEnabled: false,
           mapType: window.mapkit.Map.MapTypes.standard,
         });
@@ -190,14 +189,14 @@ export default function HotspotIssueMapKit({ markers, zoom, disableScroll, useTa
 
     if (map.current) {
       try {
-        map.current.isZoomEnabled = false;
-        map.current.isScrollEnabled = !disableScroll;
+        map.current.isZoomEnabled = true;
+        map.current.isScrollEnabled = true;
         map.current.isRotationEnabled = false;
       } catch (error) {
         console.error("Error updating MapKit settings:", error);
       }
     }
-  }, [mapkitLoaded, markers, disableScroll, isVisible]);
+  }, [mapkitLoaded, markers, isVisible]);
 
   React.useEffect(() => {
     if (!map.current || !window.mapkit || !isVisible || markers.length === 0) return;
