@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetParams, Hotspot, Token } from "lib/types";
+import { GetParams, Hotspot, Token, EBirdHotspot } from "lib/types";
 
 export function capitalize(str: string) {
   if (typeof str !== "string") return str;
@@ -322,4 +322,27 @@ export const get = async (url: string, params: GetParams) => {
     throw new Error(json.message || "An error occurred");
   }
   return json;
+};
+
+export const getHotspotsForRegion = async (region: string) => {
+  console.log(`Fetching eBird hotspots for ${region}`);
+  const response = await fetch(
+    `https://api.ebird.org/v2/ref/hotspot/${region}?fmt=json&key=${process.env.NEXT_PUBLIC_EBIRD_API}`
+  );
+
+  const json = await response.json();
+
+  if ("errors" in json) {
+    throw "Error fetching eBird photos";
+  }
+
+  return json.map((hotspot: EBirdHotspot) => ({
+    locationId: hotspot.locId,
+    name: hotspot.locName.trim(),
+    lat: hotspot.lat,
+    lng: hotspot.lng,
+    total: hotspot.numSpeciesAllTime || 0,
+    subnational1Code: hotspot.subnational1Code,
+    subnational2Code: hotspot.subnational2Code,
+  }));
 };

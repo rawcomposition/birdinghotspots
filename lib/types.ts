@@ -140,11 +140,13 @@ export type IBA = {
   about: string;
 };
 
-export type EbirdHotspot = {
-  locationId: string;
-  name: string;
-  latitude: number;
-  longitude: number;
+export type EBirdHotspot = {
+  locId: string;
+  locName: string;
+  lat: number;
+  lng: number;
+  numSpeciesAllTime?: number;
+  countryCode: string;
   subnational1Code: string;
   subnational2Code: string;
 };
