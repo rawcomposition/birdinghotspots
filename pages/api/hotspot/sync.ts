@@ -4,37 +4,10 @@ import Hotspot from "models/Hotspot";
 import Settings from "models/Settings";
 import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
+import { getHotspotsForRegion } from "lib/helpers";
 
 // Mostly stakeouts that don't follow the naming convention, or are otherwise are obvious mistakes on eBird hotspot reviewers part.
 const blockedLocationIds = ["L3934548", "L7929720", "L10823928", "L7820108", "L109212", "L109221", "L30522405"];
-
-const getHotspotsForRegion = async (region: string) => {
-  console.log(`Fetching eBird hotspots for ${region}`);
-  const response = await fetch(
-    `https://api.ebird.org/v2/ref/hotspot/${region}?fmt=json&key=${process.env.NEXT_PUBLIC_EBIRD_API}`
-  );
-
-  const json = await response.json();
-
-  if ("errors" in json) {
-    throw "Error fetching eBird photos";
-  }
-
-  return json
-    .map((hotspot: any) => ({
-      locationId: hotspot.locId,
-      name: hotspot.locName.trim(),
-      lat: hotspot.lat,
-      lng: hotspot.lng,
-      total: hotspot.numSpeciesAllTime || 0,
-      subnational1Code: hotspot.subnational1Code,
-      subnational2Code: hotspot.subnational2Code,
-    }))
-    .filter(
-      (hotspot: any) =>
-        !hotspot.name.toLowerCase().startsWith("stakeout") && !blockedLocationIds.includes(hotspot.locationId)
-    );
-};
 
 const updateHotspot = (dbHotspot: any, ebird: any) => {
   const { name, lat, lng, total, subnational2Code } = ebird;
@@ -127,10 +100,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     console.log(`Syncing ${nextRegion}`);
     const fields = ["locationId", "name", "lat", "lng", "species", "countyCode"];
-    const [hotspots, dbHotspots] = await Promise.all([
+    const [unfilteredHotspots, dbHotspots] = await Promise.all([
       getHotspotsForRegion(nextRegion),
       Hotspot.find({ $or: [{ stateCode: nextRegion }, { countryCode: nextRegion }] }, fields),
     ]);
+    const hotspots = unfilteredHotspots.filter(
+      (hotspot: any) =>
+        !hotspot.name.toLowerCase().startsWith("stakeout") && !blockedLocationIds.includes(hotspot.locationId)
+    );
     const dbHotspotIds: string[] = dbHotspots.map((hotspot) => hotspot.locationId);
     const ebirdIds = hotspots.map(({ locationId }: any) => locationId);
 
