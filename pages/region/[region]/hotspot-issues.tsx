@@ -25,9 +25,14 @@ type Props = {
     hotspots: Hotspot[];
     hasOverlappingMarkers: boolean;
   }[];
+  duplicateNameClusters: {
+    name: string;
+    hotspots: Hotspot[];
+    hasOverlappingMarkers: boolean;
+  }[];
 };
 
-export default function DuplicateHotspots({ regionCode, closeProximityClusters }: Props) {
+export default function DuplicateHotspots({ regionCode, closeProximityClusters, duplicateNameClusters }: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   React.useEffect(() => {
     setIsClientReady(true);
@@ -49,6 +54,15 @@ export default function DuplicateHotspots({ regionCode, closeProximityClusters }
         <strong>Note:</strong> Changes may take up to 24 hours to appear.
       </p>
       {isClientReady && <HotspotIssueList hotspotClusters={closeProximityClusters} />}
+
+      <h3 className="text-lg mb-1 mt-12 font-bold">
+        Duplicate Name Hotspots{" "}
+        <span className="bg-yellow-300 rounded-full px-3 py-[3px] text-sm text-yellow-800 ml-2 font-semibold">
+          {duplicateNameClusters.length} issues
+        </span>
+      </h3>
+      <p className="text-sm text-gray-600 mb-1">The following hotspots share the same name within the same region.</p>
+      {isClientReady && <HotspotIssueList hotspotClusters={duplicateNameClusters} />}
     </div>
   );
 }
@@ -76,7 +90,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     }));
 
   return {
-    props: { regionCode, closeProximityClusters },
+    props: {
+      regionCode,
+      closeProximityClusters,
+      duplicateNameClusters: getDuplicateNameClusters(hotspots, closeProximityClusters),
+    },
   };
 };
 
@@ -124,4 +142,38 @@ function hasOverlappingMarkers(cluster: Hotspot[]): boolean {
     }
   }
   return false;
+}
+
+function getDuplicateNameClusters(
+  hotspots: Hotspot[],
+  closeProximityClusters: { hotspots: Hotspot[] }[]
+): { name: string; hotspots: Hotspot[]; hasOverlappingMarkers: boolean }[] {
+  const closeProximityIds = new Set<string>();
+  closeProximityClusters.forEach((cluster) => {
+    cluster.hotspots.forEach((hotspot) => closeProximityIds.add(hotspot.locationId));
+  });
+
+  const clustersByKey = new Map<string, Hotspot[]>();
+  hotspots.forEach((hotspot) => {
+    const trimmedName = hotspot.name.trim().toLowerCase();
+    const scopeKey = hotspot.subnational2Code?.trim() || hotspot.subnational1Code?.trim() || hotspot.countryCode.trim();
+    const key = `${scopeKey}::${trimmedName}`;
+    const cluster = clustersByKey.get(key);
+    if (cluster) cluster.push(hotspot);
+    else clustersByKey.set(key, [hotspot]);
+  });
+
+  return [...clustersByKey.entries()]
+    .map(([key, cluster]) => {
+      return {
+        name: cluster[0].name,
+        hotspots: cluster,
+        hasOverlappingMarkers: hasOverlappingMarkers(cluster),
+      };
+    })
+    .filter((cluster) => cluster.hotspots.length > 1)
+    .filter((cluster) => {
+      const allInCloseProximity = cluster.hotspots.every((hotspot) => closeProximityIds.has(hotspot.locationId));
+      return !allInCloseProximity;
+    });
 }
