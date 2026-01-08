@@ -388,6 +388,7 @@ export const getHotspotsForRegion = async (region: string) => {
     lat: hotspot.lat,
     lng: hotspot.lng,
     total: hotspot.numSpeciesAllTime || 0,
+    countryCode: hotspot.countryCode,
     subnational1Code: hotspot.subnational1Code,
     subnational2Code: hotspot.subnational2Code,
   }));

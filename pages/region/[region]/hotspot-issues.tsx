@@ -13,6 +13,7 @@ export type Hotspot = {
   lat: number;
   lng: number;
   total: number;
+  countryCode: string;
   subnational1Code: string;
   subnational2Code: string;
 };
