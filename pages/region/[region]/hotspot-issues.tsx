@@ -51,7 +51,7 @@ export default function DuplicateHotspots({
       <PageHeading>Hotspot Issues - {regionName}</PageHeading>
       <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md mb-8 -mt-10">
         <p className="text-sm text-gray-600">
-          <strong>Note:</strong> It may take up to 24 hours for changes to be reflected in this issue list.
+          <strong>Note:</strong> It may take up to 24 hours for hotspot changes to be reflected on this page.
         </p>
       </div>
 
