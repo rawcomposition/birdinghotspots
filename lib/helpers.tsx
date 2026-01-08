@@ -68,6 +68,7 @@ export const generateRandomId = (length: number = 6) => {
 };
 
 //Adapted from https://www.geodatasource.com/developers/javascript
+// Uses spherical law of cosines (less accurate for short distances)
 export function distanceBetween(lat1: number, lon1: number, lat2: number, lon2: number, metric = false) {
   if (lat1 == lat2 && lon1 == lon2) {
     return 0;
@@ -88,6 +89,51 @@ export function distanceBetween(lat1: number, lon1: number, lat2: number, lon2: 
     }
     return parseFloat(dist.toString());
   }
+}
+
+// Uses haversine formula (more accurate for short distances)
+export function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+export function createUnionFind(size: number) {
+  const parent = new Int32Array(size);
+  const rank = new Uint8Array(size);
+  for (let i = 0; i < size; i++) parent[i] = i;
+
+  const find = (x: number): number => {
+    let p = x;
+    while (parent[p] !== p) p = parent[p];
+    while (parent[x] !== x) {
+      const next = parent[x];
+      parent[x] = p;
+      x = next;
+    }
+    return p;
+  };
+
+  const union = (a: number, b: number): void => {
+    const ra = find(a);
+    const rb = find(b);
+    if (ra === rb) return;
+    if (rank[ra] < rank[rb]) {
+      parent[ra] = rb;
+    } else if (rank[ra] > rank[rb]) {
+      parent[rb] = ra;
+    } else {
+      parent[rb] = ra;
+      rank[ra]++;
+    }
+  };
+
+  return { find, union };
 }
 
 export function formatMarker(hotspot: Hotspot, showLink?: boolean) {
@@ -342,6 +388,7 @@ export const getHotspotsForRegion = async (region: string) => {
     lat: hotspot.lat,
     lng: hotspot.lng,
     total: hotspot.numSpeciesAllTime || 0,
+    countryCode: hotspot.countryCode,
     subnational1Code: hotspot.subnational1Code,
     subnational2Code: hotspot.subnational2Code,
   }));

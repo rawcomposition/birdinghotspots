@@ -2,7 +2,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import { getHotspotsForRegion } from "lib/helpers";
+import { getHotspotsForRegion, haversineDistance, createUnionFind } from "lib/helpers";
 import KDBush from "kdbush";
 import { around } from "geokdbush";
 import HotspotIssueList from "components/HotspotIssueList";
@@ -13,20 +13,26 @@ export type Hotspot = {
   lat: number;
   lng: number;
   total: number;
+  countryCode: string;
   subnational1Code: string;
   subnational2Code: string;
 };
 
 type Props = {
   regionCode: string;
-  duplicateHotspots: {
+  closeProximityClusters: {
+    name: string;
+    hotspots: Hotspot[];
+    hasOverlappingMarkers: boolean;
+  }[];
+  duplicateNameClusters: {
     name: string;
     hotspots: Hotspot[];
     hasOverlappingMarkers: boolean;
   }[];
 };
 
-export default function DuplicateHotspots({ regionCode, duplicateHotspots }: Props) {
+export default function DuplicateHotspots({ regionCode, closeProximityClusters, duplicateNameClusters }: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   React.useEffect(() => {
     setIsClientReady(true);
@@ -40,14 +46,23 @@ export default function DuplicateHotspots({ regionCode, duplicateHotspots }: Pro
       <h3 className="text-lg mb-1 font-bold">
         Close Proximity Hotspots{" "}
         <span className="bg-yellow-300 rounded-full px-3 py-[3px] text-sm text-yellow-800 ml-2 font-semibold">
-          {duplicateHotspots.length} issues
+          {closeProximityClusters.length} issues
         </span>
       </h3>
       <p className="text-sm text-gray-600 mb-1">The following hotspots are within 50 meters of each other.</p>
       <p className="text-sm text-gray-600 mb-4">
         <strong>Note:</strong> Changes may take up to 24 hours to appear.
       </p>
-      {isClientReady && <HotspotIssueList duplicateHotspots={duplicateHotspots} />}
+      {isClientReady && <HotspotIssueList hotspotClusters={closeProximityClusters} />}
+
+      <h3 className="text-lg mb-1 mt-12 font-bold">
+        Duplicate Name Hotspots{" "}
+        <span className="bg-yellow-300 rounded-full px-3 py-[3px] text-sm text-yellow-800 ml-2 font-semibold">
+          {duplicateNameClusters.length} issues
+        </span>
+      </h3>
+      <p className="text-sm text-gray-600 mb-1">The following hotspots share the same name within the same region.</p>
+      {isClientReady && <HotspotIssueList hotspotClusters={duplicateNameClusters} />}
     </div>
   );
 }
@@ -66,7 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const clusters = clusterHotspotsByRadius(hotspots, 0.05);
 
-  const duplicateHotspots = clusters
+  const closeProximityClusters = clusters
     .filter((c) => c.length > 1)
     .map((c) => ({
       name: c.map((h) => h.locationId).join(", "),
@@ -75,42 +90,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     }));
 
   return {
-    props: { regionCode, duplicateHotspots },
+    props: {
+      regionCode,
+      closeProximityClusters,
+      duplicateNameClusters: getDuplicateNameClusters(hotspots, closeProximityClusters),
+    },
   };
 };
-
-function createUnionFind(size: number) {
-  const parent = new Int32Array(size);
-  const rank = new Uint8Array(size);
-  for (let i = 0; i < size; i++) parent[i] = i;
-
-  const find = (x: number): number => {
-    let p = x;
-    while (parent[p] !== p) p = parent[p];
-    while (parent[x] !== x) {
-      const next = parent[x];
-      parent[x] = p;
-      x = next;
-    }
-    return p;
-  };
-
-  const union = (a: number, b: number): void => {
-    const ra = find(a);
-    const rb = find(b);
-    if (ra === rb) return;
-    if (rank[ra] < rank[rb]) {
-      parent[ra] = rb;
-    } else if (rank[ra] > rank[rb]) {
-      parent[rb] = ra;
-    } else {
-      parent[rb] = ra;
-      rank[ra]++;
-    }
-  };
-
-  return { find, union };
-}
 
 function clusterHotspotsByRadius(hotspots: Hotspot[], maxDistanceKm: number): Hotspot[][] {
   const n = hotspots.length;
@@ -144,17 +130,6 @@ function clusterHotspotsByRadius(hotspots: Hotspot[], maxDistanceKm: number): Ho
   return [...clustersByRoot.values()];
 }
 
-function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371;
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-}
-
 function hasOverlappingMarkers(cluster: Hotspot[]): boolean {
   const OVERLAP_THRESHOLD_KM = 0.002;
 
@@ -167,4 +142,38 @@ function hasOverlappingMarkers(cluster: Hotspot[]): boolean {
     }
   }
   return false;
+}
+
+function getDuplicateNameClusters(
+  hotspots: Hotspot[],
+  closeProximityClusters: { hotspots: Hotspot[] }[]
+): { name: string; hotspots: Hotspot[]; hasOverlappingMarkers: boolean }[] {
+  const closeProximityIds = new Set<string>();
+  closeProximityClusters.forEach((cluster) => {
+    cluster.hotspots.forEach((hotspot) => closeProximityIds.add(hotspot.locationId));
+  });
+
+  const clustersByKey = new Map<string, Hotspot[]>();
+  hotspots.forEach((hotspot) => {
+    const trimmedName = hotspot.name.trim().toLowerCase();
+    const scopeKey = hotspot.subnational2Code?.trim() || hotspot.subnational1Code?.trim() || hotspot.countryCode.trim();
+    const key = `${scopeKey}::${trimmedName}`;
+    const cluster = clustersByKey.get(key);
+    if (cluster) cluster.push(hotspot);
+    else clustersByKey.set(key, [hotspot]);
+  });
+
+  return [...clustersByKey.entries()]
+    .map(([key, cluster]) => {
+      return {
+        name: cluster[0].name,
+        hotspots: cluster,
+        hasOverlappingMarkers: hasOverlappingMarkers(cluster),
+      };
+    })
+    .filter((cluster) => cluster.hotspots.length > 1)
+    .filter((cluster) => {
+      const allInCloseProximity = cluster.hotspots.every((hotspot) => closeProximityIds.has(hotspot.locationId));
+      return !allInCloseProximity;
+    });
 }

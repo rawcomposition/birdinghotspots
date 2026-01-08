@@ -5,20 +5,20 @@ import { useLocalStorage } from "hooks/useLocalStorage";
 import { Hotspot } from "pages/region/[region]/hotspot-issues";
 
 type Props = {
-  duplicateHotspots: {
+  hotspotClusters: {
     name: string;
     hotspots: Hotspot[];
     hasOverlappingMarkers: boolean;
   }[];
 };
 
-export default function DuplicateHotspots({ duplicateHotspots }: Props) {
+export default function DuplicateHotspots({ hotspotClusters }: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   const [reviewedArray, setReviewedArray] = useLocalStorage<string[]>("reviewed", []);
   const reviewed = React.useMemo(() => new Set(reviewedArray), [reviewedArray]);
   const [expanded, setExpanded] = React.useState<Set<string>>(() => {
     const initial = new Set<string>();
-    duplicateHotspots.forEach((item) => {
+    hotspotClusters.forEach((item) => {
       if (!reviewed.has(item.name)) {
         initial.add(item.name);
       }
@@ -93,17 +93,17 @@ export default function DuplicateHotspots({ duplicateHotspots }: Props) {
 
   return (
     <div className="space-y-6 mt-8">
-      {duplicateHotspots.map((duplicateHotspot) => {
-        const isExpanded = expanded.has(duplicateHotspot.name);
-        const isReviewed = reviewed.has(duplicateHotspot.name);
+      {hotspotClusters.map((cluster) => {
+        const isExpanded = expanded.has(cluster.name);
+        const isReviewed = reviewed.has(cluster.name);
 
         return (
-          <div key={duplicateHotspot.name} className="bg-white border border-gray-200 rounded-lg shadow-sm">
+          <div key={cluster.name} className="bg-white border border-gray-200 rounded-lg shadow-sm">
             <div className="flex items-center justify-between px-3 py-2 bg-gray-50 rounded-t-lg border-b border-gray-200">
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => toggleExpanded(duplicateHotspot.name)}
+                  onClick={() => toggleExpanded(cluster.name)}
                   className="hover:bg-gray-200 rounded-md p-1 transition-colors"
                 >
                   {isExpanded ? (
@@ -112,13 +112,13 @@ export default function DuplicateHotspots({ duplicateHotspots }: Props) {
                     <ChevronDownIcon className="w-5 h-5 text-gray-500 -rotate-90" />
                   )}
                 </button>
-                <h2 className="font-bold text-gray-700">{duplicateHotspot.name}</h2>
+                <h2 className="font-bold text-gray-700">{cluster.name}</h2>
               </div>
               <label className="flex items-center gap-2 cursor-pointer ml-4">
                 <input
                   type="checkbox"
                   checked={isReviewed}
-                  onChange={(e) => handleReviewedChange(duplicateHotspot.name, e.target.checked)}
+                  onChange={(e) => handleReviewedChange(cluster.name, e.target.checked)}
                   className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-sm text-gray-600">Reviewed</span>
@@ -128,7 +128,7 @@ export default function DuplicateHotspots({ duplicateHotspots }: Props) {
               <div className="px-6 pt-3 pb-4">
                 <div className="flex gap-6">
                   <div className="flex-1 space-y-3">
-                    {duplicateHotspot.hotspots.map((hotspot) => (
+                    {cluster.hotspots.map((hotspot) => (
                       <div
                         key={hotspot.locationId}
                         className="flex items-center justify-between pt-2 pb-3 border-b border-gray-100 last:border-b-0"
@@ -162,7 +162,7 @@ export default function DuplicateHotspots({ duplicateHotspots }: Props) {
                         </div>
                       </div>
                     ))}
-                    {duplicateHotspot.hasOverlappingMarkers && (
+                    {cluster.hasOverlappingMarkers && (
                       <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
                         <p className="text-sm text-yellow-800">
                           <strong>Note:</strong> Some markers in this cluster are plotted directly over each other on
@@ -174,8 +174,8 @@ export default function DuplicateHotspots({ duplicateHotspots }: Props) {
                   <div className="w-96 flex-shrink-0">
                     {isClientReady && (
                       <MapKit
-                        key={duplicateHotspot.name}
-                        markers={duplicateHotspot.hotspots.map((hotspot) => ({
+                        key={cluster.name}
+                        markers={cluster.hotspots.map((hotspot) => ({
                           name: hotspot.name,
                           lat: hotspot.lat,
                           lng: hotspot.lng,
