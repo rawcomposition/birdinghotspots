@@ -2,10 +2,11 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import { getHotspotsForRegion, haversineDistance, createUnionFind } from "lib/helpers";
+import { getHotspotsForRegion, haversineDistance, createUnionFind, getRegion } from "lib/helpers";
 import KDBush from "kdbush";
 import { around } from "geokdbush";
 import HotspotIssueList from "components/HotspotIssueList";
+import { EBirdRegion } from "lib/types";
 
 export type Hotspot = {
   locationId: string;
@@ -20,6 +21,7 @@ export type Hotspot = {
 
 type Props = {
   regionCode: string;
+  regionName: string;
   closeProximityClusters: {
     name: string;
     hotspots: Hotspot[];
@@ -32,7 +34,12 @@ type Props = {
   }[];
 };
 
-export default function DuplicateHotspots({ regionCode, closeProximityClusters, duplicateNameClusters }: Props) {
+export default function DuplicateHotspots({
+  regionCode,
+  regionName,
+  closeProximityClusters,
+  duplicateNameClusters,
+}: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   React.useEffect(() => {
     setIsClientReady(true);
@@ -40,8 +47,13 @@ export default function DuplicateHotspots({ regionCode, closeProximityClusters, 
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Hotspot Issues - ${regionCode}`}</Title>
-      <PageHeading>Hotspot Issues - {regionCode}</PageHeading>
+      <Title>{`Hotspot Issues - ${regionName}`}</Title>
+      <PageHeading>Hotspot Issues - {regionName}</PageHeading>
+      <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md mb-8 -mt-10">
+        <p className="text-sm text-gray-600">
+          <strong>Note:</strong> It may take up to 24 hours for changes to be reflected in this issue list.
+        </p>
+      </div>
 
       <h3 className="text-lg mb-1 font-bold">
         Close Proximity Hotspots{" "}
@@ -49,10 +61,9 @@ export default function DuplicateHotspots({ regionCode, closeProximityClusters, 
           {closeProximityClusters.length} issues
         </span>
       </h3>
-      <p className="text-sm text-gray-600 mb-1">The following hotspots are within 50 meters of each other.</p>
-      <p className="text-sm text-gray-600 mb-4">
-        <strong>Note:</strong> Changes may take up to 24 hours to appear.
-      </p>
+      {closeProximityClusters.length > 0 && (
+        <p className="text-sm text-gray-600 mb-1">The following hotspots are within 50 meters of each other.</p>
+      )}
       {isClientReady && <HotspotIssueList hotspotClusters={closeProximityClusters} />}
 
       <h3 className="text-lg mb-1 mt-12 font-bold">
@@ -61,7 +72,9 @@ export default function DuplicateHotspots({ regionCode, closeProximityClusters, 
           {duplicateNameClusters.length} issues
         </span>
       </h3>
-      <p className="text-sm text-gray-600 mb-1">The following hotspots share the same name within the same region.</p>
+      {duplicateNameClusters.length > 0 && (
+        <p className="text-sm text-gray-600 mb-1">The following hotspots share the same name within the same region.</p>
+      )}
       {isClientReady && <HotspotIssueList hotspotClusters={duplicateNameClusters} />}
     </div>
   );
@@ -73,8 +86,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (regionCode === "US") return { notFound: true };
 
   let hotspots: Hotspot[];
+  let region: EBirdRegion;
   try {
     hotspots = await getHotspotsForRegion(regionCode);
+    region = await getRegion(regionCode);
   } catch {
     return { notFound: true };
   }
@@ -92,6 +107,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   return {
     props: {
       regionCode,
+      regionName: region.result,
       closeProximityClusters,
       duplicateNameClusters: getDuplicateNameClusters(hotspots, closeProximityClusters),
     },

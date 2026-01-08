@@ -487,3 +487,22 @@ export type PhotoBatchT = {
 export type GetParams = {
   [key: string]: string | number | boolean;
 };
+
+export type EBirdRegionBounds = {
+  minX: number;
+  maxX: number;
+  minY: number;
+  maxY: number;
+};
+
+export type EBirdRegionType = "country" | "subnational1" | "subnational2";
+
+export type EBirdRegion = {
+  bounds: EBirdRegionBounds;
+  result: string;
+  code: string;
+  type: EBirdRegionType;
+  parent?: EBirdRegion;
+  longitude: number;
+  latitude: number;
+};
