@@ -126,7 +126,7 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
             </div>
             {isExpanded && (
               <div className="px-6 pt-3 pb-4">
-                <div className="flex gap-6">
+                <div className="flex flex-col lg:flex-row gap-6">
                   <div className="flex-1 space-y-3">
                     {cluster.hotspots.map((hotspot) => (
                       <div
@@ -171,7 +171,7 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
                       </div>
                     )}
                   </div>
-                  <div className="w-96 flex-shrink-0">
+                  <div className="w-full lg:w-96 flex-shrink-0">
                     {isClientReady && (
                       <MapKit
                         key={cluster.name}

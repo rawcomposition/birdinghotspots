@@ -312,7 +312,7 @@ export default function HotspotIssueMapKit({ markers, zoom, useTargetBlank }: Pr
   }, [zoom, markerCount, mapkitLoaded, markers, isVisible]);
 
   return (
-    <div className="relative w-full aspect-[4/3.5] rounded-md overflow-hidden">
+    <div className="relative w-full h-80 rounded-md overflow-hidden">
       <div ref={mapContainer} className="w-full h-full" />
     </div>
   );
