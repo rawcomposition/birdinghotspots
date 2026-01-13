@@ -146,6 +146,7 @@ export type EBirdHotspot = {
   lat: number;
   lng: number;
   numSpeciesAllTime?: number;
+  numChecklistsAllTime?: number;
   countryCode: string;
   subnational1Code: string;
   subnational2Code: string;

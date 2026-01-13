@@ -14,6 +14,7 @@ export type Hotspot = {
   lat: number;
   lng: number;
   total: number;
+  checklists: number;
   countryCode: string;
   subnational1Code: string;
   subnational2Code: string;
@@ -34,12 +35,7 @@ type Props = {
   }[];
 };
 
-export default function DuplicateHotspots({
-  regionCode,
-  regionName,
-  closeProximityClusters,
-  duplicateNameClusters,
-}: Props) {
+export default function DuplicateHotspots({ regionName, closeProximityClusters, duplicateNameClusters }: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   React.useEffect(() => {
     setIsClientReady(true);

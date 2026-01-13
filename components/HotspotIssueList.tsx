@@ -138,6 +138,8 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
                           <div className="text-sm text-gray-600 mt-1">
                             <span className="font-mono">{hotspot.locationId}</span>
                             <span className="mx-2">•</span>
+                            {hotspot.checklists > 0 && <span>{hotspot.checklists} checklists</span>}
+                            <span className="mx-2">•</span>
                             {hotspot.total > 0 && <span>{hotspot.total} species</span>}
                           </div>
                         </div>
