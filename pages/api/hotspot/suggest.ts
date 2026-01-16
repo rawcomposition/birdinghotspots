@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   const profiles = await Profile.find({
-    $or: [{ subscriptions: hotspot.stateCode }, { subscriptions: hotspot.countyCode }],
+    subscriptions: { $in: [hotspot.stateCode, hotspot.countyCode, hotspot.countryCode] },
     emailFrequency: "instant",
   });
 

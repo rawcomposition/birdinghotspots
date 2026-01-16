@@ -21,11 +21,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const photoBatches = await PhotoBatch.find({ createdAt: { $gte: date }, "images.status": "pending" }, [
       "stateCode",
       "countyCode",
+      "countryCode",
       "images",
     ]);
     const revisions = await Revision.find({ createdAt: { $gte: date }, status: "pending" }, [
       "stateCode",
       "countyCode",
+      "countryCode",
     ]);
     const users = await Profile.find({ emailFrequency: "daily" });
 
@@ -34,11 +36,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await Promise.all(
       users.map(async ({ name, email, subscriptions }) => {
         const userPhotoBatches = photoBatches.filter(
-          (batch) => subscriptions.includes(batch.stateCode) || subscriptions.includes(batch.countyCode)
+          (batch) => subscriptions.includes(batch.stateCode) || subscriptions.includes(batch.countyCode) || subscriptions.includes(batch.countryCode)
         );
         const userRevisions = revisions.filter(
           (revision) =>
-            subscriptions.includes(revision.stateCode || "") || subscriptions.includes(revision.countyCode || "")
+            subscriptions.includes(revision.stateCode || "") || subscriptions.includes(revision.countyCode || "") || subscriptions.includes(revision.countryCode || "")
         );
         const hasRevisions = userRevisions.length > 0;
         const imageCount = userPhotoBatches.reduce((acc, batch) => acc + batch.images.length, 0);
