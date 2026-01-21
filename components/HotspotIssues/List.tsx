@@ -2,7 +2,7 @@ import React from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import MapKit from "components/HotspotIssues/MapKit";
 import { useLocalStorage } from "hooks/useLocalStorage";
-import { Hotspot } from "pages/region/[region]/hotspot-issues";
+import { Hotspot } from "pages/[region]";
 import RegionBadge from "components/HotspotIssues/RegionBadge";
 
 type Props = {

@@ -13,5 +13,12 @@
       "path": "/api/email-digest",
       "schedule": "0 21 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/region/:region/hotspot-issues",
+      "destination": "/hotspot-issues/:region",
+      "permanent": true
+    }
   ]
 }
