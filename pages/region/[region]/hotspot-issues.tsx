@@ -7,6 +7,8 @@ import KDBush from "kdbush";
 import { around } from "geokdbush";
 import HotspotIssueList from "components/HotspotIssueList";
 import { EBirdRegion } from "lib/types";
+import HotspotIssuesNotice from "components/HotspotIssuesNotice";
+import clsx from "clsx";
 
 export type Hotspot = {
   locationId: string;
@@ -41,33 +43,50 @@ export default function DuplicateHotspots({ regionName, closeProximityClusters, 
     setIsClientReady(true);
   }, []);
 
+  const totalIssues = closeProximityClusters.length + duplicateNameClusters.length;
+
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Hotspot Issues - ${regionName}`}</Title>
-      <PageHeading>Hotspot Issues - {regionName}</PageHeading>
-      <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md mb-8 -mt-10">
-        <p className="text-sm text-gray-600">
-          <strong>Note:</strong> It may take up to 24 hours for hotspot changes to be reflected on this page.
-        </p>
-      </div>
+      <PageHeading>Hotspot Issues</PageHeading>
+      <p className="text-lg mb-2 -mt-10">
+        We found{" "}
+        <strong>
+          {totalIssues} potential hotspot {totalIssues === 1 ? "issue" : "issues"}
+        </strong>{" "}
+        in {regionName}.
+      </p>
+      <p className="mb-8">
+        Jump to{" "}
+        <a href="#close-proximity" className="text-sky-700 font-bold">
+          Close Proximity ({closeProximityClusters.length})
+        </a>{" "}
+        or{" "}
+        <a href="#duplicate-names" className="text-sky-700 font-bold">
+          Duplicate Names ({duplicateNameClusters.length})
+        </a>
+        .
+      </p>
 
-      <h3 className="text-lg mb-1 font-bold">
-        Close Proximity Hotspots{" "}
-        <span className="bg-yellow-300 rounded-full px-3 py-[3px] text-sm text-yellow-800 ml-2 font-semibold">
-          {closeProximityClusters.length} issues
-        </span>
+      {isClientReady && <HotspotIssuesNotice />}
+
+      <h3 id="close-proximity" className="text-lg mb-1 font-bold">
+        Close Proximity Hotspots <ClusterBadge count={closeProximityClusters.length} />
       </h3>
+      {closeProximityClusters.length === 0 && (
+        <p className="text-sm text-gray-600 mb-1">Fantastic! No close proximity hotspot issues found.</p>
+      )}
       {closeProximityClusters.length > 0 && (
         <p className="text-sm text-gray-600 mb-1">The following hotspots are within 50 meters of each other.</p>
       )}
       {isClientReady && <HotspotIssueList hotspotClusters={closeProximityClusters} />}
 
-      <h3 className="text-lg mb-1 mt-12 font-bold">
-        Duplicate Name Hotspots{" "}
-        <span className="bg-yellow-300 rounded-full px-3 py-[3px] text-sm text-yellow-800 ml-2 font-semibold">
-          {duplicateNameClusters.length} issues
-        </span>
+      <h3 id="duplicate-names" className="text-lg mb-1 mt-12 font-bold">
+        Duplicate Name Hotspots <ClusterBadge count={duplicateNameClusters.length} />
       </h3>
+      {duplicateNameClusters.length === 0 && (
+        <p className="text-sm text-gray-600 mb-1">Fantastic! No duplicate name hotspot issues found.</p>
+      )}
       {duplicateNameClusters.length > 0 && (
         <p className="text-sm text-gray-600 mb-1">The following hotspots share the same name within the same region.</p>
       )}
@@ -75,6 +94,19 @@ export default function DuplicateHotspots({ regionName, closeProximityClusters, 
     </div>
   );
 }
+
+const ClusterBadge = ({ count }: { count: number }) => {
+  return (
+    <span
+      className={clsx(
+        count > 0 ? "bg-yellow-300 text-yellow-800" : "bg-gray-300 text-gray-600",
+        "rounded-full px-3 py-[3px] text-sm ml-2 font-semibold"
+      )}
+    >
+      {count} {count === 1 ? "issue" : "issues"}
+    </span>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
