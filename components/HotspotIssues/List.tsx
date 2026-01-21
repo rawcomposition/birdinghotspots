@@ -1,8 +1,9 @@
 import React from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import MapKit from "components/HotspotIssueMapKit";
+import MapKit from "components/HotspotIssues/MapKit";
 import { useLocalStorage } from "hooks/useLocalStorage";
 import { Hotspot } from "pages/region/[region]/hotspot-issues";
+import RegionBadge from "components/HotspotIssues/RegionBadge";
 
 type Props = {
   hotspotClusters: {
@@ -12,7 +13,7 @@ type Props = {
   }[];
 };
 
-export default function DuplicateHotspots({ hotspotClusters }: Props) {
+export default function HotspotIssuesList({ hotspotClusters }: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   const [reviewedArray, setReviewedArray] = useLocalStorage<string[]>("reviewed", []);
   const reviewed = React.useMemo(() => new Set(reviewedArray), [reviewedArray]);
@@ -96,6 +97,11 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
       {hotspotClusters.map((cluster) => {
         const isExpanded = expanded.has(cluster.name);
         const isReviewed = reviewed.has(cluster.name);
+        const subregions = cluster.hotspots
+          .map((it) => it.subnational2Code || it.subnational1Code || it.countryCode)
+          .filter(Boolean);
+        const uniqueSubregions = [...new Set(subregions)];
+        const hasMultipleSubregions = uniqueSubregions.length > 1;
 
         return (
           <div key={cluster.name} className="bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -131,10 +137,17 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
                     {cluster.hotspots.map((hotspot) => (
                       <div
                         key={hotspot.locationId}
-                        className="flex items-center justify-between pt-2 pb-3 border-b border-gray-100 last:border-b-0"
+                        className="sm:flex items-center justify-between pt-2 pb-3 border-b border-gray-100 last:border-b-0"
                       >
                         <div className="flex-1">
-                          <div className="font-medium text-gray-900">{hotspot.name}</div>
+                          <div className="font-medium text-gray-900 flex items-center gap-2 flex-wrap">
+                            {hotspot.name}
+                            {hasMultipleSubregions && (
+                              <RegionBadge
+                                region={hotspot.subnational2Code || hotspot.subnational1Code || hotspot.countryCode}
+                              />
+                            )}
+                          </div>
                           <div className="text-sm text-gray-600 mt-1">
                             <span className="font-mono">{hotspot.locationId}</span>
                             <span className="mx-2">•</span>
@@ -147,7 +160,7 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
                             {hotspot.total > 0 && <span>{hotspot.total} species</span>}
                           </div>
                         </div>
-                        <div className="flex gap-2 ml-4 text-sm">
+                        <div className="flex gap-2 sm:ml-4 mt-2 sm:mt-0 text-sm">
                           <a
                             href={`https://ebird.org/hotspot/${hotspot.locationId}`}
                             className="font-semibold"
@@ -169,10 +182,17 @@ export default function DuplicateHotspots({ hotspotClusters }: Props) {
                       </div>
                     ))}
                     {cluster.hasOverlappingMarkers && (
-                      <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                      <div className="mt-4 p-3 border border-yellow-800/50 rounded-md">
                         <p className="text-sm text-yellow-800">
                           <strong>Note:</strong> Some markers in this cluster are plotted directly over each other on
                           the map due to extremely close proximity.
+                        </p>
+                      </div>
+                    )}
+                    {hasMultipleSubregions && (
+                      <div className="mt-4 p-3 border border-purple-800/50 rounded-md">
+                        <p className="text-sm text-purple-800">
+                          <strong>Note:</strong> Hotspots in this cluster span multiple subregions.
                         </p>
                       </div>
                     )}

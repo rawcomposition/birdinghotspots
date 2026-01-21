@@ -1,11 +1,8 @@
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import XMark from "../icons/XMark";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import XMark from "../../icons/XMark";
 
 export default function HotspotIssuesNotice() {
-  const [isDismissed, setIsDismissed] = useLocalStorage(
-    "hotspotIssuesNoticeDismissed",
-    false
-  );
+  const [isDismissed, setIsDismissed] = useLocalStorage("hotspotIssuesNoticeDismissed", false);
 
   if (isDismissed) {
     return null;

@@ -5,9 +5,9 @@ import Title from "components/Title";
 import { getHotspotsForRegion, haversineDistance, createUnionFind, getRegion } from "lib/helpers";
 import KDBush from "kdbush";
 import { around } from "geokdbush";
-import HotspotIssueList from "components/HotspotIssueList";
+import HotspotIssueList from "components/HotspotIssues/List";
 import { EBirdRegion } from "lib/types";
-import HotspotIssuesNotice from "components/HotspotIssuesNotice";
+import HotspotIssuesNotice from "components/HotspotIssues/Notice";
 import clsx from "clsx";
 
 export type Hotspot = {
