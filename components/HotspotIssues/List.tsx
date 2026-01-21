@@ -186,7 +186,7 @@ export default function HotspotIssuesList({ hotspotClusters }: Props) {
                         <p className="text-sm text-yellow-800">
                           <strong>Note:</strong> Some hotspots are plotted directly on top of each other due to
                           extremely close proximity. To fix this, slightly move the hotspot with fewer checklists, then
-                          merge them in a second step.
+                          merge it into the one with more checklists in a second step.
                         </p>
                       </div>
                     )}
