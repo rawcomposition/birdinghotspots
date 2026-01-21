@@ -184,8 +184,9 @@ export default function HotspotIssuesList({ hotspotClusters }: Props) {
                     {cluster.hasOverlappingMarkers && (
                       <div className="mt-4 p-3 border border-yellow-800/50 rounded-md">
                         <p className="text-sm text-yellow-800">
-                          <strong>Note:</strong> Some markers in this cluster are plotted directly over each other on
-                          the map due to extremely close proximity.
+                          <strong>Note:</strong> Some hotspots are plotted directly on top of each other due to
+                          extremely close proximity. To fix this, slightly move the hotspot with fewer checklists, then
+                          merge them in a second step.
                         </p>
                       </div>
                     )}
