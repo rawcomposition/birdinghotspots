@@ -1,9 +1,11 @@
 import React from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon, PencilIcon } from "@heroicons/react/20/solid";
 import MapKit from "components/HotspotIssues/MapKit";
 import { useLocalStorage } from "hooks/useLocalStorage";
 import { Hotspot } from "pages/hotspot-issues/[region]";
 import RegionBadge from "components/HotspotIssues/RegionBadge";
+import Link from "next/link";
+import ExternalIcon from "icons/ExternalIcon";
 
 type Props = {
   hotspotClusters: {
@@ -11,9 +13,10 @@ type Props = {
     hotspots: Hotspot[];
     hasOverlappingMarkers: boolean;
   }[];
+  isRegionActive: boolean;
 };
 
-export default function HotspotIssuesList({ hotspotClusters }: Props) {
+export default function HotspotIssuesList({ hotspotClusters, isRegionActive }: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   const [reviewedArray, setReviewedArray] = useLocalStorage<string[]>("reviewed", []);
   const reviewed = React.useMemo(() => new Set(reviewedArray), [reviewedArray]);
@@ -141,7 +144,19 @@ export default function HotspotIssuesList({ hotspotClusters }: Props) {
                       >
                         <div className="flex-1">
                           <div className="font-medium text-gray-900 flex items-center gap-2 flex-wrap">
-                            {hotspot.name}
+                            {isRegionActive ? (
+                              <Link
+                                href={`/hotspot/${hotspot.locationId}`}
+                                className="text-gray-900"
+                                target="_blank"
+                                rel="noreferrer"
+                                title="View on BirdingHotspots.org"
+                              >
+                                {hotspot.name}
+                              </Link>
+                            ) : (
+                              <span>{hotspot.name}</span>
+                            )}
                             {hasMultipleSubregions && (
                               <RegionBadge
                                 region={hotspot.subnational2Code || hotspot.subnational1Code || hotspot.countryCode}
@@ -151,11 +166,9 @@ export default function HotspotIssuesList({ hotspotClusters }: Props) {
                           <div className="text-sm text-gray-600 mt-1">
                             <span className="font-mono">{hotspot.locationId}</span>
                             <span className="mx-2">•</span>
-                            {hotspot.checklists > 0 && (
-                              <span>
-                                {hotspot.checklists} complete {hotspot.checklists === 1 ? "checklist" : "checklists"}
-                              </span>
-                            )}
+                            <span>
+                              {hotspot.checklists} complete {hotspot.checklists === 1 ? "checklist" : "checklists"}
+                            </span>
                             <span className="mx-2">•</span>
                             {hotspot.total > 0 && <span>{hotspot.total} species</span>}
                           </div>
@@ -167,7 +180,7 @@ export default function HotspotIssuesList({ hotspotClusters }: Props) {
                             target="_blank"
                             rel="noreferrer"
                           >
-                            View Hotspot
+                            View on eBird
                           </a>
                           <span className="text-gray-300">|</span>
                           <a

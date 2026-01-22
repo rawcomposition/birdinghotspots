@@ -9,6 +9,7 @@ import HotspotIssueList from "components/HotspotIssues/List";
 import { EBirdRegion } from "lib/types";
 import HotspotIssuesNotice from "components/HotspotIssues/Notice";
 import clsx from "clsx";
+import SyncRegions from "data/sync-regions.json";
 
 export type Hotspot = {
   locationId: string;
@@ -25,6 +26,7 @@ export type Hotspot = {
 type Props = {
   regionCode: string;
   regionName: string;
+  isRegionActive: boolean;
   closeProximityClusters: {
     name: string;
     hotspots: Hotspot[];
@@ -37,7 +39,12 @@ type Props = {
   }[];
 };
 
-export default function DuplicateHotspots({ regionName, closeProximityClusters, duplicateNameClusters }: Props) {
+export default function DuplicateHotspots({
+  regionName,
+  closeProximityClusters,
+  duplicateNameClusters,
+  isRegionActive,
+}: Props) {
   const [isClientReady, setIsClientReady] = React.useState<boolean>(false);
   React.useEffect(() => {
     setIsClientReady(true);
@@ -79,7 +86,7 @@ export default function DuplicateHotspots({ regionName, closeProximityClusters, 
       {closeProximityClusters.length > 0 && (
         <p className="text-sm text-gray-600 mb-1">The following hotspots are within 50 meters of each other.</p>
       )}
-      {isClientReady && <HotspotIssueList hotspotClusters={closeProximityClusters} />}
+      {isClientReady && <HotspotIssueList hotspotClusters={closeProximityClusters} isRegionActive={isRegionActive} />}
 
       <h3 id="duplicate-names" className="text-lg mb-1 mt-12 font-bold">
         Duplicate Name Hotspots <ClusterBadge count={duplicateNameClusters.length} />
@@ -90,7 +97,7 @@ export default function DuplicateHotspots({ regionName, closeProximityClusters, 
       {duplicateNameClusters.length > 0 && (
         <p className="text-sm text-gray-600 mb-1">The following hotspots share the same name within the same region.</p>
       )}
-      {isClientReady && <HotspotIssueList hotspotClusters={duplicateNameClusters} />}
+      {isClientReady && <HotspotIssueList hotspotClusters={duplicateNameClusters} isRegionActive={isRegionActive} />}
     </div>
   );
 }
@@ -112,6 +119,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const regionCode = query.region as string;
   if (!regionCode) return { notFound: true };
   if (regionCode === "US") return { notFound: true };
+  const isRegionActive = SyncRegions.some(
+    (syncRegion) => syncRegion === regionCode || regionCode.startsWith(syncRegion)
+  );
 
   let hotspots: Hotspot[];
   let region: EBirdRegion;
@@ -138,6 +148,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       regionName: region.result,
       closeProximityClusters,
       duplicateNameClusters: getDuplicateNameClusters(hotspots, closeProximityClusters),
+      isRegionActive,
     },
   };
 };
