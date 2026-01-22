@@ -63,14 +63,7 @@ export default function RareBirds({ region, className }: Props) {
   const call = React.useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://api.ebird.org/v2/data/obs/${region}/recent/notable?detail=full&back=${back}`,
-        {
-          headers: {
-            "X-eBirdApiToken": process.env.NEXT_PUBLIC_EBIRD_API || "",
-          },
-        }
-      );
+      const response = await fetch(`/api/ebird/notable/${region}?back=${back}`);
 
       let reports: EbirdReport[] = await response.json();
 

@@ -272,8 +272,7 @@ export const getStaticMap = (markers: { species?: number; lat: number; lng: numb
 };
 
 export async function getEbirdHotspot(locationId: string) {
-  const key = process.env.NEXT_PUBLIC_EBIRD_API;
-  const response = await fetch(`https://api.ebird.org/v2/ref/hotspot/info/${locationId}?key=${key}`);
+  const response = await fetch(`https://api.ebird.org/v2/ref/hotspot/info/${locationId}?key=${process.env.EBIRD_API_KEY}`);
   if (response.status === 200) {
     return await response.json();
   }
@@ -373,7 +372,7 @@ export const get = async (url: string, params: GetParams) => {
 export const getHotspotsForRegion = async (region: string) => {
   console.log(`Fetching eBird hotspots for ${region}`);
   const response = await fetch(
-    `https://api.ebird.org/v2/ref/hotspot/${region}?fmt=json&key=${process.env.NEXT_PUBLIC_EBIRD_API}`
+    `https://api.ebird.org/v2/ref/hotspot/${region}?fmt=json&key=${process.env.EBIRD_API_KEY}`
   );
 
   const json = await response.json();
@@ -397,7 +396,7 @@ export const getHotspotsForRegion = async (region: string) => {
 
 export const getRegion = async (region: string): Promise<EBirdRegion> => {
   const response = await fetch(
-    `https://api.ebird.org/v2/ref/region/info/${region}?fmt=json&key=${process.env.NEXT_PUBLIC_EBIRD_API}`
+    `https://api.ebird.org/v2/ref/region/info/${region}?fmt=json&key=${process.env.EBIRD_API_KEY}`
   );
   const json = await response.json();
   return json;

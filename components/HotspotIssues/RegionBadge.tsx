@@ -3,7 +3,7 @@ import { EBirdRegion } from "lib/types";
 
 export default function RegionBadge({ region }: { region: string }) {
   const { data, isLoading } = useQuery<EBirdRegion>({
-    queryKey: [`https://api.ebird.org/v2/ref/region/info/${region}`, { key: process.env.NEXT_PUBLIC_EBIRD_API }],
+    queryKey: [`/api/ebird/region/${region}`],
     enabled: !!region,
   });
 
