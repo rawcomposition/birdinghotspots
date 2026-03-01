@@ -6,7 +6,7 @@ export type Image = {
   _id?: string;
   xsUrl?: string;
   smUrl: string;
-  lgUrl: string;
+  lgUrl?: string;
   by?: string;
   email?: string;
   uid?: string;
@@ -26,6 +26,32 @@ export type Image = {
   ebirdId?: number; // eBird ML images only
   ebirdDateDisplay?: string; // eBird ML images only
   isMigrated?: boolean;
+};
+
+export type LegacyImage = {
+  _id?: string;
+  locationId: string;
+  type: "hotspot" | "group" | "drive";
+  xsUrl?: string;
+  smUrl: string;
+  lgUrl?: string;
+  by?: string;
+  email?: string;
+  uid?: string;
+  isMap?: boolean;
+  isStreetview?: boolean;
+  isPublicDomain?: boolean;
+  width?: number;
+  height?: number;
+  size?: number;
+  caption?: string;
+  legacy?: boolean;
+  isNew?: boolean;
+  id?: string;
+  streetviewData?: any;
+  hideFromChildren?: boolean;
+  isMigrated?: boolean;
+  order?: number;
 };
 
 export type MlImage = {
