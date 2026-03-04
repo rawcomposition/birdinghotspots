@@ -54,6 +54,19 @@ function formatLinks(links?: { label?: string; url?: string; cite?: boolean }[],
   return sqlStr(JSON.stringify(cleaned)) + "::jsonb";
 }
 
+// Convert Google Maps map-links to data-location format
+// From: <a href="https://www.google.com/maps/search/?api=1&amp;query=42.44,-71.43" rel="noopener" target="_blank" class="map-link mceNonEditable">Label</a>
+// To:   <span data-location="42.44, -71.43" class="location-link">Label</span>
+function convertMapLinks(html: string): string {
+  return html.replace(
+    /<a\s+href=["']https:\/\/www\.google\.com\/maps\/search\/\?api=1&(?:amp;)?query=([^"']+)["'][^>]*class=["'][^"]*map-link[^"]*["'][^>]*>(.*?)<\/a>/gi,
+    (_match, coords, label) => {
+      const trimmed = decodeURIComponent(coords).trim();
+      return `<span data-location="${trimmed}" class="location-link">${label}</span>`;
+    }
+  );
+}
+
 function checkLength(locId: string, column: string, val: string | null | undefined, limit: number) {
   if (val && val.length > limit) {
     console.error(`ERROR: ${locId} ${column} exceeds varchar(${limit}) — ${val.length} chars`);
@@ -174,9 +187,9 @@ async function main() {
 
     const locId = sqlQuote(h.locationId);
     const language = sqlQuote(getLanguageForHotspot(h));
-    const planText = sqlStr(h.plan);
-    const birdingText = sqlStr(h.birding);
-    const aboutText = sqlStr(h.about);
+    const planText = sqlStr(h.plan ? convertMapLinks(h.plan) : h.plan);
+    const birdingText = sqlStr(h.birding ? convertMapLinks(h.birding) : h.birding);
+    const aboutText = sqlStr(h.about ? convertMapLinks(h.about) : h.about);
     const creationDt = sqlTimestamp(h.createdAt);
     const lastEditedDt = sqlTimestamp(h.updatedAt || h.createdAt);
 
