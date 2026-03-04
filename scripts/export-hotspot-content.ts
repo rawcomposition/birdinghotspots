@@ -54,9 +54,10 @@ function formatLinks(links?: { label?: string; url?: string; cite?: boolean }[],
   return sqlStr(JSON.stringify(cleaned)) + "::jsonb";
 }
 
-function warnLength(locId: string, column: string, val: string | null | undefined, limit: number) {
+function checkLength(locId: string, column: string, val: string | null | undefined, limit: number) {
   if (val && val.length > limit) {
-    console.warn(`WARNING: ${locId} ${column} exceeds varchar(${limit}) — ${val.length} chars`);
+    console.error(`ERROR: ${locId} ${column} exceeds varchar(${limit}) — ${val.length} chars`);
+    process.exit(1);
   }
 }
 
@@ -90,6 +91,7 @@ async function main() {
       { about: { $exists: true, $ne: "" } },
       { webpage: { $exists: true, $ne: "" } },
       { links: { $exists: true, $not: { $size: 0 } } },
+      { trailMap: { $exists: true, $ne: "" } },
       { fee: { $in: ["Yes", "No"] } },
       { restrooms: { $in: ["Yes", "No"] } },
       { accessible: { $in: ["Yes", "No"] } },
@@ -134,7 +136,7 @@ async function main() {
   lines.push("-- hotspot_content");
 
   for (const h of hotspots as any[]) {
-    warnLength(h.locationId, "website_url", h.webpage, 2048);
+    checkLength(h.locationId, "website_url", h.webpage, 2048);
 
     const locId = sqlQuote(h.locationId);
     const websiteUrl = sqlStr(h.webpage);
@@ -156,7 +158,7 @@ async function main() {
   ${entranceFee}, ${restrooms}, ${accessibleTrail}, ${roadsideViewing},
   NULL, NULL, NULL, NULL, NULL, NULL,
   ${creationDt}, ${lastEditedDt}
-);`);
+) ON CONFLICT (loc_id) DO NOTHING;`);
   }
 
   lines.push("");
@@ -166,9 +168,9 @@ async function main() {
     const hasText = h.plan || h.birding || h.about;
     if (!hasText) continue;
 
-    warnLength(h.locationId, "plan_visit_text", h.plan, 16384);
-    warnLength(h.locationId, "birding_text", h.birding, 16384);
-    warnLength(h.locationId, "about_text", h.about, 16384);
+    checkLength(h.locationId, "plan_visit_text", h.plan, 16384);
+    checkLength(h.locationId, "birding_text", h.birding, 16384);
+    checkLength(h.locationId, "about_text", h.about, 16384);
 
     const locId = sqlQuote(h.locationId);
     const language = sqlQuote(getLanguageForHotspot(h));
@@ -186,7 +188,7 @@ async function main() {
   ${locId}, ${language}, true,
   ${planText}, ${birdingText}, ${aboutText},
   ${creationDt}, ${lastEditedDt}
-);`);
+) ON CONFLICT (loc_id, language) DO NOTHING;`);
   }
 
   lines.push("");
@@ -194,8 +196,8 @@ async function main() {
   lines.push("");
 
   if (!fs.existsSync("exports")) fs.mkdirSync("exports");
-  const suffix = regionCode ? `-${regionCode.toLowerCase()}` : "";
-  const outPath = `exports/hotspot_content${suffix}.sql`;
+  const suffix = regionCode ? `-${regionCode}` : "";
+  const outPath = `exports/birdinghotspots${suffix}.sql`;
   fs.writeFileSync(outPath, lines.join("\n"), "utf-8");
   console.log(`Written to ${outPath}`);
 
