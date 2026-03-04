@@ -17,12 +17,14 @@
     "export-hotspots-aggregated": "tsx ./scripts/export-hotspots-aggregated.ts",
     "export-hotspots-duplicated": "tsx ./scripts/export-hotspots-duplicated.ts",
     "export-sample-data": "tsx ./scripts/export-sample-data.ts",
-    "generate-mapkit-token": "tsx ./scripts/generate-mapkit-token.ts"
+    "generate-mapkit-token": "tsx ./scripts/generate-mapkit-token.ts",
+    "global-hotspot-report": "tsx ./scripts/global-hotspot-report.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",
     "@aws-sdk/s3-request-presigner": "^3.367.0",
     "@dnd-kit/sortable": "^7.0.1",
+    "@duckdb/node-api": "^1.4.4-r.1",
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
     "@hookform/error-message": "^2.0.0",
