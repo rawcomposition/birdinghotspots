@@ -315,6 +315,31 @@ export async function getGroupsByRegion(region: string, limit?: number) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
+export async function getGroupPrimaryHotspotsByRegion(region: string) {
+  await connect();
+  const query: any = region === "world" ? {} : getRegionQuery(region);
+  query.isRetired = { $ne: true };
+
+  const result = await Group.find(query, ["name", "url", "locationId", "isMigrationReady"])
+    .populate("primaryHotspot", ["name"])
+    .sort({ name: 1 })
+    .lean();
+
+  return result
+    ? JSON.parse(
+        JSON.stringify(
+          result.map((g: any) => ({
+            name: g.name,
+            url: g.url,
+            locationId: g.locationId,
+            isMigrationReady: g.isMigrationReady || false,
+            primaryHotspotName: g.primaryHotspot?.name || null,
+          }))
+        )
+      )
+    : [];
+}
+
 function getRegionQuery(region: string) {
   if (region === "world") return {};
   if (region.split("-").length === 3) return { countyCodes: region };
