@@ -156,7 +156,7 @@ async function main() {
     const links = formatLinks(h.links, h.trailMap);
     const entranceFee = featureVal(h.fee);
     const restrooms = featureVal(h.restrooms);
-    const accessibleTrail = featureVal(h.accessible);
+    const accessibleTrail = h.accessible === "No" ? "NULL" : featureVal(h.accessible);
     const roadsideViewing = featureVal(h.roadside);
     const creationDt = sqlTimestamp(h.createdAt);
     const lastEditedDt = sqlTimestamp(h.updatedAt || h.createdAt);
