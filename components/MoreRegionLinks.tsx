@@ -1,13 +1,13 @@
-import { Menu } from "@headlessui/react";
-import { MapPinIcon } from "@heroicons/react/24/solid";
 import { Region } from "lib/types";
 import Link from "next/link";
+import { useUser } from "providers/user";
 
 type Props = {
   region: Region;
 };
 
 export default function MoreRegionLinks({ region }: Props) {
+  const { user } = useUser();
   const { code, features } = region;
   const isState = code.split("-").length === 2;
   const isCountry = code.split("-").length === 1;
@@ -21,6 +21,7 @@ export default function MoreRegionLinks({ region }: Props) {
         <Link href={`/region/${code}/hotspots?features=Accessible`}>Accessible Facilities</Link>
         {features?.includes("iba") && <Link href={`/region/${code}/important-bird-areas`}>Important Bird Areas</Link>}
         <Link href={`/region/${code}/group-index`}>Group Locations</Link>
+        {user && <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>}
         {hasCities && <Link href={`/region/${code}/cities`}>Cities/Towns</Link>}
       </div>
     </div>
