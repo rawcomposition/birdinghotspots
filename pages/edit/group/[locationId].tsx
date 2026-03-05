@@ -83,8 +83,9 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
         <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Group</h2>
         <Form form={form} onSubmit={handleSubmit}>
           {!isNew && (
-            <div className="mt-4">
+            <div className="mt-4 space-y-1">
               <Checkbox name="isRetired" label="Retired" />
+              <Checkbox name="isMigrationReady" label="Ready for eBird migration" disabled={!!isRetired} />
             </div>
           )}
           <fieldset disabled={!!isRetired} className={isRetired ? "opacity-50 pointer-events-none" : ""}>
@@ -211,6 +212,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         primaryHotspotSelect,
         restrooms: data?.restrooms || "Unknown",
         isRetired: data?.isRetired || false,
+        isMigrationReady: data?.isMigrationReady || false,
       },
     },
   };

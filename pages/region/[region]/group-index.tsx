@@ -13,6 +13,7 @@ type Props = {
     name: string;
     url: string;
     isRetired?: boolean;
+    isMigrationReady?: boolean;
     noContent?: boolean;
     needsDeleting?: boolean;
   }[];
@@ -44,7 +45,7 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
           );
         })}
       </p>
-      {groups.map(({ name, url, isRetired }, i, array) => {
+      {groups.map(({ name, url, isRetired, isMigrationReady }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -59,6 +60,9 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
               <Link href={url}>{name}</Link>
               {isRetired && (
                 <span className="bg-gray-100 text-gray-500 text-xs px-1.5 py-0.5 rounded">Retired</span>
+              )}
+              {isMigrationReady && (
+                <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded">Migration Ready</span>
               )}
             </span>
             <br />

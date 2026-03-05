@@ -10,7 +10,7 @@ import { Region } from "lib/types";
 type Props = {
   region: Region | null;
   regionCode: string;
-  clusters: { name: string; url: string }[][];
+  clusters: { name: string; url: string; isMigrationReady: boolean }[][];
 };
 
 export default function OverlappingGroupsTransitive({ region, regionCode, clusters }: Props) {
@@ -43,7 +43,12 @@ export default function OverlappingGroupsTransitive({ region, regionCode, cluste
             {clusters.map((cluster, i) => (
               <li key={i} className="flex flex-col pt-4">
                 {cluster.map((group) => (
-                  <Link key={group.url} href={group.url}>{group.name}</Link>
+                  <div key={group.url} className="flex items-center gap-1">
+                    <Link href={group.url}>{group.name}</Link>
+                    {group.isMigrationReady && (
+                      <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded">Migration Ready</span>
+                    )}
+                  </div>
                 ))}
               </li>
             ))}

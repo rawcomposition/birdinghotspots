@@ -76,6 +76,10 @@ const GroupSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  isMigrationReady: {
+    type: Boolean,
+    default: false,
+  },
   primaryHotspot: {
     type: Schema.Types.ObjectId,
     ref: "Hotspot",

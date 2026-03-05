@@ -278,6 +278,7 @@ export type Group = {
   primaryHotspot: Hotspot;
   hotspotCount?: number;
   isRetired?: boolean;
+  isMigrationReady?: boolean;
   updatedAt?: string;
 };
 
