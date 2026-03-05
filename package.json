@@ -18,6 +18,7 @@
     "export-hotspots-duplicated": "tsx ./scripts/export-hotspots-duplicated.ts",
     "export-sample-data": "tsx ./scripts/export-sample-data.ts",
     "export-hotspot-content": "tsx ./scripts/export-hotspot-content.ts --",
+    "export-group-hotspots": "tsx ./scripts/export-group-hotspots.ts",
     "generate-mapkit-token": "tsx ./scripts/generate-mapkit-token.ts"
   },
   "dependencies": {
