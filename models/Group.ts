@@ -72,6 +72,10 @@ const GroupSchema = new Schema({
     },
   ],
   hotspotCount: Number,
+  isRetired: {
+    type: Boolean,
+    default: false,
+  },
   primaryHotspot: {
     type: Schema.Types.ObjectId,
     ref: "Hotspot",

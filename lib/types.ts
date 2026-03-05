@@ -277,6 +277,7 @@ export type Group = {
   hotspots: [Hotspot];
   primaryHotspot: Hotspot;
   hotspotCount?: number;
+  isRetired?: boolean;
   updatedAt?: string;
 };
 

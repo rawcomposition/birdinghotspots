@@ -38,6 +38,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
 
   const router = useRouter();
   const form = useForm<GroupInputs>({ defaultValues: data });
+  const isRetired = form.watch("isRetired");
 
   const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
     if (!data.about) {
@@ -81,6 +82,12 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
       <div className="container pb-16 my-12">
         <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Group</h2>
         <Form form={form} onSubmit={handleSubmit}>
+          {!isNew && (
+            <div className="mt-4">
+              <Checkbox name="isRetired" label="Retired" />
+            </div>
+          )}
+          <fieldset disabled={!!isRetired} className={isRetired ? "opacity-50 pointer-events-none" : ""}>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="pt-5 bg-white space-y-6 flex-1">
               <Field label="Name">
@@ -144,18 +151,14 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 <ImagesInput hideMapCheckbox showHideFromChildrenCheckbox />
               </div>
 
-              <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
-                <Submit disabled={loading} color="green" className="font-medium">
-                  Save Group
-                </Submit>
-              </div>
             </div>
 
             <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
               <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
             </aside>
           </div>
-          <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
+          </fieldset>
+          <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded mt-4">
             <Submit disabled={loading} color="green" className="font-medium">
               Save Group
             </Submit>
@@ -207,6 +210,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         hotspotSelect,
         primaryHotspotSelect,
         restrooms: data?.restrooms || "Unknown",
+        isRetired: data?.isRetired || false,
       },
     },
   };

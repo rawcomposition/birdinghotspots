@@ -307,7 +307,7 @@ export async function getGroupsByRegion(region: string, limit?: number) {
     query = { countryCode: region };
   }
 
-  const result = await Group.find(query, ["-_id", "name", "url"])
+  const result = await Group.find(query, ["-_id", "name", "url", "isRetired"])
     .sort({ name: 1 })
     .limit(limit || 10000)
     .lean();
@@ -339,7 +339,7 @@ function buildHotspotToGroupUrls(groups: any[]) {
 
 export async function getOverlappingGroupsByRegion(region: string) {
   await connect();
-  const groups = await Group.find(getRegionQuery(region), ["name", "url", "hotspots"]).sort({ name: 1 }).lean();
+  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots"]).sort({ name: 1 }).lean();
   if (!groups?.length) return [];
 
   const hotspotToGroupUrls = buildHotspotToGroupUrls(groups);
@@ -363,7 +363,7 @@ export async function getOverlappingGroupsByRegion(region: string) {
 
 export async function getTransitiveOverlappingGroupsByRegion(region: string) {
   await connect();
-  const groups = await Group.find(getRegionQuery(region), ["name", "url", "hotspots"]).sort({ name: 1 }).lean();
+  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots"]).sort({ name: 1 }).lean();
   if (!groups?.length) return [];
 
   const hotspotToGroupUrls = buildHotspotToGroupUrls(groups);
