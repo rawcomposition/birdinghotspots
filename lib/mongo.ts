@@ -307,7 +307,7 @@ export async function getGroupsByRegion(region: string, limit?: number) {
     query = { countryCode: region };
   }
 
-  const result = await Group.find(query, ["-_id", "name", "url", "isRetired", "isMigrationReady"])
+  const result = await Group.find(query, ["-_id", "name", "url", "isRetired", "isMigrationReady", "needsPrimaryHotspot"])
     .sort({ name: 1 })
     .limit(limit || 10000)
     .lean();

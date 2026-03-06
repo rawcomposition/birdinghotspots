@@ -38,8 +38,7 @@ export default function GroupPrimaryHotspots({ region, groups }: Props) {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b">
-                <th className="py-2 pr-2 font-bold w-8"></th>
-                <th className="py-2 pr-4 font-bold">Group</th>
+                <th className="py-2 pr-4 font-bold" colSpan={2}>Group</th>
                 <th className="py-2 pr-4 font-bold">Primary Hotspot</th>
                 <th className="py-2 font-bold"></th>
               </tr>
@@ -59,8 +58,11 @@ export default function GroupPrimaryHotspots({ region, groups }: Props) {
                     </span>
                   </td>
                   <td className="py-1.5 pr-4 text-gray-600">{group.primaryHotspotName}</td>
-                  <td className="py-1.5">
-                    <Link href={`/edit/group/${group.locationId}`} className="text-sm">
+                  <td className="py-1.5 flex gap-2">
+                    <Link href={`/group/${group.locationId}`} className="text-sm" target="_blank">
+                      View
+                    </Link>
+                    <Link href={`/edit/group/${group.locationId}`} className="text-sm" target="_blank">
                       Edit
                     </Link>
                   </td>

@@ -80,6 +80,10 @@ const GroupSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  needsPrimaryHotspot: {
+    type: Boolean,
+    default: false,
+  },
   primaryHotspot: {
     type: Schema.Types.ObjectId,
     ref: "Hotspot",
