@@ -14,6 +14,7 @@ import InviteEditor from "modals/InviteEditor";
 import UploadMessage from "modals/UploadMessage";
 import FeaturedPhotoPicker from "modals/FeaturedPhotoPicker";
 import Popover from "modals/Popover";
+import GroupHotspots from "modals/GroupHotspots";
 
 const modals = [
   {
@@ -55,6 +56,12 @@ const modals = [
     title: "Select Featured Photo",
     maxWidth: "900px",
     Component: FeaturedPhotoPicker,
+  },
+  {
+    id: "groupHotspots",
+    title: "Hotspots",
+    maxWidth: "600px",
+    Component: GroupHotspots,
   },
   {
     id: "popover",

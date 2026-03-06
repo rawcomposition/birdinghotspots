@@ -2,12 +2,14 @@ import { Menu } from "@headlessui/react";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { Region } from "lib/types";
 import Link from "next/link";
+import { useUser } from "providers/user";
 
 type Props = {
   region: Region;
 };
 
 export default function RegionLinksBtn({ region }: Props) {
+  const { user } = useUser();
   const { code, features } = region;
   const isState = code.split("-").length === 2;
   const hasCities = ["US", "CA"].includes(code.split("-")[0]) && isState;
@@ -51,6 +53,16 @@ export default function RegionLinksBtn({ region }: Props) {
           <Menu.Item>
             <Link href={`/region/${code}/group-index`}>Group Locations</Link>
           </Menu.Item>
+          {user?.role === "admin" && (
+            <Menu.Item>
+              <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>
+            </Menu.Item>
+          )}
+          {user?.role === "admin" && (
+            <Menu.Item>
+              <Link href={`/region/${code}/group-primary-hotspots`}>Group Primary Hotspots</Link>
+            </Menu.Item>
+          )}
           {hasCities && (
             <Menu.Item>
               <Link href={`/region/${code}/cities`}>Cities/Towns</Link>
