@@ -7,12 +7,15 @@ import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { Region } from "lib/types";
 import { useModal } from "providers/modals";
+import { useUser } from "providers/user";
 
 type GroupItem = {
   name: string;
   url: string;
   locationId: string;
   isMigrationReady: boolean;
+  isRetired: boolean;
+  needsPrimaryHotspot: boolean;
   primaryHotspotName: string | null;
 };
 
@@ -43,8 +46,14 @@ const GroupRow = React.memo(function GroupRow({
       <td className="py-1.5 pr-4">
         <span className="inline-flex items-center gap-1">
           <Link href={group.url}>{group.name}</Link>
+          {group.isRetired && (
+            <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Retired</span>
+          )}
           {group.isMigrationReady && (
-            <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded">Migration Ready</span>
+            <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Migration Ready</span>
+          )}
+          {group.needsPrimaryHotspot && (
+            <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Needs Primary</span>
           )}
         </span>
       </td>

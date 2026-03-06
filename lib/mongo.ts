@@ -318,9 +318,7 @@ export async function getGroupsByRegion(region: string, limit?: number) {
 export async function getGroupPrimaryHotspotsByRegion(region: string) {
   await connect();
   const query: any = region === "world" ? {} : getRegionQuery(region);
-  query.isRetired = { $ne: true };
-
-  const result = await Group.find(query, ["name", "url", "locationId", "isMigrationReady"])
+  const result = await Group.find(query, ["name", "url", "locationId", "isMigrationReady", "isRetired"])
     .populate("primaryHotspot", ["name"])
     .sort({ name: 1 })
     .lean();
@@ -333,6 +331,8 @@ export async function getGroupPrimaryHotspotsByRegion(region: string) {
             url: g.url,
             locationId: g.locationId,
             isMigrationReady: g.isMigrationReady || false,
+            isRetired: g.isRetired || false,
+            needsPrimaryHotspot: !g.primaryHotspot,
             primaryHotspotName: g.primaryHotspot?.name || null,
           }))
         )
@@ -389,15 +389,15 @@ function buildHotspotToGroupUrls(groups: any[]) {
 
 export async function getOverlappingGroupsByRegion(region: string) {
   await connect();
-  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots", "isMigrationReady"]).sort({ name: 1 }).lean();
+  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots", "isMigrationReady", "primaryHotspot"]).sort({ name: 1 }).lean();
   if (!groups?.length) return [];
 
   const hotspotToGroupUrls = buildHotspotToGroupUrls(groups);
-  const groupByUrl = new Map(groups.map((g) => [g.url, { name: g.name, url: g.url, isMigrationReady: g.isMigrationReady || false }]));
+  const groupByUrl = new Map(groups.map((g: any) => [g.url, { name: g.name, url: g.url, isMigrationReady: g.isMigrationReady || false, needsPrimaryHotspot: !g.primaryHotspot }]));
 
   // Each unique set of groups sharing a hotspot forms a cluster
   const seen = new Set<string>();
-  const clusters: { name: string; url: string; isMigrationReady: boolean }[][] = [];
+  const clusters: { name: string; url: string; isMigrationReady: boolean; needsPrimaryHotspot: boolean }[][] = [];
 
   for (const [, urls] of hotspotToGroupUrls) {
     if (urls.length < 2) continue;
@@ -413,11 +413,11 @@ export async function getOverlappingGroupsByRegion(region: string) {
 
 export async function getTransitiveOverlappingGroupsByRegion(region: string) {
   await connect();
-  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots", "isMigrationReady"]).sort({ name: 1 }).lean();
+  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots", "isMigrationReady", "primaryHotspot"]).sort({ name: 1 }).lean();
   if (!groups?.length) return [];
 
   const hotspotToGroupUrls = buildHotspotToGroupUrls(groups);
-  const groupByUrl = new Map(groups.map((g) => [g.url, { name: g.name, url: g.url, isMigrationReady: g.isMigrationReady || false }]));
+  const groupByUrl = new Map(groups.map((g: any) => [g.url, { name: g.name, url: g.url, isMigrationReady: g.isMigrationReady || false, needsPrimaryHotspot: !g.primaryHotspot }]));
 
   // Union-find to transitively cluster groups that share hotspots
   const parent = new Map<string, string>();

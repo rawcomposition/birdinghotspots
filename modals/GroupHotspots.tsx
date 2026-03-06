@@ -8,24 +8,41 @@ type Hotspot = {
   locationId: string;
 };
 
+type NearbyHotspot = {
+  name: string;
+  url: string;
+  _id: string;
+};
+
 type Props = {
   locationId: string;
 };
 
 export default function GroupHotspots({ locationId }: Props) {
   const [hotspots, setHotspots] = React.useState<Hotspot[]>([]);
+  const [nearby, setNearby] = React.useState<NearbyHotspot[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    const fetchHotspots = async () => {
+    const fetchData = async () => {
       try {
         const res = await fetch(`/api/group/hotspots?locationId=${locationId}`);
         const data = await res.json();
-        if (data.success) {
-          setHotspots(data.hotspots);
-        } else {
+        if (!data.success) {
           setError("Failed to load hotspots");
+          setLoading(false);
+          return;
+        }
+        setHotspots(data.hotspots);
+
+        if (data.lat && data.lng) {
+          const childIds = data.hotspots.map((h: Hotspot) => h.locationId);
+          const nearbyRes = await fetch(
+            `/api/hotspot/nearby?lat=${data.lat}&lng=${data.lng}&limit=5&exclude=${childIds.join(",")}`
+          );
+          const nearbyData = await nearbyRes.json();
+          setNearby(nearbyData.results || []);
         }
       } catch {
         setError("Failed to load hotspots");
@@ -33,7 +50,7 @@ export default function GroupHotspots({ locationId }: Props) {
         setLoading(false);
       }
     };
-    fetchHotspots();
+    fetchData();
   }, [locationId]);
 
   if (loading) {
@@ -50,6 +67,7 @@ export default function GroupHotspots({ locationId }: Props) {
 
   return (
     <>
+      <h4 className="font-bold text-sm text-gray-700 mb-2">Child Hotspots</h4>
       <ul className="space-y-1">
         {hotspots.map((hotspot) => (
           <li key={hotspot.locationId}>
@@ -59,6 +77,20 @@ export default function GroupHotspots({ locationId }: Props) {
           </li>
         ))}
       </ul>
+      {nearby.length > 0 && (
+        <div className="mt-6">
+          <h4 className="font-bold text-sm text-gray-700 mb-2 border-t pt-4">Nearby Hotspots</h4>
+          <ul className="space-y-1">
+            {nearby.map((hotspot) => (
+              <li key={hotspot._id}>
+                <Link href={hotspot.url} target="_blank">
+                  {hotspot.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <ModalFooter>
         <div className="flex gap-4 text-sm">
           <Link href={`/group/${locationId}`} target="_blank">
