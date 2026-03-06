@@ -165,7 +165,7 @@ const GroupRow = React.memo(function GroupRow({
 
 const PER_PAGE = 500;
 
-type Filter = "all" | "with" | "without";
+type Filter = "all" | "with" | "without" | "withCoPrimary";
 
 export default function GroupPrimaryHotspots({ region, groups: initialGroups }: Props) {
   const { open } = useModal();
@@ -180,6 +180,8 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
   const filteredGroups = React.useMemo(() => {
     if (filter === "with") return groups.filter((g) => g.primaryHotspotName);
     if (filter === "without") return groups.filter((g) => !g.primaryHotspotName);
+    if (filter === "withCoPrimary")
+      return groups.filter((g) => g.primaryHotspotName && /\([^)]*\bCo\.\)/i.test(g.primaryHotspotName));
     return groups;
   }, [groups, filter]);
 
@@ -285,6 +287,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                 <option value="all">All</option>
                 <option value="with">With Primary</option>
                 <option value="without">Without Primary</option>
+                <option value="withCoPrimary">Has (Co.) Primary</option>
               </select>
             </div>
             {pagination}
