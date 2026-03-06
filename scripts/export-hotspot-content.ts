@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 dotenv.config();
 
+const EBIRD_USER_ID = "USER8869006";
+
 const LANGUAGE_OVERRIDES: Record<string, string> = {
   "CA-QC": "fr",
 };
@@ -61,8 +63,8 @@ function convertMapLinks(html: string): string {
   return html.replace(
     /<a\s+href=["']https:\/\/www\.google\.com\/maps\/search\/\?api=1&(?:amp;)?query=([^"']+)["'][^>]*class=["'][^"]*map-link[^"]*["'][^>]*>(.*?)<\/a>/gi,
     (_match, coords, label) => {
-      const trimmed = decodeURIComponent(coords).trim();
-      return `<span data-location="${trimmed}" class="location-link">${label}</span>`;
+      const trimmed = decodeURIComponent(coords).trim().replace(", ", ",");
+      return `<a href="" data-location="${trimmed}">${label}</a>`;
     }
   );
 }
@@ -165,12 +167,12 @@ async function main() {
   loc_id, website_url, links,
   entrance_fee, restrooms, accessible_trail, roadside_viewing,
   restricted_access, seasonal_access, parking, scope_recommended, beginner_friendly, observation_amenities,
-  creation_dt, last_edited_dt
+  created_by_user_id, edited_by_user_id, creation_dt, last_edited_dt
 ) VALUES (
   ${locId}, ${websiteUrl}, ${links},
   ${entranceFee}, ${restrooms}, ${accessibleTrail}, ${roadsideViewing},
   NULL, NULL, NULL, NULL, NULL, NULL,
-  ${creationDt}, ${lastEditedDt}
+  '${EBIRD_USER_ID}', '${EBIRD_USER_ID}', ${creationDt}, ${lastEditedDt}
 ) ON CONFLICT (loc_id) DO NOTHING;`);
   }
 
@@ -196,11 +198,11 @@ async function main() {
     lines.push(`INSERT INTO cur.hotspot_text_content (
   loc_id, language, default_lang,
   plan_visit_text, birding_text, about_text,
-  creation_dt, last_edited_dt
+  created_by_user_id, edited_by_user_id, creation_dt, last_edited_dt
 ) VALUES (
   ${locId}, ${language}, true,
   ${planText}, ${birdingText}, ${aboutText},
-  ${creationDt}, ${lastEditedDt}
+  '${EBIRD_USER_ID}', '${EBIRD_USER_ID}', ${creationDt}, ${lastEditedDt}
 ) ON CONFLICT (loc_id, language) DO NOTHING;`);
   }
 
