@@ -22,6 +22,7 @@ export default function MoreRegionLinks({ region }: Props) {
         {features?.includes("iba") && <Link href={`/region/${code}/important-bird-areas`}>Important Bird Areas</Link>}
         <Link href={`/region/${code}/group-index`}>Group Locations</Link>
         {user?.role === "admin" && <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>}
+        {user?.role === "admin" && <Link href={`/region/${code}/group-primary-hotspots`}>Group Primary Hotspots</Link>}
         {hasCities && <Link href={`/region/${code}/cities`}>Cities/Towns</Link>}
       </div>
     </div>

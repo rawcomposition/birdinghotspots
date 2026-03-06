@@ -58,6 +58,11 @@ export default function RegionLinksBtn({ region }: Props) {
               <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>
             </Menu.Item>
           )}
+          {user?.role === "admin" && (
+            <Menu.Item>
+              <Link href={`/region/${code}/group-primary-hotspots`}>Group Primary Hotspots</Link>
+            </Menu.Item>
+          )}
           {hasCities && (
             <Menu.Item>
               <Link href={`/region/${code}/cities`}>Cities/Towns</Link>
