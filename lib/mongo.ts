@@ -340,6 +340,31 @@ export async function getGroupPrimaryHotspotsByRegion(region: string) {
     : [];
 }
 
+export async function getSingleHotspotGroups() {
+  await connect();
+
+  const result = await Group.find(
+    { isRetired: { $ne: true }, $expr: { $eq: [{ $size: "$hotspots" }, 1] } },
+    ["name", "url", "locationId", "hotspots"]
+  )
+    .populate("hotspots", ["name"])
+    .sort({ name: 1 })
+    .lean();
+
+  return result
+    ? JSON.parse(
+        JSON.stringify(
+          result.map((g: any) => ({
+            name: g.name,
+            url: g.url,
+            locationId: g.locationId,
+            hotspotName: g.hotspots[0]?.name || null,
+          }))
+        )
+      )
+    : [];
+}
+
 function getRegionQuery(region: string) {
   if (region === "world") return {};
   if (region.split("-").length === 3) return { countyCodes: region };
