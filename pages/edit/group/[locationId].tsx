@@ -23,6 +23,7 @@ import HotspotSelect from "components/HotspotSelect";
 import toast from "react-hot-toast";
 import InputCitations from "components/InputCitations";
 import Checkbox from "components/Checkbox";
+import { useUser } from "providers/user";
 import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT } from "lib/config";
 
 type Props = {
@@ -35,9 +36,28 @@ type Props = {
 
 export default function Edit({ id, isNew, data, error, errorCode }: Props) {
   const { send, loading } = useToast();
+  const { user } = useUser();
+  const isAdmin = user?.role === "admin";
 
   const router = useRouter();
   const form = useForm<GroupInputs>({ defaultValues: data });
+  const isRetired = form.watch("isRetired");
+  const isMigrationReady = form.watch("isMigrationReady");
+  const needsPrimaryHotspot = form.watch("needsPrimaryHotspot");
+
+  const reviewStatus = isRetired
+    ? "retired"
+    : isMigrationReady
+    ? "migrationReady"
+    : needsPrimaryHotspot
+    ? "needsPrimary"
+    : "unreviewed";
+
+  const handleReviewStatusChange = (value: string) => {
+    form.setValue("isRetired", value === "retired");
+    form.setValue("isMigrationReady", value === "migrationReady");
+    form.setValue("needsPrimaryHotspot", value === "needsPrimary");
+  };
 
   const handleSubmit: SubmitHandler<GroupInputs> = async (data) => {
     if (!data.about) {
@@ -81,81 +101,108 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
       <div className="container pb-16 my-12">
         <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Group</h2>
         <Form form={form} onSubmit={handleSubmit}>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="pt-5 bg-white space-y-6 flex-1">
-              <Field label="Name">
-                <Input type="text" name="name" required />
-                <FormError name="name" />
-              </Field>
-
-              <Field label="Address">
-                <Textarea
-                  name="address"
-                  rows={2}
-                  help="City, state, and zip is sufficient if a full address is unavailable"
-                />
-              </Field>
-
-              <div className="space-y-1">
-                <Field label="Official Webpage URL">
-                  <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
-                </Field>
-                <Checkbox name="citeWebpage" label="Include as citation" />
-              </div>
-
-              <div className="space-y-1">
-                <Field
-                  label="Trail Map URL"
-                  help="Provide a link to a document, image, or webpage that contains a map of the trails at this location."
-                >
-                  <Input type="url" name="trailMap" defaultValue={data?.trailMap} placeholder="https://..." />
-                </Field>
-              </div>
-
-              <InputHotspotLinks label="Additional Links" />
-
-              <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
-                <TinyMCE name="plan" defaultValue={data?.plan} />
-              </Field>
-
-              <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
-                <TinyMCE name="birding" defaultValue={data?.birding} />
-              </Field>
-
-              <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
-                <TinyMCE name="about" defaultValue={data?.about} />
-              </Field>
-
-              <InputCitations />
-
-              <Field label="Hotspots">
-                <HotspotSelect name="hotspotSelect" className="mt-1 w-full" isMulti />
-              </Field>
-
-              <Field
-                label="Primary Hotspot (optional)"
-                help="Is there an eBird hotspot that pertains to the entire area represented by this group?"
-              >
-                <HotspotSelect name="primaryHotspotSelect" className="mt-1 w-full" isClearable />
-              </Field>
-
-              <div>
-                <label className="text-gray-500 font-bold">Map Images</label>
-                <ImagesInput hideMapCheckbox showHideFromChildrenCheckbox />
-              </div>
-
-              <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
-                <Submit disabled={loading} color="green" className="font-medium">
-                  Save Group
-                </Submit>
+          {!isNew && isAdmin && (
+            <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded mt-4">
+              <Submit disabled={loading} color="green" className="font-medium">
+                Save Group
+              </Submit>
+            </div>
+          )}
+          {!isNew && isAdmin && (
+            <div className="mt-4">
+              <label className="text-gray-500 font-bold">Review Status</label>
+              <div className="mt-1 flex flex-col gap-1">
+                {[
+                  { value: "unreviewed", label: "Unreviewed" },
+                  { value: "retired", label: "Retired" },
+                  { value: "needsPrimary", label: "Needs primary hotspot" },
+                  { value: "migrationReady", label: "Ready for migration" },
+                ].map((option) => (
+                  <label key={option.value} className="whitespace-nowrap">
+                    <input
+                      type="radio"
+                      name="reviewStatus"
+                      value={option.value}
+                      checked={reviewStatus === option.value}
+                      onChange={() => handleReviewStatusChange(option.value)}
+                    />{" "}
+                    {option.label}
+                  </label>
+                ))}
               </div>
             </div>
+          )}
+          <fieldset>
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="pt-5 bg-white space-y-6 flex-1">
+                <Field label="Name">
+                  <Input type="text" name="name" required />
+                  <FormError name="name" />
+                </Field>
 
-            <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
-              <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
-            </aside>
-          </div>
-          <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
+                <Field label="Address">
+                  <Textarea
+                    name="address"
+                    rows={2}
+                    help="City, state, and zip is sufficient if a full address is unavailable"
+                  />
+                </Field>
+
+                <div className="space-y-1">
+                  <Field label="Official Webpage URL">
+                    <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
+                  </Field>
+                  <Checkbox name="citeWebpage" label="Include as citation" />
+                </div>
+
+                <div className="space-y-1">
+                  <Field
+                    label="Trail Map URL"
+                    help="Provide a link to a document, image, or webpage that contains a map of the trails at this location."
+                  >
+                    <Input type="url" name="trailMap" defaultValue={data?.trailMap} placeholder="https://..." />
+                  </Field>
+                </div>
+
+                <InputHotspotLinks label="Additional Links" />
+
+                <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
+                  <TinyMCE name="plan" defaultValue={data?.plan} />
+                </Field>
+
+                <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
+                  <TinyMCE name="birding" defaultValue={data?.birding} />
+                </Field>
+
+                <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
+                  <TinyMCE name="about" defaultValue={data?.about} />
+                </Field>
+
+                <InputCitations />
+
+                <Field label="Hotspots">
+                  <HotspotSelect name="hotspotSelect" className="mt-1 w-full" isMulti />
+                </Field>
+
+                <Field
+                  label="Primary Hotspot (optional)"
+                  help="Is there an eBird hotspot that pertains to the entire area represented by this group?"
+                >
+                  <HotspotSelect name="primaryHotspotSelect" className="mt-1 w-full" isClearable />
+                </Field>
+
+                <div>
+                  <label className="text-gray-500 font-bold">Map Images</label>
+                  <ImagesInput hideMapCheckbox showHideFromChildrenCheckbox />
+                </div>
+              </div>
+
+              <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
+                <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
+              </aside>
+            </div>
+          </fieldset>
+          <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded mt-4">
             <Submit disabled={loading} color="green" className="font-medium">
               Save Group
             </Submit>
@@ -207,6 +254,9 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
         hotspotSelect,
         primaryHotspotSelect,
         restrooms: data?.restrooms || "Unknown",
+        isRetired: data?.isRetired || false,
+        isMigrationReady: data?.isMigrationReady || false,
+        needsPrimaryHotspot: data?.needsPrimaryHotspot || false,
       },
     },
   };

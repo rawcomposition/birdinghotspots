@@ -3,9 +3,10 @@ import { useFormContext, Controller } from "react-hook-form";
 type InputProps = {
   name: string;
   label: string;
+  disabled?: boolean;
 };
 
-const Checkbox = ({ name, label }: InputProps) => {
+const Checkbox = ({ name, label, disabled }: InputProps) => {
   const { control } = useFormContext();
   return (
     <Controller
@@ -18,7 +19,8 @@ const Checkbox = ({ name, label }: InputProps) => {
               type="checkbox"
               onChange={(e) => onChange(e.target.checked)}
               checked={!!value}
-              className="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500"
+              disabled={disabled}
+              className="h-4 w-4 rounded border-gray-300 text-accent-600 focus:ring-accent-500 disabled:opacity-50"
               name={name}
               value={value}
             />{" "}

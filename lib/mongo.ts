@@ -307,12 +307,124 @@ export async function getGroupsByRegion(region: string, limit?: number) {
     query = { countryCode: region };
   }
 
-  const result = await Group.find(query, ["-_id", "name", "url"])
+  const result = await Group.find(query, ["-_id", "name", "url", "isRetired", "isMigrationReady", "needsPrimaryHotspot"])
     .sort({ name: 1 })
     .limit(limit || 10000)
     .lean();
 
   return result ? JSON.parse(JSON.stringify(result)) : null;
+}
+
+export async function getGroupPrimaryHotspotsByRegion(region: string) {
+  await connect();
+  const query: any = region === "world" ? {} : getRegionQuery(region);
+  query.isRetired = { $ne: true };
+
+  const result = await Group.find(query, ["name", "url", "locationId", "isMigrationReady"])
+    .populate("primaryHotspot", ["name"])
+    .sort({ name: 1 })
+    .lean();
+
+  return result
+    ? JSON.parse(
+        JSON.stringify(
+          result.map((g: any) => ({
+            name: g.name,
+            url: g.url,
+            locationId: g.locationId,
+            isMigrationReady: g.isMigrationReady || false,
+            primaryHotspotName: g.primaryHotspot?.name || null,
+          }))
+        )
+      )
+    : [];
+}
+
+function getRegionQuery(region: string) {
+  if (region === "world") return {};
+  if (region.split("-").length === 3) return { countyCodes: region };
+  if (region.split("-").length === 2) return { stateCodes: region };
+  return { countryCode: region };
+}
+
+function buildHotspotToGroupUrls(groups: any[]) {
+  const map = new Map<string, string[]>();
+  for (const group of groups) {
+    const seen = new Set<string>();
+    for (const hotspotId of group.hotspots || []) {
+      const id = hotspotId.toString();
+      if (seen.has(id)) continue;
+      seen.add(id);
+      if (!map.has(id)) map.set(id, []);
+      map.get(id)!.push(group.url);
+    }
+  }
+  return map;
+}
+
+export async function getOverlappingGroupsByRegion(region: string) {
+  await connect();
+  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots", "isMigrationReady"]).sort({ name: 1 }).lean();
+  if (!groups?.length) return [];
+
+  const hotspotToGroupUrls = buildHotspotToGroupUrls(groups);
+  const groupByUrl = new Map(groups.map((g) => [g.url, { name: g.name, url: g.url, isMigrationReady: g.isMigrationReady || false }]));
+
+  // Each unique set of groups sharing a hotspot forms a cluster
+  const seen = new Set<string>();
+  const clusters: { name: string; url: string; isMigrationReady: boolean }[][] = [];
+
+  for (const [, urls] of hotspotToGroupUrls) {
+    if (urls.length < 2) continue;
+    const key = [...urls].sort().join("|");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    clusters.push(urls.map((url) => groupByUrl.get(url)!).sort((a, b) => a.name.localeCompare(b.name)));
+  }
+
+  clusters.sort((a, b) => a[0].name.localeCompare(b[0].name));
+  return JSON.parse(JSON.stringify(clusters));
+}
+
+export async function getTransitiveOverlappingGroupsByRegion(region: string) {
+  await connect();
+  const groups = await Group.find({ ...getRegionQuery(region), isRetired: { $ne: true } }, ["name", "url", "hotspots", "isMigrationReady"]).sort({ name: 1 }).lean();
+  if (!groups?.length) return [];
+
+  const hotspotToGroupUrls = buildHotspotToGroupUrls(groups);
+  const groupByUrl = new Map(groups.map((g) => [g.url, { name: g.name, url: g.url, isMigrationReady: g.isMigrationReady || false }]));
+
+  // Union-find to transitively cluster groups that share hotspots
+  const parent = new Map<string, string>();
+  const find = (x: string): string => {
+    if (!parent.has(x)) parent.set(x, x);
+    if (parent.get(x) !== x) parent.set(x, find(parent.get(x)!));
+    return parent.get(x)!;
+  };
+  const union = (a: string, b: string) => {
+    parent.set(find(a), find(b));
+  };
+
+  for (const [, urls] of hotspotToGroupUrls) {
+    if (urls.length < 2) continue;
+    for (let i = 1; i < urls.length; i++) {
+      union(urls[0], urls[i]);
+    }
+  }
+
+  const clusterMap = new Map<string, { name: string; url: string }[]>();
+  for (const url of parent.keys()) {
+    const root = find(url);
+    if (!clusterMap.has(root)) clusterMap.set(root, []);
+    clusterMap.get(root)!.push(groupByUrl.get(url)!);
+  }
+
+  const clusters = Array.from(clusterMap.values())
+    .filter((cluster) => cluster.length >= 2)
+    .map((cluster) => cluster.sort((a, b) => a.name.localeCompare(b.name)))
+    .sort((a, b) => a[0].name.localeCompare(b[0].name));
+
+  return JSON.parse(JSON.stringify(clusters));
 }
 
 export async function getTopGroupsByRegion(region: string, limit: number) {

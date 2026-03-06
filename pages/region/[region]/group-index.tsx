@@ -6,18 +6,23 @@ import { GetServerSideProps } from "next";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { Region } from "lib/types";
+import { useUser } from "providers/user";
 
 type Props = {
   region: Region;
   groups: {
     name: string;
     url: string;
+    isRetired?: boolean;
+    isMigrationReady?: boolean;
+    needsPrimaryHotspot?: boolean;
     noContent?: boolean;
     needsDeleting?: boolean;
   }[];
 };
 
 export default function AlphabeticalIndex({ region, groups }: Props) {
+  const { user } = useUser();
   let activeLetters = groups.map((group) => group.name.charAt(0).toUpperCase());
   activeLetters = [...new Set(activeLetters)];
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -43,7 +48,7 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
           );
         })}
       </p>
-      {groups.map(({ name, url }, i, array) => {
+      {groups.map(({ name, url, isRetired, isMigrationReady, needsPrimaryHotspot }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -54,7 +59,18 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
                 {isNumber ? "" : name[0].toUpperCase()}
               </h2>
             )}
-            <Link href={url}>{name}</Link>
+            <span className="inline-flex items-center gap-1">
+              <Link href={url}>{name}</Link>
+              {user && isRetired && (
+                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded">Retired</span>
+              )}
+              {user && isMigrationReady && (
+                <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded">Migration Ready</span>
+              )}
+              {user && needsPrimaryHotspot && (
+                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded">Needs Primary</span>
+              )}
+            </span>
             <br />
           </React.Fragment>
         );
