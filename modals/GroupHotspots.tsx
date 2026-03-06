@@ -35,15 +35,7 @@ export default function GroupHotspots({ locationId }: Props) {
           return;
         }
         setHotspots(data.hotspots);
-
-        if (data.lat && data.lng) {
-          const childIds = data.hotspots.map((h: Hotspot) => h.locationId);
-          const nearbyRes = await fetch(
-            `/api/hotspot/nearby?lat=${data.lat}&lng=${data.lng}&limit=5&exclude=${childIds.join(",")}`
-          );
-          const nearbyData = await nearbyRes.json();
-          setNearby(nearbyData.results || []);
-        }
+        setNearby(data.nearby || []);
       } catch {
         setError("Failed to load hotspots");
       } finally {
@@ -80,6 +72,7 @@ export default function GroupHotspots({ locationId }: Props) {
       {nearby.length > 0 && (
         <div className="mt-6">
           <h4 className="font-bold text-sm text-gray-700 mb-2 border-t pt-4">Nearby Hotspots</h4>
+          <p className="text-xs text-gray-600 mb-2">The following hotspots are roughly within the group's footprint.</p>
           <ul className="space-y-1">
             {nearby.map((hotspot) => (
               <li key={hotspot._id}>
