@@ -2,14 +2,17 @@ import React from "react";
 import Link from "next/link";
 import { getGroupPrimaryHotspotsByRegion } from "lib/mongo";
 import { getRegion } from "lib/localData";
-import { GetServerSideProps } from "next";
+import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { Region } from "lib/types";
 import { useModal } from "providers/modals";
-import { useUser } from "providers/user";
+import useSecureFetch from "hooks/useSecureFetch";
+
+type StatusValue = "unreviewed" | "retired" | "needsPrimary" | "migrationReady";
 
 type GroupItem = {
+  _id: string;
   name: string;
   url: string;
   locationId: string;
@@ -18,6 +21,90 @@ type GroupItem = {
   needsPrimaryHotspot: boolean;
   primaryHotspotName: string | null;
 };
+
+function getStatus(group: GroupItem): StatusValue {
+  if (group.isRetired) return "retired";
+  if (group.isMigrationReady) return "migrationReady";
+  if (group.needsPrimaryHotspot) return "needsPrimary";
+  return "unreviewed";
+}
+
+const statusOptions: { value: StatusValue; label: string }[] = [
+  { value: "unreviewed", label: "Unreviewed" },
+  { value: "retired", label: "Retired" },
+  { value: "needsPrimary", label: "Needs Primary" },
+  { value: "migrationReady", label: "Ready" },
+];
+
+const statusColors: Record<StatusValue, string> = {
+  unreviewed: "bg-gray-200 text-gray-700",
+  retired: "bg-orange-100 text-orange-800",
+  needsPrimary: "bg-orange-100 text-orange-800",
+  migrationReady: "bg-green-800 text-white",
+};
+
+function StatusDropdown({
+  status,
+  onChange,
+}: {
+  status: StatusValue;
+  onChange: (status: StatusValue) => void;
+}) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+  const label = statusOptions.find((o) => o.value === status)?.label;
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setIsOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [isOpen]);
+
+  return (
+    <div ref={ref} className="relative inline-block">
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsOpen(!isOpen);
+        }}
+        className={`text-xs pl-2.5 pr-1.5 py-1 rounded whitespace-nowrap cursor-pointer inline-flex items-center gap-1 ${statusColors[status]}`}
+      >
+        {label}
+        <svg className="w-3 h-3 opacity-60" viewBox="0 0 20 20" fill="currentColor">
+          <path
+            fillRule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="absolute left-0 top-full mt-1 bg-white rounded-md shadow-lg ring-1 ring-black/5 py-1 z-10 min-w-[130px]">
+          {statusOptions.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onChange(opt.value);
+                setIsOpen(false);
+              }}
+              className={`w-full text-left px-2 py-1 hover:bg-gray-100 ${
+                opt.value === status ? "bg-gray-50" : ""
+              }`}
+            >
+              <span className={`text-xs px-2 py-0.5 rounded ${statusColors[opt.value]}`}>{opt.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 type Props = {
   region: Region | null;
@@ -30,13 +117,16 @@ const GroupRow = React.memo(function GroupRow({
   isActive,
   onClick,
   onShowHotspots,
+  onStatusChange,
 }: {
   group: GroupItem;
   index: number;
   isActive: boolean;
   onClick: (locationId: string, forceActive?: boolean) => void;
   onShowHotspots: (locationId: string, name: string) => void;
+  onStatusChange: (id: string, status: StatusValue) => void;
 }) {
+  const status = getStatus(group);
   return (
     <tr
       className={`border-b ${isActive ? "bg-blue-50" : ""}`}
@@ -44,18 +134,10 @@ const GroupRow = React.memo(function GroupRow({
     >
       <td className="py-1.5 pr-2 text-gray-400 text-sm">{index + 1}</td>
       <td className="py-1.5 pr-4">
-        <span className="inline-flex items-center gap-1">
-          <Link href={group.url}>{group.name}</Link>
-          {group.isRetired && (
-            <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Retired</span>
-          )}
-          {group.isMigrationReady && (
-            <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Migration Ready</span>
-          )}
-          {group.needsPrimaryHotspot && (
-            <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Needs Primary</span>
-          )}
-        </span>
+        <Link href={group.url}>{group.name}</Link>
+      </td>
+      <td className="py-1.5 pr-4">
+        <StatusDropdown status={status} onChange={(s) => onStatusChange(group._id, s)} />
       </td>
       <td className="py-1.5 pr-4 text-gray-600">{group.primaryHotspotName}</td>
       <td className="py-1.5 flex gap-4">
@@ -85,8 +167,10 @@ const PER_PAGE = 500;
 
 type Filter = "all" | "with" | "without";
 
-export default function GroupPrimaryHotspots({ region, groups }: Props) {
+export default function GroupPrimaryHotspots({ region, groups: initialGroups }: Props) {
   const { open } = useModal();
+  const { send } = useSecureFetch();
+  const [groups, setGroups] = React.useState(initialGroups);
   const [page, setPage] = React.useState(0);
   const [filter, setFilter] = React.useState<Filter>("all");
   const [activeRows, setActiveRows] = React.useState<Set<string>>(new Set());
@@ -121,6 +205,25 @@ export default function GroupPrimaryHotspots({ region, groups }: Props) {
       open("groupHotspots", { locationId, title: groupName });
     },
     [open]
+  );
+
+  const handleStatusChange = React.useCallback(
+    async (id: string, status: StatusValue) => {
+      setGroups((prev) =>
+        prev.map((g) =>
+          g._id === id
+            ? {
+                ...g,
+                isRetired: status === "retired",
+                isMigrationReady: status === "migrationReady",
+                needsPrimaryHotspot: status === "needsPrimary",
+              }
+            : g
+        )
+      );
+      await send({ url: "/api/group/set-status", method: "POST", data: { id, status } });
+    },
+    [send]
   );
 
   const handlePageChange = (newPage: number) => {
@@ -192,6 +295,7 @@ export default function GroupPrimaryHotspots({ region, groups }: Props) {
                 <th className="py-2 pr-4 font-bold" colSpan={2}>
                   Group
                 </th>
+                <th className="py-2 pr-4 font-bold">Status</th>
                 <th className="py-2 pr-4 font-bold">Primary Hotspot</th>
                 <th className="py-2 font-bold"></th>
               </tr>
@@ -205,6 +309,7 @@ export default function GroupPrimaryHotspots({ region, groups }: Props) {
                   isActive={activeRows.has(group.locationId)}
                   onClick={handleRowClick}
                   onShowHotspots={handleShowHotspots}
+                  onStatusChange={handleStatusChange}
                 />
               ))}
             </tbody>
@@ -216,7 +321,7 @@ export default function GroupPrimaryHotspots({ region, groups }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps = getSecureServerSideProps(async ({ query }) => {
   const regionCode = query.region as string;
   const region = regionCode === "world" ? null : getRegion(regionCode);
   if (regionCode !== "world" && !region) return { notFound: true };
@@ -226,4 +331,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   return {
     props: { region, groups },
   };
-};
+}, true);

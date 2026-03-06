@@ -318,7 +318,7 @@ export async function getGroupsByRegion(region: string, limit?: number) {
 export async function getGroupPrimaryHotspotsByRegion(region: string) {
   await connect();
   const query: any = region === "world" ? {} : getRegionQuery(region);
-  const result = await Group.find(query, ["name", "url", "locationId", "isMigrationReady", "isRetired", "needsPrimaryHotspot"])
+  const result = await Group.find(query, ["_id", "name", "url", "locationId", "isMigrationReady", "isRetired", "needsPrimaryHotspot"])
     .populate("primaryHotspot", ["name"])
     .sort({ name: 1 })
     .lean();
@@ -327,6 +327,7 @@ export async function getGroupPrimaryHotspotsByRegion(region: string) {
     ? JSON.parse(
         JSON.stringify(
           result.map((g: any) => ({
+            _id: g._id,
             name: g.name,
             url: g.url,
             locationId: g.locationId,
