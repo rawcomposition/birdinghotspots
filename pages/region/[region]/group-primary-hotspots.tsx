@@ -123,7 +123,7 @@ const GroupRow = React.memo(function GroupRow({
   index: number;
   isActive: boolean;
   onClick: (locationId: string, forceActive?: boolean) => void;
-  onShowHotspots: (locationId: string, name: string) => void;
+  onShowHotspots: (locationId: string) => void;
   onStatusChange: (id: string, status: StatusValue) => void;
 }) {
   const status = getStatus(group);
@@ -147,7 +147,7 @@ const GroupRow = React.memo(function GroupRow({
           onClick={(e) => {
             e.stopPropagation();
             onClick(group.locationId, true);
-            onShowHotspots(group.locationId, group.name);
+            onShowHotspots(group.locationId);
           }}
         >
           Hotspots
@@ -174,6 +174,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
   const [page, setPage] = React.useState(0);
   const [filter, setFilter] = React.useState<Filter>("all");
   const [activeRows, setActiveRows] = React.useState<Set<string>>(new Set());
+  const [dialogIndex, setDialogIndex] = React.useState<number | null>(null);
   const name = region?.detailedName || "World";
   const withPrimary = groups.filter((g) => g.primaryHotspotName).length;
 
@@ -202,12 +203,43 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
     });
   }, []);
 
-  const handleShowHotspots = React.useCallback(
-    (locationId: string, groupName: string) => {
-      open("groupHotspots", { locationId, title: groupName });
+  const openGroupDialog = React.useCallback(
+    (index: number) => {
+      const group = pageGroups[index];
+      if (!group) return;
+      setDialogIndex(index);
+      setActiveRows((prev) => new Set(prev).add(group.locationId));
+      open("groupHotspots", {
+        locationId: group.locationId,
+        title: group.name,
+        onDismiss: () => setDialogIndex(null),
+      });
     },
-    [open]
+    [pageGroups, open]
   );
+
+  const handleShowHotspots = React.useCallback(
+    (locationId: string) => {
+      const index = pageGroups.findIndex((g) => g.locationId === locationId);
+      openGroupDialog(index);
+    },
+    [pageGroups, openGroupDialog]
+  );
+
+  React.useEffect(() => {
+    if (dialogIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft" && dialogIndex > 0) {
+        e.preventDefault();
+        openGroupDialog(dialogIndex - 1);
+      } else if (e.key === "ArrowRight" && dialogIndex < pageGroups.length - 1) {
+        e.preventDefault();
+        openGroupDialog(dialogIndex + 1);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [dialogIndex, pageGroups, openGroupDialog]);
 
   const handleStatusChange = React.useCallback(
     async (id: string, status: StatusValue) => {
