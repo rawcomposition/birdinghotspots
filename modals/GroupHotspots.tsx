@@ -80,7 +80,12 @@ export default function GroupHotspots({ locationId }: Props) {
 
   return (
     <>
-      <h4 className="font-bold text-sm text-gray-700 mb-2">Child Hotspots</h4>
+      <h4 className="font-bold text-sm text-gray-700 mb-2">
+        Child Hotspots
+        {!primaryLocationId && (
+          <span className="ml-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-normal">No Primary</span>
+        )}
+      </h4>
       <ul className="space-y-1">
         {hotspots.map((hotspot) => (
           <li key={hotspot.locationId}>
@@ -88,7 +93,7 @@ export default function GroupHotspots({ locationId }: Props) {
               {hotspot.name}
             </Link>
             {hotspot.locationId === primaryLocationId && (
-              <span className="ml-2 text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">Primary</span>
+              <span className="ml-2 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Primary</span>
             )}
           </li>
         ))}

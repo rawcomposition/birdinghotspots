@@ -211,18 +211,20 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
       setActiveRows((prev) => new Set(prev).add(group.locationId));
       open("groupHotspots", {
         locationId: group.locationId,
-        title: (
-          <>
-            {group.name}
-            {!group.primaryHotspotName && (
-              <span className="ml-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-normal">No Primary</span>
-            )}
-          </>
-        ),
+        title: (() => {
+          const status = getStatus(group);
+          const label = statusOptions.find((o) => o.value === status)?.label;
+          return (
+            <>
+              {page * PER_PAGE + index + 1}. {group.name}
+              <span className={`ml-2 text-xs px-2 py-0.5 rounded font-normal ${statusColors[status]}`}>{label}</span>
+            </>
+          );
+        })(),
         onDismiss: () => setDialogIndex(null),
       });
     },
-    [pageGroups, open]
+    [pageGroups, open, page]
   );
 
   const handleShowHotspots = React.useCallback(
