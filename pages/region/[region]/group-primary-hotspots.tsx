@@ -211,7 +211,14 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
       setActiveRows((prev) => new Set(prev).add(group.locationId));
       open("groupHotspots", {
         locationId: group.locationId,
-        title: group.name,
+        title: (
+          <>
+            {group.name}
+            {!group.primaryHotspotName && (
+              <span className="ml-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-normal">No Primary</span>
+            )}
+          </>
+        ),
         onDismiss: () => setDialogIndex(null),
       });
     },
