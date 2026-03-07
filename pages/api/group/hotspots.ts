@@ -72,8 +72,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     await connect();
-    const group = await Group.findOne({ locationId }, ["hotspots"])
+    const group = await Group.findOne({ locationId }, ["hotspots", "primaryHotspot"])
       .populate("hotspots", ["name", "url", "locationId", "lat", "lng"])
+      .populate("primaryHotspot", ["name", "url", "locationId"])
       .lean()
       .exec();
 
@@ -125,10 +126,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     }
 
+    const primaryLocationId = group.primaryHotspot
+      ? (group.primaryHotspot as any).locationId
+      : null;
+
     res.status(200).json({
       success: true,
       hotspots,
       nearby,
+      primaryLocationId,
     });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

@@ -60,7 +60,7 @@ const modals = [
   {
     id: "groupHotspots",
     title: "Hotspots",
-    maxWidth: "600px",
+    maxWidth: "750px",
     Component: GroupHotspots,
   },
   {
