@@ -484,3 +484,11 @@ img.marker-sm {
   right: 5px !important;
   @apply !block sm:!hidden;
 }
+
+.editor-conflict .tox-tinymce {
+  border-color: #fecaca;
+}
+
+.editor-conflict .tox .tox-edit-area__iframe {
+  background-color: #fef2f2 !important;
+}
