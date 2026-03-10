@@ -143,11 +143,11 @@ const GroupRow = React.memo(function GroupRow({
         <StatusDropdown status={status} onChange={(s) => onStatusChange(group._id, s)} />
       </td>
       <td className="py-1.5 pr-4 text-gray-600">{group.primaryHotspotName}</td>
-      <td className="py-1.5 pr-4 text-center">
+      <td className="py-1.5 pr-4">
         {group.hasConflictingContent && (
           <button
             type="button"
-            className="text-red-600 text-xs font-medium hover:underline cursor-pointer"
+            className="text-sm text-red-600"
             onClick={(e) => {
               e.stopPropagation();
               onShowConflict(group.locationId, group.name);
@@ -193,7 +193,6 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
   const [activeRows, setActiveRows] = React.useState<Set<string>>(new Set());
   const [dialogIndex, setDialogIndex] = React.useState<number | null>(null);
   const name = region?.detailedName || "World";
-  const withPrimary = groups.filter((g) => g.primaryHotspotName).length;
 
   const filteredGroups = React.useMemo(() => {
     if (filter === "with") return groups.filter((g) => g.primaryHotspotName);
@@ -341,10 +340,6 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
         <>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <p className="text-gray-600">
-                <strong>{withPrimary.toLocaleString()}</strong> of <strong>{groups.length.toLocaleString()}</strong>{" "}
-                groups have a primary hotspot.
-              </p>
               <select
                 value={filter}
                 onChange={(e) => {
@@ -359,6 +354,10 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                 <option value="withCoPrimary">Has (Co.) Primary</option>
                 <option value="conflicting">Has Conflicting Content</option>
               </select>
+              <p className="text-sm text-gray-600">
+                Showing <strong>{filteredGroups.length.toLocaleString()}</strong>
+                {filter !== "all" && <> of <strong>{groups.length.toLocaleString()}</strong></>} groups
+              </p>
             </div>
             {pagination}
           </div>
@@ -370,7 +369,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                 </th>
                 <th className="py-2 pr-4 font-bold">Status</th>
                 <th className="py-2 pr-4 font-bold">Primary Hotspot</th>
-                <th className="py-2 pr-4 font-bold">Conflict</th>
+                <th className="py-2 pr-4"></th>
                 <th className="py-2 font-bold"></th>
               </tr>
             </thead>

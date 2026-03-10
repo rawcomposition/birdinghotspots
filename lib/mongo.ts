@@ -8,6 +8,7 @@ import Group from "models/Group";
 import Profile from "models/Profile";
 import City from "models/City";
 import Log from "models/Log";
+import { hasConflictingContent as checkConflict } from "lib/conflict";
 import RegionInfo from "models/RegionInfo";
 import Regions from "data/regions.json";
 import SyncRegions from "data/sync-regions.json";
@@ -331,12 +332,7 @@ export async function getGroupPrimaryHotspotsByRegion(region: string) {
         JSON.stringify(
           result.map((g: any) => {
             const ph = g.primaryHotspot;
-            const hasConflictingContent =
-              !!ph &&
-              ((!!g.about && !!ph.about) ||
-                (!!g.birding && !!ph.birding) ||
-                (!!g.plan && !!ph.plan) ||
-                (!!g.restrooms && g.restrooms !== "Unknown" && !!ph.restrooms && ph.restrooms !== "Unknown"));
+            const hasConflictingContent = !!ph && checkConflict(g, ph);
             return {
               _id: g._id,
               name: g.name,

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import { hasFieldConflict } from "lib/conflict";
 
 type ContentFields = {
   about: string;
@@ -19,13 +19,6 @@ const fieldLabels: { key: keyof ContentFields; label: string }[] = [
   { key: "about", label: "About this Place" },
   { key: "restrooms", label: "Restrooms" },
 ];
-
-function hasConflict(group: ContentFields, hotspot: ContentFields, key: keyof ContentFields) {
-  if (key === "restrooms") {
-    return !!group[key] && group[key] !== "Unknown" && !!hotspot[key] && hotspot[key] !== "Unknown";
-  }
-  return !!group[key] && !!hotspot[key];
-}
 
 export default function ContentConflict({ locationId }: Props) {
   const [loading, setLoading] = React.useState(true);
@@ -94,13 +87,15 @@ export default function ContentConflict({ locationId }: Props) {
         const groupVal = data.group[key];
         const hotspotVal = data.hotspot![key];
         if (!groupVal && !hotspotVal) return null;
-        const conflict = hasConflict(data.group, data.hotspot!, key);
+        const conflict = hasFieldConflict(data.group, data.hotspot!, key);
+        const identical = !!groupVal && !!hotspotVal && groupVal === hotspotVal && !(key === "restrooms" && groupVal === "Unknown");
         return (
           <div key={key} className="mb-4">
-            <div className="mb-1">
+            <div className="mb-1 flex items-center gap-2">
               <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${conflict ? "text-red-600 bg-red-50" : "text-gray-500 bg-gray-100"}`}>
                 {label}
               </span>
+              {identical && <span className="text-xs text-green-700">Identical</span>}
             </div>
             <div className="grid grid-cols-2 gap-4">
               {groupVal ? (
