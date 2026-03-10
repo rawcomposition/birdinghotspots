@@ -20,6 +20,7 @@ type GroupItem = {
   isRetired: boolean;
   needsPrimaryHotspot: boolean;
   primaryHotspotName: string | null;
+  hasConflictingContent: boolean;
 };
 
 function getStatus(group: GroupItem): StatusValue {
@@ -117,6 +118,7 @@ const GroupRow = React.memo(function GroupRow({
   isActive,
   onClick,
   onShowHotspots,
+  onShowConflict,
   onStatusChange,
 }: {
   group: GroupItem;
@@ -124,6 +126,7 @@ const GroupRow = React.memo(function GroupRow({
   isActive: boolean;
   onClick: (locationId: string, forceActive?: boolean) => void;
   onShowHotspots: (locationId: string) => void;
+  onShowConflict: (locationId: string, name: string) => void;
   onStatusChange: (id: string, status: StatusValue) => void;
 }) {
   const status = getStatus(group);
@@ -140,6 +143,20 @@ const GroupRow = React.memo(function GroupRow({
         <StatusDropdown status={status} onChange={(s) => onStatusChange(group._id, s)} />
       </td>
       <td className="py-1.5 pr-4 text-gray-600">{group.primaryHotspotName}</td>
+      <td className="py-1.5 pr-4 text-center">
+        {group.hasConflictingContent && (
+          <button
+            type="button"
+            className="text-red-600 text-xs font-medium hover:underline cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              onShowConflict(group.locationId, group.name);
+            }}
+          >
+            Conflict
+          </button>
+        )}
+      </td>
       <td className="py-1.5 flex gap-4">
         <button
           type="button"
@@ -165,7 +182,7 @@ const GroupRow = React.memo(function GroupRow({
 
 const PER_PAGE = 500;
 
-type Filter = "all" | "with" | "without" | "withCoPrimary";
+type Filter = "all" | "with" | "without" | "withCoPrimary" | "conflicting";
 
 export default function GroupPrimaryHotspots({ region, groups: initialGroups }: Props) {
   const { open } = useModal();
@@ -183,6 +200,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
     if (filter === "without") return groups.filter((g) => !g.primaryHotspotName);
     if (filter === "withCoPrimary")
       return groups.filter((g) => g.primaryHotspotName && /\([^)]*\bCo\.\)/i.test(g.primaryHotspotName));
+    if (filter === "conflicting") return groups.filter((g) => g.hasConflictingContent);
     return groups;
   }, [groups, filter]);
 
@@ -233,6 +251,16 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
       openGroupDialog(index);
     },
     [pageGroups, openGroupDialog]
+  );
+
+  const handleShowConflict = React.useCallback(
+    (locationId: string, name: string) => {
+      open("contentConflict", {
+        locationId,
+        title: `Content Conflict — ${name}`,
+      });
+    },
+    [open]
   );
 
   React.useEffect(() => {
@@ -329,6 +357,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                 <option value="with">With Primary</option>
                 <option value="without">Without Primary</option>
                 <option value="withCoPrimary">Has (Co.) Primary</option>
+                <option value="conflicting">Has Conflicting Content</option>
               </select>
             </div>
             {pagination}
@@ -341,6 +370,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                 </th>
                 <th className="py-2 pr-4 font-bold">Status</th>
                 <th className="py-2 pr-4 font-bold">Primary Hotspot</th>
+                <th className="py-2 pr-4 font-bold">Conflict</th>
                 <th className="py-2 font-bold"></th>
               </tr>
             </thead>
@@ -353,6 +383,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                   isActive={activeRows.has(group.locationId)}
                   onClick={handleRowClick}
                   onShowHotspots={handleShowHotspots}
+                  onShowConflict={handleShowConflict}
                   onStatusChange={handleStatusChange}
                 />
               ))}

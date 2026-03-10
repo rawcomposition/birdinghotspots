@@ -15,6 +15,7 @@ import UploadMessage from "modals/UploadMessage";
 import FeaturedPhotoPicker from "modals/FeaturedPhotoPicker";
 import Popover from "modals/Popover";
 import GroupHotspots from "modals/GroupHotspots";
+import ContentConflict from "modals/ContentConflict";
 
 const modals = [
   {
@@ -62,6 +63,12 @@ const modals = [
     title: "Hotspots",
     maxWidth: "750px",
     Component: GroupHotspots,
+  },
+  {
+    id: "contentConflict",
+    title: "Content Conflict",
+    maxWidth: "1000px",
+    Component: ContentConflict,
   },
   {
     id: "popover",

@@ -318,24 +318,37 @@ export async function getGroupsByRegion(region: string, limit?: number) {
 export async function getGroupPrimaryHotspotsByRegion(region: string) {
   await connect();
   const query: any = region === "world" ? {} : getRegionQuery(region);
-  const result = await Group.find(query, ["_id", "name", "url", "locationId", "isMigrationReady", "isRetired", "needsPrimaryHotspot"])
-    .populate("primaryHotspot", ["name"])
+  const result = await Group.find(query, [
+    "_id", "name", "url", "locationId", "isMigrationReady", "isRetired", "needsPrimaryHotspot",
+    "about", "birding", "plan", "restrooms",
+  ])
+    .populate("primaryHotspot", ["name", "about", "birding", "plan", "restrooms"])
     .sort({ name: 1 })
     .lean();
 
   return result
     ? JSON.parse(
         JSON.stringify(
-          result.map((g: any) => ({
-            _id: g._id,
-            name: g.name,
-            url: g.url,
-            locationId: g.locationId,
-            isMigrationReady: g.isMigrationReady || false,
-            isRetired: g.isRetired || false,
-            needsPrimaryHotspot: g.needsPrimaryHotspot || false,
-            primaryHotspotName: g.primaryHotspot?.name || null,
-          }))
+          result.map((g: any) => {
+            const ph = g.primaryHotspot;
+            const hasConflictingContent =
+              !!ph &&
+              ((!!g.about && !!ph.about) ||
+                (!!g.birding && !!ph.birding) ||
+                (!!g.plan && !!ph.plan) ||
+                (!!g.restrooms && g.restrooms !== "Unknown" && !!ph.restrooms && ph.restrooms !== "Unknown"));
+            return {
+              _id: g._id,
+              name: g.name,
+              url: g.url,
+              locationId: g.locationId,
+              isMigrationReady: g.isMigrationReady || false,
+              isRetired: g.isRetired || false,
+              needsPrimaryHotspot: g.needsPrimaryHotspot || false,
+              primaryHotspotName: ph?.name || null,
+              hasConflictingContent,
+            };
+          })
         )
       )
     : [];
