@@ -8,7 +8,18 @@ dotenv.config();
 
 const DRY_RUN = true;
 const ENABLE_EXPERIMENTAL = false;
-const BLACKLISTED_GROUPS = ["G880628", "G612344", "G598870"];
+const IGNORE_LIST = [
+  "G880628",
+  "G612344",
+  "G598870",
+  "G531996",
+  "G724973",
+  "G004657",
+  "G658810",
+  "G798051",
+  "G250215",
+  "G280448",
+];
 
 const URI = process.env.MONGO_URI;
 const connect = async () => (URI ? mongoose.connect(URI) : null);
@@ -78,6 +89,8 @@ const sanitizeName = (name: string) => {
     result = result.replace(pattern, replacement);
   }
 
+  result = result.replace(/'/g, "");
+
   result = result.toLowerCase().trim();
 
   result = result.replace(/--general\b/i, "").trim();
@@ -109,7 +122,7 @@ const findGroupPrimaryHotspot = async () => {
   const csvRows: string[] = ["Status,Group Name,Primary Hotspot Name,Group URL"];
 
   for (const group of groups) {
-    if (BLACKLISTED_GROUPS.includes(group.locationId)) continue;
+    if (IGNORE_LIST.includes(group.locationId)) continue;
     const primaryHotspot = group.hotspots.find(
       (hotspot: any) =>
         !hasSubArea(hotspot.name) &&
