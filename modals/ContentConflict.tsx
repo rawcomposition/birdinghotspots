@@ -86,7 +86,6 @@ export default function ContentConflict({ locationId }: Props) {
       {fieldLabels.map(({ key, label }) => {
         const groupVal = data.group[key];
         const hotspotVal = data.hotspot![key];
-        if (!groupVal && !hotspotVal) return null;
         const conflict = hasFieldConflict(data.group, data.hotspot!, key);
         const identical = !!groupVal && !!hotspotVal && groupVal === hotspotVal && !(key === "restrooms" && groupVal === "Unknown");
         return (
@@ -100,21 +99,21 @@ export default function ContentConflict({ locationId }: Props) {
             <div className="grid grid-cols-2 gap-4">
               {groupVal ? (
                 <div
-                  className={`text-sm rounded p-2 max-h-48 overflow-y-auto break-words prose prose-sm max-w-none ${conflict ? "bg-red-50/50 border border-red-200" : "bg-gray-50 border border-gray-200"}`}
+                  className={`text-sm rounded p-2 break-words prose prose-sm max-w-none ${conflict ? "bg-red-50/50 border border-red-200" : "bg-gray-50 border border-gray-200"}`}
                   dangerouslySetInnerHTML={{ __html: groupVal }}
                 />
               ) : (
-                <div className="text-sm bg-gray-50 border border-gray-200 rounded p-2 max-h-48 overflow-y-auto break-words">
+                <div className="text-sm bg-gray-50 border border-gray-200 rounded p-2 break-words">
                   <span className="text-gray-400 italic">Empty</span>
                 </div>
               )}
               {hotspotVal ? (
                 <div
-                  className={`text-sm rounded p-2 max-h-48 overflow-y-auto break-words prose prose-sm max-w-none ${conflict ? "bg-red-50/50 border border-red-200" : "bg-gray-50 border border-gray-200"}`}
+                  className={`text-sm rounded p-2 break-words prose prose-sm max-w-none ${conflict ? "bg-red-50/50 border border-red-200" : "bg-gray-50 border border-gray-200"}`}
                   dangerouslySetInnerHTML={{ __html: hotspotVal }}
                 />
               ) : (
-                <div className="text-sm bg-gray-50 border border-gray-200 rounded p-2 max-h-48 overflow-y-auto break-words">
+                <div className="text-sm bg-gray-50 border border-gray-200 rounded p-2 break-words">
                   <span className="text-gray-400 italic">Empty</span>
                 </div>
               )}

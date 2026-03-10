@@ -182,7 +182,7 @@ const GroupRow = React.memo(function GroupRow({
 
 const PER_PAGE = 500;
 
-type Filter = "all" | "with" | "without" | "withCoPrimary" | "conflicting";
+type Filter = "all" | "with" | "without" | "withCoPrimary" | "conflicting" | "unreviewed";
 
 export default function GroupPrimaryHotspots({ region, groups: initialGroups }: Props) {
   const { open } = useModal();
@@ -200,6 +200,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
     if (filter === "withCoPrimary")
       return groups.filter((g) => g.primaryHotspotName && /\([^)]*\bCo\.\)/i.test(g.primaryHotspotName));
     if (filter === "conflicting") return groups.filter((g) => g.hasConflictingContent);
+    if (filter === "unreviewed") return groups.filter((g) => getStatus(g) === "unreviewed");
     return groups;
   }, [groups, filter]);
 
@@ -352,6 +353,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
                 <option value="with">With Primary</option>
                 <option value="without">Without Primary</option>
                 <option value="withCoPrimary">Has (Co.) Primary</option>
+                <option value="unreviewed">Unreviewed</option>
                 <option value="conflicting">Has Conflicting Content</option>
               </select>
               <p className="text-sm text-gray-600">
