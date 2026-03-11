@@ -6,6 +6,7 @@ import { hasFieldConflict } from "lib/conflict";
 import { ModalFooter } from "providers/modals";
 import BtnSmall from "components/BtnSmall";
 import useSecureFetch from "hooks/useSecureFetch";
+import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 type ContentFields = {
@@ -17,6 +18,17 @@ type ContentFields = {
 
 type Props = {
   locationId: string;
+  onSave?: () => void;
+};
+
+type ConflictData = {
+  success: boolean;
+  groupName: string;
+  primaryHotspotName: string;
+  primaryHotspotUrl: string;
+  primaryHotspotLocationId: string;
+  group: ContentFields;
+  hotspot: ContentFields | null;
 };
 
 const fieldLabels: { key: keyof ContentFields; label: string }[] = [
@@ -47,53 +59,19 @@ function RestroomRadio({ value, onChange, name }: { value: string; onChange: (v:
   );
 }
 
-export default function ContentConflict({ locationId }: Props) {
+export default function ContentConflict({ locationId, onSave }: Props) {
   const { send, loading: saving } = useSecureFetch();
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
-  const [data, setData] = React.useState<{
-    groupName: string;
-    primaryHotspotName: string;
-    primaryHotspotUrl: string;
-    primaryHotspotLocationId: string;
-    group: ContentFields;
-    hotspot: ContentFields;
-  } | null>(null);
+  const { data, isLoading, error } = useQuery<ConflictData>({
+    queryKey: [`/api/group/conflict-content?locationId=${locationId}`],
+    enabled: !!locationId,
+  });
   const [groupEdits, setGroupEdits] = React.useState<ContentFields | null>(null);
   const [hotspotEdits, setHotspotEdits] = React.useState<ContentFields | null>(null);
 
-  const fetchData = React.useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`/api/group/conflict-content?locationId=${locationId}`);
-      const json = await res.json();
-      if (!json.success) {
-        setError("Failed to load content");
-        return;
-      }
-      const groupContent = json.group as ContentFields;
-      const hotspotContent = json.hotspot as ContentFields;
-      setData({
-        groupName: json.groupName,
-        primaryHotspotName: json.primaryHotspotName,
-        primaryHotspotUrl: json.primaryHotspotUrl,
-        primaryHotspotLocationId: json.primaryHotspotLocationId,
-        group: groupContent,
-        hotspot: hotspotContent,
-      });
-      setGroupEdits(groupContent);
-      setHotspotEdits(hotspotContent);
-    } catch {
-      setError("Failed to load content");
-    } finally {
-      setLoading(false);
-    }
-  }, [locationId]);
-
   React.useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    if (data?.group) setGroupEdits(data.group);
+    if (data?.hotspot) setHotspotEdits(data.hotspot);
+  }, [data]);
 
   const handleSave = async () => {
     if (!data || !groupEdits || !hotspotEdits) return;
@@ -109,7 +87,7 @@ export default function ContentConflict({ locationId }: Props) {
     });
     if (result?.success) {
       toast.success("Saved");
-      setData((prev) => prev ? { ...prev, group: { ...groupEdits }, hotspot: { ...hotspotEdits } } : prev);
+      onSave?.();
     }
   };
 
@@ -121,8 +99,8 @@ export default function ContentConflict({ locationId }: Props) {
     setHotspotEdits((prev) => prev ? { ...prev, [key]: value } : prev);
   };
 
-  if (loading) return <p className="text-gray-500">Loading...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (isLoading) return <p className="text-gray-500">Loading...</p>;
+  if (error) return <p className="text-red-500">Failed to load content</p>;
   if (!data || !data.hotspot) return <p className="text-gray-500">No primary hotspot found.</p>;
 
   return (
@@ -168,7 +146,7 @@ export default function ContentConflict({ locationId }: Props) {
                     <Editor
                       tinymceScriptSrc={process.env.NEXT_PUBLIC_DOMAIN + "/tinymce/tinymce.min.js"}
                       id={`group-${key}-${locationId}`}
-                      initialValue={groupEdits?.[key] || ""}
+                      initialValue={data.group[key] || ""}
                       init={tinymceConfig}
                       onEditorChange={(value) => handleGroupChange(key, value)}
                     />
@@ -177,7 +155,7 @@ export default function ContentConflict({ locationId }: Props) {
                     <Editor
                       tinymceScriptSrc={process.env.NEXT_PUBLIC_DOMAIN + "/tinymce/tinymce.min.js"}
                       id={`hotspot-${key}-${locationId}`}
-                      initialValue={hotspotEdits?.[key] || ""}
+                      initialValue={data.hotspot![key] || ""}
                       init={tinymceConfig}
                       onEditorChange={(value) => handleHotspotChange(key, value)}
                     />

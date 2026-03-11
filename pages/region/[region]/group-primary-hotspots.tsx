@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { getGroupPrimaryHotspotsByRegion } from "lib/mongo";
 import { getRegion } from "lib/localData";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import PageHeading from "components/PageHeading";
@@ -8,6 +7,7 @@ import Title from "components/Title";
 import { Region } from "lib/types";
 import { useModal } from "providers/modals";
 import useSecureFetch from "hooks/useSecureFetch";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 type StatusValue = "unreviewed" | "retired" | "needsPrimary" | "migrationReady";
 
@@ -44,13 +44,7 @@ const statusColors: Record<StatusValue, string> = {
   migrationReady: "bg-green-800 text-white",
 };
 
-function StatusDropdown({
-  status,
-  onChange,
-}: {
-  status: StatusValue;
-  onChange: (status: StatusValue) => void;
-}) {
+function StatusDropdown({ status, onChange }: { status: StatusValue; onChange: (status: StatusValue) => void }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   const label = statusOptions.find((o) => o.value === status)?.label;
@@ -94,9 +88,7 @@ function StatusDropdown({
                 onChange(opt.value);
                 setIsOpen(false);
               }}
-              className={`w-full text-left px-2 py-1 hover:bg-gray-100 ${
-                opt.value === status ? "bg-gray-50" : ""
-              }`}
+              className={`w-full text-left px-2 py-1 hover:bg-gray-100 ${opt.value === status ? "bg-gray-50" : ""}`}
             >
               <span className={`text-xs px-2 py-0.5 rounded ${statusColors[opt.value]}`}>{opt.label}</span>
             </button>
@@ -109,7 +101,7 @@ function StatusDropdown({
 
 type Props = {
   region: Region | null;
-  groups: GroupItem[];
+  regionCode: string;
 };
 
 const GroupRow = React.memo(function GroupRow({
@@ -131,10 +123,7 @@ const GroupRow = React.memo(function GroupRow({
 }) {
   const status = getStatus(group);
   return (
-    <tr
-      className={`border-b ${isActive ? "bg-blue-50" : ""}`}
-      onClick={() => onClick(group.locationId)}
-    >
+    <tr className={`border-b ${isActive ? "bg-blue-50" : ""}`} onClick={() => onClick(group.locationId)}>
       <td className="py-1.5 pr-2 text-gray-400 text-sm">{index + 1}</td>
       <td className="py-1.5 pr-4">
         <Link href={group.url}>{group.name}</Link>
@@ -184,10 +173,15 @@ const PER_PAGE = 500;
 
 type Filter = "all" | "with" | "without" | "withCoPrimary" | "conflicting" | "unreviewed";
 
-export default function GroupPrimaryHotspots({ region, groups: initialGroups }: Props) {
+export const groupsQueryKey = (regionCode: string) => ["/api/group/primary-hotspots", { region: regionCode }];
+
+export default function GroupPrimaryHotspots({ region, regionCode }: Props) {
   const { open } = useModal();
   const { send } = useSecureFetch();
-  const [groups, setGroups] = React.useState(initialGroups);
+  const queryClient = useQueryClient();
+  const { data: groups = [], isLoading } = useQuery<GroupItem[]>({
+    queryKey: groupsQueryKey(regionCode),
+  });
   const [page, setPage] = React.useState(0);
   const [filter, setFilter] = React.useState<Filter>("all");
   const [activeRows, setActiveRows] = React.useState<Set<string>>(new Set());
@@ -258,9 +252,10 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
       open("contentConflict", {
         locationId,
         title: `Content Conflict — ${name}`,
+        onSave: () => queryClient.invalidateQueries({ queryKey: groupsQueryKey(regionCode) }),
       });
     },
-    [open]
+    [open, queryClient, regionCode]
   );
 
   React.useEffect(() => {
@@ -280,8 +275,8 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
 
   const handleStatusChange = React.useCallback(
     async (id: string, status: StatusValue) => {
-      setGroups((prev) =>
-        prev.map((g) =>
+      queryClient.setQueryData<GroupItem[]>(groupsQueryKey(regionCode), (prev) =>
+        prev?.map((g) =>
           g._id === id
             ? {
                 ...g,
@@ -294,7 +289,7 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
       );
       await send({ url: "/api/group/set-status", method: "POST", data: { id, status } });
     },
-    [send]
+    [send, queryClient, regionCode]
   );
 
   const handlePageChange = (newPage: number) => {
@@ -335,7 +330,9 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
       <Title>{`Group Primary Hotspots - ${name}`}</Title>
       <PageHeading region={region || undefined}>Group Primary Hotspots</PageHeading>
 
-      {groups.length === 0 ? (
+      {isLoading ? (
+        <p className="text-gray-500">Loading...</p>
+      ) : groups.length === 0 ? (
         <p className="text-gray-500">No groups found.</p>
       ) : (
         <>
@@ -358,7 +355,13 @@ export default function GroupPrimaryHotspots({ region, groups: initialGroups }: 
               </select>
               <p className="text-sm text-gray-600">
                 Showing <strong>{filteredGroups.length.toLocaleString()}</strong>
-                {filter !== "all" && <> of <strong>{groups.length.toLocaleString()}</strong></>} groups
+                {filter !== "all" && (
+                  <>
+                    {" "}
+                    of <strong>{groups.length.toLocaleString()}</strong>
+                  </>
+                )}{" "}
+                groups
               </p>
             </div>
             {pagination}
@@ -402,9 +405,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query }) => 
   const region = regionCode === "world" ? null : getRegion(regionCode);
   if (regionCode !== "world" && !region) return { notFound: true };
 
-  const groups = await getGroupPrimaryHotspotsByRegion(regionCode);
-
   return {
-    props: { region, groups },
+    props: { region, regionCode },
   };
 }, true);

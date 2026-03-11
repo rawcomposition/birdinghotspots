@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -11,11 +11,9 @@ type Props = {
 };
 
 export default function ColModal({ title, open, onClose, maxWidth, children }: Props) {
-  const cancelButtonRef = useRef(null);
-
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-20" initialFocus={cancelButtonRef} onClose={onClose}>
+      <Dialog as="div" className="relative z-20" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
