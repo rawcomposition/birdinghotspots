@@ -84,7 +84,7 @@ export const config = {
   formats: {
     underline: { inline: "u", exact: true },
   },
-  contextmenu: false,
+  contextmenu: "false" as const,
   setup: (editor: any) => {
     editor.ui.registry.addIcon(
       "marker",
