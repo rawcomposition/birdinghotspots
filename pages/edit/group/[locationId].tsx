@@ -69,13 +69,6 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
       return toast.error("Please select at least one hotspot");
     }
 
-    if (
-      data.primaryHotspotSelect &&
-      !data.hotspotSelect.some((hotspot) => hotspot.value === data.primaryHotspotSelect!.value)
-    ) {
-      return toast.error("Primary hotspot must also be included in the list of hotspots");
-    }
-
     // @ts-ignore
     if (window.isUploading && !confirm("You have images uploading. Are you sure you want to submit?")) return;
     const response = await send({

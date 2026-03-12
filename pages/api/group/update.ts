@@ -11,6 +11,9 @@ export default secureApi(async (req, res, token) => {
   const { id, data } = req.body;
 
   await connect();
+  if (data.primaryHotspot && !data.hotspots.map(String).includes(String(data.primaryHotspot))) {
+    data.hotspots.push(data.primaryHotspot);
+  }
   const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, [
     "-_id",
     "stateCode",
