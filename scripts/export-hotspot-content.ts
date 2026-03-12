@@ -1,5 +1,6 @@
 import fs from "fs";
 import Hotspot from "../models/Hotspot";
+import Group from "../models/Group";
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -93,24 +94,71 @@ function buildFilter(regionCode?: string): Record<string, unknown> {
   return { countryCode: regionCode };
 }
 
+function mergeGroupContent(hotspot: any, group: any | undefined) {
+  if (!group) return hotspot;
+
+  const plan = hotspot.plan || group.plan || "";
+  const birding = hotspot.birding || group.birding || "";
+  const about = hotspot.about || group.about || "";
+  const restrooms =
+    hotspot.restrooms === "Yes" || hotspot.restrooms === "No" ? hotspot.restrooms : group.restrooms || hotspot.restrooms;
+  const webpage = hotspot.webpage || group.webpage || "";
+  const trailMap = hotspot.trailMap || group.trailMap || "";
+
+  const hotspotLinks: { label?: string; url?: string; cite?: boolean }[] = hotspot.links || [];
+  const groupLinks: { label?: string; url?: string; cite?: boolean }[] = group.links || [];
+  const seenUrls = new Set<string>();
+  const mergedLinks: typeof hotspotLinks = [];
+  for (const link of [...hotspotLinks, ...groupLinks]) {
+    if (link.url && !seenUrls.has(link.url)) {
+      seenUrls.add(link.url);
+      mergedLinks.push(link);
+    }
+  }
+
+  return { ...hotspot, plan, birding, about, restrooms, webpage, trailMap, links: mergedLinks };
+}
+
 async function main() {
   const args = process.argv.slice(2).filter((a) => a !== "--");
   const regionCode = args[0];
   await connect();
 
+  const groups = await Group.find(
+    { primaryHotspot: { $exists: true, $ne: null } },
+    ["primaryHotspot", "name", "plan", "birding", "about", "restrooms", "links", "webpage", "trailMap"]
+  ).lean();
+
+  const groupByHotspotId = new Map<string, any>();
+  for (const g of groups) {
+    const key = g.primaryHotspot.toString();
+    if (groupByHotspotId.has(key)) {
+      console.warn(`WARNING: Hotspot ${key} is primaryHotspot in multiple groups ("${groupByHotspotId.get(key).name}" and "${g.name}"). Using first group found.`);
+      continue;
+    }
+    groupByHotspotId.set(key, g);
+  }
+
+  const hotspotIdsWithGroupContent = [...groupByHotspotId.keys()].map((id) => new mongoose.Types.ObjectId(id));
+
+  const contentConditions = [
+    { plan: { $exists: true, $ne: "" } },
+    { birding: { $exists: true, $ne: "" } },
+    { about: { $exists: true, $ne: "" } },
+    { webpage: { $exists: true, $ne: "" } },
+    { links: { $exists: true, $not: { $size: 0 } } },
+    { trailMap: { $exists: true, $ne: "" } },
+    { fee: { $in: ["Yes", "No"] } },
+    { restrooms: { $in: ["Yes", "No"] } },
+    { accessible: { $in: ["Yes", "No"] } },
+    { roadside: { $in: ["Yes", "No"] } },
+  ];
+
   const filter: Record<string, unknown> = {
     ...buildFilter(regionCode),
     $or: [
-      { plan: { $exists: true, $ne: "" } },
-      { birding: { $exists: true, $ne: "" } },
-      { about: { $exists: true, $ne: "" } },
-      { webpage: { $exists: true, $ne: "" } },
-      { links: { $exists: true, $not: { $size: 0 } } },
-      { trailMap: { $exists: true, $ne: "" } },
-      { fee: { $in: ["Yes", "No"] } },
-      { restrooms: { $in: ["Yes", "No"] } },
-      { accessible: { $in: ["Yes", "No"] } },
-      { roadside: { $in: ["Yes", "No"] } },
+      ...contentConditions,
+      ...(hotspotIdsWithGroupContent.length ? [{ _id: { $in: hotspotIdsWithGroupContent } }] : []),
     ],
   };
 
@@ -138,7 +186,8 @@ async function main() {
     process.exit(0);
   }
 
-  console.log(`Found ${hotspots.length} hotspot(s) with content.`);
+  const mergedCount = hotspots.filter((h: any) => groupByHotspotId.has(h._id.toString())).length;
+  console.log(`Found ${hotspots.length} hotspot(s) with content (${mergedCount} with group content merged).`);
 
   const lines: string[] = [];
   lines.push("-- Exported from BirdingHotspots.org");
@@ -150,7 +199,8 @@ async function main() {
   lines.push("");
   lines.push("-- hotspot_content");
 
-  for (const h of hotspots as any[]) {
+  for (const rawH of hotspots as any[]) {
+    const h = mergeGroupContent(rawH, groupByHotspotId.get(rawH._id.toString()));
     checkLength(h.locationId, "website_url", h.webpage, 2048);
 
     const locId = sqlQuote(h.locationId);
@@ -179,7 +229,8 @@ async function main() {
   lines.push("");
   lines.push("-- hotspot_text_content");
 
-  for (const h of hotspots as any[]) {
+  for (const rawH of hotspots as any[]) {
+    const h = mergeGroupContent(rawH, groupByHotspotId.get(rawH._id.toString()));
     const hasText = h.plan || h.birding || h.about;
     if (!hasText) continue;
 

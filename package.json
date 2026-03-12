@@ -22,7 +22,9 @@
     "export-group-hotspots": "tsx ./scripts/export-group-hotspots.ts",
     "generate-mapkit-token": "tsx ./scripts/generate-mapkit-token.ts",
     "find-better-primary-hotspots": "tsx ./scripts/find-better-primary-hotspots.ts",
-    "export-content-samples": "tsx ./scripts/export-content-samples.ts"
+    "export-content-samples": "tsx ./scripts/export-content-samples.ts",
+    "export-hotspot-parents": "tsx ./scripts/export-hotspot-parents.ts",
+    "analyze-multi-region-groups": "tsx ./scripts/analyze-multi-region-groups.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",
