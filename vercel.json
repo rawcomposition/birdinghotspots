@@ -3,7 +3,7 @@
   "crons": [
     {
       "path": "/api/hotspot/sync",
-      "schedule": "*/5 * * * *"
+      "schedule": "*/10 * * * *"
     },
     {
       "path": "/api/hotspot/delete-cron",
