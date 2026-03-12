@@ -25,6 +25,7 @@ import InputCitations from "components/InputCitations";
 import Checkbox from "components/Checkbox";
 import { useUser } from "providers/user";
 import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT } from "lib/config";
+import SyncHotspotModal from "components/SyncHotspotModal";
 
 type Props = {
   id?: string;
@@ -38,6 +39,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
   const { send, loading } = useToast();
   const { user } = useUser();
   const isAdmin = user?.role === "admin";
+  const [syncModalOpen, setSyncModalOpen] = React.useState(false);
 
   const router = useRouter();
   const form = useForm<GroupInputs>({ defaultValues: data });
@@ -189,7 +191,21 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                   help="Is there an eBird hotspot that pertains to the entire area represented by this group?"
                 >
                   <HotspotSelect name="primaryHotspotSelect" className="mt-1 w-full" isClearable />
+                  <button
+                    type="button"
+                    onClick={() => setSyncModalOpen(true)}
+                    className="mt-1 text-sm text-primary hover:text-secondary"
+                  >
+                    Or sync newly created hotspot
+                  </button>
                 </Field>
+                <SyncHotspotModal
+                  open={syncModalOpen}
+                  onClose={() => setSyncModalOpen(false)}
+                  onSynced={(result) => {
+                    form.setValue("primaryHotspotSelect", result, { shouldDirty: true });
+                  }}
+                />
 
                 <div>
                   <label className="text-gray-500 font-bold">Map Images</label>
