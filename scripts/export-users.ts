@@ -33,13 +33,13 @@ const exportUsersCsv = async () => {
       const regions = customClaims?.role === "admin" ? "world" : (customClaims?.regions || []).join(",");
       const ebirdId = profile?.ebirdId || "";
       const subscriptions = (profile?.subscriptions || []).join(",");
-      return { displayName: displayName || email, role, regions, ebirdId, subscriptions };
+      return { displayName: displayName || email, email: email || "", role, regions, ebirdId, subscriptions };
     });
 
-  const csvHeader = "User,Role,eBird ID,Access,Focus Regions";
+  const csvHeader = "User,Email,Role,eBird ID,Access,Focus Regions";
   const csvBody = activeUsers.map(
-    ({ displayName, role, regions, ebirdId, subscriptions }) =>
-      `"${displayName}",${role},${ebirdId},"${regions}","${subscriptions}"`
+    ({ displayName, email, role, regions, ebirdId, subscriptions }) =>
+      `"${displayName}","${email}",${role},${ebirdId},"${regions}","${subscriptions}"`
   );
 
   const fileName = `users-${dayjs().format("YYYY-MM-DD-HH-mm-ss")}.csv`;
