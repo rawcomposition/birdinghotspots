@@ -31,7 +31,7 @@ function RetiredBadge() {
           title: "Flagged for Retirement",
           text: (
             <p>
-              In eBird, hotspots can only be assigned to one group (also referred to as a "parent"). Some of our groups
+              In eBird, hotspots can only be assigned to one group (also referred to as a &ldquo;parent&rdquo;). Some of our groups
               on Birding Hotspots overlap with other groups and do not fit eBird&apos;s one-parent model. eBird also
               discourages the use of long, linear groups such as trails or rivers. As a result, some groups have been
               flagged for retirement and will not be migrated to eBird, but their content will remain available on
