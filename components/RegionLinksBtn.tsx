@@ -53,9 +53,11 @@ export default function RegionLinksBtn({ region }: Props) {
           <Menu.Item>
             <Link href={`/region/${code}/group-index`}>Group Locations</Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing Primary</Link>
-          </Menu.Item>
+          {!!user && (
+            <Menu.Item>
+              <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing Primary</Link>
+            </Menu.Item>
+          )}
           {user?.role === "admin" && (
             <Menu.Item>
               <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>

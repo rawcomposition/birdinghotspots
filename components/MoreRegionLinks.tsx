@@ -21,7 +21,7 @@ export default function MoreRegionLinks({ region }: Props) {
         <Link href={`/region/${code}/hotspots?features=Accessible`}>Accessible Facilities</Link>
         {features?.includes("iba") && <Link href={`/region/${code}/important-bird-areas`}>Important Bird Areas</Link>}
         <Link href={`/region/${code}/group-index`}>Group Locations</Link>
-        <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing Primary</Link>
+        {!!user && <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing Primary</Link>}
         {user?.role === "admin" && <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>}
         {user?.role === "admin" && <Link href={`/region/${code}/group-primary-hotspots`}>Group Primary Hotspots</Link>}
         {hasCities && <Link href={`/region/${code}/cities`}>Cities/Towns</Link>}
