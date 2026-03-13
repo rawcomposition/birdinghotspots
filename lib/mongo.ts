@@ -316,6 +316,16 @@ export async function getGroupsByRegion(region: string, limit?: number) {
   return result ? JSON.parse(JSON.stringify(result)) : null;
 }
 
+export async function getGroupsNeedingPrimaryByRegion(region: string) {
+  await connect();
+  const query: any = { ...getRegionQuery(region), $or: [{ primaryHotspot: { $exists: false } }, { primaryHotspot: null }] };
+  const result = await Group.find(query, ["name", "url", "locationId", "isRetired"])
+    .sort({ name: 1 })
+    .lean();
+
+  return result ? JSON.parse(JSON.stringify(result)) : [];
+}
+
 export async function getGroupPrimaryHotspotsByRegion(region: string) {
   await connect();
   const query: any = region === "world" ? {} : getRegionQuery(region);

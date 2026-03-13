@@ -14,6 +14,12 @@ export default secureApi(async (req, res, token) => {
   if (data.primaryHotspot && !data.hotspots.map(String).includes(String(data.primaryHotspot))) {
     data.hotspots.push(data.primaryHotspot);
   }
+  if (data.primaryHotspot) {
+    const existing = await Group.findOne({ primaryHotspot: data.primaryHotspot }, ["name"]).lean();
+    if (existing) {
+      return res.status(400).json({ error: `This primary hotspot is already used by "${(existing as any).name}"` });
+    }
+  }
   const hotspots = await Hotspot.find({ _id: { $in: data.hotspots } }, [
     "-_id",
     "stateCode",
