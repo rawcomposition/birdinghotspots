@@ -31,11 +31,11 @@ function RetiredBadge() {
           title: "Flagged for Retirement",
           text: (
             <p>
-              In eBird, hotspots can only be assigned to one group (also referred to as a &ldquo;parent&rdquo;). Some of our groups
-              on Birding Hotspots overlap with other groups and do not fit eBird&apos;s one-parent model. eBird also
-              discourages the use of long, linear groups such as trails or rivers. As a result, some groups have been
-              flagged for retirement and will not be migrated to eBird, but their content will remain available on
-              Birding Hotspots for at least 12 months.
+              In eBird, hotspots can only be assigned to one group (also referred to as a &ldquo;parent&rdquo;). Some of
+              our groups on Birding Hotspots overlap with other groups and do not fit eBird&apos;s one-parent model.
+              eBird also discourages the use of long, linear groups such as trails or rivers. As a result, some groups
+              have been flagged for retirement and will not be migrated to eBird, but their content will remain
+              available on Birding Hotspots for at least 12 months.
             </p>
           ),
         })
@@ -52,16 +52,16 @@ export default function GroupsNeedingPrimary({ region, groups }: Props) {
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Groups Needing a Primary Hotspot - ${name}`}</Title>
-      <PageHeading region={region}>Groups Needing a Primary Hotspot</PageHeading>
+      <Title>{`Groups Needing a General Hotspot - ${name}`}</Title>
+      <PageHeading region={region}>Groups Needing a General Hotspot</PageHeading>
 
       {groups.length === 0 ? (
-        <p className="text-gray-500">All groups in this region have a primary hotspot assigned.</p>
+        <p className="text-gray-500">All groups in this region have a general hotspot assigned.</p>
       ) : (
         <>
           <p className="text-sm text-gray-600 mb-4">
             Showing <strong>{groups.length.toLocaleString()}</strong> group{groups.length !== 1 && "s"} without a
-            primary hotspot
+            general hotspot
           </p>
           <ul className="space-y-1">
             {groups.map(({ name, url, isRetired }) => (

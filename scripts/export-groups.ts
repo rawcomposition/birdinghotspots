@@ -19,7 +19,7 @@ const exportGroupsCsv = async () => {
     .lean();
 
   const csvHeader =
-    "Group ID,Name,Primary Hotspot ID,Primary Hotspot Name,Hotspots,Country,State1,State2,State3,State4";
+    "Group ID,Name,General Hotspot ID,General Hotspot Name,Hotspots,Country,State1,State2,State3,State4";
 
   const csvBody = groups.map((group) => {
     return `${group.locationId},"${group.name}",${group.primaryHotspot?.locationId || ""},"${

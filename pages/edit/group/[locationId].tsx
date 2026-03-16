@@ -180,7 +180,7 @@ export default function Edit({ id, isNew, data, error, errorCode }: Props) {
                 </Field>
 
                 <Field
-                  label="Primary Hotspot (optional)"
+                  label="General Hotspot (optional)"
                   help="Is there an eBird hotspot that pertains to the entire area represented by this group?"
                 >
                   <HotspotSelect name="primaryHotspotSelect" className="mt-1 w-full" isClearable />

@@ -55,7 +55,7 @@ export default function RegionLinksBtn({ region }: Props) {
           </Menu.Item>
           {!!user && (
             <Menu.Item>
-              <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing Primary</Link>
+              <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing General</Link>
             </Menu.Item>
           )}
           {user?.role === "admin" && (
@@ -65,7 +65,7 @@ export default function RegionLinksBtn({ region }: Props) {
           )}
           {user?.role === "admin" && (
             <Menu.Item>
-              <Link href={`/region/${code}/group-primary-hotspots`}>Group Primary Hotspots</Link>
+              <Link href={`/region/${code}/group-primary-hotspots`}>Group General Hotspots</Link>
             </Menu.Item>
           )}
           {hasCities && (

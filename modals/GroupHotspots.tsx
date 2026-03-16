@@ -83,7 +83,7 @@ export default function GroupHotspots({ locationId }: Props) {
       <h4 className="font-bold text-sm text-gray-700 mb-2">
         Child Hotspots
         {!primaryLocationId && (
-          <span className="ml-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-normal">No Primary</span>
+          <span className="ml-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-normal">No General</span>
         )}
       </h4>
       <ul className="space-y-1">
@@ -93,7 +93,7 @@ export default function GroupHotspots({ locationId }: Props) {
               {hotspot.name}
             </Link>
             {hotspot.locationId === primaryLocationId && (
-              <span className="ml-2 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Primary</span>
+              <span className="ml-2 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">General</span>
             )}
           </li>
         ))}
@@ -101,7 +101,9 @@ export default function GroupHotspots({ locationId }: Props) {
       {nearby.length > 0 && (
         <div className="mt-6">
           <h4 className="font-bold text-sm text-gray-700 mb-2 border-t pt-4">Nearby Hotspots</h4>
-          <p className="text-xs text-gray-600 mb-2">The following hotspots are roughly within the group&apos;s footprint.</p>
+          <p className="text-xs text-gray-600 mb-2">
+            The following hotspots are roughly within the group&apos;s footprint.
+          </p>
           <table className="w-full text-sm border border-gray-200 rounded">
             <thead>
               <tr className="bg-gray-50 text-left text-xs text-gray-500">

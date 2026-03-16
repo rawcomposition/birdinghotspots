@@ -62,13 +62,19 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
             <span className="inline-flex items-center gap-1">
               <Link href={url}>{name}</Link>
               {user && isRetired && (
-                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Retired</span>
+                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">
+                  Retired
+                </span>
               )}
               {user && isMigrationReady && (
-                <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Migration Ready</span>
+                <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">
+                  Migration Ready
+                </span>
               )}
               {user && needsPrimaryHotspot && (
-                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">Needs Primary</span>
+                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">
+                  Needs General
+                </span>
               )}
             </span>
             <br />

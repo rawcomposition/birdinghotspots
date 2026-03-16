@@ -33,7 +33,7 @@ function getStatus(group: GroupItem): StatusValue {
 const statusOptions: { value: StatusValue; label: string }[] = [
   { value: "unreviewed", label: "Unreviewed" },
   { value: "retired", label: "Retired" },
-  { value: "needsPrimary", label: "Needs Primary" },
+  { value: "needsPrimary", label: "Needs General" },
   { value: "migrationReady", label: "Ready" },
 ];
 
@@ -327,8 +327,8 @@ export default function GroupPrimaryHotspots({ region, regionCode }: Props) {
 
   return (
     <div className="container pb-16 mt-12">
-      <Title>{`Group Primary Hotspots - ${name}`}</Title>
-      <PageHeading region={region || undefined}>Group Primary Hotspots</PageHeading>
+      <Title>{`Group General Hotspots - ${name}`}</Title>
+      <PageHeading region={region || undefined}>Group General Hotspots</PageHeading>
 
       {isLoading ? (
         <p className="text-gray-500">Loading...</p>
@@ -347,9 +347,9 @@ export default function GroupPrimaryHotspots({ region, regionCode }: Props) {
                 className="text-sm border border-gray-200 rounded px-2 py-1 pr-8 text-gray-600 bg-gray-50"
               >
                 <option value="all">All</option>
-                <option value="with">With Primary</option>
-                <option value="without">Without Primary</option>
-                <option value="withCoPrimary">Has (Co.) Primary</option>
+                <option value="with">With General</option>
+                <option value="without">Without General</option>
+                <option value="withCoPrimary">Has (Co.) General</option>
                 <option value="unreviewed">Unreviewed</option>
                 <option value="conflicting">Has Conflicting Content</option>
               </select>
@@ -373,7 +373,7 @@ export default function GroupPrimaryHotspots({ region, regionCode }: Props) {
                   Group
                 </th>
                 <th className="py-2 pr-4 font-bold">Status</th>
-                <th className="py-2 pr-4 font-bold">Primary Hotspot</th>
+                <th className="py-2 pr-4 font-bold">General Hotspot</th>
                 <th className="py-2 pr-4"></th>
                 <th className="py-2 font-bold"></th>
               </tr>

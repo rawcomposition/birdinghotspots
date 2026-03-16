@@ -119,7 +119,7 @@ const findGroupPrimaryHotspot = async () => {
     .lean();
 
   const bulkWrites: any[] = [];
-  const csvRows: string[] = ["Status,Group Name,Primary Hotspot Name,Group URL"];
+  const csvRows: string[] = ["Status,Group Name,General Hotspot Name,Group URL"];
 
   for (const group of groups) {
     if (IGNORE_LIST.includes(group.locationId)) continue;
