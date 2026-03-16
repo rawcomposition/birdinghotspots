@@ -125,7 +125,7 @@ async function main() {
   await connect();
 
   const groups = await Group.find(
-    { primaryHotspot: { $exists: true, $ne: null } },
+    { primaryHotspot: { $exists: true, $ne: null }, readyForMigration: true },
     ["primaryHotspot", "name", "plan", "birding", "about", "restrooms", "links", "webpage", "trailMap"]
   ).lean();
 
