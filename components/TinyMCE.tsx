@@ -6,10 +6,11 @@ type InputProps = {
   name: string;
   defaultValue?: string;
   config?: any;
+  disabled?: boolean;
   [x: string]: any;
 };
 
-const TinyMCE = ({ name, defaultValue, config, ...props }: InputProps) => {
+const TinyMCE = ({ name, defaultValue, config, disabled, ...props }: InputProps) => {
   const { control } = useFormContext();
   return (
     <div className="mt-1">
@@ -22,7 +23,11 @@ const TinyMCE = ({ name, defaultValue, config, ...props }: InputProps) => {
               tinymceScriptSrc={process.env.NEXT_PUBLIC_DOMAIN + "/tinymce/tinymce.min.js"}
               id={name}
               initialValue={defaultValue || ""}
-              init={config || defaultConfig}
+              init={{
+                ...(config || defaultConfig),
+                ...(disabled && { toolbar: false }),
+              }}
+              disabled={disabled}
               onEditorChange={onChange}
               {...props}
             />

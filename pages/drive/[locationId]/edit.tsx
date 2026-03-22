@@ -18,17 +18,20 @@ import { canEdit } from "lib/helpers";
 import TinyMCE from "components/TinyMCE";
 import ImagesInput from "components/ImagesInput";
 import Error from "next/error";
+import { isWriteFrozen } from "lib/config";
+import ContentFreezeBanner from "components/ContentFreezeBanner";
 
 type Props = {
   id?: string;
   region: Region;
   isNew: boolean;
   data: Drive;
+  role?: string;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ isNew, data, id, region, error, errorCode }: Props) {
+export default function Edit({ isNew, data, id, region, role, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -56,12 +59,16 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
     }
   };
 
+  const frozen = isWriteFrozen(role);
+
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title={`${isNew ? "Add" : "Edit"} Drive`}>
       <div className="container pb-16 my-12">
+        {frozen && <ContentFreezeBanner className="mb-8 max-w-2xl mx-auto" />}
         <Form form={form} onSubmit={handleSubmit}>
+          <fieldset disabled={frozen}>
           <div className="max-w-2xl mx-auto">
             <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Drive</h2>
@@ -70,7 +77,7 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
                 <FormError name="name" />
               </Field>
               <Field label="Description">
-                <TinyMCE name="description" defaultValue={data?.description} />
+                <TinyMCE name="description" defaultValue={data?.description} disabled={frozen} />
                 <FormError name="description" />
               </Field>
               <Field label="Google Map ID">
@@ -88,11 +95,12 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
               <InputDrives stateCode={region.code} />
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit disabled={loading} color="green" className="font-medium">
+              <Submit disabled={loading || frozen} color="green" className="font-medium">
                 Save Drive
               </Submit>
             </div>
           </div>
+          </fieldset>
         </Form>
       </div>
     </AdminPage>
@@ -123,6 +131,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       id: data?._id || null,
       region,
       isNew: !data,
+      role: token.role,
       data: { ...data, entries, counties: data?.counties || [] },
     },
   };

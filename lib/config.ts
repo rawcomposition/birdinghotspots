@@ -1,4 +1,16 @@
 export const ENABLE_LEGACY_UPLOADS = false;
+export const ENABLE_EDITOR_WRITE = true;
+export const ENABLE_ADMIN_WRITE = true;
+export const ENABLE_SYNC = true;
+export const ENABLE_PHOTO_SYNC = true;
+export const ENABLE_ANALYTICS_LOGGING = true;
+export const ENABLE_SUGGESTIONS = true;
+
+export const isWriteFrozen = (role?: string) => {
+  if (!role) return false;
+  if (role === "admin") return !ENABLE_ADMIN_WRITE;
+  return !ENABLE_EDITOR_WRITE;
+};
 
 export const PLAN_SECTION_HELP_TEXT = `Everything you need to know before you go. This section provides logistical information to plan an informed visit, including entrance fees, permit requirements, operating hours, directions, parking details, amenities, and accessibility notes. Include key details visitors should be aware of ahead of time—such as special rules and seasonal closures—that could impact their visit.`;
 

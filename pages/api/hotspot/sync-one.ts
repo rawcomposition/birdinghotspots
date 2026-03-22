@@ -3,8 +3,14 @@ import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import { getEbirdHotspot } from "lib/helpers";
+import { ENABLE_SYNC } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!ENABLE_SYNC) {
+    res.status(503).json({ error: "Hotspot syncing is currently disabled" });
+    return;
+  }
+
   const { locationId } = req.body as { locationId: string };
 
   if (!locationId || !/^L\d+$/.test(locationId)) {

@@ -5,8 +5,14 @@ import Revision from "models/Revision";
 import { verifyRecaptcha } from "lib/helpers";
 import { sendEmail } from "lib/email";
 import Profile from "models/Profile";
+import { ENABLE_SUGGESTIONS } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  if (!ENABLE_SUGGESTIONS) {
+    res.status(503).json({ error: "Content suggestions are currently disabled" });
+    return;
+  }
+
   await connect();
   const {
     name,

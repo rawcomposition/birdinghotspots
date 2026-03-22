@@ -18,6 +18,8 @@ import ImagesInput from "components/ImagesInput";
 import HotspotSelect from "components/HotspotSelect";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Error from "next/error";
+import { isWriteFrozen } from "lib/config";
+import ContentFreezeBanner from "components/ContentFreezeBanner";
 
 const tinyConfig = {
   menubar: false,
@@ -43,11 +45,12 @@ type Props = {
   region: Region;
   isNew: boolean;
   data: Article;
+  role?: string;
   error?: string;
   errorCode?: number;
 };
 
-export default function Edit({ isNew, data, id, region, error, errorCode }: Props) {
+export default function Edit({ isNew, data, id, region, role, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -84,12 +87,16 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
     }
   };
 
+  const frozen = isWriteFrozen(role);
+
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title={`${isNew ? "Add" : "Edit"} Article`}>
       <div className="container pb-16 my-12">
+        {frozen && <ContentFreezeBanner className="mb-8 max-w-4xl mx-auto" />}
         <Form form={form} onSubmit={handleSubmit}>
+          <fieldset disabled={frozen}>
           <div className="max-w-4xl mx-auto">
             <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{isNew ? "Add" : "Edit"} Article</h2>
@@ -98,7 +105,7 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
                 <FormError name="name" />
               </Field>
               <Field label="Content">
-                <TinyMCE config={tinyConfig} name="content" defaultValue={data?.content} />
+                <TinyMCE config={tinyConfig} name="content" defaultValue={data?.content} disabled={frozen} />
                 <FormError name="content" />
               </Field>
               <div>
@@ -111,11 +118,12 @@ export default function Edit({ isNew, data, id, region, error, errorCode }: Prop
               <RadioGroup label="Sort Hotspots By" name="sortHotspotsBy" options={sortOptions} />
             </div>
             <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded">
-              <Submit disabled={loading} color="green" className="font-medium">
+              <Submit disabled={loading || frozen} color="green" className="font-medium">
                 Save Article
               </Submit>
             </div>
           </div>
+          </fieldset>
         </Form>
       </div>
     </AdminPage>
@@ -142,6 +150,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
       id: data?._id || null,
       region,
       isNew: !data,
+      role: token.role,
       data: { ...data, hotspotSelect },
     },
   };

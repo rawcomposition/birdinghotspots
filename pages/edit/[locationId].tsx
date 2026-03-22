@@ -28,7 +28,8 @@ import InputFeaturedImages from "components/InputFeaturedImages";
 import useAvailableImgCount from "hooks/useAvailableImgCount";
 import Badge from "components/Badge";
 import dynamic from "next/dynamic";
-import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT } from "lib/config";
+import { PLAN_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, ABOUT_SECTION_HELP_TEXT, isWriteFrozen } from "lib/config";
+import ContentFreezeBanner from "components/ContentFreezeBanner";
 const NewSectionsBanner = dynamic(() => import("components/NewSectionsBanner"), { ssr: false });
 
 type GroupAbout = {
@@ -44,6 +45,7 @@ type Props = {
   groupImages: Image[];
   groupAbout: GroupAbout[];
   data: HotspotInput;
+  role?: string;
   error?: string;
   errorCode?: number;
 };
@@ -56,6 +58,7 @@ export default function Edit({
   groupImages,
   groupAbout,
   data,
+  role,
   error,
   errorCode,
 }: Props) {
@@ -117,13 +120,17 @@ export default function Edit({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, lat, lng]);
 
+  const frozen = isWriteFrozen(role);
+
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title="Edit Hotspot">
       <div className="container pb-16 my-12">
+        {frozen && <ContentFreezeBanner className="mb-8" />}
         <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data?.name}</h2>
         <Form form={form} onSubmit={handleSubmit}>
+          <fieldset disabled={frozen}>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="pt-5 bg-white space-y-6 flex-1">
               <Field label="Address" help="City, state, and zip is sufficient if a full address is unavailable">
@@ -156,15 +163,15 @@ export default function Edit({
               <NewSectionsBanner />
 
               <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
-                <TinyMCE name="plan" defaultValue={data?.plan} />
+                <TinyMCE name="plan" defaultValue={data?.plan} disabled={frozen} />
               </Field>
 
               <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
-                <TinyMCE name="birding" defaultValue={data?.birding} />
+                <TinyMCE name="birding" defaultValue={data?.birding} disabled={frozen} />
               </Field>
 
               <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
-                <TinyMCE name="about" defaultValue={data?.about} />
+                <TinyMCE name="about" defaultValue={data?.about} disabled={frozen} />
               </Field>
 
               <InputCitations groupLinks={groupLinks} groupCitations={groupCitations} />
@@ -194,7 +201,7 @@ export default function Edit({
               </div>
 
               <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
-                <Submit disabled={loading} color="green" className="font-medium">
+                <Submit disabled={loading || frozen} color="green" className="font-medium">
                   Save Hotspot
                 </Submit>
               </div>
@@ -222,10 +229,11 @@ export default function Edit({
             </aside>
           </div>
           <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
-            <Submit disabled={loading} color="green" className="font-medium">
+            <Submit disabled={loading || frozen} color="green" className="font-medium">
               Save Hotspot
             </Submit>
           </div>
+          </fieldset>
         </Form>
       </div>
     </AdminPage>
@@ -294,6 +302,7 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
     props: {
       id: data._id || null,
       isNew: !data,
+      role: token.role,
       groupLinks,
       groupCitations,
       groupImages,

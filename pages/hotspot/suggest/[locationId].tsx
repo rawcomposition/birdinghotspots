@@ -17,7 +17,13 @@ import Link from "next/link";
 import Title from "components/Title";
 import useRecaptcha from "hooks/useRecaptcha";
 import RadioGroup from "components/RadioGroup";
-import { ABOUT_SECTION_HELP_TEXT, BIRDING_SECTION_HELP_TEXT, PLAN_SECTION_HELP_TEXT } from "lib/config";
+import {
+  ABOUT_SECTION_HELP_TEXT,
+  BIRDING_SECTION_HELP_TEXT,
+  PLAN_SECTION_HELP_TEXT,
+  ENABLE_SUGGESTIONS,
+} from "lib/config";
+import ContentFreezeBanner from "components/ContentFreezeBanner";
 
 type Inputs = {
   name: string;
@@ -118,9 +124,12 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
       </div>
     );
 
+  const frozen = !ENABLE_SUGGESTIONS;
+
   return (
     <div className="container pb-16 my-12 max-w-xl mx-auto">
       <Title>{`Suggest Content for ${hotspotName}`}</Title>
+      {frozen && <ContentFreezeBanner className="mb-8" />}
       <h2 className="text-xl font-bold text-gray-600 border-b pb-4 leading-6">
         Suggest Content
         <br />
@@ -135,69 +144,71 @@ export default function Upload({ locationId, hotspotName, data, error }: Props) 
         </ul>
       </div>
       <Form form={form} onSubmit={handleSubmit} className="form-text-lg">
-        <div className="pt-5 bg-white space-y-6 flex-1">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="text-gray-500 font-bold">
-                Your Name <br />
-                <Input type="text" name="name" required />
-                <FormError name="name" />
-              </label>
+        <fieldset disabled={frozen}>
+          <div className="pt-5 bg-white space-y-6 flex-1">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
+                <label className="text-gray-500 font-bold">
+                  Your Name <br />
+                  <Input type="text" name="name" required />
+                  <FormError name="name" />
+                </label>
+              </div>
+              <div className="flex-1">
+                <label className="text-gray-500 font-bold">
+                  Email{" "}
+                  <span className="text-[12px] text-gray-500 font-normal leading-4">
+                    &ndash; If editors need to contact you
+                  </span>
+                  <br />
+                  <Input type="text" name="email" required />
+                  <FormError name="email" />
+                </label>
+              </div>
             </div>
-            <div className="flex-1">
-              <label className="text-gray-500 font-bold">
-                Email{" "}
-                <span className="text-[12px] text-gray-500 font-normal leading-4">
-                  &ndash; If editors need to contact you
-                </span>
-                <br />
-                <Input type="text" name="email" required />
-                <FormError name="email" />
-              </label>
-            </div>
-          </div>
 
-          <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
-            <TinyMCE name="plan" defaultValue={data?.plan} />
-          </Field>
-
-          <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
-            <TinyMCE name="birding" defaultValue={data?.birding} />
-          </Field>
-
-          <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
-            <TinyMCE name="about" defaultValue={data?.about} />
-          </Field>
-
-          <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
-          <RadioGroup
-            name="accessible"
-            label="Wheelchair accessible trail"
-            help="Is there a wheelchair accessible trail at this location?"
-            options={["Yes", "No", "Unknown"]}
-            inline
-          />
-          <RadioGroup
-            name="roadside"
-            label="Roadside viewing"
-            help="Is this a location where birders can watch from a vehicle?"
-            options={["Yes", "No", "Unknown"]}
-            inline
-          />
-          <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} inline />
-
-          <div className="bg-gray-100 px-4 pb-4 pt-3 rounded-lg">
-            <Field label="Notes to the editor">
-              <Textarea name="notes" />
+            <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
+              <TinyMCE name="plan" defaultValue={data?.plan} disabled={frozen} />
             </Field>
-          </div>
 
-          <div className="px-4 py-3 bg-gray-100 flex flex-col gap-3 md:flex-row justify-end sm:px-6 rounded">
-            <Submit disabled={loading} color="green" className="font-medium">
-              Submit Suggestion
-            </Submit>
+            <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
+              <TinyMCE name="birding" defaultValue={data?.birding} disabled={frozen} />
+            </Field>
+
+            <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
+              <TinyMCE name="about" defaultValue={data?.about} disabled={frozen} />
+            </Field>
+
+            <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} inline />
+            <RadioGroup
+              name="accessible"
+              label="Wheelchair accessible trail"
+              help="Is there a wheelchair accessible trail at this location?"
+              options={["Yes", "No", "Unknown"]}
+              inline
+            />
+            <RadioGroup
+              name="roadside"
+              label="Roadside viewing"
+              help="Is this a location where birders can watch from a vehicle?"
+              options={["Yes", "No", "Unknown"]}
+              inline
+            />
+            <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} inline />
+
+            <div className="bg-gray-100 px-4 pb-4 pt-3 rounded-lg">
+              <Field label="Notes to the editor">
+                <Textarea name="notes" />
+              </Field>
+            </div>
+
+            <div className="px-4 py-3 bg-gray-100 flex flex-col gap-3 md:flex-row justify-end sm:px-6 rounded">
+              <Submit disabled={loading || frozen} color="green" className="font-medium">
+                Submit Suggestion
+              </Submit>
+            </div>
           </div>
-        </div>
+        </fieldset>
       </Form>
     </div>
   );

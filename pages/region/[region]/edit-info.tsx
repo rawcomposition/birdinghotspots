@@ -15,10 +15,13 @@ import InputLinks from "components/InputLinks";
 import getSecureServerSideProps from "lib/getSecureServerSideProps";
 import Error from "next/error";
 import { canEdit } from "lib/helpers";
+import { isWriteFrozen } from "lib/config";
+import ContentFreezeBanner from "components/ContentFreezeBanner";
 
 type Props = {
   region: Region;
   data: RegionInfo | null;
+  role?: string;
   error?: string;
   errorCode?: number;
 };
@@ -32,7 +35,7 @@ type Inputs = {
   clubLinks: Link[];
 };
 
-export default function EditLinks({ region, data, error, errorCode }: Props) {
+export default function EditLinks({ region, data, role, error, errorCode }: Props) {
   const { send, loading } = useToast();
 
   const router = useRouter();
@@ -59,12 +62,16 @@ export default function EditLinks({ region, data, error, errorCode }: Props) {
     }
   };
 
+  const frozen = isWriteFrozen(role);
+
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
 
   return (
     <AdminPage title="Edit More Information Links">
       <div className="container pb-16 my-12">
+        {frozen && <ContentFreezeBanner className="mb-8 max-w-4xl mx-auto" />}
         <Form form={form} onSubmit={handleSubmit}>
+          <fieldset disabled={frozen}>
           <div className="max-w-4xl mx-auto">
             <div className="px-4 py-5 bg-white sm:p-6">
               <h2 className="text-xl font-bold text-gray-600 border-b pb-4 mb-4">Edit {region.name} Links</h2>
@@ -86,11 +93,12 @@ export default function EditLinks({ region, data, error, errorCode }: Props) {
             </div>
             <div className="px-4 py-3 bg-gray-100 sm:px-6 rounded flex justify-between items-center">
               <p className="text-gray-600 hidden md:block">Note: A browser refresh may be required to see changes.</p>
-              <Submit disabled={loading} color="green" className="font-medium ml-auto">
+              <Submit disabled={loading || frozen} color="green" className="font-medium ml-auto">
                 Save Links
               </Submit>
             </div>
           </div>
+          </fieldset>
         </Form>
       </div>
     </AdminPage>
@@ -115,6 +123,6 @@ export const getServerSideProps = getSecureServerSideProps(async ({ query, res }
   }
 
   return {
-    props: { region, data },
+    props: { region, data, role: token.role },
   };
 });

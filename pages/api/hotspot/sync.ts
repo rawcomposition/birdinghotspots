@@ -5,6 +5,7 @@ import Settings from "models/Settings";
 import SyncRegions from "data/sync-regions.json";
 import Logs from "models/Log";
 import { getHotspotsForRegion } from "lib/helpers";
+import { ENABLE_SYNC } from "lib/config";
 
 // Mostly stakeouts that don't follow the naming convention, or are otherwise are obvious mistakes on eBird hotspot reviewers part.
 const blockedLocationIds = ["L3934548", "L7929720", "L10823928", "L7820108", "L109212", "L109221", "L30522405"];
@@ -85,6 +86,10 @@ const insertHotspot = ({ lat, lng, locationId, name, total, ...data }: any) => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  if (!ENABLE_SYNC) {
+    return res.status(503).json({ error: "Hotspot syncing is currently disabled" });
+  }
+
   const { key, state }: any = req.query;
 
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && key !== process.env.CRON_SECRET) {
