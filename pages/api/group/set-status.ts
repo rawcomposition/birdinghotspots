@@ -1,10 +1,12 @@
 import connect from "lib/mongo";
 import Group from "models/Group";
 import secureApi from "lib/secureApi";
+import { assertWriteEnabled } from "lib/config";
 
 const VALID_STATUSES = ["unreviewed", "retired", "needsPrimary", "migrationReady"];
 
 export default secureApi(async (req, res) => {
+  if (!assertWriteEnabled(res, "admin")) return;
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }

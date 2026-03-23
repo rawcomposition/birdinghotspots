@@ -6,8 +6,10 @@ import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
 import dayjs from "dayjs";
 import { uploadGroupMapImg } from "lib/s3";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { id, data } = req.body;
 
   await connect();

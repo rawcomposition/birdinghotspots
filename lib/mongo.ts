@@ -770,16 +770,20 @@ export async function deleteHotspot(hotspot: HotspotType) {
 export const getHotspotImages = async (locationId: string) => {
   await connect();
 
+  const { ENABLE_PHOTO_SYNC } = await import("lib/config");
+
+  const hotspotQuery = Hotspot.findOne({ locationId }, [
+    "featuredImg",
+    "images",
+    "featuredImg1",
+    "featuredImg2",
+    "featuredImg3",
+    "featuredImg4",
+  ]).lean();
+
   const [ebirdImages, hotspot] = await Promise.all([
-    getBestImages(locationId as string),
-    Hotspot.findOne({ locationId }, [
-      "featuredImg",
-      "images",
-      "featuredImg1",
-      "featuredImg2",
-      "featuredImg3",
-      "featuredImg4",
-    ]).lean(),
+    ENABLE_PHOTO_SYNC ? getBestImages(locationId as string) : Promise.resolve([]),
+    hotspotQuery,
   ]);
 
   if (!hotspot) throw new Error("Hotspot not found");
@@ -792,9 +796,10 @@ export const getHotspotImages = async (locationId: string) => {
     (it): it is MlImage => !!it
   );
 
-  const latestFeaturedImgData = currentFeaturedMlImages.length
-    ? (await getImages(currentFeaturedMlImages.map((it) => it.id))) || []
-    : [];
+  const latestFeaturedImgData =
+    ENABLE_PHOTO_SYNC && currentFeaturedMlImages.length
+      ? (await getImages(currentFeaturedMlImages.map((it) => it.id))) || []
+      : [];
 
   const featuredMlImages = currentFeaturedMlImages.map((it) => {
     const latestData = latestFeaturedImgData.find((latest) => latest.id === it.id);
@@ -823,14 +828,16 @@ export const getHotspotImages = async (locationId: string) => {
   const shouldAddFeaturedImg = !hotspot.featuredImg && newFeaturedImg;
   const shouldRemoveFeaturedImg = !newFeaturedImg && hotspot.featuredImg;
 
-  if (shouldUpdateFeaturedImg || shouldAddFeaturedImg) {
-    await Hotspot.updateOne({ locationId }, { featuredImg: newFeaturedImg });
-  } else if (shouldRemoveFeaturedImg) {
-    const legacyFeaturedImg = legacyImages[0];
-    await Hotspot.updateOne(
-      { locationId },
-      legacyFeaturedImg ? { featuredImg: legacyFeaturedImg } : { $unset: { featuredImg: "" } }
-    );
+  if (ENABLE_PHOTO_SYNC) {
+    if (shouldUpdateFeaturedImg || shouldAddFeaturedImg) {
+      await Hotspot.updateOne({ locationId }, { featuredImg: newFeaturedImg });
+    } else if (shouldRemoveFeaturedImg) {
+      const legacyFeaturedImg = legacyImages[0];
+      await Hotspot.updateOne(
+        { locationId },
+        legacyFeaturedImg ? { featuredImg: legacyFeaturedImg } : { $unset: { featuredImg: "" } }
+      );
+    }
   }
   return combinedImages;
 };

@@ -2,8 +2,10 @@ import connect from "lib/mongo";
 import Article from "models/Article";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { isNew }: any = req.query;
   const { data, id } = req.body;
 

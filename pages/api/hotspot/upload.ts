@@ -10,6 +10,7 @@ import { canEdit } from "lib/helpers";
 import admin from "lib/firebaseAdmin";
 import nookies from "nookies";
 import type { Token } from "lib/types";
+import { assertWriteEnabled, ENABLE_SUGGESTIONS } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const cookies = nookies.get({ req });
@@ -29,6 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (!hotspot) throw new Error("Hotspot not found");
     const hasEditPermission = session ? canEdit(session, hotspot.stateCode || hotspot.countryCode) : false;
 
+    if (hasEditPermission && !assertWriteEnabled(res, session?.role)) return;
+
     // Logged in
     if (hasEditPermission) {
       const formattedImages = images.map((it: Image) => ({
@@ -45,7 +48,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await Hotspot.updateOne({ locationId }, { featuredImg, $push: { images: { $each: formattedImages } } });
       res.status(200).json({ success: true });
     } else {
-      // Logged out
+      if (!ENABLE_SUGGESTIONS) {
+        res.status(503).json({ error: "Photo submissions are currently disabled" });
+        return;
+      }
       const score = await verifyRecaptcha(recaptchaToken);
       console.log("Score:", score);
       if (score > 0.4) {

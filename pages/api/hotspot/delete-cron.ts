@@ -2,8 +2,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connect, { deleteHotspot } from "lib/mongo";
 import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
+import { ENABLE_SYNC } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  if (!ENABLE_SYNC) {
+    return res.status(503).json({ error: "Hotspot syncing is currently disabled" });
+  }
+
   const { key }: any = req.query;
 
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && key !== process.env.CRON_SECRET) {

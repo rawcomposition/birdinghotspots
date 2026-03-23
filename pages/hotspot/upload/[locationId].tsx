@@ -16,6 +16,8 @@ import Link from "next/link";
 import Title from "components/Title";
 import useRecaptcha from "hooks/useRecaptcha";
 import { useRouter } from "next/router";
+import { ENABLE_SUGGESTIONS } from "lib/config";
+import ContentFreezeBanner from "components/ContentFreezeBanner";
 
 type Inputs = {
   name: string;
@@ -95,6 +97,8 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
     });
   };
 
+  const frozen = !ENABLE_SUGGESTIONS;
+
   if (error) return <Error statusCode={404} title={error} />;
   if (success)
     return (
@@ -113,6 +117,7 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
   return (
     <div className="container pb-16 my-12 max-w-xl mx-auto">
       <Title>{`Upload Photos to ${hotspotName}`}</Title>
+      {frozen && <ContentFreezeBanner className="mb-8" />}
       <h2 className="text-xl font-bold text-gray-600 border-b pb-4 leading-6">
         Upload Photos
         <br />
@@ -130,39 +135,41 @@ export default function Upload({ locationId, hotspotName, error }: Props) {
         </ul>
       </div>
       <Form form={form} onSubmit={handleSubmit} className="form-text-lg">
-        <div className="pt-5 bg-white space-y-6 flex-1">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="text-gray-500 font-bold">
-                Your Name{" "}
-                <span className="text-[12px] text-gray-500 font-normal leading-4"> &ndash; Used for attribution</span>
-                <br />
-                <Input type="text" name="name" required />
-                <FormError name="name" />
-              </label>
+        <fieldset disabled={frozen}>
+          <div className="pt-5 bg-white space-y-6 flex-1">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
+                <label className="text-gray-500 font-bold">
+                  Your Name{" "}
+                  <span className="text-[12px] text-gray-500 font-normal leading-4"> &ndash; Used for attribution</span>
+                  <br />
+                  <Input type="text" name="name" required />
+                  <FormError name="name" />
+                </label>
+              </div>
+              <div className="flex-1">
+                <label className="text-gray-500 font-bold">
+                  Email{" "}
+                  <span className="text-[12px] text-gray-500 font-normal leading-4">
+                    &ndash; If editors need to contact you
+                  </span>
+                  <br />
+                  <Input type="text" name="email" required />
+                  <FormError name="email" />
+                </label>
+              </div>
             </div>
-            <div className="flex-1">
-              <label className="text-gray-500 font-bold">
-                Email{" "}
-                <span className="text-[12px] text-gray-500 font-normal leading-4">
-                  &ndash; If editors need to contact you
-                </span>
-                <br />
-                <Input type="text" name="email" required />
-                <FormError name="email" />
-              </label>
+            <ImagesInput hideExtraFields />
+            <div className="px-4 py-3 bg-gray-100 flex flex-col gap-3 md:flex-row justify-between sm:px-6 rounded">
+              <p className="text-xs leading-5 text-gray-500 md:max-w-[250px]">
+                By uploading you agree to release the photos into the public domain (CC0 license).
+              </p>
+              <Submit disabled={loading || frozen || value?.length < 1} color="green" className="font-medium">
+                Submit Photos
+              </Submit>
             </div>
           </div>
-          <ImagesInput hideExtraFields />
-          <div className="px-4 py-3 bg-gray-100 flex flex-col gap-3 md:flex-row justify-between sm:px-6 rounded">
-            <p className="text-xs leading-5 text-gray-500 md:max-w-[250px]">
-              By uploading you agree to release the photos into the public domain (CC0 license).
-            </p>
-            <Submit disabled={loading || value?.length < 1} color="green" className="font-medium">
-              Submit Photos
-            </Submit>
-          </div>
-        </div>
+        </fieldset>
       </Form>
     </div>
   );

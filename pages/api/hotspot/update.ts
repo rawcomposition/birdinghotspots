@@ -7,8 +7,10 @@ import dayjs from "dayjs";
 import { getImages } from "lib/ml";
 import { HotspotInput } from "lib/types";
 import { convertMlImageToImage } from "lib/ml";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { id, data } = req.body as { id: string; data: HotspotInput };
 
   if (!canEdit(token, data.stateCode || data.countryCode)) {

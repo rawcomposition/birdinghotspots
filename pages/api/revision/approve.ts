@@ -3,8 +3,10 @@ import Revision from "models/Revision";
 import Hotspot from "models/Hotspot";
 import secureApi from "lib/secureApi";
 import dayjs from "dayjs";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { id }: any = req.query;
 
   try {

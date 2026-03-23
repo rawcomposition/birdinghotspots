@@ -1,8 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "lib/firebaseAdmin";
 import Profile from "models/Profile";
+import { ENABLE_EDITOR_WRITE } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  if (!ENABLE_EDITOR_WRITE) {
+    res.status(503).json({ error: "Editor registration is currently disabled" });
+    return;
+  }
+
   try {
     const { password, inviteCode } = req.body;
     const profile = await Profile.findOne({ inviteCode });

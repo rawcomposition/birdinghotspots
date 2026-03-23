@@ -3,8 +3,10 @@ import PhotoBatch from "models/PhotoBatch";
 import Hotspot from "models/Hotspot";
 import { Image } from "lib/types";
 import secureApi from "lib/secureApi";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { id }: any = req.query;
   const { imageId }: any = req.body;
 

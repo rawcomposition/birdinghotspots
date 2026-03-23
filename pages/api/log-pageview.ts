@@ -4,8 +4,13 @@ import Pageview from "models/Pageview";
 import dayjs from "dayjs";
 import { isbot } from "isbot";
 import nookies from "nookies";
+import { ENABLE_ANALYTICS_LOGGING } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  if (!ENABLE_ANALYTICS_LOGGING) {
+    return res.status(200).json({ success: true, logged: false });
+  }
+
   const { locationId, stateCode, countyCode, countryCode, entity }: any = req.body;
 
   const cookies = nookies.get({ req });

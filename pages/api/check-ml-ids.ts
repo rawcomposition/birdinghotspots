@@ -1,7 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getImages } from "lib/ml";
+import { ENABLE_PHOTO_SYNC } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+  if (!ENABLE_PHOTO_SYNC) {
+    return res.status(200).json({ success: true, missingIds: [] });
+  }
+
   const assetIdsStr = req.query.assetIds as string | undefined;
   const assetIds = assetIdsStr?.split(",") || [];
   const cleanAssetIds = assetIds.map((id) => Number(id));

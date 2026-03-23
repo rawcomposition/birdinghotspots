@@ -4,7 +4,10 @@ import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
 import { deleteHotspot } from "lib/mongo";
 import Logs from "models/Log";
+import { assertWriteEnabled } from "lib/config";
+
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { id }: any = req.query;
 
   await connect();
