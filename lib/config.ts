@@ -2,9 +2,9 @@ export const ENABLE_LEGACY_UPLOADS = false;
 export const ENABLE_SUGGESTIONS = false;
 export const ENABLE_EDITOR_WRITE = false;
 export const ENABLE_ADMIN_WRITE = true;
-export const ENABLE_SYNC = true;
-export const ENABLE_PHOTO_SYNC = true;
-export const ENABLE_ANALYTICS_LOGGING = true;
+export const ENABLE_SYNC = false;
+export const ENABLE_PHOTO_SYNC = false;
+export const ENABLE_ANALYTICS_LOGGING = false;
 
 export const isWriteFrozen = (role?: string) => {
   if (!role) return false;
