@@ -7,7 +7,7 @@ import Textarea from "components/Textarea";
 import Form from "components/Form";
 import Submit from "components/Submit";
 import { getHotspotByLocationId } from "lib/mongo";
-import { geocode, formatMarker, canEdit, getEbirdHotspot, generateRandomId } from "lib/helpers";
+import { formatMarker, canEdit, getEbirdHotspot, generateRandomId } from "lib/helpers";
 import InputHotspotLinks from "components/InputHotspotLinks";
 import InputCitations from "components/InputCitations";
 import IbaSelect from "components/IbaSelect";
@@ -62,7 +62,6 @@ export default function Edit({
   error,
   errorCode,
 }: Props) {
-  const [isGeocoded, setIsGeocoded] = React.useState(false);
   const { send, loading } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
@@ -104,22 +103,6 @@ export default function Edit({
     }
   };
 
-  const { address, lat, lng } = data || {};
-
-  React.useEffect(() => {
-    const geocodeAddress = async () => {
-      const { city, state, zip } = await geocode(lat, lng);
-      if (city && state && zip) {
-        //@ts-ignore
-        form.setValue("address", `${city}, ${state} ${zip}`);
-        setIsGeocoded(true);
-      }
-    };
-    if (!lat || !lng) return;
-    if (isNew || !data?.address) geocodeAddress();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address, lat, lng]);
-
   const frozen = isWriteFrozen(role);
 
   if (error) return <Error statusCode={errorCode || 500} title={error} />;
@@ -131,108 +114,103 @@ export default function Edit({
         <h2 className="text-xl font-bold text-gray-600 border-b pb-4">{data?.name}</h2>
         <Form form={form} onSubmit={handleSubmit}>
           <fieldset disabled={frozen}>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="pt-5 bg-white space-y-6 flex-1">
-              <Field label="Address" help="City, state, and zip is sufficient if a full address is unavailable">
-                <Textarea name="address" rows={2} />
-                {isGeocoded && (
-                  <small>
-                    <span className="text-orange-700">Note</span>: Address is estimated, confirm it is correct.
-                  </small>
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="pt-5 bg-white space-y-6 flex-1">
+                <Field label="Address" help="City, state, and zip is sufficient if a full address is unavailable">
+                  <Textarea name="address" rows={2} />
+                </Field>
+
+                <div className="space-y-1">
+                  <Field label="Official Webpage URL">
+                    <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
+                  </Field>
+                  <Checkbox name="citeWebpage" label="Include as citation" />
+                </div>
+
+                <div className="space-y-1">
+                  <Field
+                    label="Trail Map URL"
+                    help="Provide a link to a document, image, or webpage that contains a map of the trails at this location."
+                  >
+                    <Input type="url" name="trailMap" defaultValue={data?.trailMap} placeholder="https://..." />
+                  </Field>
+                </div>
+
+                <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
+
+                <NewSectionsBanner />
+
+                <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
+                  <TinyMCE name="plan" defaultValue={data?.plan} disabled={frozen} />
+                </Field>
+
+                <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
+                  <TinyMCE name="birding" defaultValue={data?.birding} disabled={frozen} />
+                </Field>
+
+                <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
+                  <TinyMCE name="about" defaultValue={data?.about} disabled={frozen} />
+                </Field>
+
+                <InputCitations groupLinks={groupLinks} groupCitations={groupCitations} />
+
+                {groupAbout?.map(({ title, text }, i) => (
+                  <div key={i} className="bg-gray-100 px-3 py-2 rounded-md">
+                    <h4 className="text-gray-500 font-bold">
+                      {title} <span className="text-xs text-gray-400">(from group page)</span>
+                    </h4>
+                    <ExpandableHtml html={text} className="formatted" isGray />
+                  </div>
+                ))}
+
+                {groupImages.length > 0 && <MapGrid images={groupImages} />}
+
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label className="text-gray-500 font-bold">Featured eBird Images</label>
+                    <Badge>Available: {availableImgCount}</Badge>
+                  </div>
+                  <InputFeaturedImages locationId={data.locationId} />
+                </div>
+
+                <div>
+                  <label className="text-gray-500 font-bold">Legacy Images</label>
+                  <ImagesInput enableStreetview />
+                </div>
+
+                <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
+                  <Submit disabled={loading || frozen} color="green" className="font-medium">
+                    Save Hotspot
+                  </Submit>
+                </div>
+              </div>
+              <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
+                {isOH && (
+                  <Field label="Important Bird Area">
+                    <IbaSelect name="iba" isClearable />
+                  </Field>
                 )}
-              </Field>
-
-              <div className="space-y-1">
-                <Field label="Official Webpage URL">
-                  <Input type="url" name="webpage" defaultValue={data?.webpage} placeholder="https://..." />
-                </Field>
-                <Checkbox name="citeWebpage" label="Include as citation" />
-              </div>
-
-              <div className="space-y-1">
-                <Field
-                  label="Trail Map URL"
-                  help="Provide a link to a document, image, or webpage that contains a map of the trails at this location."
-                >
-                  <Input type="url" name="trailMap" defaultValue={data?.trailMap} placeholder="https://..." />
-                </Field>
-              </div>
-
-              <InputHotspotLinks label="Additional Links" groupLinks={groupLinks} />
-
-              <NewSectionsBanner />
-
-              <Field label="Plan Your Visit" help={PLAN_SECTION_HELP_TEXT}>
-                <TinyMCE name="plan" defaultValue={data?.plan} disabled={frozen} />
-              </Field>
-
-              <Field label="How to Bird Here" help={BIRDING_SECTION_HELP_TEXT}>
-                <TinyMCE name="birding" defaultValue={data?.birding} disabled={frozen} />
-              </Field>
-
-              <Field label="About this Place" help={ABOUT_SECTION_HELP_TEXT}>
-                <TinyMCE name="about" defaultValue={data?.about} disabled={frozen} />
-              </Field>
-
-              <InputCitations groupLinks={groupLinks} groupCitations={groupCitations} />
-
-              {groupAbout?.map(({ title, text }, i) => (
-                <div key={i} className="bg-gray-100 px-3 py-2 rounded-md">
-                  <h4 className="text-gray-500 font-bold">
-                    {title} <span className="text-xs text-gray-400">(from group page)</span>
-                  </h4>
-                  <ExpandableHtml html={text} className="formatted" isGray />
-                </div>
-              ))}
-
-              {groupImages.length > 0 && <MapGrid images={groupImages} />}
-
-              <div>
-                <div className="flex items-center justify-between">
-                  <label className="text-gray-500 font-bold">Featured eBird Images</label>
-                  <Badge>Available: {availableImgCount}</Badge>
-                </div>
-                <InputFeaturedImages locationId={data.locationId} />
-              </div>
-
-              <div>
-                <label className="text-gray-500 font-bold">Legacy Images</label>
-                <ImagesInput enableStreetview />
-              </div>
-
-              <div className="px-4 py-3 bg-gray-100 text-right sm:px-6 rounded hidden md:block">
-                <Submit disabled={loading || frozen} color="green" className="font-medium">
-                  Save Hotspot
-                </Submit>
-              </div>
+                <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
+                <RadioGroup
+                  name="accessible"
+                  help="Is there a wheelchair accessible trail at this location?"
+                  label="Wheelchair accessible trail"
+                  options={["Yes", "No", "Unknown"]}
+                />
+                <RadioGroup
+                  name="roadside"
+                  label="Roadside viewing"
+                  help="Is this a location where birders can watch from a vehicle?"
+                  options={["Yes", "No", "Unknown"]}
+                />
+                <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} />
+              </aside>
             </div>
-            <aside className="px-4 md:mt-12 pb-5 pt-3 rounded bg-gray-100 md:w-[350px] space-y-6">
-              {isOH && (
-                <Field label="Important Bird Area">
-                  <IbaSelect name="iba" isClearable />
-                </Field>
-              )}
-              <RadioGroup name="restrooms" label="Restrooms on site" options={["Yes", "No", "Unknown"]} />
-              <RadioGroup
-                name="accessible"
-                help="Is there a wheelchair accessible trail at this location?"
-                label="Wheelchair accessible trail"
-                options={["Yes", "No", "Unknown"]}
-              />
-              <RadioGroup
-                name="roadside"
-                label="Roadside viewing"
-                help="Is this a location where birders can watch from a vehicle?"
-                options={["Yes", "No", "Unknown"]}
-              />
-              <RadioGroup name="fee" label="Entrance fee" options={["Yes", "No", "Unknown"]} />
-            </aside>
-          </div>
-          <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
-            <Submit disabled={loading || frozen} color="green" className="font-medium">
-              Save Hotspot
-            </Submit>
-          </div>
+            <div className="px-4 py-3 bg-gray-100 text-right rounded mt-4 md:hidden">
+              <Submit disabled={loading || frozen} color="green" className="font-medium">
+                Save Hotspot
+              </Submit>
+            </div>
           </fieldset>
         </Form>
       </div>
