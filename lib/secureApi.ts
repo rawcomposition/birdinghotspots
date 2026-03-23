@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "lib/firebaseAdmin";
 import nookies from "nookies";
 import type { Token } from "lib/types";
-import { ENABLE_ADMIN_WRITE, ENABLE_EDITOR_WRITE } from "lib/config";
 
 type Callback = (req: NextApiRequest, res: NextApiResponse, token: Token) => Promise<void>;
 
@@ -24,17 +23,6 @@ export default function secureApi(callback: Callback, requireRole?: "admin" | "e
     } else if (!result?.uid) {
       res.status(401).json({ error: "Unauthorized" });
       return;
-    }
-
-    if (req.method !== "GET") {
-      if (!ENABLE_ADMIN_WRITE && result?.role === "admin") {
-        res.status(403).json({ error: "Write operations are currently disabled" });
-        return;
-      }
-      if (!ENABLE_EDITOR_WRITE && result?.role !== "admin") {
-        res.status(403).json({ error: "Write operations are currently disabled" });
-        return;
-      }
     }
 
     return await callback(req, res, tokenObj as Token);

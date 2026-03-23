@@ -4,8 +4,10 @@ import Hotspot from "models/Hotspot";
 import connect from "lib/mongo";
 import secureApi from "lib/secureApi";
 import { region, endpoint, bucket } from "lib/s3";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const s3 = new S3Client({
     credentials: {
       accessKeyId: process.env.S3_KEY || "",

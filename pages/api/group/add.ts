@@ -6,8 +6,10 @@ import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import dayjs from "dayjs";
 import { uploadGroupMapImg } from "lib/s3";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { data } = req.body;
 
   await connect();

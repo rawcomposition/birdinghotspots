@@ -4,8 +4,10 @@ import Hotspot from "models/Hotspot";
 import Logs from "models/Log";
 import secureApi from "lib/secureApi";
 import dayjs from "dayjs";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { groupLocationId, hotspotLocationId, group, hotspot } = req.body;
 
   if (!groupLocationId) {

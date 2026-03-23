@@ -2,8 +2,10 @@ import connect from "lib/mongo";
 import RegionInfo from "models/RegionInfo";
 import secureApi from "lib/secureApi";
 import { canEdit } from "lib/helpers";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { data, code } = req.body;
 
   if (!canEdit(token, code)) {

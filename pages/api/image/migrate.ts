@@ -3,8 +3,10 @@ import Hotspot from "models/Hotspot";
 import Profile from "models/Profile";
 import secureApi from "lib/secureApi";
 import { getHotspotImages } from "lib/mongo";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   try {
     const { locationId, imageId } = req.body;
 

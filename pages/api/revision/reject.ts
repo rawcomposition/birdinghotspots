@@ -1,8 +1,10 @@
 import connect from "lib/mongo";
 import Revision from "models/Revision";
 import secureApi from "lib/secureApi";
+import { assertWriteEnabled } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
+  if (!assertWriteEnabled(res, token.role)) return;
   const { id }: any = req.query;
 
   try {

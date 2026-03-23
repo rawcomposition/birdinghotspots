@@ -10,7 +10,7 @@ import { canEdit } from "lib/helpers";
 import admin from "lib/firebaseAdmin";
 import nookies from "nookies";
 import type { Token } from "lib/types";
-import { ENABLE_EDITOR_WRITE, ENABLE_ADMIN_WRITE, ENABLE_SUGGESTIONS } from "lib/config";
+import { assertWriteEnabled, ENABLE_SUGGESTIONS } from "lib/config";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const cookies = nookies.get({ req });
@@ -30,17 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (!hotspot) throw new Error("Hotspot not found");
     const hasEditPermission = session ? canEdit(session, hotspot.stateCode || hotspot.countryCode) : false;
 
-    if (hasEditPermission) {
-      const isAdmin = session?.role === "admin";
-      if (isAdmin && !ENABLE_ADMIN_WRITE) {
-        res.status(403).json({ error: "Write operations are currently disabled" });
-        return;
-      }
-      if (!isAdmin && !ENABLE_EDITOR_WRITE) {
-        res.status(403).json({ error: "Write operations are currently disabled" });
-        return;
-      }
-    }
+    if (hasEditPermission && !assertWriteEnabled(res, session?.role)) return;
 
     // Logged in
     if (hasEditPermission) {
