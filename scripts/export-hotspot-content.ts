@@ -94,6 +94,24 @@ function buildFilter(regionCode?: string): Record<string, unknown> {
   return { countryCode: regionCode };
 }
 
+function hasExportableContent(hotspot: any): boolean {
+  return Boolean(
+    hotspot.plan ||
+      hotspot.birding ||
+      hotspot.about ||
+      hotspot.webpage ||
+      hotspot.trailMap ||
+      (hotspot.links || []).some((link: any) => link.url) ||
+      hotspot.fee === "Yes" ||
+      hotspot.fee === "No" ||
+      hotspot.restrooms === "Yes" ||
+      hotspot.restrooms === "No" ||
+      hotspot.accessible === "Yes" ||
+      hotspot.roadside === "Yes" ||
+      hotspot.roadside === "No"
+  );
+}
+
 function mergeGroupContent(hotspot: any, group: any | undefined) {
   if (!group) return hotspot;
 
@@ -125,7 +143,7 @@ async function main() {
   await connect();
 
   const groups = await Group.find(
-    { primaryHotspot: { $exists: true, $ne: null }, readyForMigration: true },
+    { primaryHotspot: { $exists: true, $ne: null }, isMigrationReady: true },
     ["primaryHotspot", "name", "plan", "birding", "about", "restrooms", "links", "webpage", "trailMap"]
   ).lean();
 
@@ -139,7 +157,7 @@ async function main() {
     groupByHotspotId.set(key, g);
   }
 
-  const hotspotIdsWithGroupContent = [...groupByHotspotId.keys()].map((id) => new mongoose.Types.ObjectId(id));
+  const primaryHotspotIds = [...groupByHotspotId.keys()].map((id) => new mongoose.Types.ObjectId(id));
 
   const contentConditions = [
     { plan: { $exists: true, $ne: "" } },
@@ -158,11 +176,11 @@ async function main() {
     ...buildFilter(regionCode),
     $or: [
       ...contentConditions,
-      ...(hotspotIdsWithGroupContent.length ? [{ _id: { $in: hotspotIdsWithGroupContent } }] : []),
+      ...(primaryHotspotIds.length ? [{ _id: { $in: primaryHotspotIds } }] : []),
     ],
   };
 
-  const hotspots = await Hotspot.find(filter, [
+  const rawHotspots = await Hotspot.find(filter, [
     "locationId",
     "countryCode",
     "stateCode",
@@ -181,13 +199,17 @@ async function main() {
     "updatedAt",
   ]).lean();
 
+  const hotspots = (rawHotspots as any[])
+    .map((h) => mergeGroupContent(h, groupByHotspotId.get(h._id.toString())))
+    .filter(hasExportableContent);
+
   if (!hotspots.length) {
     console.log(`No hotspots with content found${regionCode ? ` for region ${regionCode}` : ""}.`);
     process.exit(0);
   }
 
-  const mergedCount = hotspots.filter((h: any) => groupByHotspotId.has(h._id.toString())).length;
-  console.log(`Found ${hotspots.length} hotspot(s) with content (${mergedCount} with group content merged).`);
+  const primaryHotspotCount = hotspots.filter((h: any) => groupByHotspotId.has(h._id.toString())).length;
+  console.log(`Found ${hotspots.length} hotspot(s) with content (${primaryHotspotCount} are primary hotspots for migration-ready groups).`);
 
   const lines: string[] = [];
   lines.push("-- Exported from BirdingHotspots.org");
@@ -199,8 +221,7 @@ async function main() {
   lines.push("");
   lines.push("-- hotspot_content");
 
-  for (const rawH of hotspots as any[]) {
-    const h = mergeGroupContent(rawH, groupByHotspotId.get(rawH._id.toString()));
+  for (const h of hotspots as any[]) {
     checkLength(h.locationId, "website_url", h.webpage, 2048);
 
     const locId = sqlQuote(h.locationId);
@@ -229,8 +250,7 @@ async function main() {
   lines.push("");
   lines.push("-- hotspot_text_content");
 
-  for (const rawH of hotspots as any[]) {
-    const h = mergeGroupContent(rawH, groupByHotspotId.get(rawH._id.toString()));
+  for (const h of hotspots as any[]) {
     const hasText = h.plan || h.birding || h.about;
     if (!hasText) continue;
 
