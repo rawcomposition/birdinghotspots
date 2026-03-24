@@ -1,8 +1,7 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { getDriveByLocationId } from "lib/mongo";
-import { getRegion } from "lib/localData";
+import { getDriveByLocationId } from "lib/sqlite";
 import { Drive as DriveType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
@@ -78,18 +77,10 @@ export default function Drive({ region, name, description, mapId, entries, image
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const locationId = query.locationId as string;
 
-  const data = await getDriveByLocationId(locationId);
+  const data = getDriveByLocationId(locationId);
   if (!data) return { notFound: true };
 
-  const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
-
-  const filteredEntries = data.entries.filter((entry: any) => entry.hotspot);
-
   return {
-    props: {
-      region,
-      ...data,
-      entries: filteredEntries,
-    },
+    props: data,
   };
 };

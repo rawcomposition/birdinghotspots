@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { getDrivesByState } from "lib/mongo";
+import { getDrivesByState } from "lib/sqlite";
 import { getRegion, restructureDrivesByCounty } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { GetServerSideProps } from "next";

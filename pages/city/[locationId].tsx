@@ -2,8 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { getHotspotsInRadius, getCityByLocationId } from "lib/mongo";
-import { getRegion } from "lib/localData";
+import { getCityByLocationId } from "lib/sqlite";
 import PageHeading from "components/PageHeading";
 import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
@@ -97,23 +96,20 @@ export default function City({ region, city, hotspots, stateCode, countryCode, i
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const locationId = context.params?.locationId as string;
 
-  const city = await getCityByLocationId(locationId);
-  if (!city) return { notFound: true };
-
-  const region = getRegion(city.stateCode || city.countryCode);
-
-  if (!region) return { notFound: true };
-
-  const hotspots = (await getHotspotsInRadius(city.lat, city.lng, 5)) || [];
-
-  const formatted = hotspots.map((it: any) => ({
-    ...it,
-    noContent: (it.noContent && !it.groupIds?.length) || false,
-  }));
+  const data = getCityByLocationId(locationId);
+  if (!data) return { notFound: true };
+  if (!data.region) return { notFound: true };
 
   const isBot = isbot(context.req.headers["user-agent"] || "");
 
   return {
-    props: { region, city, stateCode: city.stateCode, countryCode: city.countryCode, hotspots: formatted, isBot },
+    props: {
+      region: data.region,
+      city: data,
+      stateCode: data.stateCode,
+      countryCode: data.countryCode,
+      hotspots: data.hotspots,
+      isBot,
+    },
   };
 };

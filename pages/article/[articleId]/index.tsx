@@ -1,7 +1,7 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { getArticleByArticleId } from "lib/mongo";
+import { getArticleByArticleId } from "lib/sqlite";
 import { Hotspot, Article as ArticleType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
@@ -10,7 +10,6 @@ import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 import parse from "html-react-parser";
 import HotspotGrid from "components/HotspotGrid";
-import { getRegion } from "lib/localData";
 import dayjs from "dayjs";
 
 interface Props extends ArticleType {
@@ -59,37 +58,11 @@ export default function Article({
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const articleId = query.articleId as string;
 
-  const data = await getArticleByArticleId(articleId);
+  const data = getArticleByArticleId(articleId);
   if (!data) return { notFound: true };
-
-  const region = getRegion(data.stateCode || data.countryCode);
-  if (!region) return { notFound: true };
-
-  const formattedHotspots = data.hotspots?.map((hotspot) => {
-    const regionCode = hotspot.countyCode || hotspot.stateCode || hotspot.countryCode;
-    const region = getRegion(regionCode);
-    const locationLine = region ? `${region.detailedName}` : regionCode;
-    return {
-      ...hotspot,
-      _id: hotspot._id?.toString(),
-      locationLine,
-    };
-  });
-
-  const sortBy = data.sortHotspotsBy || "none";
-  const sortedHotspots = formattedHotspots?.sort((a, b) =>
-    sortBy === "region"
-      ? `${a.locationLine} ${a.name}`.localeCompare(`${b.locationLine} ${b.name}`)
-      : sortBy === "species" && a.species && b.species
-      ? b.species - a.species
-      : 0
-  );
+  if (!data.region) return { notFound: true };
 
   return {
-    props: {
-      ...data,
-      region,
-      formattedHotspots: sortedHotspots,
-    },
+    props: data,
   };
 };

@@ -2,16 +2,15 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
-import { getGroupByLocationId } from "lib/mongo";
+import { getGroupByLocationId } from "lib/sqlite";
 import AboutSection from "components/AboutSection";
-import { getRegion } from "lib/localData";
 import { Region, Marker, Group as GroupType, Link as LinkType } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
 import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { formatMarker, getShortName, canEdit as checkCanEdit } from "lib/helpers";
+import { canEdit as checkCanEdit } from "lib/helpers";
 import MapKit from "components/MapKit";
 import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
@@ -35,7 +34,6 @@ export default function Group({
   countyCodes,
   countryCode,
   name,
-  _id,
   address,
   links: additionalLinks,
   webpage,
@@ -83,7 +81,7 @@ export default function Group({
       {canEditGroup && (
         <EditorActions className="font-medium -mt-10">
           <Link href={`/edit/group/${locationId}`}>Edit Group</Link>
-          <DeleteBtn url={`/api/group/delete?id=${_id}`} entity="group" className="ml-auto">
+          <DeleteBtn url={`/api/group/delete?id=${locationId}`} entity="group" className="ml-auto">
             Delete Group
           </DeleteBtn>
         </EditorActions>
@@ -129,7 +127,7 @@ export default function Group({
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
-          {markers.length > 0 && !isBot && <MapKit key={_id} markers={markers} zoom={12} />}
+          {markers.length > 0 && !isBot && <MapKit key={locationId} markers={markers} zoom={12} />}
           {!!images?.length && <MapList images={images} />}
         </div>
       </div>
@@ -144,36 +142,14 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   const { locationId } = query as Params;
 
-  const data = (await getGroupByLocationId(locationId)) as GroupType;
-  if (!data?._id) return { notFound: true };
-
-  const region = getRegion(
-    data.countyCodes.length === 1
-      ? data.countyCodes[0]
-      : data.stateCodes.length === 1
-      ? data.stateCodes[0]
-      : data.countryCode
-  );
-
-  const markers = data?.hotspots?.map((it) => formatMarker(it, true)) || [];
-
-  const hotspotPrefixes = data?.hotspots?.filter((it) => it.name.includes("--")).map((it) => it.name.split("--")[0]);
-  const uniqueHotspotPrefixes = [...new Set(hotspotPrefixes)];
-
-  const hotspots = data?.hotspots?.map((it) => ({
-    ...it,
-    locationLine: getRegion(it.countyCode || it.stateCode || it.countryCode)?.detailedName || "",
-    name: uniqueHotspotPrefixes.length === 1 ? getShortName(it.name) : it.name,
-  }));
+  const data = getGroupByLocationId(locationId);
+  if (!data) return { notFound: true };
 
   const isBot = isbot(req.headers["user-agent"] || "");
 
   return {
     props: {
-      region,
-      markers,
       ...data,
-      hotspots,
       isBot,
     },
   };

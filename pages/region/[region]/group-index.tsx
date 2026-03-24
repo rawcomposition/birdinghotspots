@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { getGroupsByRegion } from "lib/mongo";
+import { getGroupsByRegion } from "lib/sqlite";
 import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import PageHeading from "components/PageHeading";

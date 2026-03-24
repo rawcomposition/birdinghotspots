@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { getHotspotsByRegion } from "lib/mongo";
+import { getHotspotsByRegion } from "lib/sqlite";
 import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";

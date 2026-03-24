@@ -24,7 +24,8 @@
     "find-better-primary-hotspots": "tsx ./scripts/find-better-primary-hotspots.ts",
     "export-content-samples": "tsx ./scripts/export-content-samples.ts",
     "export-hotspot-parents": "tsx ./scripts/export-hotspot-parents.ts",
-    "analyze-multi-region-groups": "tsx ./scripts/analyze-multi-region-groups.ts"
+    "analyze-multi-region-groups": "tsx ./scripts/analyze-multi-region-groups.ts",
+    "migrate-to-sqlite": "tsx ./scripts/migrate-to-sqlite.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.367.0",
@@ -45,6 +46,7 @@
     "@uppy/thumbnail-generator": "^3.0.6",
     "@uppy/xhr-upload": "^3.5.0",
     "axios": "^1.7.9",
+    "better-sqlite3": "^12.8.0",
     "chart.js": "^4.3.2",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.3",
@@ -80,6 +82,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/geokdbush": "^1.1.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^17.0.36",

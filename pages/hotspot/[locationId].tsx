@@ -3,9 +3,8 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Link from "next/link";
 import Head from "next/head";
-import { getHotspotByLocationId } from "lib/mongo";
+import { getHotspotByLocationId } from "lib/sqlite";
 import AboutSection from "components/AboutSection";
-import { getRegion } from "lib/localData";
 import { Region, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group, Citation } from "lib/types";
 import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
@@ -14,9 +13,9 @@ import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
-import { formatMarker, canEdit as checkCanEdit } from "lib/helpers";
+import { canEdit as checkCanEdit } from "lib/helpers";
 import MapKit from "components/MapKit";
-import NearbyHotspots from "components/NearbyHotspots";
+import HotspotGrid from "components/HotspotGrid";
 import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
 import { CameraIcon, PencilSquareIcon, MapIcon } from "@heroicons/react/24/outline";
@@ -26,22 +25,21 @@ import Features from "components/Features";
 import ExternalLinkButton from "components/ExternalLinkButton";
 import useLogPageview from "hooks/useLogPageview";
 import { useModal } from "providers/modals";
-import { useReloadProps } from "hooks/useReloadProps";
 import dayjs from "dayjs";
 import { isbot } from "isbot";
-import useHotspotImages from "hooks/useHotspotImages";
 import { ENABLE_LEGACY_UPLOADS } from "lib/config";
 
 type Props = HotspotType & {
   region: Region;
   marker: Marker;
+  combinedImages: Image[];
+  nearby: any[];
   isBot: boolean;
 };
 
 export default function Hotspot({
   region,
   name,
-  _id,
   lat,
   lng,
   zoom,
@@ -69,17 +67,13 @@ export default function Hotspot({
   noContent,
   featuredImg,
   updatedAt,
+  combinedImages,
+  nearby,
   isBot,
 }: Props) {
   const { user } = useUser();
   useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot", isBot });
   const { open } = useModal();
-  const reload = useReloadProps();
-
-  const { images: combinedPhotos, isFetching: isLoadingImages } = useHotspotImages({
-    locationId,
-    featuredImg,
-  });
 
   let extraLinks = [];
 
@@ -116,15 +110,15 @@ export default function Hotspot({
         </Head>
       )}
       <PageHeading region={region}>{name}</PageHeading>
-      {combinedPhotos?.length > 0 && (
+      {combinedImages?.length > 0 && (
         <FeaturedImage
-          key={`${locationId}-${isLoadingImages}`}
-          photos={combinedPhotos}
-          isLoading={isLoadingImages}
+          key={locationId}
+          photos={combinedImages}
+          isLoading={false}
           locationId={locationId}
         />
       )}
-      <EditorActions className={`${combinedPhotos?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
+      <EditorActions className={`${combinedImages?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
         {canEdit && (
           <Link href={`/edit/${locationId}`} className="flex gap-1">
             <PencilSquareIcon className="h-4 w-4" />
@@ -152,7 +146,7 @@ export default function Hotspot({
         {canEdit && !featuredImg && ENABLE_LEGACY_UPLOADS && (
           <button
             type="button"
-            onClick={() => open("addStreetView", { locationId, onSuccess: reload })}
+            onClick={() => open("addStreetView", { locationId })}
             className="flex gap-1 text-primary"
           >
             <MapIcon className="h-4 w-4" />
@@ -160,7 +154,7 @@ export default function Hotspot({
           </button>
         )}
         {canEdit && needsDeleting && (
-          <DeleteBtn url={`/api/hotspot/delete?id=${_id}`} entity="hotspot" className="ml-auto">
+          <DeleteBtn url={`/api/hotspot/delete?id=${locationId}`} entity="hotspot" className="ml-auto">
             Delete Hotspot
           </DeleteBtn>
         )}
@@ -260,9 +254,16 @@ export default function Hotspot({
           {updatedAt && <p className="my-6 text-xs">Last updated {dayjs(updatedAt).format("MMMM D, YYYY")}</p>}
         </div>
         <div>
-          {lat && lng && marker && !isBot && <MapKit key={_id} markers={[marker]} zoom={zoom} lgMarkers />}
+          {lat && lng && marker && !isBot && <MapKit key={locationId} markers={[marker]} zoom={zoom} lgMarkers />}
           {!!mapImages?.length && <MapList images={mapImages} />}
-          {lat && lng && <NearbyHotspots lat={lat} lng={lng} limit={4} exclude={[locationId]} />}
+          {nearby?.length > 0 && (
+            <div className="mt-12">
+              <h3 className="mb-4 font-bold text-lg">Nearby Hotspots</h3>
+              <div className="grid xs:grid-cols-2 gap-6">
+                <HotspotGrid hotspots={nearby} loading={false} lat={lat} lng={lng} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -285,58 +286,15 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
     };
   }
 
-  const data = await getHotspotByLocationId(locationId, true);
+  const data = getHotspotByLocationId(locationId);
   if (!data) return { notFound: true };
-
-  const links: LinkType[] = [
-    { url: data.webpage || "", label: "Official Website", cite: data.citeWebpage },
-    { url: data.trailMap || "", label: "Trail Map", cite: false },
-    ...(data.links || []),
-  ].filter((it) => it.url);
-
-  const region = getRegion(data.countyCode || data.stateCode || data.countryCode);
-  if (!region) return { notFound: true };
-
-  const marker = formatMarker(data);
-
-  const groupLinks: LinkType[] = [];
-  const uniqueCitations: Citation[] = [...(data.citations || [])];
-
-  data?.groups?.forEach(({ name, links, webpage, citeWebpage, trailMap, citations }: Group) => {
-    if (webpage)
-      groupLinks?.push({
-        url: webpage,
-        label: `${name} Official Website`,
-        cite: citeWebpage,
-      });
-    if (trailMap)
-      groupLinks?.push({
-        url: trailMap,
-        label: `${name} Trail Map`,
-        cite: false,
-      });
-    if (links) groupLinks.push(...links);
-    if (citations) {
-      citations.forEach((citation) => {
-        if (!uniqueCitations.some((uniqueCitation) => uniqueCitation.label === citation.label)) {
-          uniqueCitations.push(citation);
-        }
-      });
-    }
-  });
 
   const isBot = isbot(req.headers["user-agent"] || "");
 
   return {
-    props: JSON.parse(
-      JSON.stringify({
-        region,
-        marker,
-        ...data,
-        citations: uniqueCitations,
-        links: [...(links || []), ...groupLinks],
-        isBot,
-      })
-    ),
+    props: {
+      ...data,
+      isBot,
+    },
   };
 };
