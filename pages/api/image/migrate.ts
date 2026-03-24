@@ -3,10 +3,12 @@ import Hotspot from "models/Hotspot";
 import Profile from "models/Profile";
 import secureApi from "lib/secureApi";
 import { getHotspotImages } from "lib/mongo";
-import { assertWriteEnabled } from "lib/config";
+import { ENABLE_IMAGE_MIGRATION } from "lib/config";
 
 export default secureApi(async (req, res, token) => {
-  if (!assertWriteEnabled(res, token.role)) return;
+  if (!ENABLE_IMAGE_MIGRATION) {
+    return res.status(403).json({ error: "Image migration is currently disabled" });
+  }
   try {
     const { locationId, imageId } = req.body;
 

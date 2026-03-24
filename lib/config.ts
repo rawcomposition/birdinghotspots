@@ -2,6 +2,7 @@ export const ENABLE_LEGACY_UPLOADS = false;
 export const ENABLE_SUGGESTIONS = false;
 export const ENABLE_EDITOR_WRITE = false;
 export const ENABLE_ADMIN_WRITE = false;
+export const ENABLE_IMAGE_MIGRATION = true;
 export const ENABLE_SYNC = false;
 export const ENABLE_PHOTO_SYNC = false;
 export const ENABLE_ANALYTICS_LOGGING = false;

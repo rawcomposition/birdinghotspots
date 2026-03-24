@@ -20,6 +20,7 @@ import PageHeading from "components/PageHeading";
 import dynamic from "next/dynamic";
 import CopyIcon from "icons/CopyIcon";
 import Tooltip from "components/Tooltip";
+import { ENABLE_IMAGE_MIGRATION } from "lib/config";
 const MigrationBanner = dynamic(() => import("components/MigrationBanner"), { ssr: false });
 
 type Inputs = {
@@ -103,6 +104,8 @@ export default function MigrationAssistant() {
   ];
 
   const handleMigrate = async (locationId: string, imageId: string) => {
+    if (!ENABLE_IMAGE_MIGRATION) return;
+
     setHotspots((prev) =>
       prev.map((hotspot) => ({
         ...hotspot,
@@ -232,10 +235,10 @@ export default function MigrationAssistant() {
                           type="button"
                           onClick={() => handleMigrate(hotspot.locationId, _id as string)}
                           className={clsx(
-                            isMigrated ? "opacity-30" : "opacity-70 hover:opacity-100",
+                            isMigrated || !ENABLE_IMAGE_MIGRATION ? "opacity-30" : "opacity-70 hover:opacity-100",
                             "text-gray-700 text-sm font-bold py-1 px-2 flex-grow-0 transition-opacity border border-gray-300 rounded flex items-center gap-2"
                           )}
-                          disabled={isMigrated}
+                          disabled={isMigrated || !ENABLE_IMAGE_MIGRATION}
                         >
                           <input
                             type="checkbox"
