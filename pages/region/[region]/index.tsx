@@ -2,8 +2,6 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
-import { getRegion } from "lib/localData";
-import RareBirds from "components/RareBirds";
 import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive, RegionStatsT, Group } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
@@ -12,16 +10,15 @@ import Title from "components/Title";
 import RegionMap from "components/RegionMap";
 import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
-import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
 import RegionStats from "components/RegionStats";
 import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
 import { StateLinkSection } from "components/StateLinkSection";
-import { getRegionInfo } from "lib/mongo";
-import { getTopGroupsByRegion, getHotspotsByRegion, getArticlesByRegion } from "lib/sqlite";
+import { getRegionPageData } from "lib/sqlite";
 import MapKit from "components/MapKit";
 import HotspotList from "components/HotspotList";
+import HotspotGrid from "components/HotspotGrid";
 import RegionLinksBtn from "components/RegionLinksBtn";
 import useLogPageview from "hooks/useLogPageview";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
@@ -39,13 +36,15 @@ type Props = {
   articles: Article[];
   groups: Group[];
   hotspots: Hotspot[];
+  topHotspots: Hotspot[];
+  markers: Marker[];
+  stats: RegionStatsT;
   hasSubregions: boolean;
   isBot: boolean;
 };
 
-export default function RegionPage({ region, info, articles, groups, hotspots, hasSubregions, isBot }: Props) {
+export default function RegionPage({ region, info, articles, groups, hotspots, topHotspots, markers, stats, hasSubregions, isBot }: Props) {
   const [view, setView] = React.useState<string>("map");
-  const [stats, setStats] = React.useState<RegionStatsT>();
   const [showAllHotspots, setShowAllHotspots] = React.useState<boolean>(false);
   const { open } = useModal();
   const { code, name, longName, subregions, subheading } = region;
@@ -56,8 +55,6 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
   const countyCode = regionPieces.length === 3 ? code : undefined;
 
   useLogPageview({ stateCode, countyCode, countryCode, entity: "region", isBot });
-
-  const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
 
   const hotspotIBA = hotspots.filter(({ iba }) => iba?.value).map(({ iba }) => iba);
   const drives: HotspotDrive[] = [];
@@ -88,17 +85,6 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
 
   //@ts-ignore
   const sortedDrives = uniqueDrives.sort((a, b) => a.name.localeCompare(b.name));
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/region-stats/${code}`);
-        const json = await response.json();
-        setStats(json);
-      } catch (error) {}
-    };
-    if (code) fetchData();
-  }, [code]);
 
   return (
     <div className="container pb-16 mt-12">
@@ -206,7 +192,22 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
         <h3 className="text-lg font-bold" id="hotspots">
           Top Hotspots
         </h3>
-        <TopHotspots region={code} className="mt-3" />
+        {topHotspots.length > 0 ? (
+          <>
+            <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-3">
+              <HotspotGrid hotspots={topHotspots} loading={false} skeletonCount={10} smallTitle />
+            </div>
+            <Link
+              href={`/region/${code}/hotspots`}
+              className="bg-primary hover:bg-secondary text-white font-bold py-1.5 text-sm px-4 rounded-full w-[140px] mx-auto block mt-4 text-center"
+            >
+              View More
+              <ArrowLongRightIcon className="inline-block w-4 h-4 ml-2" />
+            </Link>
+          </>
+        ) : (
+          <p className="text-base text-gray-500">None</p>
+        )}
       </section>
 
       {!hasSubregions && (
@@ -375,7 +376,6 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
           </span>
         </Link>
       </div>
-      {code !== "US" && <RareBirds region={code} className="mt-12" />}
       <MoreRegionLinks region={region} />
     </div>
   );
@@ -383,25 +383,13 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const regionCode = context.params?.region as string;
-  const region = getRegion(regionCode);
-  if (!region) return { notFound: true };
-  const hasSubregions = !!region.subregions?.length;
 
-  const [info, articles, hotspots, groups] = await Promise.all([
-    hasSubregions ? getRegionInfo(regionCode) : null,
-    hasSubregions ? getArticlesByRegion(regionCode) : [],
-    !hasSubregions ? getHotspotsByRegion(regionCode) : [],
-    getTopGroupsByRegion(regionCode, 6),
-  ]);
-
-  const formattedHotspots = hotspots.map((it: any) => ({
-    ...it,
-    noContent: (it.noContent && !it.groupIds?.length) || false,
-  }));
+  const data = getRegionPageData(regionCode);
+  if (!data) return { notFound: true };
 
   const isBot = isbot(context.req.headers["user-agent"] || "");
 
   return {
-    props: { key: region.code, region, info, articles, groups, hasSubregions, hotspots: formattedHotspots, isBot },
+    props: { key: regionCode, ...data, isBot },
   };
 };

@@ -110,6 +110,12 @@ export function getArticlesByRegion(regionCode: string) {
     .sort((a: any, b: any) => (b.createdAt || "").localeCompare(a.createdAt || ""));
 }
 
+// --- Region queries ---
+
+export function getRegionPageData(regionCode: string) {
+  return getOne(regionCode, "region");
+}
+
 // --- Hotspot queries ---
 
 export function getHotspotsByRegion(region: string) {
