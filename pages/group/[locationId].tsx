@@ -15,6 +15,7 @@ import { formatMarker, getShortName, canEdit as checkCanEdit } from "lib/helpers
 import MapKit from "components/MapKit";
 import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import HotspotGrid from "components/HotspotGrid";
 import Citations from "components/Citations";
 import Features from "components/Features";
@@ -50,6 +51,8 @@ export default function Group({
   images,
   markers,
   hotspots,
+  primaryHotspot,
+  isMigrationReady,
   updatedAt,
   isBot,
 }: Props) {
@@ -88,6 +91,13 @@ export default function Group({
           </DeleteBtn>
         </EditorActions>
       )}
+      <PublicAnnouncement
+        ebirdHref={
+          isMigrationReady && primaryHotspot?.locationId
+            ? `https://ebird.org/hotspot/${primaryHotspot.locationId}`
+            : undefined
+        }
+      />
       <div className="mb-12">
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <HotspotGrid hotspots={filteredHotspots} loading={false} />

@@ -14,6 +14,7 @@ import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon, PhotoIcon } fro
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import TopHotspots from "components/TopHotspots";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import RegionStats from "components/RegionStats";
 import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
@@ -120,6 +121,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, h
           Add Group
         </Link>
       </EditorActions>
+      <PublicAnnouncement ebirdHref={`https://ebird.org/region/${code}`} ebirdLabel={`View ${name} on eBird`} />
       {hasSubregions ? (
         <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
           <section>

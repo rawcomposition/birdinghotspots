@@ -5,6 +5,7 @@ import Regions from "data/regions.json";
 import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import Heading from "components/Heading";
 import Hotspot from "models/Hotspot";
 import { getRegion } from "lib/localData";
@@ -27,6 +28,7 @@ export default function Home({ featured, expandedRegions }: Props) {
       </Head>
       <Banner />
       <div className="container pb-16 mt-12">
+        <PublicAnnouncement />
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
             {expandedRegions.map((country) => (

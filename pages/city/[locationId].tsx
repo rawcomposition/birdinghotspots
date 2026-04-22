@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import { getHotspotsInRadius, getCityByLocationId } from "lib/mongo";
 import { getRegion } from "lib/localData";
 import PageHeading from "components/PageHeading";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
 import MapKit from "components/MapKit";
@@ -40,6 +41,7 @@ export default function City({ region, city, hotspots, stateCode, countryCode, i
       <PageHeading region={region} extraCrumb={{ label: "Cities/Towns", href: `/region/${region.code}/cities` }}>
         {name}
       </PageHeading>
+      <PublicAnnouncement />
       <section className="lg:flex justify-between items-start mb-4 -mt-8">
         <div>
           <h3 className="text-lg mb-1 font-bold">Where to Go Birding in {name}</h3>

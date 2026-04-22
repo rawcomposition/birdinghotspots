@@ -21,6 +21,7 @@ import FeaturedImage from "components/FeaturedImage";
 import { useUser } from "providers/user";
 import { CameraIcon, PencilSquareIcon, MapIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import Citations from "components/Citations";
 import Features from "components/Features";
 import ExternalLinkButton from "components/ExternalLinkButton";
@@ -170,6 +171,7 @@ export default function Hotspot({
           This hotspot has been removed from eBird and should be deleted.
         </div>
       )}
+      <PublicAnnouncement ebirdHref={`https://ebird.org/hotspot/${locationId}`} />
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">

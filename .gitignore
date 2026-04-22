@@ -42,3 +42,4 @@ notes.md
 exports/*
 *.p8
 tsconfig.tsbuildinfo
+data/birdinghotspots.db
