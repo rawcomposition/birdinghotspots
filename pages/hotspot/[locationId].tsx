@@ -171,7 +171,7 @@ export default function Hotspot({
           This hotspot has been removed from eBird and should be deleted.
         </div>
       )}
-      <PublicAnnouncement ebirdHref={`https://ebird.org/hotspot/${locationId}`} />
+      <PublicAnnouncement ebirdHref={`https://ebird.org/hotspot/${locationId}/about`} />
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">

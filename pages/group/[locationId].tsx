@@ -94,7 +94,7 @@ export default function Group({
       <PublicAnnouncement
         ebirdHref={
           isMigrationReady && primaryHotspot?.locationId
-            ? `https://ebird.org/hotspot/${primaryHotspot.locationId}`
+            ? `https://ebird.org/hotspot/${primaryHotspot.locationId}/about`
             : undefined
         }
       />
