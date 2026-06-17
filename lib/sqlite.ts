@@ -1,14 +1,25 @@
 import Database from "better-sqlite3";
+import zlib from "zlib";
 import path from "path";
 
-const DB_PATH = path.join(process.cwd(), "data/birdinghotspots.db");
+// SQLITE_DB_PATH lets the archive live on a mounted data volume (e.g. Dokploy's
+// /data). Absolute paths are used as-is; relative paths resolve from cwd.
+const DB_PATH = process.env.SQLITE_DB_PATH
+  ? path.resolve(process.env.SQLITE_DB_PATH)
+  : path.join(process.cwd(), "data/birdinghotspots.db");
 
 let cached: Database.Database | null = null;
 
 function getDb() {
   if (!cached) {
-    cached = new Database(DB_PATH, { readonly: true });
-    cached.pragma("journal_mode = WAL");
+    // The archive is shipped in DELETE journal mode (see migrate script), so a
+    // plain read-only open is a single self-contained file with no -wal/-shm
+    // sidecars — works on a read-only deploy filesystem.
+    cached = new Database(DB_PATH, { readonly: true, fileMustExist: true });
+    cached.pragma("query_only = true");
+    cached.pragma("cache_size = -16000"); // ~16 MB page cache
+    cached.pragma("mmap_size = 268435456"); // 256 MB; read straight from the mmap'd file
+    cached.pragma("temp_store = MEMORY");
   }
   return cached;
 }
@@ -16,9 +27,10 @@ function getDb() {
 function getOne<T = any>(id: string, type: string): T | null {
   const db = getDb();
   const row = db.prepare("SELECT data FROM content WHERE id = ? AND type = ?").get(id, type) as
-    | { data: string }
+    | { data: Buffer }
     | undefined;
-  return row ? JSON.parse(row.data) : null;
+  // `data` is gzip-compressed JSON (see scripts/migrate-to-sqlite.ts).
+  return row ? JSON.parse(zlib.gunzipSync(row.data).toString("utf8")) : null;
 }
 
 // --- Group queries ---

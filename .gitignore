@@ -45,3 +45,4 @@ tsconfig.tsbuildinfo
 data/birdinghotspots.db
 data/birdinghotspots.db-shm
 data/birdinghotspots.db-wal
+.env.old

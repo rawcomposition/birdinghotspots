@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import fs from "fs";
+import zlib from "zlib";
 import Database from "better-sqlite3";
 import KDBush from "kdbush";
 import * as geokdbush from "geokdbush";
@@ -22,21 +23,32 @@ const connect = async () => (URI ? mongoose.connect(URI) : null);
 
 const initHotspotSchema = Hotspot; // Ensure Hotspot model is loaded for populate()
 
-const DB_PATH = "data/birdinghotspots.db";
+const DB_PATH = process.env.SQLITE_DB_PATH || "data/birdinghotspots.db";
 const HOTSPOTS_JSON = "exports/production.hotspots.json";
 
 function initSqlite() {
   const db = new Database(DB_PATH);
+  // WAL speeds up the bulk-insert build; we switch to DELETE before shipping.
   db.pragma("journal_mode = WAL");
+  // Plain rowid table with the default 4096 page size. Measured smallest for
+  // our large JSON values: rowid table-btree leaves keep more payload local
+  // before spilling to overflow pages, so they pack big rows tightest.
+  // (WITHOUT ROWID and larger page sizes both measured larger here.)
+  // `data` holds gzip-compressed JSON (BLOB) — ~4.5x smaller than raw text.
   db.exec(`
     CREATE TABLE IF NOT EXISTS content (
       id TEXT NOT NULL,
       type TEXT NOT NULL,
-      data TEXT NOT NULL,
+      data BLOB NOT NULL,
       PRIMARY KEY (id, type)
     )
   `);
   return db;
+}
+
+// Gzip a JSON string for storage. Decompressed at read time in lib/sqlite.ts.
+function gz(json: string) {
+  return zlib.gzipSync(json, { level: 9 });
 }
 
 // Replicated from lib/helpers.tsx
@@ -93,7 +105,7 @@ async function migrateGroups(db: Database.Database) {
   const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
   const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
     for (const row of rows) {
-      insert.run(row.id, row.type, row.data);
+      insert.run(row.id, row.type, gz(row.data));
     }
   });
 
@@ -230,7 +242,7 @@ function migrateHotspots(
   const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
   const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
     for (const row of rows) {
-      insert.run(row.id, row.type, row.data);
+      insert.run(row.id, row.type, gz(row.data));
     }
   });
 
@@ -338,7 +350,7 @@ async function migrateArticles(db: Database.Database, hotspotById: Map<string, a
   const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
   const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
     for (const row of rows) {
-      insert.run(row.id, row.type, row.data);
+      insert.run(row.id, row.type, gz(row.data));
     }
   });
 
@@ -416,7 +428,7 @@ async function migrateDrives(db: Database.Database, hotspotById: Map<string, any
   const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
   const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
     for (const row of rows) {
-      insert.run(row.id, row.type, row.data);
+      insert.run(row.id, row.type, gz(row.data));
     }
   });
 
@@ -471,7 +483,7 @@ async function migrateCities(db: Database.Database, findNearby: ReturnType<typeo
   const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
   const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
     for (const row of rows) {
-      insert.run(row.id, row.type, row.data);
+      insert.run(row.id, row.type, gz(row.data));
     }
   });
 
@@ -594,7 +606,7 @@ async function migrateRegions(db: Database.Database, rawHotspots: any[]) {
 
   const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
   const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
-    for (const row of rows) insert.run(row.id, row.type, row.data);
+    for (const row of rows) insert.run(row.id, row.type, gz(row.data));
   });
 
   const codes = getAllRegionCodes();
@@ -777,6 +789,13 @@ async function main() {
   await migrateDrives(db, hotspotById);
   await migrateCities(db, findNearby);
   await migrateRegions(db, rawHotspots);
+
+  // Compact and finalize the shipped archive: defragment/reclaim free pages,
+  // then drop WAL so the DB is a single self-contained, read-only file.
+  console.log("Optimizing and compacting...");
+  db.exec("PRAGMA optimize");
+  db.exec("VACUUM");
+  db.pragma("journal_mode = DELETE");
 
   db.close();
   await mongoose.disconnect();
