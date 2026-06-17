@@ -3,18 +3,27 @@ import Link from "next/link";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import EbirdDescription from "components/EbirdDescription";
-import admin from "lib/firebaseAdmin";
 import { getRegion } from "lib/localData";
 import SyncRegions from "data/sync-regions.json";
+import RegionalEditors from "data/regional-editors.json";
 
-type Props = {
-  regions: {
-    name: string;
-    editors: string[];
-  }[];
+type EditorRecord = {
+  name: string;
+  regions: string[];
 };
 
-export default function About({ regions }: Props) {
+const editors = RegionalEditors as EditorRecord[];
+
+const regions = SyncRegions.map((code) => ({
+  name: getRegion(code)?.detailedName || code,
+  editors: editors
+    .filter((editor) => editor.regions.includes(code))
+    .map((editor) => editor.name),
+}))
+  .filter((region) => region.editors.length > 0)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+export default function About() {
   const [search, setSearch] = React.useState<string>("");
 
   const filteredRegions = regions.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
@@ -66,8 +75,8 @@ export default function About({ regions }: Props) {
               <div key={name} className="mb-4 break-inside-avoid-column">
                 <h4 className="text-sm font-bold">{name}</h4>
                 <ul className="text-xs">
-                  {editors.map((name) => (
-                    <li key={name}>{name}</li>
+                  {editors.map((editorName) => (
+                    <li key={editorName}>{editorName}</li>
                   ))}
                 </ul>
               </div>
@@ -77,28 +86,4 @@ export default function About({ regions }: Props) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  const request = await admin.listUsers();
-  const editors = request.users
-    .filter(({ customClaims, disabled }) => !disabled && customClaims?.role === "editor")
-    .map(({ displayName, customClaims }) => ({
-      displayName,
-      regions: customClaims?.regions,
-    }));
-
-  const regions = SyncRegions.map((code) => {
-    const region = getRegion(code);
-    return {
-      name: region?.detailedName,
-      editors: editors.filter(({ regions }) => regions?.includes(code)).map(({ displayName }) => displayName),
-    };
-  });
-
-  return {
-    props: {
-      regions,
-    },
-  };
 }

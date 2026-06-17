@@ -5,8 +5,6 @@ import { getArticleByArticleId } from "lib/sqlite";
 import { Hotspot, Article as ArticleType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import EditorActions from "components/EditorActions";
-import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 import parse from "html-react-parser";
 import HotspotGrid from "components/HotspotGrid";
@@ -31,12 +29,6 @@ export default function Article({
     <div className="container pb-16">
       <Title>{`${name} - ${region.detailedName}`}</Title>
       <PageHeading region={region}>{name}</PageHeading>
-      <EditorActions className="-mt-12" requireRegion={region.code}>
-        <Link href={`/article/${articleId}/edit`}>Edit Article</Link>
-        <DeleteBtn url={`/api/article/delete?id=${_id}`} entity="article" className="ml-auto">
-          Delete Article
-        </DeleteBtn>
-      </EditorActions>
       <div className="overflow-auto">
         <div className="formatted">
           <div className="float-right max-w-[50%] ml-12 -mt-6 mb-6">

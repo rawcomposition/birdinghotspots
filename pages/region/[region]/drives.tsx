@@ -1,12 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { getDrivesByState } from "lib/sqlite";
-import { getRegion, restructureDrivesByCounty } from "lib/localData";
+import { getRegionDrives } from "lib/sqlite";
+import { getRegion } from "lib/localData";
 import PageHeading from "components/PageHeading";
 import { GetServerSideProps } from "next";
 import { DrivesByCounty, Region } from "lib/types";
 import Title from "components/Title";
-import EditorActions from "components/EditorActions";
 
 type Props = {
   region: Region;
@@ -18,9 +17,6 @@ export default function Drives({ region, drives }: Props) {
     <div className="container pb-16 mt-12">
       <Title>{`Birding Drives - ${region.detailedName}`}</Title>
       <PageHeading region={region}>Birding Drives</PageHeading>
-      <EditorActions className="-mt-12" requireRegion={region.code}>
-        <Link href={`/drive/new/edit?region=${region.code}`}>Add Drive</Link>
-      </EditorActions>
       <div className="md:flex gap-8 items-start mb-8">
         <div>
           <p className="mb-4">
@@ -69,10 +65,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const isState = regionCode.split("-").length === 2;
   if (!region || !isState) return { notFound: true };
 
-  const drives = (await getDrivesByState(regionCode)) || [];
-  const drivesByCounty = await restructureDrivesByCounty(drives as any, regionCode);
+  const drives = (getRegionDrives(regionCode) || []) as DrivesByCounty;
 
   return {
-    props: { region, drives: drivesByCounty },
+    props: { region, drives },
   };
 };

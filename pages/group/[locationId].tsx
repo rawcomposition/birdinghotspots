@@ -5,19 +5,15 @@ import Link from "next/link";
 import { getGroupByLocationId } from "lib/sqlite";
 import AboutSection from "components/AboutSection";
 import { Region, Marker, Group as GroupType, Link as LinkType } from "lib/types";
-import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
-import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
-import { canEdit as checkCanEdit } from "lib/helpers";
 import MapKit from "components/MapKit";
-import { useUser } from "providers/user";
 import BarChartBtn from "components/BarChartBtn";
 import HotspotGrid from "components/HotspotGrid";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import Citations from "components/Citations";
 import Features from "components/Features";
-import useLogPageview from "hooks/useLogPageview";
 import dayjs from "dayjs";
 import { isbot } from "isbot";
 
@@ -48,19 +44,14 @@ export default function Group({
   images,
   markers,
   hotspots,
+  primaryHotspot,
+  isMigrationReady,
   updatedAt,
   isBot,
 }: Props) {
   const stateCode = (stateCodes || []).length === 1 ? stateCodes[0] : undefined;
   const countyCode = (countyCodes || []).length === 1 ? countyCodes[0] : undefined;
-  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "group", isBot });
   const [showMore, setShowMore] = React.useState(false);
-  const { user } = useUser();
-
-  const canEditGroup = checkCanEdit(
-    { uid: "", role: user?.role, regions: user?.regions },
-    stateCodes?.length ? stateCodes : countryCode
-  );
 
   const locationIds = hotspots.map((it) => it.locationId);
   hotspots.sort((a, b) => (b.species || 0) - (a.species || 0));
@@ -78,14 +69,13 @@ export default function Group({
     <div className="container pb-16">
       <Title>{name}</Title>
       <PageHeading region={region}>{name}</PageHeading>
-      {canEditGroup && (
-        <EditorActions className="font-medium -mt-10">
-          <Link href={`/edit/group/${locationId}`}>Edit Group</Link>
-          <DeleteBtn url={`/api/group/delete?id=${locationId}`} entity="group" className="ml-auto">
-            Delete Group
-          </DeleteBtn>
-        </EditorActions>
-      )}
+      <PublicAnnouncement
+        ebirdHref={
+          isMigrationReady && primaryHotspot?.locationId
+            ? `https://ebird.org/hotspot/${primaryHotspot.locationId}`
+            : undefined
+        }
+      />
       <div className="mb-12">
         <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <HotspotGrid hotspots={filteredHotspots} loading={false} />

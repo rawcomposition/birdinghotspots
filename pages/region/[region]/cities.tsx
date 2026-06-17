@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { getRegionCities } from "lib/mongo";
+import { getRegionCities } from "lib/sqlite";
 import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import { City, Region } from "lib/types";
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
-  const cities = await getRegionCities(regionCode);
+  const cities = getRegionCities(regionCode) || [];
 
   return {
     props: { region, cities },

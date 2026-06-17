@@ -8,8 +8,12 @@ import Group from "../models/Group";
 import Article from "../models/Article";
 import Drive from "../models/Drive";
 import City from "../models/City";
-import { getRegion } from "../lib/localData";
+import RegionInfo from "../models/RegionInfo";
+import { getRegion, restructureDrivesByCounty, restructureHotspotsByCounty } from "../lib/localData";
 import { convertMlImageToImage } from "../lib/ml";
+import Regions from "../data/regions.json";
+import SyncRegions from "../data/sync-regions.json";
+import OhioIBA from "../data/oh-iba.json";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -163,7 +167,7 @@ function buildSpatialIndex(hotspots: any[]) {
   index.finish();
 
   function findNearby(lat: number, lng: number, radiusKm: number, maxResults: number, excludeLocationId?: string) {
-    const nearby = geokdbush.around(index, lng, lat, maxResults + 1, radiusKm);
+    const nearby = geokdbush.around(index, lng, lat, maxResults + 1, radiusKm) as number[];
     return nearby
       .map((i: number) => hotspotsWithCoords[i])
       .filter((h: any) => !excludeLocationId || h.locationId !== excludeLocationId)
@@ -515,6 +519,242 @@ async function migrateCities(db: Database.Database, findNearby: ReturnType<typeo
   console.log(`Inserted ${rows.length} cities into SQLite`);
 }
 
+// --- Region migration (landing page + sub-index pages, one entry per URL) ---
+
+// Enumerate every region code (country, state, county) from regions.json
+function getAllRegionCodes(): string[] {
+  const codes: string[] = [];
+  for (const country of Regions as any[]) {
+    codes.push(country.code);
+    for (const state of country.subregions || []) {
+      codes.push(state.code);
+      for (const county of state.subregions || []) {
+        codes.push(county.code);
+      }
+    }
+  }
+  return codes;
+}
+
+// Bucket items under each region code they belong to (county/state/country).
+// A single code lookup then yields all matching items regardless of level,
+// since the three code formats never collide.
+function bucketBy<T>(items: T[], codesFor: (item: T) => (string | undefined)[]) {
+  const map = new Map<string, T[]>();
+  for (const item of items) {
+    for (const code of codesFor(item)) {
+      if (!code) continue;
+      if (!map.has(code)) map.set(code, []);
+      map.get(code)!.push(item);
+    }
+  }
+  return map;
+}
+
+function computeRegionStats(hotspots: any[]) {
+  const total = hotspots.length;
+  const withImg = hotspots.filter((h) => h.featuredImg).length;
+  const withContent = hotspots.filter((h) => !h.noContent || h.groupIds?.length).length;
+  return {
+    total,
+    withImg,
+    withContent,
+    withoutContent: total - withContent,
+    withoutImg: total - withImg,
+  };
+}
+
+async function migrateRegions(db: Database.Database, rawHotspots: any[]) {
+  console.log("Building region entries...");
+
+  // Load supporting collections once
+  const groups = await Group.find({}, [
+    "name", "url", "mapImgUrl", "locationId", "countryCode", "stateCodes", "countyCodes",
+    "hotspots", "isRetired", "isMigrationReady", "needsPrimaryHotspot",
+  ]).lean();
+  const articles = await Article.find({}, ["name", "articleId", "images", "stateCode", "countryCode", "createdAt"]).lean();
+  const drives = await Drive.find({}, ["name", "locationId", "counties", "stateCode", "countryCode"]).lean();
+  const cities = await City.find({}).lean();
+  const regionInfos = await RegionInfo.find({}).lean();
+
+  const infoByCode = new Map<string, any>(
+    regionInfos.map((r: any) => [r.code, JSON.parse(JSON.stringify({ ...r, _id: undefined, __v: undefined }))])
+  );
+
+  // Buckets keyed by region code
+  const hotspotsByCode = bucketBy(rawHotspots, (h: any) => [h.countyCode, h.stateCode, h.countryCode]);
+  const groupsByCode = bucketBy(groups as any[], (g: any) => [...(g.countyCodes || []), ...(g.stateCodes || []), g.countryCode]);
+  const articlesByCode = bucketBy(articles as any[], (a: any) => [a.stateCode, a.countryCode]);
+  const drivesByState = bucketBy(drives as any[], (d: any) => [d.stateCode]);
+  const citiesByState = bucketBy(cities as any[], (c: any) => [c.stateCode]);
+
+  // IBA: currently Ohio-only
+  const ibaByCode = new Map<string, any[]>();
+  ibaByCode.set("US-OH", (OhioIBA as any[]).map(({ name, slug }: any) => ({ name, slug })));
+
+  const insert = db.prepare("INSERT OR REPLACE INTO content (id, type, data) VALUES (?, ?, ?)");
+  const insertMany = db.transaction((rows: { id: string; type: string; data: string }[]) => {
+    for (const row of rows) insert.run(row.id, row.type, row.data);
+  });
+
+  const codes = getAllRegionCodes();
+  console.log(`Processing ${codes.length} region codes...`);
+
+  const rows: { id: string; type: string; data: string }[] = [];
+
+  for (const code of codes) {
+    const region = getRegion(code);
+    if (!region) continue;
+    const hasSubregions = !!region.subregions?.length;
+    const pieces = code.split("-");
+
+    const regionHotspots = hotspotsByCode.get(code) || [];
+
+    // Top hotspots (shown for all region levels) — sorted by species desc
+    const topHotspots = [...regionHotspots]
+      .sort((a: any, b: any) => (b.species || 0) - (a.species || 0))
+      .slice(0, 12)
+      .map((h: any) => ({
+        _id: h.locationId,
+        name: h.name,
+        url: h.url,
+        featuredImg: h.featuredImg,
+        lat: h.lat,
+        lng: h.lng,
+        species: h.species,
+        countryCode: h.countryCode,
+        locationLine: getRegion(h.countyCode || h.stateCode || h.countryCode)?.detailedName || "",
+      }));
+
+    // Top groups (shown for all region levels)
+    const regionGroups = groupsByCode.get(code) || [];
+    const topGroups = [...regionGroups]
+      .sort((a: any, b: any) => (b.hotspots?.length || 0) - (a.hotspots?.length || 0))
+      .slice(0, 6)
+      .map((g: any) => ({
+        _id: g.locationId,
+        name: g.name,
+        url: g.url,
+        mapImgUrl: g.mapImgUrl,
+        hotspots: g.hotspots || [],
+      }));
+
+    // Leaf-only data
+    const leafHotspots = !hasSubregions
+      ? [...regionHotspots]
+          .sort((a: any, b: any) => (a.name || "").localeCompare(b.name || ""))
+          .map((h: any) => ({
+            name: h.name,
+            url: h.url,
+            noContent: (h.noContent && !h.groupIds?.length) || false,
+            needsDeleting: h.needsDeleting,
+            iba: h.iba,
+            drives: h.drives,
+          }))
+      : [];
+    const markers = !hasSubregions ? regionHotspots.map((h: any) => formatMarker(h)) : [];
+
+    // Region articles (shown for parent regions)
+    const regionArticles = hasSubregions
+      ? [...(articlesByCode.get(code) || [])]
+          .sort((a: any, b: any) => (b.createdAt || "").localeCompare(a.createdAt || ""))
+          .map((a: any) => ({ name: a.name, articleId: a.articleId, images: a.images }))
+      : [];
+
+    // --- Landing page entry (type "region") ---
+    rows.push({
+      id: code,
+      type: "region",
+      data: JSON.stringify({
+        region,
+        hasSubregions,
+        info: hasSubregions ? infoByCode.get(code) || null : null,
+        articles: regionArticles,
+        groups: topGroups,
+        hotspots: leafHotspots,
+        topHotspots,
+        markers,
+        stats: computeRegionStats(regionHotspots),
+      }),
+    });
+
+    // --- Sub-index entries (one per URL) ---
+    rows.push({
+      id: code,
+      type: "region-hotspot-index",
+      data: JSON.stringify(
+        [...regionHotspots]
+          .sort((a: any, b: any) => (a.name || "").localeCompare(b.name || ""))
+          .map((h: any) => ({
+            name: h.name,
+            url: h.url,
+            noContent: (h.noContent && !h.groupIds?.length) || false,
+            needsDeleting: h.needsDeleting,
+          }))
+      ),
+    });
+
+    rows.push({
+      id: code,
+      type: "region-group-index",
+      data: JSON.stringify(
+        [...regionGroups]
+          .map((g: any) => ({
+            name: g.name,
+            url: g.url,
+            isRetired: g.isRetired,
+            isMigrationReady: g.isMigrationReady,
+            needsPrimaryHotspot: g.needsPrimaryHotspot,
+          }))
+          .sort((a: any, b: any) => (a.name || "").localeCompare(b.name || ""))
+      ),
+    });
+
+    // Drives — restructured by county (only meaningful at state level)
+    const stateDrives = drivesByState.get(code) || [];
+    const drivesByCounty = stateDrives.length ? await restructureDrivesByCounty(stateDrives as any, code) : [];
+    rows.push({ id: code, type: "region-drives", data: JSON.stringify(drivesByCounty) });
+
+    // Roadside birding & accessible facilities — by-county lists (state level only)
+    if (pieces.length === 2) {
+      const roadsideHotspots = regionHotspots.filter((h: any) => h.roadside === "Yes");
+      const roadsideByCounty = roadsideHotspots.length
+        ? await restructureHotspotsByCounty(roadsideHotspots as any, code)
+        : [];
+      rows.push({ id: code, type: "region-roadside", data: JSON.stringify(roadsideByCounty) });
+
+      const accessibleHotspots = regionHotspots.filter((h: any) => h.accessible != null);
+      const accessibleByCounty = accessibleHotspots.length
+        ? await restructureHotspotsByCounty(accessibleHotspots as any, code)
+        : [];
+      rows.push({ id: code, type: "region-accessible", data: JSON.stringify(accessibleByCounty) });
+    }
+
+    // Cities — replicate getRegionCities (state via stateCode; country US/CA via SyncRegions)
+    let regionCities: any[] = [];
+    if (pieces.length === 2) {
+      regionCities = citiesByState.get(code) || [];
+    } else if (pieces.length === 1) {
+      const stateCodes = (SyncRegions as string[]).filter((it) => it.startsWith(`${code}-`));
+      regionCities = stateCodes.flatMap((sc) => citiesByState.get(sc) || []);
+    }
+    regionCities = [...regionCities]
+      .sort((a: any, b: any) => (a.name || "").localeCompare(b.name || ""))
+      .map((c: any) => JSON.parse(JSON.stringify({ ...c, _id: undefined, __v: undefined })));
+    rows.push({ id: code, type: "region-cities", data: JSON.stringify(regionCities) });
+
+    // IBA
+    rows.push({ id: code, type: "region-iba", data: JSON.stringify(ibaByCode.get(code) || []) });
+  }
+
+  const BATCH_SIZE = 5000;
+  for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+    insertMany(rows.slice(i, i + BATCH_SIZE));
+    console.log(`  Inserted ${Math.min(i + BATCH_SIZE, rows.length)}/${rows.length}`);
+  }
+  console.log(`Inserted region entries for ${codes.length} regions`);
+}
+
 async function main() {
   await connect();
   const db = initSqlite();
@@ -536,6 +776,7 @@ async function main() {
   await migrateArticles(db, hotspotById);
   await migrateDrives(db, hotspotById);
   await migrateCities(db, findNearby);
+  await migrateRegions(db, rawHotspots);
 
   db.close();
   await mongoose.disconnect();

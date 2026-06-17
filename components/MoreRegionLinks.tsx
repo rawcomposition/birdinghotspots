@@ -1,13 +1,11 @@
 import { Region } from "lib/types";
 import Link from "next/link";
-import { useUser } from "providers/user";
 
 type Props = {
   region: Region;
 };
 
 export default function MoreRegionLinks({ region }: Props) {
-  const { user } = useUser();
   const { code, features } = region;
   const isState = code.split("-").length === 2;
   const isCountry = code.split("-").length === 1;
@@ -17,13 +15,10 @@ export default function MoreRegionLinks({ region }: Props) {
       <h3 className="text-lg mb-2 font-bold">More ways to explore</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 text-[16px] gap-y-2 max-w-2xl gap-x-16">
         {features?.includes("drives") && isState && <Link href={`/region/${code}/drives`}>Birding Drives</Link>}
-        <Link href={`/region/${code}/hotspots?features=Roadside`}>Roadside Birding</Link>
-        <Link href={`/region/${code}/hotspots?features=Accessible`}>Accessible Facilities</Link>
+        {isState && <Link href={`/region/${code}/roadside-birding`}>Roadside Birding</Link>}
+        {isState && <Link href={`/region/${code}/accessible-facilities`}>Accessible Facilities</Link>}
         {features?.includes("iba") && <Link href={`/region/${code}/important-bird-areas`}>Important Bird Areas</Link>}
         <Link href={`/region/${code}/group-index`}>Group Locations</Link>
-        {!!user && <Link href={`/region/${code}/groups-needing-primary`}>Groups Needing General</Link>}
-        {user?.role === "admin" && <Link href={`/region/${code}/overlapping-groups`}>Overlapping Groups</Link>}
-        {user?.role === "admin" && <Link href={`/region/${code}/group-primary-hotspots`}>Group General Hotspots</Link>}
         {hasCities && <Link href={`/region/${code}/cities`}>Cities/Towns</Link>}
       </div>
     </div>

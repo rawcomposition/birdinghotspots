@@ -388,17 +388,6 @@ export interface FormattedSuggestion extends Revision {
   };
 }
 
-export type Pageview = {
-  count: number;
-  locationId?: string;
-  stateCode?: string;
-  countyCode?: string;
-  countryCode?: string;
-  entity: "hotspot" | "group" | "region";
-  year: number;
-  month: number;
-};
-
 export type SpeciesT = {
   _id: string;
   hasImg: boolean;

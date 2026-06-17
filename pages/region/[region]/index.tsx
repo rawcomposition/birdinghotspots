@@ -5,12 +5,12 @@ import Head from "next/head";
 import { Region, RegionInfo, Article, Hotspot, Marker, HotspotDrive, RegionStatsT, Group } from "lib/types";
 import Heading from "components/Heading";
 import PageHeading from "components/PageHeading";
-import EditorActions from "components/EditorActions";
 import Title from "components/Title";
 import RegionMap from "components/RegionMap";
-import { MapIcon, Bars3Icon, PencilSquareIcon, DocumentPlusIcon, PhotoIcon } from "@heroicons/react/24/outline";
+import { MapIcon, Bars3Icon, PencilSquareIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import EbirdRegionBtn from "components/EbirdRegionBtn";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import RegionStats from "components/RegionStats";
 import MapIconAlt from "icons/Map";
 import { useModal } from "providers/modals";
@@ -20,8 +20,6 @@ import MapKit from "components/MapKit";
 import HotspotList from "components/HotspotList";
 import HotspotGrid from "components/HotspotGrid";
 import RegionLinksBtn from "components/RegionLinksBtn";
-import useLogPageview from "hooks/useLogPageview";
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import MoreRegionLinks from "components/MoreRegionLinks";
 import ArticleGrid from "components/ArticleGrid";
 import RegionBranding from "components/RegionBranding";
@@ -54,7 +52,6 @@ export default function RegionPage({ region, info, articles, groups, hotspots, t
   const stateCode = regionPieces.length >= 2 ? regionPieces.slice(0, 2).join("-") : undefined;
   const countyCode = regionPieces.length === 3 ? code : undefined;
 
-  useLogPageview({ stateCode, countyCode, countryCode, entity: "region", isBot });
 
   const hotspotIBA = hotspots.filter(({ iba }) => iba?.value).map(({ iba }) => iba);
   const drives: HotspotDrive[] = [];
@@ -101,12 +98,7 @@ export default function RegionPage({ region, info, articles, groups, hotspots, t
           </>
         )}
       </PageHeading>
-      <EditorActions className="-mt-10" requireRegion={code}>
-        <Link href={`/edit/group/new?country=${countryCode}`} className="flex gap-1">
-          <PlusCircleIcon className="h-4 w-4" />
-          Add Group
-        </Link>
-      </EditorActions>
+      <PublicAnnouncement ebirdHref={`https://ebird.org/region/${code}`} ebirdLabel={`View ${name} on eBird`} />
       {hasSubregions ? (
         <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-2">
           <section>
@@ -297,16 +289,6 @@ export default function RegionPage({ region, info, articles, groups, hotspots, t
               ?
             </button>
           </Heading>
-          <EditorActions className="-mt-2" requireRegion={code}>
-            <Link href={`/region/${code}/edit-info`} className="flex gap-1">
-              <PencilSquareIcon className="h-4 w-4" />
-              Edit Links
-            </Link>
-            <Link href={`/article/new/edit?region=${region.code}`} className="flex gap-1">
-              <DocumentPlusIcon className="h-4 w-4" />
-              Add Article
-            </Link>
-          </EditorActions>
 
           {articles.length > 0 && <ArticleGrid articles={articles} className="mb-10" />}
           <div className="md:columns-2 gap-16">

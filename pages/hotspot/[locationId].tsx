@@ -6,28 +6,21 @@ import Head from "next/head";
 import { getHotspotByLocationId } from "lib/sqlite";
 import AboutSection from "components/AboutSection";
 import { Region, Marker, Hotspot as HotspotType, Image, Link as LinkType, Group, Citation } from "lib/types";
-import EditorActions from "components/EditorActions";
 import PageHeading from "components/PageHeading";
-import DeleteBtn from "components/DeleteBtn";
 import Title from "components/Title";
 import MapList from "components/MapList";
 import Feather from "icons/Feather";
 import Directions from "icons/Directions";
-import { canEdit as checkCanEdit } from "lib/helpers";
 import MapKit from "components/MapKit";
 import HotspotGrid from "components/HotspotGrid";
 import FeaturedImage from "components/FeaturedImage";
-import { useUser } from "providers/user";
-import { CameraIcon, PencilSquareIcon, MapIcon } from "@heroicons/react/24/outline";
 import EbirdHotspotBtn from "components/EbirdHotspotBtn";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import Citations from "components/Citations";
 import Features from "components/Features";
 import ExternalLinkButton from "components/ExternalLinkButton";
-import useLogPageview from "hooks/useLogPageview";
-import { useModal } from "providers/modals";
 import dayjs from "dayjs";
 import { isbot } from "isbot";
-import { ENABLE_LEGACY_UPLOADS } from "lib/config";
 
 type Props = HotspotType & {
   region: Region;
@@ -71,9 +64,6 @@ export default function Hotspot({
   nearby,
   isBot,
 }: Props) {
-  const { user } = useUser();
-  useLogPageview({ locationId, stateCode, countyCode, countryCode, entity: "hotspot", isBot });
-  const { open } = useModal();
 
   let extraLinks = [];
 
@@ -99,8 +89,6 @@ export default function Hotspot({
 
   const mapImages = [...(images?.filter((item) => item.smUrl && item.isMap) || []), ...groupMaps];
 
-  const canEdit = checkCanEdit({ uid: "", role: user?.role, regions: user?.regions }, region.code);
-
   return (
     <div className="container pb-16">
       <Title>{`${name} - ${region.detailedName}`}</Title>
@@ -118,52 +106,7 @@ export default function Hotspot({
           locationId={locationId}
         />
       )}
-      <EditorActions className={`${combinedImages?.length > 0 ? "-mt-2" : "-mt-12"} font-medium`} allowPublic>
-        {canEdit && (
-          <Link href={`/edit/${locationId}`} className="flex gap-1">
-            <PencilSquareIcon className="h-4 w-4" />
-            Edit Hotspot
-          </Link>
-        )}
-        {!isBot && ENABLE_LEGACY_UPLOADS && (
-          <Link href={`/hotspot/upload/${locationId}`} className="flex gap-1">
-            <CameraIcon className="h-4 w-4" />
-            Upload Photos
-          </Link>
-        )}
-        {!isBot && !ENABLE_LEGACY_UPLOADS && (
-          <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2] flex gap-1">
-            <CameraIcon className="h-4 w-4" />
-            Upload Photos
-          </button>
-        )}
-        {!isBot && (
-          <Link href={`/hotspot/suggest/${locationId}`} className="flex gap-1">
-            <PencilSquareIcon className="h-4 w-4" />
-            Suggest Content
-          </Link>
-        )}
-        {canEdit && !featuredImg && ENABLE_LEGACY_UPLOADS && (
-          <button
-            type="button"
-            onClick={() => open("addStreetView", { locationId })}
-            className="flex gap-1 text-primary"
-          >
-            <MapIcon className="h-4 w-4" />
-            Add Google Street View
-          </button>
-        )}
-        {canEdit && needsDeleting && (
-          <DeleteBtn url={`/api/hotspot/delete?id=${locationId}`} entity="hotspot" className="ml-auto">
-            Delete Hotspot
-          </DeleteBtn>
-        )}
-      </EditorActions>
-      {user && needsDeleting && (
-        <div className="border border-red-700 text-red-700 px-4 py-2 rounded relative mb-6">
-          This hotspot has been removed from eBird and should be deleted.
-        </div>
-      )}
+      <PublicAnnouncement ebirdHref={`https://ebird.org/hotspot/${locationId}`} />
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <div className="mb-6">
@@ -213,25 +156,7 @@ export default function Hotspot({
           {noContent && (
             <div className="mb-6 formatted">
               <h3 className="font-bold text-lg mb-1.5">About this Place</h3>
-              {isBot ? (
-                <div className="p-4 bg-gray-100 rounded-lg mb-6">
-                  This location has no content yet. If you are familiar with birding this location, please help other
-                  birders with a description, tips for birding, or photos.
-                </div>
-              ) : (
-                <div className="p-4 bg-gray-100 rounded-lg mb-6">
-                  If you are familiar with birding this location, please help other birders with a description, tips for
-                  birding, or photos - <Link href={`/hotspot/suggest/${locationId}`}>suggest content</Link> -{" "}
-                  {ENABLE_LEGACY_UPLOADS ? (
-                    <Link href={`/hotspot/upload/${locationId}`}>upload photos</Link>
-                  ) : (
-                    <button onClick={() => open("uploadMessage", { locationId })} className="text-[#4a84b2]">
-                      upload photos
-                    </button>
-                  )}
-                  .
-                </div>
-              )}
+              <div className="p-4 bg-gray-100 rounded-lg mb-6">This location has no content yet.</div>
             </div>
           )}
 

@@ -1,13 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { getHotspotsByRegion } from "lib/sqlite";
+import { getRegionHotspotIndex } from "lib/sqlite";
 import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { Region } from "lib/types";
-import { useUser } from "providers/user";
 import { useDebounce } from "hooks/useDebounce";
 
 type Props = {
@@ -20,28 +18,17 @@ type Props = {
   }[];
 };
 
-const filters = ["All", "Needs Content", "Needs Deleting"];
-
 export default function AlphabeticalIndex({ region, hotspots }: Props) {
   const [query, setQuery] = React.useState("");
-  const [filter, setFilter] = React.useState<number>(0);
   const debouncedQuery = useDebounce(query, 250);
-  const debouncedFilter = useDebounce(filter, 10);
 
-  let filtered = debouncedQuery
+  const filtered = debouncedQuery
     ? hotspots.filter((it) => it.name.toLowerCase().includes(debouncedQuery.toLowerCase()))
     : hotspots;
-
-  if (debouncedFilter === 1) {
-    filtered = filtered.filter((it) => it.noContent);
-  } else if (debouncedFilter === 2) {
-    filtered = filtered.filter((it) => it.needsDeleting);
-  }
 
   let activeLetters = filtered.map((hotspot) => hotspot.name.charAt(0).toUpperCase());
   activeLetters = [...new Set(activeLetters)];
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const { user } = useUser();
   return (
     <div className="container pb-16 mt-12">
       <Title>{`Alphabetical Hotspot Index - ${region.detailedName}`}</Title>
@@ -55,19 +42,6 @@ export default function AlphabeticalIndex({ region, hotspots }: Props) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
         />
-        {user &&
-          filters.map((it, i) => (
-            <button
-              key={it}
-              type="button"
-              className={`border rounded-full px-3 font-medium leading-5 text-[12px] mr-2 ${
-                filter === i ? "bg-gray-500 border-gray-500 text-white" : ""
-              }`}
-              onClick={() => setFilter(i)}
-            >
-              {it}
-            </button>
-          ))}
       </div>
 
       <p>
@@ -86,7 +60,7 @@ export default function AlphabeticalIndex({ region, hotspots }: Props) {
           );
         })}
       </p>
-      {filtered.map(({ name, url, noContent, needsDeleting }, i, array) => {
+      {filtered.map(({ name, url, noContent }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -100,11 +74,6 @@ export default function AlphabeticalIndex({ region, hotspots }: Props) {
             <Link href={url} className={noContent ? "" : "font-bold"}>
               {name}
             </Link>
-            {needsDeleting && user && (
-              <span className={`bg-red-600 rounded-full text-xs px-2 text-white font-bold ml-2`}>
-                Removed from eBird
-              </span>
-            )}
             <br />
           </React.Fragment>
         );
@@ -130,14 +99,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
-  const hotspots = (await getHotspotsByRegion(regionCode)) || [];
-
-  const formatted = hotspots.map((it: any) => ({
-    ...it,
-    noContent: (it.noContent && !it.groupIds?.length) || false,
-  }));
+  const hotspots = getRegionHotspotIndex(regionCode) || [];
 
   return {
-    props: { region, hotspots: formatted },
+    props: { region, hotspots },
   };
 };

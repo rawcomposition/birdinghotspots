@@ -5,8 +5,6 @@ import { getDriveByLocationId } from "lib/sqlite";
 import { Drive as DriveType, Region } from "lib/types";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
-import EditorActions from "components/EditorActions";
-import DeleteBtn from "components/DeleteBtn";
 import MapList from "components/MapList";
 
 interface Props extends DriveType {
@@ -24,12 +22,6 @@ export default function Drive({ region, name, description, mapId, entries, image
       <PageHeading region={region} extraCrumb={{ label: "Birding Drives", href: `/region/${region.code}/drives` }}>
         {name}
       </PageHeading>
-      <EditorActions className="-mt-12" requireRegion={region.code}>
-        <Link href={`/drive/${locationId}/edit`}>Edit Drive</Link>
-        <DeleteBtn url={`/api/drive/delete?id=${_id}`} entity="drive" className="ml-auto">
-          Delete Drive
-        </DeleteBtn>
-      </EditorActions>
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <p className="mb-4">

@@ -4,13 +4,13 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { getCityByLocationId } from "lib/sqlite";
 import PageHeading from "components/PageHeading";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import { Region, Hotspot, City as CityType, Marker } from "lib/types";
 import Title from "components/Title";
 import MapKit from "components/MapKit";
 import HotspotGrid from "components/HotspotGrid";
 import MapIconAlt from "icons/Map";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
-import useLogPageview from "hooks/useLogPageview";
 import { isbot } from "isbot";
 
 type Props = {
@@ -25,7 +25,6 @@ type Props = {
 export default function City({ region, city, hotspots, stateCode, countryCode, isBot }: Props) {
   const [expand, setExpand] = React.useState<boolean>(false);
   const { name, locationId } = city;
-  useLogPageview({ locationId, stateCode, countryCode, entity: "city", isBot });
 
   const markers = hotspots?.map(({ lat, lng, name, url, species }) => ({ lat, lng, url, name, species })) || [];
   const visibleHotspots = expand ? hotspots : hotspots.slice(0, 12);
@@ -39,7 +38,8 @@ export default function City({ region, city, hotspots, stateCode, countryCode, i
       <PageHeading region={region} extraCrumb={{ label: "Cities/Towns", href: `/region/${region.code}/cities` }}>
         {name}
       </PageHeading>
-      <section className="lg:flex justify-between items-start mb-4 -mt-8">
+      <PublicAnnouncement />
+      <section className="lg:flex justify-between items-start mb-4">
         <div>
           <h3 className="text-lg mb-1 font-bold">Where to Go Birding in {name}</h3>
           <p className="mb-2 text-base">

@@ -1,12 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { getGroupsByRegion } from "lib/sqlite";
+import { getRegionGroupIndex } from "lib/sqlite";
 import { getRegion } from "lib/localData";
 import { GetServerSideProps } from "next";
 import PageHeading from "components/PageHeading";
 import Title from "components/Title";
 import { Region } from "lib/types";
-import { useUser } from "providers/user";
 
 type Props = {
   region: Region;
@@ -22,7 +21,6 @@ type Props = {
 };
 
 export default function AlphabeticalIndex({ region, groups }: Props) {
-  const { user } = useUser();
   let activeLetters = groups.map((group) => group.name.charAt(0).toUpperCase());
   activeLetters = [...new Set(activeLetters)];
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -48,7 +46,7 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
           );
         })}
       </p>
-      {groups.map(({ name, url, isRetired, isMigrationReady, needsPrimaryHotspot }, i, array) => {
+      {groups.map(({ name, url }, i, array) => {
         const prev = i === 0 ? null : array[i - 1];
         const isNumber = !isNaN(parseInt(name.charAt(0)));
         const showLetter = prev ? name.charAt(0) !== prev.name.charAt(0) && !isNumber : true;
@@ -61,21 +59,6 @@ export default function AlphabeticalIndex({ region, groups }: Props) {
             )}
             <span className="inline-flex items-center gap-1">
               <Link href={url}>{name}</Link>
-              {user && isRetired && (
-                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">
-                  Retired
-                </span>
-              )}
-              {user && isMigrationReady && (
-                <span className="bg-green-800 text-white text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">
-                  Migration Ready
-                </span>
-              )}
-              {user && needsPrimaryHotspot && (
-                <span className="bg-orange-100 text-orange-800 text-[11px] leading-none px-2 py-1 rounded whitespace-nowrap">
-                  Needs General
-                </span>
-              )}
             </span>
             <br />
           </React.Fragment>
@@ -93,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
-  const groups = (await getGroupsByRegion(regionCode)) || [];
+  const groups = getRegionGroupIndex(regionCode) || [];
 
   return {
     props: { region, groups },

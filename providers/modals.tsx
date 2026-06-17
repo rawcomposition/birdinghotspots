@@ -8,14 +8,7 @@ import ModalWrapper from "components/ModalWrapper";
 
 // modals
 import StateInfo from "modals/StateInfo";
-import AddStreetView from "modals/AddStreetview";
-import Revision from "modals/Revision";
-import InviteEditor from "modals/InviteEditor";
-import UploadMessage from "modals/UploadMessage";
-import FeaturedPhotoPicker from "modals/FeaturedPhotoPicker";
 import Popover from "modals/Popover";
-import GroupHotspots from "modals/GroupHotspots";
-import ContentConflict from "modals/ContentConflict";
 
 const modals = [
   {
@@ -23,52 +16,6 @@ const modals = [
     title: "About This Website",
     maxWidth: "1100px",
     Component: StateInfo,
-  },
-  {
-    id: "addStreetView",
-    title: "Add Google Street View or Photosphere",
-    maxWidth: "700px",
-    Component: AddStreetView,
-  },
-  {
-    id: "revision",
-    title: "Review Suggestion",
-    maxWidth: "700px",
-    Component: Revision,
-  },
-  {
-    id: "inviteEditor",
-    title: "Invite Editor",
-    maxWidth: "500px",
-    Component: InviteEditor,
-  },
-  {
-    id: "uploadMessage",
-    title: (
-      <>
-        <span className="bg-yellow-300 rounded-full px-2 py-1 text-xs font-bold">NEW</span> Upload directly to eBird
-      </>
-    ),
-    maxWidth: "700px",
-    Component: UploadMessage,
-  },
-  {
-    id: "featuredPhotoPicker",
-    title: "Select Featured Photo",
-    maxWidth: "900px",
-    Component: FeaturedPhotoPicker,
-  },
-  {
-    id: "groupHotspots",
-    title: "Hotspots",
-    maxWidth: "750px",
-    Component: GroupHotspots,
-  },
-  {
-    id: "contentConflict",
-    title: "Content Conflict",
-    maxWidth: "1000px",
-    Component: ContentConflict,
   },
   {
     id: "popover",

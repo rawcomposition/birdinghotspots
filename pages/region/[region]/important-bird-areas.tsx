@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { getRegion } from "lib/localData";
+import { getRegionIba } from "lib/sqlite";
 import { GetServerSideProps } from "next";
-import OhioIBA from "data/oh-iba.json";
 import PageHeading from "components/PageHeading";
 import { Region } from "lib/types";
 import Title from "components/Title";
@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const region = getRegion(regionCode);
   if (!region) return { notFound: true };
 
-  const areas = OhioIBA.filter(({ name, slug }) => ({ name, slug })) || [];
+  const areas = getRegionIba(regionCode) || [];
 
   return {
     props: { region, areas },

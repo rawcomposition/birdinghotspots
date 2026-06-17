@@ -5,10 +5,9 @@ import Regions from "data/regions.json";
 import EbirdDescription from "components/EbirdDescription";
 import Title from "components/Title";
 import Banner from "components/Banner";
+import PublicAnnouncement from "components/PublicAnnouncement";
 import Heading from "components/Heading";
-import Hotspot from "models/Hotspot";
 import { getRegion } from "lib/localData";
-import connect from "lib/mongo";
 import { Hotspot as HotspotType, Region } from "lib/types";
 import HotspotGrid from "components/HotspotGrid";
 import clsx from "clsx";
@@ -27,6 +26,7 @@ export default function Home({ featured, expandedRegions }: Props) {
       </Head>
       <Banner />
       <div className="container pb-16 mt-12">
+        <PublicAnnouncement />
         <div className="sm:grid grid-cols-2 gap-16">
           <section>
             {expandedRegions.map((country) => (
@@ -207,45 +207,140 @@ export default function Home({ featured, expandedRegions }: Props) {
   );
 }
 
+// Hand-picked featured hotspots for the archive (was a random Mongo $sample).
+const FEATURED_HOTSPOTS = [
+  {
+    _id: "L468901",
+    name: "Rancho Naturalista",
+    url: "/hotspot/L468901",
+    species: 529,
+    stateCode: "CR-C",
+    countryCode: "CR",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/639388799/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/639388799/1200",
+      caption: "Flamingo flower or Painters palette",
+    },
+  },
+  {
+    _id: "L329116",
+    name: "Southeast Farallon Island (Farallon Islands NWR, restricted access)",
+    url: "/hotspot/L329116",
+    species: 446,
+    stateCode: "US-CA",
+    countyCode: "US-CA-075",
+    countryCode: "US",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/638207375/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/638207375/1200",
+      caption: "Shubrick Cove",
+    },
+  },
+  {
+    _id: "L109132",
+    name: "Cape Island--Cape May Point SP (CMPSP)",
+    url: "/hotspot/L109132",
+    species: 371,
+    stateCode: "US-NJ",
+    countyCode: "US-NJ-009",
+    countryCode: "US",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/636097418/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/636097418/1200",
+      caption: 'Path beside the "Plover Ponds" looking toward the lighthouse.',
+    },
+  },
+  {
+    _id: "L129046",
+    name: "Parker River NWR",
+    url: "/hotspot/L129046",
+    species: 362,
+    stateCode: "US-MA",
+    countyCode: "US-MA-009",
+    countryCode: "US",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/636789168/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/636789168/1200",
+      caption: "PRNWR pans",
+    },
+  },
+  {
+    _id: "L559416",
+    name: "Lake Apopka North Shore--Orange County section",
+    url: "/hotspot/L559416",
+    species: 345,
+    stateCode: "US-FL",
+    countyCode: "US-FL-095",
+    countryCode: "US",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/637881290/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/637881290/1200",
+      caption: "Sunrise near the entrance gate",
+    },
+  },
+  {
+    _id: "L1020032",
+    name: "Seal Island",
+    url: "/hotspot/L1020032",
+    species: 335,
+    stateCode: "CA-NS",
+    countyCode: "CA-NS-YA",
+    countryCode: "CA",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/643026650/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/643026650/1200",
+      caption: "A northerly view at the East Village on Seal Island",
+    },
+  },
+  {
+    _id: "L128926",
+    name: "Brazoria NWR (UTC 108)",
+    url: "/hotspot/L128926",
+    species: 330,
+    stateCode: "US-TX",
+    countyCode: "US-TX-039",
+    countryCode: "US",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/641766403/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/641766403/1200",
+      caption: "Gator Nest Pond",
+    },
+  },
+  {
+    _id: "L196306",
+    name: "Rio Grande Nature Center SP",
+    url: "/hotspot/L196306",
+    species: 324,
+    stateCode: "US-NM",
+    countyCode: "US-NM-001",
+    countryCode: "US",
+    featuredImg: {
+      xsUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/648362073/480",
+      smUrl: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/648362073/1200",
+      caption: "Entrance to Nature Center",
+    },
+  },
+];
+
 export const getStaticProps = async () => {
-  await connect();
-
-  const results = await Hotspot.aggregate([
-    {
-      $match: {
-        "featuredImg.smUrl": { $exists: true },
-        noContent: { $ne: true },
-        species: { $gt: 150 },
-      },
-    },
-    { $sample: { size: 8 } },
-    {
-      $project: {
-        stateCode: 1,
-        countyCode: 1,
-        name: 1,
-        featuredImg: 1,
-        url: 1,
-        species: 1,
-      },
-    },
-  ]);
-
-  const formatted = results.map((hotspot) => {
+  const featured = FEATURED_HOTSPOTS.map((hotspot) => {
     const regionCode = hotspot.countyCode || hotspot.stateCode;
     const region = getRegion(regionCode);
     const locationLine = region ? `${region.detailedName}` : regionCode;
-    return {
-      ...hotspot,
-      _id: hotspot._id.toString(),
-      locationLine,
-    };
+    return { ...hotspot, locationLine };
   });
 
-  const expandedRegions = Regions.filter(({ code }) => ["US", "CA", "MX", "GB", "IN"].includes(code));
+  // Only the country + its immediate subregions (states) are rendered, so strip the
+  // deeply-nested county tree to keep the page data payload small.
+  const expandedRegions = Regions.filter(({ code }) => ["US", "CA", "MX", "GB", "IN"].includes(code)).map(
+    ({ code, name, subregions }) => ({
+      code,
+      name,
+      subregions: (subregions || []).map(({ code, name }) => ({ code, name })),
+    })
+  );
 
   return {
-    props: { featured: formatted, expandedRegions },
-    revalidate: 3600, // 1 hour
+    props: { featured, expandedRegions },
   };
 };
