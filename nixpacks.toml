@@ -1,0 +1,3 @@
+# Override the setup package set to use npm 11 so the builder matches local dev.
+[phases.setup]
+nixPkgs = ["nodejs_22", "npm-11_x"]
