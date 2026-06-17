@@ -27,7 +27,7 @@ function getDb() {
 function getOne<T = any>(id: string, type: string): T | null {
   const db = getDb();
   const row = db.prepare("SELECT data FROM content WHERE id = ? AND type = ?").get(id, type) as
-    | { data: Buffer }
+    | { data: Uint8Array }
     | undefined;
   // `data` is gzip-compressed JSON (see scripts/migrate-to-sqlite.ts).
   return row ? JSON.parse(zlib.gunzipSync(row.data).toString("utf8")) : null;
